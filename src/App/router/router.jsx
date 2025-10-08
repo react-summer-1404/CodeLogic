@@ -1,9 +1,9 @@
 import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import HomePage from '../../pages/HomePage'
+import Landing from '../../pages/Landing/Landing'
 
 const router = createBrowserRouter([
-    { path: '/', element: <HomePage /> }
+    {path: '/', element: <Landing/>}
 ])
 
 export default router
