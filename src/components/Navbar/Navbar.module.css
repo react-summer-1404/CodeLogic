@@ -1,0 +1,74 @@
+.main {
+  padding: 20px 0;
+  padding-left: 7%;
+  padding-right: 7%;
+}
+.searchcontainer {
+  position: relative;
+  display: inline-block;
+}
+
+.searchinput {
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+  direction: rtl;
+  background: white;
+  /* padding: 16px 52px 16px 16px; */
+  padding: 15px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 28px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  font-family: IRANSans, sans-serif;
+  width: 400px;
+}
+
+.searchinput:focus {
+  border-color: rgb(33, 145, 82);
+  box-shadow: 0 0px 20px 2px rgb(33, 145, 82);
+}
+
+.searchbutton {
+  position: absolute;
+  left: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: 0.3s;
+  background: rgb(33, 145, 82);
+}
+
+.searchbutton:hover {
+  background-color: rgb(8, 95, 46);
+  color: white;
+  transition: 0.3s;
+}
+.ul {
+  gap: 20px;
+}
+.li {
+  transition: 0.2s;
+}
+.li:hover {
+  color: rgb(33, 145, 82);
+  transition: 0.2s;
+}
+
+.button {
+  margin-right: 30px;
+  background: rgb(33, 145, 82);
+  transition: 0.3s;
+  padding: 15px 25px;
+  color: white;
+}
+.button:hover {
+  background-color: rgb(8, 95, 46);
+  transition: 0.3s;
+}

@@ -1,6 +1,7 @@
-@import './reset.css';
-@import './variables.css';
+@import "./reset.css";
+@import "./variables.css";
 @import "tailwindcss";
+<<<<<<< HEAD
 
 
 body {
@@ -10,3 +11,5 @@ body {
     font-size: 16px;
     direction: rtl;
 }
+=======
+>>>>>>> 57d05d6796e7fad007a009e59f51d6095918ad64
