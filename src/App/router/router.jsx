@@ -1,9 +1,14 @@
-import React from 'react'
-import { createBrowserRouter } from 'react-router-dom'
-import Landing from '../../pages/Landing/Landing'
+import React from "react";
+import { createBrowserRouter } from "react-router-dom";
+import Landing from "../../pages/Landing/Landing";
+import Layout from "../../components/layouts/Layout";
 
 const router = createBrowserRouter([
-    {path: '/', element: <Landing/>}
-])
+  {
+    path: "/",
+    element: <Layout />,
+    children: [{ path: "/", element: <Landing /> }],
+  },
+]);
 
-export default router
+export default router;
