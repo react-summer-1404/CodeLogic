@@ -3,6 +3,29 @@
   width: 100%;
   padding-left: 7%;
   padding-right: 7%;
-  background: rgb(33, 145, 82);
+  background: #008c78;
   border-radius: 50px 50px 0 0;
+}
+.top {
+  height: 30%;
+  border: 1px solid red;
+}
+.middle {
+  height: 50%;
+  border: 1px solid red;
+}
+.bottom {
+  height: 20%;
+}
+.h1 {
+  font-weight: bold;
+  color: white;
+  font-size: large;
+}
+.span {
+  color: white;
+  margin-right: 10px;
+}
+.icon {
+  color: white !important;
 }
