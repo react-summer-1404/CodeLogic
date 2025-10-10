@@ -2,6 +2,7 @@ import React from 'react'
 import Teacher from '../../../assets/Icons/Teacher'
 import Level from '../../../assets/Icons/Level' 
 import Star from '../../../assets/Icons/Star'
+import Heart from '../../../assets/Icons/Heart'
 import { useTranslation } from 'react-i18next'
 
 const SliderCourse = ({item}) => {
@@ -9,7 +10,8 @@ const SliderCourse = ({item}) => {
     const {t} = useTranslation();
 
   return (
-    <div className='flex flex-col flex-shrink-0 items-center w-[350px]' dir='rtl'>
+    <div className='flex flex-col flex-shrink-0 items-center w-[350px] rounded-[20px] hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)] relative' 
+    dir='rtl'>
         <img className='w-full h-[259px] rounded-t-[20px]' src={item.img}/>
         <div className='flex flex-col p-4 bg-[#FFFFFF] rounded-[20px] transform -translate-y-4'>
             <div className='flex flex-col gap-1'>
@@ -39,6 +41,9 @@ const SliderCourse = ({item}) => {
                 </div>
             </div>
         </div>
+        <button className='p-2 bg-[#000000] opacity-25 rounded-[50px] absolute top-[13px] right-[14px]'>
+            <Heart/>
+        </button>
     </div>
   )
 }

@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={` ${style.mainnav} flex items-center justify-between `}>
+    <nav className={`${style.mainnav} flex items-center justify-between`}>
       <div className={` ${style.left}  `}>
         <button className={` ${style.button} rounded-4xl font-bold `}>
           ورود / ثبت نام
