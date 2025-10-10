@@ -1,22 +1,32 @@
 .main {
-  height: 400px;
   width: 100%;
   padding-left: 7%;
   padding-right: 7%;
+  padding-top: 50px;
+  padding-bottom: 50px;
   background: #008c78;
   border-radius: 50px 50px 0 0;
 }
 .top {
-  height: 30%;
-  border: 1px solid red;
+  background: #006252;
+  padding: 80px 60px;
+  border-radius: 30px 0;
+  margin-bottom: 20px;
 }
 .middle {
-  height: 50%;
-  border: 1px solid red;
+  margin-bottom: 30px;
 }
-.bottom {
-  height: 20%;
+.left {
+  width: 50%;
+  position: relative;
+  height: 100%;
 }
+.right {
+  width: 50%;
+
+  height: 100%;
+}
+
 .h1 {
   font-weight: bold;
   color: white;
@@ -28,4 +38,64 @@
 }
 .icon {
   color: white !important;
+}
+.p {
+  direction: rtl;
+  color: white;
+}
+.input {
+  border: 2px solid #008c78;
+  background: white;
+  padding: 10px;
+  color: #414141;
+  direction: rtl;
+  width: 360px;
+}
+.button {
+  color: white;
+  background: #008c78;
+  padding: 10px 20px;
+  position: absolute;
+  top: 1px;
+  left: 0px;
+}
+.inputspan {
+  color: #cccccc;
+  position: absolute;
+  top: 70px;
+  right: 40px;
+  width: 100%;
+  font-size: small;
+}
+.card {
+  border-radius: 30px 0;
+  width: 260px;
+  direction: rtl;
+  background: #006252;
+  padding: 40px;
+  color: white;
+  gap: 100px;
+}
+.card1 {
+  border-radius: 30px 0;
+  width: 260px;
+  direction: rtl;
+  background: #006252;
+  padding: 40px;
+  color: white;
+  gap: 100px;
+  height: 338px;
+}
+.h2 {
+  padding: 5px 0;
+  border-bottom: 2px solid #008c78;
+  margin-bottom: 20px;
+}
+.li {
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: 0.3s ease;
+}
+.li:hover {
+  color: black;
 }
