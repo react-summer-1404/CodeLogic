@@ -5,19 +5,15 @@
 
 * {
   font-family: IRANSans;
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
 body {
   background: #d6d6d6;
+  margin: 0;
+  padding: 0;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
 
 button,
 input,
