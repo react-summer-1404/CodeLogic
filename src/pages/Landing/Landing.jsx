@@ -3,6 +3,7 @@ import HeroSection from '../../components/common/HeroSection/HeroSection'
 import Section1 from '../../components/Section1/Section1'
 import Categories from '../../components/Categories/Categories'
 import SliderCourses from '../../components/SliderCourses/SliderCourses'
+import WhyUs from '../../components/WhyUs/WhyUs'
 
 const Landing = () => {
   return (
@@ -11,6 +12,7 @@ const Landing = () => {
       <Section1/>
       <Categories/>
       <SliderCourses/>
+      <WhyUs/>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import HeroSectionImg from '../../../assets/Images/Group7.svg'
+import working from '../../../assets/Images/working.svg'
 import { useTranslation } from 'react-i18next'
 
 
@@ -16,7 +16,7 @@ const HeroSection = () => {
         <p className='max-w-[541px] font-normal leading-7'>{t('در دوره‌های تخصصی ما، با اساتید حرفه‌ای و با تجربه یادگیری برنامه‌نویسی را آغاز کنید. از مفاهیم پایه تا مهارت‌های پیشرفته، شما را به سطحی می‌رسانیم که آماده ورود به دنیای حرفه‌ای فناوری باشید. با روش‌های مدرن و کارآمد، به سرعت رشد کنید!')}</p>
         <button className='flex justify-center items-center w-[253px] h-[46px] font-bold text-base text-white bg-[#005B77] rounded-[50px] cursor-pointer'>{t('به جمع حرفه ای ها بپیوندید')}</button>
       </div>
-      <img src={HeroSectionImg}/>
+      <img src={working}/>
     </div>
   )
 }
