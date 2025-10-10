@@ -15,17 +15,14 @@ body {
     font-family: 'Estedad';
     src: url('../../assets/Fonts/Estedad-Regular.woff2') format('woff2');
 }
-
 @font-face {
     font-family: 'Estedad';
     src: url('../../assets/Fonts/Estedad-Medium.woff2') format('woff2');
 }
-
 @font-face {
     font-family: 'Estedad';
     src: url('../../assets/Fonts/Estedad-SemiBold.woff2') format('woff2');
 }
-
 @font-face {
     font-family: 'Estedad';
     src: url('../../assets/Fonts/Estedad-Bold.woff2') format('woff2');
