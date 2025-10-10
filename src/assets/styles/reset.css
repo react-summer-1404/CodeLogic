@@ -12,7 +12,9 @@
   cursor: pointer !important;
   margin-left: 40px;
 }
-
+.dark .courses__control {
+  width: 1000px !important;
+}
 .courses__placeholder {
   text-align: center !important;
   color: #7e7e7e !important;
@@ -20,7 +22,7 @@
 
 .courses__single-value {
   text-align: center !important;
-  color: #111827 !important;
+  color: #7e7e7e !important;
 }
 
 .courses__menu {

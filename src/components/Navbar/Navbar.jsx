@@ -7,18 +7,28 @@ import SelectComp from "../SelectComp/SelectComp";
 const Navbar = () => {
   const [mobilemenu, setmobilemenu] = useState(false);
 
+  const [darkMode, setDarkMode] = useState(false);
+
   const togglemenu = () => {
     setmobilemenu(!mobilemenu);
   };
 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <nav className={` ${style.mainnav} flex items-center justify-between `}>
+    <nav
+      className={`${style.mainnav} ${
+        darkMode ? style.darknav : ""
+      } flex items-center justify-between`}
+    >
       <ul
         className={` ${style.ul} flex items-center justify-around   ${
           mobilemenu ? style.showmenu : style.hidemenu
         }  `}
       >
-        <li className="text-xl font-bold">آکادمی بحر</li>
+        <li className={` ${style.li}    text-xl font-bold`}>آکادمی بحر</li>
 
         <li className={`  ${style.li} text-lg cursor-pointer font-semibold`}>
           صفحه اصلی
@@ -43,6 +53,9 @@ const Navbar = () => {
             <SearchIcon sx={{ color: "white", fontSize: 35 }} />
           </button>
         </div>
+        <button onClick={toggleDarkMode} className={`${style.darkModeBtn} `}>
+          {darkMode ? "☀️" : "🌙"}
+        </button>
         <button className={` ${style.button} rounded-4xl font-bold `}>
           ورود / ثبت نام
         </button>
