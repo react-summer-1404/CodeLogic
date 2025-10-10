@@ -4,15 +4,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 
-@custom-variant dark (&:where(.dark, .dark *));
-
-
 body {
     background-color: var(--background-color);
     color: var(--text-color);
     font-size: 16px;
     direction: rtl;
-
 }
 
 @font-face {
@@ -35,3 +31,4 @@ body {
     src: url('../../assets/Fonts/Estedad-Bold.woff2') format('woff2');
 
 }
+
