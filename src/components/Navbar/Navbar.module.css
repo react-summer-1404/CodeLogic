@@ -14,35 +14,7 @@
   transition: all 0.3s ease;
 }
 .searchcontainer:focus-within {
-  box-shadow: 0 0px 15px 1px rgb(33, 145, 82);
-}
-.searchselect {
-  font-family: IRANSans, sans-serif;
-  font-weight: 600;
-  font-size: 15px;
-  color: #000000;
-  border: none;
-  outline: none;
-  background: transparent;
-  direction: rtl;
-  padding: 15px 15px 15px 10px;
-  border-radius: 28px 0 0 28px;
-  cursor: pointer;
-  transition: 0.3s;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  position: relative;
-  left: 20px;
-  width: 110px;
-  text-align: right;
-}
-
-.searchselect::after {
-  content: "▾";
-  position: absolute;
-  left: 10px;
-  top: 50%;
+  box-shadow: 0 0px 15px 1px #008c78;
 }
 
 .searchinput {
@@ -74,11 +46,11 @@
   padding: 8px;
   border-radius: 50%;
   transition: 0.3s;
-  background: rgb(33, 145, 82);
+  background: #008c78;
 }
 
 .searchbutton:hover {
-  background-color: rgb(8, 95, 46);
+  background-color: #007563;
   color: white;
   transition: 0.3s;
 }
@@ -89,13 +61,13 @@
   transition: 0.2s;
 }
 .li:hover {
-  color: rgb(33, 145, 82);
+  color: #008c78;
   transition: 0.2s;
 }
 
 .button {
   margin-right: 30px;
-  background: rgb(33, 145, 82);
+  background: #008c78;
   transition: 0.3s;
   padding: 15px 25px;
   color: white;
@@ -103,7 +75,7 @@
   cursor: pointer;
 }
 .button:hover {
-  background-color: rgb(8, 95, 46);
+  background-color: #007563;
   transition: 0.3s;
 }
 .menuicon {
