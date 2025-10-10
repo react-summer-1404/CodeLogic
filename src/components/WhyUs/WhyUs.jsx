@@ -1,4 +1,5 @@
 import React from 'react'
+import WhyUsItem from './WhyUsItem/WhyUsItem'
 import ReadingBook from '../../assets/Images/readingbook.svg'
 import { useTranslation } from 'react-i18next'
 
@@ -28,7 +29,7 @@ const WhyUs = () => {
           <p className='font-regular text-base text-[#848484]'>{t('ما مسیر یادگیری برنامه‌نویسی را ساده، کاربردی و اثربخش می‌کنیم تا سریع‌تر وارد بازار کار شوید.')}</p>
         </div>
         <div>
-          {whyUsItemsData.map((item, index) => {return <WhyUsItem/>})}
+          {whyUsItemsData.map((item, index) => {return <WhyUsItem item={item} key={index}/>})}
         </div>
       </div>
     </div>
