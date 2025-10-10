@@ -1,0 +1,8 @@
+.main {
+  height: 400px;
+  width: 100%;
+  padding-left: 7%;
+  padding-right: 7%;
+  background: rgb(33, 145, 82);
+  border-radius: 50px 50px 0 0;
+}
