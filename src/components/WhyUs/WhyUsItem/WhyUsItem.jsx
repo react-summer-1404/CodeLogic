@@ -7,11 +7,11 @@ const WhyUsItem = ({item}) => {
   const {t} = useTranslation();  
   
   return (
-    <div>
+    <div className='flex gap-4 pt-8'>
       <CircleTick/>
-      <div>
-        <span>{t(`${item.title}`)}</span>
-        <p></p>
+      <div className='flex flex-col gap-[14px]'>
+        <span className='font-bold text-base text-[#263238]'>{t(`${item.title}`)}</span>
+        <p className='font-regular text-sm text-[#848484]'>{t(`${item.desc}`)}</p>
       </div>
     </div>
   )
