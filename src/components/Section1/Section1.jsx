@@ -11,7 +11,7 @@ const Section1 = () => {
   ]
 
   return (
-    <div className='flex justify-center mt-[13px] py-[42px] text-[#FFFFFF] divide-x-[2px] divide-[#FFFFFF] bg-[#008C78]'>
+    <div className='flex justify-center mt-[13px] py-8 text-[#FFFFFF] divide-x-[2px] divide-[#FFFFFF] bg-[#008C78]'>
       {sectionData.map((item, index) => {return <Section1Card item={item} key={index}/>})}
     </div>
   )
