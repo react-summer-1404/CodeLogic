@@ -20,7 +20,7 @@ const LoginPage = () => {
                         <h2 className='text-[19px] font-bold text-[#008C78] mb-2 '>ورود به حساب کاربری</h2>
                         <form className='w-full flex flex-col gap-8' >
                             <div className=''>
-                                <input className=' bg-[url(./icons/user.png)] bg-no-repeat  bg-[length:13px_15px] bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-12 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder:text-[15px] ' type="email" name='email' id='email' placeholder='ایمیل یا شماره تماس' />
+                                <input className=' focus:outline-none bg-[url(./icons/user.png)] bg-no-repeat  bg-[length:13px_15px] bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-12 py-2 focus:ring-2 focus:ring-blue-400 placeholder:text-[15px] ' type="email" name='email' id='email' placeholder='ایمیل یا شماره تماس' />
                             </div>
                             <div className=''>
                                 <input className='  bg-[url(./icons/lock.png)] bg-no-repeat bg-[length:13px_15px] bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-12 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder:text-[15px] ' type="email" name='password' id='password' placeholder='رمز عبور' />
