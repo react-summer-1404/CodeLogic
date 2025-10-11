@@ -20,10 +20,10 @@ const LoginPage = () => {
                         <h2 className='text-[24px] font-bold text-[#008C78] '>ورود به حساب کاربری</h2>
                         <form className='w-full flex flex-col gap-8 mt-7 px-6 ' >
                             <div className='mb-5'>
-                                <input className=' focus:outline-none bg-[url(./icons/user.png)] bg-no-repeat  bg-[length:13px_15px] bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500  w-full rounded-full px-12 py-3 focus:ring-2 focus:ring-blue-400 placeholder:text-[15px] ' type="email" name='email' id='email' placeholder='ایمیل یا شماره تماس' />
+                                <input className=' focus:outline-none bg-[url(./icons/user.png)] bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500  w-full rounded-full px-13 py-3 focus:ring-2 focus:ring-blue-400 placeholder:text-[15px] ' type="email" name='email' id='email' placeholder='ایمیل یا شماره تماس' />
                             </div>
                             <div className=''>
-                                <input className='  bg-[url(./icons/lock.png)] bg-no-repeat bg-[length:13px_15px] bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-12 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder:text-[15px] ' type="email" name='password' id='password' placeholder='رمز عبور' />
+                                <input className='  bg-[url(./icons/lock.png)] bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder:text-[15px] ' type="email" name='password' id='password' placeholder='رمز عبور' />
                             </div>
                             <div className='w-full flex justify-between  '>
                                 <div className='flex gap-2'>
