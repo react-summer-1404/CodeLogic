@@ -4,15 +4,21 @@ import LoginPage from "../../pages/auth/Login/LoginPage";
 import LoginValidationPage from "../../pages/auth/Login/LoginValidationPage";
 import Landing from '../../pages/Landing/Landing'
 import Layout from "../../components/layouts/layout";
+import ForgotPasswordStepOne from "../../pages/auth/forgotPassword/forgotPasswordStepOne";
+
 
 
 
 const router = createBrowserRouter([
-    { path: '/', element: <Layout/>, children: [
-        {index: true, element: <Landing/>},
-        { path: "/login", element: <LoginPage /> },
-        { path: "/loginValidation", element: <LoginValidationPage /> }
-    ]},
+    {
+        path: '/', element: <Layout />, children: [
+            { index: true, element: <Landing /> },
+            { path: "/login", element: <LoginPage /> },
+            { path: "/loginValidation", element: <LoginValidationPage /> },
+            { path: "/forgotPassOne", element: <ForgotPasswordStepOne /> }
+        ]
+    },
+
 ]);
 
 export default router;

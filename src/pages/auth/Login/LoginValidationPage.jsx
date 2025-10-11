@@ -42,7 +42,7 @@ const LoginValidationPage = () => {
                     </div>
 
                 </div>
-                <div className='flex flex-1 flex-col items-center justify-center  p-8  bg-[#EEFFFC] dark:bg-gray-800/50 rounded-[60px] relative'>
+                <div className='flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-gray-800/50 rounded-[60px] relative'>
                     <div onClick={handleDark} className={` cursor-pointer py-3 px-2  w-12 h-6   rounded-full  absolute top-14 left-7 flex  ${isDark ? "bg-yellow-300/40 justify-end " : "bg-blue-900/30  justify-start"} `}>
                         <div className='w-3 h-[90%] rounded-full transition-all duration-500 flex items-center '>
                             <img src={`${isDark ? "./icons/sun.png" : "./icons/moon.png"}  `} alt="" />
