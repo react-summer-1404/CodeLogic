@@ -17,7 +17,7 @@ const LoginValidationPage = () => {
         <div className='bg-[#EAEAEA] min-h-screen flex items-center justify-center'>
             <div className='flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg md:flex-row max-w-[1250px] w-full min-h-[739px] p-2 '>
                 <div className=' flex flex-1 flex-col  p-17  gap-10 '>
-                    <Link className=' pr-8 bg-[url(./icons/back.png)] bg-no-repeat bg-[length:22.489788055419922px_20px] bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>بازگشت</Link>
+                    <Link className=' pr-8 bg-[url(./icons/back.png)] bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>بازگشت</Link>
                     <div className='flex flex-col justify-center items-center gap-3 p-5 '>
                         <div className='flex flex-col justify-center items-center gap-2  '>
                             <h2 className='text-[24px] font-bold text-[#008C78] mb-2 '>ورود به حساب کاربری</h2>
