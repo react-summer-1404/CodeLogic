@@ -1,55 +1,140 @@
-import React from "react";
+import React, { useState } from "react";
 import regone from "../../../assets/Images/regone.svg";
 import HomeIcon from "@mui/icons-material/Home";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 
 const StepOne = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="flex justify-center items-center  bg-[#EAEAEA]">
-      <div className="flex w-[86.78%] h-[577px] bg-white rounded-4xl shadow-md overflow-hidden">
-        <div className="w-[47.44%] flex justify-center items-center bg-[white]">
-          <div className="w-[100%] h-[95.67%] bg-[#EEFFFC] rounded-xl flex flex-col justify-center items-center mr-2  ">
-            <img className="w-[68.16%] h-[52.63%] mb-10 " src={regone} />
-            <span className="text-[#005B77] font-bold text-2xl mb-10">
+    <div
+      className={`flex justify-center items-center min-h-screen transition-colors duration-500 ${
+        darkMode ? "bg-gray-900" : "bg-[#EAEAEA]"
+      }`}
+    >
+      <div
+        className={`flex w-[86.78%] h-[577px] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
+          darkMode ? "bg-gray-800" : "bg-white"
+        }`}
+      >
+        <div className="w-[47.44%] flex justify-center items-center">
+          <div
+            className={`w-[100%] h-[95.67%] rounded-xl flex flex-col justify-center items-center mr-2 relative transition-colors duration-500 ${
+              darkMode ? "bg-gray-700" : "bg-[#EEFFFC]"
+            }`}
+          >
+            <div
+              onClick={toggleDarkMode}
+              className={`cursor-pointer py-3 px-2 w-11 h-5 rounded-full absolute top-8 left-7 flex transition-colors duration-500 ${
+                darkMode
+                  ? "bg-yellow-300/40 justify-end"
+                  : "bg-blue-900/30 justify-start"
+              }`}
+            >
+              <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center">
+                <img
+                  src={`${darkMode ? "./icons/sun.png" : "./icons/moon.png"} `}
+                  alt=""
+                />
+              </div>
+            </div>
+
+            <img
+              className="w-[68.16%] h-[52.63%] mb-10 transition-all duration-500"
+              src={regone}
+            />
+            <span
+              className={`font-bold text-2xl mb-10 transition-colors duration-500 ${
+                darkMode ? "text-white" : "text-[#005B77]"
+              }`}
+            >
               شروع سفر یادگیری شما از همین‌جاست!
             </span>
-            <p className="w-[80%] text-[#1E1E1E] ">
-              {" "}
+            <p
+              className={`w-[80%] transition-colors duration-500 ${
+                darkMode ? "text-gray-300" : "text-[#1E1E1E]"
+              }`}
+            >
               با ساخت حساب کاربری‌تان، به محتوای آموزشی، دوره‌ها و ابزارهای
               پیشرفته دسترسی خواهید داشت. اولین قدم برای رشد و پیشرفت همین‌جاست!
             </p>
           </div>
         </div>
-        <div className="w-[52.56%] flex flex-col justify-center px-[5%] bg-[white] relative ">
+
+        <div className="w-[52.56%] flex flex-col justify-center px-[5%] relative transition-colors duration-500">
           <div>
-            <div className="   mb-6  text-sm absolute top-10 right-30 ">
-              <HomeIcon className="text-[#005B77] ml-2" />
-              <span className="text-[#005B77] font-bold ">صفحه اصلی</span>
+            <div className="mb-6 text-sm absolute top-10 right-30 flex items-center">
+              <HomeIcon
+                className={`ml-2 transition-colors duration-500 ${
+                  darkMode ? "text-gray-300" : "text-[#005B77]"
+                }`}
+              />
+              <span
+                className={`font-bold transition-colors duration-500 ${
+                  darkMode ? "text-gray-300" : "text-[#005B77]"
+                }`}
+              >
+                صفحه اصلی
+              </span>
             </div>
 
-            <h2 className="text-2xl text-center font-bold text-[#008C78] mb-3 ">
+            <h2
+              className={`text-2xl text-center font-bold mb-3 transition-colors duration-500 ${
+                darkMode ? "text-white" : "text-[#008C78]"
+              }`}
+            >
               ایجاد حساب کاربری
             </h2>
-            <p className="text-[#333333] mb-8  text-center">
+            <p
+              className={`mb-8 text-center transition-colors duration-500 ${
+                darkMode ? "text-gray-300" : "text-[#333333]"
+              }`}
+            >
               وارد کردن شماره تماس برای ایجاد حساب کاربری
             </p>
 
-            <div className="flex flex-col items-center relative ">
-              <PhoneIphoneIcon className="absolute top-3 right-20  text-[grey]" />
+            <div className="flex flex-col items-center relative">
+              <PhoneIphoneIcon
+                className={`absolute top-3 right-20 transition-colors duration-500 ${
+                  darkMode ? "text-gray-400" : "text-[grey]"
+                }`}
+              />
               <input
                 type="text"
                 placeholder="شماره تماس خود را وارد کنید"
-                className=" rounded-4xl py-3 px-16 text-[#383838] bg-[#F3F4F6] focus:outline-none focus:ring-2 focus:ring-[#008C78] mb-6 w-[80%]"
+                className={`rounded-4xl py-3 px-16 mb-6 w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
+                  darkMode
+                    ? "bg-gray-600 text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
+                    : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
+                }`}
               />
 
-              <button className="bg-[#008C78] text-white font-semibold py-3 rounded-4xl hover:bg-[#007563] transition-colors cursor-pointer w-[80%]">
+              <button
+                className={`font-semibold py-3 rounded-4xl w-[80%] transition-colors duration-500 cursor-pointer ${
+                  darkMode
+                    ? "bg-yellow-400 text-gray-800 hover:bg-yellow-300"
+                    : "bg-[#008C78] text-white hover:bg-[#007563]"
+                }`}
+              >
                 ارسال کد یکبار مصرف
               </button>
             </div>
 
-            <p className="text-[#333333] text-sm mt-6  text-center">
+            <p
+              className={`text-sm mt-6 text-center transition-colors duration-500 ${
+                darkMode ? "text-gray-300" : "text-[#333333]"
+              }`}
+            >
               حساب کاربری دارید؟{" "}
-              <span className="text-[#008C78] font-semibold cursor-pointer hover:underline ">
+              <span
+                className={`font-semibold cursor-pointer hover:underline transition-colors duration-500 ${
+                  darkMode ? "text-yellow-300" : "text-[#008C78]"
+                }`}
+              >
                 وارد شوید
               </span>
             </p>
