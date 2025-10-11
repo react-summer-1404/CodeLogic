@@ -19,7 +19,7 @@ const WhyUs = () => {
   const {t} = useTranslation();
   
   return (
-    <div className='flex pt-[100px]'>
+    <div className='flex pt-[100px] px-16'>
       <img src={ReadingBook}/>
       <div className='pt-8'>
         <div className='flex flex-col gap-4'>
