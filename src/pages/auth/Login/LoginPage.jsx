@@ -32,9 +32,9 @@ const LoginPage = () => {
                                 </div>
                                 <Link className='text-[13px] text-[#848484] hover:text-blue-400 transition duration-300'>فراموشی رمز عبور</Link>
                             </div>
-                            <button type='submit' onClick={(values) => { console.log(values) }} className='w-full bg-[#008C78] text-white text-[14px] rounded-full mt-3 px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>ارسال کد یکبار مصرف</button>
+                            <button type='submit' onClick={(values) => { console.log(values) }} className='w-full bg-[#008C78] text-white text-[16px] rounded-full mt-3 px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>ارسال کد یکبار مصرف</button>
                         </form>
-                        <div className='text-[13px]'>حساب کاربری ندارید؟ <Link className='text-[#008C78] hover:text-blue-500 transition duration-300'>ثبت نام</Link></div>
+                        <div className='text-[14px]'>حساب کاربری ندارید؟ <Link className='text-[#008C78] hover:text-blue-500 transition duration-300'>ثبت نام</Link></div>
                     </div>
 
                 </div>

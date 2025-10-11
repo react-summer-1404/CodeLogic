@@ -35,7 +35,7 @@ const LoginValidationPage = () => {
                                     />
                                 ))}
                             </div>
-                            <button className='w-full bg-[#008C78] text-white text-[14px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>ارسال کد یکبار مصرف</button>
+                            <button className='w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>تایید رمز یکبار مصرف</button>
                         </form>
                         <p className='text-[14px]'>01:23</p>
 
