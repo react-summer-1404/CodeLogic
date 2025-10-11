@@ -15,16 +15,16 @@ const LoginValidationPage = () => {
 
     return (
         <div className='bg-[#EAEAEA] min-h-screen flex items-center justify-center'>
-            <div className='flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg md:flex-row max-w-[1250px] w-full min-h-screen p-2 '>
-                <div className=' flex flex-1 flex-col  p-18  gap-10 '>
-                    <Link className=' pr-6 bg-[url(./icons/back.png)] bg-no-repeat bg-[length:15px_15px] bg-[right_2px_center] text-[13px] hover:text-blue-400 transition duration-300'>بازگشت</Link>
+            <div className='flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg md:flex-row max-w-[1250px] w-full min-h-[739px] p-2 '>
+                <div className=' flex flex-1 flex-col  p-17  gap-10 '>
+                    <Link className=' pr-8 bg-[url(./icons/back.png)] bg-no-repeat bg-[length:22.489788055419922px_20px] bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>بازگشت</Link>
                     <div className='flex flex-col justify-center items-center gap-3 p-5 '>
-                        <div className='flex flex-col justify-center gap-1 items-center'>
-                            <h2 className='text-[19px] font-bold text-[#008C78] mb-2 '>ورود به حساب کاربری</h2>
+                        <div className='flex flex-col justify-center items-center gap-2  '>
+                            <h2 className='text-[24px] font-bold text-[#008C78] mb-2 '>ورود به حساب کاربری</h2>
                             <h3 className='text-[13px]'>رمز یکبار مصرف ارسال شده را وارد کنید</h3>
                         </div>
-                        <form className='w-full flex flex-col gap-16 mt-8 ' >
-                            <div className='flex justify-between px-8  '>
+                        <form className='w-full flex flex-col gap-16 mt-7 px-7 ' >
+                            <div className='flex justify-between  '>
                                 {Otp.map((number, i) => (
                                     <input
                                         key={i}
@@ -48,13 +48,13 @@ const LoginValidationPage = () => {
                             <img src={`${isDark ? "./icons/sun.png" : "./icons/moon.png"}  `} alt="" />
                         </div>
                     </div>
-                    <div className='flex flex-col  items-center mt-6 justify-center'>
-                        <div className=' flex flex-col justify-center items-center mt-5'>
+                    <div className=' mt-5 flex flex-col  items-center justify-center gap-6'>
+                        <div className=' flex flex-col justify-center items-center  '>
                             <img className=' w-95 h-95  ' src="./images/login2.png" alt="" />
                         </div>
-                        <div className=' mt-3 flex flex-col justify-center items-center  gap-3'>
-                            <h2 className='text-[#005B77] tracking-wide font-bold '>تنها یک قدم تا دنیای یادگیری!</h2>
-                            <p className='text-[12px] text-center'> فرصت رشد، پیشرفت و ساختن آینده‌ای بهتر همین‌جاست — همراه با ما، یک قدم جلوتر باشید!</p>
+                        <div className=' flex flex-col justify-center items-center  gap-4'>
+                            <h2 className='text-[#005B77] tracking-wide mt-2 text-[24px] font-extrabold '>تنها یک قدم تا دنیای یادگیری!</h2>
+                            <p className='text-[16px] text-center'>  فرصت رشد، پیشرفت و ساختن آینده‌ای بهتر همین‌جاست — همراه با ما، یک قدم جلوتر باشید!</p>
                         </div>
                     </div>
                 </div>
