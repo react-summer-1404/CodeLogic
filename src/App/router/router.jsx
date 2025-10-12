@@ -5,6 +5,7 @@ import LoginValidationPage from "../../pages/auth/Login/LoginValidationPage";
 import Landing from "../../pages/Landing/Landing";
 import Layout from "../../components/layouts/layout";
 import StepOne from "../../pages/auth/Register/StepOne";
+import StepTwo from "../../pages/auth/Register/StepTwo";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <LoginPage /> },
       { path: "/loginValidation", element: <LoginValidationPage /> },
       { path: "/RegisterStepOne", element: <StepOne /> },
+      { path: "/RegisterStepTwo", element: <StepTwo /> },
     ],
   },
 ]);

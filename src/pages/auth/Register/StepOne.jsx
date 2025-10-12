@@ -24,9 +24,9 @@ const StepOne = () => {
         {() => (
           <Form className="w-full flex justify-center">
             <div
-              className={`flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-auto lg:h-[577px] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
+              className={`  flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%]   rounded-4xl shadow-md overflow-hidden transition-colors duration-500  ${
                 darkMode ? "bg-gray-800" : "bg-white"
-              }`}
+              }  `}
             >
               <div className="w-full lg:w-[47.44%] flex justify-center items-center">
                 <div

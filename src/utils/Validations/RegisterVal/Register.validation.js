@@ -8,3 +8,7 @@ export const RegisterValidation = Yup.object().shape({
       checkNumber(value)
     ),
 });
+
+export const RegisterStepTwo = Yup.object().shape({
+  code: Yup.array().of(Yup.string().required("پر کردن فیلد الزامی است")),
+});
