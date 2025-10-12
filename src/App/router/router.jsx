@@ -22,7 +22,6 @@ const router = createBrowserRouter([
             { path: "/forgotPassTwo", element: <ForgotPasswordStepTwo /> },
         ]
     },
-    { path: "/news", element: <NewsListSection /> },
 ]);
 
 export default router;
