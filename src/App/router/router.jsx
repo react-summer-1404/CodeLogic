@@ -7,6 +7,7 @@ import Layout from "../../components/layouts/layout";
 import ForgotPasswordStepOne from "../../pages/auth/forgotPassword/forgotPasswordStepOne";
 import ForgotPasswordStepTwo from "../../pages/auth/forgotPassword/ForgotPasswordStepTwo";
 import NewsListSection from "../../components/NewsListSection/NewsListSection";
+import TitleNewsSection from "../../components/NewsListSection/TitleNewsSection";
 
 
 
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
             { path: "/forgotPassOne", element: <ForgotPasswordStepOne /> },
             { path: "/forgotPassTwo", element: <ForgotPasswordStepTwo /> },
         ]
-    },
+    }
 ]);
 
 export default router;
