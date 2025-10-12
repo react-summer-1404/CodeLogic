@@ -9,6 +9,15 @@ const ForgotPasswordStepTwo = () => {
     const handleDark = () => {
         setIsDark((prev) => !prev)
     }
+
+    const [showFirstPassword, setShowFirstPassword] = useState(false)
+    const [showSecondPassword, setShowSecondPassword] = useState(false)
+    const handleFirstPassword = () => {
+        setShowFirstPassword((prev) => !prev)
+    }
+    const handleSecondPassword = () => {
+        setShowSecondPassword((prev) => !prev)
+    }
     useEffect(() => {
         document.documentElement.classList.toggle("dark", isDark);
     }, [isDark])
@@ -24,11 +33,13 @@ const ForgotPasswordStepTwo = () => {
                             <h3 className='text-[16px] tracking-wide'>رمز عبور جدید برای خود تعیین کنید</h3>
                         </div>
                         <form className='w-full flex flex-col gap-10 mt-7 px-6 ' >
-                            <div className=''>
-                                <input className=' focus:outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 focus:ring-2 focus:ring-blue-400 placeholder:text-[15px] ' type="email" name='email' id='email' placeholder='رمز عبور جدید' />
+                            <div className=' relative '>
+                                <input className=' focus:outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 focus:ring-2 focus:ring-blue-400 placeholder:text-[15px] ' type={showFirstPassword ? "text" : "password"} name='email' id='email' placeholder='رمز عبور جدید' />
+                                <img onClick={handleFirstPassword} src={showFirstPassword ? "./icons/eyeClose.png" : "./icons/eyeOpen.png"} alt="" className=' cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  ' />
                             </div>
-                            <div className=''>
-                                <input className=' focus:outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 focus:ring-2 focus:ring-blue-400 placeholder:text-[15px] ' type="email" name='email' id='email' placeholder='تکرار رمز عبور' />
+                            <div className=' relative '>
+                                <input className=' focus:outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 focus:ring-2 focus:ring-blue-400 placeholder:text-[15px] ' type={showSecondPassword ? 'text' : 'password'} name='email' id='email' placeholder='تکرار رمز عبور' />
+                                <img onClick={handleSecondPassword} src={showSecondPassword ? "./icons/eyeClose.png" : "./icons/eyeOpen.png"} alt="" className=' cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  ' />
                             </div>
                             <button type='submit' onClick={(values) => { console.log(values) }} className='w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>ثبت رمز عبور جدید</button>
                         </form>
