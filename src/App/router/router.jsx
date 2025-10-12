@@ -15,14 +15,12 @@ const router = createBrowserRouter([
   {
     path: '/', element: <Layout />, children: [
       { index: true, element: <Landing /> },
-      { path: "/login", element: <LoginPage /> },
-      { path: "/loginValidation", element: <LoginValidationPage /> },
-      { path: "/forgotPassOne", element: <ForgotPasswordStepOne /> },
-      { path: "/forgotPassTwo", element: <ForgotPasswordStepTwo /> },
-      { path: "/RegisterStepOne", element: <StepOne /> }
-    ]
-  },
-  { path: "/news", element: <NewsListSection /> }
+  ]},
+  { path: "/login", element: <LoginPage /> },
+  { path: "/loginValidation", element: <LoginValidationPage /> },
+  { path: "/forgotPassOne", element: <ForgotPasswordStepOne /> },
+  { path: "/forgotPassTwo", element: <ForgotPasswordStepTwo /> },
+  { path: "/RegisterStepOne", element: <StepOne /> }
 ]);
 
 export default router;
