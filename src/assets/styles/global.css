@@ -39,3 +39,9 @@ body {
   src: url('../../assets/Fonts/Estedad-Bold.woff2') format('woff2');
   font-weight: 700;
 }
+
+
+
+@theme {
+  --breakpoint-sa: 300px; 
+}
