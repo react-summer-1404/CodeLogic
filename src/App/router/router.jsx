@@ -6,6 +6,8 @@ import Landing from '../../pages/Landing/Landing'
 import Layout from "../../components/layouts/layout";
 import ForgotPasswordStepOne from "../../pages/auth/forgotPassword/forgotPasswordStepOne";
 import ForgotPasswordStepTwo from "../../pages/auth/forgotPassword/ForgotPasswordStepTwo";
+import NewsListSection from "../../components/NewsListSection/NewsListSection";
+
 
 
 
@@ -20,6 +22,7 @@ const router = createBrowserRouter([
             { path: "/forgotPassTwo", element: <ForgotPasswordStepTwo /> },
         ]
     },
+    { path: "/news", element: <NewsListSection /> },
 ]);
 
 export default router;
