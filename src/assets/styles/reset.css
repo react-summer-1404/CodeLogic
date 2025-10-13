@@ -46,8 +46,28 @@
   background-color: #ffffff !important;
   color: #000000 !important;
 }
+
+@media (max-width: 1200px) {
+  .courses__control {
+    width: 150px;
+  }
+}
 @media (max-width: 1000px) {
   .courses__control {
-    width: 170px;
+    width: 120px;
+    font-size: 14px;
+    position: relative;
+    right: 50px;
+  }
+}
+@media (max-width: 821px) {
+  .courses__control {
+    font-size: 10px;
+    width: 80px;
+  }
+}
+@media (max-width: 800px) {
+  .courses__control {
+    width: 80px;
   }
 }
