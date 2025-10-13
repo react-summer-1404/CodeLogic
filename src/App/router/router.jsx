@@ -24,8 +24,8 @@ const router = createBrowserRouter([
   { path: "/loginValidation", element: <LoginValidationPage /> },
   { path: "/forgotPassOne", element: <ForgotPasswordStepOne /> },
   { path: "/forgotPassTwo", element: <ForgotPasswordStepTwo /> },
-  { path: "/RegisterStepOne", element: <StepOne /> }
-
+  { path: "/RegisterStepOne", element: <StepOne /> },
+  { path: '/news', element: <NewsListSection /> }
 ]);
 
 export default router;
