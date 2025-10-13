@@ -1,8 +1,14 @@
 
+import { ErrorMessage, Field, Formik, Form } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-
+import * as Yup from 'yup'
+import initialData from '../../../components/common/Form/initialData/initialData'
+const validationSchema = Yup.object({
+    password: Yup.string().required('وارد کردن رمز عبور الزامی است').min(8, "رمز عبور باید حداقل شامل 8 کاراکتر باشد"),
+    confirmPassword: Yup.string().required("تایید رمز عبور الزامی است").oneOf([Yup.ref("password")], "رمز عبور مطابقت ندارد")
+})
 const ForgotPasswordStepTwo = () => {
 
     const [isDark, setIsDark] = useState(false)
@@ -22,6 +28,7 @@ const ForgotPasswordStepTwo = () => {
         document.documentElement.classList.toggle("dark", isDark);
     }, [isDark])
 
+
     return (
         <div className='bg-[#EAEAEA] min-h-screen flex items-center justify-center'>
             <div className='flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg md:flex-row max-w-[1250px] w-full min-h-[739px] p-2 '>
@@ -32,18 +39,31 @@ const ForgotPasswordStepTwo = () => {
                             <h2 className='text-[24px] font-bold text-[#008C78] mb-2 '>فراموشی رمز عبور</h2>
                             <h3 className='text-[16px] tracking-wide'>رمز عبور جدید برای خود تعیین کنید</h3>
                         </div>
-                        <form className='w-full flex flex-col gap-10 mt-7 px-6 ' >
-                            <div className=' relative '>
-                                <input className=' focus:outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 focus:ring-2 focus:ring-blue-400 placeholder:text-[15px] ' type={showFirstPassword ? "text" : "password"} name='email' id='email' placeholder='رمز عبور جدید' />
-                                <img onClick={handleFirstPassword} src={showFirstPassword ? "./icons/eyeClose.png" : "./icons/eyeOpen.png"} alt="" className=' cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  ' />
-                            </div>
-                            <div className=' relative '>
-                                <input className=' focus:outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 focus:ring-2 focus:ring-blue-400 placeholder:text-[15px] ' type={showSecondPassword ? 'text' : 'password'} name='email' id='email' placeholder='تکرار رمز عبور' />
-                                <img onClick={handleSecondPassword} src={showSecondPassword ? "./icons/eyeClose.png" : "./icons/eyeOpen.png"} alt="" className=' cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  ' />
-                            </div>
-                            <button type='submit' onClick={(values) => { console.log(values) }} className='w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>ثبت رمز عبور جدید</button>
-                        </form>
-
+                        <div className='w-full mt-7 px-6  '>
+                            <Formik
+                                initialValues={initialData}
+                                onSubmit={(value) => console.log(value)}
+                                validationSchema={validationSchema}
+                            >
+                                {({ errors, touched }) => (
+                                    <Form>
+                                        <div className=' flex flex-col gap-3 ' >
+                                            <div className=' relative flex flex-col '>
+                                                <Field className={` outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.password && touched.password ? "border-[#EF5350] border-1 " : ""} `} type={showFirstPassword ? "text" : "password"} name='password' id='password' placeholder='رمز عبور جدید' />
+                                                <img onClick={handleFirstPassword} src={showFirstPassword ? "./icons/eyeClose.png" : "./icons/eyeOpen.png"} alt="" className=' cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  ' />
+                                            </div>
+                                            <ErrorMessage name={'password'} component={"span"} className='text-[#EF5350] text-[14px]  ' />
+                                            <div className=' relative mt-6 '>
+                                                <Field className={` focus:outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.confirmPassword && touched.confirmPassword ? "border-[#EF5350] border-1 " : ""} `} type={showSecondPassword ? 'text' : 'password'} name='confirmPassword' id='confirmPassword' placeholder='تکرار رمز عبور' />
+                                                <img onClick={handleSecondPassword} src={showSecondPassword ? "./icons/eyeClose.png" : "./icons/eyeOpen.png"} alt="" className=' cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  ' />
+                                            </div>
+                                            <ErrorMessage name={'confirmPassword'} component={"span"} className='text-[#EF5350] text-[14px]  ' />
+                                            <button type='submit' onClick={(values) => { console.log(values) }} className=' mt-6 w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>ثبت رمز عبور جدید</button>
+                                        </div>
+                                    </Form>
+                                )}
+                            </Formik>
+                        </div>
                     </div>
 
                 </div>
