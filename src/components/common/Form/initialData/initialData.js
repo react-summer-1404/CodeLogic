@@ -1,6 +1,8 @@
 const initialData = {
     email: "",
     password: "",
-    secondPassword: ""
+    secondPassword: "",
+    name: "",
+    code: ["", "", "", ""]
 }
 export default initialData
