@@ -1,16 +1,30 @@
 import React, { useState } from "react";
 import regone from "../../../assets/Images/regone.svg";
-import HomeIcon from "@mui/icons-material/Home";
-import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
+import EastIcon from "@mui/icons-material/East";
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { RegisterValidation } from "../../../utils/Validations/RegisterVal/Register.validation";
+import { RegisterStepThree } from "../../../utils/Validations/RegisterVal/Register.validation";
 import { Link } from "react-router-dom";
 
-const StepOne = () => {
-  const [initialValues] = useState({ phoneNumber: "" });
+const StepThree = () => {
+  const [initialValues, setinitialValues] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   const [darkMode, setDarkMode] = useState(false);
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const toggleDarkMode = () => setDarkMode(!darkMode);
+
+  const toggleEyepassword = () => setShowPassword(!showPassword);
+  const toggleEyeconfirmpassword = () =>
+    setShowConfirmPassword(!showConfirmPassword);
 
   return (
     <div
@@ -20,7 +34,7 @@ const StepOne = () => {
     >
       <Formik
         initialValues={initialValues}
-        validationSchema={RegisterValidation}
+        validationSchema={RegisterStepThree}
       >
         {() => (
           <Form className="w-full flex justify-center">
@@ -63,36 +77,37 @@ const StepOne = () => {
                       darkMode ? "text-white" : "text-[#005B77]"
                     }`}
                   >
-                    شروع سفر یادگیری شما از همین‌جاست!
+                    مرحله پایانی ثبت‌نام پیش روی شماست.
                   </span>
                   <p
                     className={`w-[85%] sm:w-[80%] text-center transition-colors duration-500 ${
                       darkMode ? "text-gray-300" : "text-[#1E1E1E]"
                     }`}
                   >
-                    با ساخت حساب کاربری‌تان، به محتوای آموزشی، دوره‌ها و
-                    ابزارهای پیشرفته دسترسی خواهید داشت. اولین قدم برای رشد و
-                    پیشرفت همین‌جاست!
+                    همه‌چیز آماده است! حالا فقط کافیه اطلاعات تکمیلی‌ات رو وارد
+                    کنی تا حساب کاربری‌ات کامل بشه.
                   </p>
                 </div>
               </div>
 
               <div className="w-full lg:w-[52.56%] flex flex-col justify-center px-4 sm:px-8 md:px-[5%] relative transition-colors duration-500">
                 <div>
-                  <div className="mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
-                    <HomeIcon
-                      className={`ml-2 transition-colors duration-500 ${
-                        darkMode ? "text-gray-300" : "text-[#005B77]"
-                      }`}
-                    />
-                    <span
-                      className={`font-bold transition-colors duration-500 ${
-                        darkMode ? "text-gray-300" : "text-[#005B77]"
-                      }`}
-                    >
-                      صفحه اصلی
-                    </span>
-                  </div>
+                  <Link to="/RegisterStepTwo">
+                    <div className="mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
+                      <EastIcon
+                        className={`cursor-pointer ml-2 transition-colors duration-500 ${
+                          darkMode ? "text-gray-300" : "text-[#005B77]"
+                        }`}
+                      />
+                      <span
+                        className={`cursor-pointer font-bold transition-colors duration-500 ${
+                          darkMode ? "text-gray-300" : "text-[#005B77]"
+                        }`}
+                      >
+                        بازگشت
+                      </span>
+                    </div>
+                  </Link>
 
                   <h2
                     className={`text-xl sm:text-2xl md:text-2xl text-center font-bold mb-2 sm:mb-3 transition-colors duration-500 ${
@@ -106,39 +121,91 @@ const StepOne = () => {
                       darkMode ? "text-gray-300" : "text-[#333333]"
                     }`}
                   >
-                    وارد کردن شماره تماس برای ایجاد حساب کاربری
+                    کامل کردن مشخصات
                   </p>
 
                   <div className="flex flex-col items-center relative">
-                    <PhoneIphoneIcon
+                    <EmailIcon
                       className={`absolute top-3 right-4 sm:right-6 md:right-20 transition-colors duration-500 ${
                         darkMode ? "text-gray-400" : "text-[grey]"
                       }`}
                     />
                     <Field
                       type="text"
-                      name="phoneNumber"
-                      placeholder="شماره تماس خود را وارد کنید"
-                      className={`rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
+                      name="email"
+                      placeholder="ایمیل خود را وارد کنید"
+                      className={` !mb-10 rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                         darkMode
                           ? "bg-gray-600 text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
                           : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                       }`}
                     />
                     <ErrorMessage
-                      name="phoneNumber"
+                      name="email"
                       component="div"
                       className="text-red-500 text-sm absolute right-20 top-14 font-semibold "
                     />
+
+                    <LockIcon
+                      className={`absolute top-25 right-4 sm:right-6 md:right-20 transition-colors duration-500 ${
+                        darkMode ? "text-gray-400" : "text-[grey]"
+                      }`}
+                    />
+                    <Field
+                      type={showPassword ? "text" : "password"}
+                      name="password"
+                      placeholder="رمز عبور خود را وارد کنید"
+                      className={`  !mb-10 rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
+                        darkMode
+                          ? "bg-gray-600 text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
+                          : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
+                      }`}
+                    />
+                    <ErrorMessage
+                      name="password"
+                      component="div"
+                      className="text-red-500 text-sm absolute right-20 top-36 font-semibold "
+                    />
+                    <VisibilityOffIcon
+                      onClick={toggleEyepassword}
+                      className={` absolute top-25 left-4  sm:left-6 md:left-20 transition-colors duration-500 cursor-pointer  ${
+                        darkMode ? "text-gray-400" : "text-[grey]"
+                      }   `}
+                    />
+                    <LockIcon
+                      className={`absolute top-47 right-4 sm:right-6 md:right-20 transition-colors duration-500 ${
+                        darkMode ? "text-gray-400" : "text-[grey]"
+                      }`}
+                    />
+                    <Field
+                      type={showConfirmPassword ? "text" : "password"}
+                      name="confirmPassword"
+                      placeholder="تکرار رمز عبور"
+                      className={`   rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
+                        darkMode
+                          ? "bg-gray-600 text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
+                          : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
+                      }`}
+                    />
+                    <ErrorMessage
+                      name="confirmPassword"
+                      component="div"
+                      className="text-red-500 text-sm absolute right-20 top-58 font-semibold "
+                    />
+                    <VisibilityOffIcon
+                      onClick={toggleEyeconfirmpassword}
+                      className={` absolute top-47 left-4  sm:left-6 md:left-20 transition-colors duration-500 cursor-pointer  ${
+                        darkMode ? "text-gray-400" : "text-[grey]"
+                      }   `}
+                    />
                     <Link
-                      to="/RegisterStepTwo"
                       className={` text-center  mt-4 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
                         darkMode
                           ? "bg-yellow-400 text-gray-800 hover:bg-yellow-300"
                           : "bg-[#008C78] text-white hover:bg-[#007563]"
                       }`}
                     >
-                      ارسال کد یکبار مصرف
+                      ثبت نام
                     </Link>
                   </div>
 
@@ -166,4 +233,4 @@ const StepOne = () => {
   );
 };
 
-export default StepOne;
+export default StepThree;

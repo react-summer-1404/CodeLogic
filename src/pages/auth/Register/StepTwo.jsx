@@ -3,6 +3,7 @@ import regtwo from "../../../assets/Images/regtwo.svg";
 import EastIcon from "@mui/icons-material/East";
 import { Formik, Form, Field } from "formik";
 import { RegisterStepTwo } from "../../../utils/Validations/RegisterVal/Register.validation";
+import { Link } from "react-router-dom";
 
 const StepTwo = () => {
   const [initialValues] = useState({ code: ["", "", "", "", ""] });
@@ -102,20 +103,22 @@ const StepTwo = () => {
 
               <div className="w-full lg:w-[52.56%] flex flex-col justify-center px-4 sm:px-8 md:px-[5%] relative transition-colors duration-500">
                 <div>
-                  <div className="mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
-                    <EastIcon
-                      className={`cursor-pointer ml-2 transition-colors duration-500 ${
-                        darkMode ? "text-gray-300" : "text-[#005B77]"
-                      }`}
-                    />
-                    <span
-                      className={`cursor-pointer font-bold transition-colors duration-500 ${
-                        darkMode ? "text-gray-300" : "text-[#005B77]"
-                      }`}
-                    >
-                      بازگشت
-                    </span>
-                  </div>
+                  <Link to="/RegisterStepOne">
+                    <div className="mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
+                      <EastIcon
+                        className={`cursor-pointer ml-2 transition-colors duration-500 ${
+                          darkMode ? "text-gray-300" : "text-[#005B77]"
+                        }`}
+                      />
+                      <span
+                        className={`cursor-pointer font-bold transition-colors duration-500 ${
+                          darkMode ? "text-gray-300" : "text-[#005B77]"
+                        }`}
+                      >
+                        بازگشت
+                      </span>
+                    </div>
+                  </Link>
 
                   <h2
                     className={`text-xl sm:text-2xl md:text-2xl text-center font-bold mb-2 sm:mb-3 transition-colors duration-500 ${
@@ -174,17 +177,16 @@ const StepTwo = () => {
                           پر کردن فیلدها الزامی است
                         </div>
                       )}
-
-                    <button
-                      type="submit"
-                      className={`mt-10 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
+                    <Link
+                      className={` text-center  mt-10 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
                         darkMode
                           ? "bg-yellow-400 text-gray-800 hover:bg-yellow-300"
                           : "bg-[#008C78] text-white hover:bg-[#007563]"
                       }`}
+                      to="/RegisterStepThree"
                     >
                       تایید رمز یکبار مصرف
-                    </button>
+                    </Link>
                   </div>
 
                   <p
