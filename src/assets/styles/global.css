@@ -1,3 +1,35 @@
 @import "./reset.css";
 @import "./variables.css";
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: Estedad;
+  direction: rtl;
+}
+
+@font-face {
+  font-family: "Estedad";
+  src: url("../../assets/Font/Estedad-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Estedad";
+  src: url("../../assets/Font/Estedad-Medium.woff2") format("woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Estedad";
+  src: url("../../assets/Font/Estedad-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Estedad";
+  src: url("../../assets/Font/Estedad-Bold.woff2") format("woff2");
+  font-weight: 700;
+}
