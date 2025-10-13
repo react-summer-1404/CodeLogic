@@ -27,7 +27,7 @@ const SliderTeachers = () => {
       <div className='flex flex-col items-center gap-2 pt-[163px]'>
         <h2 className='font-bold text-[#008C78]
         sa:text-[24px]   sm:text-[28px]   lg:text-[32px]'>{t('آشنایی با اساتید حرفه ای ما')}</h2>
-        <p className='font-regular
+        <p className='font-regular   dark:text-[#DDDDDD]
         sa:text-sm   sm:text-lg   lg:text-2xl'>{t('یادگیری از برترین مدرسین با تجربه و دانش به‌روز')}</p>
       </div>
       <ButtonsSeeMore seeAllText={'مشاهده همه استادها'} sliderRef={sliderRef}/>

@@ -11,7 +11,7 @@ import NewsListSection from '../../components/NewsListSection/NewsListSection'
 const Landing = () => {
   
   return (
-    <div className='bg-[#F3F4F6]'>
+    <div className='bg-[#F3F4F6]   dark:bg-[#1E1E1E]'>
       <HeroSection/>
       <Section1/>
       <Categories/>

@@ -39,7 +39,7 @@ const Categories = () => {
     <div className='flex flex-col items-center gap-2 pt-[97px]'>
         <h2 className='font-bold text-[#008C78]
         sa:text-[24px]   sm:text-[28px]   lg:text-[32px]'>با ما، در برنامه‌نویسی پیشتاز باشید.</h2>
-        <p className='font-regular   
+        <p className='font-regular   dark:text-[#DDDDDD]  
         sa:text-sm   sm:text-lg   lg:text-2xl'>از مبتدی تا حرفه‌ای، همراه شما در مسیر برنامه‌نویسی.</p>
         <div className='overflow-hidden w-full px-4 relative'>
           <button onClick={scrollRight} className='absolute top-[144px] right-0 z-48   lg:hidden'>

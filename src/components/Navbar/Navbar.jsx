@@ -3,11 +3,12 @@ import style from "./Navbar.module.css";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import SelectComp from "../SelectComp/SelectComp";
+import { useTheme } from "../../utils/hooks/useTheme/useTheme";
 
 const Navbar = () => {
   const [mobilemenu, setmobilemenu] = useState(false);
-
   const [darkMode, setDarkMode] = useState(false);
+  const {theme , toggleTheme} = useTheme();
 
   const togglemenu = () => {
     setmobilemenu(!mobilemenu);
@@ -55,7 +56,7 @@ const Navbar = () => {
             <SearchIcon sx={{ color: "white", fontSize: 35 }} />
           </button>
         </div>
-        <button onClick={toggleDarkMode} className={`${style.darkModeBtn} `}>
+        <button onClick={toggleTheme} className={`${style.darkModeBtn} `}>
           {darkMode ? "☀️" : "🌙"}
         </button>
         <button className={` ${style.button} rounded-4xl font-bold `}>

@@ -33,9 +33,9 @@ const CoursesSection = () => {
   return (
     <div className='flex flex-col items-center gap-8 w-full pt-[104px]'>
       <div className='flex flex-col items-center gap-2'>
-        <h2 className='font-bold text-[#008C78]
+        <h2 className='font-bold text-[#008C78]   dark:text-[#EEEEEE]]
         sa:text-[24px]   sm:text-[28px]   lg:text-[32px]'>{t('دوره های آموزشی برنامه نویسی')}</h2>
-        <p className='font-regular
+        <p className='font-regular   dark:text-[#DDDDDD]
         sa:text-sm   sm:text-lg   lg:text-2xl'>{t('دوره‌هایی برای همه: یاد بگیر، تمرین کن، پروژه بزن!')}</p>
       </div>
       <ButtonsSeeMore seeAllText={'مشاهده همه دوره ها'} sliderRef={sliderRef}/>
