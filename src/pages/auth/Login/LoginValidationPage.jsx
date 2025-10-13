@@ -1,5 +1,14 @@
+import { Form, Formik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import * as Yup from 'yup'
+import initialData from '../../../components/common/Form/initialData/initialData'
+
+const validationSchema = Yup.object({
+    code: Yup.array().of(Yup.string().matches(/^[0-9]$/, "فقط عدد مجاز است").required("پر کردن این فیلد الزامی است")
+    ).min(4, "کد باید ۴ رقم باشد").required("کد الزامی است")
+})
+const codeInputs = [0, 1, 2, 3];
 
 const LoginValidationPage = () => {
 
@@ -11,7 +20,6 @@ const LoginValidationPage = () => {
         document.documentElement.classList.toggle("dark", isDark);
     }, [isDark])
 
-    const [Otp, setOtp] = useState(['', '', '', '', ''])
 
     return (
         <div className='bg-[#EAEAEA] min-h-screen flex items-center justify-center'>
@@ -23,20 +31,32 @@ const LoginValidationPage = () => {
                             <h2 className='text-[24px] font-bold text-[#008C78] mb-2 '>ورود به حساب کاربری</h2>
                             <h3 className='text-[13px]'>رمز یکبار مصرف ارسال شده را وارد کنید</h3>
                         </div>
-                        <form className='w-full flex flex-col gap-16 mt-7 px-7 ' >
-                            <div className='flex justify-between  '>
-                                {Otp.map((number, i) => (
-                                    <input
-                                        key={i}
-                                        type='text'
-                                        placeholder=''
-                                        maxLength="1"
-                                        className={`w-12 h-12 text-center rounded-xl text-lg bg-[#F3F4F6] shadow-md`}
-                                    />
-                                ))}
-                            </div>
-                            <button className='w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>تایید رمز یکبار مصرف</button>
-                        </form>
+                        <div className='w-full mt-7 px-7'>
+                            <Formik
+                                initialValues={initialData}
+                                onSubmit={(values) => { console.log(values) }}
+                                validationSchema={validationSchema}
+                            >
+                                <Form>
+                                    <div className=' flex flex-col gap-16 ' >
+                                        <div className='flex justify-between  '>
+                                            {codeInputs.map((number, i) => (
+                                                <input
+                                                    key={i}
+                                                    type='text'
+                                                    name={`code[${i}]`}
+                                                    placeholder=''
+                                                    maxLength="1"
+                                                    className={`w-12 h-12 text-center rounded-xl text-lg bg-[#F3F4F6] shadow-md`}
+                                                />
+                                            ))}
+
+                                        </div>
+                                        <button className='w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>تایید رمز یکبار مصرف</button>
+                                    </div>
+                                </Form>
+                            </Formik>
+                        </div>
                         <p className='text-[14px]'>01:23</p>
 
                     </div>
