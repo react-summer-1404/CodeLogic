@@ -11,7 +11,7 @@ const TextImage = ({title1, titleSpan, title2, desc, buttonText, img, bg}) => {
     <div className={`flex justify-between pr-[40px] pb-8 pl-[63px] bg-[${bg}]`}>
       <div className='flex flex-col gap-6 pt-[97px]
       sa:items-center
-      sm:items-start sm:pb-0'>
+      md:items-start md:pb-0'>
         <h2 className='font-bold
         sa:w-[400px] sa:text-xl sa:text-center sa:leading-8   
         sm:w-[480px] sm:text-2xl sm:text-start sm:leading-10   
