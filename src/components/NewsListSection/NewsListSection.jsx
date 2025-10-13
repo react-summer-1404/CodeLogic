@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+
 const NewsListSection = () => {
     return (
         <div className=' dark:bg-black dark:text-white bg-[#F3F4F6] flex flex-col justify-center items-center gap-29 max-w-[1440px] px-8 py-16 '>

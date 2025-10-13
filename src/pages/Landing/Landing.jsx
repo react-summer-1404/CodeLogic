@@ -6,6 +6,7 @@ import SliderCourses from '../../components/SliderCourses/SliderCourses'
 import WhyUs from '../../components/WhyUs/WhyUs'
 import SliderTeachers from '../../components/Sliderteachers/SliderTeachers'
 import JoinTeachers from '../../components/JoinTeachers/JoinTeachers'
+import NewsListSection from '../../components/NewsListSection/NewsListSection'
 
 const Landing = () => {
   
@@ -18,6 +19,7 @@ const Landing = () => {
       <WhyUs/>
       <SliderTeachers/>
       <JoinTeachers/>
+      <NewsListSection/>
     </div>
   )
 }
