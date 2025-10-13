@@ -8,7 +8,7 @@ const Category = ({item}) => {
   const CategoryIcon = item.icon;
 
   return (
-    <div className='flex flex-col items-center gap-2 px-4 py-8 bg-[#FFFFFF] rounded-2xl   
+    <div className='flex flex-col items-center gap-2 min-w-[280px] px-4 py-8 bg-[#FFFFFF] rounded-2xl snap-center
     hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>
       <CategoryIcon/>  
       <h2 className='font-bold text-base'>{t(`${item.title}`)}</h2>

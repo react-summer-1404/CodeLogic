@@ -12,7 +12,7 @@ const SelectComp = () => {
   return (
     <div>
       <Select
-        defaultValue={options[0]}
+        defaultValue={options[2]}
         options={options}
         isClearable
         className={style.select}

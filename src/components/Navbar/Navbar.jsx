@@ -7,51 +7,61 @@ import SelectComp from "../SelectComp/SelectComp";
 const Navbar = () => {
   const [mobilemenu, setmobilemenu] = useState(false);
 
+  const [darkMode, setDarkMode] = useState(false);
+
   const togglemenu = () => {
     setmobilemenu(!mobilemenu);
   };
 
-  return (
-    <nav className={`${style.mainnav} flex items-center justify-between`}>
-      <div className={` ${style.left}  `}>
-        <button className={` ${style.button} rounded-4xl font-bold `}>
-          ورود / ثبت نام
-        </button>
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
-        <div className={` ${style.searchcontainer}  `}>
-          {/* <select className={` ${style.searchselect}  `}>
-            <option value="news">اخبار </option>
-            <option value="articles"> مقالات</option>
-            <option value="courses">دوره ها</option>
-          </select> */}
-          <SelectComp />
-          <input
-            type="text"
-            className={` ${style.searchinput}  `}
-            placeholder="    جستجو کنید..."
-          />
-          <button className={` ${style.searchbutton}  `}>
-            <SearchIcon sx={{ color: "white", fontSize: 35 }} />
-          </button>
-        </div>
-      </div>
+
+  
+  return (
+    <nav
+      className={`${style.mainnav} ${
+        darkMode ? style.darknav : ""
+      } flex items-center justify-between`}
+    >
       <ul
         className={` ${style.ul} flex items-center justify-around   ${
           mobilemenu ? style.showmenu : style.hidemenu
         }  `}
       >
+        <li className={` ${style.li}    text-xl font-bold`}>آکادمی بحر</li>
+
         <li className={`  ${style.li} text-lg cursor-pointer font-semibold`}>
-          {" "}
-          اخبار
+          صفحه اصلی
         </li>
         <li className={`  ${style.li} text-lg cursor-pointer font-semibold`}>
           دوره ها
         </li>
         <li className={`  ${style.li} text-lg cursor-pointer font-semibold`}>
-          صفحه اصلی
+          {" "}
+          اخبار
         </li>
-        <li className="text-xl font-bold">آکادمی بحر</li>
       </ul>
+      <div className={` ${style.left}  `}>
+        <div className={` ${style.searchcontainer}  `}>
+          <input
+            type="text"
+            className={` ${style.searchinput}  `}
+            placeholder="    جستجو کنید..."
+          />
+          <SelectComp />
+          <button className={` ${style.searchbutton}  `}>
+            <SearchIcon sx={{ color: "white", fontSize: 35 }} />
+          </button>
+        </div>
+        <button onClick={toggleDarkMode} className={`${style.darkModeBtn} `}>
+          {darkMode ? "☀️" : "🌙"}
+        </button>
+        <button className={` ${style.button} rounded-4xl font-bold `}>
+          ورود / ثبت نام
+        </button>
+      </div>
       <MenuIcon
         onClick={togglemenu}
         className={` ${style.menuicon} cursor-pointer `}
