@@ -31,11 +31,6 @@
   z-index: 10 !important;
 }
 
-body{
-  background: #f3f4f6;
-  direction: rtl;
-}
-
 .courses__option {
   padding: 8px 12px !important;
   cursor: pointer !important;
