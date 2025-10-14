@@ -27,7 +27,7 @@ const WhyUs = () => {
           sa:text-lg   sm:text-2xl   lg:text-4xl'>{t('از اولین خط کد تا')}
             <span className='text-[#008C78]'>{t(' ورود به بازار کار ')}</span>
           {t('، با تو هستیم')}</h2>
-          <p className='font-regular text-[#848484]
+          <p className='font-regular text-[#848484]   dark:text-[#DDDDDD]
           text-sm   lg:text-base'>{t('ما مسیر یادگیری برنامه‌نویسی را ساده، کاربردی و اثربخش می‌کنیم تا سریع‌تر وارد بازار کار شوید.')}</p>
         </div>
         <div>

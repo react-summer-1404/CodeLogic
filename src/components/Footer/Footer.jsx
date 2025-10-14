@@ -10,7 +10,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 const Footer = () => {
   return (
     <div
-      className={`${style.main} w-full px-[7%] py-12 rounded-t-[50px] bg-[#008c78]`}
+      className={`${style.main} w-full px-[7%] py-12 rounded-t-[50px] bg-[#008c78]   dark:bg-[]`}
     >
       <div
         className={`${style.top} flex flex-col sm:flex-col md:flex-row lg:flex-row items-center justify-between bg-[#006252] p-10 rounded-[30px_0] mb-5`}
