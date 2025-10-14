@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import initialData from '../../../components/common/Form/initialData/initialData'
+import { motion } from 'framer-motion'
 
 
 const validationSchema = Yup.object({
@@ -24,8 +25,16 @@ const ForgotPasswordStepOne = () => {
 
     return (
         <div className='bg-[#EAEAEA] min-h-screen flex items-center justify-center'>
-            <div className='flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg md:flex-row max-w-[1250px] w-full min-h-[739px] p-2 '>
-                <div className=' flex flex-1 flex-col  p-17  gap-18 '>
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className='flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg md:flex-row max-w-[1250px] w-full min-h-[739px] p-2 '>
+                <motion.div
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ ease: "easeOut", type: "spring", stiffness: 300, delay: 0.5 }}
+                    className=' flex flex-1 flex-col  p-17  gap-18 '>
                     <Link className=' pr-9 bg-[url(./icons/home.png)] bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>صفحه اصلی</Link>
                     <div className='flex flex-col justify-center items-center gap-3 p-5 '>
                         <div className='flex flex-col justify-center items-center gap-2  '>
@@ -46,7 +55,11 @@ const ForgotPasswordStepOne = () => {
                                                 <ErrorMessage name={'email'} component={"span"} className='text-[#EF5350] text-[14px] ' />
                                             </div>
 
-                                            <button type='submit' onClick={(values) => { console.log(values) }} className='w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>ارسال درخواست</button>
+                                            <motion.button
+                                                whileHover={{ scale: "1.03", boxShadow: "0 0 8px #cccccc" }}
+                                                whileTap={{ scale: "0.98" }}
+                                                transition={{ type: "spring", stiffness: 300 }}
+                                                type='submit' onClick={(values) => { console.log(values) }} className='w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 '>ارسال درخواست</motion.button>
                                         </div>
                                     </Form>
                                 )}
@@ -54,8 +67,12 @@ const ForgotPasswordStepOne = () => {
                         </div>
                     </div>
 
-                </div>
-                <div className='flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-gray-800/50 rounded-[60px] relative'>
+                </motion.div>
+                <motion.div
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ ease: "easeOut", type: "spring", stiffness: 300, delay: 0.5 }}
+                    className='flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-gray-800/50 rounded-[60px] relative'>
                     <div onClick={handleDark} className={` cursor-pointer py-3 px-2 w-12 h-6 rounded-full absolute top-14 left-7 flex ${isDark ? "bg-yellow-300/40 justify-end " : "bg-blue-900/30  justify-start"} `}>
                         <div className='w-3 h-[90%] rounded-full transition-all duration-500 flex items-center '>
                             <img src={`${isDark ? "./icons/sun.png" : "./icons/moon.png"}  `} alt="" />
@@ -70,8 +87,8 @@ const ForgotPasswordStepOne = () => {
                             <p className='text-[16px] text-center'> با وارد کردن ایمیلتان، لینک تغییر رمز را دریافت می‌کنید و دوباره به دنیای یادگیری برمی‌گردید.</p>
                         </div>
                     </div>
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
         </div >
     )
 

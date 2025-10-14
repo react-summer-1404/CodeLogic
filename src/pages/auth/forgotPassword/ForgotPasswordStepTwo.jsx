@@ -2,7 +2,7 @@
 import { ErrorMessage, Field, Formik, Form } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import { motion } from 'framer-motion'
 import * as Yup from 'yup'
 import initialData from '../../../components/common/Form/initialData/initialData'
 const validationSchema = Yup.object({
@@ -31,8 +31,16 @@ const ForgotPasswordStepTwo = () => {
 
     return (
         <div className='bg-[#EAEAEA] min-h-screen flex items-center justify-center'>
-            <div className='flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg md:flex-row max-w-[1250px] w-full min-h-[739px] p-2 '>
-                <div className=' flex flex-1 flex-col  p-17  gap-14 '>
+            <motion.div
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className='flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg md:flex-row max-w-[1250px] w-full min-h-[739px] p-2 '>
+                <motion.div
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ ease: "easeOut", type: "spring", stiffness: 300, delay: 0.5 }}
+                    className=' flex flex-1 flex-col  p-17  gap-14 '>
                     <Link className=' pr-8 bg-[url(./icons/back.png)] bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>بازگشت</Link>
                     <div className='flex flex-col justify-center items-center gap-3 p-5 '>
                         <div className='flex flex-col justify-center items-center gap-2  '>
@@ -58,7 +66,11 @@ const ForgotPasswordStepTwo = () => {
                                                 <img onClick={handleSecondPassword} src={showSecondPassword ? "./icons/eyeClose.png" : "./icons/eyeOpen.png"} alt="" className=' cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  ' />
                                             </div>
                                             <ErrorMessage name={'confirmPassword'} component={"span"} className='text-[#EF5350] text-[14px]  ' />
-                                            <button type='submit' onClick={(values) => { console.log(values) }} className=' mt-6 w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>ثبت رمز عبور جدید</button>
+                                            <motion.button
+                                                whileHover={{ scale: "1.03", boxShadow: "0 0 8px #cccccc" }}
+                                                whileTap={{ scale: "0.98" }}
+                                                transition={{ type: "spring", stiffness: 300 }}
+                                                type='submit' onClick={(values) => { console.log(values) }} className=' mt-6 w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>ثبت رمز عبور جدید</motion.button>
                                         </div>
                                     </Form>
                                 )}
@@ -66,8 +78,12 @@ const ForgotPasswordStepTwo = () => {
                         </div>
                     </div>
 
-                </div>
-                <div className='flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-gray-800/50 rounded-[60px] relative'>
+                </motion.div>
+                <motion.div
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ ease: "easeOut", type: "spring", stiffness: 300, delay: 0.5 }}
+                    className='flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-gray-800/50 rounded-[60px] relative'>
                     <div onClick={handleDark} className={` cursor-pointer py-3 px-2  w-12 h-6   rounded-full  absolute top-14 left-7 flex  ${isDark ? "bg-yellow-300/40 justify-end " : "bg-blue-900/30  justify-start"} `}>
                         <div className='w-3 h-[90%] rounded-full transition-all duration-500 flex items-center '>
                             <img src={`${isDark ? "./icons/sun.png" : "./icons/moon.png"}  `} alt="" />
@@ -82,8 +98,8 @@ const ForgotPasswordStepTwo = () => {
                             <p className='text-[16px] text-center'> با تعیین یک رمز عبور جدید، دوباره به حساب کاربری خود دسترسی خواهید داشت و می‌توانید بدون توقف به یادگیری ادامه دهید.</p>
                         </div>
                     </div>
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
         </div >
     )
 }

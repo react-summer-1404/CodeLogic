@@ -1,24 +1,31 @@
 import React from 'react'
 import newsData from '../common/data/newsListSection/NewsData'
 import NewsSection from './NewsSection/NewsSection'
-
+import { motion } from 'framer-motion'
 const NewsListSection = () => {
     return (
-        <div className='bg-[#F3F4F6] flex flex-col justify-center items-center gap-29 w-full px-8 py-16   dark:bg-[#1E1E1E]'>
+        <div className='overflow-x-hidden bg-[#F3F4F6] flex flex-col justify-center items-center gap-29 w-full px-8 py-16   dark:bg-[#1E1E1E]'>
             <div className='flex flex-col justify-center items-center gap-7'>
-                <div className='flex flex-col items-center justify-center gap-3'>
+                <motion.div
+                    initial={{ y: -50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ ease: "easeOut", duration: 0.5 }}
+                    className='flex flex-col items-center justify-center gap-3'>
                     <h2 className='font-bold text-[32px] dark:text-[#008C78] text-[#008C78] '>اخبار و مقالات</h2>
                     <p className='text-[24px] text-[#353535]   dark:text-[#DDDDDD]'>با تازه‌ترین اخبار و مقالات برنامه‌نویسی به‌روز بمانید</p>
-                </div>
+                </motion.div>
                 <div className='flex flex-col justify-center items-center gap-7 '>
                     <div className='flex flex-col md:flex-row justify-between items-center gap-7'>
-                        {newsData.slice(0, 2).map((card , index) => {
-                            return <NewsSection card={card} key={index}/>
+                        {newsData.slice(0, 2).map((card, index) => {
+                            return <NewsSection card={card} key={index} />
                         })}
                     </div>
                     <div className='flex flex-col  md:flex-row justify-between items-center gap-7'>
                         {newsData.slice(2).map((card) => (
-                            <div
+                            <motion.div
+                                initial={{ x: -50, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{ ease: "easeOut", type: "spring", stiffness: 300, delay: 0.3 }}
                                 key={card.id}
                                 className={` ${card.isWide ? "flex-2" : "flex-1"} w-full h-[366px] relative rounded-3xl overflow-hidden [cursor:url(./icons/cursor.png),_pointer] shadow-lg `} >
                                 <img src={card.imageUrl} alt="" className='w-full h-full  ' />
@@ -34,7 +41,7 @@ const NewsListSection = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
 
