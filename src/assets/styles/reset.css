@@ -1,6 +1,6 @@
 .courses__control {
   font-weight: 500 !important ;
-  width: 200px;
+  width: 200px !important;
   border: none !important;
   outline: none !important;
   border-radius: 28px !important;

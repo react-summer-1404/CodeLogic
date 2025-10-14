@@ -1,7 +1,273 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import regtwo from "../../../assets/Images/regtwo.svg";
+import EastIcon from "@mui/icons-material/East";
+import { Formik, Form, Field } from "formik";
+import { RegisterStepTwo } from "../../../utils/Validations/RegisterVal/Register.validation";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const StepTwo = () => {
-  return <div>StepTwo</div>;
+  const [initialValues] = useState({ code: ["", "", "", "", ""] });
+  const [darkMode, setDarkMode] = useState(false);
+  const inputsRef = useRef([]);
+
+  const toggleDarkMode = () => setDarkMode(!darkMode);
+
+  const handleChange = (e, index, values, setFieldValue) => {
+    const value = e.target.value.replace(/\D/, "");
+    const newCode = [...values.code];
+    newCode[index] = value;
+    setFieldValue("code", newCode);
+
+    if (value && index < inputsRef.current.length - 1) {
+      inputsRef.current[index + 1].focus();
+    }
+  };
+
+  const handleKeyDown = (e, index, values, setFieldValue) => {
+    if (e.key === "Backspace") {
+      const newCode = [...values.code];
+      newCode[index] = "";
+      setFieldValue("code", newCode);
+    }
+  };
+
+  const handleSubmit = (values) => {
+    const finalCode = values.code.join("");
+    console.log("کد:", finalCode);
+  };
+
+  const fadeInUp = (delay) => ({
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut", delay },
+    },
+  });
+
+  const fadeInOnly = (delay) => ({
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.6, ease: "easeOut", delay },
+    },
+  });
+
+  const imageVariant = {
+    hidden: { x: 200, opacity: 0, scale: 0.95 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.8, ease: "easeOut", delay: 0.3 },
+    },
+  };
+
+  const containerVariant = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5 } },
+  };
+
+  return (
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={containerVariant}
+      className={`flex justify-center items-center min-h-screen transition-colors duration-500 ${
+        darkMode ? "bg-gray-900" : "bg-[#EAEAEA]"
+      }`}
+    >
+      <Formik
+        initialValues={initialValues}
+        validationSchema={RegisterStepTwo}
+        onSubmit={handleSubmit}
+      >
+        {({ values, setFieldValue, touched }) => (
+          <Form className="w-full flex justify-center">
+            <motion.div
+              className={`flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
+                darkMode ? "bg-gray-800" : "bg-white"
+              }`}
+            >
+              <div className="w-full lg:w-[47.44%] flex justify-center items-center">
+                <motion.div
+                  variants={imageVariant}
+                  className={`w-[95%] sm:w-[90%] md:w-[95%] h-auto lg:h-[95.67%] rounded-xl flex flex-col justify-center items-center mb-6 lg:mb-0 mr-0 lg:mr-2 relative transition-colors duration-500 ${
+                    darkMode ? "bg-gray-700" : "bg-[#EEFFFC]"
+                  }`}
+                >
+                  <div
+                    onClick={toggleDarkMode}
+                    className={`cursor-pointer py-3 px-2 w-11 h-5 rounded-full absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-7 flex transition-colors duration-500 ${
+                      darkMode
+                        ? "bg-yellow-300/40 justify-end"
+                        : "bg-blue-900/30 justify-start"
+                    }`}
+                  >
+                    <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center">
+                      <img
+                        src={`${
+                          darkMode ? "./icons/sun.png" : "./icons/moon.png"
+                        }`}
+                        alt="theme icon"
+                      />
+                    </div>
+                  </div>
+
+                  <img
+                    className="w-[70%] sm:w-[75%] md:w-[70%] h-auto sm:h-[40%] md:h-[45%] lg:h-[52.63%] mb-6 sm:mb-8 lg:mb-10 transition-all duration-500"
+                    src={regtwo}
+                    alt="regtwo"
+                  />
+                  <span
+                    className={`font-bold text-xl sm:text-2xl md:text-2xl mb-4 sm:mb-6 lg:mb-10 text-center transition-colors duration-500 ${
+                      darkMode ? "text-white" : "text-[#005B77]"
+                    }`}
+                  >
+                    تنها یک قدم تا دنیای یادگیری!
+                  </span>
+                  <p
+                    className={`w-[85%] sm:w-[80%] text-center transition-colors duration-500 ${
+                      darkMode ? "text-gray-300" : "text-[#1E1E1E]"
+                    }`}
+                  >
+                    فرصت رشد، پیشرفت و ساختن آینده‌ای بهتر همین‌جاست — همراه با
+                    ما، یک قدم جلوتر باشید!
+                  </p>
+                </motion.div>
+              </div>
+
+              <div className="w-full lg:w-[52.56%] flex flex-col justify-center px-4 sm:px-8 md:px-[5%] relative transition-colors duration-500">
+                <motion.div
+                  variants={fadeInOnly(0.5)}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <Link to="/RegisterStepOne">
+                    <div className="mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
+                      <EastIcon
+                        className={`cursor-pointer ml-2 transition-colors duration-500 ${
+                          darkMode ? "text-gray-300" : "text-[#005B77]"
+                        }`}
+                      />
+                      <span
+                        className={`cursor-pointer font-bold transition-colors duration-500 ${
+                          darkMode ? "text-gray-300" : "text-[#005B77]"
+                        }`}
+                      >
+                        بازگشت
+                      </span>
+                    </div>
+                  </Link>
+                </motion.div>
+
+                <motion.h2
+                  variants={fadeInUp(0.6)}
+                  initial="hidden"
+                  animate="visible"
+                  className={`text-xl sm:text-2xl md:text-2xl text-center font-bold mb-2 sm:mb-3 transition-colors duration-500 ${
+                    darkMode ? "text-white" : "text-[#008C78]"
+                  }`}
+                >
+                  ایجاد حساب کاربری
+                </motion.h2>
+
+                <motion.p
+                  variants={fadeInUp(0.9)}
+                  initial="hidden"
+                  animate="visible"
+                  className={`mb-4 sm:mb-6 md:mb-8 text-center transition-colors duration-500 ${
+                    darkMode ? "text-gray-300" : "text-[#333333]"
+                  }`}
+                >
+                  رمز یکبار مصرف ارسال شده را وارد کنید
+                </motion.p>
+
+                <motion.div
+                  variants={fadeInUp(1.2)}
+                  initial="hidden"
+                  animate="visible"
+                  className="flex flex-col items-center relative"
+                >
+                  <div
+                    className="flex justify-center mb-2"
+                    style={{ direction: "ltr" }}
+                  >
+                    {values.code.map((digit, index) => (
+                      <Field
+                        key={index}
+                        innerRef={(el) => (inputsRef.current[index] = el)}
+                        name={`code[${index}]`}
+                        type="text"
+                        maxLength={1}
+                        inputMode="numeric"
+                        value={digit}
+                        onChange={(e) =>
+                          handleChange(e, index, values, setFieldValue)
+                        }
+                        onKeyDown={(e) =>
+                          handleKeyDown(e, index, values, setFieldValue)
+                        }
+                        className={`
+        w-14 h-14 mx-3 text-center text-lg rounded-2xl transition-colors duration-300 focus:outline-none bg-[#ecececaf]
+        ${
+          digit
+            ? "border-2 border-[#008C78]"
+            : touched.code?.[index]
+            ? "border-2 border-red-500"
+            : "border-2 border-transparent focus:border-[#008C78]"
+        }
+      `}
+                      />
+                    ))}
+                  </div>
+
+                  {touched.code &&
+                    values.code.some(
+                      (val, idx) => touched.code[idx] && !val
+                    ) && (
+                      <div className="text-red-500 text-sm mt-1 font-semibold text-center absolute top-16 right-27">
+                        پر کردن فیلدها الزامی است
+                      </div>
+                    )}
+
+                  <motion.div
+                    variants={fadeInUp(1.5)}
+                    initial="hidden"
+                    animate="visible"
+                    className="w-full flex justify-center"
+                  >
+                    <Link
+                      className={`text-center mt-10 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
+                        darkMode
+                          ? "bg-yellow-400 text-gray-800 hover:bg-yellow-300"
+                          : "bg-[#008C78] text-white hover:bg-[#007563]"
+                      }`}
+                      to="/RegisterStepThree"
+                    >
+                      تایید رمز یکبار مصرف
+                    </Link>
+                  </motion.div>
+                </motion.div>
+
+                <motion.p
+                  variants={fadeInUp(1.8)}
+                  initial="hidden"
+                  animate="visible"
+                  className={`text-sm mt-4 sm:mt-6 text-center transition-colors duration-500 ${
+                    darkMode ? "text-gray-300" : "text-[#333333]"
+                  }`}
+                >
+                  01:23
+                </motion.p>
+              </div>
+            </motion.div>
+          </Form>
+        )}
+      </Formik>
+    </motion.div>
+  );
 };
 
 export default StepTwo;
