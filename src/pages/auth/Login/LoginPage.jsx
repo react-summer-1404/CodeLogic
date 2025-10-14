@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 
 const validationSchema = Yup.object({
     password: Yup.string().required('وارد کردن رمز عبور الزامی است').min(8, "رمز عبور باید حداقل شامل 8 کاراکتر باشد"),
-    name: Yup.string().required("وارد کردن نام کاربری الزامی است").min(4, "نام کاربری باید شامل حداقل 4 کاراکتر باشد")
+    name: Yup.string().required("وارد کردن این بخش الزامی است").min(4, "نام کاربری باید شامل حداقل 4 کاراکتر باشد")
 })
 const LoginPage = () => {
 
