@@ -7,22 +7,23 @@ const SliderTeacher = ({item}) => {
   const {t} = useTranslation();
 
   return (
-    <div className='flex flex-col flex-shrink-0 items-center w-[350px] h-[346px] p-4 bg-[#FFFFFF] rounded-[20px]   dark:bg-[#606060]
+    <div className='flex flex-col flex-shrink-0 items-center w-[350px] h-[346px] p-4 bg-[#FFFFFF] rounded-[20px] cursor-pointer
+    dark:bg-[#606060]
     hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>
-      <img src={item.img}/>
+      <img src={item.pictureAddress} className='w-[313px] h-[183px] rounded-[20px]'/>
       <div className='flex flex-col items-center gap-2 pt-2'>
-        <span className='font-bold text-base text-[#1E1E1E]   dark:text-[#EEEEEE]'>{t(`${item.title}`)}</span>
+        <span className='font-bold text-base text-[#1E1E1E]   dark:text-[#EEEEEE]'>{t(`${item.fullName}`)}</span>
         <div className='flex items-center gap-2'>
           <span className='font-regular text-xs text-[#008C78]'>{t('پروفایل لینکدین')}</span>
           <Linkedin/>
         </div>
         <div className='flex pt-4 divide-x divide-[#EAEAEA]'>
           <div className='flex flex-col items-center w-[98px]   dark:text-[#DDDDDD]'>
-            <span>{t(`${item.blogs}`)}</span>
+            <span>{t(`${item.courseCounts}`)}</span>
             <span>{t('مقالات')}</span>
           </div>
           <div className='flex flex-col items-center w-[98px]   dark:text-[#DDDDDD]'>
-            <span>{t(`${item.courses}`)}</span>
+            <span>{t(`${item.courseCounts}`)}</span>
             <span>{t('دوره ها')}</span>
           </div>
         </div>
