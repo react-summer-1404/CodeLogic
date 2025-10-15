@@ -1,0 +1,24 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+
+const TranslateButton = () => {
+  const { i18n } = useTranslation();
+
+  const currentLang = i18n.language || "fa";
+
+  const toggleLanguage = () => {
+    const newLang = currentLang === "fa" ? "en" : "fa";
+    i18n.changeLanguage(newLang);
+  };
+
+  return (
+    <button
+      onClick={toggleLanguage}
+      className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-full transition-all duration-300 shadow-md"
+    >
+      {currentLang === "fa" ? "English" : "فارسی"}
+    </button>
+  );
+};
+
+export default TranslateButton;
