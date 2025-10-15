@@ -8,7 +8,11 @@ const TranslateButton = () => {
 
   const toggleLanguage = () => {
     const newLang = currentLang === "fa" ? "en" : "fa";
+
     i18n.changeLanguage(newLang);
+
+    document.body.classList.remove("rtl", "ltr");
+    document.body.classList.add(newLang === "fa" ? "rtl" : "ltr");
   };
 
   return (

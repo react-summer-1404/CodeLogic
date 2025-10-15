@@ -5,8 +5,10 @@ import { Formik, Form, Field } from "formik";
 import { RegisterStepTwo } from "../../../utils/Validations/RegisterVal/Register.validation";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const StepTwo = () => {
+  const { t, i18n } = useTranslation();
   const [initialValues] = useState({ code: ["", "", "", "", ""] });
   const [darkMode, setDarkMode] = useState(false);
   const inputsRef = useRef([]);
@@ -34,7 +36,7 @@ const StepTwo = () => {
 
   const handleSubmit = (values) => {
     const finalCode = values.code.join("");
-    console.log("کد:", finalCode);
+    console.log("Code:", finalCode);
   };
 
   const fadeInUp = (delay) => ({
@@ -125,15 +127,14 @@ const StepTwo = () => {
                       darkMode ? "text-white" : "text-[#005B77]"
                     }`}
                   >
-                    تنها یک قدم تا دنیای یادگیری!
+                    {t("registerStepTwo.start_learning")}
                   </span>
                   <p
                     className={`w-[85%] sm:w-[80%] text-center transition-colors duration-500 ${
                       darkMode ? "text-gray-300" : "text-[#1E1E1E]"
                     }`}
                   >
-                    فرصت رشد، پیشرفت و ساختن آینده‌ای بهتر همین‌جاست — همراه با
-                    ما، یک قدم جلوتر باشید!
+                    {t("registerStepTwo.description")}
                   </p>
                 </motion.div>
               </div>
@@ -156,7 +157,7 @@ const StepTwo = () => {
                           darkMode ? "text-gray-300" : "text-[#005B77]"
                         }`}
                       >
-                        بازگشت
+                        {t("registerStepTwo.back")}
                       </span>
                     </div>
                   </Link>
@@ -170,7 +171,7 @@ const StepTwo = () => {
                     darkMode ? "text-white" : "text-[#008C78]"
                   }`}
                 >
-                  ایجاد حساب کاربری
+                  {t("registerStepTwo.create_account")}
                 </motion.h2>
 
                 <motion.p
@@ -181,7 +182,7 @@ const StepTwo = () => {
                     darkMode ? "text-gray-300" : "text-[#333333]"
                   }`}
                 >
-                  رمز یکبار مصرف ارسال شده را وارد کنید
+                  {t("registerStepTwo.enter_code")}
                 </motion.p>
 
                 <motion.div
@@ -210,15 +211,14 @@ const StepTwo = () => {
                           handleKeyDown(e, index, values, setFieldValue)
                         }
                         className={`
-        w-14 h-14 mx-3 text-center text-lg rounded-2xl transition-colors duration-300 focus:outline-none bg-[#ecececaf]
-        ${
-          digit
-            ? "border-2 border-[#008C78]"
-            : touched.code?.[index]
-            ? "border-2 border-red-500"
-            : "border-2 border-transparent focus:border-[#008C78]"
-        }
-      `}
+                          w-14 h-14 mx-3 text-center text-lg rounded-2xl transition-colors duration-300 focus:outline-none bg-[#ecececaf] ${
+                            digit
+                              ? "border-2 border-[#008C78]"
+                              : touched.code?.[index]
+                              ? "border-2 border-red-500"
+                              : "border-2 border-transparent focus:border-[#008C78]"
+                          }
+                        `}
                       />
                     ))}
                   </div>
@@ -227,8 +227,14 @@ const StepTwo = () => {
                     values.code.some(
                       (val, idx) => touched.code[idx] && !val
                     ) && (
-                      <div className="text-red-500 text-sm mt-1 font-semibold text-center absolute top-16 right-27">
-                        پر کردن فیلدها الزامی است
+                      <div
+                        className={` text-red-500 text-sm mt-1 font-semibold text-center absolute  ${
+                          i18n.language === "fa"
+                            ? " top-16 right-27"
+                            : "left-27 top-16"
+                        } `}
+                      >
+                        {t("registerStepTwo.validation.required")}
                       </div>
                     )}
 
@@ -246,7 +252,7 @@ const StepTwo = () => {
                       }`}
                       to="/RegisterStepThree"
                     >
-                      تایید رمز یکبار مصرف
+                      {t("registerStepTwo.confirm_otp")}
                     </Link>
                   </motion.div>
                 </motion.div>

@@ -1,33 +1,42 @@
 import * as Yup from "yup";
 import { checkNumber } from "../common/common.validation.js";
+import i18n from "../../i18n";
 
-export const RegisterValidation = Yup.object().shape({
-  phoneNumber: Yup.string()
-    .required("شماره موبایل خود را وارد کنید *")
-    .test("phoneNumber", "شماره موبایل نامعتبر است * ", (value) =>
-      checkNumber(value)
+export const RegisterValidation = () => {
+  return Yup.object().shape({
+    phoneNumber: Yup.string()
+      .required(() => i18n.t("registerStepOne.validation.required"))
+      .test(
+        "phoneNumber",
+        () => i18n.t("registerStepOne.validation.invalid"),
+        (value) => checkNumber(value)
+      ),
+  });
+};
+
+export const RegisterStepTwo = () =>
+  Yup.object().shape({
+    code: Yup.array().of(
+      Yup.string().required(i18n.t("registerStepTwo.validation.required"))
     ),
-});
+  });
 
-export const RegisterStepTwo = Yup.object().shape({
-  code: Yup.array().of(Yup.string().required("پر کردن فیلد الزامی است")),
-});
-
-export const RegisterStepThree = Yup.object().shape({
-  email: Yup.string()
-    .email("ایمیل وارد شده اشتباه است *")
-    .required("ایمیل خود را وارد کنید *"),
-  password: Yup.string()
-    .required("رمز عبور خود را وارد کنید *")
-    .min(8, "رمز عبور شما باید حداقل دارای 8 کارکتر باشد *")
-    .matches(/[0-9]/, "رمز عبور شما باید دارای عدد باشد *")
-    .matches(/[a-z]/, "رمز عبور شما باید دارای حروف کوچک باشد *")
-    .matches(/[A-Z]/, "رمز عبور شما باید دارای حروف بزرگ باشد *")
-    .matches(
-      /[^\w]/,
-      "رمز عبور شما باید دارای یکی از سمبل های (!,@,#,$,%,^,&,*) باشد *"
-    ),
-  confirmPassword: Yup.string()
-    .required("تکرار رمز عبور را وارد کنید *")
-    .oneOf([Yup.ref("password")], "رمز عبور شما همخوانی ندارد *"),
-});
+export const RegisterStepThree = () =>
+  Yup.object().shape({
+    email: Yup.string()
+      .email(i18n.t("registerStepThree.validation.email_invalid"))
+      .required(i18n.t("registerStepThree.validation.email_required")),
+    password: Yup.string()
+      .required(i18n.t("registerStepThree.validation.password_required"))
+      .min(8, i18n.t("registerStepThree.validation.password_min"))
+      .matches(/[0-9]/, i18n.t("registerStepThree.validation.password_number"))
+      .matches(/[a-z]/, i18n.t("registerStepThree.validation.password_lower"))
+      .matches(/[A-Z]/, i18n.t("registerStepThree.validation.password_upper"))
+      .matches(/[^\w]/, i18n.t("registerStepThree.validation.password_symbol")),
+    confirmPassword: Yup.string()
+      .required(i18n.t("registerStepThree.validation.confirmPassword_required"))
+      .oneOf(
+        [Yup.ref("password")],
+        i18n.t("registerStepThree.validation.confirmPassword_match")
+      ),
+  });

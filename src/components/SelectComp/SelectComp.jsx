@@ -1,23 +1,33 @@
 import React from "react";
 import Select from "react-select";
-import style from "./SelectComp.module.css";
 
-const SelectComp = () => {
+const SelectComp = ({ placeholder = "انتخاب کنید...", isRtl = true }) => {
   const options = [
-    { value: "news", label: "اخبار" },
-    { value: "articles", label: "مقالات" },
-    { value: "courses", label: "دوره ها" },
+    { value: "news", label: isRtl ? "اخبار" : "News" },
+    { value: "articles", label: isRtl ? "مقالات" : "Articles" },
+    { value: "courses", label: isRtl ? "دوره ها" : "Courses" },
   ];
 
   return (
-    <div>
+    <div className={` ${isRtl ? "text-right" : "text-left"}`}>
       <Select
-        defaultValue={options[0]}
+        defaultValue={options[2]}
         options={options}
         isClearable
-        className={style.select}
-        placeholder="انتخاب کنید..."
+        placeholder={placeholder}
         classNamePrefix="courses"
+        styles={{
+          control: (provided) => ({
+            ...provided,
+            direction: isRtl ? "rtl" : "ltr",
+            textAlign: isRtl ? "right" : "left",
+          }),
+          menu: (provided) => ({
+            ...provided,
+            direction: isRtl ? "rtl" : "ltr",
+            textAlign: isRtl ? "right" : "left",
+          }),
+        }}
       />
     </div>
   );
