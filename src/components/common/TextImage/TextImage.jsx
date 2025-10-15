@@ -10,20 +10,18 @@ const TextImage = ({title1, titleSpan, title2, desc, buttonText, img, bg}) => {
 
   return (
     <div className={`flex justify-between pr-[40px] pb-8 pl-[63px] bg-[${bg}]   dark:bg-[#1E1E1E]`}>
-      <div className='flex flex-col gap-6 pt-[97px]
+      <div className='flex flex-col gap-6 w-full pt-[97px]
       sa:items-center
       md:items-start md:pb-0'>
         <h2 className='font-bold   dark:text-[#EEEEEE]
-        sa:w-[400px] sa:text-xl sa:text-center sa:leading-8   
-        sm:w-[480px] sm:text-2xl sm:text-start sm:leading-10   
-        lg:w-[585px] lg:text-4xl lg:leading-12
-
-        '>{t(`${title1}`)}
+        sa:max-w-[320px] sa:text-xl sa:text-center sa:leading-8   
+        md:max-w-[480px] md:text-2xl md:text-start md:leading-10   
+        lg:max-w-[585px] lg:text-4xl lg:leading-12'>{t(`${title1}`)}
           <span className='text-[#008C78]'>{t(`${titleSpan}`)}</span>
         {t(`${title2}`)}</h2>
         <p className='font-normal   dark:text-[#DDDDDD]
-        sa:text-center
-        sm:max-w-[480px] sm:text-start sm:leading-6 
+        sa:text-center sa:max-w-[400px]
+        md:max-w-[480px] md:text-start md:leading-6 
         lg:max-w-[541px] lg:leading-7'>{t(`${desc}`)}</p>
         <button className='flex justify-center items-center text-white bg-[#005B77] rounded-[50px] cursor-pointer   dark:text-[#EEEEEE]
         sa:gap-1 sa:w-[184px] sa:h-[32px]
