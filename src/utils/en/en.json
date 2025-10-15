@@ -35,5 +35,14 @@
     "git": "Git & GitHub",
     "rights": "All rights reserved for Bahr Academy.",
     "academy": "Bahr Academy"
+  },
+    "navbar": {
+    "academy": "Bahr Academy",
+    "home": "Home",
+    "courses": "Courses",
+    "news": "News",
+    "search_placeholder": "Search...",
+    "select_placeholder": "Select...",
+    "login": "Login / Register"
   }
 }

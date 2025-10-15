@@ -7,9 +7,14 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: Estedad;
+}
+body.rtl {
   direction: rtl;
 }
 
+body.ltr {
+  direction: ltr;
+}
 @font-face {
   font-family: "Estedad";
   src: url("../../assets/Font/Estedad-Regular.woff2") format("woff2");

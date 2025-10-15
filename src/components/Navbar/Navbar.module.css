@@ -222,6 +222,7 @@
     text-align: center;
   }
 }
+
 @media (max-width: 1306px) {
   .ul {
     gap: 20px;

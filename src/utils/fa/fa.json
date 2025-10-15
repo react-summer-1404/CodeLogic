@@ -35,5 +35,14 @@
     "git": "Git و GitHub",
     "rights": "تمام حقوق برای آکادمی بحر محفوظ است.",
     "academy": "آکادمی بحر"
+  },
+    "navbar": {
+    "academy": "آکادمی بحر",
+    "home": "صفحه اصلی",
+    "courses": "دوره ها",
+    "news": "اخبار",
+    "search_placeholder": "جستجو کنید...",
+    "select_placeholder": "انتخاب کنید...",
+    "login": "ورود / ثبت نام"
   }
 }

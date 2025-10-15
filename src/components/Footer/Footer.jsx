@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./Footer.module.css";
+import { useTranslation } from "react-i18next";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -7,158 +7,192 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 const Footer = () => {
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === "fa";
+
   return (
     <div
-      className={`${style.main} w-full px-[7%] py-12 rounded-t-[50px] bg-[#008c78]`}
+      className={`w-full px-[7%] py-12 bg-[#008c78] rounded-tl-[50px] rounded-tr-[50px] rounded-bl-0 rounded-br-0 ${
+        isRtl ? "rtl" : "ltr"
+      }`}
     >
-      <div
-        className={`${style.top} flex flex-col sm:flex-col md:flex-row lg:flex-row items-center justify-between bg-[#006252] p-10 rounded-[30px_0] mb-5`}
-      >
+      <div className="flex flex-col md:flex-row lg:flex-row items-center justify-between bg-[#006252] p-10 rounded-tl-[30px] rounded-tr-0 rounded-bl-0 rounded-br-[30px] mb-5">
         <div
-          className={`${style.left} w-full sm:w-full md:w-1/2 lg:w-1/2 relative h-full mb-6 md:mb-0`}
+          className={`w-full md:w-1/2 mb-6 md:mb-0 ${
+            isRtl ? "text-right" : "text-left"
+          }`}
         >
-          <button className={`${style.button} rounded-4xl`}>ثبت نام</button>
-
-          <input
-            type="text"
-            placeholder="شماره تماس خود را وارد کنید"
-            className={`${style.input} rounded-4xl mx-auto md:mx-0`}
-          />
-          <span className={`${style.inputspan} hidden md:block`}>
-            عضویت در خبرنامه وبسایت برنامه نویسی برای اطلاع از مقالات و دوره ها
-            و تخفیف ها
-          </span>
-        </div>
-
-        <div
-          className={`${style.right} w-full sm:w-full md:w-1/2 lg:w-1/2 text-center md:text-right`}
-        >
-          <p
-            className={`${style.p} text-2xl sm:text-2xl md:text-4xl font-bold`}
-          >
-            {" "}
-            از جدیدترین اخبار و دوره های برنامه نویسی مطلع شوید
+          <p className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+            {t("footer.newsletter_title")}
           </p>
         </div>
-      </div>
 
-      <div
-        className={`${style.middle} flex flex-wrap sm:flex-wrap md:flex-nowrap lg:flex-nowrap items-start justify-between gap-6 mb-8`}
-      >
-        <div
-          className={`${style.card1} w-full sm:w-[48%] md:w-[23%] lg:w-[23%]`}
-        >
-          <h2 className={`${style.h2} text-lg font-bold`}>آموزش و پشتیبانی</h2>
-          <ul className="space-y-2 mt-3 text-sm">
-            <li className={`${style.li}`}>رویداد ها </li>
-            <li className={`${style.li}`}>پنل کاربری </li>
-            <li className={`${style.li}`}>پشتیبانی فنی </li>
-            <li className={`${style.li}`}>مقالات آموزشی </li>
-          </ul>
-        </div>
-
-        <div
-          className={`${style.card} w-full sm:w-[48%] md:w-[23%] lg:w-[23%]`}
-        >
-          <h2 className={`${style.h2} text-lg font-bold`}>حوزه های کاربردی</h2>
-          <ul className="space-y-2 mt-3 text-sm">
-            <li className={`${style.li}`}>فرانت اند</li>
-            <li className={`${style.li}`}>بک اند </li>
-            <li className={`${style.li}`}>فول استک </li>
-            <li className={`${style.li}`}>هوش مصنوعی </li>
-            <li className={`${style.li}`}>سئو و بهینه سازی </li>
-            <li className={`${style.li}`}>طراحی UI / UX </li>
-            <li className={`${style.li}`}>موبایل </li>
-          </ul>
-        </div>
-
-        <div
-          className={`${style.card} w-full sm:w-[48%] md:w-[23%] lg:w-[23%]`}
-        >
-          <h2 className={`${style.h2} text-lg font-bold`}>درباره ما</h2>
-          <ul className="space-y-2 mt-3 text-sm">
-            <li className={`${style.li}`}>اخبار</li>
-            <li className={`${style.li}`}>فرصت‌های شغلی</li>
-            <li className={`${style.li}`}>تماس با ما</li>
-            <li className={`${style.li}`}>مرکز اعتماد</li>
-            <li className={`${style.li}`}>قوانین استفاده</li>
-            <li className={`${style.li}`}>سیاست امنیت</li>
-            <li className={`${style.li}`}>حریم خصوصی</li>
-          </ul>
-        </div>
-
-        <div
-          className={`${style.card} w-full sm:w-[48%] md:w-[23%] lg:w-[23%]`}
-        >
-          <h2 className={`${style.h2} text-lg font-bold`}>تخصص ها</h2>
-          <ul className="space-y-2 mt-3 text-sm">
-            <li className={`${style.li}`}>HTML & CSS</li>
-            <li className={`${style.li}`}>JavaScript </li>
-            <li className={`${style.li}`}>React </li>
-            <li className={`${style.li}`}>Next.js </li>
-            <li className={`${style.li}`}>Node.js </li>
-            <li className={`${style.li}`}>REST API </li>
-            <li className={`${style.li}`}>Git & GitHub </li>
-          </ul>
+        <div className="w-full md:w-1/2 relative flex flex-col items-center md:items-start">
+          <div className="relative w-full md:w-auto">
+            <input
+              type="text"
+              placeholder={t("footer.newsletter_placeholder")}
+              className="w-[90%] md:w-[360px] px-4 py-2 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] bg-white text-[#414141] outline-none"
+            />
+            <button
+              className={`absolute top-0 ${
+                isRtl
+                  ? "left-0 rounded-tl-0 rounded-br-[12px] rounded-tr-0 rounded-bl-0"
+                  : "right-0 rounded-tr-0 rounded-bl-[12px] rounded-tl-0 rounded-br-0"
+              } 
+                          bg-[#008c78] text-white px-5 py-2 cursor-pointer`}
+            >
+              {t("footer.newsletter_button")}
+            </button>
+          </div>
+          <span className="hidden md:block mt-16 text-sm text-[#cccccc] w-full md:w-auto">
+            {t("footer.newsletter_description")}
+          </span>
         </div>
       </div>
 
+      <div className="flex flex-wrap gap-6 mb-8">
+        <div className="flex-1 min-w-[260px] bg-[#006252] p-10 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] text-white">
+          <h2 className="text-lg font-bold border-b-2 border-[#008c78] pb-2 mb-4">
+            {t("footer.skills")}
+          </h2>
+          <ul className="space-y-2 text-sm">
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.htmlcss")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.javascript")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.react")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.nextjs")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.nodejs")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.restapi")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.git")}
+            </li>
+          </ul>
+        </div>
+
+        <div className="flex-1 min-w-[260px] bg-[#006252] p-10 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] text-white">
+          <h2 className="text-lg font-bold border-b-2 border-[#008c78] pb-2 mb-4">
+            {t("footer.about")}
+          </h2>
+          <ul className="space-y-2 text-sm">
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.news")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.jobs")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.contact")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.trust_center")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.rules")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.security")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.privacy")}
+            </li>
+          </ul>
+        </div>
+
+        <div className="flex-1 min-w-[260px] bg-[#006252] p-10 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] text-white">
+          <h2 className="text-lg font-bold border-b-2 border-[#008c78] pb-2 mb-4">
+            {t("footer.domains")}
+          </h2>
+          <ul className="space-y-2 text-sm">
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.frontend")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.backend")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.fullstack")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.ai")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.seo")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.uiux")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.mobile")}
+            </li>
+          </ul>
+        </div>
+
+        <div className="flex-1 min-w-[260px] bg-[#006252] p-10 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] text-white">
+          <h2 className="text-lg font-bold border-b-2 border-[#008c78] pb-2 mb-4">
+            {t("footer.support")}
+          </h2>
+          <ul className="space-y-2 text-sm">
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.events")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.panel")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.technical_support")}
+            </li>
+            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+              {t("footer.articles")}
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <div
-        className={`${style.bottom} flex flex-col sm:flex-col md:flex-row lg:flex-row items-center justify-between gap-4`}
+        className={`flex flex-col sm:flex-col md:flex-row lg:flex-row items-center justify-between gap-4 ${
+          isRtl ? "text-right" : "text-left"
+        }`}
       >
-        <div className={`${style.icon} flex gap-4 text-white`}>
+        <h1 className="text-white font-bold text-center md:text-right text-lg">
+          {t("footer.academy")}
+        </h1>
+        <span className="text-white text-center md:text-right text-sm">
+          {t("footer.rights")}
+        </span>
+        <div className="flex gap-4 text-white">
           <InstagramIcon
-            sx={{
-              cursor: "pointer",
-              fontSize: 30,
-              transition: "0.3s ease",
-              "&:hover": { color: "black" },
-            }}
+            className="cursor-pointer hover:text-black transition-all duration-300"
+            sx={{ fontSize: 30 }}
           />
           <FacebookIcon
-            sx={{
-              cursor: "pointer",
-              fontSize: 30,
-              transition: "0.3s ease",
-              "&:hover": { color: "black" },
-            }}
+            className="cursor-pointer hover:text-black transition-all duration-300"
+            sx={{ fontSize: 30 }}
           />
           <TwitterIcon
-            sx={{
-              cursor: "pointer",
-              fontSize: 30,
-              transition: "0.3s ease",
-              "&:hover": { color: "black" },
-            }}
+            className="cursor-pointer hover:text-black transition-all duration-300"
+            sx={{ fontSize: 30 }}
           />
           <TelegramIcon
-            sx={{
-              cursor: "pointer",
-              fontSize: 30,
-              transition: "0.3s ease",
-              "&:hover": { color: "black" },
-            }}
+            className="cursor-pointer hover:text-black transition-all duration-300"
+            sx={{ fontSize: 30 }}
           />
           <WhatsAppIcon
-            sx={{
-              cursor: "pointer",
-              fontSize: 30,
-              transition: "0.3s ease",
-              "&:hover": { color: "black" },
-            }}
+            className="cursor-pointer hover:text-black transition-all duration-300"
+            sx={{ fontSize: 30 }}
           />
         </div>
-
-        <span
-          className={`${style.span} text-center sm:text-center md:text-right`}
-        >
-          {" "}
-          . تمام حقوق برای آکادمی بحر محفوظ است
-        </span>
-
-        <h1 className={`${style.h1} text-center sm:text-center md:text-right`}>
-          آکادمی بحر
-        </h1>
       </div>
     </div>
   );
