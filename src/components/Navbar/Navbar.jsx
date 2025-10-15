@@ -3,6 +3,7 @@ import style from "./Navbar.module.css";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import SelectComp from "../SelectComp/SelectComp";
+import TranslateButton from "../TranslateButton/TranslateButton";
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -17,6 +18,7 @@ const Navbar = () => {
         darkMode ? style.darknav : ""
       } flex items-center justify-between`}
     >
+      <TranslateButton />
       <MenuIcon
         onClick={toggleMenu}
         className={`${style.menuicon} cursor-pointer`}
