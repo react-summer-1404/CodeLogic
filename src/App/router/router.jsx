@@ -11,19 +11,20 @@ import TitleNewsSection from "../../components/NewsListSection/TitleNewsSection"
 import StepOne from "../../pages/auth/Register/StepOne";
 import StepTwo from "../../pages/auth/Register/StepTwo";
 import StepThree from "../../pages/auth/Register/StepThree";
+import CourseList from "../../pages/CourseList/CourseList";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
-      { index: true, element: <Landing /> },
-
-      { path: "/RegisterStepOne", element: <StepOne /> },
-      { path: "/RegisterStepTwo", element: <StepTwo /> },
-      { path: "/RegisterStepThree", element: <StepThree /> },
+      { index: true, element: <Landing/> },
+      { path: '/courselist', element: <CourseList/> }
     ],
   },
+  { path: "/RegisterStepOne", element: <StepOne /> },
+  { path: "/RegisterStepTwo", element: <StepTwo /> },
+  { path: "/RegisterStepThree", element: <StepThree /> },
   { path: "/login", element: <LoginPage /> },
   { path: "/loginValidation", element: <LoginValidationPage /> },
   { path: "/forgotPassOne", element: <ForgotPasswordStepOne /> },

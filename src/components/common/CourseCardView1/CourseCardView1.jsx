@@ -5,7 +5,7 @@ import Star from '../../../assets/Icons/Star'
 import Heart from '../../../assets/Icons/Heart'
 import { useTranslation } from 'react-i18next'
 
-const SliderCourse = ({item}) => {
+const CourseCardView1 = ({item}) => {
 
   const {t} = useTranslation();
 
@@ -49,4 +49,4 @@ const SliderCourse = ({item}) => {
   )
 }
 
-export default SliderCourse
+export default CourseCardView1 

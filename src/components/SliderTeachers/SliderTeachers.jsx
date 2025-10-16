@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import useFetchProducts from '../../utils/hooks/useFetchProducts/useFetchProducts'
+import useFetchData from '../../utils/hooks/useFetchData/useFetchData'
 import ButtonsSeeMore from '../common/ButtonsSeeMore/ButtonsSeeMore'
 import bahr from '../../assets/Images/bahr.svg'
 import ternermiji from '../../assets/Images/ternermiji.svg'
@@ -12,9 +12,9 @@ import SliderTeacher from './SliderTeacher/SliderTeacher'
 const SliderTeachers = () => {
 
   const thisApiUrl = '/Home/GetTeachers'; 
-  const { products: sliderTeachersData} = useFetchProducts(thisApiUrl);
+  const { data: sliderTeachersData} = useFetchData(thisApiUrl);
 
-  const allProducts = sliderTeachersData.concat(...sliderTeachersData);
+  const allTeachersData = sliderTeachersData.concat(...sliderTeachersData);
 
   const sliderRef = useRef();
 
@@ -30,7 +30,7 @@ const SliderTeachers = () => {
       </div>
       <ButtonsSeeMore seeAllText={'مشاهده همه استادها'} sliderRef={sliderRef}/>
       <div className='flex flex-nowrap gap-8 w-full pt-10 pb-2 px-10 overflow-hidden scroll-smooth scrollbar-hide' dir='ltr' ref={sliderRef}>
-        {sliderTeachersData.map((item, index) => {return <SliderTeacher item={item} key={index}/>})}
+        {allTeachersData.map((item, index) => {return <SliderTeacher item={item} key={index}/>})}
       </div>
     </div>
   )

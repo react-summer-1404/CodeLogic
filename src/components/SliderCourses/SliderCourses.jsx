@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import useFetchProducts from '../../utils/hooks/useFetchProducts/useFetchProducts'
-import SliderCourse from './SliderCourse/SliderCourse'
+import useFetchData from '../../utils/hooks/useFetchData/useFetchData'
+import CourseCardView1 from '../common/CourseCardView1/CourseCardView1'
 import HTML5Course from '../../assets/Images/html5course.svg'
 import PythonCourse from '../../assets/Images/pythoncourse.svg'
 import ReactCourse from '../../assets/Images/reactcourse.svg'
@@ -9,11 +9,10 @@ import AICourse from '../../assets/Images/aicoursepng.png'
 import ButtonsSeeMore from '../common/ButtonsSeeMore/ButtonsSeeMore'
 
 
-
 const CoursesSection = () => {
 
   const thisApiUrl = '/Home/GetCoursesTop?Count=5'; 
-  const { products: sliderCoursesData} = useFetchProducts(thisApiUrl);
+  const { data: sliderCoursesData} = useFetchData(thisApiUrl);
   
   const sliderRef = useRef();
 
@@ -29,7 +28,7 @@ const CoursesSection = () => {
       </div>
       <ButtonsSeeMore seeAllText={'مشاهده همه دوره ها'} sliderRef={sliderRef}/>
       <div className='flex flex-nowrap gap-8 w-full pb-2 px-10 overflow-hidden scroll-smooth scrollbar-hide' dir='ltr' ref={sliderRef}>
-        {sliderCoursesData.map((item, index) => {return <SliderCourse item={item} key={index}/>})}
+        {sliderCoursesData.map((item, index) => {return <CourseCardView1 item={item} key={index}/>})}
       </div>
     </div>
   )

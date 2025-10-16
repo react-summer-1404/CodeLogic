@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import apiClient from '../../../core/interceptor/interceptor';
 
 
-const useFetchProducts = (url) => {
-  const [products, setProducts] = useState([]);
+const useFetchData = (url) => {
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   
@@ -11,7 +11,8 @@ const useFetchProducts = (url) => {
     setIsLoading(true);
     try{
       const response = await apiClient.get(url);
-      setProducts(response.data);
+      const data = response.data;
+      setData(data);
       setIsError(false);
     }
     catch(error){
@@ -23,10 +24,11 @@ const useFetchProducts = (url) => {
   };
 
   useEffect(() => {
+    if(!url) return;
     fetchData();
-  }, []);
+  }, [url]);
 
-  return {products, setProducts, fetchData, isLoading, isError};
+  return {data, setData, fetchData, isLoading, isError};
 };
 
-export default useFetchProducts;
+export default useFetchData;
