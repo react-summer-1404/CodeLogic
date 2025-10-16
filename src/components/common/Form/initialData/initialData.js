@@ -3,6 +3,5 @@ const initialData = {
     password: "",
     secondPassword: "",
     name: "",
-    code: ["", "", "", ""]
 }
 export default initialData
