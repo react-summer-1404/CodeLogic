@@ -1,15 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import regone from "../../../assets/Images/regone.svg";
 import HomeIcon from "@mui/icons-material/Home";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import { RegisterValidation } from "../../../utils/Validations/RegisterVal/Register.validation";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import RegisterStepOne from "../../../core/services/api/post/registerStepOne";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const StepOne = () => {
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const [initialValues] = useState({ phoneNumber: "" });
   const [darkMode, setDarkMode] = useState(false);
+  const [validationSchema, setValidationSchema] = useState(
+    RegisterValidation()
+  );
+
+  useEffect(() => {
+    setValidationSchema(RegisterValidation());
+  }, [i18n.language]);
+
+  const { mutate: postPhoneNumber, isPending } = useMutation({
+    mutationKey: ["SEND_PHONENUMBER"],
+    mutationFn: (values) => RegisterStepOne(values),
+    onSettled: (data, _, variables) => {
+      if (data.success) {
+        toast.success(data.message);
+        navigate(`/RegisterStepTwo?phoneNumber=${variables.phoneNumber}`);
+      } else if (!data.success) {
+        toast.error(data.message);
+      }
+    },
+  });
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
@@ -51,17 +77,18 @@ const StepOne = () => {
       variants={containerVariant}
       className={`flex justify-center items-center min-h-screen transition-colors duration-500 ${
         darkMode ? "bg-gray-900" : "bg-[#EAEAEA]"
-      }`}
+      } `}
     >
       <Formik
+        onSubmit={(values) => postPhoneNumber(values)}
         initialValues={initialValues}
-        validationSchema={RegisterValidation}
+        validationSchema={validationSchema}
       >
-        {() => (
+        {({ errors, touched }) => (
           <Form className="w-full flex justify-center">
             <motion.div
               variants={containerVariant}
-              className={`flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
+              className={`flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
                 darkMode ? "bg-gray-800" : "bg-white"
               }`}
             >
@@ -102,27 +129,33 @@ const StepOne = () => {
                       darkMode ? "text-white" : "text-[#005B77]"
                     }`}
                   >
-                    شروع سفر یادگیری شما از همین‌جاست!
+                    {t("registerStepOne.start_learning")}
                   </span>
                   <p
                     className={`w-[85%] sm:w-[80%] text-center transition-colors duration-500 ${
                       darkMode ? "text-gray-300" : "text-[#1E1E1E]"
                     }`}
                   >
-                    با ساخت حساب کاربری‌تان، به محتوای آموزشی، دوره‌ها و
-                    ابزارهای پیشرفته دسترسی خواهید داشت. اولین قدم برای رشد و
-                    پیشرفت همین‌جاست!
+                    {t("registerStepOne.description")}
                   </p>
                 </motion.div>
               </div>
 
-              <div className="w-full lg:w-[52.56%] flex flex-col justify-center px-4 sm:px-8 md:px-[5%] relative transition-colors duration-500">
+              <div
+                className={`w-full lg:w-[52.56%] flex flex-col justify-center px-4 sm:px-8 md:px-[5%] relative transition-colors duration-500 `}
+              >
                 <motion.div
                   variants={fadeInOnly(0.5)}
                   initial="hidden"
                   animate="visible"
                 >
-                  <div className="mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
+                  <div
+                    className={`mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 ${
+                      i18n.language === "fa"
+                        ? "right-4 sm:right-8 lg:right-30"
+                        : "left-4 sm:left-8 lg:left-30"
+                    } flex items-center`}
+                  >
                     <HomeIcon
                       className={`ml-2 transition-colors duration-500 ${
                         darkMode ? "text-gray-300" : "text-[#005B77]"
@@ -133,7 +166,7 @@ const StepOne = () => {
                         darkMode ? "text-gray-300" : "text-[#005B77]"
                       }`}
                     >
-                      صفحه اصلی
+                      {t("registerStepOne.home")}
                     </span>
                   </div>
                 </motion.div>
@@ -142,22 +175,22 @@ const StepOne = () => {
                   variants={fadeInUp(0.6)}
                   initial="hidden"
                   animate="visible"
-                  className={`text-xl sm:text-2xl md:text-2xl text-center font-bold mb-2 sm:mb-3 transition-colors duration-500 ${
+                  className={`text-xl text-center sm:text-2xl md:text-2xl font-bold mb-2 sm:mb-3 transition-colors duration-500 ${
                     darkMode ? "text-white" : "text-[#008C78]"
                   }`}
                 >
-                  ایجاد حساب کاربری
+                  {t("registerStepOne.create_account")}
                 </motion.h2>
 
                 <motion.p
                   variants={fadeInUp(0.9)}
                   initial="hidden"
                   animate="visible"
-                  className={`mb-4 sm:mb-6 md:mb-8 text-center transition-colors duration-500 ${
-                    darkMode ? "text-gray-300" : "text-[#333333]"
+                  className={` mb-4 text-center sm:mb-6 md:mb-8 ${
+                    darkMode ? "text-white" : "text-[#333333]"
                   }`}
                 >
-                  وارد کردن شماره تماس برای ایجاد حساب کاربری
+                  {t("registerStepOne.enter_phone")}
                 </motion.p>
 
                 <motion.div
@@ -167,25 +200,37 @@ const StepOne = () => {
                   className="flex flex-col items-center relative"
                 >
                   <PhoneIphoneIcon
-                    className={`absolute top-3 right-4 sm:right-6 md:right-20 transition-colors duration-500 ${
+                    className={`absolute top-3 ${
+                      i18n.language === "fa"
+                        ? "right-4 sm:right-6 md:right-20"
+                        : "left-4 sm:left-6 md:left-20"
+                    } transition-colors duration-500 ${
                       darkMode ? "text-gray-400" : "text-[grey]"
                     }`}
                   />
+
                   <Field
                     type="text"
                     name="phoneNumber"
-                    placeholder="شماره تماس خود را وارد کنید"
+                    placeholder={t("registerStepOne.phone_placeholder")}
                     className={`rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       darkMode
                         ? "bg-gray-600 text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />
-                  <ErrorMessage
-                    name="phoneNumber"
-                    component="div"
-                    className="text-red-500 text-sm absolute right-20 top-14 font-semibold "
-                  />
+
+                  {touched.phoneNumber && errors.phoneNumber && (
+                    <div
+                      className={`text-red-500 text-sm absolute font-semibold ${
+                        i18n.language === "fa"
+                          ? "right-20 top-14"
+                          : "left-20 top-14"
+                      }`}
+                    >
+                      {errors.phoneNumber}
+                    </div>
+                  )}
                 </motion.div>
 
                 <motion.div
@@ -194,33 +239,36 @@ const StepOne = () => {
                   animate="visible"
                   className="w-full flex justify-center"
                 >
-                  <Link
-                    to="/RegisterStepTwo"
+                  <button
+                    disabled={isPending}
+                    type="submit"
                     className={`text-center mt-4 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
                       darkMode
                         ? "bg-yellow-400 text-gray-800 hover:bg-yellow-300"
                         : "bg-[#008C78] text-white hover:bg-[#007563]"
                     }`}
                   >
-                    ارسال کد یکبار مصرف
-                  </Link>
+                    {isPending
+                      ? "درحال پردازش"
+                      : t("registerStepOne.send_code")}
+                  </button>
                 </motion.div>
 
                 <motion.p
                   variants={fadeInUp(1.8)}
                   initial="hidden"
                   animate="visible"
-                  className={`text-sm mt-4 sm:mt-6 text-center transition-colors duration-500 ${
+                  className={`text-center text-sm mt-4 sm:mt-6 transition-colors duration-500 ${
                     darkMode ? "text-gray-300" : "text-[#333333]"
                   }`}
                 >
-                  حساب کاربری دارید؟{" "}
+                  {t("registerStepOne.have_account")}{" "}
                   <span
                     className={`font-semibold cursor-pointer hover:underline transition-colors duration-500 ${
                       darkMode ? "text-yellow-300" : "text-[#008C78]"
                     }`}
                   >
-                    وارد شوید
+                    {t("registerStepOne.login")}
                   </span>
                 </motion.p>
               </div>
