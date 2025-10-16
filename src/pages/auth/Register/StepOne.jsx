@@ -4,12 +4,16 @@ import HomeIcon from "@mui/icons-material/Home";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import { Formik, Form, Field } from "formik";
 import { RegisterValidation } from "../../../utils/Validations/RegisterVal/Register.validation";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import RegisterStepOne from "../../../core/services/api/post/registerStepOne";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const StepOne = () => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const [initialValues] = useState({ phoneNumber: "" });
   const [darkMode, setDarkMode] = useState(false);
   const [validationSchema, setValidationSchema] = useState(
@@ -19,6 +23,19 @@ const StepOne = () => {
   useEffect(() => {
     setValidationSchema(RegisterValidation());
   }, [i18n.language]);
+
+  const { mutate: postPhoneNumber, isPending } = useMutation({
+    mutationKey: ["SEND_PHONENUMBER"],
+    mutationFn: (values) => RegisterStepOne(values),
+    onSettled: (data, _, variables) => {
+      if (data.success) {
+        toast.success(data.message);
+        navigate(`/RegisterStepTwo?phoneNumber=${variables.phoneNumber}`);
+      } else if (!data.success) {
+        toast.error(data.message);
+      }
+    },
+  });
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
@@ -62,7 +79,11 @@ const StepOne = () => {
         darkMode ? "bg-gray-900" : "bg-[#EAEAEA]"
       } `}
     >
-      <Formik initialValues={initialValues} validationSchema={validationSchema}>
+      <Formik
+        onSubmit={(values) => postPhoneNumber(values)}
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+      >
         {({ errors, touched }) => (
           <Form className="w-full flex justify-center">
             <motion.div
@@ -218,16 +239,19 @@ const StepOne = () => {
                   animate="visible"
                   className="w-full flex justify-center"
                 >
-                  <Link
-                    to="/RegisterStepTwo"
+                  <button
+                    disabled={isPending}
+                    type="submit"
                     className={`text-center mt-4 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
                       darkMode
                         ? "bg-yellow-400 text-gray-800 hover:bg-yellow-300"
                         : "bg-[#008C78] text-white hover:bg-[#007563]"
                     }`}
                   >
-                    {t("registerStepOne.send_code")}
-                  </Link>
+                    {isPending
+                      ? "درحال پردازش"
+                      : t("registerStepOne.send_code")}
+                  </button>
                 </motion.div>
 
                 <motion.p

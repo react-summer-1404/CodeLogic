@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import regone from "../../../assets/Images/regone.svg";
 import EastIcon from "@mui/icons-material/East";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { Formik, Form, Field } from "formik";
-import { RegisterStepThree } from "../../../utils/Validations/RegisterVal/Register.validation";
-import { Link } from "react-router-dom";
+import { Field, Form, Formik } from "formik";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import regone from "../../../assets/Images/regone.svg";
+import { RegisterStepThree } from "../../../utils/Validations/RegisterVal/Register.validation";
 
 const StepThree = () => {
   const { t, i18n } = useTranslation();

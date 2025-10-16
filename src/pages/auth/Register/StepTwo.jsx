@@ -3,12 +3,15 @@ import regtwo from "../../../assets/Images/regtwo.svg";
 import EastIcon from "@mui/icons-material/East";
 import { Formik, Form, Field } from "formik";
 import { RegisterStepTwo } from "../../../utils/Validations/RegisterVal/Register.validation";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 const StepTwo = () => {
   const { t, i18n } = useTranslation();
+
+  const [searchParams] = useSearchParams();
+  console.log("searchParams: ", searchParams.get("phoneNumber"));
   const [initialValues] = useState({ code: ["", "", "", "", ""] });
   const [darkMode, setDarkMode] = useState(false);
   const inputsRef = useRef([]);

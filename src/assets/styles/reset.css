@@ -46,6 +46,13 @@
   color: #000000 !important;
 }
 
+.Toastify__toast--error {
+  font-family: "Estedad" !important;
+}
+.Toastify__toast--success {
+  font-family: "Estedad" !important;
+}
+
 @media (max-width: 1200px) {
   .courses__control {
     width: 150px;
