@@ -5,7 +5,7 @@ import ArrowUp from '../../../assets/Icons/ArrowUp'
 
 
 
-const SelectDropDown = ({title, item1, item2, item3}) => {
+const SideDropDown = ({title, item1, item2, item3}) => {
 
     const {t} = useTranslation();
 
@@ -17,7 +17,7 @@ const SelectDropDown = ({title, item1, item2, item3}) => {
   return (
     <div className='flex flex-col gap-4 w-full p-4 bg-[#FFFFFF] rounded-[15px] cursor-pointer'>     
         <div onClick={() => {setIsOpen(!isOpen)}} className='flex justify-between items-center w-full'>
-            <h3 className='font-bo ld text-[18px] text-[#1E1E1E]'>{t(`${title}`)}</h3>
+            <span className='font-bo ld text-[18px] text-[#1E1E1E]'>{t(`${title}`)}</span>
             <button className={`${isOpen ? 'rotate-0' : 'rotate-180'}`}>
                 <ArrowUp/>
             </button>
@@ -61,4 +61,4 @@ const SelectDropDown = ({title, item1, item2, item3}) => {
   )
 }
 
-export default SelectDropDown
+export default SideDropDown

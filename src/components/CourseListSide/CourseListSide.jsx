@@ -3,7 +3,7 @@ import { useState } from 'react';
 import DatePicker from 'react-multi-date-picker';
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
-import SelectDropDown from '../common/SelectDropDown/SelectDropDown';
+import SideDropDown from '../common/SideDropDown/SideDropDown';
 import ArrowUp from '../../assets/Icons/ArrowUp';
 
 
@@ -44,9 +44,9 @@ const CourseListSide = () => {
         }
       </div>
 
-      <SelectDropDown title={'سطح دوره'} item1={'حرفه ای'} item2={'متوسط'} item3={'تازه کار'}/>
-      <SelectDropDown title={'اساتید'} item1={'دکتر محمدحسین بحرالعلومی'} item2={'آقای ایکس'} item3={'آقای فلان فلان'}/>
-      <SelectDropDown title={'تکنولوژی ها'} item1={'فرانت اند'} item2={'بک اند'} item3={'UI UX'}/>
+      <SideDropDown title={'سطح دوره'} item1={'حرفه ای'} item2={'متوسط'} item3={'تازه کار'}/>
+      <SideDropDown title={'اساتید'} item1={'دکتر محمدحسین بحرالعلومی'} item2={'آقای ایکس'} item3={'آقای فلان فلان'}/>
+      <SideDropDown title={'تکنولوژی ها'} item1={'فرانت اند'} item2={'بک اند'} item3={'UI UX'}/>
 
     </div>
   )
