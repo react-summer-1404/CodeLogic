@@ -1,9 +1,79 @@
-@font-face {
-  font-family: IRANSans;
-  src: url(../Font/IRANSans.ttf);
+.courses__control {
+  font-weight: 500 !important ;
+  width: 200px !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: 28px !important;
+  background-color: #00000000 !important;
+  padding: 4px 8px !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease-in-out !important;
+  cursor: pointer !important;
+  margin-left: 40px;
+}
+.dark .courses__control {
+  width: 1000px !important;
+}
+.courses__placeholder {
+  text-align: center !important;
+  color: #7e7e7e !important;
 }
 
-* {
-  margin: 0;
+.courses__single-value {
+  text-align: center !important;
+  color: #7e7e7e !important;
 }
 
+.courses__menu {
+  border: 1px solid #008c778d !important;
+  border-radius: 8px !important;
+  background-color: #fff !important;
+  margin-top: 4px !important;
+  z-index: 10 !important;
+}
+
+.courses__option {
+  padding: 8px 12px !important;
+  cursor: pointer !important;
+}
+
+.courses__option--is-focused {
+  background-color: #008c778d !important;
+}
+
+.courses__option--is-selected {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.Toastify__toast--error {
+  font-family: "Estedad" !important;
+}
+.Toastify__toast--success {
+  font-family: "Estedad" !important;
+}
+
+@media (max-width: 1200px) {
+  .courses__control {
+    width: 150px;
+  }
+}
+@media (max-width: 1000px) {
+  .courses__control {
+    width: 120px;
+    font-size: 14px;
+    position: relative;
+    right: 50px;
+  }
+}
+@media (max-width: 821px) {
+  .courses__control {
+    font-size: 10px;
+    width: 80px;
+  }
+}
+@media (max-width: 800px) {
+  .courses__control {
+    width: 80px;
+  }
+}
