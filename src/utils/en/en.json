@@ -44,6 +44,7 @@
     "search_placeholder": "Search...",
     "select_placeholder": "Select...",
     "login": "Login / Register"
+
   },
   "registerStepOne": {
       "validation": {
@@ -97,5 +98,6 @@
       "confirmPassword_required": "Please confirm your password *",
       "confirmPassword_match": "Passwords do not match *"
     }
+
   }
 }

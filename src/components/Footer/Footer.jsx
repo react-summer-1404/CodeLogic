@@ -12,7 +12,7 @@ const Footer = () => {
 
   return (
     <div
-      className={`   w-full px-[7%] py-12 bg-[#008c78] rounded-tl-[50px] rounded-tr-[50px] rounded-bl-0 rounded-br-0 ${
+      className={`w-full px-[7%] py-12 bg-[#008c78] rounded-tl-[50px] rounded-tr-[50px] rounded-bl-0 rounded-br-0 ${
         isRtl ? "rtl" : "ltr"
       }`}
     >

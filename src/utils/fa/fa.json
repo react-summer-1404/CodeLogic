@@ -44,6 +44,7 @@
     "search_placeholder": "جستجو کنید...",
     "select_placeholder": "انتخاب کنید...",
     "login": "ورود / ثبت نام"
+
   },
     "registerStepOne": {
            "validation": {
@@ -97,5 +98,6 @@
       "confirmPassword_required": "تکرار رمز عبور را وارد کنید *",
       "confirmPassword_match": "رمز عبور شما همخوانی ندارد *"
     }
+
   }
 }
