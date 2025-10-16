@@ -20,13 +20,15 @@ const WhyUs = () => {
   
   return (
     <div className='flex pt-[100px] px-16'>
-      <img src={ReadingBook}/>
+      <img src={ReadingBook} className='hidden   md:block md:w-[360px] md:h-[320px]   lg:w-[600px] lg:h-[544px]'/>
       <div className='pt-8'>
         <div className='flex flex-col gap-4'>
-          <h2 className='font-bold text-4xl text-[#1E1E1E]'>{t('از اولین خط کد تا')}
+          <h2 className='font-bold text-[#1E1E1E]
+          sa:text-lg   sm:text-2xl   lg:text-4xl'>{t('از اولین خط کد تا')}
             <span className='text-[#008C78]'>{t(' ورود به بازار کار ')}</span>
           {t('، با تو هستیم')}</h2>
-          <p className='font-regular text-base text-[#848484]'>{t('ما مسیر یادگیری برنامه‌نویسی را ساده، کاربردی و اثربخش می‌کنیم تا سریع‌تر وارد بازار کار شوید.')}</p>
+          <p className='font-regular text-[#848484]   dark:text-[#DDDDDD]
+          text-sm   lg:text-base'>{t('ما مسیر یادگیری برنامه‌نویسی را ساده، کاربردی و اثربخش می‌کنیم تا سریع‌تر وارد بازار کار شوید.')}</p>
         </div>
         <div>
           {whyUsItemsData.map((item, index) => {return <WhyUsItem item={item} key={index}/>})}

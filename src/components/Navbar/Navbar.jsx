@@ -22,6 +22,8 @@ const Navbar = () => {
         darkMode ? style.darknav : ""
       } flex items-center justify-between`}
     >
+      <TranslateButton />
+
       <MenuIcon
         onClick={toggleMenu}
         className={`${style.menuicon} cursor-pointer`}
@@ -78,7 +80,7 @@ const Navbar = () => {
         >
           {darkMode ? "☀️" : "🌙"}
         </button>
-        <TranslateButton />
+
         <button className={`${style.button} rounded-4xl font-bold`}>
           {t("navbar.login")}
         </button>

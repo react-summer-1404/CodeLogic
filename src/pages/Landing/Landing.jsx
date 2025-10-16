@@ -6,11 +6,12 @@ import SliderCourses from '../../components/SliderCourses/SliderCourses'
 import WhyUs from '../../components/WhyUs/WhyUs'
 import SliderTeachers from '../../components/Sliderteachers/SliderTeachers'
 import JoinTeachers from '../../components/JoinTeachers/JoinTeachers'
+import NewsListSection from '../../components/NewsListSection/NewsListSection'
 
 const Landing = () => {
   
   return (
-    <div className='bg-[#F3F4F6]'>
+    <div className='bg-[#F3F4F6]   dark:bg-[#1E1E1E]'>
       <HeroSection/>
       <Section1/>
       <Categories/>
@@ -18,6 +19,7 @@ const Landing = () => {
       <WhyUs/>
       <SliderTeachers/>
       <JoinTeachers/>
+      <NewsListSection/>
     </div>
   )
 }
