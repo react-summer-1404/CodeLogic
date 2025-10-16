@@ -69,7 +69,7 @@ const Header = () => {
           />
           <input
             type="text"
-            className={`font-medium text-black dark:text-white bg-transparent rounded-[28px] px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm md:text-base outline-none w-[100px] sm:w-[140px] md:w-[200px] lg:w-[250px] transition-all duration-300 `}
+            className={`font-medium text-[#7e7e7e] dark:text-white bg-transparent rounded-[28px] px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm md:text-base outline-none w-[100px] sm:w-[140px] md:w-[200px] lg:w-[250px] transition-all duration-300 `}
             placeholder={t("navbar.search_placeholder")}
           />
 

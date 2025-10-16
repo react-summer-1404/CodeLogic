@@ -44,7 +44,7 @@ const SelectComp = ({ placeholder = "انتخاب کنید...", isRtl = true }) 
           placeholder: () =>
             ["text-center", "text-[#7e7e7e]", "dark:text-[#aaa]"].join(" "),
           singleValue: () =>
-            ["text-center", "text-[#7e7e7e]", "dark:text-white"].join(" "),
+            ["text-center", "text-[#7e7e7e]", "dark:text-[#aaa]"].join(" "),
           menu: () =>
             [
               "border",
