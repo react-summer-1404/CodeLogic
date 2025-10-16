@@ -45,7 +45,7 @@ const Categories = () => {
           <button onClick={scrollRight} className='absolute top-[144px] right-0 z-48   lg:hidden'>
             <BigArrowRight/>
           </button>
-          <div ref={scrollRef} className='flex gap-6 overflow-x-auto snap-x snap-mandatory pt-8   
+          <div ref={scrollRef} className='flex gap-6 w-full overflow-x-auto snap-x snap-mandatory pt-8   
           lg:justify-center lg:overflow-x-hidden lg:pb-4'>
             {categoriesData.map((item, index) => {return <Category item={item} key={index}/>})}
           </div>
