@@ -60,7 +60,7 @@ const Header = () => {
       <div className="flex items-center gap-2">
         <div
           className={`relative flex items-center bg-white dark:bg-[#2a2a2a] rounded-[28px] transition-shadow duration-300 ${
-            isRtl ? "flex-row-reverse" : ""
+            isRtl ? "flex-row-reverse" : "flex-row-reverse"
           }`}
         >
           <SelectComp
