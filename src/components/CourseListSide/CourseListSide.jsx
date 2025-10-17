@@ -16,19 +16,15 @@ const CourseListSide = ({onSearchSubmit}) => {
   const [search , setSearch] = useState('');
 
 
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  }
-
   const handleKeyDown = (e) => {
     if(e.key === 'Enter' && onSearchSubmit){
-      onSearchSubmit(searchTerm); 
+      onSearchSubmit(search); 
     }
   };
     
   const handleSearchClick = () => {
     if(onSearchSubmit){
-      onSearchSubmit(searchTerm);
+      onSearchSubmit(search);
     }
   };
 
@@ -38,9 +34,9 @@ const CourseListSide = ({onSearchSubmit}) => {
     <div className='flex flex-col gap-4'>
 
       <div className='relative'>
-        <input type='search' placeholder='جستجو ...' className='w-[284px] h-[46px] font-regular text-base text-[#848484] 
-        bg-[#FFFFFF] px-4 rounded-[15px]'/>
-        <div className='absolute top-[15px] left-4'>
+        <input type='search' placeholder='جستجو ...' value={search} onChange={(e) => {setSearch(e.target.value)}} onKeyDown={handleKeyDown} 
+        className='w-[284px] h-[46px] font-regular text-base text-[#848484] bg-[#FFFFFF] px-4 rounded-[15px]'/>
+        <div onClick={handleSearchClick} className='absolute top-[15px] left-4'>
           <Search/>
         </div>
       </div>

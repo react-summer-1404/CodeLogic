@@ -8,20 +8,24 @@ import SortView from '../SortView/SortView'
 const VIEW_TYPE_LIST = 'list';
 const VIEW_TYPE_GRID = 'grid';
 
-const Main = () => {
+
+const Main = ({searchQuery}) => {
+
 
   const [currentView, setCurrentView] = useState(VIEW_TYPE_GRID);
-
-  const thisApiUrl = '/Home/GetCoursesWithPagination'
-  const { data: coursesData} = useFetchCourses(thisApiUrl);
-
   const handleViewChange = (viewType) => {
     setCurrentView(viewType);
   };
-
   const CourseCardComponent = currentView === VIEW_TYPE_LIST 
     ? CourseCardView2 
     : CourseCardView1
+  
+  
+    const baseUrl = '/H/ome/GetCoursesWithPagination';
+    const apiQuery = searchQuery 
+    ? `${baseUrl}?Query=${searchQuery}`
+    : baseUrl;
+  const { data: coursesData} = useFetchCourses(apiQuery);
 
 
 
