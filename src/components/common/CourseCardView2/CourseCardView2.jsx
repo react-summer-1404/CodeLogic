@@ -1,23 +1,25 @@
 import React from 'react'
+import HTML5Course from '../../../assets/Images/HTML5Course.png'
 import Teacher from '../../../assets/Icons/Teacher'
 import Level from '../../../assets/Icons/Level' 
 import Star from '../../../assets/Icons/Star'
 import Heart from '../../../assets/Icons/Heart'
 import { useTranslation } from 'react-i18next'
 
-const CourseCardView1 = ({item}) => {
+const CourseCardView2 = ({item}) => {
 
-  const {t} = useTranslation();
+    const {t} = useTranslation();
 
   return (
-    <div dir='rtl' className='flex flex-col flex-shrink-0 items-center w-[350px] rounded-[20px] relative cursor-pointer  
-    hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>
-        <img src={item.imageAddress} className='w-full h-[259px] rounded-t-[20px]'/>
-        <div className='flex flex-col justify-between w-full h-[217px] mb-[-16px] p-4 bg-[#FFFFFF] rounded-[20px] transform -translate-y-4   
-        dark:bg-[#606060]'>
-            <div className='flex flex-col gap-1'>
-                <h2 className='font-bold text-base   dark:text-[#EEEEEE]'>{t(`${item.title}`)}</h2>
-                <p className='max-w-[317px] font-regular text-sm   dark:text-[#DDDDDD]'>{t(`${item.describe}`)}</p>
+    <div className='flex flex-shrink-0 gap-8 w-[1044px] p-4 bg-[#FFFFFF] rounded-[20px] relative'>
+        <div className='w-[520px] h-[200px]'>
+            <img src={item.imageAddress} className='w-full h-full rounded-xl'/>
+        </div>
+        <div className='flex flex-col justify-between w-full h-[217px] mb-[-16px] p-4 bg-[#FFFFFF] rounded-[20px] transform 
+        -translate-y-4   dark:bg-[#606060]'>
+            <div className='flex flex-col gap-1 text-[#1E1E1E]'>
+                <h2 className='font-bold text-base'>{t(`${item.title}`)}</h2>
+                <p className='font-regular text-sm'>{t(`${item.describe}`)}</p>
             </div>
             <div>
                 <div className='flex justify-between pt-8'>
@@ -44,11 +46,11 @@ const CourseCardView1 = ({item}) => {
                 </div>
             </div>
         </div>
-        <button className='p-2 bg-[#000000] opacity-25 rounded-[50px] absolute top-[13px] right-[14px]'>
+        <button className='p-2 bg-[#000000] opacity-25 rounded-[50px] absolute top-8 right-8'>
             <Heart/>
         </button>
     </div>
   )
 }
 
-export default CourseCardView1 
+export default CourseCardView2

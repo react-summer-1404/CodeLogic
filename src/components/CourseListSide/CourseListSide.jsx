@@ -5,21 +5,45 @@ import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import SideDropDown from '../common/SideDropDown/SideDropDown';
 import ArrowUp from '../../assets/Icons/ArrowUp';
+import Search from '../../assets/Icons/Search'
 
 
-
-const CourseListSide = () => {
+const CourseListSide = ({onSearchSubmit}) => {
 
   const [startValue, setStartValue] = useState(new Date());
   const [endValue, setEndValue] = useState(new Date());
-
   const [isOpen, setIsOpen] = useState(false);
+  const [search , setSearch] = useState('');
+
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  }
+
+  const handleKeyDown = (e) => {
+    if(e.key === 'Enter' && onSearchSubmit){
+      onSearchSubmit(searchTerm); 
+    }
+  };
+    
+  const handleSearchClick = () => {
+    if(onSearchSubmit){
+      onSearchSubmit(searchTerm);
+    }
+  };
+
+
 
   return (
     <div className='flex flex-col gap-4'>
 
-      <input type='search' placeholder='جستجو ...' className='w-[284px] h-[46px] font-regular text-base text-[#848484] bg-[#FFFFFF] px-4
-      rounded-[15px]'/>
+      <div className='relative'>
+        <input type='search' placeholder='جستجو ...' className='w-[284px] h-[46px] font-regular text-base text-[#848484] 
+        bg-[#FFFFFF] px-4 rounded-[15px]'/>
+        <div className='absolute top-[15px] left-4'>
+          <Search/>
+        </div>
+      </div>
 
       <div className='flex flex-col p-4 bg-[#FFFFFF] rounded-[15px] gap-4 w-[284px]'>
         <div onClick={() => {setIsOpen(!isOpen)}} className='flex justify-between cursor-pointer'>

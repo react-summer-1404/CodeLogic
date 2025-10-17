@@ -8,7 +8,8 @@ const ShowNumberDropDown = () => {
 
   return (
     <div>
-        <select name="" id="">
+        <select name="" id="" className='py-2 pr-4 pl-4 font-regular text-base text-[#848484] rounded-[15px] border 
+        border-[#EAEAEA]'>
             <option value="">{t('15')}</option>
             <option value="">{t('12')}</option>
             <option value="">{t('9')}</option>
