@@ -31,7 +31,7 @@ const SliderTeachers = () => {
         sa:text-sm   sm:text-lg   lg:text-2xl'>{t('یادگیری از برترین مدرسین با تجربه و دانش به‌روز')}</p>
       </div>
       <ButtonsSeeMore seeAllText={'مشاهده همه استادها'} sliderRef={sliderRef} />
-      <div className='flex flex-nowrap gap-8 overflow-hidden w-full pt-10 pb-2 px-10 scroll-smooth scrollbar-hide' dir='ltr' ref={sliderRef}>
+      <div className='flex flex-nowrap gap-5 overflow-hidden w-full pt-8 pb-2 px-10 scroll-smooth scrollbar-hide' dir='ltr' ref={sliderRef}>
         {sliderTeachersData.map((item, index) => { return <SliderTeacher item={item} key={index} /> })}
       </div>
     </div>
