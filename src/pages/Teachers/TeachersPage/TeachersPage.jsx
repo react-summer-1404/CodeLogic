@@ -95,6 +95,7 @@ const TeachersPage = () => {
 
     return (
         <div >
+            {isLoading && <img className='mx-auto p-4 ' src="./images/loading.gif" alt="" />}
             {!isLoading && (
                 <motion.div
                     variants={fadeInUp(0.35)}
