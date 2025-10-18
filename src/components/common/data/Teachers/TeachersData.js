@@ -1,8 +1,8 @@
-const TeachersData = Array.from({ length: 60 }, (_, i) => ({
+const dataTeachers = Array.from({ length: 60 }, (_, i) => ({
     id: i,
-    img: `./images/teachers/teachers${Math.floor(Math.random() * 4) + 1}.png`,
-    title: `استاد شماره ${i + 1}`,
-    courses: Math.floor(Math.random() * 20),
+    pictureAddress: `./images/teachers/teachers${Math.floor(Math.random() * 4) + 1}.png`,
+    fullName: `استاد شماره ${i + 1}`,
+    courseCounts: Math.floor(Math.random() * 20),
     blogs: Math.floor(Math.random() * 10)
 }))
 
@@ -27,4 +27,4 @@ const TeachersData = Array.from({ length: 60 }, (_, i) => ({
 
 // ]
 
-export default TeachersData;
+export default dataTeachers;
