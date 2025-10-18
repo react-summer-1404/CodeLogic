@@ -11,6 +11,7 @@ import LoginValidationPage from "../../pages/auth/Login/LoginValidationPage";
 import ForgotPasswordStepOne from "../../pages/auth/forgotPassword/forgotPasswordStepOne";
 import ForgotPasswordStepTwo from "../../pages/auth/forgotPassword/ForgotPasswordStepTwo";
 import NewsListSection from "../../components/NewsListSection/NewsListSection";
+import CourseDetail from "../../components/CourseDetail/CourseDetail";
 
 
 const router = createBrowserRouter([
@@ -19,7 +20,8 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Landing/> },
-      { path: '/courselist', element: <CourseList/> }
+      { path: '/courselist', element: <CourseList/> },
+      { path: '/coursedetail', element: <CourseDetail/> }
     ],
   },
   { path: "/RegisterStepOne", element: <StepOne/> },
@@ -29,7 +31,6 @@ const router = createBrowserRouter([
   { path: "/loginValidation", element: <LoginValidationPage/> },
   { path: "/forgotPassOne", element: <ForgotPasswordStepOne/> },
   { path: "/forgotPassTwo", element: <ForgotPasswordStepTwo/> },
-  { path: "/news", element: <NewsListSection/> },
 ]);
 
 export default router;
