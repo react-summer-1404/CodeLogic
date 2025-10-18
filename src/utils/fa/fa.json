@@ -99,5 +99,36 @@
       "confirmPassword_match": "رمز عبور شما همخوانی ندارد *"
     }
 
+  },
+    "news": {
+    "title1": "انتشار React 18",
+    "desc1": "React 18 ویژگی‌های همزمان برای رندر سریع‌تر معرفی می‌کند.",
+    "views1": "۱۲۰۰ بازدید",
+    "rating1": "۴.۵",
+    "category1": "تکنولوژی",
+    "date1": "۱۸ مهر ۱۴۰۴",
+
+    "title2": "ویژگی‌های جدید JavaScript",
+    "desc2": "با آخرین ویژگی‌های ES2025 جاوااسکریپت آشنا شوید.",
+    "views2": "۸۵۰ بازدید",
+    "rating2": "۴.۸",
+    "category2": "برنامه‌نویسی",
+    "date2": "۱۵ مهر ۱۴۰۴"
+  },
+    "newsPage": {
+    "breadcrumb": "صفحه اصلی - اخبار",
+    "headerTitle": "اخبار و مقالات",
+    "results": "200 نتیجه",
+    "searchPlaceholder": "جستجو کنید...",
+    "sortBy": "مرتب سازی بر اساس :"
+  },
+   "categoryFilter": {
+    "title": "دسته‌بندی‌ها",
+    "more": "+ نمایش بیشتر",
+    "categories": {
+      "educational": "آموزشی",
+      "general": "اطلاعات عمومی",
+      "jobMarket": "بازار کار"
+    }
   }
 }

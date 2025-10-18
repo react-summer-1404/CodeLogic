@@ -12,11 +12,11 @@ const Footer = () => {
 
   return (
     <div
-      className={`w-full px-[7%] py-12 bg-[#008c78] rounded-tl-[50px] rounded-tr-[50px] rounded-bl-0 rounded-br-0 ${
+      className={` dark:bg-[#1e1e1e]  w-full px-[7%] py-12 bg-[#008c78] rounded-tl-[50px] rounded-tr-[50px] rounded-bl-0 rounded-br-0 ${
         isRtl ? "rtl" : "ltr"
       }`}
     >
-      <div className="flex flex-col md:flex-row lg:flex-row items-center justify-between bg-[#006252] p-10 rounded-tl-[30px] rounded-tr-0 rounded-bl-0 rounded-br-[30px] mb-5">
+      <div className=" dark:bg-[#333] flex flex-col md:flex-row lg:flex-row items-center justify-between bg-[#006252] p-10 rounded-tl-[30px] rounded-tr-0 rounded-bl-0 rounded-br-[30px] mb-5">
         <div
           className={`w-full md:w-1/2 mb-6 md:mb-0 ${
             isRtl ? "text-right" : "text-left"
@@ -35,7 +35,7 @@ const Footer = () => {
               className="w-[90%] md:w-[360px] px-4 py-2 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] bg-white text-[#414141] outline-none"
             />
             <button
-              className={`absolute top-0 ${
+              className={` dark:bg-[#008C78] absolute top-0 ${
                 isRtl
                   ? "left-0 rounded-tl-0 rounded-br-[12px] rounded-tr-0 rounded-bl-0"
                   : "right-0 rounded-tr-0 rounded-bl-[12px] rounded-tl-0 rounded-br-0"
@@ -52,11 +52,11 @@ const Footer = () => {
       </div>
 
       <div className="flex flex-wrap gap-6 mb-8">
-        <div className="flex-1 min-w-[260px] bg-[#006252] p-10 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] text-white">
-          <h2 className="text-lg font-bold border-b-2 border-[#008c78] pb-2 mb-4">
+        <div className=" dark:bg-[#333] flex-1 min-w-[260px] bg-[#006252] p-10 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] text-white">
+          <h2 className="text-lg font-bold border-b-2 border-[#008c78] pb-2 mb-4 dark:border-[white]">
             {t("footer.skills")}
           </h2>
-          <ul className="space-y-2 text-sm">
+          <ul className="  space-y-2 text-sm">
             <li className="cursor-pointer hover:text-black transition-colors duration-300">
               {t("footer.htmlcss")}
             </li>
@@ -81,8 +81,8 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="flex-1 min-w-[260px] bg-[#006252] p-10 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] text-white">
-          <h2 className="text-lg font-bold border-b-2 border-[#008c78] pb-2 mb-4">
+        <div className=" dark:bg-[#333] flex-1 min-w-[260px] bg-[#006252] p-10 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] text-white">
+          <h2 className="text-lg font-bold border-b-2 border-[#008c78] pb-2 mb-4 dark:border-[white]">
             {t("footer.about")}
           </h2>
           <ul className="space-y-2 text-sm">
@@ -110,8 +110,8 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="flex-1 min-w-[260px] bg-[#006252] p-10 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] text-white">
-          <h2 className="text-lg font-bold border-b-2 border-[#008c78] pb-2 mb-4">
+        <div className=" dark:bg-[#333] flex-1 min-w-[260px] bg-[#006252] p-10 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] text-white">
+          <h2 className="text-lg font-bold border-b-2 border-[#008c78] pb-2 mb-4 dark:border-[white]">
             {t("footer.domains")}
           </h2>
           <ul className="space-y-2 text-sm">
@@ -139,8 +139,8 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="flex-1 min-w-[260px] bg-[#006252] p-10 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] text-white">
-          <h2 className="text-lg font-bold border-b-2 border-[#008c78] pb-2 mb-4">
+        <div className=" dark:bg-[#333]  flex-1 min-w-[260px] bg-[#006252] p-10 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] text-white">
+          <h2 className="text-lg font-bold border-b-2 border-[#008c78] pb-2 mb-4 dark:border-[white]">
             {t("footer.support")}
           </h2>
           <ul className="space-y-2 text-sm">
