@@ -130,5 +130,12 @@
       "general": "General Knowledge",
       "jobMarket": "Job Market"
     }
+  },
+    "NewsSelectOne":{
+    "dataone" : " Newest",
+    "datatwo" : "Oldest  "
+  },
+  "NewsSelectTwo" : {
+    "dataone" : "view"
   }
 }

@@ -22,14 +22,22 @@ const NewsCard = ({
 
   return (
     <div
-      className={`bg-transparent rounded-2xl overflow-hidden shadow-[0px_0px_1px_1px_#ccc] cursor-pointer transition-all duration-300 hover:scale-101 hover:shadow-[0px_0px_10px_1px_#008c78]
-        ${isList ? "flex w-full h-[180px]" : "w-[32.3%] mt-5 mb-5"}
+      className={`bg-transparent rounded-2xl overflow-hidden shadow-[0px_0px_1px_1px_#ccc] cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78]
+        ${
+          isList
+            ? "flex w-full h-[150px] md:h-[180px] lg:h-[200px]"
+            : "w-full mt-3 mb-3"
+        }
       `}
       dir={isRtl ? "rtl" : "ltr"}
     >
       <div
-        className={`relative flex items-center justify-center
-          ${isList ? "w-[35%]" : ""}
+        className={`relative flex items-center justify-center bg-transparent dark:bg-[#282828]
+          ${
+            isList
+              ? "w-2/5 md:w-[35%] lg:w-[30%] flex-shrink-0"
+              : "w-full h-40 sm:h-52 md:h-60"
+          }
         `}
       >
         <img
@@ -37,35 +45,41 @@ const NewsCard = ({
           alt={t(titleKey)}
           className={`${
             isList
-              ? "w-[80%] h-[80%] rounded-l-2xl object-fill"
-              : "w-[80%] h-60 rounded-t-2xl object-cover"
+              ? "w-[80%] h-[80%] rounded-xl object-fill"
+              : "w-full h-full object-fill rounded-t-2xl"
           }`}
         />
+
         <div className="absolute top-3 right-3 bg-white/70 backdrop-blur-sm p-1 rounded-full">
           <FavoriteBorderIcon sx={{ color: "#555", fontSize: 22 }} />
         </div>
       </div>
 
       <div
-        className={`bg-white dark:bg-[#333] rounded-2xl shadow-sm px-4 pt-5 pb-3 relative z-10 flex flex-col justify-between 
-          ${isList ? "w-[65%] rounded-l-none" : "-mt-4 min-h-[160px]"}
+        className={`bg-white dark:bg-[#333] rounded-2xl shadow-sm px-4 pt-4 pb-3 relative z-10 flex flex-col justify-between
+          ${
+            isList
+              ? "w-3/5 md:w-[65%] lg:w-[70%]  rounded-l-none"
+              : "-mt-4 min-h-[160px] "
+          }
         `}
       >
         <div className={isRtl ? "text-right" : "text-left"}>
-          <h3 className="text-[15px] font-bold text-gray-800 leading-snug dark:text-white">
+          <h3 className="text-sm sm:text-[15px] font-bold text-gray-800 leading-snug dark:text-white line-clamp-2">
             {t(titleKey)}
           </h3>
+
           <p
-            className={`text-gray-600 text-[13px] mt-1 leading-5 dark:text-[#ccc] ${
-              isList ? "" : "line-clamp-2"
-            }`}
+            className={`text-gray-600 text-xs sm:text-[13px] mt-1 leading-5 dark:text-[#ccc]
+              ${isList ? "line-clamp-3 lg:line-clamp-4" : "line-clamp-2"}
+            `}
           >
             {t(descriptionKey)}
           </p>
         </div>
 
         <div
-          className={`flex justify-between items-center mt-3 text-gray-500 text-[13px] ${
+          className={`flex justify-between items-center mt-3 text-gray-500 text-xs sm:text-[13px] border-t border-gray-100 dark:border-[#444] pt-2 ${
             isRtl ? "flex-row-reverse" : ""
           }`}
         >
@@ -81,7 +95,7 @@ const NewsCard = ({
         </div>
 
         <div
-          className={`flex justify-between items-center mt-3 text-[12px] text-gray-500 ${
+          className={`flex justify-between items-center mt-2 text-[11px] sm:text-[12px] text-gray-500 ${
             isRtl ? "flex-row-reverse" : ""
           }`}
         >

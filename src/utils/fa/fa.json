@@ -130,5 +130,12 @@
       "general": "اطلاعات عمومی",
       "jobMarket": "بازار کار"
     }
+  },
+  "NewsSelectOne":{
+    "dataone" : "جدیدترین ها",
+    "datatwo" : "قدیمی ترین ها"
+  },
+  "NewsSelectTwo" : {
+    "dataone" : "تعداد نمایش"
   }
 }

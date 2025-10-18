@@ -12,6 +12,7 @@ import StepOne from "../../pages/auth/Register/StepOne";
 import StepTwo from "../../pages/auth/Register/StepTwo";
 import StepThree from "../../pages/auth/Register/StepThree";
 import News from "../../pages/News/News";
+import NewsDetails from "../../pages/NewsDetails/NewsDetails";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: "/RegisterStepTwo", element: <StepTwo /> },
       { path: "/RegisterStepThree", element: <StepThree /> },
       { path: "/news", element: <News /> },
+      { path: "/newsdetails", element: <NewsDetails /> },
     ],
   },
   { path: "/login", element: <LoginPage /> },
