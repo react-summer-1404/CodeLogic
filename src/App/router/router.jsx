@@ -12,25 +12,31 @@ import ForgotPasswordStepOne from "../../pages/auth/forgotPassword/forgotPasswor
 import ForgotPasswordStepTwo from "../../pages/auth/forgotPassword/ForgotPasswordStepTwo";
 import NewsListSection from "../../components/NewsListSection/NewsListSection";
 import CourseDetail from "../../components/CourseDetail/CourseDetail";
-
+import TeachersPage from "../../pages/Teachers/TeachersPage/TeachersPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
-      { index: true, element: <Landing/> },
-      { path: '/courselist', element: <CourseList/> },
-      { path: '/coursedetail', element: <CourseDetail/> }
+      { index: true, element: <Landing /> },
+      { path: '/courselist', element: <CourseList /> },
+      { path: '/coursedetail', element: <CourseDetail /> },
+      { index: true, element: <Landing /> },
+      { path: "/RegisterStepOne", element: <StepOne /> },
+      { path: "/RegisterStepTwo", element: <StepTwo /> },
+      { path: "/RegisterStepThree", element: <StepThree /> },
+      { path: "/Teachers", element: <TeachersPage /> }
+
     ],
   },
-  { path: "/RegisterStepOne", element: <StepOne/> },
-  { path: "/RegisterStepTwo", element: <StepTwo/> },
-  { path: "/RegisterStepThree", element: <StepThree/> },
-  { path: "/login", element: <LoginPage/> },
-  { path: "/loginValidation", element: <LoginValidationPage/> },
-  { path: "/forgotPassOne", element: <ForgotPasswordStepOne/> },
-  { path: "/forgotPassTwo", element: <ForgotPasswordStepTwo/> },
+  { path: "/RegisterStepOne", element: <StepOne /> },
+  { path: "/RegisterStepTwo", element: <StepTwo /> },
+  { path: "/RegisterStepThree", element: <StepThree /> },
+  { path: "/login", element: <LoginPage /> },
+  { path: "/loginValidation", element: <LoginValidationPage /> },
+  { path: "/forgotPassOne", element: <ForgotPasswordStepOne /> },
+  { path: "/forgotPassTwo", element: <ForgotPasswordStepTwo /> },
 ]);
 
 export default router;
