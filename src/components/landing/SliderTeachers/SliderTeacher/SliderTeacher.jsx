@@ -1,14 +1,16 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import Linkedin from '../../../assets/Icons/Linkedin';
+import { useNavigate } from 'react-router-dom';
 
 const SliderTeacher = ({ item }) => {
-
   const { t } = useTranslation();
-
+  const navigate = useNavigate()
   return (
 
-    <div className='flex flex-col flex-shrink-0 items-center w-[350px] h-[346px] p-4 bg-[#FFFFFF] rounded-[20px] basis-[calc(25%-1rem)]  dark:bg-[#606060]
+    <div
+      onClick={() => navigate(`/Teacher/${item.id}`)}
+      className='flex flex-col flex-shrink-0 items-center w-[350px] h-[346px] p-4 bg-[#FFFFFF] rounded-[20px] md:basis-[calc(25%-1rem)]  dark:bg-[#606060]
     hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>
       <img src={item.pictureAddress} className='w-[313px] h-[183px] rounded-[20px]' />
 

@@ -13,6 +13,7 @@ import ForgotPasswordStepTwo from "../../pages/auth/forgotPassword/ForgotPasswor
 import NewsListSection from "../../components/NewsListSection/NewsListSection";
 import CourseDetail from "../../components/CourseDetail/CourseDetail";
 import TeachersPage from "../../pages/Teachers/TeachersPage/TeachersPage";
+import TeachersDetail from "../../pages/Teachers/TeachersDetail/TeachersDetail";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,8 @@ const router = createBrowserRouter([
       { path: "/RegisterStepOne", element: <StepOne /> },
       { path: "/RegisterStepTwo", element: <StepTwo /> },
       { path: "/RegisterStepThree", element: <StepThree /> },
-      { path: "/Teachers", element: <TeachersPage /> }
+      { path: "/Teachers", element: <TeachersPage /> },
+      { path: '/Teacher/:id', element: <TeachersDetail /> }
 
     ],
   },
