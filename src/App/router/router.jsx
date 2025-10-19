@@ -10,7 +10,6 @@ import LoginPage from "../../pages/auth/Login/LoginPage";
 import LoginValidationPage from "../../pages/auth/Login/LoginValidationPage";
 import ForgotPasswordStepOne from "../../pages/auth/forgotPassword/forgotPasswordStepOne";
 import ForgotPasswordStepTwo from "../../pages/auth/forgotPassword/ForgotPasswordStepTwo";
-import NewsListSection from "../../components/NewsListSection/NewsListSection";
 import CourseDetail from "../../components/CourseDetail/CourseDetail";
 import TeachersPage from "../../pages/Teachers/TeachersPage/TeachersPage";
 import TeachersDetail from "../../pages/Teachers/TeachersDetail/TeachersDetail";
@@ -32,9 +31,6 @@ const router = createBrowserRouter([
 
     ],
   },
-  { path: "/RegisterStepOne", element: <StepOne /> },
-  { path: "/RegisterStepTwo", element: <StepTwo /> },
-  { path: "/RegisterStepThree", element: <StepThree /> },
   { path: "/login", element: <LoginPage /> },
   { path: "/loginValidation", element: <LoginValidationPage /> },
   { path: "/forgotPassOne", element: <ForgotPasswordStepOne /> },

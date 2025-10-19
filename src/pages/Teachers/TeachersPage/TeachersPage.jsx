@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import SliderTeacher from '../../../components/Sliderteachers/SliderTeacher/SliderTeacher'
+import SliderTeacher from '../../../components/landing/SliderTeachers/SliderTeacher/SliderTeacher'
 import { duration } from '@mui/material/styles'
 import ButtonsSeeMore from '../../../components/common/ButtonsSeeMore/ButtonsSeeMore'
 import SliderButtons from '../../../components/common/sliders/buttons/sliderButtons'

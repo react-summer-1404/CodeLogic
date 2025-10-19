@@ -1,5 +1,5 @@
 import React from 'react'
-import newsData from '../common/data/newsListSection/NewsData'
+import newsData from '../../common/data/newsListSection/NewsData'
 import NewsSection from './NewsSection/NewsSection'
 import { motion } from 'framer-motion'
 const NewsListSection = () => {
