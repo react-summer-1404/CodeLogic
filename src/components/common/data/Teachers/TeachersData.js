@@ -1,6 +1,6 @@
 const dataTeachers = Array.from({ length: 60 }, (_, i) => ({
     id: i,
-    pictureAddress: `./images/teachers/teachers${Math.floor(Math.random() * 4) + 1}.png`,
+    pictureAddress: `/images/teachers/teachers${Math.floor(Math.random() * 4) + 1}.png`,
     fullName: `استاد شماره ${i + 1}`,
     courseCounts: Math.floor(Math.random() * 20),
     blogs: Math.floor(Math.random() * 10)
