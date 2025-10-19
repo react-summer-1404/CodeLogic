@@ -1,7 +1,7 @@
 import React from 'react'
 import Calendar from '../../assets/Icons/Calendar'
 import Clock from '../../assets/Icons/Clock'
-import Members from '../../assets/Icons/Members'
+import Users from '../../assets/Icons/Users'
 import { useTranslation } from 'react-i18next'
 
 
@@ -10,7 +10,7 @@ const CourseInfo = () => {
     const {t} = useTranslation();
 
   return (
-    <div className='w-[380px] p-4 bg-[#FFFFFF] rounded-[25px]'>
+    <div className='w-[380px] p-4 bg-[#FFFFFF] rounded-[25px] shadow-[0_0_10px_rgba(0,0,0,0.15)]'>
         <h3></h3>
         <div className='flex flex-col gap-4'>
             <div className='flex flex-col gap-6'>
@@ -37,7 +37,7 @@ const CourseInfo = () => {
                 </div>
                 <div className='flex justify-between'>
                     <div className='flex gap-2'>
-                        <Members/>
+                        <Users/>
                         <span className='font-regular text-base text-[#1E1E1E]'>{t('ظرفیت دوره')}</span>
                     </div>
                     <span className='font-regular text-sm text-[#848484]'>{t(`${'نفر'}`)}</span>
