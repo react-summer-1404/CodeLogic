@@ -16,17 +16,12 @@ const Main = ({searchQuery}) => {
   const handleViewChange = (viewType) => {
     setCurrentView(viewType);
   };
-  const CourseCardComponent = currentView === VIEW_TYPE_LIST 
-    ? CourseCardView2 
-    : CourseCardView1
+  const CourseCardComponent = currentView === VIEW_TYPE_LIST ? CourseCardView2 : CourseCardView1
   
   
-    const baseUrl = '/H/ome/GetCoursesWithPagination';
-    const apiQuery = searchQuery 
-    ? `${baseUrl}?Query=${searchQuery}`
-    : baseUrl;
+  const baseUrl = '/Home/GetCoursesWithPagination';
+  const apiQuery = searchQuery ? `${baseUrl}?Query=${searchQuery}`: baseUrl;
   const { data: coursesData} = useFetchCourses(apiQuery);
-
 
 
   return (
