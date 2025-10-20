@@ -5,16 +5,18 @@ import Star from '../../../assets/Icons/Star'
 import Heart from '../../../assets/Icons/Heart'
 import { useTranslation } from 'react-i18next'
 
+
+
 const CourseCardView1 = ({ item }) => {
 
     const { t } = useTranslation();
 
     return (
         <div dir='rtl' className='flex flex-col flex-shrink-0 items-center w-[350px] rounded-[20px] relative cursor-pointer  
-    hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)] md:basis-[calc(33.85%-1rem)]'>
+        hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>
             <img src={item.imageAddress} className='w-full h-[259px] rounded-t-[20px]' />
             <div className='flex flex-col justify-between w-full h-[217px] mb-[-16px] p-4 bg-[#FFFFFF] rounded-[20px] transform -translate-y-4   
-        dark:bg-[#606060]'>
+            dark:bg-[#606060]'>
                 <div className='flex flex-col gap-1'>
                     <h2 className='font-bold text-base   dark:text-[#EEEEEE]'>{t(`${item.title}`)}</h2>
                     <p className='max-w-[317px] font-regular text-sm   dark:text-[#DDDDDD]'>{t(`${item.describe}`)}</p>
