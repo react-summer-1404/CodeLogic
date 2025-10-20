@@ -1,34 +1,40 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import apiClient from '../../../core/interceptor/interceptor';
 
 
-const useFetchData = (url) => {
-  const [data, setData] = useState([]);
+const useFetchCourses = (url, pageNumber = 1, pageSize = 10) => {
+  const [courses, setCourses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [totalRecords, setTotalRecords] = useState(0); 
   
-  const fetchData = async () => {
-    setIsLoading(true);
-    try{
-      const response = await apiClient.get(url);
-      const courseArray = response.data?.courseFilterDtos || [];
-      setData(courseArray);
-      setIsError(false);
-    }
-    catch(error){
-      setIsError(true);
-    }
-    finally{
-      setIsLoading(false);
-    }
-  };
+  const finalUrl = useMemo(() => {
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}PageNumber=${pageNumber}&RowsOfPage=${pageSize}`;
+  }, [url, pageNumber, pageSize]); 
+
 
   useEffect(() => {
-    if(!url) return;
+    const fetchData = async () => {
+      if(!url) return;
+      setIsLoading(true);
+      try{
+        const response = await apiClient.get(finalUrl); 
+        setCourses(response.data?.courseFilterDtos || []);
+        setTotalRecords(response.data.totalCount || 0); 
+      }
+      catch(error){
+        setCourses([]);
+        setTotalRecords(0); 
+      }
+      finally{
+        setIsLoading(false);
+      }
+    };
+    
     fetchData();
-  }, [url]);
+  }, [finalUrl]); 
 
-  return {data, setData, fetchData, isLoading, isError};
+  return {courses, totalRecords, isLoading};
 };
 
-export default useFetchData;
+export default useFetchCourses;
