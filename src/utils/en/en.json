@@ -137,5 +137,138 @@
   },
   "NewsSelectTwo" : {
     "dataone" : "view"
+  },
+   "NewsDetails" : {
+  "breadcrumbs": "Home - News - What is a Script and How is it Used in Programming?",
+  "pageTitle": "What is a Script and How is it Used in Programming?",
+  "authorLabel": "Author:",
+  "authorName": "Tyler Biton",
+  "userSatisfaction": "User Satisfaction",
+  "ratingValue": "3.5 Rating",
+  "latestNews": "Latest News",
+  "relatedNews": "Related News"
+  },
+    "titleImage": {
+    "category": "Educational",
+    "date": "June 3, 2025"
+  },
+    "sidebar": {
+    "news1": {
+      "title": "What is Programming? – Everything You Need to Know + Uses",
+      "name": "Edward Johnson",
+      "date": "2025/06/07"
+    },
+    "news2": {
+      "title": "Python + Minecraft = Learn Programming Through Gaming!",
+      "name": "Mohsen Jafari",
+      "date": "2025/06/02"
+    },
+    "news3": {
+      "title": "What is a Script and How is it Used in Programming?",
+      "name": "Tyler Biton",
+      "date": "2025/06/06"
+    }
+  },
+    "newsComment": {
+    "tabs": {
+      "details": "Course Details",
+      "comments": "User Comments"
+    },
+    "details": {
+      "section1": {
+        "title": "What is a Script and How is it Used in Programming?",
+        "text": "Simple and short programs written to automate certain tasks are called scripts in programming. Unlike large and complex programs, they are usually written and executed quickly without needing compilation. Scripts are used in areas such as the web, operating systems, data processing, and automation."
+      },
+      "section2": {
+        "title": "What is a Script Code?",
+        "text": "A script code is a set of instructions written in scripting languages such as JavaScript, Python, Perl, or Bash, usually executed by an interpreter instead of a processor. These codes are used to automate tasks, create interactivity on web pages, process data, or control system operations."
+      },
+      "section3": {
+        "title": "Main Uses of Scripting",
+        "text": "If you want to automate repetitive and time-consuming processes, scripting helps you save time. Common uses include automating repetitive tasks, system and network management, data analysis and machine learning, software testing, and game programming."
+      },
+      "section4": {
+        "title": "What is the Difference Between Programming Languages and Scripting Languages?",
+        "text": "Programming languages like C or C++ are usually compiled, while scripting languages like JavaScript or Python are interpreted line by line. Scripting languages are better for rapid development and simple tasks, while compiled languages are used for large and performance-heavy applications."
+      }
+    },
+    "comments": {
+      "allComments": "All Comments",
+      "commentsCount": "4",
+      "titleLabel": "Comment Title",
+      "titlePlaceholder": "Write the title of your comment",
+      "textLabel": "Comment Text",
+      "textPlaceholder": "Write your comment text"
+    }
+  },
+   "personalComment": {
+    "user": {
+      "name": "Edward Johnson",
+      "date": "June 3, 2025"
+    },
+    "comment": {
+      "title": "Great Course",
+      "text": "Lorem ipsum is a placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups."
+    },
+    "actions": {
+      "replyButton": "Reply",
+      "answer" : "answer",
+      "closeReply": "Close Replies"
+    },
+    "replyForm": {
+      "titlePlaceholder": "Write your reply title",
+      "textPlaceholder": "Write your reply text"
+    }
+  },
+    "answerComment": {
+    "comment1": {
+      "name": "Edward Johnson",
+      "date": "June 3, 2025",
+      "title": "Excellent course",
+      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "like": "200",
+      "dislike": "50"
+    },
+    "comment2": {
+      "name": "Edward Johnson",
+      "date": "June 3, 2025",
+      "title": "Excellent course",
+      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "like": "200",
+      "dislike": "50"
+    },
+    "comment3": {
+      "name": "Edward Johnson",
+      "date": "June 3, 2025",
+      "title": "Excellent course",
+      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "like": "200",
+      "dislike": "50"
+    },
+    "comment4": {
+      "name": "Edward Johnson",
+      "date": "June 3, 2025",
+      "title": "Excellent course",
+      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "like": "200",
+      "dislike": "50"
+    },
+    "comment5": {
+      "name": "Edward Johnson",
+      "date": "June 3, 2025",
+      "title": "Excellent course",
+      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "like": "200",
+      "dislike": "50"
+    },
+    "comment6": {
+      "name": "Edward Johnson",
+      "date": "June 3, 2025",
+      "title": "Excellent course",
+      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "like": "200",
+      "dislike": "50"
+    }
   }
+
 }

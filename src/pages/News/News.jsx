@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CategoryFilter from "../../components/CategoryFilter/CategoryFilter";
 import NewsCard from "../../components/NewsCard/NewsCard";
 import SearchIcon from "@mui/icons-material/Search";
@@ -234,12 +234,12 @@ const News = () => {
         </p>
       </motion.div>
 
-      <motion.div className="flex flex-col sm:flex-row items-start justify-between max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+      <motion.div className="flex  flex-col sm:flex-row items-start justify-between max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
         <motion.div
           variants={fadeInOnly(0.3)}
           initial="hidden"
           animate="visible"
-          className=" ml-5 w-full sm:w-1/4 lg:w-[19%] relative mb-6 sm:mb-0 sm:mt-17.5"
+          className=" ml-5 w-full  sm:w-1/4 lg:w-[19%] relative mb-6 sm:mb-0 sm:mt-17.5"
         >
           <div className="relative mb-5 w-full">
             <input
