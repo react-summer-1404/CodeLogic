@@ -10,9 +10,9 @@ import LoginPage from "../../pages/auth/Login/LoginPage";
 import LoginValidationPage from "../../pages/auth/Login/LoginValidationPage";
 import ForgotPasswordStepOne from "../../pages/auth/forgotPassword/forgotPasswordStepOne";
 import ForgotPasswordStepTwo from "../../pages/auth/forgotPassword/ForgotPasswordStepTwo";
-import NewsListSection from "../../components/NewsListSection/NewsListSection";
-import CourseDetail from "../../components/CourseDetail/CourseDetail";
 import TeachersPage from "../../pages/Teachers/TeachersPage/TeachersPage";
+import CourseDetail from "../../pages/CourseDetail/CourseDetail";
+
 
 const router = createBrowserRouter([
   {
@@ -22,10 +22,6 @@ const router = createBrowserRouter([
       { index: true, element: <Landing /> },
       { path: '/courselist', element: <CourseList /> },
       { path: '/coursedetail', element: <CourseDetail /> },
-      { index: true, element: <Landing /> },
-      { path: "/RegisterStepOne", element: <StepOne /> },
-      { path: "/RegisterStepTwo", element: <StepTwo /> },
-      { path: "/RegisterStepThree", element: <StepThree /> },
       { path: "/Teachers", element: <TeachersPage /> }
 
     ],

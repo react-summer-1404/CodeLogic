@@ -1,7 +1,7 @@
 import React from 'react'
-import Calendar from '../../assets/Icons/Calendar'
-import Clock from '../../assets/Icons/Clock'
-import Users from '../../assets/Icons/Users'
+import Calendar from '../../../assets/Icons/Calendar'
+import Clock from '../../../assets/Icons/Clock'
+import Users from '../../../assets/Icons/Users'
 import { useTranslation } from 'react-i18next'
 
 

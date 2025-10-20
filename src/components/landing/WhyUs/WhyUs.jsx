@@ -1,6 +1,6 @@
 import React from 'react'
 import WhyUsItem from './WhyUsItem/WhyUsItem'
-import ReadingBook from '../../assets/Images/readingbook.svg'
+import ReadingBook from '../../../assets/Images/readingbook.svg'
 import { useTranslation } from 'react-i18next'
 
 const WhyUs = () => {

@@ -3,9 +3,9 @@ import { useState } from 'react';
 import DatePicker from 'react-multi-date-picker';
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
-import SideDropDown from '../common/SideDropDown/SideDropDown';
-import ArrowUp from '../../assets/Icons/ArrowUp';
-import Search from '../../assets/Icons/Search'
+import SideDropDown from '../../common/SideDropDown/SideDropDown';
+import ArrowUp from '../../../assets/Icons/ArrowUp';
+import Search from '../../../assets/Icons/Search'
 
 
 const CourseListSide = ({onSearchSubmit}) => {

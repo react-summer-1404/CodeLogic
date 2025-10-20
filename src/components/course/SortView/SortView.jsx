@@ -2,8 +2,8 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import TimeDropDown from '../TimeDropDown/TimeDropDown';
 import ShowNumberDropDown from '../ShowNumberDropDown/ShowNumberDropDown';
-import CourseListView1 from '../../assets/Icons/CourseListView1'
-import CourseListView2 from '../../assets/Icons/CourseListView2'
+import CourseListView1 from '../../../assets/Icons/CourseListView1'
+import CourseListView2 from '../../../assets/Icons/CourseListView2'
 
 
 const VIEW_TYPE_LIST = 'list';

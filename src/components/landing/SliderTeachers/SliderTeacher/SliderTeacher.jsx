@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import Linkedin from '../../../assets/Icons/Linkedin';
+import Linkedin from '../../../../assets/Icons/Linkedin';
 
 const SliderTeacher = ({ item }) => {
 
