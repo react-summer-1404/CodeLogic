@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import CourseCardView1 from '../../../components/common/CourseCardView1/CourseCardView1'
 import SliderButtons from '../../../components/common/sliders/buttons/sliderButtons'
 import apiClient from '../../../core/interceptor/interceptor'
+import DetailCard from '../../../components/common/TeachersDetail/DetailCard'
 
 
 const TeachersDetail = () => {
@@ -192,17 +193,17 @@ const TeachersDetail = () => {
 
                             <div ref={sliderRef} className='w-full flex flex-nowrap justify-items-start md:flex-wrap md:justify-between overflow-y-hidden overflow-x-auto scroll-smooth pb-4 gap-4 ' style={{ direction: "ltr" }}>
                                 {cuuruntDetail.map((item, i) => (
-                                    <CourseCardView1 key={item.id} item={item} />
+                                    <DetailCard key={item.id} item={item} />
                                 ))}
                             </div>
                             <div className='  flex items-center justify-center gap-3' style={{ direction: "ltr" }} >
-                                <button disabled={curruntPage === 1} onClick={handleBack} className='cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3 bg-[#EAEAEA] dark:text-[#ffff] text-[#1E1E1E]"} bg-[url(./icons/left.png)] bg-[center_center] bg-no-repeat '></button>
+                                <button disabled={curruntPage === 1} onClick={handleBack} className='cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3 bg-[#EAEAEA] dark:text-[#ffff] text-[#1E1E1E]"} bg-[url(/icons/left.png)] bg-[center_center] bg-no-repeat '></button>
                                 <div className='flex items-center justify-center gap-3'>
                                     {Array.from({ length: totalPage }, (_, i) => (
                                         <button key={i} onClick={() => setCurruntPage(i + 1)} className={` transition-all duration-300 cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3 ${curruntPage === i + 1 ? "bg-[#008C78] text-[#ffff]" : " bg-[#EAEAEA] dark:text-[#ffff] text-[#1E1E1E]"} `} >{i + 1}</button>
                                     ))}
                                 </div>
-                                <button disabled={curruntPage === totalPage} onClick={handleNext} className='cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3 bg-[#EAEAEA] dark:text-[#ffff] text-[#1E1E1E]"} bg-[url(./icons/right.png)] bg-[center_center] bg-no-repeat '></button>
+                                <button disabled={curruntPage === totalPage} onClick={handleNext} className='cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3 bg-[#EAEAEA] dark:text-[#ffff] text-[#1E1E1E]"} bg-[url(/icons/right.png)] bg-[center_center] bg-no-repeat '></button>
                             </div>
                         </div>
                     </div>
