@@ -2,10 +2,6 @@ import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import useFetchData from '../../../utils/hooks/useFetchData/useFetchData'
 import ButtonsSeeMore from '../../common/ButtonsSeeMore/ButtonsSeeMore'
-import bahr from '../../../assets/Images/bahr.svg'
-import ternermiji from '../../../assets/Images/ternermiji.svg'
-import linasimon from '../../../assets/Images/linasimon.svg'
-import jordantomas from '../../../assets/Images/jordantomas.png'
 import SliderTeacher from './SliderTeacher/SliderTeacher'
 
 

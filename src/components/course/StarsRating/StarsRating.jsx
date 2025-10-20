@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import StarRating from '../../../assets/Icons/StarRating'
 
 const StarsRating = ({ totalStars = 5 }) => {
-  
-  const [rating, setRating] = useState(0); 
-  const [hover, setHover] = useState(0);   
+
+  const [rating, setRating] = useState(0);
+  const [hover, setHover] = useState(0);
 
   return (
     <div className='flex gap-2'>
@@ -23,7 +23,7 @@ const StarsRating = ({ totalStars = 5 }) => {
             onMouseEnter={() => setHover(starValue)}
             onMouseLeave={() => setHover(0)}
           >
-            <StarRating/>
+            <StarRating />
           </span>
         );
       })}

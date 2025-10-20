@@ -10,8 +10,10 @@ import LoginPage from "../../pages/auth/Login/LoginPage";
 import LoginValidationPage from "../../pages/auth/Login/LoginValidationPage";
 import ForgotPasswordStepOne from "../../pages/auth/forgotPassword/forgotPasswordStepOne";
 import ForgotPasswordStepTwo from "../../pages/auth/forgotPassword/ForgotPasswordStepTwo";
-import TeachersPage from "../../pages/Teachers/TeachersPage/TeachersPage";
 import CourseDetail from "../../pages/CourseDetail/CourseDetail";
+import TeachersPage from "../../pages/Teachers/TeachersPage/TeachersPage";
+import TeachersDetail from "../../pages/Teachers/TeachersDetail/TeachersDetail";
+
 
 
 const router = createBrowserRouter([
@@ -22,8 +24,8 @@ const router = createBrowserRouter([
       { index: true, element: <Landing /> },
       { path: '/courselist', element: <CourseList /> },
       { path: '/coursedetail', element: <CourseDetail /> },
-      { path: "/Teachers", element: <TeachersPage /> }
-
+      { path: "/Teachers", element: <TeachersPage /> },
+      { path: '/Teacher/:id', element: <TeachersDetail /> }      
     ],
   },
   { path: "/RegisterStepOne", element: <StepOne /> },

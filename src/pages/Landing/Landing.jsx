@@ -9,17 +9,17 @@ import JoinTeachers from '../../components/landing/JoinTeachers/JoinTeachers'
 import NewsListSection from '../../components/landing/NewsListSection/NewsListSection'
 
 const Landing = () => {
-  
+
   return (
     <div className='bg-[#F3F4F6]   dark:bg-[#1E1E1E]'>
-      <HeroSection/>
-      <Section1/>
-      <Categories/>
-      <SliderCourses/>
-      <WhyUs/>
-      <SliderTeachers/>
-      <JoinTeachers/>
-      <NewsListSection/>
+      <HeroSection />
+      <Section1 />
+      <Categories />
+      <SliderCourses />
+      <WhyUs />
+      <SliderTeachers />
+      <JoinTeachers />
+      <NewsListSection />
     </div>
   )
 }

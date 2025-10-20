@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-import SliderTeacher from '../../../components/Sliderteachers/SliderTeacher/SliderTeacher'
+import { Link, useNavigate } from 'react-router-dom'
+import SliderTeacher from '../../../components/landing/SliderTeachers/SliderTeacher/SliderTeacher'
 import { duration } from '@mui/material/styles'
 import ButtonsSeeMore from '../../../components/common/ButtonsSeeMore/ButtonsSeeMore'
 import SliderButtons from '../../../components/common/sliders/buttons/sliderButtons'
@@ -95,24 +95,24 @@ const TeachersPage = () => {
 
     return (
         <div >
-            {isLoading && <img className='mx-auto p-4 ' src="./images/loading.gif" alt="" />}
+            {isLoading && <img className='mx-auto p-4 ' src="/images/loading.gif" alt="" />}
             {!isLoading && (
                 <motion.div
                     variants={fadeInUp(0.35)}
                     initial="hidden"
                     animate="visible"
-                    className='flex flex-col p-[16px] '>
+                    className='flex flex-col p-[16px] dark:bg-[#1E1E1E] '>
                     <div
 
                         className='flex flex-col items-center justify-center gap-6'>
                         <div className='flex gap-8 text-[#008C78] text-[14px] '>
-                            <Link className='hover:text-blue-500 transition duration-300'>صفحه اصلی</Link>
+                            <Link to={"/"} className='hover:text-blue-500 transition duration-300'>صفحه اصلی</Link>
                             <span>&gt;</span>
                             <Link className='hover:text-blue-500 transition duration-300'>اساتید</Link>
                         </div>
                         <h2 className='text-[#1E1E1E] text-[32px] font-bold dark:text-white '>اساتید</h2>
                     </div>
-                    <div className='flex flex-col items-center gap-5 md:gap-1 '>
+                    <div className='flex flex-col items-center gap-4 md:gap-1 pb-20 '>
                         <div className='mt-12 flex bg-[#ffff] h-[72px] w-full shadow-md  rounded-[15px] items-center justify-between px-5 py-3 '>
                             <div className='flex gap-4 w-[60%] h-full items-center justify-between '>
                                 <div className=' w-[80%] h-full   '>
@@ -174,12 +174,11 @@ const TeachersPage = () => {
                                 onClick={applySearch}
                                 className='text-center text-[14px] text-[#ffff] h-full w-[11%] rounded-2xl bg-[#008C78] '>جستجو</motion.button>
                         </div>
-                        <div className='relative left-[40%]'>
-                            <SliderButtons sliderRef={sliderRef} />
-                        </div>
+                        <SliderButtons sliderRef={sliderRef} />
+
                         <div className='flex flex-nowrap gap-5 pb-5  md:flex-wrap w-full overflow-x-auto scroll-smooth ' ref={sliderRef} style={{ direction: "ltr" }}  >
                             {cuuruntTeachers.length > 0 ? (cuuruntTeachers.map((item, index) => (
-                                <SliderTeacher item={item} key={index} />))) : (
+                                <SliderTeacher item={item} key={item.id} />))) : (
                                 <p className='text-center p-5 text-[#008C78] font-bold text-4xl mx-auto'>نتیحه ای یافت نشد </p>
                             )}
 
