@@ -1,6 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import initialData from '../../../components/common/Form/initialData/initialData'
 import * as Yup from 'yup'
 import { motion } from 'framer-motion'
@@ -10,6 +10,7 @@ const validationSchema = Yup.object({
     name: Yup.string().required("وارد کردن این بخش الزامی است").min(4, "باید شامل حداقل 4 کاراکتر باشد")
 })
 const LoginPage = () => {
+    const navigate = useNavigate()
 
     const [isDark, setIsDark] = useState(false)
     const handleDark = () => {
@@ -37,7 +38,7 @@ const LoginPage = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ ease: "easeOut", type: "spring", stiffness: 300, delay: 0.5 }}
                     className=' flex flex-1 flex-col  p-17  gap-10 '>
-                    <Link className=' pr-8 bg-[url(./icons/home.png)] bg-no-repeat bg-[length:22.489788055419922px_20px] bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>صفحه اصلی</Link>
+                    <Link to={"/"} className=' pr-8 bg-[url(./icons/home.png)] bg-no-repeat bg-[length:22.489788055419922px_20px] bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>صفحه اصلی</Link>
                     <div className='flex flex-col justify-center items-center gap-5  '>
                         <h2 className='text-[24px] font-bold text-[#008C78] '>ورود به حساب کاربری</h2>
                         <div
@@ -68,6 +69,7 @@ const LoginPage = () => {
                                                 <Link className='text-[13px] text-[#848484] hover:text-blue-400 transition duration-300'>فراموشی رمز عبور</Link>
                                             </div>
                                             <motion.button
+                                                onClick={() => navigate("/loginValidation")}
                                                 whileHover={{ scale: "1.03", boxShadow: "0 0 8px #cccccc" }}
                                                 whileTap={{ scale: "0.98" }}
                                                 transition={{ type: "spring", stiffness: 300 }}
