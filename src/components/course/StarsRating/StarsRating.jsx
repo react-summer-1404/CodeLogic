@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import StarRating from '../../assets/Icons/StarRating'
+import StarRating from '../../../assets/Icons/StarRating'
 
 const StarsRating = ({ totalStars = 5 }) => {
   

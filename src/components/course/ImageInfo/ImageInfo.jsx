@@ -1,8 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import HTML5Course from '../../assets/Images/HTML5Course.png'
-import Like from '../../assets/Icons/Like'
-import DisLike from '../../assets/Icons/DisLike'
+import HTML5Course from '../../../assets/Images/HTML5Course.png'
+import Like from '../../../assets/Icons/Like'
+import DisLike from '../../../assets/Icons/DisLike'
 
 
 

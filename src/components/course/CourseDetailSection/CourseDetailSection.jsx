@@ -1,9 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import Users from '../../assets/Icons/Users'
-import Clock from '../../assets/Icons/Clock'
-import Level from '../../assets/Icons/Level'
-import History from '../../assets/Icons/History'
+import Users from '../../../assets/Icons/Users'
+import Clock from '../../../assets/Icons/Clock'
+import Level from '../../../assets/Icons/Level'
+import History from '../../../assets/Icons/History'
 import CourseDetailSecItem from './CourseDetailSecItem/CourseDetailSecItem'
 
 

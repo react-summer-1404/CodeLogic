@@ -1,7 +1,7 @@
 import React from 'react'
-import Navbar from '../Navbar/Navbar'
-import CourseDetailSide from '../CourseDetailSide/CourseDetailSide'
-import CourseDetailMain from '../CourseDetailMain/CourseDetailMain'
+import Navbar from '../../components/Navbar/Navbar'
+import CourseDetailSide from '../../components/course/CourseDetailSide/CourseDetailSide'
+import CourseDetailMain from '../../components/course/CourseDetailMain/CourseDetailMain'
 import { useTranslation } from 'react-i18next'
 
 

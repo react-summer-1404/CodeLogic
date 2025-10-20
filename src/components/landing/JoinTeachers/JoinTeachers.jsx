@@ -1,6 +1,6 @@
 import React from 'react'
-import TextImage from '../common/TextImage/TextImage'
-import Talking from '../../assets/Images/talking.svg'
+import TextImage from '../../common/TextImage/TextImage'
+import Talking from '../../../assets/Images/talking.svg'
 
 const JoinTeachers = () => {
   return (

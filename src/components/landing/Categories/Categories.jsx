@@ -1,11 +1,11 @@
 import React, {useRef} from 'react'
 import Category from './Category/Category'
-import LaptopDoc from '../../assets/Icons/LaptopDoc'
-import Bag from '../../assets/Icons/Bag'
-import Book from '../../assets/Icons/Book'
-import PersonTick from '../../assets/Icons/PersonTick'
-import BigArrowRight from '../../assets/Icons/BigArrowRight'
-import BigArrowLeft from '../../assets/Icons/BigArrowLeft'
+import LaptopDoc from '../../../assets/Icons/LaptopDoc'
+import Bag from '../../../assets/Icons/Bag'
+import Book from '../../../assets/Icons/Book'
+import PersonTick from '../../../assets/Icons/PersonTick'
+import BigArrowRight from '../../../assets/Icons/BigArrowRight'
+import BigArrowLeft from '../../../assets/Icons/BigArrowLeft'
 
 
 const Categories = () => {

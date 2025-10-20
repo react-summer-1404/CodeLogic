@@ -10,8 +10,7 @@ import LoginPage from "../../pages/auth/Login/LoginPage";
 import LoginValidationPage from "../../pages/auth/Login/LoginValidationPage";
 import ForgotPasswordStepOne from "../../pages/auth/forgotPassword/forgotPasswordStepOne";
 import ForgotPasswordStepTwo from "../../pages/auth/forgotPassword/ForgotPasswordStepTwo";
-import NewsListSection from "../../components/NewsListSection/NewsListSection";
-import CourseDetail from "../../components/CourseDetail/CourseDetail";
+import CourseDetail from "../../pages/CourseDetail/CourseDetail";
 
 
 const router = createBrowserRouter([

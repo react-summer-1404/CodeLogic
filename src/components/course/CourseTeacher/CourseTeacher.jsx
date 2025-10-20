@@ -1,5 +1,5 @@
 import React from 'react'
-import CourseTeacherIMG from '../../assets/Images/courseteacher.png'
+import CourseTeacherIMG from '../../../assets/Images/courseteacher.png'
 import { useTranslation } from 'react-i18next'
 
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import CourseCardView1 from '../common/CourseCardView1/CourseCardView1'
-import CourseCardView2 from '../common/CourseCardView2/CourseCardView2'
-import useFetchCourses from '../../utils/hooks/useFetchCourses/useFetchCourses'
+import CourseCardView1 from '../../common/CourseCardView1/CourseCardView1'
+import CourseCardView2 from '../../common/CourseCardView2/CourseCardView2'
+import useFetchCourses from '../../../utils/hooks/useFetchCourses/useFetchCourses'
 import SortView from '../SortView/SortView'
 
 

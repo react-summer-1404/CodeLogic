@@ -1,6 +1,6 @@
 import React from 'react'
-import Working from '../../assets/Images/working.svg'
-import TextImage from '../common/TextImage/TextImage'
+import Working from '../../../assets/Images/working.svg'
+import TextImage from '../../common/TextImage/TextImage'
 
 const HeroSection = () => {
   return (

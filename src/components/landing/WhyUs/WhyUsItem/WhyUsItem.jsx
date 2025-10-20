@@ -1,5 +1,5 @@
 import React from 'react'
-import CircleTick from '../../../assets/Icons/CircleTick'
+import CircleTick from '../../../../assets/Icons/CircleTick'
 import { useTranslation } from 'react-i18next'
 
 const WhyUsItem = ({item}) => {

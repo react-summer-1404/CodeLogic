@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import CourseListSide from '../../components/CourseListSide/CourseListSide'
-import CourseListMain from '../../components/CourseListMain/CourseListMain'
+import CourseListSide from '../../components/course/CourseListSide/CourseListSide'
+import CourseListMain from '../../components/course/CourseListMain/CourseListMain'
 
 
 
