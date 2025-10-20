@@ -3,10 +3,15 @@ import regtwo from "../../../assets/Images/regtwo.svg";
 import EastIcon from "@mui/icons-material/East";
 import { Formik, Form, Field } from "formik";
 import { RegisterStepTwo } from "../../../utils/Validations/RegisterVal/Register.validation";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const StepTwo = () => {
+  const { t, i18n } = useTranslation();
+
+  const [searchParams] = useSearchParams();
+  console.log("searchParams: ", searchParams.get("phoneNumber"));
   const [initialValues] = useState({ code: ["", "", "", "", ""] });
   const [darkMode, setDarkMode] = useState(false);
   const inputsRef = useRef([]);
@@ -34,7 +39,7 @@ const StepTwo = () => {
 
   const handleSubmit = (values) => {
     const finalCode = values.code.join("");
-    console.log("کد:", finalCode);
+    console.log("Code:", finalCode);
   };
 
   const fadeInUp = (delay) => ({
@@ -74,9 +79,8 @@ const StepTwo = () => {
       initial="hidden"
       animate="visible"
       variants={containerVariant}
-      className={`flex justify-center items-center min-h-screen transition-colors duration-500 ${
-        darkMode ? "bg-gray-900" : "bg-[#EAEAEA]"
-      }`}
+      className={`flex justify-center items-center min-h-screen transition-colors duration-500 ${darkMode ? "bg-gray-900" : "bg-[#EAEAEA]"
+        }`}
     >
       <Formik
         initialValues={initialValues}
@@ -86,30 +90,26 @@ const StepTwo = () => {
         {({ values, setFieldValue, touched }) => (
           <Form className="w-full flex justify-center">
             <motion.div
-              className={`flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
-                darkMode ? "bg-gray-800" : "bg-white"
-              }`}
+              className={`flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${darkMode ? "bg-gray-800" : "bg-white"
+                }`}
             >
               <div className="w-full lg:w-[47.44%] flex justify-center items-center">
                 <motion.div
                   variants={imageVariant}
-                  className={`w-[95%] sm:w-[90%] md:w-[95%] h-auto lg:h-[95.67%] rounded-xl flex flex-col justify-center items-center mb-6 lg:mb-0 mr-0 lg:mr-2 relative transition-colors duration-500 ${
-                    darkMode ? "bg-gray-700" : "bg-[#EEFFFC]"
-                  }`}
+                  className={`w-[95%] sm:w-[90%] md:w-[95%] h-auto lg:h-[95.67%] rounded-xl flex flex-col justify-center items-center mb-6 lg:mb-0 mr-0 lg:mr-2 relative transition-colors duration-500 ${darkMode ? "bg-gray-700" : "bg-[#EEFFFC]"
+                    }`}
                 >
                   <div
                     onClick={toggleDarkMode}
-                    className={`cursor-pointer py-3 px-2 w-11 h-5 rounded-full absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-7 flex transition-colors duration-500 ${
-                      darkMode
-                        ? "bg-yellow-300/40 justify-end"
-                        : "bg-blue-900/30 justify-start"
-                    }`}
+                    className={`cursor-pointer py-3 px-2 w-11 h-5 rounded-full absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-7 flex transition-colors duration-500 ${darkMode
+                      ? "bg-yellow-300/40 justify-end"
+                      : "bg-blue-900/30 justify-start"
+                      }`}
                   >
                     <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center">
                       <img
-                        src={`${
-                          darkMode ? "./icons/sun.png" : "./icons/moon.png"
-                        }`}
+                        src={`${darkMode ? "./icons/sun.png" : "./icons/moon.png"
+                          }`}
                         alt="theme icon"
                       />
                     </div>
@@ -121,19 +121,16 @@ const StepTwo = () => {
                     alt="regtwo"
                   />
                   <span
-                    className={`font-bold text-xl sm:text-2xl md:text-2xl mb-4 sm:mb-6 lg:mb-10 text-center transition-colors duration-500 ${
-                      darkMode ? "text-white" : "text-[#005B77]"
-                    }`}
+                    className={`font-bold text-xl sm:text-2xl md:text-2xl mb-4 sm:mb-6 lg:mb-10 text-center transition-colors duration-500 ${darkMode ? "text-white" : "text-[#005B77]"
+                      }`}
                   >
-                    تنها یک قدم تا دنیای یادگیری!
+                    {t("registerStepTwo.start_learning")}
                   </span>
                   <p
-                    className={`w-[85%] sm:w-[80%] text-center transition-colors duration-500 ${
-                      darkMode ? "text-gray-300" : "text-[#1E1E1E]"
-                    }`}
+                    className={`w-[85%] sm:w-[80%] text-center transition-colors duration-500 ${darkMode ? "text-gray-300" : "text-[#1E1E1E]"
+                      }`}
                   >
-                    فرصت رشد، پیشرفت و ساختن آینده‌ای بهتر همین‌جاست — همراه با
-                    ما، یک قدم جلوتر باشید!
+                    {t("registerStepTwo.description")}
                   </p>
                 </motion.div>
               </div>
@@ -147,16 +144,14 @@ const StepTwo = () => {
                   <Link to="/RegisterStepOne">
                     <div className="mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
                       <EastIcon
-                        className={`cursor-pointer ml-2 transition-colors duration-500 ${
-                          darkMode ? "text-gray-300" : "text-[#005B77]"
-                        }`}
+                        className={`cursor-pointer ml-2 transition-colors duration-500 ${darkMode ? "text-gray-300" : "text-[#005B77]"
+                          }`}
                       />
                       <span
-                        className={`cursor-pointer font-bold transition-colors duration-500 ${
-                          darkMode ? "text-gray-300" : "text-[#005B77]"
-                        }`}
+                        className={`cursor-pointer font-bold transition-colors duration-500 ${darkMode ? "text-gray-300" : "text-[#005B77]"
+                          }`}
                       >
-                        بازگشت
+                        {t("registerStepTwo.back")}
                       </span>
                     </div>
                   </Link>
@@ -166,22 +161,20 @@ const StepTwo = () => {
                   variants={fadeInUp(0.6)}
                   initial="hidden"
                   animate="visible"
-                  className={`text-xl sm:text-2xl md:text-2xl text-center font-bold mb-2 sm:mb-3 transition-colors duration-500 ${
-                    darkMode ? "text-white" : "text-[#008C78]"
-                  }`}
+                  className={`text-xl sm:text-2xl md:text-2xl text-center font-bold mb-2 sm:mb-3 transition-colors duration-500 ${darkMode ? "text-white" : "text-[#008C78]"
+                    }`}
                 >
-                  ایجاد حساب کاربری
+                  {t("registerStepTwo.create_account")}
                 </motion.h2>
 
                 <motion.p
                   variants={fadeInUp(0.9)}
                   initial="hidden"
                   animate="visible"
-                  className={`mb-4 sm:mb-6 md:mb-8 text-center transition-colors duration-500 ${
-                    darkMode ? "text-gray-300" : "text-[#333333]"
-                  }`}
+                  className={`mb-4 sm:mb-6 md:mb-8 text-center transition-colors duration-500 ${darkMode ? "text-gray-300" : "text-[#333333]"
+                    }`}
                 >
-                  رمز یکبار مصرف ارسال شده را وارد کنید
+                  {t("registerStepTwo.enter_code")}
                 </motion.p>
 
                 <motion.div
@@ -210,15 +203,13 @@ const StepTwo = () => {
                           handleKeyDown(e, index, values, setFieldValue)
                         }
                         className={`
-        w-14 h-14 mx-3 text-center text-lg rounded-2xl transition-colors duration-300 focus:outline-none bg-[#ecececaf]
-        ${
-          digit
-            ? "border-2 border-[#008C78]"
-            : touched.code?.[index]
-            ? "border-2 border-red-500"
-            : "border-2 border-transparent focus:border-[#008C78]"
-        }
-      `}
+                          w-14 h-14 mx-3 text-center text-lg rounded-2xl transition-colors duration-300 focus:outline-none bg-[#ecececaf] ${digit
+                            ? "border-2 border-[#008C78]"
+                            : touched.code?.[index]
+                              ? "border-2 border-red-500"
+                              : "border-2 border-transparent focus:border-[#008C78]"
+                          }
+                        `}
                       />
                     ))}
                   </div>
@@ -227,8 +218,13 @@ const StepTwo = () => {
                     values.code.some(
                       (val, idx) => touched.code[idx] && !val
                     ) && (
-                      <div className="text-red-500 text-sm mt-1 font-semibold text-center absolute top-16 right-27">
-                        پر کردن فیلدها الزامی است
+                      <div
+                        className={` text-red-500 text-sm mt-1 font-semibold text-center absolute  ${i18n.language === "fa"
+                          ? " top-16 right-27"
+                          : "left-27 top-16"
+                          } `}
+                      >
+                        {t("registerStepTwo.validation.required")}
                       </div>
                     )}
 
@@ -239,14 +235,13 @@ const StepTwo = () => {
                     className="w-full flex justify-center"
                   >
                     <Link
-                      className={`text-center mt-10 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
-                        darkMode
-                          ? "bg-yellow-400 text-gray-800 hover:bg-yellow-300"
-                          : "bg-[#008C78] text-white hover:bg-[#007563]"
-                      }`}
+                      className={`text-center mt-10 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${darkMode
+                        ? "bg-yellow-400 text-gray-800 hover:bg-yellow-300"
+                        : "bg-[#008C78] text-white hover:bg-[#007563]"
+                        }`}
                       to="/RegisterStepThree"
                     >
-                      تایید رمز یکبار مصرف
+                      {t("registerStepTwo.confirm_otp")}
                     </Link>
                   </motion.div>
                 </motion.div>
@@ -255,9 +250,8 @@ const StepTwo = () => {
                   variants={fadeInUp(1.8)}
                   initial="hidden"
                   animate="visible"
-                  className={`text-sm mt-4 sm:mt-6 text-center transition-colors duration-500 ${
-                    darkMode ? "text-gray-300" : "text-[#333333]"
-                  }`}
+                  className={`text-sm mt-4 sm:mt-6 text-center transition-colors duration-500 ${darkMode ? "text-gray-300" : "text-[#333333]"
+                    }`}
                 >
                   01:23
                 </motion.p>

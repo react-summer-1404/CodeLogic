@@ -1,16 +1,19 @@
-import React, { useState } from "react";
-import regone from "../../../assets/Images/regone.svg";
 import EastIcon from "@mui/icons-material/East";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { RegisterStepThree } from "../../../utils/Validations/RegisterVal/Register.validation";
-import { Link } from "react-router-dom";
+import { Field, Form, Formik } from "formik";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import regone from "../../../assets/Images/regone.svg";
+import { RegisterStepThree } from "../../../utils/Validations/RegisterVal/Register.validation";
 
 const StepThree = () => {
-  const [initialValues, setinitialValues] = useState({
+  const { t, i18n } = useTranslation();
+
+  const [initialValues] = useState({
     email: "",
     password: "",
     confirmPassword: "",
@@ -68,8 +71,9 @@ const StepThree = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={RegisterStepThree}
+        onSubmit={(values) => console.log("Submitted:", values)}
       >
-        {() => (
+        {({ errors, touched }) => (
           <Form className="w-full flex justify-center">
             <div
               className={`flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
@@ -80,7 +84,7 @@ const StepThree = () => {
                 variants={imageVariant}
                 initial="hidden"
                 animate="visible"
-                className={`w-full lg:w-[47.44%] flex justify-center items-center`}
+                className="w-full lg:w-[47.44%] flex justify-center items-center"
               >
                 <div
                   className={`w-[95%] sm:w-[90%] md:w-[95%] h-auto lg:h-[95.67%] rounded-xl flex flex-col justify-center items-center mb-6 lg:mb-0 mr-0 lg:mr-2 relative transition-colors duration-500 ${
@@ -115,15 +119,14 @@ const StepThree = () => {
                       darkMode ? "text-white" : "text-[#005B77]"
                     }`}
                   >
-                    مرحله پایانی ثبت‌نام پیش روی شماست.
+                    {t("registerStepThree.start_learning")}
                   </span>
                   <p
                     className={`w-[85%] sm:w-[80%] text-center transition-colors duration-500 ${
                       darkMode ? "text-gray-300" : "text-[#1E1E1E]"
                     }`}
                   >
-                    همه‌چیز آماده است! حالا فقط کافیه اطلاعات تکمیلی‌ات رو وارد
-                    کنی تا حساب کاربری‌ات کامل بشه.
+                    {t("registerStepThree.description")}
                   </p>
                 </div>
               </motion.div>
@@ -146,7 +149,7 @@ const StepThree = () => {
                           darkMode ? "text-gray-300" : "text-[#005B77]"
                         }`}
                       >
-                        بازگشت
+                        {t("registerStepThree.back")}
                       </span>
                     </div>
                   </Link>
@@ -160,7 +163,7 @@ const StepThree = () => {
                     darkMode ? "text-white" : "text-[#008C78]"
                   }`}
                 >
-                  ایجاد حساب کاربری
+                  {t("registerStepThree.create_account")}
                 </motion.h2>
 
                 <motion.p
@@ -171,7 +174,7 @@ const StepThree = () => {
                     darkMode ? "text-gray-300" : "text-[#333333]"
                   }`}
                 >
-                  کامل کردن مشخصات
+                  {t("registerStepThree.complete_info")}
                 </motion.p>
 
                 <motion.div
@@ -181,76 +184,115 @@ const StepThree = () => {
                   className="flex flex-col items-center relative"
                 >
                   <EmailIcon
-                    className={`absolute top-3 right-4 sm:right-6 md:right-20 transition-colors duration-500 ${
+                    className={`absolute top-3 ${
+                      i18n.language === "fa" ? "right-4" : "left-4"
+                    } sm:${i18n.language === "fa" ? "right-6" : "left-6"} md:${
+                      i18n.language === "fa" ? "right-20" : "left-20"
+                    } transition-colors duration-500 ${
                       darkMode ? "text-gray-400" : "text-[grey]"
                     }`}
                   />
                   <Field
                     type="text"
                     name="email"
-                    placeholder="ایمیل خود را وارد کنید"
+                    placeholder={t("registerStepThree.placeholder.email")}
                     className={`!mb-10 rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       darkMode
                         ? "bg-gray-600 text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />
-                  <ErrorMessage
-                    name="email"
-                    component="div"
-                    className="text-red-500 text-sm absolute right-20 top-14 font-semibold"
-                  />
+                  {touched.email && errors.email && (
+                    <div
+                      className={` text-red-500 text-sm absolute  font-semibold text-center ${
+                        i18n.language === "fa"
+                          ? "  right-20 top-14"
+                          : "left-20 top-14"
+                      }  `}
+                    >
+                      {errors.email}
+                    </div>
+                  )}
 
                   <LockIcon
-                    className={`absolute top-25 right-4 sm:right-6 md:right-20 transition-colors duration-500 ${
+                    className={`absolute top-25 ${
+                      i18n.language === "fa" ? "right-4" : "left-4"
+                    } sm:${i18n.language === "fa" ? "right-6" : "left-6"} md:${
+                      i18n.language === "fa" ? "right-20" : "left-20"
+                    } transition-colors duration-500 ${
                       darkMode ? "text-gray-400" : "text-[grey]"
                     }`}
                   />
                   <Field
                     type={showPassword ? "text" : "password"}
                     name="password"
-                    placeholder="رمز عبور خود را وارد کنید"
+                    placeholder={t("registerStepThree.placeholder.password")}
                     className={`!mb-10 rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       darkMode
                         ? "bg-gray-600 text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />
-                  <ErrorMessage
-                    name="password"
-                    component="div"
-                    className="text-red-500 text-sm absolute right-20 top-36 font-semibold"
-                  />
+                  {touched.password && errors.password && (
+                    <div
+                      className={`text-red-500 text-sm absolute font-semibold text-center  ${
+                        i18n.language === "fa"
+                          ? "  right-20 top-36"
+                          : "left-20 top-36"
+                      }   `}
+                    >
+                      {errors.password}
+                    </div>
+                  )}
                   <VisibilityOffIcon
                     onClick={toggleEyepassword}
-                    className={`absolute top-25 left-4 sm:left-6 md:left-20 transition-colors duration-500 cursor-pointer ${
+                    className={`absolute top-25 ${
+                      i18n.language === "fa" ? "left-4" : "right-4"
+                    } sm:${i18n.language === "fa" ? "left-6" : "right-6"} md:${
+                      i18n.language === "fa" ? "left-20" : "right-20"
+                    } transition-colors duration-500 cursor-pointer ${
                       darkMode ? "text-gray-400" : "text-[grey]"
                     }`}
                   />
 
                   <LockIcon
-                    className={`absolute top-47 right-4 sm:right-6 md:right-20 transition-colors duration-500 ${
+                    className={`absolute top-47 right-4" : "left-4"
+                    } sm:${i18n.language === "fa" ? "right-6" : "left-6"} md:${
+                      i18n.language === "fa" ? "right-20" : "left-20"
+                    } transition-colors duration-500 ${
                       darkMode ? "text-gray-400" : "text-[grey]"
                     }`}
                   />
                   <Field
                     type={showConfirmPassword ? "text" : "password"}
                     name="confirmPassword"
-                    placeholder="تکرار رمز عبور"
+                    placeholder={t(
+                      "registerStepThree.placeholder.confirmPassword"
+                    )}
                     className={`rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       darkMode
                         ? "bg-gray-600 text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />
-                  <ErrorMessage
-                    name="confirmPassword"
-                    component="div"
-                    className="text-red-500 text-sm absolute right-20 top-58 font-semibold"
-                  />
+                  {touched.confirmPassword && errors.confirmPassword && (
+                    <div
+                      className={` text-red-500 text-sm absolute font-semibold text-center ${
+                        i18n.language === "fa"
+                          ? " right-20 top-58"
+                          : "left-20 top-58"
+                      }  `}
+                    >
+                      {errors.confirmPassword}
+                    </div>
+                  )}
                   <VisibilityOffIcon
                     onClick={toggleEyeconfirmpassword}
-                    className={`absolute top-47 left-4 sm:left-6 md:left-20 transition-colors duration-500 cursor-pointer ${
+                    className={`absolute top-47 ${
+                      i18n.language === "fa" ? "left-4" : "right-4"
+                    } sm:${i18n.language === "fa" ? "left-6" : "right-6"} md:${
+                      i18n.language === "fa" ? "left-20" : "right-20"
+                    } transition-colors duration-500 cursor-pointer ${
                       darkMode ? "text-gray-400" : "text-[grey]"
                     }`}
                   />
@@ -261,15 +303,16 @@ const StepThree = () => {
                     animate="visible"
                     className="w-full flex justify-center"
                   >
-                    <Link
+                    <button
+                      type="submit"
                       className={`text-center mt-4 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
                         darkMode
                           ? "bg-yellow-400 text-gray-800 hover:bg-yellow-300"
                           : "bg-[#008C78] text-white hover:bg-[#007563]"
                       }`}
                     >
-                      ثبت نام
-                    </Link>
+                      {t("registerStepThree.submit")}
+                    </button>
                   </motion.div>
 
                   <motion.p
@@ -280,13 +323,13 @@ const StepThree = () => {
                       darkMode ? "text-gray-300" : "text-[#333333]"
                     }`}
                   >
-                    حساب کاربری دارید؟{" "}
+                    {t("registerStepThree.have_account")}{" "}
                     <span
                       className={`font-semibold cursor-pointer hover:underline transition-colors duration-500 ${
                         darkMode ? "text-yellow-300" : "text-[#008C78]"
                       }`}
                     >
-                      وارد شوید
+                      {t("registerStepThree.login")}
                     </span>
                   </motion.p>
                 </motion.div>

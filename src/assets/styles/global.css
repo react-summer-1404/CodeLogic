@@ -8,14 +8,15 @@ body {
   color: var(--text-color);
   font-family: Estedad;
   font-size: 16px;
+}
+body.rtl {
   direction: rtl;
 }
 
-@font-face {
-  font-family: "Estedad";
-  src: url("../../assets/Fonts/Estedad-Regular.woff2") format("woff2");
-  font-weight: 400;
+body.ltr {
+  direction: ltr;
 }
+
 @font-face {
   font-family: "Estedad";
   src: url("../../assets/Fonts/Estedad-Regular.woff2") format("woff2");
