@@ -10,7 +10,7 @@ const VIEW_TYPE_LIST = 'list';
 const VIEW_TYPE_GRID = 'grid';
 
 
-const SortView = ({ onViewChange, currentView }) => {
+const SortView = ({onViewChange, currentView, currentPageSize, onPageSizeChange, currentSortType, onSortChange}) => {
 
   const { t } = useTranslation();
 
@@ -25,8 +25,8 @@ const SortView = ({ onViewChange, currentView }) => {
     <div className='flex justify-between items-center w-[1104px] h-18 px-4 bg-[#FFFFFF] rounded-[15px]'>
       <div className='flex items-center gap-4'>
         <span className='font-regular text-base text-[#1E1E1E]'>{t('مرتب سازی بر اساس :')}</span>
-        <TimeDropDown />
-        <ShowNumberDropDown />
+        <TimeDropDown currentSortType={currentSortType} onSortChange={onSortChange}/>
+        <ShowNumberDropDown currentPageSize={currentPageSize} onPageSizeChange={onPageSizeChange}/>
       </div>
       <div className='flex gap-4'>
         <button onClick={() => { handleViewChange(VIEW_TYPE_LIST) }} className={`p-2 rounded-[48px] ${currentView === VIEW_TYPE_LIST

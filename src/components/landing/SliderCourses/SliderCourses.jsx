@@ -7,9 +7,9 @@ import ButtonsSeeMore from '../../common/ButtonsSeeMore/ButtonsSeeMore'
 
 const CoursesSection = () => {
 
-  const thisApiUrl = '/Home/GetCoursesTop?Count=5';
-  const { data: sliderCoursesData } = useFetchData(thisApiUrl);
-
+  const thisApiUrl = '/Home/GetCoursesTop?Count=5'; 
+  const { courses: sliderCoursesData} = useFetchData(thisApiUrl);
+  
   const sliderRef = useRef();
 
   const { t } = useTranslation();
