@@ -7,6 +7,7 @@ import TranslateButton from "../TranslateButton/TranslateButton";
 import { useTheme } from "../../components/useTheme/useTheme";
 
 const Header = () => {
+  
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "fa";
 
