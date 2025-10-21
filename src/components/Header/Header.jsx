@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import SelectComp from "../SelectComp/SelectComp";
 import TranslateButton from "../TranslateButton/TranslateButton";
-import { useTheme } from "../../components/useTheme/useTheme";
+import { useTheme } from "../../utils/hooks/useTheme/useTheme";
 
 const Header = () => {
   

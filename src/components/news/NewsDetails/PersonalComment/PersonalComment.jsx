@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import img1 from "../../../assets/Images/commentt.png";
+import img1 from "../../../../assets/Images/commentt.png";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";

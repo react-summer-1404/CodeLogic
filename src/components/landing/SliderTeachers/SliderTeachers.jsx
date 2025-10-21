@@ -9,7 +9,7 @@ const SliderTeachers = () => {
 
 
   const thisApiUrl = '/Home/GetTeachers';
-  const { data: sliderTeachersData } = useFetchData(thisApiUrl);
+  const { data: sliderTeachersData } = useFetchData(thisApiUrl); 
 
   const sliderRef = useRef();
 
@@ -26,7 +26,7 @@ const SliderTeachers = () => {
 
       <ButtonsSeeMore seeAllText={'مشاهده همه استادها'} sliderRef={sliderRef} />
       <div className='flex flex-nowrap gap-5 overflow-hidden w-full pt-8 pb-2 px-10 scroll-smooth scrollbar-hide' dir='ltr' ref={sliderRef}>
-        {sliderTeachersData.map((item, index) => { return <SliderTeacher item={item} key={index} /> })}
+        {sliderTeachersData?.map((item, index) => { return <SliderTeacher item={item} key={index} /> })}
       </div>
     </div>
   )

@@ -8,9 +8,8 @@ import ButtonsSeeMore from '../../common/ButtonsSeeMore/ButtonsSeeMore'
 const CoursesSection = () => {
 
   const thisApiUrl = '/Home/GetCoursesTop?Count=5'; 
-  const { data: apiResponse } = useFetchData(thisApiUrl); 
+  const { data: sliderCoursesData } = useFetchData(thisApiUrl); 
 
-  const sliderCoursesData = apiResponse?.courses;
   const sliderRef = useRef();
 
   const { t } = useTranslation();
@@ -25,7 +24,7 @@ const CoursesSection = () => {
       </div>
       <ButtonsSeeMore seeAllText={'مشاهده همه دوره ها'} sliderRef={sliderRef} />
       <div className='flex flex-nowrap gap-8 w-full pb-2 px-10 overflow-hidden scroll-smooth scrollbar-hide' dir='ltr' ref={sliderRef}>
-        {sliderCoursesData?.map((item, index) => { return <CourseCardView1 item={item} key={index} /> })}
+        {sliderCoursesData?.map((item, index) => { return <CourseCardView1 item={item} key={index}/>})}
       </div>
     </div>
   )

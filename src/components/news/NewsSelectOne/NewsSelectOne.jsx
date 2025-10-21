@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import Select from "react-select";
-import { useTheme } from "../useTheme/useTheme";
+import { useTheme } from "../../../utils/hooks/useTheme/useTheme";
 import { useTranslation } from "react-i18next";
 
 const NewsSelectOne = () => {

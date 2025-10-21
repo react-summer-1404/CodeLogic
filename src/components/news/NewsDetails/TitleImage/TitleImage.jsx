@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import img1 from "../../../assets/Images/Rectanglee.png";
+import img1 from "../../../../assets/Images/Rectanglee.png";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import VisibilityIcon from "@mui/icons-material/Visibility";
