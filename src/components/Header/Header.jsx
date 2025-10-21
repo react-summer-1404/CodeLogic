@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -28,34 +29,34 @@ const Header = () => {
       </div>
 
       <ul className="hidden sm:hidden md:flex flex-row items-center gap-6">
-        <li
+        <li 
           className={` cursor-pointer text-sm md:text-base lg:text-lg font-bold transition-colors duration-200 hover:text-[#008c78] ${
             isDark ? "text-white hover:text-[#00bfa5]" : ""
           }`}
         >
           {t("navbar.academy")}
         </li>
-        <li
+        <Link to={'/'}
           className={` cursor-pointer text-sm md:text-base lg:text-lg font-semibold transition-colors duration-200 hover:text-[#008c78] ${
             isDark ? "text-white hover:text-[#00bfa5]" : ""
           }`}
         >
           {t("navbar.home")}
-        </li>
-        <li
+        </Link>
+        <Link to={'/courselist'}
           className={` cursor-pointer  text-sm md:text-base lg:text-lg font-semibold transition-colors duration-200 hover:text-[#008c78] ${
             isDark ? "text-white hover:text-[#00bfa5]" : ""
           }`}
         >
           {t("navbar.courses")}
-        </li>
-        <li
+        </Link>
+        <Link to={'/news'}
           className={` cursor-pointer text-sm md:text-base lg:text-lg font-semibold transition-colors duration-200 hover:text-[#008c78] ${
             isDark ? "text-white hover:text-[#00bfa5]" : ""
           }`}
         >
           {t("navbar.news")}
-        </li>
+        </Link>
       </ul>
 
       <div className="flex items-center gap-2">
@@ -105,34 +106,34 @@ const Header = () => {
         <ul
           className={` !bg-[#008c78] text-white fixed top-0 right-0 h-full w-1/3 sm:w-1/2 bg-white dark:bg-[#1e1e1e] shadow-lg p-4 flex flex-col gap-4 z-50`}
         >
-          <li
+          <Link
             className={`text-sm font-bold transition-colors duration-200 hover:text-[#008c78] ${
               isDark ? "text-white hover:text-[#00bfa5]" : ""
             }`}
           >
             {t("navbar.academy")}
-          </li>
-          <li
+          </Link>
+          <Link
             className={`text-sm font-semibold transition-colors duration-200 hover:text-[#008c78] ${
               isDark ? "text-white hover:text-[#00bfa5]" : ""
             }`}
           >
             {t("navbar.home")}
-          </li>
-          <li
+          </Link>
+          <Link
             className={`text-sm font-semibold transition-colors duration-200 hover:text-[#008c78] ${
               isDark ? "text-white hover:text-[#00bfa5]" : ""
             }`}
           >
             {t("navbar.courses")}
-          </li>
-          <li
+          </Link>
+          <Link
             className={`text-sm font-semibold transition-colors duration-200 hover:text-[#008c78] ${
               isDark ? "text-white hover:text-[#00bfa5]" : ""
             }`}
           >
             {t("navbar.news")}
-          </li>
+          </Link>
           <button
             onClick={() => setMobileMenu(!mobileMenu)}
             className="rounded-2xl bg-[black] text-white mt-4 p-1 cursor-pointer"
