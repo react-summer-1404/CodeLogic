@@ -29,7 +29,6 @@ const TeachersPage = () => {
     const showOptions = [16, 32, 40]
     const handleSelectCount = (num) => {
         setTempCount(num)
-        setCurruntPage(1)
         setDropDownPage(false)
         setSearchActivated(false)
     }

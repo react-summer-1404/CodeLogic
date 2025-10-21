@@ -1,7 +1,7 @@
 
 import { Link, useParams } from 'react-router-dom'
 import dataTeachers from '../../../components/common/data/Teachers/TeachersData'
-import TeacherCard from './TeacherCard'
+import TeacherCard from '../../../components/common/TeachersDetail/TeacherCard'
 import React, { useEffect, useRef, useState } from 'react'
 import teachersDetail from '../../../components/common/data/Teachers/teachersDetail'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -36,7 +36,6 @@ const TeachersDetail = () => {
 
     const handleSelectCount = (num) => {
         setTempCount(num)
-        setCurruntPage(1)
         setDropDownPage(false)
         setSearchActivated(false)
     }
