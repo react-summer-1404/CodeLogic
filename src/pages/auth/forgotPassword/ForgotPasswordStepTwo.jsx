@@ -1,7 +1,7 @@
 
 import { ErrorMessage, Field, Formik, Form } from 'formik'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import * as Yup from 'yup'
 import initialData from '../../../components/common/Form/initialData/initialData'
@@ -27,6 +27,7 @@ const ForgotPasswordStepTwo = () => {
     useEffect(() => {
         document.documentElement.classList.toggle("dark", isDark);
     }, [isDark])
+    const navigate = useNavigate()
 
 
     return (
@@ -35,13 +36,13 @@ const ForgotPasswordStepTwo = () => {
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className='flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg md:flex-row max-w-[1250px] w-full min-h-[739px] p-2 '>
+                className='flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg md:flex-row lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] p-2 '>
                 <motion.div
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ ease: "easeOut", type: "spring", stiffness: 300, delay: 0.5 }}
                     className=' flex flex-1 flex-col  p-17  gap-14 '>
-                    <Link className=' pr-8 bg-[url(./icons/back.png)] bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>بازگشت</Link>
+                    <Link to={"/forgotPassOne"} className=' pr-8 bg-[url(./icons/back.png)] bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>بازگشت</Link>
                     <div className='flex flex-col justify-center items-center gap-3 p-5 '>
                         <div className='flex flex-col justify-center items-center gap-2  '>
                             <h2 className='text-[24px] font-bold text-[#008C78] mb-2 '>فراموشی رمز عبور</h2>
@@ -50,7 +51,7 @@ const ForgotPasswordStepTwo = () => {
                         <div className='w-full mt-7 px-6  '>
                             <Formik
                                 initialValues={initialData}
-                                onSubmit={(value) => console.log(value)}
+                                onSubmit={(value) => navigate("/login")}
                                 validationSchema={validationSchema}
                             >
                                 {({ errors, touched }) => (

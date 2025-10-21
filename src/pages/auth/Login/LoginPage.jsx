@@ -1,15 +1,16 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import initialData from '../../../components/common/Form/initialData/initialData'
 import * as Yup from 'yup'
 import { motion } from 'framer-motion'
 
 const validationSchema = Yup.object({
     password: Yup.string().required('وارد کردن رمز عبور الزامی است').min(8, "رمز عبور باید حداقل شامل 8 کاراکتر باشد"),
-    name: Yup.string().required("وارد کردن این بخش الزامی است").min(4, "نام کاربری باید شامل حداقل 4 کاراکتر باشد")
+    name: Yup.string().required("وارد کردن این بخش الزامی است").min(4, "باید شامل حداقل 4 کاراکتر باشد")
 })
 const LoginPage = () => {
+    const navigate = useNavigate()
 
     const [isDark, setIsDark] = useState(false)
     const handleDark = () => {
@@ -31,13 +32,13 @@ const LoginPage = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className='flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg md:flex-row max-w-[1250px] w-full min-h-[739px] p-2 '>
+                className='flex flex-col md:flex-row  overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg  w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-[60px] p-2 '>
                 <motion.div
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ ease: "easeOut", type: "spring", stiffness: 300, delay: 0.5 }}
                     className=' flex flex-1 flex-col  p-17  gap-10 '>
-                    <Link className=' pr-8 bg-[url(./icons/home.png)] bg-no-repeat bg-[length:22.489788055419922px_20px] bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>صفحه اصلی</Link>
+                    <Link to={"/"} className=' pr-8 bg-[url(./icons/home.png)] bg-no-repeat bg-[length:22.489788055419922px_20px] bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>صفحه اصلی</Link>
                     <div className='flex flex-col justify-center items-center gap-5  '>
                         <h2 className='text-[24px] font-bold text-[#008C78] '>ورود به حساب کاربری</h2>
                         <div
@@ -45,7 +46,9 @@ const LoginPage = () => {
                             className='w-full mt-7 px-6'>
                             <Formik
                                 initialValues={initialData}
-                                onSubmit={(values) => console.log(values)}
+                                onSubmit={(values) => {
+                                    navigate("/loginValidation")
+                                }}
                                 validationSchema={validationSchema}
                             >
                                 {({ errors, touched }) => (
@@ -56,7 +59,7 @@ const LoginPage = () => {
                                             </div>
                                             <ErrorMessage name={'name'} component={"span"} className='text-[#EF5350] text-[14px] ' />
                                             <div className=' relative mt-6'>
-                                                <Field className={` bg-[url(./icons/lock.png)] bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${errors.name && touched.name ? "border-[#EF5350] border-1 " : ""} `} type={showPassword ? "text" : "password"} name='password' id='password' placeholder='رمز عبور' />
+                                                <Field className={` bg-[url(./icons/lock.png)] bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${errors.password && touched.password ? "border-[#EF5350] border-1 " : ""} `} type={showPassword ? "text" : "password"} name='password' id='password' placeholder='رمز عبور' />
                                                 <img onClick={handlePassword} src={showPassword ? "./icons/eyeClose.png" : "./icons/eyeOpen.png"} alt="" className=' cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  ' />
                                             </div>
                                             <ErrorMessage name={'password'} component={"span"} className='text-[#EF5350] text-[14px] ' />
@@ -68,6 +71,7 @@ const LoginPage = () => {
                                                 <Link className='text-[13px] text-[#848484] hover:text-blue-400 transition duration-300'>فراموشی رمز عبور</Link>
                                             </div>
                                             <motion.button
+                                                onClick={() => navigate("/loginValidation")}
                                                 whileHover={{ scale: "1.03", boxShadow: "0 0 8px #cccccc" }}
                                                 whileTap={{ scale: "0.98" }}
                                                 transition={{ type: "spring", stiffness: 300 }}
