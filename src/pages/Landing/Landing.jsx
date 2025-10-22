@@ -1,7 +1,7 @@
 import React from 'react'
 import HeroSection from '../../components/landing/HeroSection/HeroSection'
 import Section1 from '../../components/landing/Section1/Section1'
-import Categories from '../../components/landing/Categories/Categories'
+import BeWithUs from '../../components/landing/BeWithUs/BeWithUs'
 import SliderCourses from '../../components/landing/SliderCourses/SliderCourses'
 import WhyUs from '../../components/landing/WhyUs/WhyUs'
 import SliderTeachers from '../../components/landing/Sliderteachers/SliderTeachers'
@@ -14,7 +14,7 @@ const Landing = () => {
     <div className='bg-[#F3F4F6]   dark:bg-[#1E1E1E]'>
       <HeroSection />
       <Section1 />
-      <Categories />
+      <BeWithUs />
       <SliderCourses />
       <WhyUs />
       <SliderTeachers />

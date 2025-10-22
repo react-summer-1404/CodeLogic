@@ -1,14 +1,20 @@
 import React from 'react'
 import Working from '../../../assets/Images/working.svg'
 import TextImage from '../../common/TextImage/TextImage'
+import { useTranslation } from 'react-i18next'
+
+
 
 const HeroSection = () => {
+
+  const {t, i18n} = useTranslation();
+
   return (
     <div>
-      <TextImage title1={'یادگیری برنامه‌نویسی با اساتید مجرب ،'} titleSpan={' مسیر موفقیت '}
-        title2={'شما را هموار می‌کند.'}
-        desc={'در دوره‌های تخصصی ما، با اساتید حرفه‌ای و با تجربه یادگیری برنامه‌نویسی را آغاز کنید. از مفاهیم پایه تا مهارت‌های پیشرفته، شما را به سطحی می‌رسانیم که آماده ورود به دنیای حرفه‌ای فناوری باشید. با روش‌های مدرن و کارآمد، به سرعت رشد کنید!'}
-        buttonText={'به جمع حرفه‌ای‌ها بپیوندید'} img={Working} bg={'#EEFFFC'} />
+      <TextImage title1={t('heroSection.title1')} titleSpan={t('heroSection.titleSpan')}
+        title2={t('heroSection.title2')}
+        desc={t('heroSection.desc')}
+        buttonText={t('heroSection.buttonText')} img={Working} bg={'#EEFFFC'} />
     </div>
   )
 }

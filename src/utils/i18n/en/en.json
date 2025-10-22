@@ -1,4 +1,38 @@
 {
+  "navbar": {
+  "academy": "Bahr Academy",
+  "home": "Home",
+  "courses": "Courses",
+  "news": "News",
+  "search_placeholder": "Search...",
+  "select_placeholder": "Select...",
+  "login": "Login / Register"
+  },
+    "heroSection": {
+    "title1": "Learning programming with experienced teachers,",
+    "titleSpan": "The path to success",
+    "title2": "It smooths you out.",
+    "desc": "Start learning programming with our specialized courses from professional and experienced instructors. From basic concepts to advanced skills, we will take you to a level where you are ready to enter the professional world of technology. Grow quickly with modern and efficient methods!",
+    "buttonText": "Join the community of professionals"
+  },
+    "section1": {
+    "title1": "Top Professors",
+    "title2": "Students",
+    "title3": "Training Courses",
+    "title4": "News and Blogs"
+  },
+    "beWithUs": {
+    "title": "Be at the forefront of programming with us.",
+    "desc": "From beginner to professional, accompanying you on your programming journey.",
+    "title1": "Modern Educations",
+    "title2": "Building a Professional Career Path",
+    "title3": "Creating a spirit of continuous growth and learning",
+    "title4": "Developing problem-solving skills",
+    "desc1": "All training is up-to-date and you will learn the most modern content with us.",
+    "desc2": "Our goal is for people to be prepared to enter the job market after training.",
+    "desc3": "Technology is always changing. We believe that learning never stops.",
+    "desc4": "Programming is not just about writing code; we teach our students to think logically, analyze challenges, and solve problems."
+  },
   "footer": {
     "newsletter_button": "Sign Up",
     "newsletter_placeholder": "Enter your phone number",
@@ -35,16 +69,6 @@
     "git": "Git & GitHub",
     "rights": "All rights reserved for Bahr Academy.",
     "academy": "Bahr Academy"
-  },
-    "navbar": {
-    "academy": "Bahr Academy",
-    "home": "Home",
-    "courses": "Courses",
-    "news": "News",
-    "search_placeholder": "Search...",
-    "select_placeholder": "Select...",
-    "login": "Login / Register"
-
   },
   "registerStepOne": {
       "validation": {

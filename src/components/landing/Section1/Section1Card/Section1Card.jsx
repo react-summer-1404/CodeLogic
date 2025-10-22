@@ -11,9 +11,9 @@ const Section1Card = ({item}) => {
     sm:gap-2 sm:px-8 sm:h-[64px]
     lg:gap-4 lg:px-16 lg:h-[84px]'>
       <span className='font-regular   dark:text-[#EEEEEE]  
-      sa:text-xs   sm:text-base   lg:text-2xl'>{t(`${item.title}`)}</span>
+      sa:text-xs   sm:text-base   lg:text-2xl'>{item.title}</span>
       <span className='font-bold   dark:text-[#EEEEEE]   
-      sa:text-sm   sm:text-xl   lg:text-5xl'>{t(`${item.members}`)}</span>
+      sa:text-sm   sm:text-xl   lg:text-5xl'>{item.members}</span>
     </div>
   )
 }
