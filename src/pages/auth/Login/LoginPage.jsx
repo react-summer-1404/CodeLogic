@@ -4,13 +4,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import initialData from '../../../components/common/Form/initialData/initialData'
 import * as Yup from 'yup'
 import { motion } from 'framer-motion'
+import TranslateButton from '../../../components/TranslateButton/TranslateButton'
+import { useTranslation } from 'react-i18next'
+import { Login1Val } from '../../../utils/Validations/loginVal/LoginVal'
 
-const validationSchema = Yup.object({
-    password: Yup.string().required('وارد کردن رمز عبور الزامی است').min(8, "رمز عبور باید حداقل شامل 8 کاراکتر باشد"),
-    name: Yup.string().required("وارد کردن این بخش الزامی است").min(4, "باید شامل حداقل 4 کاراکتر باشد")
-})
+
 const LoginPage = () => {
     const navigate = useNavigate()
+    const { t, i18n } = useTranslation()
 
     const [isDark, setIsDark] = useState(false)
     const handleDark = () => {
@@ -25,6 +26,12 @@ const LoginPage = () => {
     useEffect(() => {
         document.documentElement.classList.toggle("dark", isDark);
     }, [isDark])
+    const [validationSchema, setValidationSchema] = useState(
+        Login1Val()
+    );
+    useEffect(() => {
+        setValidationSchema(Login1Val());
+    }, [i18n.language]);
 
     return (
         <div className='bg-[#EAEAEA] min-h-screen flex items-center justify-center'>
@@ -38,9 +45,12 @@ const LoginPage = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ ease: "easeOut", type: "spring", stiffness: 300, delay: 0.5 }}
                     className=' flex flex-1 flex-col  p-17  gap-10 '>
-                    <Link to={"/"} className=' pr-8 bg-[url(./icons/home.png)] bg-no-repeat bg-[length:22.489788055419922px_20px] bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>صفحه اصلی</Link>
+                    <div className='flex justify-between items-center'>
+                        <Link to={"/"} className=' pr-8 bg-[url(./icons/home.png)] bg-no-repeat bg-[length:22.489788055419922px_20px] bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>{t("login.HomePage")}</Link>
+                        <TranslateButton />
+                    </div>
                     <div className='flex flex-col justify-center items-center gap-5  '>
-                        <h2 className='text-[24px] font-bold text-[#008C78] '>ورود به حساب کاربری</h2>
+                        <h2 className='text-[24px] font-bold text-[#008C78] '> {t('login.LoginToUserAccount')} </h2>
                         <div
 
                             className='w-full mt-7 px-6'>
@@ -55,33 +65,33 @@ const LoginPage = () => {
                                     <Form>
                                         <div className=' flex flex-col gap-2 ' >
                                             <div className=''>
-                                                <Field className={`outline-none bg-[url(./icons/user.png)] bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.name && touched.name ? "border-[#EF5350] border-1 " : ""}`} type="text" name='name' id='name' placeholder='ایمیل یا شماره تماس' />
+                                                <Field className={`outline-none bg-[url(./icons/user.png)] bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.name && touched.name ? "border-[#EF5350] border-1 " : ""}`} type="text" name='name' id='name' placeholder={t('login.EmailOrPhoneNumber')} />
                                             </div>
                                             <ErrorMessage name={'name'} component={"span"} className='text-[#EF5350] text-[14px] ' />
                                             <div className=' relative mt-6'>
-                                                <Field className={` bg-[url(./icons/lock.png)] bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${errors.password && touched.password ? "border-[#EF5350] border-1 " : ""} `} type={showPassword ? "text" : "password"} name='password' id='password' placeholder='رمز عبور' />
+                                                <Field className={` bg-[url(./icons/lock.png)] bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${errors.password && touched.password ? "border-[#EF5350] border-1 " : ""} `} type={showPassword ? "text" : "password"} name='password' id='password' placeholder={t('login.password')} />
                                                 <img onClick={handlePassword} src={showPassword ? "./icons/eyeClose.png" : "./icons/eyeOpen.png"} alt="" className=' cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  ' />
                                             </div>
                                             <ErrorMessage name={'password'} component={"span"} className='text-[#EF5350] text-[14px] ' />
                                             <div className='w-full flex justify-between mt-5 '>
                                                 <div className='flex gap-2'>
                                                     <Field className='' type="checkbox" name='forgot' id='forgot' />
-                                                    <label className=' text-[14px]' htmlFor="forgot"> مرا به خاطر بسپار</label>
+                                                    <label className=' text-[14px]' htmlFor="forgot">{t('login.RememberMe')}</label>
                                                 </div>
-                                                <Link className='text-[13px] text-[#848484] hover:text-blue-400 transition duration-300'>فراموشی رمز عبور</Link>
+                                                <Link className='text-[13px] text-[#848484] hover:text-blue-400 transition duration-300'>{t("login.ForgotPassword")}</Link>
                                             </div>
                                             <motion.button
                                                 onClick={() => navigate("/loginValidation")}
                                                 whileHover={{ scale: "1.03", boxShadow: "0 0 8px #cccccc" }}
                                                 whileTap={{ scale: "0.98" }}
                                                 transition={{ type: "spring", stiffness: 300 }}
-                                                type='submit' onClick={(values) => { console.log(values) }} className='w-full bg-[#008C78] text-white text-[16px] rounded-full mt-5 px-5 py-3  '>ارسال کد یکبار مصرف</motion.button>
+                                                type='submit' className='w-full bg-[#008C78] text-white text-[16px] rounded-full mt-5 px-5 py-3  '>{t('login.SendOneTimeCode')}</motion.button>
                                         </div>
                                     </Form>
                                 )}
                             </Formik>
                         </div>
-                        <div className='text-[14px]'>حساب کاربری ندارید؟ <Link className='text-[#008C78] hover:text-blue-500 transition duration-300'>ثبت نام</Link></div>
+                        <div className='text-[14px]'>{t('login.DontHaveAccount?')} <Link to={"/RegisterStepOne"} className='text-[#008C78] hover:text-blue-500 transition duration-300'>{t("login.Register")}</Link></div>
                     </div>
 
                 </motion.div>
@@ -100,8 +110,8 @@ const LoginPage = () => {
                             <img className=' max-w-[435px] w-full min-h-[409.592529296875px]  ' src="./images/login1.png" alt="" />
                         </div>
                         <div className=' flex flex-col justify-center items-center  gap-4'>
-                            <h2 className='text-[#005B77] tracking-wide mt-2 text-[24px] font-extrabold '>به دنیای یادگیری خوش آمدید!</h2>
-                            <p className='text-[16px] text-center'> با ورود به حساب کاربری‌تان، به محتوای آموزشی، دوره‌ها و ابزارهای پیشرفته دسترسی خواهید داشت. اولین قدم برای رشد و پیشرفت همین‌جاست!</p>
+                            <h2 className='text-[#005B77] tracking-wide mt-2 text-[24px] font-extrabold '>{t('login.Title1')}</h2>
+                            <p className='text-[16px] text-center'>{t("login.Caption1")}</p>
                         </div>
                     </div>
                 </motion.div>

@@ -36,7 +36,7 @@
     "rights": "All rights reserved for Bahr Academy.",
     "academy": "Bahr Academy"
   },
-    "navbar": {
+  "navbar": {
     "academy": "Bahr Academy",
     "home": "Home",
     "courses": "Courses",
@@ -44,10 +44,9 @@
     "search_placeholder": "Search...",
     "select_placeholder": "Select...",
     "login": "Login / Register"
-
   },
   "registerStepOne": {
-      "validation": {
+    "validation": {
       "required": "Please enter your phone number *",
       "invalid": "Invalid phone number *"
     },
@@ -62,16 +61,16 @@
     "login": "Login"
   },
   "registerStepTwo": {
-  "validation": {
-    "required": "This field is required"
+    "validation": {
+      "required": "This field is required"
+    },
+    "start_learning": "Just one step away from the world of learning!",
+    "description": "Opportunity for growth, progress, and a better future is here — take one step ahead with us!",
+    "back": "Back",
+    "create_account": "Create Account",
+    "enter_code": "Enter the OTP sent to you",
+    "confirm_otp": "Confirm OTP"
   },
-  "start_learning": "Just one step away from the world of learning!",
-  "description": "Opportunity for growth, progress, and a better future is here — take one step ahead with us!",
-  "back": "Back",
-  "create_account": "Create Account",
-  "enter_code": "Enter the OTP sent to you",
-  "confirm_otp": "Confirm OTP"
-},
   "registerStepThree": {
     "start_learning": "This is the final step of your registration.",
     "description": "Everything is ready! Now just enter your details to complete your account.",
@@ -98,16 +97,14 @@
       "confirmPassword_required": "Please confirm your password *",
       "confirmPassword_match": "Passwords do not match *"
     }
-
   },
-    "news": {
+  "news": {
     "title1": "React 18 Released",
     "desc1": "React 18 introduces concurrent features for faster rendering.",
     "views1": "1200 views",
     "rating1": "4.5",
     "category1": "Technology",
     "date1": "Oct 18, 2025",
-
     "title2": "New JavaScript Features",
     "desc2": "Learn about the latest ES2025 JavaScript features.",
     "views2": "850 views",
@@ -115,14 +112,14 @@
     "category2": "Programming",
     "date2": "Oct 15, 2025"
   },
-    "newsPage": {
+  "newsPage": {
     "breadcrumb": "Home - News",
     "headerTitle": "News & Articles",
     "results": "200 results",
     "searchPlaceholder": "Search...",
     "sortBy": "Sort by:"
   },
-   "categoryFilter": {
+  "categoryFilter": {
     "title": "Categories",
     "more": "+ Show more",
     "categories": {
@@ -131,28 +128,28 @@
       "jobMarket": "Job Market"
     }
   },
-    "NewsSelectOne":{
-    "dataone" : " Newest",
-    "datatwo" : "Oldest  "
+  "NewsSelectOne": {
+    "dataone": " Newest",
+    "datatwo": "Oldest  "
   },
-  "NewsSelectTwo" : {
-    "dataone" : "view"
+  "NewsSelectTwo": {
+    "dataone": "view"
   },
-   "NewsDetails" : {
-  "breadcrumbs": "Home - News - What is a Script and How is it Used in Programming?",
-  "pageTitle": "What is a Script and How is it Used in Programming?",
-  "authorLabel": "Author:",
-  "authorName": "Tyler Biton",
-  "userSatisfaction": "User Satisfaction",
-  "ratingValue": "3.5 Rating",
-  "latestNews": "Latest News",
-  "relatedNews": "Related News"
+  "NewsDetails": {
+    "breadcrumbs": "Home - News - What is a Script and How is it Used in Programming?",
+    "pageTitle": "What is a Script and How is it Used in Programming?",
+    "authorLabel": "Author:",
+    "authorName": "Tyler Biton",
+    "userSatisfaction": "User Satisfaction",
+    "ratingValue": "3.5 Rating",
+    "latestNews": "Latest News",
+    "relatedNews": "Related News"
   },
-    "titleImage": {
+  "titleImage": {
     "category": "Educational",
     "date": "June 3, 2025"
   },
-    "sidebar": {
+  "sidebar": {
     "news1": {
       "title": "What is Programming? – Everything You Need to Know + Uses",
       "name": "Edward Johnson",
@@ -169,7 +166,7 @@
       "date": "2025/06/06"
     }
   },
-    "newsComment": {
+  "newsComment": {
     "tabs": {
       "details": "Course Details",
       "comments": "User Comments"
@@ -201,7 +198,7 @@
       "textPlaceholder": "Write your comment text"
     }
   },
-   "personalComment": {
+  "personalComment": {
     "user": {
       "name": "Edward Johnson",
       "date": "June 3, 2025"
@@ -212,7 +209,7 @@
     },
     "actions": {
       "replyButton": "Reply",
-      "answer" : "answer",
+      "answer": "answer",
       "closeReply": "Close Replies"
     },
     "replyForm": {
@@ -220,7 +217,7 @@
       "textPlaceholder": "Write your reply text"
     }
   },
-    "answerComment": {
+  "answerComment": {
     "comment1": {
       "name": "Edward Johnson",
       "date": "June 3, 2025",
@@ -269,6 +266,69 @@
       "like": "200",
       "dislike": "50"
     }
+  },
+  "teachersPage": {
+    "titles": {
+      "HomePage": "HomePage",
+      "Teachers": "Teachers"
+    },
+    "filters": {
+      "Search": "search....",
+      "ShowMore": "Show more",
+      "ShowLess": "Show less",
+      "search": "search"
+    }
+  },
+  "NoResultFound": "No results found !",
+  "login": {
+    "HomePage": "HomePage",
+    "LoginToUserAccount": "Login to user account",
+    "EmailOrPhoneNumber": "Email or phoneNumber",
+    "password": "password",
+    "RememberMe": "Remember me",
+    "ForgotPassword": "Forgot password",
+    "SendOneTimeCode": "Send a one-time code",
+    "DontHaveAccount?": "Don't have an account?",
+    "Register": "Register",
+    "Title1": "Welcome to the world of learning!",
+    "Caption1": "By logging into your account, you will have access to educational content, courses, and advanced tools. This is the first step to growth and progress!",
+    "Back": "Back",
+    "EnterTheOneTimePasswordSent": "Enter the one-time password sent.",
+    "OneTimePasswordVerification": "One-time password verification",
+    "Title2": "Just one step to the world of learning!",
+    "caption2": "The opportunity to grow, progress, and build a better future is here — stay one step ahead with us!",
+    "Required": "The field is required."
+  },
+  "loginVal": {
+    "requiredPass": "Password entry is required.",
+    "minPass": "Password must contain at least 8 characters",
+    "requiredName": "This field is required to be entered",
+    "nameMin": "Must contain at least 4 characters"
+  },
+  "forgotPass": {
+    "homePage": "HomePage",
+    "ForgotPassword": "Forgot password",
+    "EnterYourEmailToRequest": "Enter your email to request a password change",
+    "email": "Enter your email",
+    "SubmitRequest": "Submit request",
+    "title1": "Forgetting your password is not the end of the road!",
+    "Caption1": "By entering your email, you will receive a password change link and return to the world of learning.",
+    "back": "Back",
+    "SetNewPass": "Set a new password for yourself.",
+    "newPass": "New password",
+    "RepeatPass": "Repeat password",
+    "RegisterNewPass": "Register a new password",
+    "title2": "The final step to get back on the learning path!",
+    "caption2": "By setting a new password, you will regain access to your account and can continue learning without stopping."
+  },
+  "forgotVal1": {
+    "required": "Entering an email is required.",
+    "email": "Email is not valid"
+  },
+  "forgotVal2": {
+    "required1": "Password entry is required",
+    "min": "Password must contain at least 8 characters.",
+    "required2": "Password confirmation is required.",
+    "oneOf": "Password does not match"
   }
-
 }
