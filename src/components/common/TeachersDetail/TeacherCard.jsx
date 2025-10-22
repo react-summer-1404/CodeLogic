@@ -5,7 +5,7 @@ import Linkedin from '../../../assets/Icons/Linkedin';
 const TeacherCard = ({ item }) => {
     const { t } = useTranslation();
     return (
-        <div className='flex flex-col items-center dark:bg-[#1E1E1E] dark:text-[#fff]  p-4 bg-[#FFFFFF] rounded-[20px] 
+        <div className='flex flex-col items-center dark:border dark:border-[#EAEAEA] dark:bg-[#1E1E1E] dark:text-[#fff]  p-4 bg-[#FFFFFF] rounded-[20px] 
     hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>
             <img src={item.pictureAddress} className='w-[180px] h-[180px] object-cover rounded-full' />
 

@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
 import initialData from '../../../components/common/Form/initialData/initialData'
 import { motion } from 'framer-motion'
-
+import TranslateButton from '../../../components/TranslateButton/TranslateButton'
+import { useTranslation } from 'react-i18next'
 
 
 const validationSchema = Yup.object({
@@ -13,7 +14,7 @@ const validationSchema = Yup.object({
 const initialValues = { code: ['', '', '', '', ''] }
 
 const LoginValidationPage = () => {
-
+    const { t } = useTranslation()
     const inputsRef = useRef([])
 
     const handleChange = (e, index, values, setFieldValue) => {
@@ -58,11 +59,14 @@ const LoginValidationPage = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ ease: "easeOut", type: "spring", stiffness: 300, delay: 0.5 }}
                     className=' flex flex-1 flex-col  p-17  gap-10 '>
-                    <Link to={"/login"} className=' pr-8 bg-[url(./icons/back.png)] bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>بازگشت</Link>
+                    <div className='flex justify-between items-center' >
+                        <Link to={"/login"} className=' pr-8 bg-[url(./icons/back.png)] bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>{t('login.Back')}</Link>
+                        <TranslateButton />
+                    </div>
                     <div className='flex flex-col justify-center items-center gap-3 p-5 '>
                         <div className='flex flex-col justify-center items-center gap-2  '>
-                            <h2 className='text-[24px] font-bold text-[#008C78] mb-2 '>ورود به حساب کاربری</h2>
-                            <h3 className='text-[13px]'>رمز یکبار مصرف ارسال شده را وارد کنید</h3>
+                            <h2 className='text-[24px] font-bold text-[#008C78] mb-2 '>{t('login.LoginToUserAccount')}</h2>
+                            <h3 className='text-[13px]'>{t('login.EnterTheOneTimePasswordSent')}</h3>
                         </div>
                         <div
 
@@ -100,7 +104,7 @@ const LoginValidationPage = () => {
                                                 )}
                                             </div>
                                             {touched.code && values.code.some((v, i) => touched.code[i] && !v) && (
-                                                <div className=' text-red-500 text-sm mt-1 font-semibold'>پر کردن فیلد الزامی است</div>
+                                                <div className=' text-red-500 text-sm mt-1 font-semibold'>{t('login.Required')}</div>
                                             )}
 
                                             <motion.button
@@ -110,7 +114,7 @@ const LoginValidationPage = () => {
                                                 transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
                                                 whileTap={{ scale: 0.98 }}
                                                 type='submit'
-                                                className=' mt-8  w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3  '>تایید رمز یکبار مصرف</motion.button>
+                                                className=' mt-8  w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3  '>{t('login.OneTimePasswordVerification')}</motion.button>
                                         </div>
                                     </Form>
                                 )}
@@ -140,8 +144,8 @@ const LoginValidationPage = () => {
                             <img className=' w-95 h-95  ' src="./images/login2.png" alt="" />
                         </div>
                         <div className=' flex flex-col justify-center items-center  gap-4'>
-                            <h2 className='text-[#005B77] tracking-wide mt-2 text-[24px] font-extrabold '>تنها یک قدم تا دنیای یادگیری!</h2>
-                            <p className='text-[16px] text-center'>  فرصت رشد، پیشرفت و ساختن آینده‌ای بهتر همین‌جاست — همراه با ما، یک قدم جلوتر باشید!</p>
+                            <h2 className='text-[#005B77] tracking-wide mt-2 text-[24px] font-extrabold '>{t('login.Title2')}</h2>
+                            <p className='text-[16px] text-center'>{t('login.caption2')}</p>
                         </div>
                     </div>
                 </motion.div>

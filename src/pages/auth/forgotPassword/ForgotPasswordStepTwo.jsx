@@ -5,16 +5,22 @@ import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import * as Yup from 'yup'
 import initialData from '../../../components/common/Form/initialData/initialData'
-const validationSchema = Yup.object({
-    password: Yup.string().required('وارد کردن رمز عبور الزامی است').min(8, "رمز عبور باید حداقل شامل 8 کاراکتر باشد"),
-    confirmPassword: Yup.string().required("تایید رمز عبور الزامی است").oneOf([Yup.ref("password")], "رمز عبور مطابقت ندارد")
-})
-const ForgotPasswordStepTwo = () => {
+import TranslateButton from '../../../components/TranslateButton/TranslateButton'
+import { useTranslation } from 'react-i18next'
+import { ForgotVal2 } from '../../../utils/Validations/forgotpassVal/ForgotVal'
 
+const ForgotPasswordStepTwo = () => {
+    const { t, i18n } = useTranslation()
     const [isDark, setIsDark] = useState(false)
     const handleDark = () => {
         setIsDark((prev) => !prev)
     }
+    const [validationSchema, setValidationSchema] = useState(
+        ForgotVal2()
+    );
+    useEffect(() => {
+        setValidationSchema(ForgotVal2());
+    }, [i18n.language]);
 
     const [showFirstPassword, setShowFirstPassword] = useState(false)
     const [showSecondPassword, setShowSecondPassword] = useState(false)
@@ -42,11 +48,14 @@ const ForgotPasswordStepTwo = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ ease: "easeOut", type: "spring", stiffness: 300, delay: 0.5 }}
                     className=' flex flex-1 flex-col  p-17  gap-14 '>
-                    <Link to={"/forgotPassOne"} className=' pr-8 bg-[url(./icons/back.png)] bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>بازگشت</Link>
+                    <div className='flex items-center justify-between'>
+                        <Link to={"/forgotPassOne"} className=' pr-8 bg-[url(./icons/back.png)] bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>{t("forgotPass.back")}</Link>
+                        <TranslateButton />
+                    </div>
                     <div className='flex flex-col justify-center items-center gap-3 p-5 '>
                         <div className='flex flex-col justify-center items-center gap-2  '>
-                            <h2 className='text-[24px] font-bold text-[#008C78] mb-2 '>فراموشی رمز عبور</h2>
-                            <h3 className='text-[16px] tracking-wide'>رمز عبور جدید برای خود تعیین کنید</h3>
+                            <h2 className='text-[24px] font-bold text-[#008C78] mb-2 '>{t('forgotPass.ForgotPassword')}</h2>
+                            <h3 className='text-[16px] tracking-wide'>{t('forgotPass.SetNewPass')}</h3>
                         </div>
                         <div className='w-full mt-7 px-6  '>
                             <Formik
@@ -58,12 +67,12 @@ const ForgotPasswordStepTwo = () => {
                                     <Form>
                                         <div className=' flex flex-col gap-3 ' >
                                             <div className=' relative flex flex-col '>
-                                                <Field className={` outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.password && touched.password ? "border-[#EF5350] border-1 " : ""} `} type={showFirstPassword ? "text" : "password"} name='password' id='password' placeholder='رمز عبور جدید' />
+                                                <Field className={` outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.password && touched.password ? "border-[#EF5350] border-1 " : ""} `} type={showFirstPassword ? "text" : "password"} name='password' id='password' placeholder={t('forgotPass.newPass')} />
                                                 <img onClick={handleFirstPassword} src={showFirstPassword ? "./icons/eyeClose.png" : "./icons/eyeOpen.png"} alt="" className=' cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  ' />
                                             </div>
                                             <ErrorMessage name={'password'} component={"span"} className='text-[#EF5350] text-[14px]  ' />
                                             <div className=' relative mt-6 '>
-                                                <Field className={` focus:outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.confirmPassword && touched.confirmPassword ? "border-[#EF5350] border-1 " : ""} `} type={showSecondPassword ? 'text' : 'password'} name='confirmPassword' id='confirmPassword' placeholder='تکرار رمز عبور' />
+                                                <Field className={` focus:outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.confirmPassword && touched.confirmPassword ? "border-[#EF5350] border-1 " : ""} `} type={showSecondPassword ? 'text' : 'password'} name='confirmPassword' id='confirmPassword' placeholder={t('forgotPass.RepeatPass')} />
                                                 <img onClick={handleSecondPassword} src={showSecondPassword ? "./icons/eyeClose.png" : "./icons/eyeOpen.png"} alt="" className=' cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  ' />
                                             </div>
                                             <ErrorMessage name={'confirmPassword'} component={"span"} className='text-[#EF5350] text-[14px]  ' />
@@ -71,7 +80,7 @@ const ForgotPasswordStepTwo = () => {
                                                 whileHover={{ scale: "1.03", boxShadow: "0 0 8px #cccccc" }}
                                                 whileTap={{ scale: "0.98" }}
                                                 transition={{ type: "spring", stiffness: 300 }}
-                                                type='submit' onClick={(values) => { console.log(values) }} className=' mt-6 w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>ثبت رمز عبور جدید</motion.button>
+                                                type='submit' onClick={(values) => { console.log(values) }} className=' mt-6 w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>{t('forgotPass.RegisterNewPass')}</motion.button>
                                         </div>
                                     </Form>
                                 )}
@@ -95,8 +104,8 @@ const ForgotPasswordStepTwo = () => {
                             <img className=' max-w-[435px] w-full min-h-[409.592529296875px]  ' src="./images/forgot2.png" alt="" />
                         </div>
                         <div className=' flex flex-col justify-center items-center  gap-4'>
-                            <h2 className='text-[#005B77] tracking-wide mt-2 text-[24px] font-extrabold '>قدم آخر برای بازگشت به مسیر یادگیری!</h2>
-                            <p className='text-[16px] text-center'> با تعیین یک رمز عبور جدید، دوباره به حساب کاربری خود دسترسی خواهید داشت و می‌توانید بدون توقف به یادگیری ادامه دهید.</p>
+                            <h2 className='text-[#005B77] tracking-wide mt-2 text-[24px] font-extrabold '>{t('forgotPass.title2')}</h2>
+                            <p className='text-[16px] text-center'>{t('forgotPass.caption2')}</p>
                         </div>
                     </div>
                 </motion.div>
