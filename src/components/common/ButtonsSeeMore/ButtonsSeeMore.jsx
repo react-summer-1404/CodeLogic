@@ -12,22 +12,27 @@ const ButtonsSeeMore = ({seeAllText, sliderRef}) => {
   const scrollLeft = () => {
     sliderRef.current.scrollBy({ left: -300, behavior: 'smooth' });
   };
+  
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === "fa";
 
-  const {t} = useTranslation();
 
   return (
     <div className='flex justify-between w-full px-10'>
       <div className='flex gap-4'>
-        <button className='cursor-pointer' onClick={scrollRight}>
+        <button onClick={scrollRight} className={`${isRtl ? '' : 'rotate-180'} cursor-pointer`} >
           <BigArrowRight/>
         </button>
-        <button className='px-[7px] py-2 bg-[#008C78] rounded-[50px] cursor-pointer' onClick={scrollLeft}>
+        <button onClick={scrollLeft} 
+        className={`${isRtl ? '' : 'rotate-180'} px-[7px] py-2 bg-[#008C78] rounded-[50px] cursor-pointer`}>
           <BigArrowLeft/>
         </button>
       </div>
       <button className='flex items-center gap-2'>
-        <span className='font-regular text-sm text-[#848484]'>{t(`${seeAllText}`)}</span>  
-        <Arrow/>
+        <span className='font-regular text-sm text-[#848484]'>{seeAllText}</span> 
+        <span className={`${isRtl ? '' : 'rotate-180'}`}>
+          <Arrow/>
+        </span> 
       </button>
     </div>
   )

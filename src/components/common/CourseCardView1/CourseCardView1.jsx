@@ -9,7 +9,8 @@ import { useTranslation } from 'react-i18next'
 
 const CourseCardView1 = ({ item }) => {
 
-    const { t } = useTranslation();
+    const { t,i18n } = useTranslation();
+    const isRtl = i18n.language === "fa";
 
     return (
         <div dir='rtl' className='flex flex-col flex-shrink-0 items-center w-[350px] rounded-[20px] relative cursor-pointer  
