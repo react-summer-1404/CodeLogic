@@ -7,22 +7,23 @@ import ButtonsSeeMore from '../../common/ButtonsSeeMore/ButtonsSeeMore'
 
 const CoursesSection = () => {
 
+  const {t} = useTranslation();
+
   const thisApiUrl = '/Home/GetCoursesTop?Count=5'; 
   const { data: sliderCoursesData } = useFetchData(thisApiUrl); 
 
   const sliderRef = useRef();
 
-  const { t } = useTranslation();
 
   return (
     <div className='flex flex-col items-center gap-8 w-full pt-[104px]'>
       <div className='flex flex-col items-center gap-2'>
         <h2 className='font-bold text-[#008C78]   dark:text-[#EEEEEE]]
-        sa:text-[24px]   sm:text-[28px]   lg:text-[32px]'>{t('دوره های آموزشی برنامه نویسی')}</h2>
+        sa:text-[24px]   sm:text-[28px]   lg:text-[32px]'>{t('sliderCourses.title')}</h2>
         <p className='font-regular   dark:text-[#DDDDDD]
-        sa:text-sm   sm:text-lg   lg:text-2xl'>{t('دوره‌هایی برای همه: یاد بگیر، تمرین کن، پروژه بزن!')}</p>
+        sa:text-sm   sm:text-lg   lg:text-2xl'>{t('sliderCourses.desc')}</p>
       </div>
-      <ButtonsSeeMore seeAllText={'مشاهده همه دوره ها'} sliderRef={sliderRef} />
+      <ButtonsSeeMore seeAllText={t('sliderCourses.seeAllText')} sliderRef={sliderRef} />
       <div className='flex flex-nowrap gap-8 w-full pb-2 px-10 overflow-hidden scroll-smooth scrollbar-hide' dir='ltr' ref={sliderRef}>
         {sliderCoursesData?.map((item, index) => { return <CourseCardView1 item={item} key={index}/>})}
       </div>
