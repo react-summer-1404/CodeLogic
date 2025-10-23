@@ -5,7 +5,7 @@ export const Login1Val = () => {
     return Yup.object({
         password: Yup.string().required(() => i18n.t('loginVal.requiredPass'))
             .min(8, () => i18n.t('loginVal.minPass')),
-        name: Yup.string().required(() => i18n.t('loginVal.requiredName'))
+        phoneOrGmail: Yup.string().required(() => i18n.t('loginVal.requiredName'))
             .min(4, () => i18n.t('loginVal.nameMin'))
     })
 }
