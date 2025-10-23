@@ -9,6 +9,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import TranslateButton from '../../../components/TranslateButton/TranslateButton'
 import { useTranslation } from 'react-i18next'
 import { ForgotVal1 } from '../../../utils/Validations/forgotpassVal/ForgotVal'
+import { useMutation, useMutationState } from '@tanstack/react-query'
+import ResetPass1 from '../../../core/services/api/post/ResetPass1'
+import { toast } from 'react-toastify'
 
 
 
@@ -38,6 +41,19 @@ const ForgotPasswordStepOne = () => {
         },
     });
 
+    const { mutate: postPass, isPending } = useMutation({
+        mutationKey: ["POSTPASS"],
+        mutationFn: (values) => ResetPass1(values),
+        onSettled: (data) => {
+            if (data.success) {
+                toast.success(data.message)
+                navigate('/forgotPassTwo')
+            } else if (!data.success) {
+                toast.error(data.message)
+            }
+        }
+    })
+
     return (
         <div className='bg-[#EAEAEA] min-h-screen flex items-center justify-center'>
             <AnimatePresence>
@@ -65,7 +81,8 @@ const ForgotPasswordStepOne = () => {
                                 <Formik
                                     initialValues={initialData}
                                     onSubmit={(values) => {
-                                        navigate("/forgotPassTwo")
+                                        console.log(values)
+                                        postPass(values)
                                     }}
                                     validationSchema={validationSchema}
                                 >
@@ -73,12 +90,11 @@ const ForgotPasswordStepOne = () => {
                                         <Form>
                                             <div className=' flex flex-col gap-9'>
                                                 <div className='flex flex-col gap-1'>
-                                                    <Field className={` outline-none bg-[url(./icons/email.png)] bg-no-repeat  bg-[length:14px_13px] bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-12 py-3  placeholder:text-[15px] ${errors.email && touched.email ? "border-[#EF5350] border-1 " : ""}`} type="email" name='email' id='email' placeholder={t('forgotPass.email')} />
+                                                    <Field className={` outline-none bg-[url(./icons/email.png)] bg-no-repeat  bg-[length:14px_13px] bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-12 py-3  placeholder:text-[15px] ${errors.email && touched.email ? "border-[#EF5350] border-1 " : ""}`} type="text" name='email' id='email' placeholder={t('forgotPass.email')} />
                                                     <ErrorMessage name={'email'} component={"span"} className='text-[#EF5350] text-[14px] ' />
                                                 </div>
 
                                                 <motion.button
-                                                    onClick={() => navigate("/forgotPassTwo")}
                                                     whileHover={{ scale: "1.03", boxShadow: "0 0 8px #cccccc" }}
                                                     whileTap={{ scale: "0.98" }}
                                                     transition={{ type: "spring", stiffness: 300 }}
