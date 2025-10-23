@@ -50,7 +50,7 @@ const Header = () => {
         >
           {t("navbar.courses")}
         </Link>
-        <Link to={'/news'}
+        <Link to={'/newslist'}
           className={` cursor-pointer text-sm md:text-base lg:text-lg font-semibold transition-colors duration-200 hover:text-[#008c78] ${
             isDark ? "text-white hover:text-[#00bfa5]" : ""
           }`}
@@ -102,32 +102,35 @@ const Header = () => {
         </button>
       </div>
 
+
+
+
       {mobileMenu && (
         <ul
           className={` !bg-[#008c78] text-white fixed top-0 right-0 h-full w-1/3 sm:w-1/2 bg-white dark:bg-[#1e1e1e] shadow-lg p-4 flex flex-col gap-4 z-50`}
         >
-          <Link
+          <li
             className={`text-sm font-bold transition-colors duration-200 hover:text-[#008c78] ${
               isDark ? "text-white hover:text-[#00bfa5]" : ""
             }`}
           >
             {t("navbar.academy")}
-          </Link>
-          <Link
+          </li>
+          <Link to={'/'}
             className={`text-sm font-semibold transition-colors duration-200 hover:text-[#008c78] ${
               isDark ? "text-white hover:text-[#00bfa5]" : ""
             }`}
           >
             {t("navbar.home")}
           </Link>
-          <Link
+          <Link to={'/courselist'}
             className={`text-sm font-semibold transition-colors duration-200 hover:text-[#008c78] ${
               isDark ? "text-white hover:text-[#00bfa5]" : ""
             }`}
           >
             {t("navbar.courses")}
           </Link>
-          <Link
+          <Link to={'/newslist'}
             className={`text-sm font-semibold transition-colors duration-200 hover:text-[#008c78] ${
               isDark ? "text-white hover:text-[#00bfa5]" : ""
             }`}
