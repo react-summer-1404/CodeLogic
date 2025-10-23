@@ -5,13 +5,14 @@ import CourseCardView1 from '../../common/CourseCardView1/CourseCardView1'
 import ButtonsSeeMore from '../../common/ButtonsSeeMore/ButtonsSeeMore'
 
 
-const CoursesSection = () => {
+const SliderCourses = () => {
 
   const {t} = useTranslation();
 
   const thisApiUrl = '/Home/GetCoursesTop?Count=5'; 
   const { data: sliderCoursesData } = useFetchData(thisApiUrl); 
 
+  console.log(sliderCoursesData)
   const sliderRef = useRef();
 
 
@@ -31,4 +32,4 @@ const CoursesSection = () => {
   )
 }
 
-export default CoursesSection
+export default SliderCourses

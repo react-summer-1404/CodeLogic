@@ -64,6 +64,10 @@
     "desc": "If you know how to code and want to share your knowledge with others, this is the place to teach, be influential, and earn money. Join our community of instructors and be part of the future of budding programmers.",
     "buttonText": "Join the group of professors"
   },
+  "newsListSection": {
+    "title": "News and Articles",
+    "desc": "Stay up to date with the latest programming news and articles."
+  },
   "footer": {
     "newsletter_button": "Sign Up",
     "newsletter_placeholder": "Enter your phone number",
@@ -153,6 +157,36 @@
       "confirmPassword_required": "Please confirm your password *",
       "confirmPassword_match": "Passwords do not match *"
     }
+  },
+  "courseList": {
+    "title": "Training courses",
+    "result": "Result"
+  },
+  "courseListSide": {
+    "searchPlaceholder": "Search...",
+    "startEndDate": "Starting and ending date",
+    "start": "Start",
+    "end": "End"
+  },
+  "sideDropDown": {
+    "title1": "Course level",
+    "title1Item1": "Professional",
+    "title1Item2": "Middle",
+    "title1Item3": "Beginner",
+    "title2": "Professors",
+    "title2Item1": "Dr. MohammadHosseinBahrololumi",
+    "title2Item2": "Mr.X",
+    "title2Item3": "Mr. Felan Felani",
+    "title3": "Technologies",
+    "title3Item1": "FrontEnd",
+    "title3Item2": "BackEnd"
+  },
+  "sortView": {
+    "title": "Sort by:"
+  },
+  "timeDropDown": {
+    "option1": "Newest",
+    "option2": "Oldest"
   },
   "news": {
     "title1": "React 18 Released",

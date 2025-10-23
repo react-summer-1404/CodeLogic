@@ -22,10 +22,11 @@ const CourseList = () => {
     
     <div className='flex flex-col items-center w-full   dark:bg-[#1E1E1E]'>
       <div className='flex items-center gap-2 pt-10'>
-        <h2 className='font-bold text-[32px] text-[#1E1E1E]   dark:text-[#EEEEEE]'>{t('دوره های آموزشی')}</h2>
-        <span className='font-regular text-base text-[#848484]   dark:text-[#DDDDDD]'>{t(`(${result}نتیجه)`)}</span>
+        <h2 className='font-bold text-[32px] text-[#1E1E1E]   dark:text-[#EEEEEE]'>{t('courseList.title')}</h2>
+        <span className='font-regular text-base text-[#848484]   dark:text-[#DDDDDD]'>{t(`${result}courseList.result`)}</span>
       </div>
-      <div className='flex justify-center gap-8 w-full pt-8 px-10'>
+      <div className='flex flex-col items-center gap-4 w-full pt-8 px-10 
+      lg:flex lg:justify-center lg:gap-8'>
         <CourseListSide handleSearchSubmit={handleSearchSubmit}/>
         <CourseListMain searchQuery={searchQuery}/>
       </div>

@@ -18,10 +18,10 @@ const TimeDropDown = ({ currentSortType, onSortChange }) => {
       <select id="sort-time" name="sort_time" value={currentSortType} onChange={handleDropdownChange}
       className='py-2 pr-4 pl-4 font-regular text-base text-[#848484] rounded-[15px] border border-[#EAEAEA] outline-0'>
         <option value="DESC">
-          {t('جدید ترین')}
+          {t('timeDropDown.option1')}
         </option>
         <option value="ASC">
-          {t('قدیمی ترین')}
+          {t('timeDropDown.option2')}
         </option>
       </select>
     </div>
