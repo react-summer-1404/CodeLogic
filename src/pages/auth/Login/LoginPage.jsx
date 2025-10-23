@@ -7,6 +7,9 @@ import { motion } from 'framer-motion'
 import TranslateButton from '../../../components/TranslateButton/TranslateButton'
 import { useTranslation } from 'react-i18next'
 import { Login1Val } from '../../../utils/Validations/loginVal/LoginVal'
+import Login from '../../../core/services/api/post/login'
+import { useMutation } from '@tanstack/react-query'
+import { toast } from 'react-toastify'
 
 
 const LoginPage = () => {
@@ -33,6 +36,20 @@ const LoginPage = () => {
         setValidationSchema(Login1Val());
     }, [i18n.language]);
 
+    const { mutate: postLogin, isPending } = useMutation({
+        mutationKey: ["LOGIN"],
+        mutationFn: (values) => Login(values),
+        onSettled: (data) => {
+            if (data.success) {
+                toast.success(data.message);
+                navigate(`/`);
+            } else if (!data.success) {
+                toast.error(data.message);
+            }
+        },
+    });
+
+
     return (
         <div className='bg-[#EAEAEA] min-h-screen flex items-center justify-center'>
             <motion.div
@@ -57,7 +74,8 @@ const LoginPage = () => {
                             <Formik
                                 initialValues={initialData}
                                 onSubmit={(values) => {
-                                    navigate("/loginValidation")
+                                    console.log(values)
+                                    postLogin(values)
                                 }}
                                 validationSchema={validationSchema}
                             >
@@ -65,9 +83,9 @@ const LoginPage = () => {
                                     <Form>
                                         <div className=' flex flex-col gap-2 ' >
                                             <div className=''>
-                                                <Field className={`outline-none bg-[url(./icons/user.png)] bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.name && touched.name ? "border-[#EF5350] border-1 " : ""}`} type="text" name='name' id='name' placeholder={t('login.EmailOrPhoneNumber')} />
+                                                <Field className={`outline-none bg-[url(./icons/user.png)] bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.name && touched.name ? "border-[#EF5350] border-1 " : ""}`} type="text" name='phoneOrGmail' id='phoneOrGmail' placeholder={t('login.EmailOrPhoneNumber')} />
                                             </div>
-                                            <ErrorMessage name={'name'} component={"span"} className='text-[#EF5350] text-[14px] ' />
+                                            <ErrorMessage name={'phoneOrGmail'} component={"span"} className='text-[#EF5350] text-[14px] ' />
                                             <div className=' relative mt-6'>
                                                 <Field className={` bg-[url(./icons/lock.png)] bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${errors.password && touched.password ? "border-[#EF5350] border-1 " : ""} `} type={showPassword ? "text" : "password"} name='password' id='password' placeholder={t('login.password')} />
                                                 <img onClick={handlePassword} src={showPassword ? "./icons/eyeClose.png" : "./icons/eyeOpen.png"} alt="" className=' cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  ' />
@@ -75,17 +93,18 @@ const LoginPage = () => {
                                             <ErrorMessage name={'password'} component={"span"} className='text-[#EF5350] text-[14px] ' />
                                             <div className='w-full flex justify-between mt-5 '>
                                                 <div className='flex gap-2'>
-                                                    <Field className='' type="checkbox" name='forgot' id='forgot' />
-                                                    <label className=' text-[14px]' htmlFor="forgot">{t('login.RememberMe')}</label>
+                                                    <Field className='' type="checkbox" name='rememberMe' id='rememberMe' />
+                                                    <label className=' text-[14px]' htmlFor="rememberMe">{t('login.RememberMe')}</label>
                                                 </div>
                                                 <Link className='text-[13px] text-[#848484] hover:text-blue-400 transition duration-300'>{t("login.ForgotPassword")}</Link>
                                             </div>
                                             <motion.button
-                                                onClick={() => navigate("/loginValidation")}
                                                 whileHover={{ scale: "1.03", boxShadow: "0 0 8px #cccccc" }}
                                                 whileTap={{ scale: "0.98" }}
                                                 transition={{ type: "spring", stiffness: 300 }}
-                                                type='submit' className='w-full bg-[#008C78] text-white text-[16px] rounded-full mt-5 px-5 py-3  '>{t('login.SendOneTimeCode')}</motion.button>
+                                                type='submit'
+                                                disabled={isPending}
+                                                className='w-full bg-[#008C78] text-white text-[16px] rounded-full mt-5 px-5 py-3  '>{t('login.SendOneTimeCode')}</motion.button>
                                         </div>
                                     </Form>
                                 )}

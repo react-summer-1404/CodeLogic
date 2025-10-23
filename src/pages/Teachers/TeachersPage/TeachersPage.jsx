@@ -9,6 +9,8 @@ import apiClient from '../../../core/interceptor/interceptor'
 import { Atom } from 'react-loading-indicators'
 import dataTeachers from '../../../components/common/data/Teachers/TeachersData'
 import { useTranslation } from 'react-i18next'
+import { useQuery } from '@tanstack/react-query'
+import GetAllTeachers from '../../../core/services/api/Get/GetAllTeachers'
 
 const TeachersPage = () => {
     const { t } = useTranslation()
@@ -73,31 +75,16 @@ const TeachersPage = () => {
 
     const sliderRef = useRef(null)
 
-    const fetchTeachers = async () => {
-        try {
-            setIsLoading(true)
-            const response = await apiClient.get("/Home/GetTeachers")
-            if (!response.ok) { setIsError(true) }
-            const data = response.data
-            setTeachersData(data)
-            console.log("teachersData", teachersData)
-        }
-        catch (error) {
-            setIsError(true)
-            console.log(error)
-        }
-        finally {
-            setIsLoading(false)
-        }
-    }
-    useEffect(() => {
-        fetchTeachers()
-    }, [])
+    const { data, isPending } =
+        useQuery({ queryKey: ['GETALLTEACHERS', TempCount], queryFn: () => GetAllTeachers({ rows: TempCount, }) })
+    console.log(data)
+
+
 
     return (
         <div >
-            {isLoading && <img className='mx-auto p-4 ' src="/images/loading.gif" alt="" />}
-            {!isLoading && (
+            {isPending && <img className='mx-auto p-4 ' src="/images/loading.gif" alt="" />}
+            {!isPending && (
                 <AnimatePresence>
                     <motion.div
                         variants={fadeInUp(0.35)}
