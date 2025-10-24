@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CategoryFilter from "../../components/CategoryFilter/CategoryFilter";
 import NewsCard from "../../components/NewsCard/NewsCard";
 import SearchIcon from "@mui/icons-material/Search";
@@ -9,189 +9,32 @@ import NewsSelectTwo from "../../components/NewsSelectTwo/NewsSelectTwo";
 import ReactPaginate from "react-paginate";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-
-const newsData = [
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "پایتون + ماینکرفت = یادگیری برنامه‌نویسی با بازی!",
-    description:
-      "پایتون یکی از محبوب‌ترین زبان‌های برنامه‌نویسی دنیاست؛ ساده، قابل فهم و در عین حال قدرتمند! ماین...",
-    views: 22,
-    rating: 3.1,
-    category: "آموزشی",
-    date: "1404/03/13",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "جاوااسکریپت از صفر تا صد",
-    description: "جاوااسکریپت یکی از زبان‌های پرکاربرد در توسعه وب است...",
-    views: 55,
-    rating: 4.5,
-    category: "آموزشی",
-    date: "1404/05/20",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "آموزش ری‌اکت از مقدماتی تا پیشرفته",
-    description:
-      "ری‌اکت یکی از محبوب‌ترین کتابخانه‌های فرانت‌اند است و در دنیای وب کاربرد زیادی دارد...",
-    views: 120,
-    rating: 4.8,
-    category: "آموزشی",
-    date: "1404/07/11",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "پایتون + ماینکرفت = یادگیری برنامه‌نویسی با بازی!",
-    description:
-      "پایتون یکی از محبوب‌ترین زبان‌های برنامه‌نویسی دنیاست؛ ساده، قابل فهم و در عین حال قدرتمند! ماین...",
-    views: 22,
-    rating: 3.1,
-    category: "آموزشی",
-    date: "1404/03/13",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "جاوااسکریپت از صفر تا صد",
-    description: "جاوااسکریپت یکی از زبان‌های پرکاربرد در توسعه وب است...",
-    views: 55,
-    rating: 4.5,
-    category: "آموزشی",
-    date: "1404/05/20",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "آموزش ری‌اکت از مقدماتی تا پیشرفته",
-    description:
-      "ری‌اکت یکی از محبوب‌ترین کتابخانه‌های فرانت‌اند است و در دنیای وب کاربرد زیادی دارد...",
-    views: 120,
-    rating: 4.8,
-    category: "آموزشی",
-    date: "1404/07/11",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "پایتون + ماینکرفت = یادگیری برنامه‌نویسی با بازی!",
-    description:
-      "پایتون یکی از محبوب‌ترین زبان‌های برنامه‌نویسی دنیاست؛ ساده، قابل فهم و در عین حال قدرتمند! ماین...",
-    views: 22,
-    rating: 3.1,
-    category: "آموزشی",
-    date: "1404/03/13",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "جاوااسکریپت از صفر تا صد",
-    description: "جاوااسکریپت یکی از زبان‌های پرکاربرد در توسعه وب است...",
-    views: 55,
-    rating: 4.5,
-    category: "آموزشی",
-    date: "1404/05/20",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "آموزش ری‌اکت از مقدماتی تا پیشرفته",
-    description:
-      "ری‌اکت یکی از محبوب‌ترین کتابخانه‌های فرانت‌اند است و در دنیای وب کاربرد زیادی دارد...",
-    views: 120,
-    rating: 4.8,
-    category: "آموزشی",
-    date: "1404/07/11",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "پایتون + ماینکرفت = یادگیری برنامه‌نویسی با بازی!",
-    description:
-      "پایتون یکی از محبوب‌ترین زبان‌های برنامه‌نویسی دنیاست؛ ساده، قابل فهم و در عین حال قدرتمند! ماین...",
-    views: 22,
-    rating: 3.1,
-    category: "آموزشی",
-    date: "1404/03/13",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "جاوااسکریپت از صفر تا صد",
-    description: "جاوااسکریپت یکی از زبان‌های پرکاربرد در توسعه وب است...",
-    views: 55,
-    rating: 4.5,
-    category: "آموزشی",
-    date: "1404/05/20",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "آموزش ری‌اکت از مقدماتی تا پیشرفته",
-    description:
-      "ری‌اکت یکی از محبوب‌ترین کتابخانه‌های فرانت‌اند است و در دنیای وب کاربرد زیادی دارد...",
-    views: 120,
-    rating: 4.8,
-    category: "آموزشی",
-    date: "1404/07/11",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "پایتون + ماینکرفت = یادگیری برنامه‌نویسی با بازی!",
-    description:
-      "پایتون یکی از محبوب‌ترین زبان‌های برنامه‌نویسی دنیاست؛ ساده، قابل فهم و در عین حال قدرتمند! ماین...",
-    views: 22,
-    rating: 3.1,
-    category: "آموزشی",
-    date: "1404/03/13",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "جاوااسکریپت از صفر تا صد",
-    description: "جاوااسکریپت یکی از زبان‌های پرکاربرد در توسعه وب است...",
-    views: 55,
-    rating: 4.5,
-    category: "آموزشی",
-    date: "1404/05/20",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "آموزش ری‌اکت از مقدماتی تا پیشرفته",
-    description:
-      "ری‌اکت یکی از محبوب‌ترین کتابخانه‌های فرانت‌اند است و در دنیای وب کاربرد زیادی دارد...",
-    views: 120,
-    rating: 4.8,
-    category: "آموزشی",
-    date: "1404/07/11",
-  },
-];
+import { useQuery } from "@tanstack/react-query";
+import getAllNews from "../../core/services/api/Get/News";
 
 const News = () => {
+  const { data, isLoading } = useQuery({
+    queryFn: getAllNews,
+  });
+
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "fa";
 
   const [selectedView, setSelectedView] = useState("grid");
 
   const [currentPage, setCurrentPage] = useState(0);
-
+  if (isLoading) return <div>loading</div>;
   const itemsPerPage = selectedView === "grid" ? 12 : 5;
 
   const offset = currentPage * itemsPerPage;
-  const currentItems = newsData.slice(offset, offset + itemsPerPage);
+  const currentItems = data.news.slice(offset, offset + itemsPerPage);
 
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const pageCount = Math.ceil(newsData.length / itemsPerPage);
+  const pageCount = Math.ceil(data.news.length / itemsPerPage);
 
   const fadeInOnly = (delay) => ({
     hidden: { opacity: 0 },
@@ -329,13 +172,13 @@ const News = () => {
                 }
               >
                 <NewsCard
-                  titleKey="news.title1"
-                  descriptionKey="news.desc1"
-                  viewsKey="news.views1"
-                  ratingKey="news.rating1"
-                  categoryKey="news.category1"
-                  dateKey="news.date1"
-                  {...news}
+                  image={news.currentImageAddressTumb}
+                  title={news.title}
+                  description={news.miniDescribe}
+                  views={news.currentView}
+                  rating={3.2}
+                  category={news.newsCatregoryName}
+                  date={news.insertDate}
                   viewType={selectedView}
                 />
               </motion.div>

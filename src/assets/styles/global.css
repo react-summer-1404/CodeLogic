@@ -50,3 +50,6 @@ body.ltr {
     scrollbar-width: none;
   }
 }
+.dark .css-d3zrhx-MuiPaper-root-MuiDialog-paper {
+  background-color: #1e1e1e !important;
+}
