@@ -22,9 +22,6 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Landing /> },
-      { path: "/RegisterStepOne", element: <StepOne /> },
-      { path: "/RegisterStepTwo", element: <StepTwo /> },
-      { path: "/RegisterStepThree", element: <StepThree /> },
       { path: "/courselist", element: <CourseList /> },
       { path: "/coursedetail", element: <CourseDetail /> },
       { path: "/newslist", element: <News /> },

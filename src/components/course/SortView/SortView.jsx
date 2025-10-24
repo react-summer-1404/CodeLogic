@@ -22,8 +22,8 @@ const SortView = ({onViewChange, currentView, currentPageSize, onPageSizeChange,
 
 
   return (
-    <div className='flex justify-between items-center bg-[#FFFFFF] w-[640px] h-14 px-4 rounded-[12px]
-    lg:w-[1104px] lg:h-18 lg:rounded-[15px]'>
+    <div className='flex justify-between items-center bg-[#FFFFFF] w-full h-14 px-4 rounded-[12px]
+    lg:h-18 lg:rounded-[15px]'>
       <div className='flex items-center gap-4'>
         <span className='font-regular text-base text-[#1E1E1E]'>{t('sortView.title')}</span>
         <TimeDropDown currentSortType={currentSortType} onSortChange={onSortChange}/>
