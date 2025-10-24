@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       { path: "/RegisterStepTwo", element: <StepTwo /> },
       { path: "/RegisterStepThree", element: <StepThree /> },
       { path: "/news", element: <News /> },
-      { path: "/newsdetails", element: <NewsDetails /> },
+      { path: "/news/:id", element: <NewsDetails /> },
     ],
   },
   { path: "/login", element: <LoginPage /> },

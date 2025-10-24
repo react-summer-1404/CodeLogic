@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import getAllNews from "../../core/services/api/Get/News";
+import { Link } from "react-router-dom";
 
 const News = () => {
   const { data, isLoading } = useQuery({
@@ -63,7 +64,7 @@ const News = () => {
         variants={fadeInOnly(0.3)}
         initial="hidden"
         animate="visible"
-        className="pt-10 flex flex-col justify-center items-center px-4"
+        className="pt-10 flex flex-col justify-center  items-center px-4"
       >
         <span className="font-bold mb-5 text-[#008C78] dark:text-[#ccc]">
           {t("newsPage.breadcrumb")}
@@ -77,7 +78,7 @@ const News = () => {
         </p>
       </motion.div>
 
-      <motion.div className="flex  flex-col sm:flex-row items-start justify-between max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+      <motion.div className="   flex  flex-col sm:flex-row items-start justify-between max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
         <motion.div
           variants={fadeInOnly(0.3)}
           initial="hidden"
@@ -106,14 +107,14 @@ const News = () => {
           <CategoryFilter />
         </motion.div>
 
-        <div className="w-full sm:w-3/4 lg:w-[79%] sm:ml-6">
+        <div className="w-full  sm:w-3/4 lg:w-[79%] sm:ml-6">
           <motion.div
             variants={fadeInOnly(0.3)}
             initial="hidden"
             animate="visible"
             className="bg-[#fff] dark:bg-[#333] mb-5 mt-5 sm:mt-17 shadow-md rounded-xl px-4 py-3 sm:px-10 flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0"
           >
-            <div className="flex flex-wrap justify-center sm:justify-start items-center !gap-4">
+            <div className="  flex flex-wrap justify-center sm:justify-start items-center !gap-4">
               <span className=" dark:text-[#fff] text-sm">
                 {t("newsPage.sortBy")}
               </span>
@@ -171,16 +172,22 @@ const News = () => {
                     : "w-full sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.66px)]"
                 }
               >
-                <NewsCard
-                  image={news.currentImageAddressTumb}
-                  title={news.title}
-                  description={news.miniDescribe}
-                  views={news.currentView}
-                  rating={3.2}
-                  category={news.newsCatregoryName}
-                  date={news.insertDate}
-                  viewType={selectedView}
-                />
+                <Link to={`/news/${news.id}`}>
+                  <NewsCard
+                    image={news.currentImageAddressTumb}
+                    title={news.title}
+                    description={news.miniDescribe}
+                    views={news.currentView}
+                    rating={3.2}
+                    category={news.newsCatregoryName}
+                    date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    }).format(new Date(news.insertDate))}
+                    viewType={selectedView}
+                  />
+                </Link>
               </motion.div>
             ))}
           </motion.div>

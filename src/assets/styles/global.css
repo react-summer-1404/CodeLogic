@@ -53,3 +53,9 @@ body.ltr {
 .dark .css-d3zrhx-MuiPaper-root-MuiDialog-paper {
   background-color: #1e1e1e !important;
 }
+.dark .css-p0jfm2-control {
+  background-color: #333 !important;
+}
+.dark ::-webkit-scrollbar-track {
+  background-color: #1e1e1e !important;
+}
