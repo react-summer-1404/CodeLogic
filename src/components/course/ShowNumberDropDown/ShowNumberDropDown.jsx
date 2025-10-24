@@ -16,17 +16,16 @@ const ShowNumberDropDown = ({ currentPageSize, onPageSizeChange }) => {
 
 
   return (
-    <div>
-      <select value={currentPageSize} onChange={handleChange} className='py-2 pr-4 pl-4 font-regular text-base text-[#848484] 
-      rounded-[15px] border border-[#EAEAEA]'>
-        {options.map((size) => (
-          <option key={size} value={size}>
-            {t(size.toString())} 
-          </option>
-        ))}
-      </select>
-    </div>
-    )
+    <select value={currentPageSize} onChange={handleChange} className='font-regular text-base text-[#848484] border 
+    border-[#EAEAEA] py-1 pr-2 pl-2 rounded-[12px]
+    lg:py-2 lg:pr-4 lg:pl-4 lg:rounded-[15px]'>
+      {options.map((size) => (
+        <option key={size} value={size}>
+          {t(size.toString())} 
+        </option>
+      ))}
+    </select>
+  )
 }
 
 export default ShowNumberDropDown

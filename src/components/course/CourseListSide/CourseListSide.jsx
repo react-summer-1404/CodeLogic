@@ -36,18 +36,20 @@ const CourseListSide = ({handleSearchSubmit}) => {
 
 
   return (
-    <div className='flex flex-col gap-4'>
-
+    <div className='w-full flex flex-col gap-4
+    md:w-[284px]'>
       <div className='relative'>
         <input type='search' placeholder={t('courseListSide.searchPlaceholder')} value={search} onChange={(e) => {setSearch(e.target.value)}} 
         onKeyDown={handleKeyDown} 
-        className='w-[284px] h-[46px] px-4 font-regular text-base text-[#848484] bg-[#FFFFFF] rounded-[15px] outline-0'/>
+        className='w-full h-[46px] px-4 font-regular text-base text-[#848484] bg-[#FFFFFF] rounded-[15px] outline-0
+        md:w-[284px]'/>
         <div onClick={handleSearchClick} className={`absolute top-[15px] ${isRtl ? 'left-4' : 'right-4'}`}>
           <Search />
         </div>
       </div>
 
-      <div className='flex flex-col p-4 bg-[#FFFFFF] rounded-[15px] gap-4 w-[284px]'>
+      <div className='flex flex-col w-full p-4 bg-[#FFFFFF] rounded-[15px] gap-4
+      md:w-[284px]'>
         <div onClick={() => {setIsOpen(!isOpen)}} className='flex justify-between cursor-pointer'>
           <span className='font-bold text-[18px] text-[#1E1E1E]'>{t('courseListSide.startEndDate')}</span>
           <button className={`${isOpen ? 'rotate-0' : 'rotate-180'}`}>

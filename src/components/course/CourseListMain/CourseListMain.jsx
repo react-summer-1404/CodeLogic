@@ -79,7 +79,7 @@ const Main = ({ searchQuery }) => {
 
   return (
 
-    <div className='flex flex-col gap-8'>
+    <div className='flex flex-col gap-8 w-full'>
       <SortView onViewChange={handleViewChange} currentView={currentView} currentPageSize={pageSize} 
       onPageSizeChange={handlePageSizeChange}/>
       <div className='flex flex-row flex-wrap gap-y-8 gap-x-4'>
