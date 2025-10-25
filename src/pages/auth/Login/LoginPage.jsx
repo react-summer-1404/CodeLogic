@@ -1,7 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import initialData from '../../../components/common/Form/initialData/initialData'
 import * as Yup from 'yup'
 import { motion } from 'framer-motion'
 import TranslateButton from '../../../components/TranslateButton/TranslateButton'
@@ -10,6 +9,7 @@ import { Login1Val } from '../../../utils/Validations/loginVal/LoginVal'
 import Login from '../../../core/services/api/post/login'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
+import loginData from '../../../components/common/Form/initialData/loginData'
 
 
 const LoginPage = () => {
@@ -72,7 +72,7 @@ const LoginPage = () => {
 
                             className='w-full mt-7 px-6'>
                             <Formik
-                                initialValues={initialData}
+                                initialValues={loginData}
                                 onSubmit={(values) => {
                                     console.log(values)
                                     postLogin(values)
