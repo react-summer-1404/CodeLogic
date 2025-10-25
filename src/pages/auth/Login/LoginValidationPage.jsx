@@ -2,10 +2,10 @@ import { Form, Formik, Field, ErrorMessage } from 'formik'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
-import initialData from '../../../components/common/Form/initialData/initialData'
 import { motion } from 'framer-motion'
 import TranslateButton from '../../../components/TranslateButton/TranslateButton'
 import { useTranslation } from 'react-i18next'
+import loginData from '../../../components/common/Form/initialData/loginData'
 
 
 const validationSchema = Yup.object({
@@ -72,7 +72,7 @@ const LoginValidationPage = () => {
 
                             className='w-full mt-7 px-7'>
                             <Formik
-                                initialValues={initialValues}
+                                initialValues={loginData}
                                 onSubmit={(values) => handleSubmit(values)}
                                 validationSchema={validationSchema}
                             >
