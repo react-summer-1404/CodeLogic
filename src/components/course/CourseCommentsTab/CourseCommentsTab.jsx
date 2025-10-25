@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 
-const CourseCommentTab = ({activeTab, setActiveTab}) => {
+const CourseCommentsTab = ({activeTab, setActiveTab}) => {
 
   const {t} = useTranslation();
 
@@ -14,14 +14,14 @@ const CourseCommentTab = ({activeTab, setActiveTab}) => {
     <div className='flex gap-2 pt-10'>
       <button onClick={() => setActiveTab('detail')} className={`py-[9px] px-4 rounded-[48px] cursor-pointer
       ${activeTab === 'detail' ? 'text-[#FFFFFF] bg-[#008C78]' : ''}`}>
-        {t('مشخصات دوره')}
+        {t('courseCommentsTab.courseSpecifications')}
       </button>
       <button onClick={() => {setActiveTab('comment')}} className={`py-[9px] px-4 rounded-[48px] cursor-pointer
       ${activeTab === 'comment' ? 'text-[#FFFFFF] bg-[#008C78]' : ''}`}>
-        {t('نظرات کاربران')}
+        {t('courseCommentsTab.userComments')}
       </button>
     </div>
   )
 }
 
-export default CourseCommentTab
+export default CourseCommentsTab

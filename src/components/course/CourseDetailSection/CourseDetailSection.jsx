@@ -20,7 +20,7 @@ const CourseDetailSection = () => {
 
     return (
         <div className='flex flex-col gap-8 pt-8'>
-            <h3 className='font-bold text-[18px] text-[#1E1E1E]'>{t('جزئیات')}</h3>
+            <h3 className='font-bold text-[18px] text-[#1E1E1E]'>{t('courseDetailSection.title')}</h3>
             <div className='flex gap-12'>
                 {
                     courseDetailItem.map((item, index) => (

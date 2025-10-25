@@ -12,12 +12,12 @@ const CourseTeacher = () => {
             <div className='flex flex-col gap-2'>
                 <img src={CourseTeacherIMG} />
                 <div className='flex flex-col items-center'>
-                    <span className='font-regular text-base text-[#848484]'>{t('مدرس دوره :')}</span>
+                    <span className='font-regular text-base text-[#848484]'>{t('courseTeacher.courseTeacher')}</span>
                     <h3 className='font-bold text-[18px] text-[#1E1E1E]'>{t('مهندس ادوارد جانسون')}</h3>
                 </div>
             </div>
             <button className='py-[9px] px-24 font-regular text-base text-[#FFFFFF] bg-[#000000] rounded-[48px]'>
-                {t('مشاهده اطلاعات بیشتر')}
+                {t('courseTeacher.buttonText')}
             </button>
         </div>
     )

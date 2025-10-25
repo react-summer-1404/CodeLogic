@@ -158,6 +158,8 @@
       "confirmPassword_match": "رمز عبور شما همخوانی ندارد *"
     }
   },
+
+
   "courseList": {
     "title": "دوره های آموزشی",
     "result": "نتیجه"
@@ -188,6 +190,50 @@
     "option1": "جدیدترین",
     "option2": "قدیمی ترین"
   },
+
+
+  "courseInfo": {
+    "startDate": "تاریخ شروع",
+    "startTime": "ساعت شروع",
+    "endDate": "تاریخ پایان",
+    "person": "نفر",
+    "courseCapacity": "ظرفیت دوره",
+    "price": "قیمت",
+    "toman": "تومان",
+    "reserveBtn": "همین حالا رزرو کنید",
+    "off": "تخفیف"
+  },
+  "userSatisfaction": {
+    "title": "رضایت کاربران",
+    "score": "امتیاز"
+  },
+  "courseTeacher": {
+    "courseTeacher": "مدرس دوره",
+    "buttonText": "مشاهده اطلاعات بیشتر"
+  },
+  "courseCommentsTab": {
+    "courseSpecifications": "مشخصات دوره",
+    "userComments": "نظرات کاربران"
+  },
+  "courseDetailSection": {
+    "title": "جزئیات"
+  },
+  "courseDesc": {
+    "description": "توضیحات"
+  },
+  "courseComments": {
+    "title": "همه ی نظرات"
+  },
+  "courseCommentForm": {
+    "titleInputsTitle": "عنوان دیدگاه",
+    "titleInputsPlcholder": "عنوان دیدگاه خود را بنویسید",
+    "textInputsTitle": "متن دیدگاه",
+    "textInputsPlcholder": "متن دیدگاه خود را بنویسید",
+    "send": "ارسال"
+  },
+
+
+
   "news": {
     "title1": "انتشار React 18",
     "desc1": "React 18 ویژگی‌های همزمان برای رندر سریع‌تر معرفی می‌کند.",

@@ -158,6 +158,8 @@
       "confirmPassword_match": "Passwords do not match *"
     }
   },
+
+
   "courseList": {
     "title": "Training courses",
     "result": "Result"
@@ -188,6 +190,48 @@
     "option1": "Newest",
     "option2": "Oldest"
   },
+
+  "courseInfo": {
+    "startDate": "StartDate",
+    "startTime": "StartTime",
+    "endDate": "EndDate",
+    "person": "Person",
+    "courseCapacity": "Course Capacity",
+    "price": "Price",
+    "toman": "Toman",
+    "reserveBtn": "Reserve Now",
+    "off": "Off"
+  },
+  "userSatisfaction": {
+    "title": "User Satisfaction",
+    "score": "score"
+  },
+  "courseTeacher": {
+    "courseTeacher": "Course Teracher",
+    "buttonText": "View more information"
+  },
+  "courseCommentsTab": {
+    "courseSpecifications": "Course Specifications",
+    "userComments": "User Comments"
+  },
+  "courseDetailSection": {
+    "title": "Details"
+  },
+  "courseDesc": {
+    "description": "Description"
+  },
+  "courseComments": {
+    "title": "All Comments"
+  },
+  "courseCommentForm": {
+    "titleInputsTitle": "Comment Title",
+    "titleInputsPlcholder": "Enter your comment's title",
+    "textInputsTitle": "Comment Desc",
+    "textInputsPlcholder": "Enter your comment's text",
+    "send": "Send"
+  },
+
+
   "news": {
     "title1": "React 18 Released",
     "desc1": "React 18 introduces concurrent features for faster rendering.",
