@@ -4,10 +4,13 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import * as Yup from 'yup'
-import initialData from '../../../components/common/Form/initialData/initialData'
 import TranslateButton from '../../../components/TranslateButton/TranslateButton'
 import { useTranslation } from 'react-i18next'
 import { ForgotVal2 } from '../../../utils/Validations/forgotpassVal/ForgotVal'
+import resetData2 from '../../../components/common/Form/initialData/resetData2'
+import { useMutation } from '@tanstack/react-query'
+import ResetPass2 from '../../../core/services/api/post/ResetPass2'
+import { toast } from 'react-toastify'
 
 const ForgotPasswordStepTwo = () => {
     const { t, i18n } = useTranslation()
@@ -34,7 +37,18 @@ const ForgotPasswordStepTwo = () => {
         document.documentElement.classList.toggle("dark", isDark);
     }, [isDark])
     const navigate = useNavigate()
-
+    const { mutate: PostNewPass, isPending } = useMutation({
+        mutationKey: ["POSTNEWPASS"],
+        mutationFn: (values) => ResetPass2(values),
+        onSettled: (data) => {
+            if (data.success) {
+                toast.success(data.message)
+                navigate('/login')
+            } else if (!data.success) {
+                toast.error(data.message)
+            }
+        }
+    })
 
     return (
         <div className='bg-[#EAEAEA] min-h-screen flex items-center justify-center'>
@@ -59,20 +73,25 @@ const ForgotPasswordStepTwo = () => {
                         </div>
                         <div className='w-full mt-7 px-6  '>
                             <Formik
-                                initialValues={initialData}
-                                onSubmit={(value) => navigate("/login")}
+                                initialValues={resetData2}
+                                onSubmit={(value) => {
+                                    console.log(value)
+                                    PostNewPass(value)
+                                }}
                                 validationSchema={validationSchema}
                             >
                                 {({ errors, touched }) => (
                                     <Form>
                                         <div className=' flex flex-col gap-3 ' >
                                             <div className=' relative flex flex-col '>
-                                                <Field className={` outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.password && touched.password ? "border-[#EF5350] border-1 " : ""} `} type={showFirstPassword ? "text" : "password"} name='password' id='password' placeholder={t('forgotPass.newPass')} />
+                                                <Field className={` outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.password && touched.password ? "border-[#EF5350] border-1 " : ""} `}
+                                                    type={showFirstPassword ? "text" : "password"} name='newPassword' id='newPassword' placeholder={t('forgotPass.newPass')} />
                                                 <img onClick={handleFirstPassword} src={showFirstPassword ? "./icons/eyeClose.png" : "./icons/eyeOpen.png"} alt="" className=' cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  ' />
                                             </div>
-                                            <ErrorMessage name={'password'} component={"span"} className='text-[#EF5350] text-[14px]  ' />
+                                            <ErrorMessage name={'newPassword'} component={"span"} className='text-[#EF5350] text-[14px]  ' />
                                             <div className=' relative mt-6 '>
-                                                <Field className={` focus:outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.confirmPassword && touched.confirmPassword ? "border-[#EF5350] border-1 " : ""} `} type={showSecondPassword ? 'text' : 'password'} name='confirmPassword' id='confirmPassword' placeholder={t('forgotPass.RepeatPass')} />
+                                                <Field className={` focus:outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.confirmPassword && touched.confirmPassword ? "border-[#EF5350] border-1 " : ""} `}
+                                                    type={showSecondPassword ? 'text' : 'password'} name='confirmPassword' id='confirmPassword' placeholder={t('forgotPass.RepeatPass')} />
                                                 <img onClick={handleSecondPassword} src={showSecondPassword ? "./icons/eyeClose.png" : "./icons/eyeOpen.png"} alt="" className=' cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  ' />
                                             </div>
                                             <ErrorMessage name={'confirmPassword'} component={"span"} className='text-[#EF5350] text-[14px]  ' />
@@ -80,7 +99,8 @@ const ForgotPasswordStepTwo = () => {
                                                 whileHover={{ scale: "1.03", boxShadow: "0 0 8px #cccccc" }}
                                                 whileTap={{ scale: "0.98" }}
                                                 transition={{ type: "spring", stiffness: 300 }}
-                                                type='submit' onClick={(values) => { console.log(values) }} className=' mt-6 w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>{t('forgotPass.RegisterNewPass')}</motion.button>
+                                                type='submit'
+                                                className=' mt-6 w-full bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3 hover : bg-8/10  transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md active:scale-[0.98] '>{t('forgotPass.RegisterNewPass')}</motion.button>
                                         </div>
                                     </Form>
                                 )}

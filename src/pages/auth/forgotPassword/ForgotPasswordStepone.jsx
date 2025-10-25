@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import initialData from '../../../components/common/Form/initialData/initialData'
 import { AnimatePresence, motion } from 'framer-motion'
 import TranslateButton from '../../../components/TranslateButton/TranslateButton'
 import { useTranslation } from 'react-i18next'
@@ -12,6 +11,7 @@ import { ForgotVal1 } from '../../../utils/Validations/forgotpassVal/ForgotVal'
 import { useMutation, useMutationState } from '@tanstack/react-query'
 import ResetPass1 from '../../../core/services/api/post/ResetPass1'
 import { toast } from 'react-toastify'
+import resetData1 from '../../../components/common/Form/initialData/resetData1'
 
 
 
@@ -79,7 +79,7 @@ const ForgotPasswordStepOne = () => {
                             </div>
                             <div className=' w-full mt-7 px-6' >
                                 <Formik
-                                    initialValues={initialData}
+                                    initialValues={resetData1}
                                     onSubmit={(values) => {
                                         console.log(values)
                                         postPass(values)
