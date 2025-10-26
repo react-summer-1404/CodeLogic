@@ -8,15 +8,20 @@ const CourseTeacher = () => {
     const { t } = useTranslation();
 
     return (
-        <div className='flex flex-col items-center gap-12 w-[380px] p-4 bg-[#FFFFFF] rounded-[25px] shadow-[0_0_10px_rgba(0,0,0,0.15)]'>
-            <div className='flex flex-col gap-2'>
-                <img src={CourseTeacherIMG} />
+        <div className='flex flex-col items-center gap-8 w-[320px] p-4 bg-[#FFFFFF] rounded-[25px] 
+        shadow-[0_0_10px_rgba(0,0,0,0.15)]
+        dark:bg-[#393939]
+        lg:gap-12 lg:w-[380px]'>
+            <div className='flex flex-col gap-2 items-center'>
+                <img src={CourseTeacherIMG} className='w-[120px] h-[120px]
+                lg:w-[168px] lg:h-[168px]'/>
                 <div className='flex flex-col items-center'>
-                    <span className='font-regular text-base text-[#848484]'>{t('courseTeacher.courseTeacher')}</span>
-                    <h3 className='font-bold text-[18px] text-[#1E1E1E]'>{t('مهندس ادوارد جانسون')}</h3>
+                    <span className='font-regular text-base text-[#848484]   dark:text-[#CCCCCC]'>{t('courseTeacher.courseTeacher')}</span>
+                    <h3 className='font-bold text-[18px] text-[#1E1E1E]   dark:text-[#DDDDDD]'>{'مهندس ادوارد جانسون'}</h3>
                 </div>
             </div>
-            <button className='py-[9px] px-24 font-regular text-base text-[#FFFFFF] bg-[#000000] rounded-[48px]'>
+            <button className='py-2 font-regular text-base text-[#FFFFFF] bg-[#000000] rounded-[48px]
+            lg:py-[9px] lg:px-24'>
                 {t('courseTeacher.buttonText')}
             </button>
         </div>

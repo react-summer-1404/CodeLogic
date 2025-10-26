@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import HTML5Course from '../../../assets/Images/HTML5Course.png'
 import Like from '../../../assets/Icons/Like'
 import DisLike from '../../../assets/Icons/DisLike'
@@ -7,9 +7,13 @@ import DisLike from '../../../assets/Icons/DisLike'
 
 const ImageInfo = () => {
 
+    const [active, setActive] = useState(false);
+
     return (
         <div className='flex flex-col gap-4'>
-            <img src={HTML5Course} className='w-[887px] h-[443px] rounded-[25px]' />
+            <img src={HTML5Course} className='w-full
+            md:h-[240px] md:rounded-[16px]
+            lg:h-[443px] lg:rounded-[25px]' />
             <div className='flex justify-between'>
                 <div>
                     <span className='py-[1px] px-[11px] font-regular text-sm text-[#848484] border border-[#848484] rounded-[48px]'>
@@ -17,16 +21,24 @@ const ImageInfo = () => {
                     </span>
                 </div>
                 <div className='flex gap-2'>
-                    <div className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] rounded-[48px]'>
+                    <div onClick={() => {setActive(!active)}} className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] 
+                    rounded-[48px]   
+                    dark:bg-[#393939]'>
                         <span className='font-regular text-base text-[#848484]'>{500}</span>
-                        <DisLike />
+                        {
+                            active ? <span className='rotate-180'><Like/></span> : <DisLike/>
+                        }
                     </div>
-                    <div className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] rounded-[48px]'>
+                    <div  onClick={() => {setActive(!active)}} className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] 
+                    rounded-[48px]   
+                    dark:bg-[#393939]'>
                         <span className='font-regular text-base text-[#848484]'>{500}</span>
-                        <Like />
+                        {
+                            active ? <span className='rotate-180'><DisLike/></span> : <Like/>
+                        }
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
     )
 }

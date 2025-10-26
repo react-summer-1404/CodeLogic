@@ -12,11 +12,13 @@ const CourseCommentsTab = ({activeTab, setActiveTab}) => {
 
   return (
     <div className='flex gap-2 pt-10'>
-      <button onClick={() => setActiveTab('detail')} className={`py-[9px] px-4 rounded-[48px] cursor-pointer
+      <button onClick={() => setActiveTab('detail')} className={`py-[9px] px-4 rounded-[48px] cursor-pointer   
+      dark:text-[#DDDDDD]
       ${activeTab === 'detail' ? 'text-[#FFFFFF] bg-[#008C78]' : ''}`}>
         {t('courseCommentsTab.courseSpecifications')}
       </button>
       <button onClick={() => {setActiveTab('comment')}} className={`py-[9px] px-4 rounded-[48px] cursor-pointer
+      dark:text-[#DDDDDD]
       ${activeTab === 'comment' ? 'text-[#FFFFFF] bg-[#008C78]' : ''}`}>
         {t('courseCommentsTab.userComments')}
       </button>
