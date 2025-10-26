@@ -1,12 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import PanelRightK from "./PanelRight";
+import PanelRight from "./PanelRight";
 
 const Panel = () => {
   return (
     <div className="flex items-center justify-between">
-      <PanelRightK />
-      <div className="flex-1">
+      <PanelRight />
+      <div>
         <Outlet />
       </div>
     </div>
