@@ -11,6 +11,9 @@ import TitleNewsSection from "../../components/NewsListSection/TitleNewsSection"
 import StepOne from "../../pages/auth/Register/StepOne";
 import StepTwo from "../../pages/auth/Register/StepTwo";
 import StepThree from "../../pages/auth/Register/StepThree";
+import PanelUserInfo from "../../pages/Panel/PanelUserInfo";
+import PanelDashboard from "../../pages/Panel/PanelDashboard";
+import Panel from "../../pages/Panel/Panel";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +25,14 @@ const router = createBrowserRouter([
       { path: "/RegisterStepOne", element: <StepOne /> },
       { path: "/RegisterStepTwo", element: <StepTwo /> },
       { path: "/RegisterStepThree", element: <StepThree /> },
+    ],
+  },
+  {
+    path: "/Panel",
+    element: <Panel />,
+    children: [
+      { index: true, element: <PanelDashboard /> },
+      { path: "UserInfo", element: <PanelUserInfo /> },
     ],
   },
   { path: "/login", element: <LoginPage /> },
