@@ -26,7 +26,7 @@ const ImageInfo = () => {
                     dark:bg-[#393939]'>
                         <span className='font-regular text-base text-[#848484]'>{500}</span>
                         {
-                            active ? <span className='rotate-180'><Like/></span> : <DisLike/>
+                            active ? <span className='rotate-180 transform scale-x-[-1]'><Like/></span> : <DisLike/>
                         }
                     </div>
                     <div  onClick={() => {setActive(!active)}} className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] 
@@ -34,7 +34,7 @@ const ImageInfo = () => {
                     dark:bg-[#393939]'>
                         <span className='font-regular text-base text-[#848484]'>{500}</span>
                         {
-                            active ? <span className='rotate-180'><DisLike/></span> : <Like/>
+                            active ? <span className='rotate-180 transform scale-x-[-1]'><DisLike/></span> : <Like/>
                         }
                     </div>
                 </div>
