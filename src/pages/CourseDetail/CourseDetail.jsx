@@ -9,15 +9,16 @@ const CourseDetail = () => {
   const { t } = useTranslation();
 
   return (
-    <>
+    <div className='dark:bg-[#1E1E1E]'>
       <div className='flex flex-col items-center pt-10'>
-        <h2 className='font-bold text-[28px] text-[#1E1E1E]'>{t(`دوره آموزش جامع ${'HTML5'}`)}</h2>
+        <h2 className='font-bold text-[28px] text-[#1E1E1E]   dark:text-[#EEEEEE]'>{t(`دوره آموزش جامع ${'HTML5'}`)}</h2>
       </div>
-      <div className='flex gap-12 p-10'>
+      <div className='flex flex-col items-center gap-12 pt-8 px-6 pb-[170px]
+      md:flex md:flex-row md:px-10'>
         <CourseDetailSide />
         <CourseDetailMain />
       </div>
-    </>
+    </div>
   )
 }
 

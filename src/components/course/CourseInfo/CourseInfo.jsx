@@ -11,35 +11,45 @@ const CourseInfo = () => {
     const isRtl = i18n.language === 'fa';
 
     return (
-        <div className='w-[380px] p-4 bg-[#FFFFFF] rounded-[25px] shadow-[0_0_10px_rgba(0,0,0,0.15)]'>
-            <h3></h3>
+        <div className='flex flex-col gap-12 w-[320px] p-4 bg-[#FFFFFF] rounded-[25px] shadow-[0_0_10px_rgba(0,0,0,0.15)]
+        dark:bg-[#393939]
+        lg:gap-16 lg:w-[380px]'>
+            <h3 className='font-bold text-xl text-[#1E1E1E]   dark:text-[#DDDDDD]'>{'دوره اموزش جامع HTML5'}</h3>
             <div className='flex flex-col gap-4'>
                 <div className='flex flex-col gap-6'>
                     <div className='flex justify-between'>
                         <div className='flex gap-2'>
-                            <Calendar />
-                            <span className='font-regular text-base text-[#1E1E1E]'>{t('courseInfo.startDate')}</span>
+                            <span className='text-[#BBBBBB]'>
+                                <Calendar/>
+                            </span>
+                            <span className='font-regular text-base text-[#1E1E1E]   dark:text-[#CCCCCC]'>{t('courseInfo.startDate')}</span>
                         </div>
                         <span className='font-regular text-sm text-[#848484]'>{t('1404/07/22')}</span>
                     </div>
                     <div className='flex justify-between'>
                         <div className='flex gap-2'>
-                            <Clock />
-                            <span className='font-regular text-base text-[#1E1E1E]'>{t('courseInfo.startTime')}</span>
+                            <span className='text-[#BBBBBB]'>
+                                <Clock/>
+                            </span>
+                            <span className='font-regular text-base text-[#1E1E1E]   dark:text-[#CCCCCC]'>{t('courseInfo.startTime')}</span>
                         </div>
                         <span className='font-regular text-sm text-[#848484]'>{t('09:30')}</span>
                     </div>
                     <div className='flex justify-between'>
                         <div className='flex gap-2'>
-                            <Clock />
-                            <span className='font-regular text-base text-[#1E1E1E]'>{t('courseInfo.endDate')}</span>
+                            <span className='text-[#BBBBBB]'>
+                                <Clock/>
+                            </span>
+                            <span className='font-regular text-base text-[#1E1E1E]   dark:text-[#CCCCCC]'>{t('courseInfo.endDate')}</span>
                         </div>
                         <span className='font-regular text-sm text-[#848484]'>{t('11:30')}</span>
                     </div>
                     <div className='flex justify-between'>
                         <div className='flex gap-2'>
-                            <Users />
-                            <span className='font-regular text-base text-[#1E1E1E]'>{t('courseInfo.courseCapacity')}</span>
+                            <span className='text-[#BBBBBB]'>
+                                <Users/>
+                            </span>
+                            <span className='font-regular text-base text-[#1E1E1E]   dark:text-[#CCCCCC]'>{t('courseInfo.courseCapacity')}</span>
                         </div>
                         <span className='font-regular text-sm text-[#848484]'>{60} {t('courseInfo.person')}</span>
                     </div>
@@ -47,7 +57,7 @@ const CourseInfo = () => {
                         <span className='py-[10px] px-4 font-bold text-base text-[#FFFFFF] bg-[#EF5350] rounded-[15px]'>{`50${'%'}`} {t('courseInfo.off')}</span>
                         <div className='flex flex-col'>
                             <div className='flex gap-8'>
-                                <span className='font-regular text-sm text-[#1E1E1E]'>{t('courseInfo.price')}</span>
+                                <span className='font-regular text-sm text-[#1E1E1E]   dark:text-[#CCCCCC]'>{t('courseInfo.price')}</span>
                                 <span className='font-regular text-sm text-[#848484]'>{t('3000')}</span>
                             </div>
                             <div className={`flex gap-1 font-bold text-[18px] text-[#008C78] ${isRtl ? 'rtl' : 'ltr'}`}>
