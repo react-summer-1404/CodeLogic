@@ -464,5 +464,26 @@
     "min": "Password must contain at least 8 characters.",
     "required2": "Password confirmation is required.",
     "oneOf": "Password does not match"
-  }
+  },
+  "panelside" : {
+  "academy_name": "Bahr Academy",
+  "menu": "Menu",
+  "dashboard": "Dashboard",
+  "user_info": "User Information",
+  "my_courses": "My Courses",
+  "reserved_courses": "Reserved Courses",
+  "my_payments": "My Payments",
+  "my_comments": "My Comments",
+  "my_view_on_the_courses" : "My view on the courses",
+  "my_view_on_the_news" : " My view on the news   ",
+   "my_favorits" : "My favorites   ",
+  "my_favorite_courses" : "My favorite courses",
+  "my_favorite_news" : "My favorite news   ",
+  "security_setting" : "Security setting ",
+  "logout" : " Log out ",
+  "general" : "General"
+},
+"panelheader" : {
+  "name" : "matin ghorbanzade"
+}
 }
