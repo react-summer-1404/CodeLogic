@@ -1,0 +1,122 @@
+{
+  "footer": {
+    "newsletter_button": "Sign Up",
+    "newsletter_placeholder": "Enter your phone number",
+    "newsletter_description": "Subscribe to our newsletter to get updates on courses, articles and discounts",
+    "newsletter_title": "Stay updated with the latest programming news and courses",
+    "support": "Education & Support",
+    "events": "Events",
+    "panel": "User Panel",
+    "technical_support": "Technical Support",
+    "articles": "Educational Articles",
+    "domains": "Application Areas",
+    "frontend": "Front-End",
+    "backend": "Back-End",
+    "fullstack": "Full Stack",
+    "ai": "Artificial Intelligence",
+    "seo": "SEO & Optimization",
+    "uiux": "UI / UX Design",
+    "mobile": "Mobile",
+    "about": "About Us",
+    "news": "News",
+    "jobs": "Careers",
+    "contact": "Contact Us",
+    "trust_center": "Trust Center",
+    "rules": "Terms of Use",
+    "security": "Security Policy",
+    "privacy": "Privacy Policy",
+    "skills": "Skills",
+    "htmlcss": "HTML & CSS",
+    "javascript": "JavaScript",
+    "react": "React",
+    "nextjs": "Next.js",
+    "nodejs": "Node.js",
+    "restapi": "REST API",
+    "git": "Git & GitHub",
+    "rights": "All rights reserved for Bahr Academy.",
+    "academy": "Bahr Academy"
+  },
+    "navbar": {
+    "academy": "Bahr Academy",
+    "home": "Home",
+    "courses": "Courses",
+    "news": "News",
+    "search_placeholder": "Search...",
+    "select_placeholder": "Select...",
+    "login": "Login / Register"
+  },
+  "registerStepOne": {
+      "validation": {
+      "required": "Please enter your phone number *",
+      "invalid": "Invalid phone number *"
+    },
+    "start_learning": "Start your learning journey here!",
+    "description": "By creating your account, you'll access courses, educational content, and advanced tools. This is the first step for growth!",
+    "home": "Home",
+    "create_account": "Create Account",
+    "enter_phone": "Enter your phone number to create an account",
+    "phone_placeholder": "Enter your phone number",
+    "send_code": "Send OTP",
+    "have_account": "Already have an account?",
+    "login": "Login"
+  },
+  "registerStepTwo": {
+  "validation": {
+    "required": "This field is required"
+  },
+  "start_learning": "Just one step away from the world of learning!",
+  "description": "Opportunity for growth, progress, and a better future is here — take one step ahead with us!",
+  "back": "Back",
+  "create_account": "Create Account",
+  "enter_code": "Enter the OTP sent to you",
+  "confirm_otp": "Confirm OTP"
+},
+  "registerStepThree": {
+    "start_learning": "This is the final step of your registration.",
+    "description": "Everything is ready! Now just enter your details to complete your account.",
+    "back": "Back",
+    "create_account": "Create Account",
+    "complete_info": "Complete your information",
+    "placeholder": {
+      "email": "Enter your email",
+      "password": "Enter your password",
+      "confirmPassword": "Confirm password"
+    },
+    "submit": "Sign Up",
+    "have_account": "Already have an account?",
+    "login": "Login",
+    "validation": {
+      "email_invalid": "Invalid email address *",
+      "email_required": "Please enter your email *",
+      "password_required": "Please enter your password *",
+      "password_min": "Password must be at least 8 characters *",
+      "password_number": "Password must contain a number *",
+      "password_lower": "Password must contain a lowercase letter *",
+      "password_upper": "Password must contain an uppercase letter *",
+      "password_symbol": "Password must contain a symbol (!,@,#,$,%,^,&,*) *",
+      "confirmPassword_required": "Please confirm your password *",
+      "confirmPassword_match": "Passwords do not match *"
+    }
+  },
+  "panelside" : {
+  "academy_name": "Bahr Academy",
+  "menu": "Menu",
+  "dashboard": "Dashboard",
+  "user_info": "User Information",
+  "my_courses": "My Courses",
+  "reserved_courses": "Reserved Courses",
+  "my_payments": "My Payments",
+  "my_comments": "My Comments",
+  "my_view_on_the_courses" : "My view on the courses",
+  "my_view_on_the_news" : " My view on the news   ",
+   "my_favorits" : "My favorites   ",
+  "my_favorite_courses" : "My favorite courses",
+  "my_favorite_news" : "My favorite news   ",
+  "security_setting" : "Security setting ",
+  "logout" : " Log out ",
+  "general" : "General"
+},
+"panelheader" : {
+  "name" : "matin ghorbanzade"
+}
+}

@@ -15,6 +15,9 @@ import ForgotPasswordStepTwo from "../../pages/auth/forgotPassword/ForgotPasswor
 import CourseDetail from "../../pages/CourseDetail/CourseDetail";
 import TeachersPage from "../../pages/Teachers/TeachersPage/TeachersPage";
 import TeachersDetail from "../../pages/Teachers/TeachersDetail/TeachersDetail";
+import PanelUserInfo from "../../pages/Panel/PanelUserInfo";
+import PanelDashboard from "../../pages/Panel/PanelDashboard";
+import Panel from "../../pages/Panel/Panel";
 
 const router = createBrowserRouter([
   {
@@ -30,9 +33,20 @@ const router = createBrowserRouter([
       { path: "/Teacher/:id", element: <TeachersDetail /> },
     ],
   },
+
   { path: "/RegisterStepOne", element: <StepOne /> },
   { path: "/RegisterStepTwo", element: <StepTwo /> },
   { path: "/RegisterStepThree", element: <StepThree /> },
+
+  {
+    path: "/Panel",
+    element: <Panel />,
+    children: [
+      { index: true, element: <PanelDashboard /> },
+      { path: "UserInfo", element: <PanelUserInfo /> },
+    ],
+  },
+
   { path: "/login", element: <LoginPage /> },
   { path: "/loginValidation", element: <LoginValidationPage /> },
   { path: "/forgotPassOne", element: <ForgotPasswordStepOne /> },
