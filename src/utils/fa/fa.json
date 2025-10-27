@@ -97,5 +97,28 @@
       "confirmPassword_required": "تکرار رمز عبور را وارد کنید *",
       "confirmPassword_match": "رمز عبور شما همخوانی ندارد *"
     }
-  }
+  },
+ "panelside" : {
+  "academy_name": "آکادمی بحر",
+  "menu": "منو",
+  "dashboard": "داشبورد",
+  "user_info": "مشخصات کاربری",
+  "my_courses": "دوره های من",
+  "reserved_courses": "دوره های رزرو شده",
+  "my_payments": "پرداختی های من",
+  "my_comments": "دیدگاه های من",
+  "my_view_on_the_courses" : "دیدگاه های من در دوره ها",
+  "my_view_on_the_news" : "دیدگاه های من در اخبار",
+  "my_favorits" : "علاقه مندی های من",
+  "my_favorite_courses" : "دوره های مورد علاقه من",
+  "my_favorite_news" : "اخبار مورد علاقه من",
+  "security_setting" : "تنظیمات امنیتی",
+  "logout" : "خروج از حساب",
+  "general" : "عمومی"
+
+  
+},
+"panelheader" : {
+  "name" : "متین قربانزاده"
+}
 }
