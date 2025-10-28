@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import CourseHeader from '../../../components/common/CourseHeader/CourseHeader'
-import { paymentsData } from '../../../components/common/data/CoursePayments/payments'
-import CoursePayment from '../../../components/common/CoursePayment/CoursePayment'
+import CourseHeader from '../../components/common/CourseHeader/CourseHeader'
+import { paymentsData } from '../../components/common/data/CoursePayments/payments'
+import CoursePayment from '../../components/common/CoursePayment/CoursePayment'
 import { AnimatePresence, motion, number } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 
@@ -72,7 +72,7 @@ const CoursesPayment = () => {
         }
     };
     return (
-        <div className='bg-[#F3F4F6] dark:bg-gray-700  w-[1010px] h-[800px] p-8 flex flex-col justify-between mx-auto my-7 rounded-4xl '>
+        <div className='bg-[#F3F4F6] dark:bg-gray-700  w-full h-full p-8 flex flex-col justify-between mx-auto my-7 rounded-4xl '>
             {/* ----------- filtering  */}
             <div className='flex justify-between items-center'>
                 <AnimatePresence>

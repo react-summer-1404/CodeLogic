@@ -18,6 +18,7 @@ import TeachersDetail from "../../pages/Teachers/TeachersDetail/TeachersDetail";
 import PanelUserInfo from "../../pages/Panel/PanelUserInfo";
 import PanelDashboard from "../../pages/Panel/PanelDashboard";
 import Panel from "../../pages/Panel/Panel";
+import CoursesPayment from "../../pages/CoursesPayment/CoursesPayment";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <PanelDashboard /> },
       { path: "UserInfo", element: <PanelUserInfo /> },
+      { path: "coursesPayments", element: <CoursesPayment /> },
     ],
   },
 
