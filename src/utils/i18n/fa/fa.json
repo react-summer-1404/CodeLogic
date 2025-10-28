@@ -1,12 +1,12 @@
 {
   "navbar": {
-  "academy": "آکادمی بحر",
-  "home": "صفحه اصلی",
-  "courses": "دوره ها",
-  "news": "اخبار",
-  "search_placeholder": "جستجو کنید...",
-  "select_placeholder": "انتخاب کنید...",
-  "login": "ورود / ثبت نام"
+    "academy": "آکادمی بحر",
+    "home": "صفحه اصلی",
+    "courses": "دوره ها",
+    "news": "اخبار",
+    "search_placeholder": "جستجو کنید...",
+    "select_placeholder": "انتخاب کنید...",
+    "login": "ورود / ثبت نام"
   },
   "heroSection": {
     "title1": "یادگیری برنامه‌نویسی با اساتید مجرب ،",
@@ -36,13 +36,13 @@
   "sliderCourses": {
     "title": "دوره های آموزشی برنامه نویسی",
     "desc": "دوره‌هایی برای همه: یاد بگیر، تمرین کن، پروژه بزن!",
-    "seeAllText": "مشاهده همه دوره ها" 
+    "seeAllText": "مشاهده همه دوره ها"
   },
   "whyUs": {
     "title1": "از اولین خط کد تا",
     "titleSpan": " ورود به بازار کار ",
     "title2": "، با تو هستیم",
-    "desc": "ما مسیر یادگیری برنامه‌نویسی را ساده، کاربردی و اثربخش می‌کنیم تا سریع‌تر وارد بازار کار شوید.", 
+    "desc": "ما مسیر یادگیری برنامه‌نویسی را ساده، کاربردی و اثربخش می‌کنیم تا سریع‌تر وارد بازار کار شوید.",
     "cardTitle1": "یادگیری مهارت‌های کاربردی",
     "cardDesc1": "با تمرکز بر پروژه‌های واقعی و نیاز بازار، مهارت‌هایی یاد می‌گیرید که واقعاً به کارتون میان.",
     "cardTitle2": "مسیر یادگیری هدفمند",
@@ -55,7 +55,7 @@
   "sliderTeachers": {
     "title": "آشنایی با اساتید حرفه ای ما",
     "desc": "یادگیری از برترین مدرسین با تجربه و دانش به‌روز",
-    "seeAllText": "مشاهده همه استادها" 
+    "seeAllText": "مشاهده همه استادها"
   },
   "joinTeachers": {
     "title1": "تجربه‌ات رو آموزش بده، تأثیر بذار و با ما",
@@ -158,8 +158,6 @@
       "confirmPassword_match": "رمز عبور شما همخوانی ندارد *"
     }
   },
-
-
   "courseList": {
     "title": "دوره های آموزشی",
     "result": "نتیجه"
@@ -190,8 +188,6 @@
     "option1": "جدیدترین",
     "option2": "قدیمی ترین"
   },
-
-
   "courseInfo": {
     "startDate": "تاریخ شروع",
     "startTime": "ساعت شروع",
@@ -231,9 +227,6 @@
     "textInputsPlcholder": "متن دیدگاه خود را بنویسید",
     "send": "ارسال"
   },
-
-
-
   "news": {
     "title1": "انتشار React 18",
     "desc1": "React 18 ویژگی‌های همزمان برای رندر سریع‌تر معرفی می‌کند.",
@@ -467,27 +460,43 @@
     "required2": "تایید رمز عبور الزامی است",
     "oneOf": "رمز عبور مطابقت ندارد"
   },
-  "panelside" : {
-  "academy_name": "آکادمی بحر",
-  "menu": "منو",
-  "dashboard": "داشبورد",
-  "user_info": "مشخصات کاربری",
-  "my_courses": "دوره های من",
-  "reserved_courses": "دوره های رزرو شده",
-  "my_payments": "پرداختی های من",
-  "my_comments": "دیدگاه های من",
-  "my_view_on_the_courses" : "دیدگاه های من در دوره ها",
-  "my_view_on_the_news" : "دیدگاه های من در اخبار",
-  "my_favorits" : "علاقه مندی های من",
-  "my_favorite_courses" : "دوره های مورد علاقه من",
-  "my_favorite_news" : "اخبار مورد علاقه من",
-  "security_setting" : "تنظیمات امنیتی",
-  "logout" : "خروج از حساب",
-  "general" : "عمومی"
-
-  
-},
-"panelheader" : {
-  "name" : "متین قربانزاده"
-}
+  "coursesPayment": {
+    "search": "جستجو....",
+    "filters": "فیلتر ها",
+    "all": "همه",
+    "confirmed": "تایید شده",
+    "AwaitingConfirmation": "در انتظار تایید",
+    "notConfirmed": "تایید نشده",
+    "notFound": "موردی یافت نشد !",
+    "back": "قبلی",
+    "next": "بعدی",
+    "NumberShows": "تعداد نمایش",
+    "CourseGroup": "گروه دوره",
+    "paymentDate": "تاریخ پرداخت",
+    "DateEntered": "تاریخ وارد شده",
+    "PaymentStatus": "وضعیت پرداخت",
+    "Payment": "پرداختی (تومان)",
+    "Operation": "عملیات"
+  },
+  "panelside": {
+    "academy_name": "آکادمی بحر",
+    "menu": "منو",
+    "dashboard": "داشبورد",
+    "user_info": "مشخصات کاربری",
+    "my_courses": "دوره های من",
+    "reserved_courses": "دوره های رزرو شده",
+    "my_payments": "پرداختی های من",
+    "my_comments": "دیدگاه های من",
+    "my_view_on_the_courses": "دیدگاه های من در دوره ها",
+    "my_view_on_the_news": "دیدگاه های من در اخبار",
+    "my_favorits": "علاقه مندی های من",
+    "my_favorite_courses": "دوره های مورد علاقه من",
+    "my_favorite_news": "اخبار مورد علاقه من",
+    "security_setting": "تنظیمات امنیتی",
+    "logout": "خروج از حساب",
+    "general": "عمومی"
+  },
+  "panelheader": {
+    "name": "متین قربانزاده"
+  }
 }

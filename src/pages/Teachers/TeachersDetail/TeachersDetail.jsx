@@ -13,7 +13,8 @@ import { useTranslation } from 'react-i18next'
 
 
 const TeachersDetail = () => {
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
+    const isRTL = i18n.language === "fa"
     const { id } = useParams()
     const teacherId = parseInt(id)
     const teacher = dataTeachers.find((t) => t.id === teacherId)
@@ -136,7 +137,8 @@ const TeachersDetail = () => {
                                                 boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
                                             }}
                                             transition={{ duration: 0.3 }}
-                                            className=' px-3 w-full h-full dark:placeholder:text-[#EEEE] outline-none border-[#EAEAEA] border-[1px] rounded-2xl '
+                                            className={` px-3 w-full h-full dark:placeholder:text-[#EEEE] outline-none border-[#EAEAEA] border-[1px]
+                                             ${isRTL ? "bg-[left_15px_center]" : "bg-[right_15px_center]"} bg-[url(/icons/search.png)] bg-no-repeat rounded-2xl `}
                                             placeholder={t('teachersPage.filters.Search')}
                                             type="text"
                                             onChange={(e) => {
@@ -154,7 +156,7 @@ const TeachersDetail = () => {
                                             transition={{ duration: 0.3 }}
                                             whileTap={{ scale: 0.98 }}
                                             onClick={() => setDropDownPage((prev) => !prev)}
-                                            className={`  border-[#EAEAEA] border-[1px]  w-full h-full  rounded-2xl  ${!DropDownPage && "md:bg-[url(./icons/buttom.png)] md:bg-no-repeat md:bg-[left_17px_center]"} `}>
+                                            className={`  border-[#EAEAEA] border-[1px]  w-full h-full  rounded-2xl ${isRTL ? "pe-7" : "ps-7"}  ${!DropDownPage && "md:bg-[url(/icons/buttom.png)] md:bg-no-repeat md:bg-[left_17px_center]"} `}>
                                             {!searchActivated ? `${TempCount}` : TempCount > 32 && searchActivated ? ` ${t('teachersPage.filters.ShowLess')}` : ` ${t('teachersPage.filters.ShowMore')}`} </motion.button>
                                         {DropDownPage && (
                                             <AnimatePresence>

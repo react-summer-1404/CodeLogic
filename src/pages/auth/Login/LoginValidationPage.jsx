@@ -60,7 +60,7 @@ const LoginValidationPage = () => {
                     transition={{ ease: "easeOut", type: "spring", stiffness: 300, delay: 0.5 }}
                     className=' flex flex-1 flex-col  p-17  gap-10 '>
                     <div className='flex justify-between items-center' >
-                        <Link to={"/login"} className=' pr-8 bg-[url(./icons/back.png)] bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>{t('login.Back')}</Link>
+                        <Link to={"/login"} className=' pr-8 bg-[url(/icons/back.png)] bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300'>{t('login.Back')}</Link>
                         <TranslateButton />
                     </div>
                     <div className='flex flex-col justify-center items-center gap-3 p-5 '>
@@ -72,7 +72,7 @@ const LoginValidationPage = () => {
 
                             className='w-full mt-7 px-7'>
                             <Formik
-                                initialValues={loginData}
+                                initialValues={initialValues}
                                 onSubmit={(values) => handleSubmit(values)}
                                 validationSchema={validationSchema}
                             >
