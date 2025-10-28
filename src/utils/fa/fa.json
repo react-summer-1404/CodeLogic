@@ -120,5 +120,10 @@
 },
 "panelheader" : {
   "name" : "متین قربانزاده"
+},
+"paneldashboard" : {
+  "my_courses_title" : "دوره های من ",
+  "unpaid_periods" : " دوره های پرداخت نشده",
+  "profile_completed" : "پروفایل تکمیل شده "
 }
 }

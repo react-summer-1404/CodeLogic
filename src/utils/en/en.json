@@ -118,5 +118,10 @@
 },
 "panelheader" : {
   "name" : "matin ghorbanzade"
+},
+"paneldashboard" : {
+  "my_courses_title" : "My courses",
+  "unpaid_periods" : "Unpaid Periods",
+  "profile_completed" : "Profile Completed"
 }
 }
