@@ -36,13 +36,13 @@
   "sliderCourses": {
     "title": "Programming training courses",
     "desc": "Courses for everyone: learn, practice, do projects!",
-    "seeAllText": "See All Courses" 
+    "seeAllText": "See All Courses"
   },
   "whyUs": {
     "title1": "From the first line of code to",
     "titleSpan": " entering the labor market ",
     "title2": "we are with you.",
-    "desc": "We make the path to learning programming simple, practical, and effective so you can enter the job market faster.", 
+    "desc": "We make the path to learning programming simple, practical, and effective so you can enter the job market faster.",
     "cardTitle1": "Learning practical skills",
     "cardDesc1": "By focusing on real projects and market needs, you will learn skills that are truly applicable.",
     "cardTitle2": "Purposeful learning path",
@@ -55,7 +55,7 @@
   "sliderTeachers": {
     "title": "Meet our professional teachers",
     "desc": "Learning from the best instructors with experience and up-to-date knowledge",
-    "seeAllText": "View all teachers" 
+    "seeAllText": "View all teachers"
   },
   "joinTeachers": {
     "title1": "Educate, make an impact, and start",
@@ -420,5 +420,23 @@
     "min": "Password must contain at least 8 characters.",
     "required2": "Password confirmation is required.",
     "oneOf": "Password does not match"
+  },
+  "coursesPayment": {
+    "search": "search ....",
+    "filters": "filters",
+    "all": "all",
+    "confirmed": "confirmed",
+    "AwaitingConfirmation": "Awaiting confirmation",
+    "notConfirmed": "not confirmed",
+    "notFound": "No item found!",
+    "back": "back",
+    "next": "next",
+    "NumberShows": "Number of shows",
+    "CourseGroup": "Course group",
+    "paymentDate": "payment date",
+    "DateEntered": "Date entered",
+    "PaymentStatus": "Payment status",
+    "Payment": "Payment",
+    "Operation": "Operation"
   }
 }

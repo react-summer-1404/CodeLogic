@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import i18n from "../../i18n/i18n.js"
+import i18n from "../../i18n.js"
 
 export const Login1Val = () => {
     return Yup.object({

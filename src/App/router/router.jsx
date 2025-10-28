@@ -15,6 +15,8 @@ import ForgotPasswordStepTwo from "../../pages/auth/forgotPassword/ForgotPasswor
 import CourseDetail from "../../pages/CourseDetail/CourseDetail";
 import TeachersPage from "../../pages/Teachers/TeachersPage/TeachersPage";
 import TeachersDetail from "../../pages/Teachers/TeachersDetail/TeachersDetail";
+import CoursePayment from "../../components/common/CoursePayment/CoursePayment";
+import CoursesPayment from "../../pages/Dashboard/CoursesPayment/CoursesPayment";
 
 const router = createBrowserRouter([
   {

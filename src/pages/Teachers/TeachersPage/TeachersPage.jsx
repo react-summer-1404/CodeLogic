@@ -13,9 +13,9 @@ import { useQuery } from '@tanstack/react-query'
 import GetAllTeachers from '../../../core/services/api/Get/GetAllTeachers'
 
 const TeachersPage = () => {
-    const { t } = useTranslation()
-    const [isLoading, setIsLoading] = useState()
-    const [isError, setIsError] = useState()
+    const { t, i18n } = useTranslation()
+    const isRTL = i18n.language === "fa"
+
     const [teachersData, setTeachersData] = useState()
     const [TempSearch, setTempSearch] = useState("")
     const [searchTerm, setSearchTerm] = useState("")
@@ -111,7 +111,8 @@ const TeachersPage = () => {
                                                 boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
                                             }}
                                             transition={{ duration: 0.3 }}
-                                            className=' px-3 w-full h-full outline-none border-[#EAEAEA] border-[1px] rounded-2xl '
+                                            className={` px-3 w-full h-full outline-none border-[#EAEAEA] 
+                                            bg-[url(/icons/search.png)] bg-no-repeat ${isRTL ? "bg-[left_15px_center]" : "bg-[right_15px_center]"} border-[1px] rounded-2xl `}
                                             placeholder={t('teachersPage.filters.Search')}
                                             type="text"
                                             onChange={(e) => {
@@ -129,7 +130,7 @@ const TeachersPage = () => {
                                             transition={{ duration: 0.3 }}
                                             whileTap={{ scale: 0.98 }}
                                             onClick={() => setDropDownPage((prev) => !prev)}
-                                            className={`  border-[#EAEAEA] border-[1px]  w-full h-full  rounded-2xl  ${!DropDownPage && "md:bg-[url(./icons/buttom.png)] md:bg-no-repeat md:bg-[left_17px_center]"} `}>
+                                            className={`  border-[#EAEAEA] border-[1px] pe-2 w-full h-full  rounded-2xl  ${!DropDownPage && "md:bg-[url(/icons/buttom.png)] md:bg-no-repeat md:bg-[left_17px_center]"} `}>
                                             {!searchActivated ? `${TempCount}` : TempCount > 32 && searchActivated ? ` ${t('teachersPage.filters.ShowLess')}` : ` ${t('teachersPage.filters.ShowMore')}`} </motion.button>
                                         {DropDownPage && (
                                             <AnimatePresence>

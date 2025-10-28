@@ -1,8 +1,8 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-import faTranslation from "../utils/fa/fa.json";
-import enTranslation from "../utils/en/en.json";
+import faTranslation from "../utils/i18n/fa/fa.json";
+import enTranslation from "../utils/i18n/en/en.json";
 
 i18n.use(initReactI18next).init({
   resources: {
