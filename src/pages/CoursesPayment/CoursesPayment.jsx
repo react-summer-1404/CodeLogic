@@ -72,7 +72,7 @@ const CoursesPayment = () => {
         }
     };
     return (
-        <div className='bg-[#F3F4F6] dark:bg-gray-700  w-full h-full p-8 flex flex-col justify-between mx-auto my-7 rounded-4xl '>
+        <div className='bg-[#F3F4F6] dark:bg-gray-700  w-full p-8 flex min-h-[700px] flex-col justify-between mx-auto my-7 rounded-4xl '>
             {/* ----------- filtering  */}
             <div className='flex justify-between items-center'>
                 <AnimatePresence>
