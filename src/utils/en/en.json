@@ -122,6 +122,9 @@
 "paneldashboard" : {
   "my_courses_title" : "My courses",
   "unpaid_periods" : "Unpaid Periods",
-  "profile_completed" : "Profile Completed"
+  "profile_completed" : "Profile Completed",
+  "reserved_courses" : "Reserved Courses",
+  "view_all" : "View All",
+  "latest_news" : "Latest News"
 }
 }

@@ -2,6 +2,44 @@ import React from "react";
 import NorthWestIcon from "@mui/icons-material/NorthWest";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import DashboardCourseReserve from "../../components/DashboardCourseReserve/DashboardCourseReserve";
+import img1 from "../../assets/Images/Rectanglepc.png";
+import DashboardLatestNews from "../../components/DashboardLatestNews/DashboardLatestNews";
+
+const courseData = [
+  {
+    image: img1,
+    title: "دوره آموزش جامع HTML5",
+    status: "رزرو شده",
+  },
+  {
+    image: img1,
+    title: " آموزش تبدیل گفتار به نوشتار با پایتون  ",
+    status: "در انتظار تایید ",
+  },
+  {
+    image: img1,
+    title: " دوره اتصال React به PHP به همراه 3 پروژه عملی  ",
+    status: " در انتظار تایید",
+  },
+];
+const newsData = [
+  {
+    image: img1,
+    title: "برنامه نویسی چیست؟‌ – همه چیز هایی که باید  بدانید + کاربردها",
+    date: "1404/03/13 ",
+  },
+  {
+    image: img1,
+    title: "اسکریپت چیست و چه کاربردی در برنامه‌نویسی دارد؟",
+    date: "1404/03/13",
+  },
+  {
+    image: img1,
+    title: "پایتون + ماینکرفت = یادگیری برنامه‌ نویسی با بازی!",
+    date: "1404/03/13",
+  },
+];
 
 const headerVariants = {
   initial: { opacity: 0 },
@@ -119,23 +157,100 @@ const PanelDashboard = () => {
           </motion.div>
         </div>
         <div className=" w-full h-[70%]  flex justify-between">
-          <div className=" h-full w-[49%] bg-[white]  rounded-3xl dark:bg-[#454545]  ">
+          <motion.div
+            variants={headerVariants}
+            initial="initial"
+            animate="animate"
+            className=" h-full w-[49%] bg-[white]  rounded-3xl dark:bg-[#454545]  "
+          >
             <motion.div
               variants={itemVariants}
               className={` flex justify-between items-center   w-[45%] py-4 pr-6 ${
                 isRtl ? "" : "pl-6 w-[65%]"
               }`}
             >
-              <p className="text-[20px] text-[#1e1e1e] dark:text-[#848484] ">
-                دوره های رزرو شده
+              <p
+                className={` text-[20px] text-[#1e1e1e] dark:text-[#848484] ${
+                  isRtl ? "" : "w-[100%]   "
+                } `}
+              >
+                {t("paneldashboard.reserved_courses")}
               </p>
-              <div className="p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484]">
+              <div
+                className={` p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] ${
+                  isRtl ? "" : "mr-20"
+                } `}
+              >
                 <NorthWestIcon className="text-[#1e1e1e] dark:text-[#848484]" />
               </div>
             </motion.div>
-            <div></div>
-          </div>
-          <div className=" h-full w-[49%] bg-[white] rounded-3xl dark:bg-[#454545] "></div>
+
+            {courseData.map((item, index) => {
+              const shortTitle =
+                item.title.length > 48
+                  ? item.title.slice(0, 48) + "…"
+                  : item.title;
+
+              return (
+                <DashboardCourseReserve
+                  key={index}
+                  image={item.image}
+                  title={shortTitle}
+                  status={item.status}
+                />
+              );
+            })}
+            <motion.p
+              variants={itemVariants}
+              className="text-[16px] text-[#848484] text-center cursor-pointer  "
+            >
+              {t("paneldashboard.view_all")}
+            </motion.p>
+          </motion.div>
+          <motion.div
+            variants={headerVariants}
+            initial="initial"
+            animate="animate"
+            className=" h-full w-[49%] bg-[white] rounded-3xl dark:bg-[#454545] "
+          >
+            <motion.div
+              variants={itemVariants}
+              className={` flex justify-between items-center   w-[45%] py-4 pr-6 ${
+                isRtl ? "" : "pl-6 w-[65%]"
+              }`}
+            >
+              <p
+                className={`  text-[20px] text-[#1e1e1e] dark:text-[#848484] ${
+                  isRtl ? "" : "w-[40%]   "
+                } `}
+              >
+                {t("paneldashboard.latest_news")}
+              </p>
+              <div
+                className={` p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] ${
+                  isRtl ? "ml-5" : "mr-30"
+                } `}
+              >
+                <NorthWestIcon className="text-[#1e1e1e] dark:text-[#848484]" />
+              </div>
+            </motion.div>
+
+            {newsData.map((item, index) => {
+              const shortTitle =
+                item.title.length > 48
+                  ? item.title.slice(0, 48) + "…"
+                  : item.title;
+
+              return (
+                <DashboardLatestNews
+                  key={index}
+                  image={item.image}
+                  title={shortTitle}
+                  date={item.date}
+                />
+              );
+            })}
+          </motion.div>
         </div>
       </div>
     </div>

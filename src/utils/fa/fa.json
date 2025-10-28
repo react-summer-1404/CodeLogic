@@ -124,6 +124,9 @@
 "paneldashboard" : {
   "my_courses_title" : "دوره های من ",
   "unpaid_periods" : " دوره های پرداخت نشده",
-  "profile_completed" : "پروفایل تکمیل شده "
+  "profile_completed" : "پروفایل تکمیل شده ",
+  "reserved_courses" : "دوره های رزرو شده",
+  "view_all" : "مشاهده همه",
+  "latest_news" : "جدید ترین اخبار"
 }
 }
