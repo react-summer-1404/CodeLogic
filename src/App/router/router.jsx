@@ -19,6 +19,7 @@ import PanelUserInfo from "../../pages/Panel/PanelUserInfo";
 import PanelDashboard from "../../pages/Panel/PanelDashboard";
 import Panel from "../../pages/Panel/Panel";
 import CoursesPayment from "../../pages/CoursesPayment/CoursesPayment";
+import FavoriteNews from "../../pages/Favorites/FavoriteNews/FavoriteNews";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
       { index: true, element: <PanelDashboard /> },
       { path: "UserInfo", element: <PanelUserInfo /> },
       { path: "coursesPayments", element: <CoursesPayment /> },
+      { path: "favoriteNews", element: <FavoriteNews /> }
     ],
   },
 

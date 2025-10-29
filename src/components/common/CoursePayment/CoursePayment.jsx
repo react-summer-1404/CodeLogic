@@ -1,5 +1,4 @@
 import React from 'react'
-import CourseHeader from '../CourseHeader/CourseHeader'
 import { AnimatePresence, motion } from 'framer-motion';
 const CoursePayment = ({ items }) => {
     /// motion ///

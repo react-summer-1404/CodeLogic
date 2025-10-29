@@ -1,40 +1,40 @@
 import React, { useState } from 'react';
-import CourseHeader from '../../components/common/CoursePayment/CourseHeader/CourseHeader';
-import { paymentsData } from '../../components/common/data/CoursePayments/payments';
-import CoursePayment from '../../components/common/CoursePayment/CoursePayment';
-import { AnimatePresence, motion, number } from 'framer-motion';
+import NewsHeader from '../../../components/common/favorites/News/newsHeader/NewsHeader';
 import { useTranslation } from 'react-i18next';
+import FavoriteNew from '../../../components/common/favorites/News/FavoriteNew';
+import { FavoriteNewsData } from '../../../components/common/data/Favorites/FavoriteNewsData';
+import { AnimatePresence, motion } from 'framer-motion';
 
-const CoursesPayment = () => {
-    // i18n //
-    const { i18n, t } = useTranslation();
+const FavoriteNews = () => {
+    const { t, i18n } = useTranslation();
     const isRTL = i18n.language === 'fa';
-    // pagination //
+    /// pagination ///
+    const [currentPage, setCurrentPage] = useState(1);
+    const [newsPerPage, setNewsPerPage] = useState(2);
     const [searchTerm, setSearchTerm] = useState('');
-    const [curruntPage, setCurruntPage] = useState(1);
-    const [paymentsPerPage, setPaymentsPerPage] = useState(2);
-    const [filterStatus, setFilterStatus] = useState('all');
-    const [showFilterStatus, setShowFilterStatus] = useState(false);
     const [showCount, setShowCount] = useState(false);
-
-    const filteredPayments = paymentsData.filter((p) => {
-        const matchesSearch =
-            p.courseGroup.toLowerCase().trim().includes(searchTerm.trim().toLowerCase()) ||
-            p.paymentDate.toLowerCase().trim().includes(searchTerm.trim().toLowerCase());
-        const matchesStatus =
-            filterStatus === 'all'
-                ? true
-                : p.paymentStatus.toLowerCase().trim().match(filterStatus.trim().toLowerCase());
-        return matchesSearch && matchesStatus;
+    const [showFiltersOption, setShowFiltersOption] = useState(false);
+    const [filterOption, setFilterOption] = useState('all');
+    const filteredNews = FavoriteNewsData.filter((n) =>
+        n.newsTitle.trim().toLowerCase().includes(searchTerm.trim().toLowerCase())
+    ).sort((a, b) => {
+        if (filterOption === 'بیشترین لایک') {
+            return b.likesCount - a.likesCount;
+        } else if (filterOption === 'بیشترین بازدید') {
+            return b.viewsCount - a.viewsCount;
+        }
+        return 0;
     });
-    const startIndex = (curruntPage - 1) * paymentsPerPage;
-    const endIndex = startIndex + paymentsPerPage;
-    const curruntPayments = filteredPayments.slice(startIndex, endIndex);
-    const totalPages = Math.ceil(filteredPayments.length / paymentsPerPage);
+
+    const startIndex = (currentPage - 1) * newsPerPage;
+    const endIndex = startIndex + newsPerPage;
+    const currentNews = filteredNews.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(filteredNews.length / newsPerPage);
     const goto = (p) => {
-        if (p < 1 || p > totalPages) return;
-        setCurruntPage(p);
+        if (p > totalPages || p < 1) return;
+        setCurrentPage(p);
     };
+
     /// motion framer ///
     const fadeInUp = (delay) => ({
         hidden: { opacity: 0, y: -20 },
@@ -75,34 +75,35 @@ const CoursesPayment = () => {
             transition: { duration: 0.35, type: 'spring', stiffness: 250 },
         },
     };
+
     return (
-        <div className="bg-[#F3F4F6] dark:bg-gray-700  w-full p-8 flex min-h-[700px] flex-col justify-between mx-auto my-7 rounded-4xl ">
-            {/* ----------- filtering  */}
+        <div
+            className="bg-[#F3F4F6] dark:bg-gray-700  w-full p-8 flex
+     min-h-[700px] flex-col justify-between mx-auto my-7 rounded-4xl "
+        >
             <div className="flex justify-between items-center">
-                <AnimatePresence>
-                    <motion.div
-                        variants={rightAnimate}
+                  {/* filtering ------ */}
+                <motion.div
+                variants={rightAnimate}
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className=" relative max-w-[439px] w-full"
-                    >
-                        <input
-                            className=" dark:bg-black dark:text-[#ffff] dark:placeholder:text-white
+                className="relative max-w-[439px] w-full">
+                    <input
+                        className=" dark:bg-black dark:text-[#ffff] dark:placeholder:text-white
                      w-full h-full shadow py-2 px-3 bg-[#ffff] rounded-[16px] focus:outline-none "
-                            type="text"
-                            placeholder={t('coursesPayment.search')}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <img
-                            className={` absolute ${
-                                isRTL ? 'left-3' : 'right-3'
-                            } top-[50%] translate-y-[-50%] `}
-                            src="/icons/search.png"
-                            alt=""
-                        />
-                    </motion.div>
-                </AnimatePresence>
+                        type="text"
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        placeholder={t('favoriteNews.search')}
+                    />
+                    <img
+                        className={` absolute ${
+                            isRTL ? 'left-3' : 'right-3'
+                        } top-[50%] translate-y-[-50%] `}
+                        src="/icons/search.png"
+                        alt=""
+                    />
+                </motion.div>
                 <div className="relative">
                     <AnimatePresence>
                         <motion.button
@@ -110,17 +111,15 @@ const CoursesPayment = () => {
                             initial="hidden"
                             animate="visible"
                             exit="exit"
-                            onClick={() => setShowFilterStatus((prev) => !prev)}
+                            onClick={() => setShowFiltersOption((prev) => !prev)}
                             className={`dark:bg-black dark:text-[#ffff] cursor-pointer relative py-2 ${
                                 isRTL ? 'pe-8 ps-2' : 'ps-8 pe-2'
                             } 
                         bg-[#ffff] shadow rounded-[16px]`}
                         >
-                            {t('coursesPayment.filters')}
+                            {t('favoriteNews.filters')}
                             <span className={`${isRTL ? 'mr-1' : 'ml-1'} text-xs text-gray-300`}>
-                                {filterStatus === 'all'
-                                    ? `(${t('coursesPayment.all')})`
-                                    : `(${filterStatus})`}
+                                {filterOption === 'all' ? `(${t('favoriteNews.all')})` : `(${filterOption})`}
                             </span>
                             <img
                                 className=" absolute left-2 top-[50%] translate-y-[-50%]  "
@@ -129,7 +128,7 @@ const CoursesPayment = () => {
                         </motion.button>
                     </AnimatePresence>
 
-                    {showFilterStatus && (
+                    {showFiltersOption && (
                         <AnimatePresence>
                             <motion.ul
                                 variants={fadeInUp(0)}
@@ -139,30 +138,23 @@ const CoursesPayment = () => {
                                 className="  dark:bg-black dark:text-[#ffff]
                                  rounded-xl shadow absolute right-0 mt-2 w-full bg-[#ffff] border border-[#EAEAEA] "
                             >
-                                {[
-                                    'all',
-                                    `${t('coursesPayment.confirmed')}`,
-                                    `${t('coursesPayment.AwaitingConfirmation')}`,
-                                    `${t('coursesPayment.notConfirmed')}`,
-                                ].map((option) => (
+                                {["all", `${t("favoriteNews.mostLikes")}`, `${t('favoriteNews.mostViews')}` ].map((option) => (
                                     <li
                                         className={`  dark:bg-black dark:text-[#ffff]
                                              border-b w-full border-[#EAEAEA] px-4 py-2 cursor-pointer
                                          ${
-                                             option === filterStatus
+                                             option === filterOption
                                                  ? 'hover:bg-gray-300'
                                                  : 'hover:bg-green-600 hover:text-[#ffff] '
                                          } `}
                                         key={option}
                                         onClick={() => {
-                                            setFilterStatus(option);
-                                            setShowFilterStatus(false);
-                                            setCurruntPage(1);
+                                            setFilterOption(option);
+                                            setShowFiltersOption(false);
+                                            setCurrentPage(1);
                                         }}
                                     >
-                                        {option === 'all'
-                                            ? `${t('coursesPayment.all')}`
-                                            : `${option}`}
+                                        {option === 'all' ? `${t('favoriteNews.all')}` : `${option}`}
                                     </li>
                                 ))}
                             </motion.ul>
@@ -170,40 +162,40 @@ const CoursesPayment = () => {
                     )}
                 </div>
             </div>
-            {/* ------ payments */}
+            {/* favorite news ------- */}
             <motion.div
-                variants={fadeInUp(0)}
-                initial="hidden"
-                animate="visible"
-                className="  dark:bg-black dark:text-[#ffff]
+            variants={fadeInUp(0)}
+            initial="hidden"
+            animate="visible"
+                className=" dark:bg-black dark:text-[#ffff]
              h-[89%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
             >
                 <div className="flex flex-col">
-                    <CourseHeader />
-                    {curruntPayments.length > 0 ? (
-                        curruntPayments.map((items) => <CoursePayment items={items} />)
+                    <NewsHeader />
+                    {currentNews.length > 0 ? (
+                        currentNews.map((items) => <FavoriteNew key={items.id} items={items} />)
                     ) : (
                         <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
-                            {t('coursesPayment.notFound')}
+                            {t('favoriteNews.notFound')}
                         </h1>
                     )}
                 </div>
-                {/* -------- buttons */}
+                {/* buttons ------- */}
                 <div className="flex justify-between p-8">
                     <div className="flex items-center gap-2" style={{ direction: 'ltr' }}>
                         <button
-                            disabled={curruntPage === 1}
+                            disabled={currentPage === 1}
                             onClick={() => {
-                                setCurruntPage((prev) => prev - 1);
+                                setCurrentPage((prev) => prev - 1);
                             }}
                             className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 mr-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
                             <img src="/icons/pl.png" alt="" />
-                            {t('coursesPayment.back')}
+                            {t('favoriteNews.back')}
                         </button>
                         {Array.from({ length: totalPages }).map((_, i) => {
                             const p = i + 1;
-                            const active = p === curruntPage;
+                            const active = p === currentPage;
                             return (
                                 <button
                                     key={p}
@@ -217,26 +209,26 @@ const CoursesPayment = () => {
                             );
                         })}
                         <button
-                            disabled={curruntPage === totalPages}
+                            disabled={currentPage === totalPages}
                             onClick={() => {
-                                setCurruntPage((prev) => prev + 1);
+                                setCurrentPage((prev) => prev + 1);
                             }}
                             className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 ml-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
-                            {t('coursesPayment.next')}
+                            {t('favoriteNews.next')}
                             <img src="/icons/pr.png" alt="" />
                         </button>
                     </div>
-                    {/* ------------ filterCount */}
-                    <div>
+                    {/* filtering counts ------ */}
+                    <div className="relative">
                         <button
                             onClick={() => setShowCount((prev) => !prev)}
                             className={`dark:bg-black dark:text-[#ffff]
-                             text-[16px] relative bg-[#ffff] py-2 ${
+                             text-[16px] bg-[#ffff] py-2 ${
                                  isRTL ? 'ps-2 pe-8' : 'ps-8 pe-2'
                              } border border-[#EAEAEA] rounded-2xl `}
                         >
-                            {t('coursesPayment.NumberShows')}
+                            {t('favoriteNews.NumberShows')}
                             <img
                                 className="absolute top-[50%] left-2 translate-y-[-50%] "
                                 src="/icons/buttom.png"
@@ -254,14 +246,14 @@ const CoursesPayment = () => {
                                     <li
                                         key={num}
                                         onClick={() => {
-                                            setPaymentsPerPage(num);
+                                            setNewsPerPage(num);
                                             setShowCount(false);
-                                            setCurruntPage(1);
+                                            setCurrentPage(1);
                                         }}
                                         className={`dark:bg-black dark:text-[#ffff] 
                                             cursor-pointer w-full border-b border-[#EAEAEA] px-1 py-1 
                                             ${
-                                                num === paymentsPerPage
+                                                num === newsPerPage
                                                     ? 'hover:bg-gray-400'
                                                     : 'hover:bg-green-600 hover:text-[#ff] '
                                             } `}
@@ -278,4 +270,4 @@ const CoursesPayment = () => {
     );
 };
 
-export default CoursesPayment;
+export default FavoriteNews;
