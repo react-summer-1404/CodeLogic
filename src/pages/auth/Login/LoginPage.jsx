@@ -104,7 +104,7 @@ const LoginPage = () => {
                                                 transition={{ type: "spring", stiffness: 300 }}
                                                 type='submit'
                                                 disabled={isPending}
-                                                className='w-full bg-[#008C78] text-white text-[16px] rounded-full mt-5 px-5 py-3  '>{t('login.SendOneTimeCode')}</motion.button>
+                                                className='w-full bg-[#008C78] text-white text-[16px] rounded-full mt-5 px-5 py-3  '>{t('login.login')}</motion.button>
                                         </div>
                                     </Form>
                                 )}

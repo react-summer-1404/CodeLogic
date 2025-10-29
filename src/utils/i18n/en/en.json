@@ -426,7 +426,8 @@
     "OneTimePasswordVerification": "One-time password verification",
     "Title2": "Just one step to the world of learning!",
     "caption2": "The opportunity to grow, progress, and build a better future is here — stay one step ahead with us!",
-    "Required": "The field is required."
+    "Required": "The field is required.",
+    "login":"login"
   },
   "loginVal": {
     "requiredPass": "Password entry is required.",
