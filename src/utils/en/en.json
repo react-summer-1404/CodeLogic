@@ -126,5 +126,33 @@
   "reserved_courses" : "Reserved Courses",
   "view_all" : "View All",
   "latest_news" : "Latest News"
-}
+},
+"userinfo": {
+    "tabs": {
+      "general": "General Information",
+      "location": "Location",
+      "social": "Social Media"
+    },
+    "fields": {
+      "name": "First Name",
+      "lastname": "Last Name",
+      "nationalcode": "National ID",
+      "gender": "Gender",
+      "birthday": "Birthday",
+      "phonenumber": "Phone Number",
+      "aboutme": "About Me"
+    },
+    "placeholders": {
+      "name": "Enter your first name",
+      "lastname": "Enter your last name",
+      "nationalcode": "Enter your 10-digit national ID",
+      "gender": "Select gender",
+      "birthday": "",
+      "phonenumber": "Enter your phone number",
+      "aboutme": "Write more about yourself"
+    },
+    "buttons": {
+      "edit": "Edit Information"
+    }
+  }
 }

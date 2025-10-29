@@ -128,5 +128,33 @@
   "reserved_courses" : "دوره های رزرو شده",
   "view_all" : "مشاهده همه",
   "latest_news" : "جدید ترین اخبار"
-}
+},
+ "userinfo": {
+    "tabs": {
+      "general": "اطلاعات کلی",
+      "location": "موقعیت مکانی",
+      "social": "شبکه اجتماعی"
+    },
+    "fields": {
+      "name": "نام",
+      "lastname": "نام خانوادگی",
+      "nationalcode": "کد ملی",
+      "gender": "جنسیت",
+      "birthday": "تاریخ تولد",
+      "phonenumber": "شماره تلفن",
+      "aboutme": "درباره من"
+    },
+    "placeholders": {
+      "name": "نام خود را وارد کنید",
+      "lastname": "نام خانوادگی خود را وارد کنید",
+      "nationalcode": "کد ملی 10 رقمی را وارد کنید",
+      "gender": "انتخاب کنید",
+      "birthday": "",
+      "phonenumber": "شماره تلفن خود را وارد کنید",
+      "aboutme": "توضیحات بیشتر راجب خود وارد کنید"
+    },
+    "buttons": {
+      "edit": "ویرایش اطلاعات"
+    }
+  }
 }
