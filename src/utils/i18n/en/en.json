@@ -498,5 +498,23 @@
   },
   "panelheader": {
     "name": "matin ghorbanzade"
+  },
+  "favoriteNews":{
+    "search": "search ....",
+    "filters": "filters",
+    "all": "all",
+    "mostLikes":"Most likes",
+    "mostViews":"Most views",
+    "notFound": "No item found!",
+    "back": "back",
+    "next": "next",
+    "NumberShows": "Number of shows",
+    "newsTitle" : "News title",
+    "commentsCount":"Comments count",
+    "viewsCount":"views count",
+    "likesCount":"Likes count",
+    "lastUpdated":"Last updated",
+    "Operation": "Operation"
+    
   }
 }
