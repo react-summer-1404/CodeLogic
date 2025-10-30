@@ -427,7 +427,7 @@
         "Title2": "تنها یک قدم تا دنیای یادگیری!",
         "caption2": "فرصت رشد، پیشرفت و ساختن آینده‌ای بهتر همین‌جاست — همراه با ما، یک قدم جلوتر باشید!",
         "Required": "پر کردن فیلد الزامی است",
-        "login":"ورود"
+        "login": "ورود"
     },
     "loginVal": {
         "requiredPass": "وارد کردن رمز عبور الزامی است",
@@ -515,6 +515,22 @@
         "commentsCount": "تعداد نظر",
         "viewsCount": "تعداد بازدید",
         "likesCount": "تعداد لایک",
+        "lastUpdated": "آخرین بروز رسانی",
+        "Operation": "عملیات"
+    },
+    "favoriteCourses": {
+        "search": "جستجو....",
+        "filters": "فیلتر ها",
+        "all": "همه",
+        "notFound": "موردی یافت نشد !",
+        "back": "قبلی",
+        "next": "بعدی",
+        "NumberShows": "تعداد نمایش",
+        "online": "انلاین",
+        "faceToFace": "حضوری",
+        "courseName": "نام دوره",
+        "caption": "توضیحات",
+        "meetingMode": "حالت برگزاری",
         "lastUpdated": "آخرین بروز رسانی",
         "Operation": "عملیات"
     }

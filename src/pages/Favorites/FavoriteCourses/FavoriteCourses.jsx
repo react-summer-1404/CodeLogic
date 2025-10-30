@@ -1,40 +1,40 @@
 import React, { useState } from 'react';
-import NewsHeader from '../../../components/common/favorites/News/newsHeader/NewsHeader';
+import CourseHeader from '../../../components/common/favorites/courses/FavoriteCourseHeader/CourseHeader';
 import { useTranslation } from 'react-i18next';
-import FavoriteNew from '../../../components/common/favorites/News/FavoriteNew';
-import { FavoriteNewsData } from '../../../components/common/data/Favorites/FavoriteNewsData';
-import { AnimatePresence, motion, number } from 'framer-motion';
+import { FavoriteCoursesData } from '../../../components/common/data/Favorites/FavoriteCourses';
+import FavoriteCourse from '../../../components/common/favorites/courses/FavoriteCourse';
+import { AnimatePresence, motion } from 'framer-motion';
 
-const FavoriteNews = () => {
+const FavoriteCourses = () => {
     const { t, i18n } = useTranslation();
     const isRTL = i18n.language === 'fa';
-    /// pagination ///
+    //// pagination ////
     const [currentPage, setCurrentPage] = useState(1);
-    const [newsPerPage, setNewsPerPage] = useState(2);
+    const [coursesPerPage, setCoursesPerPage] = useState(2);
     const [searchTerm, setSearchTerm] = useState('');
-    const [showCount, setShowCount] = useState(false);
     const [showFiltersOption, setShowFiltersOption] = useState(false);
     const [filterOption, setFilterOption] = useState('all');
-    const filteredNews = FavoriteNewsData.filter((n) =>
-        n.newsTitle.trim().toLowerCase().includes(searchTerm.trim().toLowerCase())
-    ).sort((a, b) => {
-        if (filterOption === 'بیشترین لایک') {
-            return b.likesCount - a.likesCount;
-        } else if (filterOption === 'بیشترین بازدید') {
-            return b.viewsCount - a.viewsCount;
-        }
-        return 0;
+
+    const filteredCourses = FavoriteCoursesData.filter((n) => {
+        const matchesSearch = n.courses
+            .trim()
+            .toLowerCase()
+            .includes(searchTerm.trim().toLowerCase());
+        const matchesFilter =
+            filterOption === 'all'
+                ? true
+                : n.meetingMode.trim().toLowerCase().match(filterOption.trim().toLowerCase());
+        return matchesFilter && matchesSearch;
     });
 
-    const startIndex = (currentPage - 1) * newsPerPage;
-    const endIndex = startIndex + newsPerPage;
-    const currentNews = filteredNews.slice(startIndex, endIndex);
-    const totalPages = Math.ceil(filteredNews.length / newsPerPage);
+    const startIndex = (currentPage - 1) * coursesPerPage;
+    const endIndex = startIndex + coursesPerPage;
+    const currentCourses = filteredCourses.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
     const goto = (p) => {
         if (p > totalPages || p < 1) return;
         setCurrentPage(p);
     };
-
     /// motion framer ///
     const fadeInUp = (delay) => ({
         hidden: { opacity: 0, y: -20 },
@@ -82,7 +82,7 @@ const FavoriteNews = () => {
      min-h-[700px] flex-col justify-between mx-auto my-7 rounded-4xl "
         >
             <div className="flex justify-between items-center">
-                {/* filtering ------ */}
+                {/* filters ------- */}
                 <motion.div
                     variants={rightAnimate}
                     initial="hidden"
@@ -94,11 +94,11 @@ const FavoriteNews = () => {
                         className=" dark:bg-black dark:text-[#ffff] dark:placeholder:text-white
                      w-full h-full shadow py-2 px-3 bg-[#ffff] rounded-[16px] focus:outline-none "
                         type="text"
+                        placeholder={t('favoriteCourses.search')}
                         onChange={(e) => {
                             setSearchTerm(e.target.value);
                             setCurrentPage(1);
                         }}
-                        placeholder={t('favoriteNews.search')}
                     />
                     <img
                         className={` absolute ${
@@ -115,16 +115,16 @@ const FavoriteNews = () => {
                             initial="hidden"
                             animate="visible"
                             exit="exit"
-                            onClick={() => setShowFiltersOption((prev) => !prev)}
                             className={`dark:bg-black dark:text-[#ffff] cursor-pointer relative py-2 ${
                                 isRTL ? 'pe-8 ps-2' : 'ps-8 pe-2'
                             } 
                         bg-[#ffff] shadow rounded-[16px]`}
+                            onClick={() => setShowFiltersOption((prev) => !prev)}
                         >
-                            {t('favoriteNews.filters')}
+                            {t('favoriteCourses.filters')}
                             <span className={`${isRTL ? 'mr-1' : 'ml-1'} text-xs text-gray-300`}>
                                 {filterOption === 'all'
-                                    ? `(${t('favoriteNews.all')})`
+                                    ? `(${t('favoriteCourses.all')})`
                                     : `(${filterOption})`}
                             </span>
                             <img
@@ -142,21 +142,21 @@ const FavoriteNews = () => {
                                 animate="visible"
                                 exit="exit"
                                 className="  dark:bg-black dark:text-[#ffff]
-                                 rounded-xl shadow absolute right-0 mt-2 w-full bg-[#ffff] border border-[#EAEAEA] "
+                                                     rounded-xl shadow absolute right-0 mt-2 w-full bg-[#ffff] border border-[#EAEAEA] "
                             >
                                 {[
                                     'all',
-                                    `${t('favoriteNews.mostLikes')}`,
-                                    `${t('favoriteNews.mostViews')}`,
+                                    `${t('favoriteCourses.faceToFace')}`,
+                                    `${t('favoriteCourses.online')}`,
                                 ].map((option) => (
                                     <li
                                         className={`  dark:bg-black dark:text-[#ffff]
-                                             border-b w-full border-[#EAEAEA] px-4 py-2 cursor-pointer
-                                         ${
-                                             option === filterOption
-                                                 ? 'hover:bg-gray-300'
-                                                 : 'hover:bg-green-600 hover:text-[#ffff] '
-                                         } `}
+                                                                 border-b w-full border-[#EAEAEA] px-4 py-2 cursor-pointer
+                                                             ${
+                                                                 option === filterOption
+                                                                     ? 'hover:bg-gray-300'
+                                                                     : 'hover:bg-green-600 hover:text-[#ffff] '
+                                                             } `}
                                         key={option}
                                         onClick={() => {
                                             setFilterOption(option);
@@ -165,7 +165,7 @@ const FavoriteNews = () => {
                                         }}
                                     >
                                         {option === 'all'
-                                            ? `${t('favoriteNews.all')}`
+                                            ? `${t('favoriteCourses.all')}`
                                             : `${option}`}
                                     </li>
                                 ))}
@@ -174,7 +174,7 @@ const FavoriteNews = () => {
                     )}
                 </div>
             </div>
-            {/* favorite news ------- */}
+            {/* favorite courses -------- */}
             <motion.div
                 variants={fadeInUp(0)}
                 initial="hidden"
@@ -183,12 +183,14 @@ const FavoriteNews = () => {
              h-[89%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
             >
                 <div className="flex flex-col">
-                    <NewsHeader />
-                    {currentNews.length > 0 ? (
-                        currentNews.map((items) => <FavoriteNew key={items.id} items={items} />)
+                    <CourseHeader />
+                    {currentCourses.length > 0 ? (
+                        currentCourses.map((items) => (
+                            <FavoriteCourse items={items} key={items.id} />
+                        ))
                     ) : (
                         <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
-                            {t('favoriteNews.notFound')}
+                            {t('favoriteCourses.notFound')}
                         </h1>
                     )}
                 </div>
@@ -203,7 +205,7 @@ const FavoriteNews = () => {
                             className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 mr-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
                             <img src="/icons/pl.png" alt="" />
-                            {t('favoriteNews.back')}
+                            {t('favoriteCourses.back')}
                         </button>
                         {Array.from({ length: totalPages }).map((_, i) => {
                             const p = i + 1;
@@ -227,17 +229,17 @@ const FavoriteNews = () => {
                             }}
                             className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 ml-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
-                            {t('favoriteNews.next')}
+                            {t('favoriteCourses.next')}
                             <img src="/icons/pr.png" alt="" />
                         </button>
                     </div>
                     {/* filtering counts ------ */}
                     <div className="flex items-center dark:bg-black dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
-                        <span className="text-[16px]">{t('favoriteNews.NumberShows')}</span>
+                        <span className="text-[16px]">{t('favoriteCourses.NumberShows')}</span>
                         <select
-                            value={newsPerPage}
+                            value={coursesPerPage}
                             onChange={(e) => {
-                                setNewsPerPage(Number(e.target.value));
+                                setCoursesPerPage(Number(e.target.value));
                                 setCurrentPage(1);
                             }}
                             className=" rounded-xl text-sm cursor-pointer px-3 py-1  dark:bg-black dark:text-[#ffff]"
@@ -253,4 +255,4 @@ const FavoriteNews = () => {
     );
 };
 
-export default FavoriteNews;
+export default FavoriteCourses;

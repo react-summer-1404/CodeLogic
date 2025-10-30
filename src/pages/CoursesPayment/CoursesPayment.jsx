@@ -76,7 +76,7 @@ const CoursesPayment = () => {
         },
     };
     return (
-        <div className="bg-[#F3F4F6] dark:bg-gray-700  w-full p-8 flex min-h-[700px] flex-col justify-between mx-auto my-7 rounded-4xl ">
+        <div className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-8 flex min-h-[700px] flex-col justify-between mx-auto my-7 rounded-4xl ">
             {/* ----------- filtering  */}
             <div className="flex justify-between items-center">
                 <AnimatePresence>
@@ -228,49 +228,19 @@ const CoursesPayment = () => {
                         </button>
                     </div>
                     {/* ------------ filterCount */}
-                    <div>
-                        <button
-                            onClick={() => setShowCount((prev) => !prev)}
-                            className={`dark:bg-black dark:text-[#ffff]
-                             text-[16px] relative bg-[#ffff] py-2 ${
-                                 isRTL ? 'ps-2 pe-8' : 'ps-8 pe-2'
-                             } border border-[#EAEAEA] rounded-2xl `}
+                      <div className="flex items-center dark:bg-black dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
+                             <span className='text-[16px]'>{t('coursesPayment.NumberShows')}</span>
+                        <select value={paymentsPerPage}
+                        onChange={(e)=>{
+                            setPaymentsPerPage(Number(e.target.value))
+                            setCurruntPage(1)
+                        }}
+                        className=' rounded-xl text-sm cursor-pointer px-3 py-1  dark:bg-black dark:text-[#ffff]'
                         >
-                            {t('coursesPayment.NumberShows')}
-                            <img
-                                className="absolute top-[50%] left-2 translate-y-[-50%] "
-                                src="/icons/buttom.png"
-                            />
-                        </button>
-                        {showCount && (
-                            <motion.ul
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.2, type: 'spring', stiffness: 300 }}
-                                className="  dark:bg-black dark:text-[#ffff]
-                                 mt-1 rounded-xl border border-[#EAEAEA] text-center"
-                            >
-                                {[2, 4, 6].map((num) => (
-                                    <li
-                                        key={num}
-                                        onClick={() => {
-                                            setPaymentsPerPage(num);
-                                            setShowCount(false);
-                                            setCurruntPage(1);
-                                        }}
-                                        className={`dark:bg-black dark:text-[#ffff] 
-                                            cursor-pointer w-full border-b border-[#EAEAEA] px-1 py-1 
-                                            ${
-                                                num === paymentsPerPage
-                                                    ? 'hover:bg-gray-400'
-                                                    : 'hover:bg-green-600 hover:text-[#ff] '
-                                            } `}
-                                    >
-                                        {num}
-                                    </li>
-                                ))}
-                            </motion.ul>
-                        )}
+                            <option value={2}>2</option>
+                            <option value={4}>4</option>
+                            <option value={6}>6</option>
+                        </select>
                     </div>
                 </div>
             </motion.div>

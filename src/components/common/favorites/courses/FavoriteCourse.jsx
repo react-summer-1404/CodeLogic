@@ -1,7 +1,6 @@
+import { motion } from 'framer-motion';
 import React from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-
-const FavoriteNew = ({ items }) => {
+const FavoriteCourse = ({ items }) => {
     const Animate = {
         hidden: { opacity: 0, y: -20 },
         visible: {
@@ -10,6 +9,7 @@ const FavoriteNew = ({ items }) => {
             transition: { ease: 'easeOut', duration: 0.35 },
         },
     };
+
     return (
         <motion.div
             variants={Animate}
@@ -21,14 +21,13 @@ const FavoriteNew = ({ items }) => {
             <div className="ps-8 flex items-center justify-start gap-4 flex-[1.5] text-right">
                 <img
                     className="w-[28px] h-[28px] rounded-full object-cover"
-                    src={items.newsImage}
+                    src={items.coursesImage}
                     alt=""
                 />
-                {items.newsTitle}
+                {items.courses}
             </div>
-            <div className="px-4 flex-1">{items.commentsCount}</div>
-            <div className="px-4 flex-1">{items.viewsCount}</div>
-            <div className="px-1 flex-1">{items.likesCount}</div>
+            <div className="ps-3 flex-[1.2] text-right overflow-ellipsis ">{items.caption}</div>
+            <div className="px-4 flex-1">{items.meetingMode}</div>
             <div className="px-4 flex-1">{items.lastUpdate}</div>
             <div className="pe-8 w-[100px] text-left flex items-center justify-end gap-4">
                 <div className="w-6 h-4 bg-[url(/icons/greenEye.png)] bg-no-repeat bg-[center_center] "></div>
@@ -38,4 +37,4 @@ const FavoriteNew = ({ items }) => {
     );
 };
 
-export default FavoriteNew;
+export default FavoriteCourse;

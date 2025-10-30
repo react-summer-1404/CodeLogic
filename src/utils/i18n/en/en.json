@@ -1,521 +1,536 @@
 {
-  "navbar": {
-    "academy": "Bahr Academy",
-    "home": "Home",
-    "courses": "Courses",
-    "news": "News",
-    "search_placeholder": "Search...",
-    "select_placeholder": "Select...",
-    "login": "Login / Register"
-  },
-  "heroSection": {
-    "title1": "Learning programming with experienced teachers,",
-    "titleSpan": "The path to success",
-    "title2": "It smooths you out.",
-    "desc": "Start learning programming with our specialized courses from professional and experienced instructors. From basic concepts to advanced skills, we will take you to a level where you are ready to enter the professional world of technology. Grow quickly with modern and efficient methods!",
-    "buttonText": "Join the community of professionals"
-  },
-  "section1": {
-    "title1": "Top Professors",
-    "title2": "Students",
-    "title3": "Training Courses",
-    "title4": "News and Blogs"
-  },
-  "beWithUs": {
-    "title": "Be at the forefront of programming with us.",
-    "desc": "From beginner to professional, accompanying you on your programming journey.",
-    "title1": "Modern Educations",
-    "title2": "Building a Professional Career Path",
-    "title3": "Creating a spirit of continuous growth and learning",
-    "title4": "Developing problem-solving skills",
-    "desc1": "All training is up-to-date and you will learn the most modern content with us.",
-    "desc2": "Our goal is for people to be prepared to enter the job market after training.",
-    "desc3": "Technology is always changing. We believe that learning never stops.",
-    "desc4": "Programming is not just about writing code; we teach our students to think logically, analyze challenges, and solve problems."
-  },
-  "sliderCourses": {
-    "title": "Programming training courses",
-    "desc": "Courses for everyone: learn, practice, do projects!",
-    "seeAllText": "See All Courses"
-  },
-  "whyUs": {
-    "title1": "From the first line of code to",
-    "titleSpan": " entering the labor market ",
-    "title2": "we are with you.",
-    "desc": "We make the path to learning programming simple, practical, and effective so you can enter the job market faster.",
-    "cardTitle1": "Learning practical skills",
-    "cardDesc1": "By focusing on real projects and market needs, you will learn skills that are truly applicable.",
-    "cardTitle2": "Purposeful learning path",
-    "cardDesc2": "From beginner to expert, the trainings are carefully designed so that you don't waste time and progress step by step.",
-    "cardTitle3": "Support and Mentoring",
-    "cardDesc3": "You are not alone during the courses; professors and mentors are with you to answer your questions and guide you.",
-    "cardTitle4": "Training in up-to-date technologies",
-    "cardDesc4": "From HTML and CSS to React, Node.js, Python, and AI — you'll always learn up-to-date."
-  },
-  "sliderTeachers": {
-    "title": "Meet our professional teachers",
-    "desc": "Learning from the best instructors with experience and up-to-date knowledge",
-    "seeAllText": "View all teachers"
-  },
-  "joinTeachers": {
-    "title1": "Educate, make an impact, and start",
-    "titleSpan": " a new career path ",
-    "title2": "with us",
-    "desc": "If you know how to code and want to share your knowledge with others, this is the place to teach, be influential, and earn money. Join our community of instructors and be part of the future of budding programmers.",
-    "buttonText": "Join the group of professors"
-  },
-  "newsListSection": {
-    "title": "News and Articles",
-    "desc": "Stay up to date with the latest programming news and articles."
-  },
-  "footer": {
-    "newsletter_button": "Sign Up",
-    "newsletter_placeholder": "Enter your phone number",
-    "newsletter_description": "Subscribe to our newsletter to get updates on courses, articles and discounts",
-    "newsletter_title": "Stay updated with the latest programming news and courses",
-    "support": "Education & Support",
-    "events": "Events",
-    "panel": "User Panel",
-    "technical_support": "Technical Support",
-    "articles": "Educational Articles",
-    "domains": "Application Areas",
-    "frontend": "Front-End",
-    "backend": "Back-End",
-    "fullstack": "Full Stack",
-    "ai": "Artificial Intelligence",
-    "seo": "SEO & Optimization",
-    "uiux": "UI / UX Design",
-    "mobile": "Mobile",
-    "about": "About Us",
-    "news": "News",
-    "jobs": "Careers",
-    "contact": "Contact Us",
-    "trust_center": "Trust Center",
-    "rules": "Terms of Use",
-    "security": "Security Policy",
-    "privacy": "Privacy Policy",
-    "skills": "Skills",
-    "htmlcss": "HTML & CSS",
-    "javascript": "JavaScript",
-    "react": "React",
-    "nextjs": "Next.js",
-    "nodejs": "Node.js",
-    "restapi": "REST API",
-    "git": "Git & GitHub",
-    "rights": "All rights reserved for Bahr Academy.",
-    "academy": "Bahr Academy"
-  },
-  "registerStepOne": {
-    "validation": {
-      "required": "Please enter your phone number *",
-      "invalid": "Invalid phone number *"
+    "navbar": {
+        "academy": "Bahr Academy",
+        "home": "Home",
+        "courses": "Courses",
+        "news": "News",
+        "search_placeholder": "Search...",
+        "select_placeholder": "Select...",
+        "login": "Login / Register"
     },
-    "start_learning": "Start your learning journey here!",
-    "description": "By creating your account, you'll access courses, educational content, and advanced tools. This is the first step for growth!",
-    "home": "Home",
-    "create_account": "Create Account",
-    "enter_phone": "Enter your phone number to create an account",
-    "phone_placeholder": "Enter your phone number",
-    "send_code": "Send OTP",
-    "have_account": "Already have an account?",
-    "login": "Login"
-  },
-  "registerStepTwo": {
-    "validation": {
-      "required": "This field is required"
+    "heroSection": {
+        "title1": "Learning programming with experienced teachers,",
+        "titleSpan": "The path to success",
+        "title2": "It smooths you out.",
+        "desc": "Start learning programming with our specialized courses from professional and experienced instructors. From basic concepts to advanced skills, we will take you to a level where you are ready to enter the professional world of technology. Grow quickly with modern and efficient methods!",
+        "buttonText": "Join the community of professionals"
     },
-    "start_learning": "Just one step away from the world of learning!",
-    "description": "Opportunity for growth, progress, and a better future is here — take one step ahead with us!",
-    "back": "Back",
-    "create_account": "Create Account",
-    "enter_code": "Enter the OTP sent to you",
-    "confirm_otp": "Confirm OTP"
-  },
-  "registerStepThree": {
-    "start_learning": "This is the final step of your registration.",
-    "description": "Everything is ready! Now just enter your details to complete your account.",
-    "back": "Back",
-    "create_account": "Create Account",
-    "complete_info": "Complete your information",
-    "placeholder": {
-      "email": "Enter your email",
-      "password": "Enter your password",
-      "confirmPassword": "Confirm password"
+    "section1": {
+        "title1": "Top Professors",
+        "title2": "Students",
+        "title3": "Training Courses",
+        "title4": "News and Blogs"
     },
-    "submit": "Sign Up",
-    "have_account": "Already have an account?",
-    "login": "Login",
-    "validation": {
-      "email_invalid": "Invalid email address *",
-      "email_required": "Please enter your email *",
-      "password_required": "Please enter your password *",
-      "password_min": "Password must be at least 8 characters *",
-      "password_number": "Password must contain a number *",
-      "password_lower": "Password must contain a lowercase letter *",
-      "password_upper": "Password must contain an uppercase letter *",
-      "password_symbol": "Password must contain a symbol (!,@,#,$,%,^,&,*) *",
-      "confirmPassword_required": "Please confirm your password *",
-      "confirmPassword_match": "Passwords do not match *"
+    "beWithUs": {
+        "title": "Be at the forefront of programming with us.",
+        "desc": "From beginner to professional, accompanying you on your programming journey.",
+        "title1": "Modern Educations",
+        "title2": "Building a Professional Career Path",
+        "title3": "Creating a spirit of continuous growth and learning",
+        "title4": "Developing problem-solving skills",
+        "desc1": "All training is up-to-date and you will learn the most modern content with us.",
+        "desc2": "Our goal is for people to be prepared to enter the job market after training.",
+        "desc3": "Technology is always changing. We believe that learning never stops.",
+        "desc4": "Programming is not just about writing code; we teach our students to think logically, analyze challenges, and solve problems."
+    },
+    "sliderCourses": {
+        "title": "Programming training courses",
+        "desc": "Courses for everyone: learn, practice, do projects!",
+        "seeAllText": "See All Courses"
+    },
+    "whyUs": {
+        "title1": "From the first line of code to",
+        "titleSpan": " entering the labor market ",
+        "title2": "we are with you.",
+        "desc": "We make the path to learning programming simple, practical, and effective so you can enter the job market faster.",
+        "cardTitle1": "Learning practical skills",
+        "cardDesc1": "By focusing on real projects and market needs, you will learn skills that are truly applicable.",
+        "cardTitle2": "Purposeful learning path",
+        "cardDesc2": "From beginner to expert, the trainings are carefully designed so that you don't waste time and progress step by step.",
+        "cardTitle3": "Support and Mentoring",
+        "cardDesc3": "You are not alone during the courses; professors and mentors are with you to answer your questions and guide you.",
+        "cardTitle4": "Training in up-to-date technologies",
+        "cardDesc4": "From HTML and CSS to React, Node.js, Python, and AI — you'll always learn up-to-date."
+    },
+    "sliderTeachers": {
+        "title": "Meet our professional teachers",
+        "desc": "Learning from the best instructors with experience and up-to-date knowledge",
+        "seeAllText": "View all teachers"
+    },
+    "joinTeachers": {
+        "title1": "Educate, make an impact, and start",
+        "titleSpan": " a new career path ",
+        "title2": "with us",
+        "desc": "If you know how to code and want to share your knowledge with others, this is the place to teach, be influential, and earn money. Join our community of instructors and be part of the future of budding programmers.",
+        "buttonText": "Join the group of professors"
+    },
+    "newsListSection": {
+        "title": "News and Articles",
+        "desc": "Stay up to date with the latest programming news and articles."
+    },
+    "footer": {
+        "newsletter_button": "Sign Up",
+        "newsletter_placeholder": "Enter your phone number",
+        "newsletter_description": "Subscribe to our newsletter to get updates on courses, articles and discounts",
+        "newsletter_title": "Stay updated with the latest programming news and courses",
+        "support": "Education & Support",
+        "events": "Events",
+        "panel": "User Panel",
+        "technical_support": "Technical Support",
+        "articles": "Educational Articles",
+        "domains": "Application Areas",
+        "frontend": "Front-End",
+        "backend": "Back-End",
+        "fullstack": "Full Stack",
+        "ai": "Artificial Intelligence",
+        "seo": "SEO & Optimization",
+        "uiux": "UI / UX Design",
+        "mobile": "Mobile",
+        "about": "About Us",
+        "news": "News",
+        "jobs": "Careers",
+        "contact": "Contact Us",
+        "trust_center": "Trust Center",
+        "rules": "Terms of Use",
+        "security": "Security Policy",
+        "privacy": "Privacy Policy",
+        "skills": "Skills",
+        "htmlcss": "HTML & CSS",
+        "javascript": "JavaScript",
+        "react": "React",
+        "nextjs": "Next.js",
+        "nodejs": "Node.js",
+        "restapi": "REST API",
+        "git": "Git & GitHub",
+        "rights": "All rights reserved for Bahr Academy.",
+        "academy": "Bahr Academy"
+    },
+    "registerStepOne": {
+        "validation": {
+            "required": "Please enter your phone number *",
+            "invalid": "Invalid phone number *"
+        },
+        "start_learning": "Start your learning journey here!",
+        "description": "By creating your account, you'll access courses, educational content, and advanced tools. This is the first step for growth!",
+        "home": "Home",
+        "create_account": "Create Account",
+        "enter_phone": "Enter your phone number to create an account",
+        "phone_placeholder": "Enter your phone number",
+        "send_code": "Send OTP",
+        "have_account": "Already have an account?",
+        "login": "Login"
+    },
+    "registerStepTwo": {
+        "validation": {
+            "required": "This field is required"
+        },
+        "start_learning": "Just one step away from the world of learning!",
+        "description": "Opportunity for growth, progress, and a better future is here — take one step ahead with us!",
+        "back": "Back",
+        "create_account": "Create Account",
+        "enter_code": "Enter the OTP sent to you",
+        "confirm_otp": "Confirm OTP"
+    },
+    "registerStepThree": {
+        "start_learning": "This is the final step of your registration.",
+        "description": "Everything is ready! Now just enter your details to complete your account.",
+        "back": "Back",
+        "create_account": "Create Account",
+        "complete_info": "Complete your information",
+        "placeholder": {
+            "email": "Enter your email",
+            "password": "Enter your password",
+            "confirmPassword": "Confirm password"
+        },
+        "submit": "Sign Up",
+        "have_account": "Already have an account?",
+        "login": "Login",
+        "validation": {
+            "email_invalid": "Invalid email address *",
+            "email_required": "Please enter your email *",
+            "password_required": "Please enter your password *",
+            "password_min": "Password must be at least 8 characters *",
+            "password_number": "Password must contain a number *",
+            "password_lower": "Password must contain a lowercase letter *",
+            "password_upper": "Password must contain an uppercase letter *",
+            "password_symbol": "Password must contain a symbol (!,@,#,$,%,^,&,*) *",
+            "confirmPassword_required": "Please confirm your password *",
+            "confirmPassword_match": "Passwords do not match *"
+        }
+    },
+    "courseList": {
+        "title": "Training courses",
+        "result": "Result"
+    },
+    "courseListSide": {
+        "searchPlaceholder": "Search...",
+        "startEndDate": "Starting and ending date",
+        "start": "Start",
+        "end": "End"
+    },
+    "sideDropDown": {
+        "title1": "Course level",
+        "title1Item1": "Professional",
+        "title1Item2": "Middle",
+        "title1Item3": "Beginner",
+        "title2": "Professors",
+        "title2Item1": "Dr. MohammadHosseinBahrololumi",
+        "title2Item2": "Mr.X",
+        "title2Item3": "Mr. Felan Felani",
+        "title3": "Technologies",
+        "title3Item1": "FrontEnd",
+        "title3Item2": "BackEnd"
+    },
+    "sortView": {
+        "title": "Sort by:"
+    },
+    "timeDropDown": {
+        "option1": "Newest",
+        "option2": "Oldest"
+    },
+    "courseInfo": {
+        "startDate": "StartDate",
+        "startTime": "StartTime",
+        "endDate": "EndDate",
+        "person": "Person",
+        "courseCapacity": "Course Capacity",
+        "price": "Price",
+        "toman": "Toman",
+        "reserveBtn": "Reserve Now",
+        "off": "Off"
+    },
+    "userSatisfaction": {
+        "title": "User Satisfaction",
+        "score": "score"
+    },
+    "courseTeacher": {
+        "courseTeacher": "Course Teracher",
+        "buttonText": "View more information"
+    },
+    "courseCommentsTab": {
+        "courseSpecifications": "Course Specifications",
+        "userComments": "User Comments"
+    },
+    "courseDetailSection": {
+        "title": "Details"
+    },
+    "courseDesc": {
+        "description": "Description"
+    },
+    "courseComments": {
+        "title": "All Comments"
+    },
+    "courseCommentForm": {
+        "titleInputsTitle": "Comment Title",
+        "titleInputsPlcholder": "Enter your comment's title",
+        "textInputsTitle": "Comment Desc",
+        "textInputsPlcholder": "Enter your comment's text",
+        "send": "Send"
+    },
+    "news": {
+        "title1": "React 18 Released",
+        "desc1": "React 18 introduces concurrent features for faster rendering.",
+        "views1": "1200 views",
+        "rating1": "4.5",
+        "category1": "Technology",
+        "date1": "Oct 18, 2025",
+        "title2": "New JavaScript Features",
+        "desc2": "Learn about the latest ES2025 JavaScript features.",
+        "views2": "850 views",
+        "rating2": "4.8",
+        "category2": "Programming",
+        "date2": "Oct 15, 2025"
+    },
+    "newsPage": {
+        "breadcrumb": "Home - News",
+        "headerTitle": "News & Articles",
+        "results": "200 results",
+        "searchPlaceholder": "Search...",
+        "sortBy": "Sort by:"
+    },
+    "categoryFilter": {
+        "title": "Categories",
+        "more": "+ Show more",
+        "categories": {
+            "educational": "Educational",
+            "general": "General Knowledge",
+            "jobMarket": "Job Market"
+        }
+    },
+    "NewsSelectOne": {
+        "dataone": " Newest",
+        "datatwo": "Oldest  "
+    },
+    "NewsSelectTwo": {
+        "dataone": "view"
+    },
+    "NewsDetails": {
+        "breadcrumbs": "Home - News - What is a Script and How is it Used in Programming?",
+        "pageTitle": "What is a Script and How is it Used in Programming?",
+        "authorLabel": "Author:",
+        "authorName": "Tyler Biton",
+        "userSatisfaction": "User Satisfaction",
+        "ratingValue": "3.5 Rating",
+        "latestNews": "Latest News",
+        "relatedNews": "Related News"
+    },
+    "titleImage": {
+        "category": "Educational",
+        "date": "June 3, 2025"
+    },
+    "sidebar": {
+        "news1": {
+            "title": "What is Programming? – Everything You Need to Know + Uses",
+            "name": "Edward Johnson",
+            "date": "2025/06/07"
+        },
+        "news2": {
+            "title": "Python + Minecraft = Learn Programming Through Gaming!",
+            "name": "Mohsen Jafari",
+            "date": "2025/06/02"
+        },
+        "news3": {
+            "title": "What is a Script and How is it Used in Programming?",
+            "name": "Tyler Biton",
+            "date": "2025/06/06"
+        }
+    },
+    "newsComment": {
+        "tabs": {
+            "details": "Course Details",
+            "comments": "User Comments"
+        },
+        "details": {
+            "section1": {
+                "title": "What is a Script and How is it Used in Programming?",
+                "text": "Simple and short programs written to automate certain tasks are called scripts in programming. Unlike large and complex programs, they are usually written and executed quickly without needing compilation. Scripts are used in areas such as the web, operating systems, data processing, and automation."
+            },
+            "section2": {
+                "title": "What is a Script Code?",
+                "text": "A script code is a set of instructions written in scripting languages such as JavaScript, Python, Perl, or Bash, usually executed by an interpreter instead of a processor. These codes are used to automate tasks, create interactivity on web pages, process data, or control system operations."
+            },
+            "section3": {
+                "title": "Main Uses of Scripting",
+                "text": "If you want to automate repetitive and time-consuming processes, scripting helps you save time. Common uses include automating repetitive tasks, system and network management, data analysis and machine learning, software testing, and game programming."
+            },
+            "section4": {
+                "title": "What is the Difference Between Programming Languages and Scripting Languages?",
+                "text": "Programming languages like C or C++ are usually compiled, while scripting languages like JavaScript or Python are interpreted line by line. Scripting languages are better for rapid development and simple tasks, while compiled languages are used for large and performance-heavy applications."
+            }
+        },
+        "comments": {
+            "allComments": "All Comments",
+            "commentsCount": "4",
+            "titleLabel": "Comment Title",
+            "titlePlaceholder": "Write the title of your comment",
+            "textLabel": "Comment Text",
+            "textPlaceholder": "Write your comment text"
+        }
+    },
+    "personalComment": {
+        "user": {
+            "name": "Edward Johnson",
+            "date": "June 3, 2025"
+        },
+        "comment": {
+            "title": "Great Course",
+            "text": "Lorem ipsum is a placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups."
+        },
+        "actions": {
+            "replyButton": "Reply",
+            "answer": "answer",
+            "closeReply": "Close Replies"
+        },
+        "replyForm": {
+            "titlePlaceholder": "Write your reply title",
+            "textPlaceholder": "Write your reply text"
+        }
+    },
+    "answerComment": {
+        "comment1": {
+            "name": "Edward Johnson",
+            "date": "June 3, 2025",
+            "title": "Excellent course",
+            "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "like": "200",
+            "dislike": "50"
+        },
+        "comment2": {
+            "name": "Edward Johnson",
+            "date": "June 3, 2025",
+            "title": "Excellent course",
+            "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "like": "200",
+            "dislike": "50"
+        },
+        "comment3": {
+            "name": "Edward Johnson",
+            "date": "June 3, 2025",
+            "title": "Excellent course",
+            "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "like": "200",
+            "dislike": "50"
+        },
+        "comment4": {
+            "name": "Edward Johnson",
+            "date": "June 3, 2025",
+            "title": "Excellent course",
+            "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "like": "200",
+            "dislike": "50"
+        },
+        "comment5": {
+            "name": "Edward Johnson",
+            "date": "June 3, 2025",
+            "title": "Excellent course",
+            "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "like": "200",
+            "dislike": "50"
+        },
+        "comment6": {
+            "name": "Edward Johnson",
+            "date": "June 3, 2025",
+            "title": "Excellent course",
+            "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "like": "200",
+            "dislike": "50"
+        }
+    },
+    "teachersPage": {
+        "titles": {
+            "HomePage": "HomePage",
+            "Teachers": "Teachers"
+        },
+        "filters": {
+            "Search": "search....",
+            "ShowMore": "Show more",
+            "ShowLess": "Show less",
+            "search": "search"
+        }
+    },
+    "NoResultFound": "No results found !",
+    "login": {
+        "HomePage": "HomePage",
+        "LoginToUserAccount": "Login to user account",
+        "EmailOrPhoneNumber": "Email or phoneNumber",
+        "password": "password",
+        "RememberMe": "Remember me",
+        "ForgotPassword": "Forgot password",
+        "SendOneTimeCode": "Send a one-time code",
+        "DontHaveAccount?": "Don't have an account?",
+        "Register": "Register",
+        "Title1": "Welcome to the world of learning!",
+        "Caption1": "By logging into your account, you will have access to educational content, courses, and advanced tools. This is the first step to growth and progress!",
+        "Back": "Back",
+        "EnterTheOneTimePasswordSent": "Enter the one-time password sent.",
+        "OneTimePasswordVerification": "One-time password verification",
+        "Title2": "Just one step to the world of learning!",
+        "caption2": "The opportunity to grow, progress, and build a better future is here — stay one step ahead with us!",
+        "Required": "The field is required.",
+        "login": "login"
+    },
+    "loginVal": {
+        "requiredPass": "Password entry is required.",
+        "minPass": "Password must contain at least 8 characters",
+        "requiredName": "This field is required to be entered",
+        "nameMin": "Must contain at least 4 characters"
+    },
+    "forgotPass": {
+        "homePage": "HomePage",
+        "ForgotPassword": "Forgot password",
+        "EnterYourEmailToRequest": "Enter your email to request a password change",
+        "email": "Enter your email",
+        "SubmitRequest": "Submit request",
+        "title1": "Forgetting your password is not the end of the road!",
+        "Caption1": "By entering your email, you will receive a password change link and return to the world of learning.",
+        "back": "Back",
+        "SetNewPass": "Set a new password for yourself.",
+        "newPass": "New password",
+        "RepeatPass": "Repeat password",
+        "RegisterNewPass": "Register a new password",
+        "title2": "The final step to get back on the learning path!",
+        "caption2": "By setting a new password, you will regain access to your account and can continue learning without stopping."
+    },
+    "forgotVal1": {
+        "required": "Entering an email is required.",
+        "email": "Email is not valid"
+    },
+    "forgotVal2": {
+        "required1": "Password entry is required",
+        "min": "Password must contain at least 8 characters.",
+        "required2": "Password confirmation is required.",
+        "oneOf": "Password does not match"
+    },
+    "coursesPayment": {
+        "search": "search ....",
+        "filters": "filters",
+        "all": "all",
+        "confirmed": "confirmed",
+        "AwaitingConfirmation": "Awaiting confirmation",
+        "notConfirmed": "not confirmed",
+        "notFound": "No item found!",
+        "back": "back",
+        "next": "next",
+        "NumberShows": "Number of shows",
+        "CourseGroup": "Course group",
+        "paymentDate": "payment date",
+        "DateEntered": "Date entered",
+        "PaymentStatus": "Payment status",
+        "Payment": "Payment",
+        "Operation": "Operation"
+    },
+    "panelside": {
+        "academy_name": "Bahr Academy",
+        "menu": "Menu",
+        "dashboard": "Dashboard",
+        "user_info": "User Information",
+        "my_courses": "My Courses",
+        "reserved_courses": "Reserved Courses",
+        "my_payments": "My Payments",
+        "my_comments": "My Comments",
+        "my_view_on_the_courses": "My view on the courses",
+        "my_view_on_the_news": " My view on the news   ",
+        "my_favorits": "My favorites   ",
+        "my_favorite_courses": "My favorite courses",
+        "my_favorite_news": "My favorite news   ",
+        "security_setting": "Security setting ",
+        "logout": " Log out ",
+        "general": "General"
+    },
+    "panelheader": {
+        "name": "matin ghorbanzade"
+    },
+    "favoriteNews": {
+        "search": "search ....",
+        "filters": "filters",
+        "all": "all",
+        "mostLikes": "Most likes",
+        "mostViews": "Most views",
+        "notFound": "No item found!",
+        "back": "back",
+        "next": "next",
+        "NumberShows": "Number of shows",
+        "newsTitle": "News title",
+        "commentsCount": "Comments count",
+        "viewsCount": "views count",
+        "likesCount": "Likes count",
+        "lastUpdated": "Last updated",
+        "Operation": "Operation"
+    },
+    "favoriteCourses": {
+        "search": "search ....",
+        "filters": "filters",
+        "all": "all",
+        "notFound": "No item found!",
+        "back": "back",
+        "next": "next",
+        "NumberShows": "Number of shows",
+        "online": "online",
+        "faceToFace": "Face To Face",
+        "courseName": "Course name",
+        "caption": "Caption",
+        "meetingMode": "Meeting mode",
+        "lastUpdated": "Last updated",
+        "Operation": "Operation"
     }
-  },
-  "courseList": {
-    "title": "Training courses",
-    "result": "Result"
-  },
-  "courseListSide": {
-    "searchPlaceholder": "Search...",
-    "startEndDate": "Starting and ending date",
-    "start": "Start",
-    "end": "End"
-  },
-  "sideDropDown": {
-    "title1": "Course level",
-    "title1Item1": "Professional",
-    "title1Item2": "Middle",
-    "title1Item3": "Beginner",
-    "title2": "Professors",
-    "title2Item1": "Dr. MohammadHosseinBahrololumi",
-    "title2Item2": "Mr.X",
-    "title2Item3": "Mr. Felan Felani",
-    "title3": "Technologies",
-    "title3Item1": "FrontEnd",
-    "title3Item2": "BackEnd"
-  },
-  "sortView": {
-    "title": "Sort by:"
-  },
-  "timeDropDown": {
-    "option1": "Newest",
-    "option2": "Oldest"
-  },
-  "courseInfo": {
-    "startDate": "StartDate",
-    "startTime": "StartTime",
-    "endDate": "EndDate",
-    "person": "Person",
-    "courseCapacity": "Course Capacity",
-    "price": "Price",
-    "toman": "Toman",
-    "reserveBtn": "Reserve Now",
-    "off": "Off"
-  },
-  "userSatisfaction": {
-    "title": "User Satisfaction",
-    "score": "score"
-  },
-  "courseTeacher": {
-    "courseTeacher": "Course Teracher",
-    "buttonText": "View more information"
-  },
-  "courseCommentsTab": {
-    "courseSpecifications": "Course Specifications",
-    "userComments": "User Comments"
-  },
-  "courseDetailSection": {
-    "title": "Details"
-  },
-  "courseDesc": {
-    "description": "Description"
-  },
-  "courseComments": {
-    "title": "All Comments"
-  },
-  "courseCommentForm": {
-    "titleInputsTitle": "Comment Title",
-    "titleInputsPlcholder": "Enter your comment's title",
-    "textInputsTitle": "Comment Desc",
-    "textInputsPlcholder": "Enter your comment's text",
-    "send": "Send"
-  },
-  "news": {
-    "title1": "React 18 Released",
-    "desc1": "React 18 introduces concurrent features for faster rendering.",
-    "views1": "1200 views",
-    "rating1": "4.5",
-    "category1": "Technology",
-    "date1": "Oct 18, 2025",
-    "title2": "New JavaScript Features",
-    "desc2": "Learn about the latest ES2025 JavaScript features.",
-    "views2": "850 views",
-    "rating2": "4.8",
-    "category2": "Programming",
-    "date2": "Oct 15, 2025"
-  },
-  "newsPage": {
-    "breadcrumb": "Home - News",
-    "headerTitle": "News & Articles",
-    "results": "200 results",
-    "searchPlaceholder": "Search...",
-    "sortBy": "Sort by:"
-  },
-  "categoryFilter": {
-    "title": "Categories",
-    "more": "+ Show more",
-    "categories": {
-      "educational": "Educational",
-      "general": "General Knowledge",
-      "jobMarket": "Job Market"
-    }
-  },
-  "NewsSelectOne": {
-    "dataone": " Newest",
-    "datatwo": "Oldest  "
-  },
-  "NewsSelectTwo": {
-    "dataone": "view"
-  },
-  "NewsDetails": {
-    "breadcrumbs": "Home - News - What is a Script and How is it Used in Programming?",
-    "pageTitle": "What is a Script and How is it Used in Programming?",
-    "authorLabel": "Author:",
-    "authorName": "Tyler Biton",
-    "userSatisfaction": "User Satisfaction",
-    "ratingValue": "3.5 Rating",
-    "latestNews": "Latest News",
-    "relatedNews": "Related News"
-  },
-  "titleImage": {
-    "category": "Educational",
-    "date": "June 3, 2025"
-  },
-  "sidebar": {
-    "news1": {
-      "title": "What is Programming? – Everything You Need to Know + Uses",
-      "name": "Edward Johnson",
-      "date": "2025/06/07"
-    },
-    "news2": {
-      "title": "Python + Minecraft = Learn Programming Through Gaming!",
-      "name": "Mohsen Jafari",
-      "date": "2025/06/02"
-    },
-    "news3": {
-      "title": "What is a Script and How is it Used in Programming?",
-      "name": "Tyler Biton",
-      "date": "2025/06/06"
-    }
-  },
-  "newsComment": {
-    "tabs": {
-      "details": "Course Details",
-      "comments": "User Comments"
-    },
-    "details": {
-      "section1": {
-        "title": "What is a Script and How is it Used in Programming?",
-        "text": "Simple and short programs written to automate certain tasks are called scripts in programming. Unlike large and complex programs, they are usually written and executed quickly without needing compilation. Scripts are used in areas such as the web, operating systems, data processing, and automation."
-      },
-      "section2": {
-        "title": "What is a Script Code?",
-        "text": "A script code is a set of instructions written in scripting languages such as JavaScript, Python, Perl, or Bash, usually executed by an interpreter instead of a processor. These codes are used to automate tasks, create interactivity on web pages, process data, or control system operations."
-      },
-      "section3": {
-        "title": "Main Uses of Scripting",
-        "text": "If you want to automate repetitive and time-consuming processes, scripting helps you save time. Common uses include automating repetitive tasks, system and network management, data analysis and machine learning, software testing, and game programming."
-      },
-      "section4": {
-        "title": "What is the Difference Between Programming Languages and Scripting Languages?",
-        "text": "Programming languages like C or C++ are usually compiled, while scripting languages like JavaScript or Python are interpreted line by line. Scripting languages are better for rapid development and simple tasks, while compiled languages are used for large and performance-heavy applications."
-      }
-    },
-    "comments": {
-      "allComments": "All Comments",
-      "commentsCount": "4",
-      "titleLabel": "Comment Title",
-      "titlePlaceholder": "Write the title of your comment",
-      "textLabel": "Comment Text",
-      "textPlaceholder": "Write your comment text"
-    }
-  },
-  "personalComment": {
-    "user": {
-      "name": "Edward Johnson",
-      "date": "June 3, 2025"
-    },
-    "comment": {
-      "title": "Great Course",
-      "text": "Lorem ipsum is a placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups."
-    },
-    "actions": {
-      "replyButton": "Reply",
-      "answer": "answer",
-      "closeReply": "Close Replies"
-    },
-    "replyForm": {
-      "titlePlaceholder": "Write your reply title",
-      "textPlaceholder": "Write your reply text"
-    }
-  },
-  "answerComment": {
-    "comment1": {
-      "name": "Edward Johnson",
-      "date": "June 3, 2025",
-      "title": "Excellent course",
-      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "like": "200",
-      "dislike": "50"
-    },
-    "comment2": {
-      "name": "Edward Johnson",
-      "date": "June 3, 2025",
-      "title": "Excellent course",
-      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "like": "200",
-      "dislike": "50"
-    },
-    "comment3": {
-      "name": "Edward Johnson",
-      "date": "June 3, 2025",
-      "title": "Excellent course",
-      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "like": "200",
-      "dislike": "50"
-    },
-    "comment4": {
-      "name": "Edward Johnson",
-      "date": "June 3, 2025",
-      "title": "Excellent course",
-      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "like": "200",
-      "dislike": "50"
-    },
-    "comment5": {
-      "name": "Edward Johnson",
-      "date": "June 3, 2025",
-      "title": "Excellent course",
-      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "like": "200",
-      "dislike": "50"
-    },
-    "comment6": {
-      "name": "Edward Johnson",
-      "date": "June 3, 2025",
-      "title": "Excellent course",
-      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "like": "200",
-      "dislike": "50"
-    }
-  },
-  "teachersPage": {
-    "titles": {
-      "HomePage": "HomePage",
-      "Teachers": "Teachers"
-    },
-    "filters": {
-      "Search": "search....",
-      "ShowMore": "Show more",
-      "ShowLess": "Show less",
-      "search": "search"
-    }
-  },
-  "NoResultFound": "No results found !",
-  "login": {
-    "HomePage": "HomePage",
-    "LoginToUserAccount": "Login to user account",
-    "EmailOrPhoneNumber": "Email or phoneNumber",
-    "password": "password",
-    "RememberMe": "Remember me",
-    "ForgotPassword": "Forgot password",
-    "SendOneTimeCode": "Send a one-time code",
-    "DontHaveAccount?": "Don't have an account?",
-    "Register": "Register",
-    "Title1": "Welcome to the world of learning!",
-    "Caption1": "By logging into your account, you will have access to educational content, courses, and advanced tools. This is the first step to growth and progress!",
-    "Back": "Back",
-    "EnterTheOneTimePasswordSent": "Enter the one-time password sent.",
-    "OneTimePasswordVerification": "One-time password verification",
-    "Title2": "Just one step to the world of learning!",
-    "caption2": "The opportunity to grow, progress, and build a better future is here — stay one step ahead with us!",
-    "Required": "The field is required.",
-    "login":"login"
-  },
-  "loginVal": {
-    "requiredPass": "Password entry is required.",
-    "minPass": "Password must contain at least 8 characters",
-    "requiredName": "This field is required to be entered",
-    "nameMin": "Must contain at least 4 characters"
-  },
-  "forgotPass": {
-    "homePage": "HomePage",
-    "ForgotPassword": "Forgot password",
-    "EnterYourEmailToRequest": "Enter your email to request a password change",
-    "email": "Enter your email",
-    "SubmitRequest": "Submit request",
-    "title1": "Forgetting your password is not the end of the road!",
-    "Caption1": "By entering your email, you will receive a password change link and return to the world of learning.",
-    "back": "Back",
-    "SetNewPass": "Set a new password for yourself.",
-    "newPass": "New password",
-    "RepeatPass": "Repeat password",
-    "RegisterNewPass": "Register a new password",
-    "title2": "The final step to get back on the learning path!",
-    "caption2": "By setting a new password, you will regain access to your account and can continue learning without stopping."
-  },
-  "forgotVal1": {
-    "required": "Entering an email is required.",
-    "email": "Email is not valid"
-  },
-  "forgotVal2": {
-    "required1": "Password entry is required",
-    "min": "Password must contain at least 8 characters.",
-    "required2": "Password confirmation is required.",
-    "oneOf": "Password does not match"
-  },
-  "coursesPayment": {
-    "search": "search ....",
-    "filters": "filters",
-    "all": "all",
-    "confirmed": "confirmed",
-    "AwaitingConfirmation": "Awaiting confirmation",
-    "notConfirmed": "not confirmed",
-    "notFound": "No item found!",
-    "back": "back",
-    "next": "next",
-    "NumberShows": "Number of shows",
-    "CourseGroup": "Course group",
-    "paymentDate": "payment date",
-    "DateEntered": "Date entered",
-    "PaymentStatus": "Payment status",
-    "Payment": "Payment",
-    "Operation": "Operation"
-  },
-  "panelside": {
-    "academy_name": "Bahr Academy",
-    "menu": "Menu",
-    "dashboard": "Dashboard",
-    "user_info": "User Information",
-    "my_courses": "My Courses",
-    "reserved_courses": "Reserved Courses",
-    "my_payments": "My Payments",
-    "my_comments": "My Comments",
-    "my_view_on_the_courses": "My view on the courses",
-    "my_view_on_the_news": " My view on the news   ",
-    "my_favorits": "My favorites   ",
-    "my_favorite_courses": "My favorite courses",
-    "my_favorite_news": "My favorite news   ",
-    "security_setting": "Security setting ",
-    "logout": " Log out ",
-    "general": "General"
-  },
-  "panelheader": {
-    "name": "matin ghorbanzade"
-  },
-  "favoriteNews":{
-    "search": "search ....",
-    "filters": "filters",
-    "all": "all",
-    "mostLikes":"Most likes",
-    "mostViews":"Most views",
-    "notFound": "No item found!",
-    "back": "back",
-    "next": "next",
-    "NumberShows": "Number of shows",
-    "newsTitle" : "News title",
-    "commentsCount":"Comments count",
-    "viewsCount":"views count",
-    "likesCount":"Likes count",
-    "lastUpdated":"Last updated",
-    "Operation": "Operation"
-    
-  }
 }
