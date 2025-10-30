@@ -11,7 +11,7 @@ const useFetchData = (url) => {
     setIsLoading(true);
     try{
       const response = await apiClient.get(url);
-      const data = response.data;
+      const data = response;
       setData(data);
       setIsError(false);
     }
@@ -21,6 +21,7 @@ const useFetchData = (url) => {
     finally{
       setIsLoading(false);
     }
+    console.log(response);
   };
 
   useEffect(() => {

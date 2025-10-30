@@ -12,6 +12,8 @@ const SideDropDown = ({title, item1, item2, item3}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [showMore , setShowMore] = useState(false);
 
+    const [filterValue, setFilterValue] = useState('');
+
     const checkboxClasses = 'w-[26px] h-[26px] rounded-2xl text-[#008C78] border-gray-300 checked:bg-[#008C78]';
 
   return (
@@ -27,7 +29,9 @@ const SideDropDown = ({title, item1, item2, item3}) => {
             <div className='flex flex-col items-start gap-4 w-full'>
                 <div className='flex items-center gap-2'>
                     <input type='checkbox' className={`${checkboxClasses}`}/>
-                    <span className='font-regular text-sm text-[#1E1E1E]'>{t(`${item1}`)}</span>
+                    <span onClick={() => {item1 === 'حرفه ای' ? setFilterValue('hard') : setFilterValue('')}} className='font-regular text-sm text-[#1E1E1E]'>
+                        {t(`${item1}`)}    
+                    </span>
                 </div>
                 <div className='flex items-center gap-2'>
                     <input type='checkbox' className={`${checkboxClasses}`}/>

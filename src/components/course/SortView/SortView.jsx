@@ -10,7 +10,7 @@ const VIEW_TYPE_LIST = 'list';
 const VIEW_TYPE_GRID = 'grid';
 
 
-const SortView = ({onViewChange, currentView, currentPageSize, onPageSizeChange, currentSortType, onSortChange}) => {
+const SortView = ({onViewChange, currentView, currentPageSize, onPageSizeChange, currentSortType, onSortChange, setSortingCol}) => {
 
   const { t } = useTranslation();
 
@@ -26,7 +26,7 @@ const SortView = ({onViewChange, currentView, currentPageSize, onPageSizeChange,
     lg:h-18 lg:rounded-[15px]'>
       <div className='flex items-center gap-4'>
         <span className='font-regular text-base text-[#1E1E1E]'>{t('sortView.title')}</span>
-        <TimeDropDown currentSortType={currentSortType} onSortChange={onSortChange}/>
+        <TimeDropDown currentSortType={currentSortType} setSortingCol={setSortingCol}/>
         <ShowNumberDropDown currentPageSize={currentPageSize} onPageSizeChange={onPageSizeChange}/>
       </div>
       <div className='flex gap-4'>
