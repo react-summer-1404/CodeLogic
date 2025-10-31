@@ -79,7 +79,7 @@ const FavoriteNews = () => {
     return (
         <div
             className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-5 flex
-     h-full flex-col justify-between mx-auto my-6 rounded-4xl "
+     max-h-[600px] h-full flex-col justify-between mx-auto my-6 rounded-4xl "
         >
             <div className="flex justify-between items-center">
                 {/* filtering ------ */}
@@ -182,7 +182,7 @@ const FavoriteNews = () => {
                 className=" dark:bg-black dark:text-[#ffff]
              h-[89%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
             >
-                <div className="flex flex-col">
+                <div className="flex flex-col h-[65%] overflow-y-auto">
                     <NewsHeader />
                     {currentNews.length > 0 ? (
                         currentNews.map((items) => <FavoriteNew key={items.id} items={items} />)

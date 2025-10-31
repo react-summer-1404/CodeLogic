@@ -76,7 +76,10 @@ const CoursesPayment = () => {
         },
     };
     return (
-        <div className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-5 flex h-full flex-col justify-between  my-6 rounded-4xl ">
+        <div
+            className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-5 flex max-h-[600px] h-full
+         flex-col justify-between  my-6 rounded-4xl "
+        >
             {/* ----------- filtering  */}
             <div className="flex justify-between items-center">
                 <AnimatePresence>
@@ -178,7 +181,7 @@ const CoursesPayment = () => {
                 className="  dark:bg-black dark:text-[#ffff]
              h-[89%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
             >
-                <div className="flex flex-col">
+                <div className="flex flex-col h-[65%] overflow-y-auto ">
                     <CourseHeader />
                     {curruntPayments.length > 0 ? (
                         curruntPayments.map((items) => <CoursePayment items={items} />)
