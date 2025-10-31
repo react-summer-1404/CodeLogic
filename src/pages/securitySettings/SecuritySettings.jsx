@@ -5,11 +5,17 @@ import { securitySettingsVal } from '../../utils/Validations/securitySettings/se
 import { useTranslation } from 'react-i18next';
 const SecuritySettings = () => {
     const { t, i18n } = useTranslation();
+    const isRTL = i18n.language === 'fa';
     //// validation ////
     const [validationSchema, setValidationSchema] = useState(securitySettingsVal());
     useEffect(() => {
         setValidationSchema(securitySettingsVal());
     }, [i18n.language]);
+    //// is hide passWord ? ////
+    const [isHide1, setIsHide1] = useState(true);
+    const [isHide2, setIsHide2] = useState(true);
+    const [isHide3, setIsHide3] = useState(true);
+
     /// motion framer ///
     const leftAnimate = {
         hidden: { opacity: 0, x: -50 },
@@ -76,24 +82,34 @@ const SecuritySettings = () => {
                     validationSchema={validationSchema}
                 >
                     <Form>
-                        <div className="flex justify-between flex-wrap">
+                        <div className=" flex justify-between flex-wrap">
                             <motion.div
                                 variants={rightAnimate}
                                 initial="hidden"
                                 animate="visible"
-                                className="w-[45%] flex flex-col gap-4 dark:text-[#ffff] "
+                                className=" w-[45%] flex flex-col gap-4 dark:text-[#ffff] "
                             >
                                 <label className="text-[16px] dark:text-[#ffff] ">
                                     {t('securitySetting.currentPassword')}
                                 </label>
-                                <Field
-                                    placeholder={t('securitySetting.currentPassPlaceHolder')}
-                                    type="password"
-                                    name="currentPassword"
-                                    id="currentPassword"
-                                    className="w-full bg-[#FFFFFF] dark:bg-black placeholder:text-[16px] focus:outline-none
+                                <div className="w-full relative">
+                                    <Field
+                                        placeholder={t('securitySetting.currentPassPlaceHolder')}
+                                        type={`${isHide1 ? 'password' : 'text'}`}
+                                        name="currentPassword"
+                                        id="currentPassword"
+                                        className="w-full relative bg-[#FFFFFF] dark:bg-black placeholder:text-[16px] focus:outline-none
                                      placeholder:text-[#848484] rounded-[16px] py-2 px-3  border border-[#EAEAEA] shadow"
-                                />
+                                    />
+                                    <img
+                                        src={`/icons/${isHide1 ? 'eyeOpen' : 'eyeClose'}.png`}
+                                        alt=""
+                                        className={`absolute w-5 h-5 ${
+                                            isRTL ? 'left-[15px]' : 'right-[15px]'
+                                        } top-[50%] translate-y-[-50%] cursor-pointer `}
+                                        onClick={() => setIsHide1((prev) => !prev)}
+                                    />
+                                </div>
                                 <ErrorMessage
                                     name={'currentPassword'}
                                     component={'span'}
@@ -109,14 +125,24 @@ const SecuritySettings = () => {
                                 <label className="text-[16px] dark:text-[#ffff]">
                                     {t('securitySetting.newPassword')}
                                 </label>
-                                <Field
-                                    placeholder={t('securitySetting.newPassPlaceHolder')}
-                                    type="password"
-                                    name="newPassword"
-                                    id="newPassword"
-                                    className="w-full dark:bg-black bg-[#FFFFFF] placeholder:text-[16px] focus:outline-none
-                                     placeholder:text-[#848484] rounded-[16px] py-2 px-3  border border-[#EAEAEA] shadow"
-                                />
+                                <div className="w-full relative ">
+                                    <Field
+                                        placeholder={t('securitySetting.newPassPlaceHolder')}
+                                        type={`${isHide2 ? 'password' : 'text'}`}
+                                        name="newPassword"
+                                        id="newPassword"
+                                        className="w-full dark:bg-black bg-[#FFFFFF] placeholder:text-[16px] focus:outline-none
+                                     placeholder:text-[#848484] rounded-[16px] py-2 px-3  border border-[#EAEAEA] shadow "
+                                    />
+                                    <img
+                                        src={`/icons/${isHide2 ? 'eyeOpen' : 'eyeClose'}.png`}
+                                        alt=""
+                                        className={`absolute w-5 h-5 ${
+                                            isRTL ? 'left-[15px]' : 'right-[15px]'
+                                        } top-[50%] translate-y-[-50%] cursor-pointer `}
+                                        onClick={() => setIsHide2((prev) => !prev)}
+                                    />
+                                </div>
                                 <ErrorMessage
                                     name={'newPassword'}
                                     component={'span'}
@@ -154,14 +180,24 @@ const SecuritySettings = () => {
                             <label className="text-[16px] dark:text-[#ffff] ">
                                 {t('securitySetting.currentPassword')}
                             </label>
-                            <Field
-                                placeholder={t('securitySetting.currentPassPlaceHolder')}
-                                type="password"
-                                name="currentPassword"
-                                id="currentPassword"
-                                className="w-full bg-[#FFFFFF] dark:bg-black dark:text-[#ffff] placeholder:text-[16px] focus:outline-none
+                            <div className="w-full relative">
+                                <Field
+                                    placeholder={t('securitySetting.currentPassPlaceHolder')}
+                                    type={`${isHide3 ? 'password' : 'text'}`}
+                                    name="currentPassword"
+                                    id="currentPassword"
+                                    className="w-full bg-[#FFFFFF] dark:bg-black dark:text-[#ffff] placeholder:text-[16px] focus:outline-none
                                      placeholder:text-[#848484] rounded-[16px] py-2 px-3  border border-[#EAEAEA] shadow "
-                            />
+                                />
+                                <img
+                                    src={`/icons/${isHide3 ? 'eyeOpen' : 'eyeClose'}.png`}
+                                    alt=""
+                                    className={`absolute w-5 h-5 ${
+                                        isRTL ? 'left-[15px]' : 'right-[15px]'
+                                    } top-[50%] translate-y-[-50%] cursor-pointer `}
+                                    onClick={() => setIsHide3((prev) => !prev)}
+                                />
+                            </div>
                             <ErrorMessage
                                 name={'currentPassword'}
                                 component={'span'}
