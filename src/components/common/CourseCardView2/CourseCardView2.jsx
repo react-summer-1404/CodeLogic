@@ -5,13 +5,14 @@ import Level from '../../../assets/Icons/Level'
 import Star from '../../../assets/Icons/Star'
 import Heart from '../../../assets/Icons/Heart'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 const CourseCardView2 = ({item}) => {
 
     const {t} = useTranslation();
 
   return (
-    <div className='flex flex-shrink-0 gap-8 w-[1044px] p-4 bg-[#FFFFFF] rounded-[20px] relative'>
+    <Link to={`/coursedetail/${item.id}`} className='flex flex-shrink-0 gap-8 w-[1044px] p-4 bg-[#FFFFFF] rounded-[20px] relative'>
         <div className='w-[520px] h-[200px]'>
             <img src={item.imageAddress} className='w-full h-full rounded-xl'/>
         </div>
@@ -49,7 +50,7 @@ const CourseCardView2 = ({item}) => {
         <button className='p-2 bg-[#000000] opacity-25 rounded-[50px] absolute top-8 right-8'>
             <Heart/>
         </button>
-    </div>
+    </Link>
   )
 }
 

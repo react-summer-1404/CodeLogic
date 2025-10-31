@@ -10,6 +10,8 @@ const GetAllCourses = async (params) => {
     } catch (error) {
         console.log(error);
     }
+
+    return {result}
 };
 
 export default GetAllCourses;
