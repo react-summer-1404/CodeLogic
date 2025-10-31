@@ -6,7 +6,6 @@ import CourseList from "../../pages/CourseList/CourseList";
 import StepOne from "../../pages/auth/Register/StepOne";
 import StepTwo from "../../pages/auth/Register/StepTwo";
 import StepThree from "../../pages/auth/Register/StepThree";
-import News from "../../pages/News/News";
 import NewsDetails from "../../pages/NewsDetails/NewsDetails";
 import LoginPage from "../../pages/auth/Login/LoginPage";
 import LoginValidationPage from "../../pages/auth/Login/LoginValidationPage";
@@ -22,6 +21,7 @@ import CoursesPayment from "../../pages/CoursesPayment/CoursesPayment";
 import FavoriteNews from "../../pages/Favorites/FavoriteNews/FavoriteNews";
 import FavoriteCourses from "../../pages/Favorites/FavoriteCourses/FavoriteCourses";
 import SecuritySettings from "../../pages/securitySettings/SecuritySettings";
+import NewsPage from "../../pages/NewsPage/NewsPage";
 
 const router = createBrowserRouter([
   {
@@ -29,12 +29,15 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Landing /> },
+
       { path: "/courselist", element: <CourseList /> },
       { path: "/coursedetail", element: <CourseDetail /> },
       { path: "/newslist", element: <News /> },
-      { path: "/newsdetails", element: <NewsDetails /> },
       { path: "/Teachers", element: <TeachersPage /> },
       { path: "/Teacher/:id", element: <TeachersDetail /> },
+
+      { path: "/news", element: <NewsPage /> },
+      { path: "/news/:id", element: <NewsDetails /> },
     ],
   },
 
