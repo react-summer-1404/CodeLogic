@@ -97,6 +97,116 @@
       "confirmPassword_required": "تکرار رمز عبور را وارد کنید *",
       "confirmPassword_match": "رمز عبور شما همخوانی ندارد *"
     }
-  }
+
+  },
  
+
+  
+ "panelside" : {
+  "academy_name": "آکادمی بحر",
+  "menu": "منو",
+  "dashboard": "داشبورد",
+  "user_info": "مشخصات کاربری",
+  "my_courses": "دوره های من",
+  "reserved_courses": "دوره های رزرو شده",
+  "my_payments": "پرداختی های من",
+  "my_comments": "دیدگاه های من",
+  "my_view_on_the_courses" : "دیدگاه های من در دوره ها",
+  "my_view_on_the_news" : "دیدگاه های من در اخبار",
+  "my_favorits" : "علاقه مندی های من",
+  "my_favorite_courses" : "دوره های مورد علاقه من",
+  "my_favorite_news" : "اخبار مورد علاقه من",
+  "security_setting" : "تنظیمات امنیتی",
+  "logout" : "خروج از حساب",
+  "general" : "عمومی"
+
+  
+},
+"panelheader" : {
+  "name" : "متین قربانزاده"
+},
+"paneldashboard" : {
+  "my_courses_title" : "دوره های من ",
+  "unpaid_periods" : " دوره های پرداخت نشده",
+  "profile_completed" : "پروفایل تکمیل شده ",
+  "reserved_courses" : "دوره های رزرو شده",
+  "view_all" : "مشاهده همه",
+  "latest_news" : "جدید ترین اخبار"
+},
+ "userinfo": {
+  
+    "social" : {
+      "email" : "ایمیل",
+      "telegram" : "تلگرام",
+      "linkdin" : "لینکدین",
+      "button": "ویرایش اطلاعات"
+    },
+    "tabs": {
+      "general": "اطلاعات کلی",
+      "location": "موقعیت مکانی",
+      "social": "شبکه اجتماعی"
+    },
+     "gender" : {
+      "male" : "مرد",
+      "female" : "زن"
+
+    },
+    "fields": {
+      "name": "نام",
+      "lastname": "نام خانوادگی",
+      "nationalcode": "کد ملی",
+      "gender": "جنسیت",
+      "birthday": "تاریخ تولد",
+      "phonenumber": "شماره تلفن",
+      "aboutme": "درباره من"
+    },
+    "placeholders": {
+      "name": "نام خود را وارد کنید",
+      "lastname": "نام خانوادگی خود را وارد کنید",
+      "nationalcode": "کد ملی 10 رقمی را وارد کنید",
+      "gender": "انتخاب کنید",
+      "birthday": "",
+      "phonenumber": "شماره تلفن خود را وارد کنید",
+      "aboutme": "توضیحات بیشتر راجب خود وارد کنید"
+    },
+    "buttons": {
+      "edit": "ویرایش اطلاعات"
+    },
+    "modal" : {
+      "confirm": "تایید عکس",
+      "cancel" : "انصراف"
+    },
+     "location": {
+      "adress": " آدرس کامل",
+      "width": "عرض جغرافیایی",
+      "height": "طول جغرافیایی",
+      "adressplace": " آدرس محل سکونت خود را وارد کنید یا روی نقشه انتخاب کنید",
+      "widthplace": " عرض جغرافیایی را وارد کنید",
+      "heightplace": "آدرس محل سکونت خود را وارد کنید یا روی نقشه انتخاب کنید",
+      "button": "ویرایش اطلاعات"
+    }
+  },
+    "validation": {
+    "nationalId": {
+      "required": "کد ملی خود را وارد کنید *",
+      "invalid": "کدملی نامعتبر است *"
+    },
+    "name": {
+      "required": "نام خود را وارد کنید *"
+    },
+    "lastname": {
+      "required": "نام خانوادگی خود را وارد کنید *"
+    },
+    "phoneNumber": {
+      "required": "شماره موبایل خود را وارد کنید *",
+      "invalid": "شماره موبایل نامعتبر است *"
+    },
+    "birthDate": {
+      "required": "تاریخ تولد خود را وارد کنید *"
+    },
+    "gender": {
+      "required": "گزینه مورد نظر خود را انتخاب کنید *"
+    }
+  }
+
 }
