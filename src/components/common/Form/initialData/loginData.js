@@ -1,6 +1,6 @@
 const loginData = {
-    phoneOrGmail: "",
-    password: "",
-    rememberMe: ""
-}
-export default loginData
+    phoneOrGmail: '',
+    password: '',
+    rememberMe: false,
+};
+export default loginData;
