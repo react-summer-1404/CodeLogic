@@ -128,10 +128,22 @@
   "latest_news" : "Latest News"
 },
 "userinfo": {
+  
+    "social" : {
+      "email" : "Email",
+      "telegram" : "Telegram",
+      "linkdin" : "Linkedin",
+      "button": "Edit Information"
+    },
     "tabs": {
       "general": "General Information",
       "location": "Location",
       "social": "Social Media"
+    },
+    "gender" : {
+      "male" : "Male",
+      "female" : "Female"
+
     },
     "fields": {
       "name": "First Name",
@@ -153,6 +165,41 @@
     },
     "buttons": {
       "edit": "Edit Information"
+    },
+    "modal" : {
+      "confirm": "Confirm Image ",
+      "cancel" : "Cancel"
+    },
+    "location": {
+      "adress": " Adress",
+      "width": "Latitude",
+      "height": "Longitude",
+      "adressplace": " Enter your home adress or select it on the map",
+      "widthplace": " Enter the Latitude",
+      "heightplace": "Enter the Longitude",
+      "button": "Edit Information"
+    }
+  },
+    "validation": {
+    "nationalId": {
+      "required": "Please enter your national ID *",
+      "invalid": "Invalid national ID *"
+    },
+    "name": {
+      "required": "Please enter your first name *"
+    },
+    "lastname": {
+      "required": "Please enter your last name *"
+    },
+    "phoneNumber": {
+      "required": "Please enter your phone number *",
+      "invalid": "Invalid phone number *"
+    },
+    "birthDate": {
+      "required": "Please enter your birth date *"
+    },
+    "gender": {
+      "required": "Please select an option *"
     }
   }
 }
