@@ -76,7 +76,7 @@ const CoursesPayment = () => {
         },
     };
     return (
-        <div className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-8 flex min-h-[700px] flex-col justify-between mx-auto my-7 rounded-4xl ">
+        <div className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-8 flex min-h-[700px] flex-col justify-between  my-6 rounded-4xl ">
             {/* ----------- filtering  */}
             <div className="flex justify-between items-center">
                 <AnimatePresence>
@@ -228,14 +228,15 @@ const CoursesPayment = () => {
                         </button>
                     </div>
                     {/* ------------ filterCount */}
-                      <div className="flex items-center dark:bg-black dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
-                             <span className='text-[16px]'>{t('coursesPayment.NumberShows')}</span>
-                        <select value={paymentsPerPage}
-                        onChange={(e)=>{
-                            setPaymentsPerPage(Number(e.target.value))
-                            setCurruntPage(1)
-                        }}
-                        className=' rounded-xl text-sm cursor-pointer px-3 py-1  dark:bg-black dark:text-[#ffff]'
+                    <div className="flex items-center dark:bg-black dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
+                        <span className="text-[16px]">{t('coursesPayment.NumberShows')}</span>
+                        <select
+                            value={paymentsPerPage}
+                            onChange={(e) => {
+                                setPaymentsPerPage(Number(e.target.value));
+                                setCurruntPage(1);
+                            }}
+                            className=" rounded-xl text-sm cursor-pointer px-3 py-1  dark:bg-black dark:text-[#ffff]"
                         >
                             <option value={2}>2</option>
                             <option value={4}>4</option>

@@ -21,6 +21,7 @@ import Panel from '../../pages/Panel/Panel';
 import CoursesPayment from '../../pages/CoursesPayment/CoursesPayment';
 import FavoriteNews from '../../pages/Favorites/FavoriteNews/FavoriteNews';
 import FavoriteCourses from '../../pages/Favorites/FavoriteCourses/FavoriteCourses';
+import SecuritySettings from '../../pages/securitySettings/SecuritySettings';
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,7 @@ const router = createBrowserRouter([
             { path: 'coursesPayments', element: <CoursesPayment /> },
             { path: 'favoriteNews', element: <FavoriteNews /> },
             { path: 'favoriteCourses', element: <FavoriteCourses /> },
+            { path: 'securitySettings', element: <SecuritySettings /> },
         ],
     },
 

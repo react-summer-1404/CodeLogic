@@ -533,5 +533,15 @@
         "meetingMode": "حالت برگزاری",
         "lastUpdated": "آخرین بروز رسانی",
         "Operation": "عملیات"
+    },
+    "securitySetting": {
+        "currentPassword": "رمز عبور فعلی",
+        "currentPassPlaceHolder": "رمز عبوری که در حال حاضر استفاده می کنید",
+        "newPassword": "رمز عبور جدید",
+        "newPassPlaceHolder": "رمز عبور شامل ارقام و حروف",
+        "changePass": "تغییر رمز عبور",
+        "twpStepEnabled": "مایل به ورود دو مرحله ای هستم",
+        "saveSettings": "ذخیره تنظیمات امنیتی",
+        "minNumbers": "رمز عبور باید حداقل شامل 1 عدد باشد"
     }
 }

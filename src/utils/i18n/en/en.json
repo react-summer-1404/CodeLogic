@@ -532,5 +532,15 @@
         "meetingMode": "Meeting mode",
         "lastUpdated": "Last updated",
         "Operation": "Operation"
+    },
+    "securitySetting": {
+        "currentPassword": "Current password",
+        "currentPassPlaceHolder": "The password you are currently using",
+        "newPassword": "New password",
+        "newPassPlaceHolder": "Password includes numbers and letters.",
+        "changePass": "Change password",
+        "twpStepEnabled": "I would like to use two-step login.",
+        "saveSettings": "Save security settings",
+        "minNumbers": "password must contain at least 1 number"
     }
 }
