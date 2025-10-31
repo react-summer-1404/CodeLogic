@@ -3,6 +3,7 @@ import CourseDetailSide from '../../components/course/CourseDetailSide/CourseDet
 import CourseDetailMain from '../../components/course/CourseDetailMain/CourseDetailMain'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
 import GetAllCourses from '../../core/services/api/Get/GetAllCourses'
 
 
@@ -10,9 +11,12 @@ const CourseDetail = () => {
 
   const { t } = useTranslation();
 
-  const { result } = GetAllCourses();
   const { id } = useParams();
-  const course = result.find((item) => item.id === id)
+  const { data: coursesData, isLoading } = useQuery({ 
+    queryKey: ['GETALLCOURSES'], 
+    queryFn: () => GetAllCourses() 
+  })
+  const courses = coursesData.find((item) => item.id === id)
 
   return (
     <div className='dark:bg-[#1E1E1E]'>
