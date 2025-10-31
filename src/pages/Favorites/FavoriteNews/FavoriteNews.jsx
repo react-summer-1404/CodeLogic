@@ -78,8 +78,8 @@ const FavoriteNews = () => {
 
     return (
         <div
-            className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-8 flex
-     min-h-[700px] flex-col justify-between mx-auto my-6 rounded-4xl "
+            className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-5 flex
+     h-full flex-col justify-between mx-auto my-6 rounded-4xl "
         >
             <div className="flex justify-between items-center">
                 {/* filtering ------ */}
