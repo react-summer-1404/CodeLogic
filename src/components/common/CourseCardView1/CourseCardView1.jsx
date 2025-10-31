@@ -14,7 +14,7 @@ const CourseCardView1 = ({ item }) => {
     const isRtl = i18n.language === "fa";
 
     return (
-        <Link to={`/coursedetail/${item.id}`} dir='rtl' className='flex flex-col flex-shrink-0 items-center w-[350px] rounded-[20px] relative cursor-pointer  
+        <Link to={`/coursedetail/${item.courseId}`} dir='rtl' className='flex flex-col flex-shrink-0 items-center w-[350px] rounded-[20px] relative cursor-pointer  
         hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>
             <img src={item.imageAddress} className='w-full h-[259px] rounded-t-[20px]' />
             <div className='flex flex-col justify-between w-full h-[217px] mb-[-16px] p-4 bg-[#FFFFFF] rounded-[20px] transform -translate-y-4   

@@ -41,10 +41,10 @@ const Main = ({ coursesData, isLoading, setSortingCol, currentPage, setCurrentPa
   return (
     <div className='flex flex-col gap-8 w-full'>
       <SortView onViewChange={handleViewChange} currentView={currentView} currentPageSize={pageSize}
-        onPageSizeChange={handlePageSizeChange} setSortingCol={setSortingCol}/>
+      onPageSizeChange={handlePageSizeChange} setSortingCol={setSortingCol}/>
       <div className='flex flex-row flex-wrap gap-y-8 gap-x-4'>
         {
-          coursesData.courseFilterDtos.filter(item => item.imageAddress && item.imageAddress.trim() !== '').map((item, index) => {
+          coursesData?.courseFilterDtos?.filter(item => item.imageAddress && item.imageAddress.trim() !== '').map((item, index) => {
             return <CourseCardComponent item={item} key={index} />
           })
         }

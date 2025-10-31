@@ -12,21 +12,33 @@ const CourseDetail = () => {
   const { t } = useTranslation();
 
   const { id } = useParams();
-  const { data: coursesData, isLoading } = useQuery({ 
+  
+  const { data: coursesData, isLoading } = useQuery({
     queryKey: ['GETALLCOURSES'], 
-    queryFn: () => GetAllCourses() 
+    queryFn: () => GetAllCourses()
   })
-  const courses = coursesData.find((item) => item.id === id)
+
+
+  if (isLoading) {
+    return <div className='p-10 text-center dark:text-[#EEEEEE]'>{t('در حال بارگذاری...')}</div>;
+  }
+
+  const course = coursesData?.courseFilterDtos.find((item) => item.courseId === id)
+  
+  if (!course) {
+    return <div className='p-10 text-center text-red-600'>{t('دوره مورد نظر پیدا نشد.')}</div>;
+  }
+
 
   return (
     <div className='dark:bg-[#1E1E1E]'>
       <div className='flex flex-col items-center pt-10'>
-        <h2 className='font-bold text-[28px] text-[#1E1E1E]   dark:text-[#EEEEEE]'>{t(`دوره آموزش جامع ${'HTML5'}`)}</h2>
+        <h2 className='font-bold text-[28px] text-[#1E1E1E]  dark:text-[#EEEEEE]'>{course.title}</h2>
       </div>
       <div className='flex flex-col items-center gap-12 pt-8 px-6 pb-[170px]
       md:flex md:flex-row md:px-10'>
-        <CourseDetailSide />
-        <CourseDetailMain />
+        <CourseDetailSide course={course}/>
+        <CourseDetailMain course={course}/>
       </div>
     </div>
   )

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import StarsRating from '../StarsRating/StarsRating';
 
 
-const UserSatisfaction = () => {
+const UserSatisfaction = ({course}) => {
 
     const {t, i18n} = useTranslation();
     const isRtl = i18n.language === 'fa';
@@ -16,7 +16,7 @@ const UserSatisfaction = () => {
         <div className='flex justify-between'>
           <StarsRating/>
           <div className={`flex gap-1 font-regular text-base text-[#848484]   dark:text-[#CCCCCC] ${isRtl ? 'rtl' : 'ltr'}`}>
-            <span>{3.5}</span>
+            <span>{course.courseRate.avg}</span>
             <span>{t('userSatisfaction.score')}</span>
           </div>
         </div>

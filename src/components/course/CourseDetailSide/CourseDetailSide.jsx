@@ -3,13 +3,13 @@ import CourseInfo from '../CourseInfo/CourseInfo'
 import UserSatisfaction from '../UserSatisfaction/UserSatisfaction'
 import CourseTeacher from '../CourseTeacher/CourseTeacher'
 
-const CourseDetailSide = () => {
+const CourseDetailSide = ({course}) => {
   return (
     <div className='flex flex-col gap-4
     lg:gap-12'>
-      <CourseInfo/>
-      <UserSatisfaction/>
-      <CourseTeacher/>
+      <CourseInfo course={course}/>
+      <UserSatisfaction course={course}/>
+      <CourseTeacher course={course}/>
     </div>
   )
 }
