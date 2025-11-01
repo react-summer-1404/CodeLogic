@@ -1,95 +1,73 @@
-import React, { useState, useMemo, useCallback} from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
 import CourseCardView1 from '../../common/CourseCardView1/CourseCardView1'
 import CourseCardView2 from '../../common/CourseCardView2/CourseCardView2'
-import useFetchCourses from '../../../utils/hooks/useFetchCourses/useFetchCourses'
 import SortView from '../SortView/SortView'
-import PaginationButtons from '../../common/PaginationButtons/PaginationButtons'
+import ReactPaginate from 'react-paginate'
 
 
 const VIEW_TYPE_LIST = 'list';
 const VIEW_TYPE_GRID = 'grid';
-const SORT_COLUMN = 'startTime'; 
-const DEFAULT_SORT_TYPE = 'DESC';
 
-const Main = ({ searchQuery }) => {
 
-  
+
+const Main = ({ coursesData, isLoading, setSortingCol, currentPage, setCurrentPage, pageSize, setPageSize}) => {
+
+
   const [currentView, setCurrentView] = useState(VIEW_TYPE_GRID);
-  const [currentPage, setCurrentPage] = useState(1); 
-  const [pageSize, setPageSize] = useState(3);
-  const [sortType, setSortType] = useState(DEFAULT_SORT_TYPE);
+  // console.log(currentPage)
+
+
+  if (isLoading) return <div>Loading...</div>
 
 
   const handleViewChange = (viewType) => {
     setCurrentView(viewType);
   };
   const CourseCardComponent = currentView === VIEW_TYPE_LIST ? CourseCardView2 : CourseCardView1
-  
-
-  const apiQuery = useMemo(() => {
-    const baseUrl = '/Home/GetCoursesWithPagination';
-    const params = [];
-
-    params.push(`SortingCol=${SORT_COLUMN}`);
-    params.push(`SortType=${sortType}`);
-
-    if (searchQuery) {
-      params.push(`Query=${searchQuery}`);
-    }
-
-    const queryString = params.length > 0 ? `?${params.join('&')}` : '';
-
-    return `${baseUrl}${queryString}`;
-
-}, [searchQuery, sortType]);
-  
-
-
-  // ۲. فراخوانی Hook با ارسال شماره صفحه و اندازه صفحه
-  const { 
-    courses: coursesData,
-    totalRecords = 0, 
-    isLoading 
-  } = useFetchCourses(apiQuery, currentPage, pageSize); 
-  // ۳. محاسبه تعداد کل صفحات (ساده و مستقیم)
-  const totalPages = useMemo(() => {
-    return Math.ceil(totalRecords / pageSize);
-  }, [totalRecords, pageSize]);
-  // ۴. تابع تغییر صفحه برای دکمه‌ها
-  const handlePageChange = (newPage) => {
-    // فقط در صورتی صفحه را عوض کن که معتبر باشد
-    if (newPage >= 1 && newPage <= totalPages) {
-      setCurrentPage(newPage);
-    }
-  };
 
 
   const handlePageSizeChange = (newSize) => {
     setPageSize(newSize);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
 
-
-  const handleSortChange = useCallback((newSortType) => {
-    setSortType(newSortType);
-    setCurrentPage(1); 
-  }, []);
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
 
   return (
-
     <div className='flex flex-col gap-8 w-full'>
-      <SortView onViewChange={handleViewChange} currentView={currentView} currentPageSize={pageSize} 
-      onPageSizeChange={handlePageSizeChange}/>
+      <SortView onViewChange={handleViewChange} currentView={currentView} currentPageSize={pageSize}
+      onPageSizeChange={handlePageSizeChange} setSortingCol={setSortingCol}/>
       <div className='flex flex-row flex-wrap gap-y-8 gap-x-4'>
         {
-          coursesData.filter(item => item.imageAddress && item.imageAddress.trim() !== '').map((item, index) => {
+          coursesData?.courseFilterDtos?.filter(item => item.imageAddress && item.imageAddress.trim() !== '').map((item, index) => {
             return <CourseCardComponent item={item} key={index} />
           })
         }
       </div>
-      <PaginationButtons currentPage={currentPage} totalPages={totalPages} isLoading={isLoading} onPageChange={handlePageChange}/>
+      <div className="flex justify-center my-10">
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel=" >"
+          previousLabel="< "
+          onPageChange={handlePageChange}
+          pageCount={pageSize}
+          marginPagesDisplayed={1}
+          pageRangeDisplayed={3}
+          forcePage={currentPage}
+          containerClassName="flex flex-wrap justify-center gap-1 sm:gap-2"
+          pageClassName="px-3 py-2 sm:px-5 sm:py-3 rounded-[15px] font-semibold shadow-md cursor-pointer text-sm sm:text-xl bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
+          activeClassName="!bg-[#008C78] text-white rounded-2xl shadow-md"
+          previousClassName="px-2 py-1 sm:px-3 sm:py-1 rounded-2xl shadow-md cursor-pointer text-sm bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
+          nextClassName="px-2 py-1 sm:px-3 sm:py-1 rounded-2xl shadow-md cursor-pointer text-sm bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
+          previousLinkClassName="font-bold text-lg sm:text-2xl px-1 sm:px-2 py-1 flex items-center justify-center h-full w-full"
+          nextLinkClassName="font-bold text-lg sm:text-2xl px-1 sm:px-2 py-1 flex items-center justify-center h-full w-full"
+        />
+      </div>
     </div>
   )
 }

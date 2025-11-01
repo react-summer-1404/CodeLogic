@@ -1,6 +1,6 @@
 import Http from "../../../interceptor/interceptor";
 
-const News = async (payload) => {
+const getAllNews = async (payload) => {
   try {
     const result = await Http.get(
       "/News?PageNumber=1&RowsOfPage=10&SortingCol=InsertDate&SortType=DESC",
@@ -13,4 +13,4 @@ const News = async (payload) => {
   }
 };
 
-export default News;
+export default getAllNews;

@@ -8,15 +8,15 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 const NewsCard = ({
   image,
-  titleKey,
-  descriptionKey,
-  viewsKey,
-  ratingKey,
-  categoryKey,
-  dateKey,
+  title,
+  description,
+  views,
+  rating,
+  category,
+  date,
   viewType,
 }) => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const isRtl = i18n.language === "fa";
   const isList = viewType === "list";
 
@@ -42,7 +42,7 @@ const NewsCard = ({
       >
         <img
           src={image}
-          alt={t(titleKey)}
+          alt={title}
           className={`${
             isList
               ? "w-[80%] h-[80%] rounded-xl object-fill"
@@ -66,7 +66,7 @@ const NewsCard = ({
       >
         <div className={isRtl ? "text-right" : "text-left"}>
           <h3 className="text-sm sm:text-[15px] font-bold text-gray-800 leading-snug dark:text-white line-clamp-2">
-            {t(titleKey)}
+            {title}
           </h3>
 
           <p
@@ -74,7 +74,7 @@ const NewsCard = ({
               ${isList ? "line-clamp-3 lg:line-clamp-4" : "line-clamp-2"}
             `}
           >
-            {t(descriptionKey)}
+            {description}
           </p>
         </div>
 
@@ -85,12 +85,12 @@ const NewsCard = ({
         >
           <div className="flex items-center gap-1">
             <LayersIcon sx={{ fontSize: 16, color: "#777" }} />
-            <span>{t(categoryKey)}</span>
+            <span>{category}</span>
           </div>
 
           <div className="flex items-center gap-1">
             <VisibilityIcon sx={{ fontSize: 17, color: "#777" }} />
-            <span>{t(viewsKey)}</span>
+            <span>{views}</span>
           </div>
         </div>
 
@@ -101,12 +101,12 @@ const NewsCard = ({
         >
           <div className="flex items-center gap-1">
             <CalendarMonthIcon sx={{ fontSize: 16, color: "#777" }} />
-            <span>{t(dateKey)}</span>
+            <span>{date}</span>
           </div>
           <div className="flex items-center gap-1">
             <StarIcon sx={{ fontSize: 17, color: "#FBBF24" }} />
             <span className="text-gray-700 font-medium dark:text-[#ccc]">
-              {t(ratingKey)}
+              {rating}
             </span>
           </div>
         </div>
