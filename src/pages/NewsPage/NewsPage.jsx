@@ -13,29 +13,42 @@ import { useQuery } from "@tanstack/react-query";
 import getAllNews from "../../core/services/api/Get/News";
 import { Link } from "react-router-dom";
 
+
+
 const NewsPage = () => {
-  const { data, isLoading } = useQuery({
+  const { t, i18n } = useTranslation();
+  const isRtl = String(i18n.language).startsWith("fa");
+
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["getAllNews"],
     queryFn: getAllNews,
+    retry: 1,
   });
 
-  const { t, i18n } = useTranslation();
-  const isRtl = i18n.language === "fa";
-
   const [selectedView, setSelectedView] = useState("grid");
-
   const [currentPage, setCurrentPage] = useState(0);
-  if (isLoading) return <div>loading</div>;
-  const itemsPerPage = selectedView === "grid" ? 12 : 5;
 
+  if (isLoading) return <div className="p-6">loading...</div>;
+  if (isError)
+    return (
+      <div className="p-6 text-center">
+        <p className="text-red-600">خطا در دریافت اخبار:</p>
+        <p>{String(error?.message ?? "خطای نامشخص در سرور")}</p>
+      </div>
+    );
+
+  const newsList = data?.news ?? [];
+
+  const itemsPerPage = selectedView === "grid" ? 12 : 5;
   const offset = currentPage * itemsPerPage;
-  const currentItems = data.news.slice(offset, offset + itemsPerPage);
+  const currentItems = newsList.slice(offset, offset + itemsPerPage);
 
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const pageCount = Math.ceil(data.news.length / itemsPerPage);
+  const pageCount = Math.max(1, Math.ceil(newsList.length / itemsPerPage));
 
   const fadeInOnly = (delay) => ({
     hidden: { opacity: 0 },
@@ -78,12 +91,12 @@ const NewsPage = () => {
         </p>
       </motion.div>
 
-      <motion.div className="   flex  flex-col sm:flex-row items-start justify-between max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+      <motion.div className="flex flex-col sm:flex-row items-start justify-between max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
         <motion.div
           variants={fadeInOnly(0.3)}
           initial="hidden"
           animate="visible"
-          className=" ml-5 w-full  sm:w-1/4 lg:w-[19%] relative mb-6 sm:mb-0 sm:mt-17.5"
+          className="ml-5 w-full sm:w-1/4 lg:w-[19%] relative mb-6 sm:mb-0"
         >
           <div className="relative mb-5 w-full">
             <input
@@ -107,22 +120,22 @@ const NewsPage = () => {
           <CategoryFilter />
         </motion.div>
 
-        <div className="w-full  sm:w-3/4 lg:w-[79%] sm:ml-6">
+        <div className="w-full sm:w-3/4 lg:w-[79%] sm:ml-6">
           <motion.div
             variants={fadeInOnly(0.3)}
             initial="hidden"
             animate="visible"
             className="bg-[#fff] dark:bg-[#333] mb-5 mt-5 sm:mt-17 shadow-md rounded-xl px-4 py-3 sm:px-10 flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0"
           >
-            <div className="  flex flex-wrap justify-center sm:justify-start items-center !gap-4">
-              <span className=" dark:text-[#fff] text-sm">
+            <div className="flex flex-wrap justify-center sm:justify-start items-center !gap-4">
+              <span className="dark:text-[#fff] text-sm">
                 {t("newsPage.sortBy")}
               </span>
               <NewsSelectOne />
               <NewsSelectTwo />
             </div>
 
-            <div className=" !gap-3 flex justify-center items-center">
+            <div className="!gap-3 flex justify-center items-center">
               <div
                 onClick={() => {
                   setSelectedView("list");
@@ -142,7 +155,7 @@ const NewsPage = () => {
                   setSelectedView("grid");
                   setCurrentPage(0);
                 }}
-                className={`  flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border transition-all duration-300 cursor-pointer ${
+                className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border transition-all duration-300 cursor-pointer ${
                   selectedView === "grid"
                     ? "bg-[#008C78] text-white border-[#008C78]"
                     : "text-[#A6A6A6] border border-[#A6A6A6] dark:border-[#555]"
@@ -154,7 +167,7 @@ const NewsPage = () => {
           </motion.div>
 
           <motion.div
-            key={` ${currentPage} - ${selectedView}   `}
+            key={`${currentPage}-${selectedView}`}
             variants={cardContainerVariants}
             initial="hidden"
             animate="visible"
@@ -162,34 +175,40 @@ const NewsPage = () => {
               selectedView === "list" ? "flex-col" : "flex-row"
             }`}
           >
-            {currentItems.map((news, index) => (
-              <motion.div
-                key={index}
-                variants={cardItemVariants}
-                className={
-                  selectedView === "list"
-                    ? "w-full"
-                    : "w-full sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.66px)]"
-                }
-              >
-                <Link to={`/news/${news.id}`}>
-                  <NewsCard
-                    image={news.currentImageAddressTumb}
-                    title={news.title}
-                    description={news.miniDescribe}
-                    views={news.currentView}
-                    rating={3.2}
-                    category={news.newsCatregoryName}
-                    date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    }).format(new Date(news.insertDate))}
-                    viewType={selectedView}
-                  />
-                </Link>
-              </motion.div>
-            ))}
+            {currentItems.length === 0 ? (
+              <div className="w-full text-center py-8 text-gray-500">
+                {t("news.nonews")}
+              </div>
+            ) : (
+              currentItems.map((news) => (
+                <motion.div
+                  key={news.id ?? Math.random()}
+                  variants={cardItemVariants}
+                  className={
+                    selectedView === "list"
+                      ? "w-full"
+                      : "w-full sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.66px)]"
+                  }
+                >
+                  <Link to={`/news/${news.id}`}>
+                    <NewsCard
+                      image={news.currentImageAddressTumb}
+                      title={news.title}
+                      description={news.miniDescribe}
+                      views={news.currentView}
+                      rating={3.2}
+                      category={news.newsCatregoryName}
+                      date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      }).format(new Date(news.insertDate))}
+                      viewType={selectedView}
+                    />
+                  </Link>
+                </motion.div>
+              ))
+            )}
           </motion.div>
 
           <div className="flex justify-center my-10">
