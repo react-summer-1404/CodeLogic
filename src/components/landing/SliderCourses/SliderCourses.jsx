@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import useFetchData from '../../../utils/hooks/useFetchData/useFetchData'
+import { useQuery } from '@tanstack/react-query'
+import GetAllCourses from '../../../core/services/api/Get/GetAllCourses'
 import CourseCardView1 from '../../common/CourseCardView1/CourseCardView1'
 import ButtonsSeeMore from '../../common/ButtonsSeeMore/ButtonsSeeMore'
 
@@ -9,10 +10,11 @@ const SliderCourses = () => {
 
   const {t} = useTranslation();
 
-  const thisApiUrl = '/Home/GetCoursesTop?Count=5'; 
-  const { data: sliderCoursesData } = useFetchData(thisApiUrl); 
-
-  console.log(sliderCoursesData)
+  const { data: coursesData, isLoading } = useQuery({ 
+    queryKey: ['GETALLCOURSES'], 
+    queryFn: () => GetAllCourses() 
+  })
+  
   const sliderRef = useRef();
 
 
@@ -26,7 +28,7 @@ const SliderCourses = () => {
       </div>
       <ButtonsSeeMore seeAllText={t('sliderCourses.seeAllText')} sliderRef={sliderRef} />
       <div className='flex flex-nowrap gap-8 w-full pb-2 px-10 overflow-hidden scroll-smooth scrollbar-hide' dir='ltr' ref={sliderRef}>
-        {sliderCoursesData?.map((item, index) => { return <CourseCardView1 item={item} key={index}/>})}
+        {coursesData?.courseFilterDtos?.slice(0,5).map((item, index) => { return <CourseCardView1 item={item} key={index}/>})}
       </div>
     </div>
   )

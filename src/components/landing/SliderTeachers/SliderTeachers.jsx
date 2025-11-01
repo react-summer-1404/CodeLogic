@@ -1,19 +1,23 @@
 import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import useFetchData from '../../../utils/hooks/useFetchData/useFetchData'
+import { useQuery } from '@tanstack/react-query'
+import GetAllTeachers from '../../../core/services/api/Get/GetAllTeachers'
 import ButtonsSeeMore from '../../common/ButtonsSeeMore/ButtonsSeeMore'
 import SliderTeacher from './SliderTeacher/SliderTeacher'
 
 
 const SliderTeachers = () => {
 
+  const { t } = useTranslation();
 
-  const thisApiUrl = '/Home/GetTeachers';
-  const { data: sliderTeachersData } = useFetchData(thisApiUrl); 
+  const { data: teachersData, isLoading } = useQuery({ 
+    queryKey: ['GETALLTEACHERS'], 
+    queryFn: () => GetAllTeachers() 
+  })
+
 
   const sliderRef = useRef();
 
-  const { t } = useTranslation();
 
   return (
     <div className='flex flex-col items-center gap-8 w-full'>
@@ -26,7 +30,7 @@ const SliderTeachers = () => {
 
       <ButtonsSeeMore seeAllText={t('sliderTeachers.seeAllText')} sliderRef={sliderRef} />
       <div className='flex flex-nowrap gap-5 overflow-hidden w-full pt-8 pb-2 px-10 scroll-smooth scrollbar-hide' dir='ltr' ref={sliderRef}>
-        {sliderTeachersData?.map((item, index) => { return <SliderTeacher item={item} key={index} /> })}
+        {teachersData?.map((item, index) => { return <SliderTeacher item={item} key={index} /> })}
       </div>
     </div>
   )

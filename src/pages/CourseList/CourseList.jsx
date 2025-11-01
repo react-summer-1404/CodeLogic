@@ -18,10 +18,8 @@ const CourseList = () => {
   const [sortingCol, setSortingCol] = useState(DEFAULT_SORT_TYPE);
   const [pageSize, setPageSize] = useState(3);
 
+
   const [searchQuery, setSearchQuery] = useState('');
-
-
-
   const handleSearchSubmit = (searchTerm) => {
     setSearchQuery(searchTerm);
   };

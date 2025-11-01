@@ -10,10 +10,11 @@ const VIEW_TYPE_GRID = 'grid';
 
 
 
-const Main = ({ coursesData, isLoading, setSortingCol, currentPage, setCurrentPage, pageSize, setPageSize}) => {
+const CourseListMain = ({ coursesData, isLoading, setSortingCol, currentPage, setCurrentPage, pageSize, setPageSize}) => {
 
 
   const [currentView, setCurrentView] = useState(VIEW_TYPE_GRID);
+  const CourseCardComponent = currentView === VIEW_TYPE_LIST ? CourseCardView2 : CourseCardView1
   // console.log(currentPage)
 
 
@@ -23,7 +24,6 @@ const Main = ({ coursesData, isLoading, setSortingCol, currentPage, setCurrentPa
   const handleViewChange = (viewType) => {
     setCurrentView(viewType);
   };
-  const CourseCardComponent = currentView === VIEW_TYPE_LIST ? CourseCardView2 : CourseCardView1
 
 
   const handlePageSizeChange = (newSize) => {
@@ -37,6 +37,7 @@ const Main = ({ coursesData, isLoading, setSortingCol, currentPage, setCurrentPa
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  console.log(coursesData)
 
   return (
     <div className='flex flex-col gap-8 w-full'>
@@ -44,7 +45,7 @@ const Main = ({ coursesData, isLoading, setSortingCol, currentPage, setCurrentPa
       onPageSizeChange={handlePageSizeChange} setSortingCol={setSortingCol}/>
       <div className='flex flex-row flex-wrap gap-y-8 gap-x-4'>
         {
-          coursesData?.courseFilterDtos?.filter(item => item.imageAddress && item.imageAddress.trim() !== '').map((item, index) => {
+          coursesData?.courseFilterDtos?.map((item, index) => {
             return <CourseCardComponent item={item} key={index} />
           })
         }
@@ -72,4 +73,4 @@ const Main = ({ coursesData, isLoading, setSortingCol, currentPage, setCurrentPa
   )
 }
 
-export default Main
+export default CourseListMain
