@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import { checkNumber } from "../common/common.validation.js";
-import i18n from "../../i18n.js";
+import i18n from "../../i18n/i18n.js";
 
 export const RegisterValidation = () => {
   return Yup.object().shape({
