@@ -14,11 +14,20 @@ const onError = (err) => {
 };
 
 apiClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  config.headers.Authorization = 'Barear' + token;
   return config;
 });
+
+// const obj = {
+//   userId: 22,
+// }
+
 apiClient.interceptors.response.use(onSuccess, onError);
 
 export default apiClient;
+
+
 // src/interceptor/interceptor.js
 // import axios from "axios";
 

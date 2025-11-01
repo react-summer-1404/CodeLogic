@@ -243,6 +243,8 @@ import { useQuery } from "@tanstack/react-query";
 import getAllNews from "../../core/services/api/Get/News";
 import { Link } from "react-router-dom";
 
+
+
 const NewsPage = () => {
   const { t, i18n } = useTranslation();
   const isRtl = String(i18n.language).startsWith("fa");

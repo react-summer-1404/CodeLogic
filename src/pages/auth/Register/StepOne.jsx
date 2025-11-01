@@ -149,7 +149,7 @@ const StepOne = () => {
                   initial="hidden"
                   animate="visible"
                 >
-                  <div
+                  <Link to={'/'}
                     className={`mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 ${
                       i18n.language === "fa"
                         ? "right-4 sm:right-8 lg:right-30"
@@ -168,7 +168,7 @@ const StepOne = () => {
                     >
                       {t("registerStepOne.home")}
                     </span>
-                  </div>
+                  </Link>
                 </motion.div>
 
                 <motion.h2
@@ -263,13 +263,13 @@ const StepOne = () => {
                   }`}
                 >
                   {t("registerStepOne.have_account")}{" "}
-                  <span
+                  <Link to={'/login'}
                     className={`font-semibold cursor-pointer hover:underline transition-colors duration-500 ${
                       darkMode ? "text-yellow-300" : "text-[#008C78]"
                     }`}
                   >
                     {t("registerStepOne.login")}
-                  </span>
+                  </Link>
                 </motion.p>
               </div>
             </motion.div>
