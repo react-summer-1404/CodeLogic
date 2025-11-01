@@ -185,7 +185,9 @@ const CoursesPayment = () => {
                     <CourseHeader />
                     <div className="overflow-y-auto h-full">
                         {curruntPayments.length > 0 ? (
-                            curruntPayments.map((items) => <CoursePayment items={items} />)
+                            curruntPayments.map((items) => (
+                                <CoursePayment key={items.id} items={items} />
+                            ))
                         ) : (
                             <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
                                 {t('coursesPayment.notFound')}
