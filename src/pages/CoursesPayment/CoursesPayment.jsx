@@ -181,15 +181,17 @@ const CoursesPayment = () => {
                 className="  dark:bg-black dark:text-[#ffff]
              h-[89%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
             >
-                <div className="flex flex-col h-[65%] overflow-y-auto ">
+                <div className="flex flex-col h-[70%] ">
                     <CourseHeader />
-                    {curruntPayments.length > 0 ? (
-                        curruntPayments.map((items) => <CoursePayment items={items} />)
-                    ) : (
-                        <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
-                            {t('coursesPayment.notFound')}
-                        </h1>
-                    )}
+                    <div className="overflow-y-auto h-full">
+                        {curruntPayments.length > 0 ? (
+                            curruntPayments.map((items) => <CoursePayment items={items} />)
+                        ) : (
+                            <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
+                                {t('coursesPayment.notFound')}
+                            </h1>
+                        )}
+                    </div>
                 </div>
                 {/* -------- buttons */}
                 <div className="flex justify-between p-8">
