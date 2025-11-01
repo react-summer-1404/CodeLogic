@@ -1,5 +1,7 @@
-import i18n from "../../i18n.js";
+import i18n from "../../i18n/i18n";
 import * as Yup from "yup";
+
+
 
 export const ForgotVal1 = () => {
     return Yup.object({

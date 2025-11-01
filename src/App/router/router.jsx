@@ -23,6 +23,8 @@ import FavoriteCourses from "../../pages/Favorites/FavoriteCourses/FavoriteCours
 import SecuritySettings from "../../pages/securitySettings/SecuritySettings";
 import NewsPage from "../../pages/NewsPage/NewsPage";
 
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,12 +33,10 @@ const router = createBrowserRouter([
       { index: true, element: <Landing /> },
 
       { path: "/courselist", element: <CourseList /> },
-      { path: "/coursedetail", element: <CourseDetail /> },
-      { path: "/newslist", element: <News /> },
+      { path: "/coursedetail/:id", element: <CourseDetail />,},
+      { path: "/newslist", element: <NewsPage/> },
       { path: "/Teachers", element: <TeachersPage /> },
       { path: "/Teacher/:id", element: <TeachersDetail /> },
-
-      { path: "/news", element: <NewsPage /> },
       { path: "/news/:id", element: <NewsDetails /> },
     ],
   },

@@ -182,17 +182,19 @@ const FavoriteCourses = () => {
                 className=" dark:bg-black dark:text-[#ffff]
              h-[89%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
             >
-                <div className="flex flex-col h-[65%] overflow-y-auto">
+                <div className="flex flex-col h-[70%]">
                     <CourseHeader />
-                    {currentCourses.length > 0 ? (
-                        currentCourses.map((items) => (
-                            <FavoriteCourse items={items} key={items.id} />
-                        ))
-                    ) : (
-                        <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
-                            {t('favoriteCourses.notFound')}
-                        </h1>
-                    )}
+                    <div className="overflow-y-auto h-full">
+                        {currentCourses.length > 0 ? (
+                            currentCourses.map((items) => (
+                                <FavoriteCourse items={items} key={items.id} />
+                            ))
+                        ) : (
+                            <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
+                                {t('favoriteCourses.notFound')}
+                            </h1>
+                        )}
+                    </div>
                 </div>
                 {/* buttons ------- */}
                 <div className="flex justify-between p-8">
