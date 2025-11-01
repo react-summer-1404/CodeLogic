@@ -8,7 +8,7 @@ const SliderTeacher = ({ item }) => {
     const navigate = useNavigate();
     return (
         <div
-            onClick={() => navigate(`/Teacher/${item.id}`)}
+            onClick={() => navigate(`/Teacher/${item.teacherId}`)}
             className="flex flex-col flex-shrink-0 items-center w-[350px] h-[346px] p-4 bg-[#FFFFFF] rounded-[20px] md:basis-[calc(25%-1rem)]  dark:bg-[#606060]
     hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
         >

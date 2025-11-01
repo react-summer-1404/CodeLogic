@@ -12,6 +12,20 @@ import { toast } from 'react-toastify';
 import loginData from '../../../components/common/Form/initialData/loginData';
 
 const LoginPage = () => {
+    const { mutate: postLogin, isPending } = useMutation({
+        mutationKey: ['LOGIN'],
+        mutationFn: (values) => Login(values),
+        onSettled: (data) => {
+            if (data.success) {
+                localStorage.setItem('token', data.token);
+                toast.success(data.message);
+                navigate(`/Panel`);
+            } else if (!data.success) {
+                toast.error(data.message);
+            }
+        },
+    });
+
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
 
@@ -32,19 +46,6 @@ const LoginPage = () => {
     useEffect(() => {
         setValidationSchema(Login1Val());
     }, [i18n.language]);
-
-    const { mutate: postLogin, isPending } = useMutation({
-        mutationKey: ['LOGIN'],
-        mutationFn: (values) => Login(values),
-        onSettled: (data) => {
-            if (data.success) {
-                toast.success(data.message);
-                navigate(`/Panel`);
-            } else if (!data.success) {
-                toast.error(data.message);
-            }
-        },
-    });
 
     return (
         <div className="bg-[#EAEAEA] min-h-screen flex items-center justify-center">

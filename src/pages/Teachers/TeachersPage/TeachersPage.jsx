@@ -204,7 +204,7 @@ const TeachersPage = () => {
                             >
                                 {currentTeachers.length > 0 ? (
                                     currentTeachers.map((item, index) => (
-                                        <SliderTeacher item={item} key={item.id} />
+                                        <SliderTeacher item={item} key={index} />
                                     ))
                                 ) : (
                                     <p className=" text-center p-5 text-[#008C78] font-bold text-4xl mx-auto">
