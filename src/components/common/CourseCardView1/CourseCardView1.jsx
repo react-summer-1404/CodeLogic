@@ -4,6 +4,7 @@ import Level from '../../../assets/Icons/Level'
 import Star from '../../../assets/Icons/Star'
 import Heart from '../../../assets/Icons/Heart'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom' 
 
 
 
@@ -13,7 +14,7 @@ const CourseCardView1 = ({ item }) => {
     const isRtl = i18n.language === "fa";
 
     return (
-        <div dir='rtl' className='flex flex-col flex-shrink-0 items-center w-[350px] rounded-[20px] relative cursor-pointer  
+        <Link to={`/coursedetail/${item.courseId}`} dir='rtl' className='flex flex-col flex-shrink-0 items-center w-[350px] rounded-[20px] relative cursor-pointer  
         hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>
             <img src={item.imageAddress} className='w-full h-[259px] rounded-t-[20px]' />
             <div className='flex flex-col justify-between w-full h-[217px] mb-[-16px] p-4 bg-[#FFFFFF] rounded-[20px] transform -translate-y-4   
@@ -50,7 +51,7 @@ const CourseCardView1 = ({ item }) => {
             <button className='p-2 bg-[#000000] opacity-25 rounded-[50px] absolute top-[13px] right-[14px]'>
                 <Heart />
             </button>
-        </div>
+        </Link>
     )
 }
 

@@ -19,8 +19,8 @@ const useFetchCourses = (url, pageNumber = 1, pageSize = 10) => {
       setIsLoading(true);
       try{
         const response = await apiClient.get(finalUrl); 
-        setCourses(response.data?.courseFilterDtos || []);
-        setTotalRecords(response.data.totalCount || 0); 
+        setCourses(response.courseFilterDtos || []);
+        setTotalRecords(response.totalCount || 0); 
       }
       catch(error){
         setCourses([]);

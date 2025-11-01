@@ -6,7 +6,7 @@ import CourseDesc from '../CourseDesc/CourseDesc'
 import CourseComments from '../CourseComments/CourseComments'
 
 
-const CourseDetailMain = () => {
+const CourseDetailMain = ({course}) => {
 
   const [activeTab, setActiveTab] = useState(
     localStorage.getItem('courseActiveTab') || 'detail'
@@ -20,13 +20,13 @@ const CourseDetailMain = () => {
     <div className='flex flex-col gap-4 
     md:w-[400px]
     lg:w-[887px]'>
-      <ImageInfo/>
+      <ImageInfo course={course}/>
       <CourseCommentsTab activeTab={activeTab} setActiveTab={setActiveTab}/>
       { 
         activeTab === 'detail' && (
           <>
-            <CourseDetailSection/>
-            <CourseDesc/> 
+            <CourseDetailSection course={course}/>
+            <CourseDesc course={course}/> 
           </>
         )
       }

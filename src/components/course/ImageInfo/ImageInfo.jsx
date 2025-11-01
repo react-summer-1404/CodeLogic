@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
-import HTML5Course from '../../../assets/Images/HTML5Course.png'
 import Like from '../../../assets/Icons/Like'
 import DisLike from '../../../assets/Icons/DisLike'
 
 
 
-const ImageInfo = () => {
+const ImageInfo = ({ course }) => {
 
     const [active, setActive] = useState(false);
 
     return (
         <div className='flex flex-col gap-4'>
-            <img src={HTML5Course} className='w-full
+            <img src={course.imageAddress} className='w-full
             md:h-[240px] md:rounded-[16px]
             lg:h-[443px] lg:rounded-[25px]' />
             <div className='flex justify-between'>
@@ -24,17 +23,17 @@ const ImageInfo = () => {
                     <div onClick={() => {setActive(!active)}} className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] 
                     rounded-[48px]   
                     dark:bg-[#393939]'>
-                        <span className='font-regular text-base text-[#848484]'>{500}</span>
+                        <span className='font-regular text-base text-[#848484]'>{course.likeCount}</span>
                         {
-                            active ? <span className='rotate-180'><Like/></span> : <DisLike/>
+                            active ? <span className='rotate-180 transform scale-x-[-1]'><Like/></span> : <DisLike/>
                         }
                     </div>
                     <div  onClick={() => {setActive(!active)}} className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] 
                     rounded-[48px]   
                     dark:bg-[#393939]'>
-                        <span className='font-regular text-base text-[#848484]'>{500}</span>
+                        <span className='font-regular text-base text-[#848484]'>{course.dissLikeCount}</span>
                         {
-                            active ? <span className='rotate-180'><DisLike/></span> : <Like/>
+                            active ? <span className='rotate-180 transform scale-x-[-1]'><DisLike/></span> : <Like/>
                         }
                     </div>
                 </div>

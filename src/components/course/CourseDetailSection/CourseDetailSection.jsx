@@ -7,15 +7,15 @@ import History from '../../../assets/Icons/History'
 import CourseDetailSecItem from './CourseDetailSecItem/CourseDetailSecItem'
 
 
-const CourseDetailSection = () => {
+const CourseDetailSection = ({ course }) => {
 
     const { t } = useTranslation();
 
     const courseDetailItem = [
-        { id: 1, title: 'تعداد دانشجو', icon: Users },
-        { id: 2, title: 'مدت زمان', icon: Clock },
-        { id: 3, title: 'سطح دوره', icon: Level },
-        { id: 4, title: 'وضعیت دوره', icon: History }
+        { id: 1, title: 'تعداد دانشجو', courseNumber: course.currentRegistrants, icon: Users },
+        { id: 2, title: 'مدت زمان', courseNumber: course.endTime.slice(0, 10), icon: Clock },
+        { id: 3, title: 'سطح دوره', courseNumber: course.courseLvlId, icon: Level },
+        { id: 4, title: 'وضعیت دوره', courseNumber: course.status.statusName, icon: History }
     ];
 
     return (
@@ -24,7 +24,7 @@ const CourseDetailSection = () => {
             <div className='flex gap-12'>
                 {
                     courseDetailItem.map((item, index) => (
-                        <CourseDetailSecItem item={item} key={index} />
+                        <CourseDetailSecItem item={item} key={index}/>
                     ))
                 }
             </div>

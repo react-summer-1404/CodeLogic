@@ -3,7 +3,7 @@ import CourseTeacherIMG from '../../../assets/Images/courseteacher.png'
 import { useTranslation } from 'react-i18next'
 
 
-const CourseTeacher = () => {
+const CourseTeacher = ({ course }) => {
 
     const { t } = useTranslation();
 
@@ -17,7 +17,7 @@ const CourseTeacher = () => {
                 lg:w-[168px] lg:h-[168px]'/>
                 <div className='flex flex-col items-center'>
                     <span className='font-regular text-base text-[#848484]   dark:text-[#CCCCCC]'>{t('courseTeacher.courseTeacher')}</span>
-                    <h3 className='font-bold text-[18px] text-[#1E1E1E]   dark:text-[#DDDDDD]'>{'مهندس ادوارد جانسون'}</h3>
+                    <h3 className='font-bold text-[18px] text-[#1E1E1E]   dark:text-[#DDDDDD]'>{course.teacherName}</h3>
                 </div>
             </div>
             <button className='py-2 font-regular text-base text-[#FFFFFF] bg-[#000000] rounded-[48px]
