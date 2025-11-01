@@ -181,6 +181,9 @@
         "title3Item1": "فرانت اند",
         "title3Item2": "بک اند"
     },
+    "priceFilter": {
+        "title": "بازه قیمت (تومان)"
+    },
     "sortView": {
         "title": "مرتب سازی بر اساس :"
     },

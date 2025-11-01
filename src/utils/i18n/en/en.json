@@ -181,6 +181,9 @@
         "title3Item1": "FrontEnd",
         "title3Item2": "BackEnd"
     },
+    "priceFilter": {
+        "title": "Price Range (Toman)"
+    },
     "sortView": {
         "title": "Sort by:"
     },
