@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import TranslateButton from "../../components/TranslateButton/TranslateButton";
 import PanelRight from "./PanelRight";
+import { Link } from "react-router-dom";
 
 const headerVariants = {
   initial: { opacity: 0, y: -50 },
@@ -75,7 +76,9 @@ const PanelHeader = () => {
             variants={itemVariants}
             className="bg-[#008C78] rounded-full p-2 cursor-pointer flex"
           >
-            <HomeRoundedIcon className="text-[white] !text-3xl" />
+            <Link to={'/'}>
+              <HomeRoundedIcon className="text-[white] !text-3xl" />
+            </Link>
           </motion.div>
 
           <motion.button
