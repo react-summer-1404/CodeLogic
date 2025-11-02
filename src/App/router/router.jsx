@@ -14,9 +14,10 @@ import ForgotPasswordStepTwo from "../../pages/auth/forgotPassword/ForgotPasswor
 import CourseDetail from "../../pages/CourseDetail/CourseDetail";
 import TeachersPage from "../../pages/Teachers/TeachersPage/TeachersPage";
 import TeachersDetail from "../../pages/Teachers/TeachersDetail/TeachersDetail";
-import PanelUserInfo from "../../pages/Panel/PanelUserInfo";
-import PanelDashboard from "../../pages/Panel/PanelDashboard";
-import Panel from "../../pages/Panel/Panel";
+import Panel from "../../pages/UserPanel/Panel";
+import PanelDashboard from "../../pages/UserPanel/PanelDashboard";
+import PanelUserInfo from "../../pages/UserPanel/PanelUserInfo";
+import MyCourses from "../../pages/UserPanel/MyCourses/MyCourses";
 import CoursesPayment from "../../pages/CoursesPayment/CoursesPayment";
 import FavoriteNews from "../../pages/Favorites/FavoriteNews/FavoriteNews";
 import FavoriteCourses from "../../pages/Favorites/FavoriteCourses/FavoriteCourses";
@@ -40,18 +41,18 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/panel",
+    path: "/userPanel",
     element: <Panel />,
     children: [
       { index: true, element: <PanelDashboard /> },
-      { path: "/userInfo", element: <PanelUserInfo /> },
-      { path: "/myCourses", element: <MyCourses/>},
-      { path: "/myReservedCourses", element: <MyReservedCourses/>},
-      { path: "/myComments", element: <MyComments/>},
-      { path: "/coursesPayments", element: <CoursesPayment /> },
-      { path: "/favoriteNews", element: <FavoriteNews /> },
-      { path: "/favoriteCourses", element: <FavoriteCourses /> },
-      { path: "/securitySettings", element: <SecuritySettings /> },
+      { path: "userInfo", element: <PanelUserInfo /> },
+      { path: "myCourses", element: <MyCourses/>},
+      // { path: "myReservedCourses", element: <MyReservedCourses/>},
+      // { path: "myComments", element: <MyComments/>},
+      { path: "coursesPayments", element: <CoursesPayment /> },
+      { path: "favoriteNews", element: <FavoriteNews /> },
+      { path: "favoriteCourses", element: <FavoriteCourses /> },
+      { path: "securitySettings", element: <SecuritySettings /> },
     ],
   },
   { path: "/registerStepOne", element: <StepOne /> },

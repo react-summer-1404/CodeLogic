@@ -609,7 +609,10 @@
         "button": "ویرایش اطلاعات"
         }
     },
-        "validation": {
+    "userPanelSearch": {
+        "placeholder": "جستجو..."
+    },
+    "validation": {
         "nationalId": {
         "required": "کد ملی خود را وارد کنید *",
         "invalid": "کدملی نامعتبر است *"

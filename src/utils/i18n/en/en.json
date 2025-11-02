@@ -607,7 +607,10 @@
         "button": "Edit Information"
         }
     },
-        "validation": {
+    "userPanelSearch": {
+        "placeholder": "Search..."
+    },
+    "validation": {
         "nationalId": {
         "required": "Please enter your national ID *",
         "invalid": "Invalid national ID *"

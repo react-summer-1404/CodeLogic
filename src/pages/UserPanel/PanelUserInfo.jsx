@@ -5,7 +5,7 @@ import { Field, Form, Formik } from "formik";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import PanelImageModal from "../../components/PanelImageModal/PanelImageModal";
+import PanelImageModal from "../../components/userpanel/PanelImageModal/PanelImageModal";
 import "leaflet/dist/leaflet.css";
 import {
   MapContainer,

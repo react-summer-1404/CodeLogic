@@ -100,21 +100,21 @@ const PanelRight = ({ isMobileMenu }) => {
           {t("panelside.menu")}
         </motion.p>
 
-        <Link to="/Panel">
+        <Link to="/userPanel">
           <motion.div
             className="flex items-center mb-4 rounded-4xl"
             variants={itemVariants}
           >
             <MenuIcon
               className={`text-[18px] md:text-[20px] ${
-                isActive("/Panel")
+                isActive("/userPanel")
                   ? "text-[#008C78] !text-[24px] md:!text-[26px]"
                   : "text-[#848484]"
               }`}
             />
             <span
               className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
-                isActive("/Panel")
+                isActive("/userPanel")
                   ? "text-[#1e1e1e] font-semibold dark:text-[white]"
                   : "text-[#848484]"
               } ${isRtl ? "" : "ml-2"}`}
@@ -124,7 +124,7 @@ const PanelRight = ({ isMobileMenu }) => {
           </motion.div>
         </Link>
 
-        <Link to="/Panel/UserInfo">
+        <Link to="/userPanel/UserInfo">
           <motion.div
             className="flex items-center mb-4"
             variants={itemVariants}
@@ -150,13 +150,13 @@ const PanelRight = ({ isMobileMenu }) => {
 
         <motion.div className="flex items-center mb-4" variants={itemVariants}>
           <MenuBookIcon className="text-[18px] md:text-[20px] text-[#848484]" />
-          <span
+          <Link to={'/userPanel/myCourses'}
             className={`text-[15px] md:text-[17px] lg:text-[18px] text-[#848484] mr-2 ${
               isRtl ? "" : "ml-3"
             }`}
           >
             {t("panelside.my_courses")}
-          </span>
+          </Link>
         </motion.div>
 
         <motion.div className="flex items-center mb-4" variants={itemVariants}>
