@@ -4,7 +4,6 @@ import TeacherCard from '../../../components/common/TeachersDetail/TeacherCard';
 import React, { useEffect, useRef, useState } from 'react';
 import teachersDetail from '../../../components/common/data/Teachers/teachersDetail';
 import { motion, AnimatePresence } from 'framer-motion';
-import CourseCardView1 from '../../../components/common/CourseCardView1/CourseCardView1';
 import SliderButtons from '../../../components/common/sliders/buttons/sliderButtons';
 import apiClient from '../../../core/interceptor/interceptor';
 import DetailCard from '../../../components/common/TeachersDetail/DetailCard';

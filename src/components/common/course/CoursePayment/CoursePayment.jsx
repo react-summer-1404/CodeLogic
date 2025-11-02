@@ -1,6 +1,6 @@
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import documentIcon from '../../../assets/Icons/A/document.png';
+import documentIcon from '../../../../assets/Icons/A/document.png';
 
 
 const CoursePayment = ({ items }) => {
