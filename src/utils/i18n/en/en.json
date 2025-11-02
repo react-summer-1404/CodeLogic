@@ -618,6 +618,12 @@
     "userPanelSearch": {
         "placeholder": "Search..."
     },
+    "userPanelFilter": {
+        "option1": "Filters"
+    },
+    "userPanelShowNumber": {
+        "showNumber": "ُShow Number"
+    },
     "validation": {
         "nationalId": {
         "required": "Please enter your national ID *",
