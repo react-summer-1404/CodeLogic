@@ -1,8 +1,8 @@
 import React from 'react'
-import UserPanelSearch from '../../../components/common/UserPanelSearch/UserPanelSearch'
-import UserPanelFilter from '../../../components/common/UserPanelFilter/UserPanelFilter'
-import UserPanelTitle from '../../../components/common/UserPanelTitle/UserPanelTitle' 
-import UserPanelShowNumber from '../../../components/common/UserPanelShowNumber/UserPanelShowNumber'
+import UserPanelSearch from '../../../components/common/userPanel/UserPanelSearch/UserPanelSearch'
+import UserPanelFilter from '../../../components/common/userPanel/UserPanelFilter/UserPanelFilter'
+import UserPanelTitle from '../../../components/common/userPanel/UserPanelTitle/UserPanelTitle' 
+import UserPanelShowNumber from '../../../components/common/userPanel/UserPanelShowNumber/UserPanelShowNumber'
 import { useTranslation } from 'react-i18next'
 import ReactPaginate from 'react-paginate'
 

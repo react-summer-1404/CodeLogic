@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react'
-import CourseCardView1 from '../../common/CourseCardView1/CourseCardView1'
-import CourseCardView2 from '../../common/CourseCardView2/CourseCardView2'
+import CourseCardView1 from '../../common/course/CourseCardView1/CourseCardView1'
+import CourseCardView2 from '../../common/course/CourseCardView2/CourseCardView2'
 import SortView from '../SortView/SortView'
 import ReactPaginate from 'react-paginate'
 

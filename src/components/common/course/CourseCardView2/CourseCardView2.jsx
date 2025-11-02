@@ -1,9 +1,8 @@
 import React from 'react'
-import HTML5Course from '../../../assets/Images/HTML5Course.png'
-import Teacher from '../../../assets/Icons/Teacher'
-import Level from '../../../assets/Icons/Level' 
-import Star from '../../../assets/Icons/Star'
-import Heart from '../../../assets/Icons/Heart'
+import Teacher from '../../../../assets/Icons/Teacher'
+import Level from '../../../../assets/Icons/Level' 
+import Star from '../../../../assets/Icons/Star'
+import Heart from '../../../../assets/Icons/Heart'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
