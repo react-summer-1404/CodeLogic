@@ -57,7 +57,7 @@ const subMenuItemVariants = {
   animate: { opacity: 1, x: 0, transition: { duration: 0.2, delay: 0.1 } },
 };
 
-const PanelRight = ({ isMobileMenu }) => {
+const UserPanelRight = ({ isMobileMenu }) => {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "fa";
 
@@ -318,4 +318,4 @@ const PanelRight = ({ isMobileMenu }) => {
   );
 };
 
-export default PanelRight;
+export default UserPanelRight;

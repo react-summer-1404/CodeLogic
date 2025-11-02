@@ -135,7 +135,7 @@ const LocationMarker = ({ lat, lng, setAddress, setLat, setLng }) => {
   );
 };
 
-const PanelUserInfo = () => {
+const UserPanelUserInfo = () => {
   const [openModal, setOpenModal] = useState(false);
   const [profileImage, setProfileImage] = useState(img1);
 
@@ -533,4 +533,4 @@ const PanelUserInfo = () => {
   );
 };
 
-export default PanelUserInfo;
+export default UserPanelUserInfo;
