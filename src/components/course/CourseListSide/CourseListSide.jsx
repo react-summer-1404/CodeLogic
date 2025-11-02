@@ -2,15 +2,13 @@ import React, { useState } from 'react'
 import SideDropDown from '../../common/SideDropDown/SideDropDown';
 import PriceFilter from '../PriceFilter/PriceFilter';
 import { useTranslation } from 'react-i18next';
-import CourseNewsSearch from '../../common/CourseNewsSearch/CourseNewsSearch';
+import CourseNewsSearch from '../../common/course/CourseNewsSearch/CourseNewsSearch';
 import StartEndDate from '../StartEndDate/StartEndDate';
 
 
 const CourseListSide = ({handleSearchSubmit}) => {
   
-  
-  const {t} = useTranslation();
-  
+  const {t} = useTranslation();  
 
   return (
     <div className='w-full flex flex-col gap-4

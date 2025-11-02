@@ -607,8 +607,22 @@
         "button": "Edit Information"
         }
     },
+    "myCourses": {
+        "title1": "Course Name",
+        "title2": "Teacher",
+        "title3": "Payment Status",
+        "title4": "Price (Toman)",
+        "title5": "Last Update",
+        "title6": "Activities"
+    },
     "userPanelSearch": {
         "placeholder": "Search..."
+    },
+    "userPanelFilter": {
+        "option1": "Filters"
+    },
+    "userPanelShowNumber": {
+        "showNumber": "ُShow Number"
     },
     "validation": {
         "nationalId": {

@@ -609,8 +609,22 @@
         "button": "ویرایش اطلاعات"
         }
     },
+    "myCourses": {
+        "title1": "نام دوره",
+        "title2": "استاد",
+        "title3": "وضعیت پرداخت",
+        "title4": "قیمت (تومان)",
+        "title5": "آخرین به روز رسانی",
+        "title6": "عملیات"
+    },
     "userPanelSearch": {
         "placeholder": "جستجو..."
+    },
+    "userPanelFilter": {
+        "option1": "فیلترها"
+    },
+    "userPanelShowNumber": {
+        "showNumber": "تعداد نمایش"
     },
     "validation": {
         "nationalId": {

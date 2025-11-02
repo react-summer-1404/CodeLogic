@@ -1,5 +1,7 @@
 import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion';
+
+
 const CoursePayment = ({ items }) => {
     /// motion ///
     const Animate = {
