@@ -3,6 +3,8 @@ import { delay, motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import { securitySettingsVal } from '../../utils/Validations/securitySettings/securitySettingsVal';
 import { useTranslation } from 'react-i18next';
+import eyeOpen from '../../assets/Icons/A/eyeOpen.png';
+import eyeClose from '../../assets/Icons/A/eyeClose.png';
 const SecuritySettings = () => {
     const { t, i18n } = useTranslation();
     const isRTL = i18n.language === 'fa';
@@ -102,7 +104,7 @@ const SecuritySettings = () => {
                                      placeholder:text-[#848484] rounded-[16px] py-2 px-3  border border-[#EAEAEA] shadow"
                                     />
                                     <img
-                                        src={`/icons/${isHide1 ? 'eyeOpen' : 'eyeClose'}.png`}
+                                        src={isHide1 ? eyeOpen : eyeClose}
                                         alt=""
                                         className={`absolute w-5 h-5 ${
                                             isRTL ? 'left-[15px]' : 'right-[15px]'
@@ -135,7 +137,7 @@ const SecuritySettings = () => {
                                      placeholder:text-[#848484] rounded-[16px] py-2 px-3  border border-[#EAEAEA] shadow "
                                     />
                                     <img
-                                        src={`/icons/${isHide2 ? 'eyeOpen' : 'eyeClose'}.png`}
+                                        src={isHide2 ? eyeOpen : eyeClose}
                                         alt=""
                                         className={`absolute w-5 h-5 ${
                                             isRTL ? 'left-[15px]' : 'right-[15px]'
@@ -190,7 +192,7 @@ const SecuritySettings = () => {
                                      placeholder:text-[#848484] rounded-[16px] py-2 px-3  border border-[#EAEAEA] shadow "
                                 />
                                 <img
-                                    src={`/icons/${isHide3 ? 'eyeOpen' : 'eyeClose'}.png`}
+                                    src={isHide3 ? eyeOpen : eyeClose}
                                     alt=""
                                     className={`absolute w-5 h-5 ${
                                         isRTL ? 'left-[15px]' : 'right-[15px]'

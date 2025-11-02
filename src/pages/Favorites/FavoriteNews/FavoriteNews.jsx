@@ -4,6 +4,9 @@ import { useTranslation } from 'react-i18next';
 import FavoriteNew from '../../../components/common/favorites/News/FavoriteNew';
 import { FavoriteNewsData } from '../../../components/common/data/Favorites/FavoriteNewsData';
 import { AnimatePresence, motion, number } from 'framer-motion';
+import pr from '../../../assets/Icons/A/pr.png';
+import pl from '../../../assets/Icons/A/pl.png';
+import searchIcon from '../../../assets/Icons/A/search.png';
 
 const FavoriteNews = () => {
     const { t, i18n } = useTranslation();
@@ -104,74 +107,25 @@ const FavoriteNews = () => {
                         className={` absolute ${
                             isRTL ? 'left-3' : 'right-3'
                         } top-[50%] translate-y-[-50%] `}
-                        src="/icons/search.png"
+                        src={searchIcon}
                         alt=""
                     />
                 </motion.div>
-                <div className="relative">
-                    <AnimatePresence>
-                        <motion.button
-                            variants={leftAnimate}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
-                            onClick={() => setShowFiltersOption((prev) => !prev)}
-                            className={`dark:bg-black dark:text-[#ffff] cursor-pointer relative py-2 ${
-                                isRTL ? 'pe-8 ps-2' : 'ps-8 pe-2'
-                            } 
-                        bg-[#ffff] shadow rounded-[16px]`}
-                        >
-                            {t('favoriteNews.filters')}
-                            <span className={`${isRTL ? 'mr-1' : 'ml-1'} text-xs text-gray-300`}>
-                                {filterOption === 'all'
-                                    ? `(${t('favoriteNews.all')})`
-                                    : `(${filterOption})`}
-                            </span>
-                            <img
-                                className=" absolute left-2 top-[50%] translate-y-[-50%]  "
-                                src="/icons/buttom.png"
-                            />
-                        </motion.button>
-                    </AnimatePresence>
-
-                    {showFiltersOption && (
-                        <AnimatePresence>
-                            <motion.ul
-                                variants={fadeInUp(0)}
-                                initial="hidden"
-                                animate="visible"
-                                exit="exit"
-                                className="  dark:bg-black dark:text-[#ffff]
-                                 rounded-xl shadow absolute right-0 mt-2 w-full bg-[#ffff] border border-[#EAEAEA] "
-                            >
-                                {[
-                                    'all',
-                                    `${t('favoriteNews.mostLikes')}`,
-                                    `${t('favoriteNews.mostViews')}`,
-                                ].map((option) => (
-                                    <li
-                                        className={`  dark:bg-black dark:text-[#ffff]
-                                             border-b w-full border-[#EAEAEA] px-4 py-2 cursor-pointer
-                                         ${
-                                             option === filterOption
-                                                 ? 'hover:bg-gray-300'
-                                                 : 'hover:bg-green-600 hover:text-[#ffff] '
-                                         } `}
-                                        key={option}
-                                        onClick={() => {
-                                            setFilterOption(option);
-                                            setShowFiltersOption(false);
-                                            setCurrentPage(1);
-                                        }}
-                                    >
-                                        {option === 'all'
-                                            ? `${t('favoriteNews.all')}`
-                                            : `${option}`}
-                                    </li>
-                                ))}
-                            </motion.ul>
-                        </AnimatePresence>
-                    )}
+                <div className="flex h-full items-center bg-[#ffff] dark:bg-black dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
+                    <span className="text-[16px]">{t('coursesPayment.filters')}</span>
+                    <select
+                        value={filterOption}
+                        onChange={(e) => {
+                            setFilterOption(e.target.value);
+                            setCurrentPage(1);
+                        }}
+                        className=" rounded-xl text-sm cursor-pointer py-1 ps-2 text-gray-600
+                         dark:bg-black dark:text-[#ffff] bg-[#ffff]"
+                    >
+                        <option value="all">({t('favoriteNews.all')})</option>
+                        <option value="بیشترین لایک">({t('favoriteNews.mostLikes')})</option>
+                        <option value="بیشترین بازدید">({t('favoriteNews.mostViews')})</option>
+                    </select>
                 </div>
             </div>
             {/* favorite news ------- */}
@@ -204,7 +158,7 @@ const FavoriteNews = () => {
                             }}
                             className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 mr-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
-                            <img src="/icons/pl.png" alt="" />
+                            <img src={pl} alt="" />
                             {t('favoriteNews.back')}
                         </button>
                         {Array.from({ length: totalPages }).map((_, i) => {
@@ -230,7 +184,7 @@ const FavoriteNews = () => {
                             className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 ml-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
                             {t('favoriteNews.next')}
-                            <img src="/icons/pr.png" alt="" />
+                            <img src={pr} alt="" />
                         </button>
                     </div>
                     {/* filtering counts ------ */}
