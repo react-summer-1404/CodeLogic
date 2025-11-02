@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
-import SelectComp from "../SelectComp/SelectComp";
-import TranslateButton from "../TranslateButton/TranslateButton";
-import { useTheme } from "../../utils/hooks/useTheme/useTheme";
+import SelectComp from "../../SelectComp/SelectComp";
+import TranslateButton from "../../TranslateButton/TranslateButton";
+import { useTheme } from "../../../utils/hooks/useTheme/useTheme";
 
 const Header = () => {
   const { t, i18n } = useTranslation();

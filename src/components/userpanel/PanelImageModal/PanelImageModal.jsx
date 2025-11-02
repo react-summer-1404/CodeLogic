@@ -8,9 +8,9 @@ import {
   Avatar,
 } from "@mui/material";
 
-import img1 from "../../assets/Images/userinfo.png";
-import img2 from "../../assets/Images/Modal.png";
-import img3 from "../../assets/Images/plus.png";
+import img1 from "../../../assets/Images/userinfo.png";
+import img2 from "../../../assets/Images/Modal.png";
+import img3 from "../../../assets/Images/plus.png";
 import { useTranslation } from "react-i18next";
 
 const MAX_CUSTOM_IMAGES = 6;

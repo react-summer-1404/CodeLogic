@@ -39,7 +39,7 @@ const LoginPage = () => {
         onSettled: (data) => {
             if (data.success) {
                 toast.success(data.message);
-                navigate(`/Panel`);
+                navigate(`/userPanel`);
             } else if (!data.success) {
                 toast.error(data.message);
             }

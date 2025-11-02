@@ -1,10 +1,10 @@
 import React from "react";
+import DashboardCourseReserve from "../../components/userpanel/DashboardCourseReserve/DashboardCourseReserve";
+import DashboardLatestNews from "../../components/userpanel/DashboardLatestNews/DashboardLatestNews";
 import NorthWestIcon from "@mui/icons-material/NorthWest";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import DashboardCourseReserve from "../../components/DashboardCourseReserve/DashboardCourseReserve";
 import img1 from "../../assets/Images/Rectanglepc.png";
-import DashboardLatestNews from "../../components/DashboardLatestNews/DashboardLatestNews";
 
 const courseData = [
   {
