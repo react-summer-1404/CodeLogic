@@ -1,5 +1,7 @@
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import greenEye from '../../../../assets/Icons/A/greenEye.png';
+import greenBasket from '../../../../assets/Icons/A/greenBasket.png';
 
 const FavoriteNew = ({ items }) => {
     const Animate = {
@@ -31,8 +33,14 @@ const FavoriteNew = ({ items }) => {
             <div className="px-1 flex-1">{items.likesCount}</div>
             <div className="px-4 flex-1">{items.lastUpdate}</div>
             <div className="pe-8 w-[100px] text-left flex items-center justify-end gap-4">
-                <div className="w-6 h-4 bg-[url(/icons/greenEye.png)] bg-no-repeat bg-[center_center] "></div>
-                <div className="w-4 h-4 bg-[url(/icons/greenBasket.png)] bg-no-repeat bg-[center_center] "></div>
+                <div
+                    style={{ backgroundImage: `url(${greenEye})` }}
+                    className="w-6 h-4  bg-no-repeat bg-[center_center] "
+                ></div>
+                <div
+                    style={{ backgroundImage: `url(${greenBasket})` }}
+                    className="w-4 h-4 bg-[url(/icons/greenBasket.png)] bg-no-repeat bg-[center_center] "
+                ></div>
             </div>
         </motion.div>
     );

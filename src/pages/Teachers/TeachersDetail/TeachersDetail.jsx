@@ -12,6 +12,11 @@ import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import GetAllTeachers from '../../../core/services/api/Get/GetAllTeachers';
 import GetAllCourses from '../../../core/services/api/Get/GetAllCourses';
+import loading from '../../../assets/Images/A/loading.gif';
+import buttom from '../../../assets/Icons/A/buttom.png';
+import leftIcon from '../../../assets/Icons/A/left.png';
+import rightIcon from '../../../assets/Icons/A/right.png';
+import searchIcon from '../../../assets/Icons/A/search.png';
 
 const TeachersDetail = () => {
     const { id } = useParams();
@@ -37,13 +42,10 @@ const TeachersDetail = () => {
     const [curruntPage, setCurruntPage] = useState(1);
     const [TempCount, setTempCount] = useState(9);
     const [DetailPerPage, setDetailPerPage] = useState(9);
-    const [DropDownPage, setDropDownPage] = useState(false);
-    const [DropDown, setDropDown] = useState(false);
     const [searchActivated, setSearchActivated] = useState(true);
     const startIndex = (curruntPage - 1) * DetailPerPage;
     const endIndex = startIndex + DetailPerPage;
     const totalPage = Math.max(1, Math.ceil(coursesData?.courseFilterDtos?.length / DetailPerPage));
-    const showOptions = [9, 22, 45];
 
     const handleSelectCount = (num) => {
         setTempCount(num);
@@ -91,7 +93,7 @@ const TeachersDetail = () => {
 
     return (
         <div>
-            {isPending && <img className="mx-auto p-4 " src="/images/loading.gif" alt="" />}
+            {isPending && <img className="mx-auto p-4 " src={loading} alt="" />}
             {!isPending && (
                 <motion.div
                     variants={fadeInUp(0.35)}
@@ -125,9 +127,13 @@ const TeachersDetail = () => {
                             <TeacherCard item={teacher} />
                         </div>
                         <div className="w-[100%] md:w-[80%] flex flex-col justify-center mx-auto md:mx-0">
-                            <div className=" flex dark:text-[#EEEEEE] dark:border dark:border-[#EAEAEA]   dark:bg-[#1E1E1E] bg-[#ffff] h-[72px] w-full shadow-md  rounded-[15px] items-center justify-between px-5 py-3 ">
+                            <div
+                                className=" flex dark:text-[#EEEEEE] dark:border dark:border-[#EAEAEA]   dark:bg-[#1E1E1E]
+                             bg-[#ffff] h-[72px] w-full shadow-md  rounded-[15px] items-center justify-between px-5 py-3 "
+                            >
+                                {/* ///// filtering //// */}
                                 <div className="flex gap-4 w-[60%] h-full items-center justify-between ">
-                                    <div className=" w-[80%] h-full   ">
+                                    <div className=" w-[78%] h-full   ">
                                         <motion.input
                                             whileFocus={{
                                                 boxShadow:
@@ -139,7 +145,8 @@ const TeachersDetail = () => {
                                                  isRTL
                                                      ? 'bg-[left_15px_center]'
                                                      : 'bg-[right_15px_center]'
-                                             } bg-[url(/icons/search.png)] bg-no-repeat rounded-2xl `}
+                                             }  bg-no-repeat rounded-2xl `}
+                                            style={{ backgroundImage: `url(${searchIcon})` }}
                                             placeholder={t('teachersPage.filters.Search')}
                                             type="text"
                                             onChange={(e) => {
@@ -151,53 +158,21 @@ const TeachersDetail = () => {
                                             value={TempSearch}
                                         />
                                     </div>
-                                    <div className=" relative w-[26%] h-full">
-                                        <motion.button
-                                            whileHover={{
-                                                boxShadow:
-                                                    'rgba(100, 100, 111, 0.2) 0px 7px 15px 0px',
+                                    <div className="flex w-[24%] items-center h-full dark:bg-black dark:text-[#ffff] rounded-xl border shadow p-1  border-[#EAEAEA] ">
+                                        <span className="text-[16px] ps-1 ">
+                                            {t('teachersPage.filters.ShowMore')}
+                                        </span>
+                                        <select
+                                            value={TempCount}
+                                            onChange={(e) => {
+                                                setTempCount(Number(e.target.value));
                                             }}
-                                            transition={{ duration: 0.3 }}
-                                            whileTap={{ scale: 0.98 }}
-                                            onClick={() => setDropDownPage((prev) => !prev)}
-                                            className={`  border-[#EAEAEA] border-[1px]  w-full h-full  rounded-2xl ${
-                                                isRTL ? 'pe-7' : 'ps-7'
-                                            }  ${
-                                                !DropDownPage &&
-                                                'md:bg-[url(/icons/buttom.png)] md:bg-no-repeat md:bg-[left_17px_center]'
-                                            } `}
+                                            className=" rounded-xl text-sm cursor-pointer px-2 py-1  dark:bg-black dark:text-[#ffff]"
                                         >
-                                            {!searchActivated
-                                                ? `${TempCount}`
-                                                : TempCount > 32 && searchActivated
-                                                ? ` ${t('teachersPage.filters.ShowLess')}`
-                                                : ` ${t('teachersPage.filters.ShowMore')}`}{' '}
-                                        </motion.button>
-                                        {DropDownPage && (
-                                            <AnimatePresence>
-                                                <motion.ul
-                                                    initial={{ opacity: 0, y: -20 }}
-                                                    animate={{ opacity: 1, y: 0 }}
-                                                    exit={{ opacity: 0, y: -20 }}
-                                                    transition={{ duration: 0.2 }}
-                                                    className="absolute dark:text-[#EEEEEE] dark:bg-[#1E1E1E] top-[110%] left-0 w-full bg-white border border-[#EAEAEA] rounded-2xl shadow-lg z-20 overflow-hidden "
-                                                >
-                                                    {showOptions.map((num) => (
-                                                        <li
-                                                            key={num}
-                                                            onClick={() => handleSelectCount(num)}
-                                                            className={`py-2 cursor-pointer text-center hover:bg-[#008C78] hover:text-white ${
-                                                                TempCount === num
-                                                                    ? 'hover:bg-gray-300 '
-                                                                    : ''
-                                                            } `}
-                                                        >
-                                                            {num}
-                                                        </li>
-                                                    ))}
-                                                </motion.ul>
-                                            </AnimatePresence>
-                                        )}
+                                            <option value={16}>16</option>
+                                            <option value={20}>20</option>
+                                            <option value={24}>24</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <motion.button
@@ -213,12 +188,13 @@ const TeachersDetail = () => {
                                     {t('teachersPage.filters.search')}
                                 </motion.button>
                             </div>
-
+                            {/* //// responsive //// */}
                             <SliderButtons sliderRef={sliderRef} />
-
+                            {/* //// cards //// */}
                             <div
                                 ref={sliderRef}
-                                className="w-full flex flex-nowrap justify-items-start md:flex-wrap  overflow-y-hidden overflow-x-auto scroll-smooth pb-4 gap-4 "
+                                className="w-full flex flex-nowrap justify-items-start my-3 md:my-0 md:flex-wrap  overflow-y-hidden
+                                 overflow-x-auto scroll-smooth pb-4 gap-4 "
                                 style={{ direction: 'ltr' }}
                             >
                                 {coursesData?.courseFilterDtos?.length > 0 ? (
@@ -231,14 +207,17 @@ const TeachersDetail = () => {
                                     </p>
                                 )}
                             </div>
+                            {/* //// buttons //// */}
                             <div
-                                className="  flex items-center justify-center gap-3"
+                                className=" flex items-center justify-center gap-3"
                                 style={{ direction: 'ltr' }}
                             >
                                 <button
                                     disabled={curruntPage === 1}
                                     onClick={handleBack}
-                                    className=' dark:bg-[#606060] cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3 bg-[#EAEAEA] dark:text-[#ffff] text-[#1E1E1E]"} bg-[url(/icons/left.png)] bg-[center_center] bg-no-repeat '
+                                    className=' dark:bg-[#606060] cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3
+                                     bg-[#EAEAEA] dark:text-[#ffff] text-[#1E1E1E]"}  bg-[center_center] bg-no-repeat '
+                                    style={{ backgroundImage: `url(${leftIcon})` }}
                                 ></button>
                                 <div className="flex items-center justify-center gap-3">
                                     {Array.from({ length: totalPage }, (_, i) => (
@@ -258,7 +237,9 @@ const TeachersDetail = () => {
                                 <button
                                     disabled={curruntPage === totalPage}
                                     onClick={handleNext}
-                                    className='cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3 bg-[#EAEAEA] dark:text-[#ffff] dark:bg-[#606060] text-[#1E1E1E]"} bg-[url(/icons/right.png)] bg-[center_center] bg-no-repeat '
+                                    className='cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3
+                                     bg-[#EAEAEA] dark:text-[#ffff] dark:bg-[#606060] text-[#1E1E1E]"} bg-[center_center] bg-no-repeat '
+                                    style={{ backgroundImage: `url(${rightIcon})` }}
                                 ></button>
                             </div>
                         </div>
