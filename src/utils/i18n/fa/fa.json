@@ -181,6 +181,9 @@
         "title3Item1": "فرانت اند",
         "title3Item2": "بک اند"
     },
+    "priceFilter": {
+        "title": "بازه قیمت (تومان)"
+    },
     "sortView": {
         "title": "مرتب سازی بر اساس :"
     },
@@ -606,7 +609,10 @@
         "button": "ویرایش اطلاعات"
         }
     },
-        "validation": {
+    "userPanelSearch": {
+        "placeholder": "جستجو..."
+    },
+    "validation": {
         "nationalId": {
         "required": "کد ملی خود را وارد کنید *",
         "invalid": "کدملی نامعتبر است *"

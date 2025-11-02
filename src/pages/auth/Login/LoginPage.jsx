@@ -24,9 +24,8 @@ const LoginPage = () => {
         mutationFn: (values) => Login(values),
         onSettled: (data) => {
             if (data.success) {
-                localStorage.setItem('token', data.token);
                 toast.success(data.message);
-                navigate(`/Panel`);
+                navigate(`/userPanel`);
             } else if (!data.success) {
                 toast.error(data.message);
             }

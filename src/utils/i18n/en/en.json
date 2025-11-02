@@ -181,6 +181,9 @@
         "title3Item1": "FrontEnd",
         "title3Item2": "BackEnd"
     },
+    "priceFilter": {
+        "title": "Price Range (Toman)"
+    },
     "sortView": {
         "title": "Sort by:"
     },
@@ -604,7 +607,10 @@
         "button": "Edit Information"
         }
     },
-        "validation": {
+    "userPanelSearch": {
+        "placeholder": "Search..."
+    },
+    "validation": {
         "nationalId": {
         "required": "Please enter your national ID *",
         "invalid": "Invalid national ID *"
