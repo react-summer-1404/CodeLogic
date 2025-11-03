@@ -38,7 +38,6 @@ const TeachersDetail = () => {
     });
     //// pagination ////
     const courses = coursesData?.courseFilterDtos || [];
-    const offset = (currentPage - 1) * coursesPerPage;
     const totalPage = coursesData?.totalCount;
     const goToPage = (page) => {
         if (page < 1 || page >= totalPage) return;
