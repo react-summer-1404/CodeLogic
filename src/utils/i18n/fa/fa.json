@@ -633,6 +633,22 @@
         "title4": "تاریخ رزرو",
         "title5": "عملیات"
     },
+    "myCoursesComments": {
+        "title1": "عنوان دوره",
+        "title2": "عنوان دیدگاه",
+        "title3": "متن دیدگاه",
+        "title4": "وضعیت",
+        "title5": "تاریخ",
+        "title6": "عملیات"
+    },
+    "myNewsComments": {
+        "title1": "عنوان خبر",
+        "title2": "عنوان دیدگاه",
+        "title3": "متن دیدگاه",
+        "title4": "وضعیت",
+        "title5": "تاریخ",
+        "title6": "عملیات"
+    },
     "validation": {
         "nationalId": {
         "required": "کد ملی خود را وارد کنید *",
