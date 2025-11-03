@@ -18,6 +18,9 @@ import Panel from "../../pages/UserPanel/Panel";
 import PanelDashboard from "../../pages/UserPanel/PanelDashboard";
 import PanelUserInfo from "../../pages/UserPanel/PanelUserInfo";
 import MyCourses from "../../pages/UserPanel/MyCourses/MyCourses";
+import MyReservedCourses from "../../pages/UserPanel/MyReservedCourses/MyReservedCourses";
+import MyCoursesComments from "../../pages/UserPanel/MyCoursesComments/MyCoursesComments";
+import MyNewsComments from '../../pages/UserPanel/MyNewsComments/MyNewsComments'
 import CoursesPayment from "../../pages/CoursesPayment/CoursesPayment";
 import FavoriteNews from "../../pages/Favorites/FavoriteNews/FavoriteNews";
 import FavoriteCourses from "../../pages/Favorites/FavoriteCourses/FavoriteCourses";
@@ -47,8 +50,9 @@ const router = createBrowserRouter([
       { index: true, element: <PanelDashboard /> },
       { path: "userInfo", element: <PanelUserInfo /> },
       { path: "myCourses", element: <MyCourses/>},
-      // { path: "myReservedCourses", element: <MyReservedCourses/>},
-      // { path: "myComments", element: <MyComments/>},
+      { path: "myReservedCourses", element: <MyReservedCourses/>},
+      { path: "myCoursesComments", element: <MyCoursesComments/>},
+      { path: "myNewsComments", element: <MyNewsComments/>},
       { path: "coursesPayments", element: <CoursesPayment /> },
       { path: "favoriteNews", element: <FavoriteNews /> },
       { path: "favoriteCourses", element: <FavoriteCourses /> },

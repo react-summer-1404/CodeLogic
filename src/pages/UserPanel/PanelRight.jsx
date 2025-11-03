@@ -161,13 +161,13 @@ const PanelRight = ({ isMobileMenu }) => {
 
         <motion.div className="flex items-center mb-4" variants={itemVariants}>
           <BookmarkIcon className="text-[18px] md:text-[20px] text-[#848484]" />
-          <span
+          <Link to={'/userPanel/myReservedCourses'}
             className={`text-[15px] md:text-[17px] lg:text-[18px] text-[#848484] mr-2 ${
               isRtl ? "" : "ml-2"
             }`}
           >
             {t("panelside.reserved_courses")}
-          </span>
+          </Link>
         </motion.div>
 
         <motion.div className="flex items-center mb-4" variants={itemVariants}>
@@ -215,18 +215,18 @@ const PanelRight = ({ isMobileMenu }) => {
                   variants={subMenuItemVariants}
                 >
                   <CircleOutlinedIcon className="text-[13px] md:text-[15px] text-[#848484] ml-2" />
-                  <span className="text-[14px] md:text-[16px] text-[#848484]">
+                  <Link to={'/userPanel/myCoursesComments'} className="text-[14px] md:text-[16px] text-[#848484]">
                     {t("panelside.my_view_on_the_courses")}
-                  </span>
+                  </Link>
                 </motion.div>
                 <motion.div
                   className="mb-2 flex items-center"
                   variants={subMenuItemVariants}
                 >
                   <CircleOutlinedIcon className="text-[13px] md:text-[15px] text-[#848484] ml-2" />
-                  <span className="text-[14px] md:text-[16px] text-[#848484]">
+                  <Link to={'/userPanel/myNewsComments'} className="text-[14px] md:text-[16px] text-[#848484]">
                     {t("panelside.my_view_on_the_news")}
-                  </span>
+                  </Link>
                 </motion.div>
               </motion.div>
             )}

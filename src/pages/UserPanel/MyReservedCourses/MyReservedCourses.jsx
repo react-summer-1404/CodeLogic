@@ -1,14 +1,14 @@
 import React from 'react'
 import UserPanelSearch from '../../../components/common/userPanel/UserPanelSearch/UserPanelSearch'
 import UserPanelFilter from '../../../components/common/userPanel/UserPanelFilter/UserPanelFilter'
-import UserPanelTitle from '../../../components/common/userPanel/UserPanelTitle/UserPanelTitle' 
+import UserPanelTitle from '../../../components/common/userPanel/UserPanelTitle/UserPanelTitle'
 import UserPanelShowNumber from '../../../components/common/userPanel/UserPanelShowNumber/UserPanelShowNumber'
-import { useTranslation } from 'react-i18next'
 import ReactPaginate from 'react-paginate'
+import { useTranslation } from 'react-i18next'
 
 
 
-const MyCourses = () => {
+const MyReservedCourses = () => {
 
   const {t} = useTranslation();
 
@@ -21,12 +21,11 @@ const MyCourses = () => {
       <div className='h-[440px] p-6 bg-[#FFFFFF] rounded-2xl   dark:bg-[#454545]'>
         <UserPanelTitle 
         titleData={{
-          title1: t('myCourses.title1'),
-          title2: t('myCourses.title2'), pr2: 'pr-[200px]',
-          title3: t('myCourses.title3'), pr3: 'pr-[93px]',
-          title4: t('myCourses.title4'), pr4: 'pr-14',
-          title5: t('myCourses.title5'), pr5: 'pr-14',
-          title6: t('myCourses.title6'), pr6: 'pr-14'
+          title1: t('myReservedCourses.title1'), 
+          title2: t('myReservedCourses.title2'), pr2: 'pr-[230px]',
+          title3: t('myReservedCourses.title3'), pr3: 'pr-[137px]',
+          title4: t('myReservedCourses.title4'), pr4: 'pr-[137px]',
+          title5: t('myReservedCourses.title5'), pr5: 'pr-[136px]'
         }}/>
       </div>
       <div className='flex justify-between items-center'>
@@ -53,4 +52,4 @@ const MyCourses = () => {
   )
 }
 
-export default MyCourses
+export default MyReservedCourses

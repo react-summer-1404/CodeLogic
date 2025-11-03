@@ -1,9 +1,9 @@
 import React from 'react'
 import Eye from '../../../../assets/Icons/Eye'
-import Receipt from '../../../../assets/Icons/Receipt'
+import Garbage from '../../../../assets/Icons/Garbage'
 
 
-const MyCourse = () => {
+const MyReservedCourse = () => {
   return (
     <div className='flex'>
       <div>
@@ -13,17 +13,12 @@ const MyCourse = () => {
       <span></span>
       <span></span>
       <span></span>
-      <span></span>
-      <div>
-        {
-          <div className='flex gap-4'>
-            <Eye/>
-            <Receipt/>
-          </div>
-        }
+      <div className='flex gap-4'>
+        <Eye/>
+        <Garbage/>
       </div>
     </div>
   )
 }
 
-export default MyCourse
+export default MyReservedCourse
