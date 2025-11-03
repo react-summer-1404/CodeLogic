@@ -607,14 +607,6 @@
         "button": "Edit Information"
         }
     },
-    "myCourses": {
-        "title1": "Course Name",
-        "title2": "Teacher",
-        "title3": "Payment Status",
-        "title4": "Price (Toman)",
-        "title5": "Last Update",
-        "title6": "Activities"
-    },
     "userPanelSearch": {
         "placeholder": "Search..."
     },
@@ -623,6 +615,21 @@
     },
     "userPanelShowNumber": {
         "showNumber": "ُShow Number"
+    },
+    "myCourses": {
+        "title1": "Course Name",
+        "title2": "Teacher",
+        "title3": "Payment Status",
+        "title4": "Price (Toman)",
+        "title5": "Last Update",
+        "title6": "Actions"
+    },
+    "myReservedCourses": {
+        "title1": "Course Name",
+        "title2": "Student",
+        "title3": "Status",
+        "title4": "Reserve Date",
+        "title5": "Actions"
     },
     "validation": {
         "nationalId": {

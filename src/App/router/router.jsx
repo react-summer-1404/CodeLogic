@@ -18,6 +18,7 @@ import Panel from "../../pages/UserPanel/Panel";
 import PanelDashboard from "../../pages/UserPanel/PanelDashboard";
 import PanelUserInfo from "../../pages/UserPanel/PanelUserInfo";
 import MyCourses from "../../pages/UserPanel/MyCourses/MyCourses";
+import MyReservedCourses from "../../pages/UserPanel/MyReservedCourses/MyReservedCourses";
 import CoursesPayment from "../../pages/CoursesPayment/CoursesPayment";
 import FavoriteNews from "../../pages/Favorites/FavoriteNews/FavoriteNews";
 import FavoriteCourses from "../../pages/Favorites/FavoriteCourses/FavoriteCourses";
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
       { index: true, element: <PanelDashboard /> },
       { path: "userInfo", element: <PanelUserInfo /> },
       { path: "myCourses", element: <MyCourses/>},
-      // { path: "myReservedCourses", element: <MyReservedCourses/>},
+      { path: "myReservedCourses", element: <MyReservedCourses/>},
       // { path: "myComments", element: <MyComments/>},
       { path: "coursesPayments", element: <CoursesPayment /> },
       { path: "favoriteNews", element: <FavoriteNews /> },

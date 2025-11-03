@@ -161,24 +161,24 @@ const PanelRight = ({ isMobileMenu }) => {
 
         <motion.div className="flex items-center mb-4" variants={itemVariants}>
           <BookmarkIcon className="text-[18px] md:text-[20px] text-[#848484]" />
-          <span
+          <Link to={'/userPanel/myReservedCourses'}
             className={`text-[15px] md:text-[17px] lg:text-[18px] text-[#848484] mr-2 ${
               isRtl ? "" : "ml-2"
             }`}
           >
             {t("panelside.reserved_courses")}
-          </span>
+          </Link>
         </motion.div>
 
         <motion.div className="flex items-center mb-4" variants={itemVariants}>
           <WalletIcon className="text-[18px] md:text-[20px] text-[#848484]" />
-          <span
+          <Link to={'/userPanel/myComments'}
             className={`text-[15px] md:text-[17px] lg:text-[18px] text-[#848484] mr-2 ${
               isRtl ? "" : "ml-2"
             }`}
           >
             {t("panelside.my_payments")}
-          </span>
+          </Link>
         </motion.div>
 
         <motion.div className="mb-4" variants={itemVariants}>

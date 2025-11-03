@@ -609,14 +609,6 @@
         "button": "ویرایش اطلاعات"
         }
     },
-    "myCourses": {
-        "title1": "نام دوره",
-        "title2": "استاد",
-        "title3": "وضعیت پرداخت",
-        "title4": "قیمت (تومان)",
-        "title5": "آخرین به روز رسانی",
-        "title6": "عملیات"
-    },
     "userPanelSearch": {
         "placeholder": "جستجو..."
     },
@@ -625,6 +617,21 @@
     },
     "userPanelShowNumber": {
         "showNumber": "تعداد نمایش"
+    },
+    "myCourses": {
+        "title1": "نام دوره",
+        "title2": "استاد",
+        "title3": "وضعیت پرداخت",
+        "title4": "قیمت (تومان)",
+        "title5": "آخرین به روز رسانی",
+        "title6": "عملیات"
+    },
+    "myReservedCourses": {
+        "title1": "نام دوره",
+        "title2": "دانشجو",
+        "title3": "وضعیت",
+        "title4": "تاریخ رزرو",
+        "title5": "عملیات"
     },
     "validation": {
         "nationalId": {
