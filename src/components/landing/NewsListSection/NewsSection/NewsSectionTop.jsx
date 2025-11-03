@@ -45,7 +45,7 @@ const NewsSectionTop = ({ card }) => {
                     style={{ cursor: `url(${cursorIcon}),pointer` }}
                     className="flex flex-col gap-2 group-hover:mb-1 transition-all duration-500"
                 >
-                    <div className="text-[#008C78] text-[14px] text-center border-[2px] font-bold border-[#008C78] rounded-full w-[63px] h-[27.450000762939453px] ">
+                    <div className="text-[#008C78] text-[14px] text-center border-[2px] font-bold border-[#008C78] rounded-full w-[63px] py-1 ">
                         {card.newsCatregoryName}
                     </div>
                     <h2 className="text-[16px] font-bold text-[#FFFFFF] ">{card.googleTitle}</h2>
