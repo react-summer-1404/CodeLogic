@@ -5,7 +5,26 @@ import { securitySettingsVal } from '../../utils/Validations/securitySettings/se
 import { useTranslation } from 'react-i18next';
 import eyeOpen from '../../assets/Icons/A/eyeOpen.png';
 import eyeClose from '../../assets/Icons/A/eyeClose.png';
+import { useMutation } from '@tanstack/react-query';
+import { securitySet } from '../../core/services/api/post/securitySettings';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 const SecuritySettings = () => {
+    const navigate = useNavigate();
+    //// post values ////
+    const { mutate: postSecurityApi, isPending } = useMutation({
+        mutationKey: ['SECURITY'],
+        mutationFn: (values) => securitySet(values),
+        onSettled: (data) => {
+            if (data.success) {
+                toast.success(data.message);
+                navigate('/login');
+            } else if (!data.success) {
+                toast.error(data.message);
+            }
+        },
+    });
+    //// 18n /////
     const { t, i18n } = useTranslation();
     const isRTL = i18n.language === 'fa';
     //// validation ////
@@ -79,8 +98,11 @@ const SecuritySettings = () => {
         <div className="bg-[#F3F4F6] dark:bg-[#333]  w-full h-full p-8 flex flex-col gap-5 my-6 rounded-4xl ">
             <div>
                 <Formik
-                    initialValues={{ currentPassword: '', newPassword: '' }}
-                    onSubmit={(values) => console.log(values)}
+                    initialValues={{ oldPassword: '', newPassword: '' }}
+                    onSubmit={(values) => {
+                        postSecurityApi(values);
+                        console.log(values);
+                    }}
                     validationSchema={validationSchema}
                 >
                     <Form>
@@ -98,8 +120,8 @@ const SecuritySettings = () => {
                                     <Field
                                         placeholder={t('securitySetting.currentPassPlaceHolder')}
                                         type={`${isHide1 ? 'password' : 'text'}`}
-                                        name="currentPassword"
-                                        id="currentPassword"
+                                        name="oldPassword"
+                                        id="oldPassword"
                                         className="w-full relative bg-[#FFFFFF] dark:bg-black placeholder:text-[16px] focus:outline-none
                                      placeholder:text-[#848484] rounded-[16px] py-2 px-3  border border-[#EAEAEA] shadow"
                                     />
@@ -113,7 +135,7 @@ const SecuritySettings = () => {
                                     />
                                 </div>
                                 <ErrorMessage
-                                    name={'currentPassword'}
+                                    name={'oldPassword'}
                                     component={'span'}
                                     className="text-[#EF5350] text-[14px] "
                                 />

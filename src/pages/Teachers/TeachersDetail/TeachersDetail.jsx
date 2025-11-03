@@ -1,78 +1,55 @@
 import { Link, useParams } from 'react-router-dom';
-import dataTeachers from '../../../components/common/data/Teachers/TeachersData';
 import TeacherCard from '../../../components/common/TeachersDetail/TeacherCard';
 import React, { useEffect, useRef, useState } from 'react';
-import teachersDetail from '../../../components/common/data/Teachers/teachersDetail';
 import { motion, AnimatePresence } from 'framer-motion';
 import SliderButtons from '../../../components/common/sliders/buttons/sliderButtons';
-import apiClient from '../../../core/interceptor/interceptor';
 import DetailCard from '../../../components/common/TeachersDetail/DetailCard';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
-import GetAllTeachers from '../../../core/services/api/Get/GetAllTeachers';
 import GetAllCourses from '../../../core/services/api/Get/GetAllCourses';
 import loading from '../../../assets/Images/A/loading.gif';
-import buttom from '../../../assets/Icons/A/buttom.png';
 import leftIcon from '../../../assets/Icons/A/left.png';
 import rightIcon from '../../../assets/Icons/A/right.png';
 import searchIcon from '../../../assets/Icons/A/search.png';
-
-
+import { getDetail } from '../../../core/services/api/Get/GetTeachersDetail';
+import GetCoursesPaginate from '../../../core/services/api/Get/GetCoursesByPaginatio';
 
 const TeachersDetail = () => {
+    const { t, i18n } = useTranslation();
+    const isRTL = i18n.language === 'fa';
     const { id } = useParams();
     const teacherId = parseInt(id);
     //// get teacherDetail by id ////
-    const { data: teachersData, isPending } = useQuery({
-        queryKey: ['GETTEACHERSDETAILBYID'],
-        queryFn: () => GetAllTeachers(teacherId),
+    const { data: teacher = {}, isPending: isTeacherLoading } = useQuery({
+        queryKey: ['GETTEACHERDETAIL', teacherId],
+        queryFn: () => getDetail(teacherId),
     });
+
+    const [tempSearch, setTempSearch] = useState('');
+    const [tempCount, setTempCount] = useState();
+
+    const [query, setQuery] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [coursesPerPage, setCoursesPerPage] = useState(12);
     //// get courses ////
-    const { data: coursesData } = useQuery({
-        queryKey: ['COURSESDATA', teacherId],
-        queryFn: () => GetAllCourses(),
+    const { data: coursesData = {}, isPending: isCoursesLoading } = useQuery({
+        queryKey: ['COURSESDATAPAGINATE', teacherId, currentPage, coursesPerPage, query],
+        queryFn: () => GetCoursesPaginate({ currentPage, coursesPerPage, query, teacherId }),
     });
-
-    const { t, i18n } = useTranslation();
-    const isRTL = i18n.language === 'fa';
-
-    const teacher = teachersData?.find((t) => t.teacherId === teacherId);
-
-    const [TempSearch, setTempSearch] = useState('');
-    const [searchTerm, setSearchTerm] = useState('');
-    const [curruntPage, setCurruntPage] = useState(1);
-    const [TempCount, setTempCount] = useState(9);
-    const [DetailPerPage, setDetailPerPage] = useState(9);
-    const [searchActivated, setSearchActivated] = useState(true);
-    const startIndex = (curruntPage - 1) * DetailPerPage;
-    const endIndex = startIndex + DetailPerPage;
-    const totalPage = Math.max(1, Math.ceil(coursesData?.courseFilterDtos?.length / DetailPerPage));
-
-    const handleSelectCount = (num) => {
-        setTempCount(num);
-        setDropDownPage(false);
-        setSearchActivated(false);
+    //// pagination ////
+    const courses = coursesData?.courseFilterDtos || [];
+    const totalPage = coursesData?.totalCount;
+    const goToPage = (page) => {
+        if (page < 1 || page >= totalPage) return;
+        setCurrentPage(p);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    const applyFilter = () => {
+        setCurrentPage(1);
+        setQuery(tempSearch);
+        setCoursesPerPage(tempCount);
     };
 
-    const applySearch = () => {
-        setCurruntPage(1);
-        setSearchTerm(TempSearch);
-        setDetailPerPage(TempCount);
-        setSearchActivated(true);
-    };
-
-    useEffect(() => {
-        if (curruntPage > totalPage) {
-            setCurruntPage(1);
-        }
-    }, [totalPage, curruntPage]);
-
-    const handleBack = () => {
-        setCurruntPage((prev) => prev - 1);
-    };
-    const handleNext = () => {
-        setCurruntPage((prev) => prev + 1);
-    };
     const fadeInUp = (delay) => ({
         hidden: { opacity: 0, y: -20 },
         visible: {
@@ -94,8 +71,10 @@ const TeachersDetail = () => {
 
     return (
         <div>
-            {isPending && <img className="mx-auto p-4 " src={loading} alt="" />}
-            {!isPending && (
+            {(isTeacherLoading || isCoursesLoading) && (
+                <img className="mx-auto p-4 " src={loading} alt="" />
+            )}
+            {!isTeacherLoading && !isCoursesLoading && (
                 <motion.div
                     variants={fadeInUp(0.35)}
                     initial="hidden"
@@ -154,9 +133,9 @@ const TeachersDetail = () => {
                                                 setTempSearch(e.target.value);
                                             }}
                                             onKeyDown={(e) => {
-                                                e.key === 'Enter' && applySearch();
+                                                e.key === 'Enter' && applyFilter();
                                             }}
-                                            value={TempSearch}
+                                            value={tempSearch}
                                         />
                                     </div>
                                     <div className="flex w-[24%] items-center h-full dark:bg-black dark:text-[#ffff] rounded-xl border shadow p-1  border-[#EAEAEA] ">
@@ -164,15 +143,15 @@ const TeachersDetail = () => {
                                             {t('teachersPage.filters.ShowMore')}
                                         </span>
                                         <select
-                                            value={TempCount}
+                                            value={coursesPerPage}
                                             onChange={(e) => {
                                                 setTempCount(Number(e.target.value));
                                             }}
                                             className=" rounded-xl text-sm cursor-pointer px-2 py-1  dark:bg-black dark:text-[#ffff]"
                                         >
                                             <option value={16}>16</option>
-                                            <option value={20}>20</option>
-                                            <option value={24}>24</option>
+                                            <option value={22}>22</option>
+                                            <option value={28}>28</option>
                                         </select>
                                     </div>
                                 </div>
@@ -181,9 +160,13 @@ const TeachersDetail = () => {
                                         scale: 1.1,
                                         boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
                                     }}
-                                    transition={{ duration: 0.3, type: 'spring', stiffness: 300 }}
+                                    transition={{
+                                        duration: 0.3,
+                                        type: 'spring',
+                                        stiffness: 300,
+                                    }}
                                     whileTap={{ scale: 0.98 }}
-                                    onClick={applySearch}
+                                    onClick={applyFilter}
                                     className="text-center text-[14px] text-[#ffff] h-full w-[11%] rounded-2xl bg-[#008C78] "
                                 >
                                     {t('teachersPage.filters.search')}
@@ -198,8 +181,8 @@ const TeachersDetail = () => {
                                  overflow-x-auto scroll-smooth pb-4 gap-4 "
                                 style={{ direction: 'ltr' }}
                             >
-                                {coursesData?.courseFilterDtos?.length > 0 ? (
-                                    coursesData?.courseFilterDtos?.map((item, index) => (
+                                {courses.length > 0 ? (
+                                    courses.map((item, index) => (
                                         <DetailCard item={item} key={index} />
                                     ))
                                 ) : (
@@ -214,8 +197,8 @@ const TeachersDetail = () => {
                                 style={{ direction: 'ltr' }}
                             >
                                 <button
-                                    disabled={curruntPage === 1}
-                                    onClick={handleBack}
+                                    disabled={currentPage === 1}
+                                    onClick={() => goToPage(currentPage - 1)}
                                     className=' dark:bg-[#606060] cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3
                                      bg-[#EAEAEA] dark:text-[#ffff] text-[#1E1E1E]"}  bg-[center_center] bg-no-repeat '
                                     style={{ backgroundImage: `url(${leftIcon})` }}
@@ -224,9 +207,9 @@ const TeachersDetail = () => {
                                     {Array.from({ length: totalPage }, (_, i) => (
                                         <button
                                             key={i}
-                                            onClick={() => setCurruntPage(i + 1)}
+                                            onClick={() => goToPage(i + 1)}
                                             className={` dark:bg-[#606060] transition-all duration-300 cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3 ${
-                                                curruntPage === i + 1
+                                                currentPage === i + 1
                                                     ? 'bg-[#008C78] dark:bg-[#008C78]  text-[#ffff]'
                                                     : ' bg-[#EAEAEA] text-[#1E1E1E]'
                                             } `}
@@ -236,8 +219,8 @@ const TeachersDetail = () => {
                                     ))}
                                 </div>
                                 <button
-                                    disabled={curruntPage === totalPage}
-                                    onClick={handleNext}
+                                    disabled={currentPage === totalPage}
+                                    onClick={() => goToPage(currentPage + 1)}
                                     className='cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3
                                      bg-[#EAEAEA] dark:text-[#ffff] dark:bg-[#606060] text-[#1E1E1E]"} bg-[center_center] bg-no-repeat '
                                     style={{ backgroundImage: `url(${rightIcon})` }}
