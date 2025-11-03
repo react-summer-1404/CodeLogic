@@ -1,38 +1,67 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-
+import image2 from '../../../../assets/Images/A/blogs/3.png';
+import heartIcon from '../../../../assets/Icons/A/heart.png';
+import openEye from '../../../../assets/Icons/A/openEye.png';
+import starIcon from '../../../../assets/Icons/A/star.png';
+import cursorIcon from '../../../../assets/Icons/A/cursor.png';
+import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { PostFavoriteNews } from '../../../../core/services/api/post/PostFavoriteNews';
+import { toast } from 'react-toastify';
 const NewsSectionBottom = ({ card }) => {
+    const navigate = useNavigate();
+    const { mutate: postFavoriteBottom } = useMutation({
+        mutationKey: ['POSTBUTTOM'],
+        mutationFn: (value) => PostFavoriteNews(value),
+        onSettled: (data) => {
+            if (data.success) {
+                toast.success(data.message);
+            } else if (!data.success) {
+                toast.error(data.message);
+            }
+        },
+    });
     return (
         <motion.div
             initial={{ x: -50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
-            transition={{
-                ease: 'easeOut',
-                type: 'spring',
-                stiffness: 300,
-                delay: 0.3,
-            }}
+            transition={{ ease: 'easeOut', type: 'spring', stiffness: 300, delay: 0.3 }}
             viewport={{ once: true, amount: 0.5 }}
-            key={card.id}
-            className={` ${
-                card.isWide ? 'flex-2' : 'flex-1'
-            } w-full h-[366px] relative rounded-3xl overflow-hidden [cursor:url(./icons/cursor.png),_pointer] shadow-lg `}
+            className=" w-[30%] relative rounded-3xl overflow-hidden shadow-lg "
         >
-            <img src={card.imageUrl} alt="" className="w-full h-full  " />
+            <img src={image2} alt="" className="w-full h-full  " />
             <div className=" group absolute inset-0 bg-[#00000080] w-full h-full flex flex-col justify-between p-4   ">
-                <div className=" bg-white/20 bg-[url(./icons/heart.png)] bg-no-repeat bg-[center_center]  p-5 backdrop-blur-md rounded-full w-[24px] h-[20.799999237060547px] "></div>
-                <div className="flex flex-col gap-2 group-hover:mb-1 transition-all duration-500">
+                <div
+                    onClick={() => postFavoriteBottom(card.id)}
+                    style={{
+                        backgroundImage: `url(${heartIcon})`,
+                        cursor: `url(${cursorIcon}),pointer`,
+                    }}
+                    className=" bg-white/20 bg-no-repeat bg-[center_center]  p-5 backdrop-blur-md rounded-full w-[24px] h-[20.799999237060547px] "
+                ></div>
+                <div
+                    onClick={() => navigate(`/news/${card.id}`)}
+                    style={{ cursor: `url(${cursorIcon}),pointer` }}
+                    className="flex flex-col gap-2 group-hover:mb-1 transition-all duration-500"
+                >
                     <div className="text-[#008C78] text-[14px] text-center border-[2px] font-bold border-[#008C78] rounded-full w-[63px] h-[27.450000762939453px] ">
-                        {card.type}
+                        {card.newsCatregoryName}
                     </div>
-                    <h2 className="text-[16px] font-bold text-[#FFFFFF] ">{card.title}</h2>
-                    <p className=" text-[14px] text-[#FFFFFF] ">{card.caption}</p>
+                    <h2 className="text-[16px] font-bold text-[#FFFFFF] ">{card.googleTitle}</h2>
+                    <p className=" text-[14px] text-[#FFFFFF] ">{card.googleDescribe}</p>
                     <div className=" flex flex-row justify-between items-center ">
-                        <div className=" text-[14px] text-[#848484] bg-[url(./icons/openEye.png)] bg-no-repeat bg-[right_center] pr-6 ">
-                            {card.view}
+                        <div
+                            style={{ backgroundImage: `url(${openEye})` }}
+                            className=" text-[14px] text-[#848484] bg-no-repeat bg-[right_center] pr-6 "
+                        >
+                            {card.currentView}
                         </div>
-                        <div className=" text-[14px] text-[#F8BC24] bg-[url(./icons/star.png)] bg-no-repeat bg-[left_center] pl-6 ">
-                            {card.star}
+                        <div
+                            style={{ backgroundImage: `url(${starIcon})` }}
+                            className=" text-[14px] text-[#F8BC24] bg-no-repeat bg-[left_center] pl-6 "
+                        >
+                            {card.newsRate.count}
                         </div>
                     </div>
                 </div>

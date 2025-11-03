@@ -5,9 +5,16 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import NewsSectionTop from './NewsSection/NewsSectionTop';
 import NewsSectionBottom from './NewsSection/NewsSectionBottom';
+import { useQuery } from '@tanstack/react-query';
+import { GetNewsListSection } from '../../../core/services/api/Get/GetNewsListSection';
 
 const NewsListSection = () => {
     const { t } = useTranslation();
+    const { data: newsData = {} } = useQuery({
+        queryKey: ['NEWSLISTSECTION'],
+        queryFn: () => GetNewsListSection(),
+    });
+    const newsList = newsData?.news || [];
 
     return (
         <div className="overflow-x-hidden bg-[#F3F4F6] flex flex-col justify-center items-center gap-29 w-full px-8 py-16   dark:bg-[#1E1E1E]">
@@ -26,14 +33,14 @@ const NewsListSection = () => {
                     </p>
                 </motion.div>
                 <div className="flex flex-col justify-center items-center gap-7 ">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-7">
-                        {newsData.slice(0, 2).map((card, index) => {
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-7 w-full">
+                        {newsList.slice(0, 2).map((card, index) => {
                             return <NewsSectionTop card={card} key={index} />;
                         })}
                     </div>
-                    <div className="flex flex-col  md:flex-row justify-between items-center gap-7">
-                        {newsData.slice(2).map((card) => (
-                            <NewsSectionBottom key={card.id} card={card} />
+                    <div className="flex flex-col  md:flex-row justify-between items-center gap-7 w-full">
+                        {newsList.slice(2).map((card, index) => (
+                            <NewsSectionBottom key={index + 1} card={card} />
                         ))}
                     </div>
                 </div>
