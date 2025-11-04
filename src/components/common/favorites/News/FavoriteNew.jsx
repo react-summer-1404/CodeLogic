@@ -3,9 +3,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import greenEye from '../../../../assets/Icons/A/greenEye.png';
 import greenBasket from '../../../../assets/Icons/A/greenBasket.png';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteFavNews } from '../../../../core/services/api/Delete/DeleteFavorites';
+import { deleteFavNews } from '../../../../core/services/api/Delete/DeleteFavoriteNews';
 import { toast } from 'react-toastify';
-import { getFavoriteNews } from '../../../../core/services/api/Get/GetFavorites';
+import { getFavoriteNews } from '../../../../core/services/api/Get/GetFavoritesNews';
 
 const FavoriteNew = ({ items }) => {
     const queryClient = useQueryClient();

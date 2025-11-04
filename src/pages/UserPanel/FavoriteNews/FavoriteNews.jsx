@@ -8,7 +8,7 @@ import pr from '../../../assets/Icons/A/pr.png';
 import pl from '../../../assets/Icons/A/pl.png';
 import searchIcon from '../../../assets/Icons/A/search.png';
 import { useQuery } from '@tanstack/react-query';
-import { getFavoriteNews } from '../../../core/services/api/Get/GetFavorites';
+import { getFavoriteNews } from '../../../core/services/api/Get/GetFavoritesNews';
 import { useDebounce } from 'use-debounce';
 import loadingIcon from '../../../assets/Images/A/loading.gif';
 const FavoriteNews = () => {
@@ -93,7 +93,7 @@ const FavoriteNews = () => {
     return (
         <div
             className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-5 flex
-     max-h-screen h-full flex-col justify-between mx-auto mt-4 rounded-4xl "
+     max-h-[89%] h-full flex-col justify-between mx-auto mt-4 rounded-4xl "
         >
             <div className="flex justify-between items-center">
                 {/* filtering ------ */}
@@ -123,14 +123,16 @@ const FavoriteNews = () => {
                     />
                 </motion.div>
                 <div className="flex h-full items-center bg-[#ffff] dark:bg-black dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
-                    <span className="text-[16px]">{t('coursesPayment.filters')}</span>
+                    <span className="text-[16px] invisible md:visible">
+                        {t('coursesPayment.filters')}
+                    </span>
                     <select
                         value={filterOption}
                         onChange={(e) => {
                             setFilterOption(e.target.value);
                             setCurrentPage(1);
                         }}
-                        className=" rounded-xl text-sm cursor-pointer py-1 ps-2 text-gray-600
+                        className=" rounded-xl text-sm cursor-pointer  ps-2 text-gray-600
                          dark:bg-black dark:text-[#ffff] bg-[#ffff]"
                     >
                         <option value="all">({t('favoriteNews.all')})</option>
@@ -149,15 +151,24 @@ const FavoriteNews = () => {
             >
                 <div className="flex flex-col h-[70%]">
                     <NewsHeader />
-                    <div className="overflow-y-auto h-full">
-                        {currentNews.length > 0 ? (
-                            currentNews.map((items) => <FavoriteNew key={items.id} items={items} />)
-                        ) : (
-                            <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
-                                {t('favoriteNews.notFound')}
-                            </h1>
-                        )}
-                    </div>
+                    {isPending && (
+                        <div className="mx-auto">
+                            <img src={loadingIcon} alt="" />
+                        </div>
+                    )}
+                    {!isPending && (
+                        <div className="overflow-y-auto h-full">
+                            {currentNews.length > 0 ? (
+                                currentNews.map((items) => (
+                                    <FavoriteNew key={items.id} items={items} />
+                                ))
+                            ) : (
+                                <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
+                                    {t('favoriteNews.notFound')}
+                                </h1>
+                            )}
+                        </div>
+                    )}
                 </div>
                 {/* buttons ------- */}
                 <div className="flex justify-between p-8">

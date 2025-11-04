@@ -7,21 +7,31 @@ import { AnimatePresence, motion } from 'framer-motion';
 import pr from '../../../assets/Icons/A/pr.png';
 import pl from '../../../assets/Icons/A/pl.png';
 import searchIcon from '../../../assets/Icons/A/search.png';
+import { useQuery } from '@tanstack/react-query';
+import { useDebounce } from 'use-debounce';
+import loadingIcon from '../../../assets/Images/A/loading.gif';
+import { getFavoriteCourses } from '../../../core/services/api/Get/GetFavoriteCourses';
 const FavoriteCourses = () => {
+    const { data: coursesData = {}, isPending } = useQuery({
+        queryKey: ['FAVCOURSES'],
+        queryFn: () => getFavoriteCourses(),
+    });
+    const favoriteCourses = coursesData?.favoriteCourseDto || [];
+    /// i18n ///
     const { t, i18n } = useTranslation();
     const isRTL = i18n.language === 'fa';
     //// pagination ////
     const [currentPage, setCurrentPage] = useState(1);
     const [coursesPerPage, setCoursesPerPage] = useState(2);
     const [searchTerm, setSearchTerm] = useState('');
-    const [showFiltersOption, setShowFiltersOption] = useState(false);
+    const [query] = useDebounce(searchTerm, 350);
     const [filterOption, setFilterOption] = useState('all');
 
-    const filteredCourses = FavoriteCoursesData.filter((n) => {
-        const matchesSearch = n.courses
+    const filteredCourses = favoriteCourses.filter((n) => {
+        const matchesSearch = n.courseTitle
             .trim()
             .toLowerCase()
-            .includes(searchTerm.trim().toLowerCase());
+            .includes(query.trim().toLowerCase());
         const matchesFilter =
             filterOption === 'all'
                 ? true
@@ -81,7 +91,7 @@ const FavoriteCourses = () => {
     return (
         <div
             className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-5 flex
-     max-h-[600px] h-full flex-col justify-between my-6 rounded-4xl "
+     max-h-[89%] h-full flex-col justify-between mt-4 rounded-4xl "
         >
             <div className="flex justify-between items-center">
                 {/* filters ------- */}
@@ -111,7 +121,9 @@ const FavoriteCourses = () => {
                     />
                 </motion.div>
                 <div className="flex h-full items-center bg-[#ffff] dark:bg-black dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
-                    <span className="text-[16px]">{t('coursesPayment.filters')}</span>
+                    <span className="text-[16px]  invisible md:visible">
+                        {t('coursesPayment.filters')}
+                    </span>
                     <select
                         value={filterOption}
                         onChange={(e) => {
@@ -133,21 +145,28 @@ const FavoriteCourses = () => {
                 initial="hidden"
                 animate="visible"
                 className=" dark:bg-black dark:text-[#ffff]
-             h-[89%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
+             h-[85%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
             >
                 <div className="flex flex-col h-[70%]">
                     <CourseHeader />
-                    <div className="overflow-y-auto h-full">
-                        {currentCourses.length > 0 ? (
-                            currentCourses.map((items) => (
-                                <FavoriteCourse items={items} key={items.id} />
-                            ))
-                        ) : (
-                            <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
-                                {t('favoriteCourses.notFound')}
-                            </h1>
-                        )}
-                    </div>
+                    {isPending && (
+                        <div className="mx-auto">
+                            <img src={loadingIcon} alt="" />
+                        </div>
+                    )}
+                    {!isPending && (
+                        <div className="overflow-y-auto h-full">
+                            {currentCourses.length > 0 ? (
+                                currentCourses.map((items) => (
+                                    <FavoriteCourse items={items} key={items.id} />
+                                ))
+                            ) : (
+                                <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
+                                    {t('favoriteCourses.notFound')}
+                                </h1>
+                            )}
+                        </div>
+                    )}
                 </div>
                 {/* buttons ------- */}
                 <div className="flex justify-between p-8">
