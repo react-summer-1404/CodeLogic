@@ -1,41 +1,54 @@
 import React, { useState } from 'react';
-import CourseHeader from '../../components/common/course/CoursePayment/CourseHeader/CourseHeader';
-import CoursePayment from '../../components/common/course/CoursePayment/CoursePayment';
-import { paymentsData } from '../../components/common/data/CoursePayments/payments';
-import { AnimatePresence, motion, number } from 'framer-motion';
+import NewsHeader from '../../../components/common/favorites/News/newsHeader/NewsHeader';
 import { useTranslation } from 'react-i18next';
-import pr from '../../assets/Icons/A/pr.png';
-import pl from '../../assets/Icons/A/pl.png';
-import searchIcon from '../../assets/Icons/A/search.png';
-
-const CoursesPayment = () => {
-    // i18n //
-    const { i18n, t } = useTranslation();
+import FavoriteNew from '../../../components/common/favorites/News/FavoriteNew';
+import { FavoriteNewsData } from '../../../components/common/data/Favorites/FavoriteNewsData';
+import { AnimatePresence, motion, number } from 'framer-motion';
+import pr from '../../../assets/Icons/A/pr.png';
+import pl from '../../../assets/Icons/A/pl.png';
+import searchIcon from '../../../assets/Icons/A/search.png';
+import { useQuery } from '@tanstack/react-query';
+import { getFavoriteNews } from '../../../core/services/api/Get/GetFavorites';
+import { useDebounce } from 'use-debounce';
+import loadingIcon from '../../../assets/Images/A/loading.gif';
+const FavoriteNews = () => {
+    const { t, i18n } = useTranslation();
     const isRTL = i18n.language === 'fa';
-    // pagination //
-    const [searchTerm, setSearchTerm] = useState('');
-    const [currentPage, setcurrentPage] = useState(1);
-    const [paymentsPerPage, setPaymentsPerPage] = useState(2);
-    const [filterStatus, setFilterStatus] = useState('all');
-
-    const filteredPayments = paymentsData.filter((p) => {
-        const matchesSearch =
-            p.courseGroup.toLowerCase().trim().includes(searchTerm.trim().toLowerCase()) ||
-            p.paymentDate.toLowerCase().trim().includes(searchTerm.trim().toLowerCase());
-        const matchesStatus =
-            filterStatus === 'all'
-                ? true
-                : p.paymentStatus.toLowerCase().trim().match(filterStatus.trim().toLowerCase());
-        return matchesSearch && matchesStatus;
+    /// get data ///
+    const { data: favNewsData = {}, isPending } = useQuery({
+        queryKey: ['FAVNEWS'],
+        queryFn: () => getFavoriteNews(),
     });
-    const startIndex = (currentPage - 1) * paymentsPerPage;
-    const endIndex = startIndex + paymentsPerPage;
-    const currentPayments = filteredPayments.slice(startIndex, endIndex);
-    const totalPages = Math.ceil(filteredPayments.length / paymentsPerPage);
+    /// pagination ///
+    const [currentPage, setCurrentPage] = useState(1);
+    const [newsPerPage, setNewsPerPage] = useState(2);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [query] = useDebounce(searchTerm, 350);
+    const [showCount, setShowCount] = useState(false);
+    const [showFiltersOption, setShowFiltersOption] = useState(false);
+    const [filterOption, setFilterOption] = useState('all');
+    const favNews = favNewsData?.myFavoriteNews || [];
+    const filteredNews = favNews
+        .filter((n) => n.title.trim().toLowerCase().includes(query.trim().toLowerCase()))
+        .sort((a, b) => {
+            if (filterOption === 'بیشترین لایک') {
+                return b.likesCount - a.likesCount;
+            } else if (filterOption === 'بیشترین بازدید') {
+                return b.viewsCount - a.viewsCount;
+            }
+            return 0;
+        });
+
+    const startIndex = (currentPage - 1) * newsPerPage;
+    const endIndex = startIndex + newsPerPage;
+    const currentNews = filteredNews.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(filteredNews.length / newsPerPage);
     const goto = (p) => {
-        if (p < 1 || p > totalPages) return;
-        setcurrentPage(p);
+        if (p > totalPages || p < 1) return;
+        setCurrentPage(p);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
+
     /// motion framer ///
     const fadeInUp = (delay) => ({
         hidden: { opacity: 0, y: -20 },
@@ -76,92 +89,88 @@ const CoursesPayment = () => {
             transition: { duration: 0.35, type: 'spring', stiffness: 250 },
         },
     };
+
     return (
         <div
-            className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-5 flex max-h-[600px] h-full
-         flex-col justify-between  my-6 rounded-4xl "
+            className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-5 flex
+     max-h-screen h-full flex-col justify-between mx-auto mt-4 rounded-4xl "
         >
-            {/* ----------- filtering  */}
             <div className="flex justify-between items-center">
-                <AnimatePresence>
-                    <motion.div
-                        variants={rightAnimate}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        className=" relative max-w-[439px] w-full"
-                    >
-                        <input
-                            className=" dark:bg-black dark:text-[#ffff] dark:placeholder:text-white
+                {/* filtering ------ */}
+                <motion.div
+                    variants={rightAnimate}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="relative max-w-[439px] w-full"
+                >
+                    <input
+                        className=" dark:bg-black dark:text-[#ffff] dark:placeholder:text-white
                      w-full h-full shadow py-2 px-3 bg-[#ffff] rounded-[16px] focus:outline-none "
-                            type="text"
-                            placeholder={t('coursesPayment.search')}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <img
-                            className={` absolute ${
-                                isRTL ? 'left-3' : 'right-3'
-                            } top-[50%] translate-y-[-50%] `}
-                            src={searchIcon}
-                            alt=""
-                        />
-                    </motion.div>
-                </AnimatePresence>
-
+                        type="text"
+                        onChange={(e) => {
+                            setSearchTerm(e.target.value);
+                            setCurrentPage(1);
+                        }}
+                        placeholder={t('favoriteNews.search')}
+                    />
+                    <img
+                        className={` absolute ${
+                            isRTL ? 'left-3' : 'right-3'
+                        } top-[50%] translate-y-[-50%] `}
+                        src={searchIcon}
+                        alt=""
+                    />
+                </motion.div>
                 <div className="flex h-full items-center bg-[#ffff] dark:bg-black dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
                     <span className="text-[16px]">{t('coursesPayment.filters')}</span>
                     <select
-                        value={filterStatus}
+                        value={filterOption}
                         onChange={(e) => {
-                            setFilterStatus(e.target.value);
-                            setcurrentPage(1);
+                            setFilterOption(e.target.value);
+                            setCurrentPage(1);
                         }}
                         className=" rounded-xl text-sm cursor-pointer py-1 ps-2 text-gray-600
                          dark:bg-black dark:text-[#ffff] bg-[#ffff]"
                     >
-                        <option value="all">({t('coursesPayment.all')})</option>
-                        <option value="تایید شده">({t('coursesPayment.confirmed')})</option>
-                        <option value="در انتظار تایید">
-                            ({t('coursesPayment.AwaitingConfirmation')})
-                        </option>
-                        <option value="تایید نشده">({t('coursesPayment.notConfirmed')})</option>
+                        <option value="all">({t('favoriteNews.all')})</option>
+                        <option value="بیشترین لایک">({t('favoriteNews.mostLikes')})</option>
+                        <option value="بیشترین بازدید">({t('favoriteNews.mostViews')})</option>
                     </select>
                 </div>
             </div>
-            {/* ------ payments */}
+            {/* favorite news ------- */}
             <motion.div
                 variants={fadeInUp(0)}
                 initial="hidden"
                 animate="visible"
-                className="  dark:bg-black dark:text-[#ffff]
-             h-[89%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
+                className=" dark:bg-black dark:text-[#ffff]
+             h-[85%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
             >
-                <div className="flex flex-col h-[70%] ">
-                    <CourseHeader />
+                <div className="flex flex-col h-[70%]">
+                    <NewsHeader />
                     <div className="overflow-y-auto h-full">
-                        {currentPayments.length > 0 ? (
-                            currentPayments.map((items) => (
-                                <CoursePayment key={items.id} items={items} />
-                            ))
+                        {currentNews.length > 0 ? (
+                            currentNews.map((items) => <FavoriteNew key={items.id} items={items} />)
                         ) : (
                             <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
-                                {t('coursesPayment.notFound')}
+                                {t('favoriteNews.notFound')}
                             </h1>
                         )}
                     </div>
                 </div>
-                {/* -------- buttons */}
+                {/* buttons ------- */}
                 <div className="flex justify-between p-8">
                     <div className="flex items-center gap-2" style={{ direction: 'ltr' }}>
                         <button
                             disabled={currentPage === 1}
                             onClick={() => {
-                                setcurrentPage((prev) => prev - 1);
+                                setCurrentPage((prev) => prev - 1);
                             }}
                             className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 mr-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
                             <img src={pl} alt="" />
-                            {t('coursesPayment.back')}
+                            {t('favoriteNews.back')}
                         </button>
                         {Array.from({ length: totalPages }).map((_, i) => {
                             const p = i + 1;
@@ -181,22 +190,22 @@ const CoursesPayment = () => {
                         <button
                             disabled={currentPage === totalPages}
                             onClick={() => {
-                                setcurrentPage((prev) => prev + 1);
+                                setCurrentPage((prev) => prev + 1);
                             }}
                             className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 ml-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
-                            {t('coursesPayment.next')}
+                            {t('favoriteNews.next')}
                             <img src={pr} alt="" />
                         </button>
                     </div>
-                    {/* ------------ filterCount */}
+                    {/* filtering counts ------ */}
                     <div className="flex items-center dark:bg-black dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
-                        <span className="text-[16px]">{t('coursesPayment.NumberShows')}</span>
+                        <span className="text-[16px]">{t('favoriteNews.NumberShows')}</span>
                         <select
-                            value={paymentsPerPage}
+                            value={newsPerPage}
                             onChange={(e) => {
-                                setPaymentsPerPage(Number(e.target.value));
-                                setcurrentPage(1);
+                                setNewsPerPage(Number(e.target.value));
+                                setCurrentPage(1);
                             }}
                             className=" rounded-xl text-sm cursor-pointer px-3 py-1  dark:bg-black dark:text-[#ffff]"
                         >
@@ -211,4 +220,4 @@ const CoursesPayment = () => {
     );
 };
 
-export default CoursesPayment;
+export default FavoriteNews;
