@@ -125,6 +125,7 @@
    "categoryFilter": {
     "title": "Categories",
     "more": "+ Show more",
+    "less": "- Show less",
     "categories": {
       "educational": "Educational",
       "general": "General Knowledge",

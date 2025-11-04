@@ -3,17 +3,17 @@ import Select from "react-select";
 import { useTheme } from "../useTheme/useTheme";
 import { useTranslation } from "react-i18next";
 
-const NewsSelectTwo = () => {
+const NewsSelectTwo = ({ value, onChange }) => {
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const { t, i18n } = useTranslation();
 
   const options = useMemo(
     () => [
-      { value: "view", label: t("NewsSelectTwo.dataone") },
-      { value: "two", label: "2" },
-      { value: "three", label: "3" },
-      { value: "four", label: "4" },
+      { value: "none", label: t("NewsSelectTwo.dataone"), isDisabled: true },
+      { value: "3", label: "3" },
+      { value: "2", label: "2" },
+      { value: "4", label: "4" },
     ],
     [i18n.language, t]
   );
@@ -26,17 +26,14 @@ const NewsSelectTwo = () => {
       border: "1px solid #EAEAEA",
       boxShadow: state.isFocused ? "0 0 0 1px #008C78" : "none",
       "&:hover": { borderColor: "#EAEAEA" },
-
       borderRadius: "0.75rem",
       backgroundColor: isDark ? "#333" : "white",
-
       minHeight: "40px",
       cursor: "pointer",
     }),
     singleValue: (base) => ({
       ...base,
       color: isDark ? "white" : "#848484",
-
       fontSize: "0.875rem",
     }),
     menu: (base) => ({
@@ -56,13 +53,8 @@ const NewsSelectTwo = () => {
       cursor: "pointer",
       fontSize: "0.875rem",
     }),
-    dropdownIndicator: (base) => ({
-      ...base,
-      color: "#848484",
-    }),
-    indicatorSeparator: () => ({
-      display: "none",
-    }),
+    dropdownIndicator: (base) => ({ ...base, color: "#848484" }),
+    indicatorSeparator: () => ({ display: "none" }),
   };
 
   return (
@@ -71,10 +63,11 @@ const NewsSelectTwo = () => {
         key={i18n.language}
         options={options}
         styles={customStyles}
-        defaultValue={defaultOption}
-        className=""
+        value={options.find((opt) => opt.value === value)}
+        onChange={(option) => onChange(option.value)}
         classNamePrefix="react-select"
         isSearchable={false}
+        defaultValue={defaultOption}
       />
     </div>
   );

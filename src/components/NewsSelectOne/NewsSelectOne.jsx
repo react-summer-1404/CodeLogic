@@ -3,7 +3,7 @@ import Select from "react-select";
 import { useTheme } from "../useTheme/useTheme";
 import { useTranslation } from "react-i18next";
 
-const NewsSelectOne = () => {
+const NewsSelectOne = ({ value, onChange }) => {
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const { t, i18n } = useTranslation();
@@ -24,17 +24,14 @@ const NewsSelectOne = () => {
       border: "1px solid #EAEAEA",
       boxShadow: state.isFocused ? "0 0 0 1px #008C78" : "none",
       "&:hover": { borderColor: "#EAEAEA" },
-
       borderRadius: "0.75rem",
       backgroundColor: isDark ? "#333" : "white",
-
       minHeight: "40px",
       cursor: "pointer",
     }),
     singleValue: (base) => ({
       ...base,
       color: isDark ? "white" : "#848484",
-
       fontSize: "0.875rem",
     }),
     menu: (base) => ({
@@ -58,9 +55,7 @@ const NewsSelectOne = () => {
       ...base,
       color: "#848484",
     }),
-    indicatorSeparator: () => ({
-      display: "none",
-    }),
+    indicatorSeparator: () => ({ display: "none" }),
   };
 
   return (
@@ -69,10 +64,11 @@ const NewsSelectOne = () => {
         key={i18n.language}
         options={options}
         styles={customStyles}
-        defaultValue={defaultOption}
-        className=""
+        value={options.find((opt) => opt.value === value)}
+        onChange={(option) => onChange(option.value)}
         classNamePrefix="react-select"
         isSearchable={false}
+        defaultValue={defaultOption}
       />
     </div>
   );
