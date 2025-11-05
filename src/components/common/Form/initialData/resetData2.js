@@ -1,5 +1,5 @@
 const resetData2 = {
-    gmail: '',
     newPassword: '',
+    confirmPassword: '',
 };
 export default resetData2;

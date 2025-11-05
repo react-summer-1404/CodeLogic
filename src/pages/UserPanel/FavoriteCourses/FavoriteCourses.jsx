@@ -27,17 +27,23 @@ const FavoriteCourses = () => {
     const [query] = useDebounce(searchTerm, 350);
     const [filterOption, setFilterOption] = useState('all');
 
-    const filteredCourses = favoriteCourses.filter((n) => {
-        const matchesSearch = n.courseTitle
-            .trim()
-            .toLowerCase()
-            .includes(query.trim().toLowerCase());
-        const matchesFilter =
-            filterOption === 'all'
-                ? true
-                : n.meetingMode.trim().toLowerCase().match(filterOption.trim().toLowerCase());
-        return matchesFilter && matchesSearch;
-    });
+    const filteredCourses = favoriteCourses
+        .filter((n) => {
+            const matchesSearch = n.courseTitle
+                .trim()
+                .toLowerCase()
+                .includes(query.trim().toLowerCase());
+            return matchesSearch;
+        })
+        .sort((a, b) => {
+            if (filterOption === 'جدید ترین ها') {
+                return b.lastUpdate - a.lastUpdate;
+            } else if (filterOption === 'اولین بروزرسانی') {
+                return a.lastUpdate - b.lastUpdate;
+            } else {
+                return 0;
+            }
+        });
 
     const startIndex = (currentPage - 1) * coursesPerPage;
     const endIndex = startIndex + coursesPerPage;
@@ -134,8 +140,10 @@ const FavoriteCourses = () => {
                          dark:bg-black dark:text-[#ffff] bg-[#ffff]"
                     >
                         <option value="all">({t('favoriteCourses.all')})</option>
-                        <option value="حضوری">({t('favoriteCourses.faceToFace')})</option>
-                        <option value="انلاین">({t('favoriteCourses.online')})</option>
+                        <option value="جدید ترین ها">({t('favoriteCourses.lastUpdate')})</option>
+                        <option value="اولین بروزرسانی">
+                            ({t('favoriteCourses.firstUpdate')})
+                        </option>
                     </select>
                 </div>
             </div>
@@ -157,8 +165,8 @@ const FavoriteCourses = () => {
                     {!isPending && (
                         <div className="overflow-y-auto h-full">
                             {currentCourses.length > 0 ? (
-                                currentCourses.map((items) => (
-                                    <FavoriteCourse items={items} key={items.id} />
+                                currentCourses.map((items, index) => (
+                                    <FavoriteCourse items={items} key={index} />
                                 ))
                             ) : (
                                 <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">

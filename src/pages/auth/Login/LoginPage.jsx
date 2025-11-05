@@ -154,7 +154,10 @@ const LoginPage = () => {
                                                         {t('login.RememberMe')}
                                                     </label>
                                                 </div>
-                                                <Link className="text-[13px] text-[#848484] hover:text-blue-400 transition duration-300">
+                                                <Link
+                                                    to={'/forgotPassOne'}
+                                                    className="text-[13px] text-[#848484] hover:text-blue-400 transition duration-300"
+                                                >
                                                     {t('login.ForgotPassword')}
                                                 </Link>
                                             </div>

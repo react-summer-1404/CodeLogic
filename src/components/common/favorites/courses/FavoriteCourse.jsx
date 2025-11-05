@@ -6,14 +6,18 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { deleteFavCourses } from '../../../../core/services/api/Delete/DeleteFavoriteCourses';
 const FavoriteCourse = ({ items }) => {
+    /// face data ///
+    const mode = ['انلاین', 'حضوری'];
+    const meetingMode = mode[Math.floor(Math.random() * mode.length)];
+    ///// get from backend ////
     const queryClient = useQueryClient();
     const { mutate: deleteCourse, isPending } = useMutation({
         mutationKey: ['DELETECOURSE'],
-        mutationFn: () => deleteFavCourses(),
+        mutationFn: (value) => deleteFavCourses(value),
         onSettled: (data) => {
             if (data.success) {
                 toast.success(data.message);
-                queryClient.invalidateQueries([FAVCOURSES]);
+                queryClient.invalidateQueries(['FAVCOURSES']);
             } else if (!data.success) {
                 toast.error(data.message);
             }
@@ -44,8 +48,8 @@ const FavoriteCourse = ({ items }) => {
                 />
                 {items.courseTitle}
             </div>
-            <div className="ps-3 flex-[1.2] text-right overflow-ellipsis ">{items.caption}</div>
-            <div className="px-4 flex-1">{items.meetingMode}</div>
+            <div className="ps-3 flex-[1.2] text-right overflow-ellipsis truncate ">{`این دوره توسط استاد ${items.teacheName}`}</div>
+            <div className="px-4 flex-1">{meetingMode}</div>
             <div className="px-4 flex-1 truncate">{items.lastUpdate}</div>
             <div className="pe-8 w-[100px] text-left flex items-center justify-end gap-4">
                 <div

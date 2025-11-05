@@ -47,9 +47,9 @@ const FavoriteNew = ({ items }) => {
                 />
                 {items.news.title}
             </div>
-            <div className="px-4 flex-1">{items.commentsCount}</div>
-            <div className="px-4 flex-1">{items.viewsCount}</div>
-            <div className="px-1 flex-1">{items.likesCount}</div>
+            <div className="px-4 flex-1">43</div>
+            <div className="px-4 flex-1">666</div>
+            <div className="px-1 flex-1">36</div>
             <div className="px-4 flex-1 truncate">{items.news.updateDate}</div>
             <div className="pe-8 w-[100px] text-left flex items-center justify-end gap-4">
                 <div

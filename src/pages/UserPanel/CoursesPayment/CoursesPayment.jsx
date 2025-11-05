@@ -78,8 +78,8 @@ const CoursesPayment = () => {
     };
     return (
         <div
-            className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-5 flex max-h-[600px] h-full
-         flex-col justify-between  my-6 rounded-4xl "
+            className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-5 flex max-h-[89%] h-full
+         flex-col justify-between  mt-4 rounded-4xl "
         >
             {/* ----------- filtering  */}
             <div className="flex justify-between items-center">
@@ -134,7 +134,7 @@ const CoursesPayment = () => {
                 initial="hidden"
                 animate="visible"
                 className="  dark:bg-black dark:text-[#ffff]
-             h-[89%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
+             h-[85%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
             >
                 <div className="flex flex-col h-[70%] ">
                     <CourseHeader />
