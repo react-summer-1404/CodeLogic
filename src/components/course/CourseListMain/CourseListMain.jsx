@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react'
+import React, { useState } from 'react'
 import CourseCardView1 from '../../common/course/CourseCardView1/CourseCardView1'
 import CourseCardView2 from '../../common/course/CourseCardView2/CourseCardView2'
 import SortView from '../SortView/SortView'
@@ -8,37 +8,34 @@ import ReactPaginate from 'react-paginate'
 const VIEW_TYPE_LIST = 'list';
 const VIEW_TYPE_GRID = 'grid';
 
-
-
-const CourseListMain = ({ coursesData, isLoading, setSortingCol, currentPage, setCurrentPage, pageSize, setPageSize}) => {
+ 
+const CourseListMain = ({ coursesData, isLoading, currentPage , setCurrentPage , setSortingCol , pageSize , setPageSize }) => {
 
 
   const [currentView, setCurrentView] = useState(VIEW_TYPE_GRID);
   const CourseCardComponent = currentView === VIEW_TYPE_LIST ? CourseCardView2 : CourseCardView1
   // console.log(currentPage)
 
-
-  if (isLoading) return <div>Loading...</div>
-
-
+  
   const handleViewChange = (viewType) => {
     setCurrentView(viewType);
   };
-
-
+  
+  
   const handlePageSizeChange = (newSize) => {
     setPageSize(newSize);
     setCurrentPage(1);
   };
-
-
+  
+  
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  
+  if (isLoading) return <div>Loading...</div>
 
-  console.log(coursesData)
-
+  
   return (
     <div className='flex flex-col gap-8 w-full'>
       <SortView onViewChange={handleViewChange} currentView={currentView} currentPageSize={pageSize}

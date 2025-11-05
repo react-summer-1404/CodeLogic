@@ -1,16 +1,16 @@
 import React, {useState} from 'react'
 import DatePicker from 'react-multi-date-picker';
-import persian from "react-date-object/calendars/persian";
-import persian_fa from "react-date-object/locales/persian_fa";
+import gregorian from "react-date-object/calendars/gregorian";
+import gregorian_en from "react-date-object/locales/gregorian_en";
 import Arrow from '../../../assets/Icons/Arrow'
 import { useTranslation } from 'react-i18next';
 
 
-const StartEndDate = () => {
+const StartEndDate = ({handleSetStartDate , handleSetEndDate}) => {
 
   const [isOpen, setIsOpen] = useState(false);
-  const [startValue, setStartValue] = useState(new Date());
-  const [endValue, setEndValue] = useState(new Date());
+  const [startValue, setStartValue] = useState(null);
+  const [endValue, setEndValue] = useState(null);
 
   const {t} = useTranslation();
 
@@ -28,13 +28,25 @@ const StartEndDate = () => {
           <div className='flex flex-col gap-4'>
             <div className='flex flex-col gap-2'>
               <span className='font-regular text-base text-[#1E1E1E]'>{t('courseListSide.start')}</span>
-              <DatePicker value={startValue} onChange={setStartValue} calendar={persian} locale={persian_fa} format="YYYY/MM/DD" 
-              calendarPosition="bottom-right" inputClass='px-4 h-[46px] border border-[#A6A6A6] rounded-[15px]'/>
+              <DatePicker 
+              value={startValue} 
+              onChange={(startValue) => {setStartValue(startValue); handleSetStartDate(startValue)}} 
+              calendar={gregorian} 
+              locale={gregorian_en} 
+              format="YYYY/MM/DD" 
+              calendarPosition="bottom-right" 
+              inputClass='px-4 h-[46px] border border-[#A6A6A6] rounded-[15px]'/>
             </div>
             <div className='flex flex-col gap-2'>
               <span className='font-regular text-base text-[#1E1E1E]'>{t('courseListSide.end')}</span>
-              <DatePicker value={endValue} onChange={setEndValue} calendar={persian} locale={persian_fa} format="YYYY/MM/DD"
-                calendarPosition="bottom-right" inputClass='px-4 h-[46px] border border-[#A6A6A6] rounded-[15px]' />
+              <DatePicker 
+              value={endValue} 
+              onChange={(endDate) => {setEndValue(endDate); handleSetEndDate(endDate)}} 
+              calendar={gregorian} 
+              locale={gregorian_en} 
+              format="YYYY/MM/DD"
+              calendarPosition="bottom-right" 
+              inputClass='px-4 h-[46px] border border-[#A6A6A6] rounded-[15px]' />
             </div>
           </div>
         }
