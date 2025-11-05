@@ -34,13 +34,15 @@ const SideDropDown = ({title, item1, item2, item3, handleSetCourseLevel, handleS
     const {t} = useTranslation();
 
     const checkboxClasses = 'w-[26px] h-[26px] rounded-2xl text-[#008C78] border-gray-300 checked:bg-[#008C78]';
+    const dropDownText = 'font-regular text-sm text-[#1E1E1E]   dark:text-[#CCCCCC]'
 
 
   return (
-    <div className='flex flex-col gap-4 w-full p-4 bg-[#FFFFFF] rounded-[15px] cursor-pointer 
+    <div className='flex flex-col gap-4 w-full p-4 bg-[#FFFFFF] rounded-[15px] cursor-pointer   dark:bg-[#454545]
     md:w-[284px]'>     
-        <div onClick={() => {setIsOpen(!isOpen)}} className='flex justify-between items-center w-full'>
-            <span className='font-bo ld text-[18px] text-[#1E1E1E]'>{t(`${title}`)}</span>
+        <div onClick={() => {setIsOpen(!isOpen)}} className='flex justify-between items-center w-full
+        dark:text-[#DDDDDD]'>
+            <span className='font-bold text-[18px] text-[#1E1E1E]   dark:text-[#DDDDDD]'>{t(`${title}`)}</span>
             <button className={`${isOpen ? 'rotate-90' : 'rotate-270'}`}>
                 <Arrow/>
             </button>
@@ -51,7 +53,7 @@ const SideDropDown = ({title, item1, item2, item3, handleSetCourseLevel, handleS
                     <input 
                     onChange={inputCheck1}
                     type='checkbox' className={`${checkboxClasses}`}/>
-                    <span className='font-regular text-sm text-[#1E1E1E]'>
+                    <span className={`${dropDownText}`}>
                         {t(`${item1}`)}    
                     </span>
                 </div>
@@ -59,7 +61,7 @@ const SideDropDown = ({title, item1, item2, item3, handleSetCourseLevel, handleS
                     <input 
                     onChange={inputCheck2}
                     type='checkbox' className={`${checkboxClasses}`}/>
-                    <span className='font-regular text-sm text-[#1E1E1E]'>
+                    <span className={`${dropDownText}`}>
                         {t(`${item2}`)}
                     </span>
                 </div>
@@ -67,7 +69,7 @@ const SideDropDown = ({title, item1, item2, item3, handleSetCourseLevel, handleS
                     <input 
                     onChange={inputCheck3} 
                     type='checkbox' className={`${checkboxClasses}`}/>
-                    <span className='font-regular text-sm text-[#1E1E1E]'>
+                    <span className={`${dropDownText}`}>
                         {t(`${item3}`)}
                     </span>
                 </div>
