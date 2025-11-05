@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import RegisterStepOne from "../../../core/services/api/post/registerStepOne";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import TranslateButton from "../../../components/TranslateButton/TranslateButton";
 
 const StepOne = () => {
   const { t, i18n } = useTranslation();
@@ -76,7 +77,7 @@ const StepOne = () => {
       animate="visible"
       variants={containerVariant}
       className={`flex justify-center items-center min-h-screen transition-colors duration-500 ${
-        darkMode ? "bg-gray-900" : "bg-[#EAEAEA]"
+        darkMode ? "bg-[#1e1e1e]" : "bg-[#EAEAEA]"
       } `}
     >
       <Formik
@@ -89,7 +90,7 @@ const StepOne = () => {
             <motion.div
               variants={containerVariant}
               className={`flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
-                darkMode ? "bg-gray-800" : "bg-white"
+                darkMode ? "bg-[#333]" : "bg-white"
               }`}
             >
               <div className="w-full lg:w-[47.44%] flex justify-center items-center">
@@ -98,7 +99,7 @@ const StepOne = () => {
                   initial="hidden"
                   animate="visible"
                   className={`w-[95%] sm:w-[90%] md:w-[95%] h-auto lg:h-[95.67%] rounded-xl flex flex-col justify-center items-center mb-6 lg:mb-0 mr-0 lg:mr-2 relative transition-colors duration-500 ${
-                    darkMode ? "bg-gray-700" : "bg-[#EEFFFC]"
+                    darkMode ? "bg-[#454545]" : "bg-[#EEFFFC]"
                   }`}
                 >
                   <div
@@ -150,24 +151,27 @@ const StepOne = () => {
                   animate="visible"
                 >
                   <div
-                    className={`mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 ${
+                    className={`  w-[65%] flex items-center justify-between  mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 ${
                       i18n.language === "fa"
                         ? "right-4 sm:right-8 lg:right-30"
                         : "left-4 sm:left-8 lg:left-30"
                     } flex items-center`}
                   >
-                    <HomeIcon
-                      className={`ml-2 transition-colors duration-500 ${
-                        darkMode ? "text-gray-300" : "text-[#005B77]"
-                      }`}
-                    />
-                    <span
-                      className={`font-bold transition-colors duration-500 ${
-                        darkMode ? "text-gray-300" : "text-[#005B77]"
-                      }`}
-                    >
-                      {t("registerStepOne.home")}
-                    </span>
+                    <div>
+                      <HomeIcon
+                        className={`ml-2 transition-colors duration-500 ${
+                          darkMode ? "text-gray-300" : "text-[#005B77]"
+                        }`}
+                      />
+                      <span
+                        className={`font-bold transition-colors duration-500 ${
+                          darkMode ? "text-gray-300" : "text-[#005B77]"
+                        }`}
+                      >
+                        {t("registerStepOne.home")}
+                      </span>
+                    </div>
+                    <TranslateButton />
                   </div>
                 </motion.div>
 
@@ -215,7 +219,7 @@ const StepOne = () => {
                     placeholder={t("registerStepOne.phone_placeholder")}
                     className={`rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       darkMode
-                        ? "bg-gray-600 text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
+                        ? "bg-[#454545] text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />

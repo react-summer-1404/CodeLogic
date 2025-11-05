@@ -16,20 +16,16 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    children: [
-      { index: true, element: <Landing /> },
-
-      { path: "/RegisterStepOne", element: <StepOne /> },
-      { path: "/RegisterStepTwo", element: <StepTwo /> },
-      { path: "/RegisterStepThree", element: <StepThree /> },
-    ],
+    children: [{ index: true, element: <Landing /> }],
   },
   { path: "/login", element: <LoginPage /> },
   { path: "/loginValidation", element: <LoginValidationPage /> },
   { path: "/forgotPassOne", element: <ForgotPasswordStepOne /> },
   { path: "/forgotPassTwo", element: <ForgotPasswordStepTwo /> },
-
   { path: "/news", element: <NewsListSection /> },
+  { path: "/RegisterStepOne", element: <StepOne /> },
+  { path: "/RegisterStepTwo", element: <StepTwo /> },
+  { path: "/RegisterStepThree", element: <StepThree /> },
 ]);
 
 export default router;

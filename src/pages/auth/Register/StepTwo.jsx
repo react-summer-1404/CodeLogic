@@ -6,6 +6,7 @@ import { RegisterStepTwo } from "../../../utils/Validations/RegisterVal/Register
 import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import TranslateButton from "../../../components/TranslateButton/TranslateButton";
 
 const StepTwo = () => {
   const { t, i18n } = useTranslation();
@@ -80,7 +81,7 @@ const StepTwo = () => {
       animate="visible"
       variants={containerVariant}
       className={`flex justify-center items-center min-h-screen transition-colors duration-500 ${
-        darkMode ? "bg-gray-900" : "bg-[#EAEAEA]"
+        darkMode ? "bg-[#1e1e1e]" : "bg-[#EAEAEA]"
       }`}
     >
       <Formik
@@ -92,14 +93,14 @@ const StepTwo = () => {
           <Form className="w-full flex justify-center">
             <motion.div
               className={`flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
-                darkMode ? "bg-gray-800" : "bg-white"
+                darkMode ? "bg-[#333]" : "bg-white"
               }`}
             >
               <div className="w-full lg:w-[47.44%] flex justify-center items-center">
                 <motion.div
                   variants={imageVariant}
                   className={`w-[95%] sm:w-[90%] md:w-[95%] h-auto lg:h-[95.67%] rounded-xl flex flex-col justify-center items-center mb-6 lg:mb-0 mr-0 lg:mr-2 relative transition-colors duration-500 ${
-                    darkMode ? "bg-gray-700" : "bg-[#EEFFFC]"
+                    darkMode ? "bg-[#454545]" : "bg-[#EEFFFC]"
                   }`}
                 >
                   <div
@@ -148,22 +149,26 @@ const StepTwo = () => {
                   initial="hidden"
                   animate="visible"
                 >
-                  <Link to="/RegisterStepOne">
-                    <div className="mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
-                      <EastIcon
-                        className={`cursor-pointer ml-2 transition-colors duration-500 ${
-                          darkMode ? "text-gray-300" : "text-[#005B77]"
-                        }`}
-                      />
-                      <span
-                        className={`cursor-pointer font-bold transition-colors duration-500 ${
-                          darkMode ? "text-gray-300" : "text-[#005B77]"
-                        }`}
-                      >
-                        {t("registerStepTwo.back")}
-                      </span>
-                    </div>
-                  </Link>
+                  <div className="  w-[65%] flex items-center justify-between   mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
+                    <Link to="/RegisterStepOne">
+                      <div>
+                        <EastIcon
+                          className={`cursor-pointer ml-2 transition-colors duration-500 ${
+                            darkMode ? "text-gray-300" : "text-[#005B77]"
+                          }`}
+                        />
+                        <span
+                          className={`cursor-pointer font-bold transition-colors duration-500 ${
+                            darkMode ? "text-gray-300" : "text-[#005B77]"
+                          }`}
+                        >
+                          {t("registerStepTwo.back")}
+                        </span>
+                      </div>
+                    </Link>
+
+                    <TranslateButton />
+                  </div>
                 </motion.div>
 
                 <motion.h2
