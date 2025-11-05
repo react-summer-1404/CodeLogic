@@ -15,7 +15,7 @@ const CourseCardView2 = ({item}) => {
         <div className='w-[520px] h-[200px]'>
             <img src={item.imageAddress} className='w-full h-full rounded-xl'/>
         </div>
-        <Link to={`/coursedetail/${item.id}`} className='flex flex-col justify-between w-full h-[217px] mb-[-16px] p-4 bg-[#FFFFFF] rounded-[20px] transform 
+        <Link to={`/coursedetail/${item.courseId}`} className='flex flex-col justify-between w-full h-[217px] mb-[-16px] p-4 bg-[#FFFFFF] rounded-[20px] transform 
         -translate-y-4   dark:bg-[#606060]'>
             <div className='flex flex-col gap-1 text-[#1E1E1E]'>
                 <h2 className='font-bold text-base'>{t(`${item.title}`)}</h2>

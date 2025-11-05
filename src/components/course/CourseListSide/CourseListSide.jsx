@@ -6,7 +6,9 @@ import CourseNewsSearch from '../../common/course/CourseNewsSearch/CourseNewsSea
 import StartEndDate from '../StartEndDate/StartEndDate';
 
 
-const CourseListSide = ({handleSearchSubmit , handleSetStartDate , handleSetEndDate , handleSetCourseLevel}) => {
+const CourseListSide = ({handleSearchSubmit , handleSetStartDate , handleSetEndDate , handleSetCourseLevel, 
+handleSetTeachers, handleSetTechnologies,
+handleSetStartPrice, handleSetEndPrice}) => {
   
   const {t} = useTranslation();  
 
@@ -14,15 +16,21 @@ const CourseListSide = ({handleSearchSubmit , handleSetStartDate , handleSetEndD
     <div className='w-full flex flex-col gap-4
     md:w-[284px]'>
       <CourseNewsSearch handleSearchSubmit={handleSearchSubmit}/>
+      
       <StartEndDate handleSetStartDate={handleSetStartDate} handleSetEndDate={handleSetEndDate}/>
+      
       <SideDropDown title={t('sideDropDown.title1')} item1={t('sideDropDown.title1Item1')} 
       item2={t('sideDropDown.title1Item2')} item3={t('sideDropDown.title1Item3')} 
       handleSetCourseLevel={handleSetCourseLevel}/>
+      
       <SideDropDown title={t('sideDropDown.title2')} item1={t('sideDropDown.title2Item1')} 
-      item2={t('sideDropDown.title2Item2')} item3={t('sideDropDown.title2Item3')} />
+      item2={t('sideDropDown.title2Item2')} item3={t('sideDropDown.title2Item3')} 
+      handleSetTeachers={handleSetTeachers}/>
+      
       <SideDropDown title={t('sideDropDown.title3')} item1={t('sideDropDown.title3Item1')} 
-      item2={t('sideDropDown.title3Item2')} item3={'UI UX'} />
-      <PriceFilter/>
+      item2={t('sideDropDown.title3Item2')} item3={'sideDropDown.title3Item3'} 
+      handleSetTechnologies={handleSetTechnologies}/>
+      <PriceFilter handleSetStartPrice={handleSetStartPrice} handleSetEndPrice={handleSetEndPrice}/>
 
     </div>
   )

@@ -174,12 +174,13 @@
         "title1Item2": "متوسط",
         "title1Item3": "تازه کار",
         "title2": "اساتید",
-        "title2Item1": "دکتر محمدحسین بحرالعلومی",
-        "title2Item2": "آقای ایکس",
-        "title2Item3": "آقای فلان فلانی",
+        "title2Item1": "آقای طاها رحیمی",
+        "title2Item2": "دکتر محمدحسین بحرالعلومی",
+        "title2Item3": "آقای ایکس",
         "title3": "تکنولوژی ها",
-        "title3Item1": "فرانت اند",
-        "title3Item2": "بک اند"
+        "title3Item1": "ری اکت",
+        "title3Item2": "نکست",
+        "title3Item3": "بک اند"
     },
     "priceFilter": {
         "title": "بازه قیمت (تومان)"

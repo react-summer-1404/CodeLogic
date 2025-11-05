@@ -174,12 +174,13 @@
         "title1Item2": "Middle",
         "title1Item3": "Beginner",
         "title2": "Professors",
-        "title2Item1": "Dr. MohammadHosseinBahrololumi",
-        "title2Item2": "Mr.X",
-        "title2Item3": "Mr. Felan Felani",
+        "title2Item1": "Mr. Taha Rahimy",
+        "title2Item2": "Dr. MohammadHosseinBahrololumi",
+        "title2Item3": "Mr. X",
         "title3": "Technologies",
-        "title3Item1": "FrontEnd",
-        "title3Item2": "BackEnd"
+        "title3Item1": "React",
+        "title3Item2": "Next",
+        "title3Item3": "Backend"
     },
     "priceFilter": {
         "title": "Price Range (Toman)"

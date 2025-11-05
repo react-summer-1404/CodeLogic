@@ -12,14 +12,15 @@ const VIEW_TYPE_GRID = 'grid';
 const CourseListMain = ({ coursesData, isLoading, currentPage , setCurrentPage , setSortingCol , pageSize , setPageSize }) => {
 
 
-  const [currentView, setCurrentView] = useState(VIEW_TYPE_GRID);
+  const [currentView, setCurrentView] = useState(() => {
+    return localStorage.getItem('courseViewType') || VIEW_TYPE_GRID;
+  });
   const CourseCardComponent = currentView === VIEW_TYPE_LIST ? CourseCardView2 : CourseCardView1
-  // console.log(currentPage)
-
-  
-  const handleViewChange = (viewType) => {
-    setCurrentView(viewType);
+  const handleViewChange = (courseViewType) => {
+    setCurrentView(courseViewType);
+    localStorage.setItem('courseViewType', courseViewType)
   };
+  // console.log(currentPage)
   
   
   const handlePageSizeChange = (newSize) => {

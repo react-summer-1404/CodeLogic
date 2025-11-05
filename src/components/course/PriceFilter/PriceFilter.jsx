@@ -15,7 +15,7 @@ const PriceFilter = () => {
         return `${value}°C`;
     }
     const [value, setValue] = React.useState([20, 37]);
-    const handleChange = (event, newValue) => {
+    const priceChange = (event, newValue) => {
         setValue(newValue);
     };
 
@@ -34,7 +34,7 @@ const PriceFilter = () => {
                     <Slider
                         getAriaLabel={() => 'Temperature range'}
                         value={value}
-                        onChange={handleChange}
+                        onChange={priceChange}
                         valueLabelDisplay="auto"
                         getAriaValueText={valuetext}
                         min={0}

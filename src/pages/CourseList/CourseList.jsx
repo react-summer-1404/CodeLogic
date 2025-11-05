@@ -27,11 +27,11 @@ const CourseList = () => {
   };
   
 
-  const handleSetStartDate = (startValue) => {
-    setStartDate(startValue)
+  const handleSetStartDate = (startDate) => {
+    setStartDate(startDate)
   }
-  const handleSetEndDate = (endValue) => {
-    setEndDate(endValue)
+  const handleSetEndDate = (endDate) => {
+    setEndDate(endDate)
   }
 
 
@@ -41,12 +41,38 @@ const CourseList = () => {
   }
 
 
+  const [teachers , setTeachers] = useState('')
+  const handleSetTeachers = (teachers) => {
+    setTeachers(teachers)
+  }
+
+
+  const [technologies , setTechnologies] = useState('')
+  const handleSetTechnologies = (technologies) => {
+    setTechnologies(technologies)
+  }
+
+
+  const [startPrice, setStartPrice] = useState()
+  const [endPrice, setEndPrice] = useState()
+  const handleSetStartPrice = (startPrice) => {
+    setStartPrice(startPrice)
+  }
+  const handleSetEndPrice = (endPrice) => {
+    setEndPrice(endPrice)
+  }
+
+
   
   const { data: coursesData, isLoading } = useQuery({ 
-    queryKey: ['GETALLCOURSES', searchQuery, pageSize, currentPage, sortingCol, startDate, endDate, courseLevel], 
+    queryKey: ['GETALLCOURSES', searchQuery, pageSize, currentPage, sortingCol, startDate, endDate, courseLevel, teachers,
+      technologies, startPrice
+    ], 
     queryFn: () => GetAllCourses({ RowsOfPage: pageSize, PageNumber: currentPage, Query: searchQuery, SortType: "startTime",
       // StartDate: startDate, EndDate: endDate
-      courseLevelId: courseLevel    
+      courseLevelId: courseLevel,  
+      teacherName: teachers,
+      technologyList: technologies
     }) 
   })
   
@@ -67,7 +93,10 @@ const CourseList = () => {
       md:flex md:flex-row md:items-start md:gap-8'>
         <CourseListSide handleSearchSubmit={handleSearchSubmit} 
         handleSetStartDate={handleSetStartDate} handleSetEndDate={handleSetEndDate}
-        handleSetCourseLevel={handleSetCourseLevel}/>
+        handleSetCourseLevel={handleSetCourseLevel}
+        handleSetTeachers={handleSetTeachers}
+        handleSetTechnologies={handleSetTechnologies}
+        handleSetStartPrice={handleSetStartPrice} handleSetEndPrice={handleSetEndPrice}/>
         <CourseListMain coursesData={coursesData} isLoading={isLoading} searchQuery={searchQuery}
         currentPage={currentPage} setCurrentPage={setCurrentPage} setSortingCol={setSortingCol}
         pageSize={pageSize} setPageSize={setPageSize}/>
