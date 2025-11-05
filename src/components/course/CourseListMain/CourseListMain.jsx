@@ -3,6 +3,8 @@ import CourseCardView1 from '../../common/course/CourseCardView1/CourseCardView1
 import CourseCardView2 from '../../common/course/CourseCardView2/CourseCardView2'
 import SortView from '../SortView/SortView'
 import ReactPaginate from 'react-paginate'
+import { postFavoriteCourses } from '../../../core/services/api/post/postFavoriteCourses'
+import { deleteFavoriteCourses } from '../../../core/services/api/delete/deleteFavoriteCourses'
 
 
 const VIEW_TYPE_LIST = 'list';
@@ -22,6 +24,21 @@ const CourseListMain = ({ coursesData, isLoading, currentPage , setCurrentPage ,
   };
   // console.log(currentPage)
   
+
+
+  const [favorites, setFavorites] = useState([])
+  const handleToggleFavorite = async (courseId) => {
+    if(favorites.includes(courseId)){
+      await deleteFavoriteCourses(courseId)
+      setFavorites(favorites.filter(id => id !== courseId))
+    }
+    else{
+      await postFavoriteCourses(courseId)
+      setFavorites([...favorites, courseId])
+    }
+  }
+
+
   
   const handlePageSizeChange = (newSize) => {
     setPageSize(newSize);
@@ -44,7 +61,9 @@ const CourseListMain = ({ coursesData, isLoading, currentPage , setCurrentPage ,
       <div className='flex flex-row flex-wrap gap-y-8 gap-x-4'>
         {
           coursesData?.courseFilterDtos?.map((item, index) => {
-            return <CourseCardComponent item={item} key={index} />
+            return <CourseCardComponent item={item} key={index} 
+            isFavorite={favorites.includes(item.id)}
+            handleToggleFavorite={handleToggleFavorite}/>
           })
         }
       </div>

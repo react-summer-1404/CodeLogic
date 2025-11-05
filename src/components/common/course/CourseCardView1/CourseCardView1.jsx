@@ -1,5 +1,4 @@
 import React from 'react'
-import { postFavoriteCourses } from '../../../../core/services/api/post/postFavoriteCourses'
 import Teacher from '../../../../assets/Icons/Teacher'
 import Level from '../../../../assets/Icons/Level'
 import Star from '../../../../assets/Icons/Star'
@@ -9,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 
 
-const CourseCardView1 = ({ item }) => {
+const CourseCardView1 = ({ item , handleToggleFavorite , isFavorite}) => {
 
     const {t} = useTranslation();
 
@@ -49,8 +48,9 @@ const CourseCardView1 = ({ item }) => {
                     </div>
                 </div>
             </Link>
-            <button onClick={() => {postFavoriteCourses(item.courseId)}}
-            className='p-2 text-[#EEEEEE] bg-[#000000] opacity-25 rounded-[50px] absolute top-[13px] right-[14px] cursor-pointer'>
+            <button onClick={() => {handleToggleFavorite(item.courseId)}}
+            className={`p-2 rounded-[50px] transition absolute top-[13px] right-[14px] cursor-pointer  
+            ${isFavorite ? 'bg-red-500 text-white' : 'bg-black opacity-25 text-[#EEEEEE]'}`}>
                 <Heart />
             </button>
         </div>

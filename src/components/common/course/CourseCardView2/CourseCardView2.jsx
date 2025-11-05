@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 
 
-const CourseCardView2 = ({item}) => {
+const CourseCardView2 = ({item, handleToggleFavorite , isFavorite}) => {
 
     const {t} = useTranslation();
 
@@ -51,9 +51,10 @@ const CourseCardView2 = ({item}) => {
                 </div>
             </div>
         </Link>
-        <button onClick={() => {postFavoriteCourses(item.courseId)}}
-        className='p-2 text-[#EEEEEE] bg-[#606060] opacity-25 rounded-[50px] absolute top-8 right-8 cursor-pointer'>
-            <Heart/>
+        <button onClick={() => {handleToggleFavorite(item.courseId)}}
+        className={`p-2 rounded-[50px] transition absolute top-[13px] right-[14px] cursor-pointer  
+        ${isFavorite ? 'bg-red-500 text-white' : 'bg-black opacity-25 text-[#EEEEEE]'}`}>
+            <Heart />
         </button>
     </div>
   )
