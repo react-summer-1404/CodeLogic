@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 import img1 from "../../assets/Images/Ellipsee.png";
 import img2 from "../../assets/Images/Groupp.png";
 import img3 from "../../assets/Images/Rectangleside.png";
@@ -10,33 +10,8 @@ import WestIcon from "@mui/icons-material/West";
 import EastIcon from "@mui/icons-material/East";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-
-const sideData = [
-  {
-    image: img3,
-    key: "news1",
-  },
-  {
-    image: img3,
-    key: "news2",
-  },
-  {
-    image: img3,
-    key: "news3",
-  },
-  {
-    image: img3,
-    key: "news1",
-  },
-  {
-    image: img3,
-    key: "news2",
-  },
-  {
-    image: img3,
-    key: "news3",
-  },
-];
+import { useQuery } from "@tanstack/react-query";
+import getAllNews from "../../core/services/api/Get/News";
 
 const newsData = [
   {
@@ -202,6 +177,17 @@ const newsData = [
 ];
 
 const NewsDetails = () => {
+  const { data } = useQuery({
+    queryFn: getAllNews,
+  });
+
+  const sortedNews = useMemo(() => {
+    if (!data?.news) return [];
+    return [...data.news]
+      .sort((a, b) => new Date(b.insertDate) - new Date(a.insertDate))
+      .slice(0, 6);
+  }, [data]);
+
   const { t } = useTranslation();
   const sliderRef = useRef(null);
 
@@ -274,7 +260,7 @@ const NewsDetails = () => {
             className="font-bold text-xl sm:text-2xl md:text-3xl text-[#1E1E1E] dark:text-[#fff] text-center"
             variants={itemVariants}
           >
-            {t("NewsDetails.pageTitle")}
+            f
           </motion.p>
         </div>
         <div className="flex flex-col sm:flex-row items-start justify-between max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
@@ -320,13 +306,17 @@ const NewsDetails = () => {
                 {t("NewsDetails.latestNews")}
               </span>
 
-              {sideData.map((item, index) => (
+              {sortedNews.map((news) => (
                 <NewsSideBar
-                  key={index}
-                  image={item.image}
-                  title={t(`sidebar.${item.key}.title`)}
-                  name={t(`sidebar.${item.key}.name`)}
-                  date={t(`sidebar.${item.key}.date`)}
+                  key={news.id}
+                  image={news.currentImageAddressTumb}
+                  title={news.title}
+                  name={news.addUserFullName}
+                  date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  }).format(new Date(news.insertDate))}
                 />
               ))}
             </motion.div>
