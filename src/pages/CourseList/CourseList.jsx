@@ -27,6 +27,7 @@ const CourseList = () => {
   };
   
 
+
   const handleSetStartDate = (startDate) => {
     setStartDate(startDate)
   }
@@ -35,10 +36,12 @@ const CourseList = () => {
   }
 
 
+
   const [courseLevel , setCourseLevel] = useState()
   const handleSetCourseLevel = (courseLevel) => {
     setCourseLevel(courseLevel)
   }
+
 
 
   const [teachers , setTeachers] = useState('')
@@ -47,11 +50,13 @@ const CourseList = () => {
   }
 
 
+
   const [technologies , setTechnologies] = useState('')
   const handleSetTechnologies = (technologies) => {
     setTechnologies(technologies)
   }
 
+  
 
   const [startPrice, setStartPrice] = useState()
   const [endPrice, setEndPrice] = useState()

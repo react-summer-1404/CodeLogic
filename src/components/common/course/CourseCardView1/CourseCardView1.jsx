@@ -1,4 +1,5 @@
 import React from 'react'
+import { postFavoriteCourses } from '../../../../core/services/api/post/postFavoriteCourses'
 import Teacher from '../../../../assets/Icons/Teacher'
 import Level from '../../../../assets/Icons/Level'
 import Star from '../../../../assets/Icons/Star'
@@ -48,7 +49,8 @@ const CourseCardView1 = ({ item }) => {
                     </div>
                 </div>
             </Link>
-            <button className='p-2 text-[#EEEEEE] bg-[#000000] opacity-25 rounded-[50px] absolute top-[13px] right-[14px] cursor-pointer'>
+            <button onClick={() => {postFavoriteCourses(item.courseId)}}
+            className='p-2 text-[#EEEEEE] bg-[#000000] opacity-25 rounded-[50px] absolute top-[13px] right-[14px] cursor-pointer'>
                 <Heart />
             </button>
         </div>

@@ -1,10 +1,13 @@
 import React from 'react'
+import {postFavoriteCourses} from '../../../../core/services/api/post/postFavoriteCourses'
 import Teacher from '../../../../assets/Icons/Teacher'
 import Level from '../../../../assets/Icons/Level' 
 import Star from '../../../../assets/Icons/Star'
 import Heart from '../../../../assets/Icons/Heart'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+
+
 
 const CourseCardView2 = ({item}) => {
 
@@ -48,7 +51,8 @@ const CourseCardView2 = ({item}) => {
                 </div>
             </div>
         </Link>
-        <button className='p-2 text-[#EEEEEE] bg-[#606060] opacity-25 rounded-[50px] absolute top-8 right-8 cursor-pointer'>
+        <button onClick={() => {postFavoriteCourses(item.courseId)}}
+        className='p-2 text-[#EEEEEE] bg-[#606060] opacity-25 rounded-[50px] absolute top-8 right-8 cursor-pointer'>
             <Heart/>
         </button>
     </div>
