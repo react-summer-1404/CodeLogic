@@ -41,8 +41,8 @@ const ImageInfo = ({ course }) => {
 
     return (
         <div className='flex flex-col gap-4'>
-            <img src={course.imageAddress} className='w-full
-            md:h-[240px] md:rounded-[16px]
+            <img src={course.imageAddress} className='w-full h-[160px] rounded-xl
+            md:h-[240px] md:rounded-2xl
             lg:h-[443px] lg:rounded-[25px]' />
             <div className='flex justify-between'>
                 <div>
