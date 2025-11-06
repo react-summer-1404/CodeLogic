@@ -33,7 +33,10 @@ const NewsSectionTop = ({ card }) => {
             <img src={image1} alt="" className="w-full h-full  " />
             <div className=" group absolute inset-0 bg-[#00000080] w-full h-full flex flex-col justify-between p-4   ">
                 <div
-                    onClick={() => postFavoriteTop(card.id)}
+                    onClick={() => {
+                        postFavoriteTop(card.id);
+                        console.log(card.id);
+                    }}
                     className=" bg-white/20  bg-no-repeat bg-[center_center]  p-5 backdrop-blur-md rounded-full w-[24px] h-[20.799999237060547px] "
                     style={{
                         backgroundImage: `url(${heartIcon})`,

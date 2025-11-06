@@ -1,12 +1,12 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { delay, motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
-import { securitySettingsVal } from '../../utils/Validations/securitySettings/securitySettingsVal';
+import { securitySettingsVal } from '../../../utils/Validations/securitySettings/securitySettingsVal.js';
 import { useTranslation } from 'react-i18next';
-import eyeOpen from '../../assets/Icons/A/eyeOpen.png';
-import eyeClose from '../../assets/Icons/A/eyeClose.png';
+import eyeOpen from '../../../assets/Icons/A/eyeOpen.png';
+import eyeClose from '../../../assets/Icons/A/eyeClose.png';
 import { useMutation } from '@tanstack/react-query';
-import { securitySet } from '../../core/services/api/post/securitySettings';
+import { securitySet } from '../../../core/services/api/post/securitySettings';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 const SecuritySettings = () => {

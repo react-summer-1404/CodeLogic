@@ -1,42 +1,54 @@
 import React, { useState } from 'react';
-import CourseHeader from '../../../components/common/favorites/courses/FavoriteCourseHeader/CourseHeader';
+import NewsHeader from '../../../components/common/favorites/News/newsHeader/NewsHeader';
 import { useTranslation } from 'react-i18next';
-import { FavoriteCoursesData } from '../../../components/common/data/Favorites/FavoriteCourses';
-import FavoriteCourse from '../../../components/common/favorites/courses/FavoriteCourse';
-import { AnimatePresence, motion } from 'framer-motion';
+import FavoriteNew from '../../../components/common/favorites/News/FavoriteNew';
+import { FavoriteNewsData } from '../../../components/common/data/Favorites/FavoriteNewsData';
+import { AnimatePresence, motion, number } from 'framer-motion';
 import pr from '../../../assets/Icons/A/pr.png';
 import pl from '../../../assets/Icons/A/pl.png';
 import searchIcon from '../../../assets/Icons/A/search.png';
-const FavoriteCourses = () => {
+import { useQuery } from '@tanstack/react-query';
+import { getFavoriteNews } from '../../../core/services/api/Get/GetFavoritesNews';
+import { useDebounce } from 'use-debounce';
+import loadingIcon from '../../../assets/Images/A/loading.gif';
+const FavoriteNews = () => {
     const { t, i18n } = useTranslation();
     const isRTL = i18n.language === 'fa';
-    //// pagination ////
+    /// get data ///
+    const { data: favNewsData = {}, isPending } = useQuery({
+        queryKey: ['FAVNEWS'],
+        queryFn: () => getFavoriteNews(),
+    });
+    /// pagination ///
     const [currentPage, setCurrentPage] = useState(1);
-    const [coursesPerPage, setCoursesPerPage] = useState(2);
+    const [newsPerPage, setNewsPerPage] = useState(2);
     const [searchTerm, setSearchTerm] = useState('');
+    const [query] = useDebounce(searchTerm, 350);
+    const [showCount, setShowCount] = useState(false);
     const [showFiltersOption, setShowFiltersOption] = useState(false);
     const [filterOption, setFilterOption] = useState('all');
+    const favNews = favNewsData?.myFavoriteNews || [];
+    const filteredNews = favNews
+        .filter((n) => n.title.trim().toLowerCase().includes(query.trim().toLowerCase()))
+        .sort((a, b) => {
+            if (filterOption === 'بیشترین لایک') {
+                return b.likesCount - a.likesCount;
+            } else if (filterOption === 'بیشترین بازدید') {
+                return b.viewsCount - a.viewsCount;
+            }
+            return 0;
+        });
 
-    const filteredCourses = FavoriteCoursesData.filter((n) => {
-        const matchesSearch = n.courses
-            .trim()
-            .toLowerCase()
-            .includes(searchTerm.trim().toLowerCase());
-        const matchesFilter =
-            filterOption === 'all'
-                ? true
-                : n.meetingMode.trim().toLowerCase().match(filterOption.trim().toLowerCase());
-        return matchesFilter && matchesSearch;
-    });
-
-    const startIndex = (currentPage - 1) * coursesPerPage;
-    const endIndex = startIndex + coursesPerPage;
-    const currentCourses = filteredCourses.slice(startIndex, endIndex);
-    const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
+    const startIndex = (currentPage - 1) * newsPerPage;
+    const endIndex = startIndex + newsPerPage;
+    const currentNews = filteredNews.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(filteredNews.length / newsPerPage);
     const goto = (p) => {
         if (p > totalPages || p < 1) return;
         setCurrentPage(p);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
+
     /// motion framer ///
     const fadeInUp = (delay) => ({
         hidden: { opacity: 0, y: -20 },
@@ -81,10 +93,10 @@ const FavoriteCourses = () => {
     return (
         <div
             className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-5 flex
-     max-h-[600px] h-full flex-col justify-between my-6 rounded-4xl "
+     max-h-[89%] h-full flex-col justify-between mx-auto mt-4 rounded-4xl "
         >
             <div className="flex justify-between items-center">
-                {/* filters ------- */}
+                {/* filtering ------ */}
                 <motion.div
                     variants={rightAnimate}
                     initial="hidden"
@@ -96,11 +108,11 @@ const FavoriteCourses = () => {
                         className=" dark:bg-black dark:text-[#ffff] dark:placeholder:text-white
                      w-full h-full shadow py-2 px-3 bg-[#ffff] rounded-[16px] focus:outline-none "
                         type="text"
-                        placeholder={t('favoriteCourses.search')}
                         onChange={(e) => {
                             setSearchTerm(e.target.value);
                             setCurrentPage(1);
                         }}
+                        placeholder={t('favoriteNews.search')}
                     />
                     <img
                         className={` absolute ${
@@ -111,43 +123,52 @@ const FavoriteCourses = () => {
                     />
                 </motion.div>
                 <div className="flex h-full items-center bg-[#ffff] dark:bg-black dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
-                    <span className="text-[16px]">{t('coursesPayment.filters')}</span>
+                    <span className="text-[16px] invisible md:visible">
+                        {t('coursesPayment.filters')}
+                    </span>
                     <select
                         value={filterOption}
                         onChange={(e) => {
                             setFilterOption(e.target.value);
                             setCurrentPage(1);
                         }}
-                        className=" rounded-xl text-sm cursor-pointer py-1 ps-2 text-gray-600
+                        className=" rounded-xl text-sm cursor-pointer  ps-2 text-gray-600
                          dark:bg-black dark:text-[#ffff] bg-[#ffff]"
                     >
-                        <option value="all">({t('favoriteCourses.all')})</option>
-                        <option value="حضوری">({t('favoriteCourses.faceToFace')})</option>
-                        <option value="انلاین">({t('favoriteCourses.online')})</option>
+                        <option value="all">({t('favoriteNews.all')})</option>
+                        <option value="بیشترین لایک">({t('favoriteNews.mostLikes')})</option>
+                        <option value="بیشترین بازدید">({t('favoriteNews.mostViews')})</option>
                     </select>
                 </div>
             </div>
-            {/* favorite courses -------- */}
+            {/* favorite news ------- */}
             <motion.div
                 variants={fadeInUp(0)}
                 initial="hidden"
                 animate="visible"
                 className=" dark:bg-black dark:text-[#ffff]
-             h-[89%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
+             h-[85%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
             >
                 <div className="flex flex-col h-[70%]">
-                    <CourseHeader />
-                    <div className="overflow-y-auto h-full">
-                        {currentCourses.length > 0 ? (
-                            currentCourses.map((items) => (
-                                <FavoriteCourse items={items} key={items.id} />
-                            ))
-                        ) : (
-                            <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
-                                {t('favoriteCourses.notFound')}
-                            </h1>
-                        )}
-                    </div>
+                    <NewsHeader />
+                    {isPending && (
+                        <div className="mx-auto">
+                            <img src={loadingIcon} alt="" />
+                        </div>
+                    )}
+                    {!isPending && (
+                        <div className="overflow-y-auto h-full">
+                            {currentNews.length > 0 ? (
+                                currentNews.map((items) => (
+                                    <FavoriteNew key={items.id} items={items} />
+                                ))
+                            ) : (
+                                <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
+                                    {t('favoriteNews.notFound')}
+                                </h1>
+                            )}
+                        </div>
+                    )}
                 </div>
                 {/* buttons ------- */}
                 <div className="flex justify-between p-8">
@@ -160,7 +181,7 @@ const FavoriteCourses = () => {
                             className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 mr-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
                             <img src={pl} alt="" />
-                            {t('favoriteCourses.back')}
+                            {t('favoriteNews.back')}
                         </button>
                         {Array.from({ length: totalPages }).map((_, i) => {
                             const p = i + 1;
@@ -184,17 +205,17 @@ const FavoriteCourses = () => {
                             }}
                             className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 ml-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
-                            {t('favoriteCourses.next')}
+                            {t('favoriteNews.next')}
                             <img src={pr} alt="" />
                         </button>
                     </div>
                     {/* filtering counts ------ */}
                     <div className="flex items-center dark:bg-black dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
-                        <span className="text-[16px]">{t('favoriteCourses.NumberShows')}</span>
+                        <span className="text-[16px]">{t('favoriteNews.NumberShows')}</span>
                         <select
-                            value={coursesPerPage}
+                            value={newsPerPage}
                             onChange={(e) => {
-                                setCoursesPerPage(Number(e.target.value));
+                                setNewsPerPage(Number(e.target.value));
                                 setCurrentPage(1);
                             }}
                             className=" rounded-xl text-sm cursor-pointer px-3 py-1  dark:bg-black dark:text-[#ffff]"
@@ -210,4 +231,4 @@ const FavoriteCourses = () => {
     );
 };
 
-export default FavoriteCourses;
+export default FavoriteNews;

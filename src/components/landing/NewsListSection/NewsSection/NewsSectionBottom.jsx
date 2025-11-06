@@ -33,7 +33,10 @@ const NewsSectionBottom = ({ card }) => {
             <img src={image2} alt="" className="w-full h-full  " />
             <div className=" group absolute inset-0 bg-[#00000080] w-full h-full flex flex-col justify-between p-4   ">
                 <div
-                    onClick={() => postFavoriteBottom(card.id)}
+                    onClick={() => {
+                        postFavoriteBottom(card.id);
+                        console.log(card.id);
+                    }}
                     style={{
                         backgroundImage: `url(${heartIcon})`,
                         cursor: `url(${cursorIcon}),pointer`,

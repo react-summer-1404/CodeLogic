@@ -93,33 +93,37 @@ const ForgotPasswordStepTwo = () => {
                             <Formik
                                 initialValues={resetData2}
                                 onSubmit={(value) => {
-                                    console.log(value);
-                                    PostNewPass(value);
+                                    console.log(value.newPassword);
+                                    PostNewPass(value.newPassword);
                                 }}
                                 validationSchema={validationSchema}
                             >
                                 {({ errors, touched }) => (
                                     <Form>
                                         <div className=" flex flex-col gap-3 ">
-                                            <div className=" relative flex flex-col ">
+                                            <div className=" relative mt-6 ">
                                                 <Field
-                                                    className={` outline-none  bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full
-                                                 px-13 py-3  placeholder:text-[15px] ${
-                                                     errors.password && touched.password
-                                                         ? 'border-[#EF5350] border-1 '
-                                                         : ''
-                                                 } `}
-                                                    style={{ backgroundImage: `url(${email})` }}
-                                                    type="text"
-                                                    name="gmail"
-                                                    id="gmail"
-                                                    placeholder={t(
-                                                        'registerStepThree.placeholder.email'
-                                                    )}
+                                                    className={` focus:outline-none  bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
+                                                        errors.confirmPassword &&
+                                                        touched.confirmPassword
+                                                            ? 'border-[#EF5350] border-1 '
+                                                            : ''
+                                                    } `}
+                                                    style={{ backgroundImage: `url(${lock})` }}
+                                                    type={showFirstPassword ? 'text' : 'password'}
+                                                    name="newPassword"
+                                                    id="newPassword"
+                                                    placeholder={t('forgotPass.SetNewPass')}
+                                                />
+                                                <img
+                                                    onClick={handleFirstPassword}
+                                                    src={showFirstPassword ? eyeClose : eyeOpen}
+                                                    alt=""
+                                                    className=" cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  "
                                                 />
                                             </div>
                                             <ErrorMessage
-                                                name={'gmail'}
+                                                name={'newPassword'}
                                                 component={'span'}
                                                 className="text-[#EF5350] text-[14px]  "
                                             />
@@ -133,9 +137,9 @@ const ForgotPasswordStepTwo = () => {
                                                     } `}
                                                     style={{ backgroundImage: `url(${lock})` }}
                                                     type={showSecondPassword ? 'text' : 'password'}
-                                                    name="newPassword"
-                                                    id="newPassword"
-                                                    placeholder={t('forgotPass.SetNewPass')}
+                                                    name="confirmPassword"
+                                                    id="confirmPassword"
+                                                    placeholder={t('forgotPass.RepeatPass')}
                                                 />
                                                 <img
                                                     onClick={handleSecondPassword}
@@ -145,7 +149,7 @@ const ForgotPasswordStepTwo = () => {
                                                 />
                                             </div>
                                             <ErrorMessage
-                                                name={'newPassword'}
+                                                name={'confirmPassword'}
                                                 component={'span'}
                                                 className="text-[#EF5350] text-[14px]  "
                                             />

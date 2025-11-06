@@ -461,7 +461,7 @@
     },
     "forgotVal2": {
         "required1": "Password entry is required",
-        "min": "Password must contain at least 8 characters.",
+        "min": "Password must contain at least 4 characters.",
         "required2": "Password confirmation is required.",
         "oneOf": "Password does not match"
     },
@@ -514,7 +514,9 @@
         "caption": "Caption",
         "meetingMode": "Meeting mode",
         "lastUpdated": "Last updated",
-        "Operation": "Operation"
+        "Operation": "Operation",
+        "lastUpdate": "Last updates",
+        "firstUpdate": "First updates"
     },
     "securitySetting": {
         "currentPassword": "Current password",
@@ -526,86 +528,84 @@
         "saveSettings": "Save security settings",
         "minNumbers": "password must contain at least 1 number"
     },
-    "panelside" : {
-    "academy_name": "Bahr Academy",
-    "menu": "Menu",
-    "dashboard": "Dashboard",
-    "user_info": "User Information",
-    "my_courses": "My Courses",
-    "reserved_courses": "Reserved Courses",
-    "my_payments": "My Payments",
-    "my_comments": "My Comments",
-    "my_view_on_the_courses" : "My view on the courses",
-    "my_view_on_the_news" : " My view on the news   ",
-    "my_favorits" : "My favorites   ",
-    "my_favorite_courses" : "My favorite courses",
-    "my_favorite_news" : "My favorite news   ",
-    "security_setting" : "Security setting ",
-    "logout" : " Log out ",
-    "general" : "General"
+    "panelside": {
+        "academy_name": "Bahr Academy",
+        "menu": "Menu",
+        "dashboard": "Dashboard",
+        "user_info": "User Information",
+        "my_courses": "My Courses",
+        "reserved_courses": "Reserved Courses",
+        "my_payments": "My Payments",
+        "my_comments": "My Comments",
+        "my_view_on_the_courses": "My view on the courses",
+        "my_view_on_the_news": " My view on the news   ",
+        "my_favorits": "My favorites   ",
+        "my_favorite_courses": "My favorite courses",
+        "my_favorite_news": "My favorite news   ",
+        "security_setting": "Security setting ",
+        "logout": " Log out ",
+        "general": "General"
     },
-    "panelheader" : {
-    "name" : "matin ghorbanzade"
+    "panelheader": {
+        "name": "matin ghorbanzade"
     },
-    "paneldashboard" : {
-    "my_courses_title" : "My courses",
-    "unpaid_periods" : "Unpaid Periods",
-    "profile_completed" : "Profile Completed",
-    "reserved_courses" : "Reserved Courses",
-    "view_all" : "View All",
-    "latest_news" : "Latest News"
+    "paneldashboard": {
+        "my_courses_title": "My courses",
+        "unpaid_periods": "Unpaid Periods",
+        "profile_completed": "Profile Completed",
+        "reserved_courses": "Reserved Courses",
+        "view_all": "View All",
+        "latest_news": "Latest News"
     },
     "userinfo": {
-    
-        "social" : {
-        "email" : "Email",
-        "telegram" : "Telegram",
-        "linkdin" : "Linkedin",
-        "button": "Edit Information"
+        "social": {
+            "email": "Email",
+            "telegram": "Telegram",
+            "linkdin": "Linkedin",
+            "button": "Edit Information"
         },
         "tabs": {
-        "general": "General Information",
-        "location": "Location",
-        "social": "Social Media"
+            "general": "General Information",
+            "location": "Location",
+            "social": "Social Media"
         },
-        "gender" : {
-        "male" : "Male",
-        "female" : "Female"
-
+        "gender": {
+            "male": "Male",
+            "female": "Female"
         },
         "fields": {
-        "name": "First Name",
-        "lastname": "Last Name",
-        "nationalcode": "National ID",
-        "gender": "Gender",
-        "birthday": "Birthday",
-        "phonenumber": "Phone Number",
-        "aboutme": "About Me"
+            "name": "First Name",
+            "lastname": "Last Name",
+            "nationalcode": "National ID",
+            "gender": "Gender",
+            "birthday": "Birthday",
+            "phonenumber": "Phone Number",
+            "aboutme": "About Me"
         },
         "placeholders": {
-        "name": "Enter your first name",
-        "lastname": "Enter your last name",
-        "nationalcode": "Enter your 10-digit national ID",
-        "gender": "Select gender",
-        "birthday": "",
-        "phonenumber": "Enter your phone number",
-        "aboutme": "Write more about yourself"
+            "name": "Enter your first name",
+            "lastname": "Enter your last name",
+            "nationalcode": "Enter your 10-digit national ID",
+            "gender": "Select gender",
+            "birthday": "",
+            "phonenumber": "Enter your phone number",
+            "aboutme": "Write more about yourself"
         },
         "buttons": {
-        "edit": "Edit Information"
+            "edit": "Edit Information"
         },
-        "modal" : {
-        "confirm": "Confirm Image ",
-        "cancel" : "Cancel"
+        "modal": {
+            "confirm": "Confirm Image ",
+            "cancel": "Cancel"
         },
         "location": {
-        "adress": " Adress",
-        "width": "Latitude",
-        "height": "Longitude",
-        "adressplace": " Enter your home adress or select it on the map",
-        "widthplace": " Enter the Latitude",
-        "heightplace": "Enter the Longitude",
-        "button": "Edit Information"
+            "adress": " Adress",
+            "width": "Latitude",
+            "height": "Longitude",
+            "adressplace": " Enter your home adress or select it on the map",
+            "widthplace": " Enter the Latitude",
+            "heightplace": "Enter the Longitude",
+            "button": "Edit Information"
         }
     },
     "userPanelSearch": {
@@ -650,24 +650,24 @@
     },
     "validation": {
         "nationalId": {
-        "required": "Please enter your national ID *",
-        "invalid": "Invalid national ID *"
+            "required": "Please enter your national ID *",
+            "invalid": "Invalid national ID *"
         },
         "name": {
-        "required": "Please enter your first name *"
+            "required": "Please enter your first name *"
         },
         "lastname": {
-        "required": "Please enter your last name *"
+            "required": "Please enter your last name *"
         },
         "phoneNumber": {
-        "required": "Please enter your phone number *",
-        "invalid": "Invalid phone number *"
+            "required": "Please enter your phone number *",
+            "invalid": "Invalid phone number *"
         },
         "birthDate": {
-        "required": "Please enter your birth date *"
+            "required": "Please enter your birth date *"
         },
         "gender": {
-        "required": "Please select an option *"
+            "required": "Please select an option *"
         }
     }
 }
