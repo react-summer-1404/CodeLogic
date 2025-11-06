@@ -36,7 +36,7 @@ const FavoriteNew = ({ items }) => {
             variants={Animate}
             initial="hidden"
             animate="visible"
-            className=" dark:bg-black dark:text-[#ffff] w-full text-[16px] text-center font-semibold bg-[#ffff] rounded-t-4xl flex items-center py-5 border-b border-[#EAEAEA] "
+            className=" dark:bg-[#454545] dark:text-[#ffff] w-full text-[16px] text-center font-semibold bg-[#ffff] rounded-t-4xl flex items-center py-5 border-b border-[#EAEAEA] "
             style={{ direction: 'rtl' }}
         >
             <div className="ps-8 flex items-center justify-start gap-4 flex-[1.5] text-right">

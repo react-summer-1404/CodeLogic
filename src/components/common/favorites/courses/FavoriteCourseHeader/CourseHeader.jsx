@@ -5,7 +5,7 @@ const CourseHeader = () => {
     const { t } = useTranslation();
     return (
         <div
-            className=" dark:bg-black dark:text-[#ffff] w-full text-[16px] text-center font-semibold bg-[#ffff] rounded-t-4xl flex items-center py-5 border-b border-[#EAEAEA] "
+            className=" dark:bg-[#454545] dark:text-[#ffff] w-full text-[16px] text-center font-semibold bg-[#ffff] rounded-t-4xl flex items-center py-5 border-b border-[#EAEAEA] "
             style={{ direction: 'rtl' }}
         >
             <div className="ps-8 flex-[1.5] text-right">{t('favoriteCourses.courseName')}</div>

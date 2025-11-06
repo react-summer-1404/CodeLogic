@@ -92,7 +92,7 @@ const CoursesPayment = () => {
                         className=" relative max-w-[40%] w-full"
                     >
                         <input
-                            className=" dark:bg-black dark:text-[#ffff] dark:placeholder:text-white
+                            className=" dark:bg-[#454545] dark:text-[#ffff] dark:placeholder:text-white
                      w-full h-full shadow py-2 px-3 bg-[#ffff] rounded-[16px] focus:outline-none "
                             type="text"
                             placeholder={t('coursesPayment.search')}
@@ -108,7 +108,7 @@ const CoursesPayment = () => {
                     </motion.div>
                 </AnimatePresence>
 
-                <div className="flex h-full items-center bg-[#ffff] dark:bg-black dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
+                <div className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
                     <span className=" invisible md:visible text-[16px]">
                         {t('coursesPayment.filters')}
                     </span>
@@ -119,7 +119,7 @@ const CoursesPayment = () => {
                             setcurrentPage(1);
                         }}
                         className=" rounded-xl text-sm cursor-pointer py-1 ps-2 text-gray-600
-                         dark:bg-black dark:text-[#ffff] bg-[#ffff]"
+                         dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]"
                     >
                         <option value="all">({t('coursesPayment.all')})</option>
                         <option value="تایید شده">({t('coursesPayment.confirmed')})</option>
@@ -135,7 +135,7 @@ const CoursesPayment = () => {
                 variants={fadeInUp(0)}
                 initial="hidden"
                 animate="visible"
-                className="  dark:bg-black dark:text-[#ffff]
+                className="  dark:bg-[#454545] dark:text-[#ffff]
              h-[85%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
             >
                 <div className="flex flex-col h-[70%] ">
@@ -160,7 +160,7 @@ const CoursesPayment = () => {
                             onClick={() => {
                                 setcurrentPage((prev) => prev - 1);
                             }}
-                            className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 mr-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
+                            className="  dark:bg-[#454545] dark:text-[#ffff] cursor-pointer flex gap-3 mr-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
                             <img src={pl} alt="" />
                             {t('coursesPayment.back')}
@@ -185,14 +185,14 @@ const CoursesPayment = () => {
                             onClick={() => {
                                 setcurrentPage((prev) => prev + 1);
                             }}
-                            className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 ml-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
+                            className=" dark:bg-[#454545] dark:text-[#ffff] cursor-pointer flex gap-3 ml-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
                             {t('coursesPayment.next')}
                             <img src={pr} alt="" />
                         </button>
                     </div>
                     {/* ------------ filterCount */}
-                    <div className="flex items-center dark:bg-black dark:text-[#ffff] rounded-xl border shadow-md  border-[#EAEAEA] ">
+                    <div className="flex items-center dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow-md  border-[#EAEAEA] ">
                         <span className="  text-[16px]">{t('coursesPayment.NumberShows')}</span>
                         <select
                             value={paymentsPerPage}
@@ -200,7 +200,7 @@ const CoursesPayment = () => {
                                 setPaymentsPerPage(Number(e.target.value));
                                 setcurrentPage(1);
                             }}
-                            className=" rounded-xl text-sm cursor-pointer px-3 md:py-1  dark:bg-black dark:text-[#ffff]"
+                            className=" rounded-xl text-sm cursor-pointer px-3 md:py-1 dark:bg-[#454545] dark:text-[#ffff]"
                         >
                             <option value={2}>2</option>
                             <option value={4}>4</option>

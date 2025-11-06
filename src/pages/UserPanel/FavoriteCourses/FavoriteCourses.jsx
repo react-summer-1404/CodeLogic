@@ -109,7 +109,7 @@ const FavoriteCourses = () => {
                     className="relative max-w-[439px] w-full"
                 >
                     <input
-                        className=" dark:bg-black dark:text-[#ffff] dark:placeholder:text-white
+                        className=" dark:bg-[#454545] dark:text-[#ffff] dark:placeholder:text-white
                      w-full h-full shadow py-2 px-3 bg-[#ffff] rounded-[16px] focus:outline-none "
                         type="text"
                         placeholder={t('favoriteCourses.search')}
@@ -126,7 +126,7 @@ const FavoriteCourses = () => {
                         alt=""
                     />
                 </motion.div>
-                <div className="flex h-full items-center bg-[#ffff] dark:bg-black dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
+                <div className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
                     <span className="text-[16px]  invisible md:visible">
                         {t('coursesPayment.filters')}
                     </span>
@@ -137,7 +137,7 @@ const FavoriteCourses = () => {
                             setCurrentPage(1);
                         }}
                         className=" rounded-xl text-sm cursor-pointer py-1 ps-2 text-gray-600
-                         dark:bg-black dark:text-[#ffff] bg-[#ffff]"
+                         dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]"
                     >
                         <option value="all">({t('favoriteCourses.all')})</option>
                         <option value="جدید ترین ها">({t('favoriteCourses.lastUpdate')})</option>
@@ -152,7 +152,7 @@ const FavoriteCourses = () => {
                 variants={fadeInUp(0)}
                 initial="hidden"
                 animate="visible"
-                className=" dark:bg-black dark:text-[#ffff]
+                className=" dark:bg-[#454545] dark:text-[#ffff]
              h-[85%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
             >
                 <div className="flex flex-col h-[70%]">
@@ -184,7 +184,7 @@ const FavoriteCourses = () => {
                             onClick={() => {
                                 setCurrentPage((prev) => prev - 1);
                             }}
-                            className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 mr-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
+                            className=" dark:bg-[#454545] dark:text-[#ffff] cursor-pointer flex gap-3 mr-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
                             <img src={pl} alt="" />
                             {t('favoriteCourses.back')}
@@ -209,14 +209,14 @@ const FavoriteCourses = () => {
                             onClick={() => {
                                 setCurrentPage((prev) => prev + 1);
                             }}
-                            className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 ml-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
+                            className="  dark:bg-[#454545] dark:text-[#ffff] cursor-pointer flex gap-3 ml-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
                             {t('favoriteCourses.next')}
                             <img src={pr} alt="" />
                         </button>
                     </div>
                     {/* filtering counts ------ */}
-                    <div className="flex items-center dark:bg-black dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
+                    <div className="flex items-center dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
                         <span className="text-[16px]">{t('favoriteCourses.NumberShows')}</span>
                         <select
                             value={coursesPerPage}
@@ -224,7 +224,7 @@ const FavoriteCourses = () => {
                                 setCoursesPerPage(Number(e.target.value));
                                 setCurrentPage(1);
                             }}
-                            className=" rounded-xl text-sm cursor-pointer px-3 py-1  dark:bg-black dark:text-[#ffff]"
+                            className=" rounded-xl text-sm cursor-pointer px-3 py-1  dark:bg-[#454545] dark:text-[#ffff]"
                         >
                             <option value={2}>2</option>
                             <option value={4}>4</option>
