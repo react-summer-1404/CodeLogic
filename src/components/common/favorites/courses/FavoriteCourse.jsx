@@ -4,7 +4,7 @@ import greenEye from '../../../../assets/Icons/A/greenEye.png';
 import greenBasket from '../../../../assets/Icons/A/greenBasket.png';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-import { deleteFavCourses } from '../../../../core/services/api/Delete/DeleteFavoriteCourses';
+import { deleteFavCourses } from '../../../../core/services/api/delete/deleteFavCourses';
 const FavoriteCourse = ({ items }) => {
     /// face data ///
     const mode = ['انلاین', 'حضوری'];

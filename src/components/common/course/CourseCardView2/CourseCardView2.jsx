@@ -7,9 +7,17 @@ import Teacher from '../../../../assets/Icons/Teacher'
 
 
 
-const CourseCardView2 = ({ item, handleToggleFavorite, isFavorite }) => {
+const CourseCardView2 = ({ item, handleToggleFavorite}) => {
 
     const { t } = useTranslation();
+
+    const [isFavorite , setIsFavorite] = useState();
+    const onToggleFavorite = () => {
+        handleToggleFavorite(item.courseId)
+        setIsFavorite(!isFavorite)
+    }
+    
+
 
     return (
         <div className='flex flex-shrink-0 gap-8 w-[1044px] p-4 bg-[#FFFFFF] rounded-[20px] relative
@@ -49,7 +57,7 @@ const CourseCardView2 = ({ item, handleToggleFavorite, isFavorite }) => {
                     </div>
                 </div>
             </Link>
-            <button onClick={() => { handleToggleFavorite(item.courseId) }}
+            <button onClick={onToggleFavorite}
             className={`p-2 rounded-[50px] transition absolute top-[13px] right-[14px] cursor-pointer opacity-25 text-[#EEEEEE] 
             ${isFavorite ? 'bg-[#FF0000]' : 'bg-[#000000]'}`}>
                 <Heart />

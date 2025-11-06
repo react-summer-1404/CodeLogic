@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Teacher from '../../../../assets/Icons/Teacher'
 import Level from '../../../../assets/Icons/Level'
 import Star from '../../../../assets/Icons/Star'
@@ -8,9 +8,15 @@ import { Link } from 'react-router-dom'
 
 
 
-const CourseCardView1 = ({ item , handleToggleFavorite , isFavorite}) => {
+const CourseCardView1 = ({ item , handleToggleFavorite}) => {
 
     const {t} = useTranslation();
+
+    const [isFavorite , setIsFavorite] = useState();
+    const onToggleFavorite = () => {
+        handleToggleFavorite(item.courseId)
+        setIsFavorite(!isFavorite)
+    }
 
     return (
         <div dir='rtl' className='flex flex-col flex-shrink-0 items-center w-[350px] rounded-[20px] relative 
@@ -48,7 +54,7 @@ const CourseCardView1 = ({ item , handleToggleFavorite , isFavorite}) => {
                     </div>
                 </div>
             </Link>
-            <button onClick={() => {handleToggleFavorite(item.courseId)}}
+            <button onClick={onToggleFavorite}
             className={`p-2 rounded-[50px] transition absolute top-[13px] right-[14px] cursor-pointer opacity-25 text-[#EEEEEE] 
             ${isFavorite ? 'bg-[#FF0000]' : 'bg-[#000000]'}`}>
                 <Heart />

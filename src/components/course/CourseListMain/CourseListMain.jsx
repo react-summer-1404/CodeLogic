@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import ReactPaginate from 'react-paginate'
-import { addFavoriteCourses } from '../../../core/services/api/post/addFavoriteCourses'
 import CourseCardView1 from '../../common/course/CourseCardView1/CourseCardView1'
 import CourseCardView2 from '../../common/course/CourseCardView2/CourseCardView2'
 import SortView from '../SortView/SortView'
+import { addFavoriteCourses } from '../../../core/services/api/post/addFavoriteCourses'
+import { deleteFavCourses } from '../../../core/services/api/delete/deleteFavCourses'
 
 
 const VIEW_TYPE_LIST = 'list';
@@ -23,10 +24,20 @@ const CourseListMain = ({ coursesData, isLoading, currentPage, setCurrentPage, s
   };
 
 
-  const [isFavorite, setIsFavorite] = useState(false)
+
+  const [favorites, setFavorites] = useState({})
   const handleToggleFavorite = async (courseId) => {
-    await addFavoriteCourses(courseId)
-    setIsFavorite(!isFavorite)
+    const isFavorite = favorites[courseId] || false
+      if(isFavorite){
+        await deleteFavCourses(courseId)
+      } 
+      else{
+        await addFavoriteCourses(courseId)
+      }
+      setFavorites((prev) => ({
+        ...prev,
+        [courseId]: !isFavorite,
+      }))
   }
 
 
@@ -52,8 +63,7 @@ const CourseListMain = ({ coursesData, isLoading, currentPage, setCurrentPage, s
       <div className='flex flex-row flex-wrap gap-y-8 gap-x-4'>
         {
           coursesData?.courseFilterDtos?.map((item, index) => {
-            return <CourseCardComponent item={item} key={index} handleToggleFavorite={handleToggleFavorite} 
-            isFavorite={isFavorite}/>
+            return <CourseCardComponent item={item} key={index} handleToggleFavorite={handleToggleFavorite}/>
           })
         }
       </div>
