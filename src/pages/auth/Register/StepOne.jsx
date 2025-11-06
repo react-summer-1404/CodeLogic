@@ -11,6 +11,7 @@ import RegisterStepOne from "../../../core/services/api/post/registerStepOne";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import TranslateButton from "../../../components/TranslateButton/TranslateButton";
+import sun fro 
 
 const StepOne = () => {
   const { t, i18n } = useTranslation();
@@ -113,7 +114,7 @@ const StepOne = () => {
                     <div className="w-3 h-[90%] rounded-full flex items-center">
                       <img
                         src={`${
-                          darkMode ? "./icons/sun.png" : "./icons/moon.png"
+                          darkMode ? "/icons/sun.png" : "/icons/moon.png"
                         }`}
                         alt="theme icon"
                       />
