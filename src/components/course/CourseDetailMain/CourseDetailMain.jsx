@@ -33,7 +33,7 @@ const CourseDetailMain = ({course}) => {
       {
         activeTab === 'comment' && (
           <>
-            <CourseComments/> 
+            <CourseComments course={course}/> 
           </>
         )
       }
