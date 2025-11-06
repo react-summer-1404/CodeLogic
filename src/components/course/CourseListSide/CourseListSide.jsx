@@ -8,7 +8,7 @@ import StartEndDate from '../StartEndDate/StartEndDate';
 
 const CourseListSide = ({handleSearchSubmit , handleSetStartDate , handleSetEndDate , handleSetCourseLevel, 
 handleSetTeachers, handleSetTechnologies,
-handleSetStartPrice, handleSetEndPrice}) => {
+handleSetPrice}) => {
   
   const {t} = useTranslation();  
 
@@ -30,7 +30,7 @@ handleSetStartPrice, handleSetEndPrice}) => {
       <SideDropDown title={t('sideDropDown.title3')} item1={t('sideDropDown.title3Item1')} 
       item2={t('sideDropDown.title3Item2')} item3={'sideDropDown.title3Item3'} 
       handleSetTechnologies={handleSetTechnologies}/>
-      <PriceFilter handleSetStartPrice={handleSetStartPrice} handleSetEndPrice={handleSetEndPrice}/>
+      <PriceFilter handleSetPrice={handleSetPrice}/>
 
     </div>
   )

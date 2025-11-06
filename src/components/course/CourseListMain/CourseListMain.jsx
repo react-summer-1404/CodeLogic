@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ReactPaginate from 'react-paginate'
-import { postFavoriteCourses } from '../../../core/services/api/post/postFavoriteCourses'
+import { addFavoriteCourses } from '../../../core/services/api/post/addFavoriteCourses'
 import CourseCardView1 from '../../common/course/CourseCardView1/CourseCardView1'
 import CourseCardView2 from '../../common/course/CourseCardView2/CourseCardView2'
 import SortView from '../SortView/SortView'
@@ -25,7 +25,7 @@ const CourseListMain = ({ coursesData, isLoading, currentPage, setCurrentPage, s
 
 
   const handleToggleFavorite = async (courseId) => {
-    await postFavoriteCourses(courseId)
+    await addFavoriteCourses(courseId)
   }
 
 
@@ -51,9 +51,7 @@ const CourseListMain = ({ coursesData, isLoading, currentPage, setCurrentPage, s
       <div className='flex flex-row flex-wrap gap-y-8 gap-x-4'>
         {
           coursesData?.courseFilterDtos?.map((item, index) => {
-            return <CourseCardComponent item={item} key={index}
-
-              handleToggleFavorite={handleToggleFavorite} />
+            return <CourseCardComponent item={item} key={index} handleToggleFavorite={handleToggleFavorite} />
           })
         }
       </div>

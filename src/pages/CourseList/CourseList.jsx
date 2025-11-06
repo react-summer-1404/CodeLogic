@@ -3,7 +3,7 @@ import CourseListSide from '../../components/course/CourseListSide/CourseListSid
 import CourseListMain from '../../components/course/CourseListMain/CourseListMain'
 import { useTranslation } from 'react-i18next'
 import { useQuery } from '@tanstack/react-query'
-import GetAllCourses from '../../core/services/api/Get/GetAllCourses'
+import GetAllCourses from "../../core/services/api/get/GetAllCourses"
 
 
 const DEFAULT_SORT_TYPE = 'DESC';
@@ -12,24 +12,25 @@ const DEFAULT_SORT_TYPE = 'DESC';
 const CourseList = () => {
 
 
-  const [startDate , setStartDate] = useState(null);
-  const [endDate , setEndDate] = useState(null)
 
 
   const [sortingCol, setSortingCol] = useState(DEFAULT_SORT_TYPE);
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(3);
-  
+
 
   const [searchQuery, setSearchQuery] = useState('');
   const handleSearchSubmit = (searchTerm) => {
     setSearchQuery(searchTerm);
   };
-  
 
 
+
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null)
   const handleSetStartDate = (startDate) => {
     setStartDate(startDate)
+    console.log('startDate:', startDate)
   }
   const handleSetEndDate = (endDate) => {
     setEndDate(endDate)
@@ -37,54 +38,54 @@ const CourseList = () => {
 
 
 
-  const [courseLevel , setCourseLevel] = useState()
+  const [courseLevel, setCourseLevel] = useState()
   const handleSetCourseLevel = (courseLevel) => {
     setCourseLevel(courseLevel)
   }
 
 
 
-  const [teachers , setTeachers] = useState('')
+  const [teachers, setTeachers] = useState('')
   const handleSetTeachers = (teachers) => {
     setTeachers(teachers)
   }
 
 
 
-  const [technologies , setTechnologies] = useState('')
+  const [technologies, setTechnologies] = useState('')
   const handleSetTechnologies = (technologies) => {
     setTechnologies(technologies)
   }
 
-  
 
-  const [startPrice, setStartPrice] = useState()
-  const [endPrice, setEndPrice] = useState()
-  const handleSetStartPrice = (startPrice) => {
-    setStartPrice(startPrice)
-  }
-  const handleSetEndPrice = (endPrice) => {
-    setEndPrice(endPrice)
+
+  const [price, setPrice] = useState([0, 10000])
+  const handleSetPrice = (price) => {
+    console.log(price)
+    setPrice(price);
   }
 
 
-  
-  const { data: coursesData, isLoading } = useQuery({ 
+
+  const { data: coursesData, isLoading } = useQuery({
     queryKey: ['GETALLCOURSES', searchQuery, pageSize, currentPage, sortingCol, startDate, endDate, courseLevel, teachers,
-      technologies, startPrice
-    ], 
-    queryFn: () => GetAllCourses({ RowsOfPage: pageSize, PageNumber: currentPage, Query: searchQuery, SortType: "startTime",
-      // StartDate: startDate, EndDate: endDate
-      courseLevelId: courseLevel,  
+      technologies, price
+    ],
+    queryFn: () => GetAllCourses({
+      RowsOfPage: pageSize, PageNumber: currentPage, Query: searchQuery, SortType: "startTime",
+      StartDate: startDate, EndDate: endDate,
+      courseLevelId: courseLevel,
       teacherName: teachers,
-      technologyList: technologies
-    }) 
+      technologyList: technologies,
+      CostDown: price[0],
+      CostUp: price[1]
+    })
   })
-  
-  
+
+
   let result = coursesData?.totalCount;
-  
-  const {t} = useTranslation();
+
+  const { t } = useTranslation();
 
 
   return (
@@ -96,15 +97,15 @@ const CourseList = () => {
       </div>
       <div className='flex flex-col items-center gap-4 w-full pt-8 px-10 
       md:flex md:flex-row md:items-start md:gap-8'>
-        <CourseListSide handleSearchSubmit={handleSearchSubmit} 
-        handleSetStartDate={handleSetStartDate} handleSetEndDate={handleSetEndDate}
-        handleSetCourseLevel={handleSetCourseLevel}
-        handleSetTeachers={handleSetTeachers}
-        handleSetTechnologies={handleSetTechnologies}
-        handleSetStartPrice={handleSetStartPrice} handleSetEndPrice={handleSetEndPrice}/>
+        <CourseListSide handleSearchSubmit={handleSearchSubmit}
+          handleSetStartDate={handleSetStartDate} handleSetEndDate={handleSetEndDate}
+          handleSetCourseLevel={handleSetCourseLevel}
+          handleSetTeachers={handleSetTeachers}
+          handleSetTechnologies={handleSetTechnologies}
+          handleSetPrice={handleSetPrice}/>
         <CourseListMain coursesData={coursesData} isLoading={isLoading} searchQuery={searchQuery}
-        currentPage={currentPage} setCurrentPage={setCurrentPage} setSortingCol={setSortingCol}
-        pageSize={pageSize} setPageSize={setPageSize}/>
+          currentPage={currentPage} setCurrentPage={setCurrentPage} setSortingCol={setSortingCol}
+          pageSize={pageSize} setPageSize={setPageSize} />
       </div>
     </div>
   )

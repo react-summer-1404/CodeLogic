@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Like from '../../../assets/Icons/Like'
 import DisLike from '../../../assets/Icons/DisLike'
-import {postLikeCourses} from '../../../core/services/api/post/postLikeCourses'
-import {postDissLikeCourses} from '../../../core/services/api/post/postDissLikeCourses'
+import {likeCourses} from '../../../core/services/api/post/likeCourses'
+import {disLikeCourses} from '../../../core/services/api/post/disLikeCourses'
 
 
 
@@ -21,7 +21,7 @@ const ImageInfo = ({ course }) => {
     } else {
         setLiked(true);
         setLikeCount(likeCount + 1);
-        postLikeCourses(course.courseId);
+        likeCourses(course.courseId);
     }
     };
     const handleDislike = () => {
@@ -32,7 +32,7 @@ const ImageInfo = ({ course }) => {
     } else {
         setDisliked(true);
         setDisLikeCount(disLikeCount + 1);
-        postDissLikeCourses(course.courseId);
+        disLikeCourses(course.courseId);
     }
     };
 

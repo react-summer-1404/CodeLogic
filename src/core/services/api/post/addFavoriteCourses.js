@@ -1,8 +1,8 @@
 import http from '../../../interceptor/interceptor.js';
 
-export const postDissLikeCourses = async (params) => {
+export const addFavoriteCourses = async (params) => {
     try {
-        const result = await http.post('/Course/AddCourseDissLike', { courseId: params });
+        const result = await http.post('/Course/AddCourseFavorite', { courseId: params });
         console.log(result);
         return result;
     } catch (err) {
