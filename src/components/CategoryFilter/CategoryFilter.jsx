@@ -7,19 +7,29 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
+import getNewsCategoryList from "../../core/services/api/Get/NewsCategoryList";
 
-const CategoryFilter = () => {
+const CategoryFilter = ({ selectedCategory, onCategoryChange }) => {
+  const { data, isLoading, isError } = useQuery({
+    queryFn: getNewsCategoryList,
+    queryKey: ["newsCategoryList"],
+  });
+
   const { t } = useTranslation();
-
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("educational");
+
+  const [showAll, setShowAll] = useState(false);
   const containerRef = useRef(null);
 
-  const categories = [
-    { key: "educational" },
-    { key: "general" },
-    { key: "jobMarket" },
-  ];
+  const categories = Array.isArray(data) ? data : [];
+
+  const displayedCategories = showAll ? categories : categories.slice(0, 3);
+
+  const handleCheckboxChange = (categoryName) => {
+    const newCategory = selectedCategory === categoryName ? null : categoryName;
+    onCategoryChange(newCategory);
+  };
 
   return (
     <div ref={containerRef} className="relative w-full">
@@ -60,31 +70,50 @@ const CategoryFilter = () => {
         style={{ top: "100%" }}
       >
         <div className="p-4 flex flex-col gap-3">
-          {categories.map(({ key }) => (
-            <label
-              key={key}
-              className="flex justify-between items-center text-sm sm:text-base text-gray-700 dark:text-gray-200 cursor-pointer transition-colors duration-200 hover:text-blue-600 dark:hover:text-blue-400"
-            >
-              <span>{t(`categoryFilter.categories.${key}`)}</span>
-              <Checkbox
-                checked={selected === key}
-                onChange={() => setSelected(key)}
-                sx={{
-                  color: "#ccc",
-                  "&.Mui-checked": {
-                    color: "#008C78",
-                  },
-                  "& .MuiSvgIcon-root": {
-                    fontSize: 22,
-                  },
-                }}
-              />
-            </label>
-          ))}
+          {isLoading && (
+            <Typography className="text-gray-500 text-sm">
+              {t("loading")}
+            </Typography>
+          )}
 
-          <button className="text-[#008C78] dark:text-emerald-400 mt-2 text-sm font-medium hover:underline transition-colors duration-200 text-right">
-            {t("categoryFilter.more")}
-          </button>
+          {isError && (
+            <Typography className="text-red-500 text-sm">
+              {t("error")}
+            </Typography>
+          )}
+
+          {!isLoading &&
+            !isError &&
+            displayedCategories.map(({ id, categoryName }) => (
+              <label
+                key={id}
+                className="flex justify-between items-center text-sm sm:text-base text-gray-700 dark:text-gray-200 cursor-pointer transition-colors duration-200 hover:text-blue-600 dark:hover:text-blue-400"
+              >
+                <span>{categoryName}</span>
+                <Checkbox
+                  checked={selectedCategory === categoryName}
+                  onChange={() => handleCheckboxChange(categoryName)}
+                  sx={{
+                    color: "#ccc",
+                    "&.Mui-checked": {
+                      color: "#008C78",
+                    },
+                    "& .MuiSvgIcon-root": {
+                      fontSize: 22,
+                    },
+                  }}
+                />
+              </label>
+            ))}
+
+          {categories.length > 3 && (
+            <button
+              className=" cursor-pointer text-[#008C78] dark:text-emerald-400 mt-2 text-sm font-medium hover:underline transition-colors duration-200 text-right"
+              onClick={() => setShowAll((prev) => !prev)}
+            >
+              {showAll ? t("categoryFilter.less") : t("categoryFilter.more")}
+            </button>
+          )}
         </div>
       </div>
     </div>

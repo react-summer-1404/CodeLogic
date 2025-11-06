@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import PersonalComment from "../PersonalComment/PersonalComment";
 import { useTranslation } from "react-i18next";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { NewsCommentValcomment } from "../../../utils/Validations/NewsCommentVal/NewsCommentVal";
 
 const NewsComment = () => {
+  const [initialValues] = useState({ titlecomment: "", description: "" });
+
+  const [validationSchema, setValidationSchema] = useState(
+    NewsCommentValcomment()
+  );
+
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("details");
 
@@ -69,31 +77,47 @@ const NewsComment = () => {
           </div>
         </div>
       )}
-      {activeTab === "comments" && (
-        <div className="w-full shadow-md bg-[white] rounded-3xl px-6 py-4 flex flex-wrap dark:bg-[#333] ">
-          <p className="text-[black] font-bold text-[18px] w-full mb-7 dark:text-[white] ">
-            {t("newsComment.comments.allComments")}
-            <span className="text-[#1E1E1E] mr-3 bg-[#EAEAEA] rounded-full px-3 py-1 font-bold text-[16px] dark:bg-[#1e1e1e] dark:text-[white] ">
-              4
-            </span>
-          </p>
-          <p className="text-[black] font-bold text-[16px] mb-3 dark:text-[white] ">
-            {t("newsComment.comments.titleLabel")}
-          </p>
-          <input
-            className="w-full px-5 py-3 text-[#848484] mb-5  rounded-4xl outline-none border-none bg-[#F3F4F6] dark:bg-[#9d9d9d] dark:text-[black]  "
-            placeholder={t("newsComment.comments.titlePlaceholder")}
-          />
-          <p className="text-[black] font-bold text-[16px] mb-3 dark:text-[white] ">
-            {t("newsComment.comments.textLabel")}
-          </p>
-          <input
-            className="w-full px-5 pb-38 text-[#848484] h-[200px]  rounded-4xl outline-none border-none bg-[#F3F4F6] dark:bg-[#9d9d9d] dark:text-[black] "
-            placeholder={t("newsComment.comments.textPlaceholder")}
-          />
-          <PersonalComment />
-        </div>
-      )}
+      <Formik initialValues={initialValues} validationSchema={validationSchema}>
+        {() => (
+          <Form>
+            {activeTab === "comments" && (
+              <div className="w-full shadow-md bg-[white] rounded-3xl px-6 py-4 flex flex-wrap dark:bg-[#333] relative ">
+                <p className="text-[black] font-bold text-[18px] w-full mb-7 dark:text-[white] ">
+                  {t("newsComment.comments.allComments")}
+                  <span className="text-[#1E1E1E] mr-3 bg-[#EAEAEA] rounded-full px-3 py-1 font-bold text-[16px] dark:bg-[#1e1e1e] dark:text-[white] ">
+                    4
+                  </span>
+                </p>
+                <p className="text-[black] font-bold text-[16px] mb-3 dark:text-[white] ">
+                  {t("newsComment.comments.titleLabel")}
+                </p>
+                <Field
+                  name="titlecomment"
+                  type="text"
+                  className="w-full px-5 py-3 text-[#848484] mb-10  rounded-4xl outline-none border-none bg-[#F3F4F6] dark:bg-[#9d9d9d] dark:text-[black]  "
+                  placeholder={t("newsComment.comments.titlePlaceholder")}
+                />
+                <div className="text-[red] absolute right-10 top-40">
+                  <ErrorMessage name="titlecomment" />
+                </div>
+                <p className="text-[black] font-bold text-[16px] mb-3 dark:text-[white] ">
+                  {t("newsComment.comments.textLabel")}
+                </p>
+                <Field
+                  name="description"
+                  type="text"
+                  className="w-full px-5 pb-38 text-[#848484] mb-10 h-[200px]  rounded-4xl outline-none border-none bg-[#F3F4F6] dark:bg-[#9d9d9d] dark:text-[black] "
+                  placeholder={t("newsComment.comments.textPlaceholder")}
+                />
+                <div className="text-[red] absolute right-10 top-110 ">
+                  <ErrorMessage name="description" />
+                </div>
+                <PersonalComment />
+              </div>
+            )}
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };

@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import ReactPaginate from 'react-paginate';
+import { postFavoriteCourses } from '../../../core/services/api/post/postFavoriteCourses';
 import CourseCardView1 from '../../common/course/CourseCardView1/CourseCardView1';
 import CourseCardView2 from '../../common/course/CourseCardView2/CourseCardView2';
 import SortView from '../SortView/SortView';
-import ReactPaginate from 'react-paginate';
-import { postFavoriteCourses } from '../../../core/services/api/post/postFavoriteCourses';
-import { deleteFavCourses } from '../../../core/services/api/Delete/deleteFavoriteCourses';
 
 const VIEW_TYPE_LIST = 'list';
 const VIEW_TYPE_GRID = 'grid';
@@ -26,17 +25,9 @@ const CourseListMain = ({
         setCurrentView(courseViewType);
         localStorage.setItem('courseViewType', courseViewType);
     };
-    // console.log(currentPage)
 
-    const [favorites, setFavorites] = useState([]);
     const handleToggleFavorite = async (courseId) => {
-        if (favorites.includes(courseId)) {
-            await deleteFavCourses(courseId);
-            setFavorites(favorites.filter((id) => id !== courseId));
-        } else {
-            await postFavoriteCourses(courseId);
-            setFavorites([...favorites, courseId]);
-        }
+        await postFavoriteCourses(courseId);
     };
 
     const handlePageSizeChange = (newSize) => {
@@ -66,7 +57,6 @@ const CourseListMain = ({
                         <CourseCardComponent
                             item={item}
                             key={index}
-                            isFavorite={favorites.includes(item.id)}
                             handleToggleFavorite={handleToggleFavorite}
                         />
                     );

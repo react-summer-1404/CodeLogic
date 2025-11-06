@@ -18,13 +18,15 @@ import login1 from '../../../assets/Images/A/login1.png';
 import home from '../../../assets/Icons/A/home.png';
 import use from '../../../assets/Icons/A/user.png';
 import lock from '../../../assets/Icons/A/lock.png';
+import { setItem } from '../../../utils/helper/storage.services';
 const LoginPage = () => {
     const { mutate: postLogin, isPending } = useMutation({
         mutationKey: ['LOGIN'],
         mutationFn: (values) => Login(values),
         onSettled: (data) => {
             if (data.success) {
-                localStorage.setItem('toke', data.token);
+                console.log('Login token', data.token)
+                setItem('token', data.token);
                 toast.success(data.message);
                 navigate(`/userPanel`);
             } else if (!data.success) {
@@ -98,11 +100,10 @@ const LoginPage = () => {
                                         <div className=" flex flex-col gap-2 ">
                                             <div className="">
                                                 <Field
-                                                    className={`outline-none  bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
-                                                        errors.name && touched.name
+                                                    className={`outline-none  bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${errors.name && touched.name
                                                             ? 'border-[#EF5350] border-1 '
                                                             : ''
-                                                    }`}
+                                                        }`}
                                                     style={{ backgroundImage: `url(${lock})` }}
                                                     type="text"
                                                     name="phoneOrGmail"
@@ -117,11 +118,10 @@ const LoginPage = () => {
                                             />
                                             <div className=" relative mt-6">
                                                 <Field
-                                                    className={` bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${
-                                                        errors.password && touched.password
+                                                    className={` bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${errors.password && touched.password
                                                             ? 'border-[#EF5350] border-1 '
                                                             : ''
-                                                    } `}
+                                                        } `}
                                                     style={{ backgroundImage: `url(${use})` }}
                                                     type={showPassword ? 'text' : 'password'}
                                                     name="password"
@@ -199,11 +199,10 @@ const LoginPage = () => {
                 >
                     <div
                         onClick={handleDark}
-                        className={` cursor-pointer py-3 px-2  w-12 h-6   rounded-full  absolute top-14 left-7 flex  ${
-                            isDark
+                        className={` cursor-pointer py-3 px-2  w-12 h-6   rounded-full  absolute top-14 left-7 flex  ${isDark
                                 ? 'bg-yellow-300/40 justify-end '
                                 : 'bg-blue-900/30  justify-start'
-                        } `}
+                            } `}
                     >
                         <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center ">
                             <img src={isDark ? sun : moon} alt="" />
