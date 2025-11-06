@@ -2,7 +2,6 @@ import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import documentIcon from '../../../../assets/Icons/A/document.png';
 
-
 const CoursePayment = ({ items }) => {
     /// motion ///
     const Animate = {
@@ -19,7 +18,7 @@ const CoursePayment = ({ items }) => {
             initial="hidden"
             animate="visible"
             style={{ direction: 'rtl' }}
-            className=" dark:bg-black dark:text-[#ffff] transition-all w-full text-[16px] flex text-center items-center bg-[#ffff] py-4 border-b border-[#EAEAEA] "
+            className=" dark:bg-[#454545] dark:text-[#ffff] transition-all w-full text-[16px] flex text-center items-center bg-[#ffff] py-4 border-b border-[#EAEAEA] "
         >
             <div className="flex-[1.3] text-right ps-8">{items.courseGroup}</div>
             <div className="px-4 flex-1">{items.paymentDate}</div>
