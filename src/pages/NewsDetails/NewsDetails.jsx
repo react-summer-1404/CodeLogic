@@ -266,7 +266,7 @@ const NewsDetails = () => {
             className="font-bold text-xl sm:text-2xl md:text-3xl text-[#1E1E1E] dark:text-[#fff] text-center"
             variants={itemVariants}
           >
-            {datadetail.title}
+            ddff
           </motion.p>
         </div>
         <div className="flex flex-col sm:flex-row items-start justify-between max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
