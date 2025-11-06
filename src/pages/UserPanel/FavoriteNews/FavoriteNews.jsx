@@ -102,7 +102,7 @@ const FavoriteNews = () => {
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    className="relative max-w-[439px] w-full"
+                    className="relative max-w-[40%] w-full"
                 >
                     <input
                         className=" dark:bg-black dark:text-[#ffff] dark:placeholder:text-white
@@ -122,7 +122,7 @@ const FavoriteNews = () => {
                         alt=""
                     />
                 </motion.div>
-                <div className="flex h-full items-center bg-[#ffff] dark:bg-black dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
+                <div className="flex h-full items-center bg-[#ffff] dark:bg-black dark:text-[#ffff] rounded-xl border shadow md:p-1 border-[#EAEAEA] ">
                     <span className="text-[16px] invisible md:visible">
                         {t('coursesPayment.filters')}
                     </span>
@@ -171,7 +171,7 @@ const FavoriteNews = () => {
                     )}
                 </div>
                 {/* buttons ------- */}
-                <div className="flex justify-between p-8">
+                <div className="flex justify-between p-4 md:p-8">
                     <div className="flex items-center gap-2" style={{ direction: 'ltr' }}>
                         <button
                             disabled={currentPage === 1}

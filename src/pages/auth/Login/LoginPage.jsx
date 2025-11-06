@@ -24,6 +24,7 @@ const LoginPage = () => {
         mutationFn: (values) => Login(values),
         onSettled: (data) => {
             if (data.success) {
+                localStorage.setItem('toke', data.token);
                 toast.success(data.message);
                 navigate(`/userPanel`);
             } else if (!data.success) {
@@ -54,18 +55,18 @@ const LoginPage = () => {
     }, [i18n.language]);
 
     return (
-        <div className="bg-[#EAEAEA] min-h-screen flex items-center justify-center">
+        <div className="bg-[#EAEAEA] dark:bg-[#1E1E1E] min-h-screen flex items-center justify-center">
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                className="flex flex-col md:flex-row  overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg  w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-[60px] p-2 "
+                className="flex flex-col md:flex-row  overflow-hidden  bg-[#ffff] dark:bg-[#333] dark:text-white shadow-lg  w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-[60px] p-2 "
             >
                 <motion.div
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ ease: 'easeOut', type: 'spring', stiffness: 300, delay: 0.5 }}
-                    className=" flex flex-1 flex-col  p-17  gap-10 "
+                    className=" flex flex-1 flex-col   p-17  gap-10 "
                 >
                     <div className="flex justify-between items-center">
                         <Link
@@ -194,7 +195,7 @@ const LoginPage = () => {
                     initial={{ x: -50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ ease: 'easeOut', type: 'spring', stiffness: 300, delay: 0.5 }}
-                    className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-gray-800/50 rounded-[60px] relative"
+                    className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-[#454545] rounded-[60px] relative"
                 >
                     <div
                         onClick={handleDark}

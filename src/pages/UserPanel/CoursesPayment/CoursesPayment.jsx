@@ -89,7 +89,7 @@ const CoursesPayment = () => {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className=" relative max-w-[439px] w-full"
+                        className=" relative max-w-[40%] w-full"
                     >
                         <input
                             className=" dark:bg-black dark:text-[#ffff] dark:placeholder:text-white
@@ -109,7 +109,9 @@ const CoursesPayment = () => {
                 </AnimatePresence>
 
                 <div className="flex h-full items-center bg-[#ffff] dark:bg-black dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
-                    <span className="text-[16px]">{t('coursesPayment.filters')}</span>
+                    <span className=" invisible md:visible text-[16px]">
+                        {t('coursesPayment.filters')}
+                    </span>
                     <select
                         value={filterStatus}
                         onChange={(e) => {
@@ -151,7 +153,7 @@ const CoursesPayment = () => {
                     </div>
                 </div>
                 {/* -------- buttons */}
-                <div className="flex justify-between p-8">
+                <div className="flex justify-between p-4 md:p-8">
                     <div className="flex items-center gap-2" style={{ direction: 'ltr' }}>
                         <button
                             disabled={currentPage === 1}
@@ -190,15 +192,15 @@ const CoursesPayment = () => {
                         </button>
                     </div>
                     {/* ------------ filterCount */}
-                    <div className="flex items-center dark:bg-black dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
-                        <span className="text-[16px]">{t('coursesPayment.NumberShows')}</span>
+                    <div className="flex items-center dark:bg-black dark:text-[#ffff] rounded-xl border shadow-md  border-[#EAEAEA] ">
+                        <span className="  text-[16px]">{t('coursesPayment.NumberShows')}</span>
                         <select
                             value={paymentsPerPage}
                             onChange={(e) => {
                                 setPaymentsPerPage(Number(e.target.value));
                                 setcurrentPage(1);
                             }}
-                            className=" rounded-xl text-sm cursor-pointer px-3 py-1  dark:bg-black dark:text-[#ffff]"
+                            className=" rounded-xl text-sm cursor-pointer px-3 md:py-1  dark:bg-black dark:text-[#ffff]"
                         >
                             <option value={2}>2</option>
                             <option value={4}>4</option>
