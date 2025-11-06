@@ -10,7 +10,7 @@ const VIEW_TYPE_LIST = 'list';
 const VIEW_TYPE_GRID = 'grid';
 
 
-const SortView = ({onViewChange, currentView, currentPageSize, onPageSizeChange, currentSortType, onSortChange, setSortingCol}) => {
+const SortView = ({onViewChange, currentView, currentPageSize, onPageSizeChange, currentSortType, setSortingCol}) => {
 
   const { t } = useTranslation();
 
@@ -22,14 +22,15 @@ const SortView = ({onViewChange, currentView, currentPageSize, onPageSizeChange,
 
 
   return (
-    <div className='flex justify-between items-center bg-[#FFFFFF] w-full h-14 px-4 rounded-[12px]
-    lg:h-18 lg:rounded-[15px]'>
+    <div className='flex justify-between items-center bg-[#FFFFFF] w-full h-14 px-4 rounded-[12px]   
+    lg:h-18 lg:rounded-[15px]
+    dark:bg-[#454545]'>
       <div className='flex items-center gap-4'>
-        <span className='font-regular text-base text-[#1E1E1E]'>{t('sortView.title')}</span>
+        <span className='font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]'>{t('sortView.title')}</span>
         <TimeDropDown currentSortType={currentSortType} setSortingCol={setSortingCol}/>
         <ShowNumberDropDown currentPageSize={currentPageSize} onPageSizeChange={onPageSizeChange}/>
       </div>
-      <div className='flex gap-4'>
+      <div className='flex gap-4   dark:text-[#CCCCCC]'>
         <button onClick={() => { handleViewChange(VIEW_TYPE_LIST) }} className={`p-2 rounded-[48px] ${currentView === VIEW_TYPE_LIST
           ? 'text-[#FFFFFF] bg-[#008C78]' : ''}`}>
           <CourseListView2 />

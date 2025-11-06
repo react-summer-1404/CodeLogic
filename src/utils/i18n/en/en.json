@@ -174,12 +174,16 @@
         "title1Item2": "Middle",
         "title1Item3": "Beginner",
         "title2": "Professors",
-        "title2Item1": "Dr. MohammadHosseinBahrololumi",
-        "title2Item2": "Mr.X",
-        "title2Item3": "Mr. Felan Felani",
+        "title2Item1": "Mr. Taha Rahimy",
+        "title2Item2": "Dr. MohammadHosseinBahrololumi",
+        "title2Item3": "Mr. X",
         "title3": "Technologies",
-        "title3Item1": "FrontEnd",
-        "title3Item2": "BackEnd"
+        "title3Item1": "React",
+        "title3Item2": "Next",
+        "title3Item3": "Backend"
+    },
+    "priceFilter": {
+        "title": "Price Range (Toman)"
     },
     "sortView": {
         "title": "Sort by:"
@@ -457,7 +461,7 @@
     },
     "forgotVal2": {
         "required1": "Password entry is required",
-        "min": "Password must contain at least 8 characters.",
+        "min": "Password must contain at least 4 characters.",
         "required2": "Password confirmation is required.",
         "oneOf": "Password does not match"
     },
@@ -510,7 +514,9 @@
         "caption": "Caption",
         "meetingMode": "Meeting mode",
         "lastUpdated": "Last updated",
-        "Operation": "Operation"
+        "Operation": "Operation",
+        "lastUpdate": "Last updates",
+        "firstUpdate": "First updates"
     },
     "securitySetting": {
         "currentPassword": "Current password",
@@ -522,108 +528,146 @@
         "saveSettings": "Save security settings",
         "minNumbers": "password must contain at least 1 number"
     },
-    "panelside" : {
-    "academy_name": "Bahr Academy",
-    "menu": "Menu",
-    "dashboard": "Dashboard",
-    "user_info": "User Information",
-    "my_courses": "My Courses",
-    "reserved_courses": "Reserved Courses",
-    "my_payments": "My Payments",
-    "my_comments": "My Comments",
-    "my_view_on_the_courses" : "My view on the courses",
-    "my_view_on_the_news" : " My view on the news   ",
-    "my_favorits" : "My favorites   ",
-    "my_favorite_courses" : "My favorite courses",
-    "my_favorite_news" : "My favorite news   ",
-    "security_setting" : "Security setting ",
-    "logout" : " Log out ",
-    "general" : "General"
+    "panelside": {
+        "academy_name": "Bahr Academy",
+        "menu": "Menu",
+        "dashboard": "Dashboard",
+        "user_info": "User Information",
+        "my_courses": "My Courses",
+        "reserved_courses": "Reserved Courses",
+        "my_payments": "My Payments",
+        "my_comments": "My Comments",
+        "my_view_on_the_courses": "My view on the courses",
+        "my_view_on_the_news": " My view on the news   ",
+        "my_favorits": "My favorites   ",
+        "my_favorite_courses": "My favorite courses",
+        "my_favorite_news": "My favorite news   ",
+        "security_setting": "Security setting ",
+        "logout": " Log out ",
+        "general": "General"
     },
-    "panelheader" : {
-    "name" : "matin ghorbanzade"
+    "panelheader": {
+        "name": "matin ghorbanzade"
     },
-    "paneldashboard" : {
-    "my_courses_title" : "My courses",
-    "unpaid_periods" : "Unpaid Periods",
-    "profile_completed" : "Profile Completed",
-    "reserved_courses" : "Reserved Courses",
-    "view_all" : "View All",
-    "latest_news" : "Latest News"
+    "paneldashboard": {
+        "my_courses_title": "My courses",
+        "unpaid_periods": "Unpaid Periods",
+        "profile_completed": "Profile Completed",
+        "reserved_courses": "Reserved Courses",
+        "view_all": "View All",
+        "latest_news": "Latest News"
     },
     "userinfo": {
-    
-        "social" : {
-        "email" : "Email",
-        "telegram" : "Telegram",
-        "linkdin" : "Linkedin",
-        "button": "Edit Information"
+        "social": {
+            "email": "Email",
+            "telegram": "Telegram",
+            "linkdin": "Linkedin",
+            "button": "Edit Information"
         },
         "tabs": {
-        "general": "General Information",
-        "location": "Location",
-        "social": "Social Media"
-        },
-        "gender" : {
-        "male" : "Male",
-        "female" : "Female"
-
-        },
-        "fields": {
-        "name": "First Name",
-        "lastname": "Last Name",
-        "nationalcode": "National ID",
-        "gender": "Gender",
-        "birthday": "Birthday",
-        "phonenumber": "Phone Number",
-        "aboutme": "About Me"
-        },
-        "placeholders": {
-        "name": "Enter your first name",
-        "lastname": "Enter your last name",
-        "nationalcode": "Enter your 10-digit national ID",
-        "gender": "Select gender",
-        "birthday": "",
-        "phonenumber": "Enter your phone number",
-        "aboutme": "Write more about yourself"
-        },
-        "buttons": {
-        "edit": "Edit Information"
-        },
-        "modal" : {
-        "confirm": "Confirm Image ",
-        "cancel" : "Cancel"
-        },
-        "location": {
-        "adress": " Adress",
-        "width": "Latitude",
-        "height": "Longitude",
-        "adressplace": " Enter your home adress or select it on the map",
-        "widthplace": " Enter the Latitude",
-        "heightplace": "Enter the Longitude",
-        "button": "Edit Information"
-        }
-    },
-        "validation": {
-        "nationalId": {
-        "required": "Please enter your national ID *",
-        "invalid": "Invalid national ID *"
-        },
-        "name": {
-        "required": "Please enter your first name *"
-        },
-        "lastname": {
-        "required": "Please enter your last name *"
-        },
-        "phoneNumber": {
-        "required": "Please enter your phone number *",
-        "invalid": "Invalid phone number *"
-        },
-        "birthDate": {
-        "required": "Please enter your birth date *"
+            "general": "General Information",
+            "location": "Location",
+            "social": "Social Media"
         },
         "gender": {
-        "required": "Please select an option *"
+            "male": "Male",
+            "female": "Female"
+        },
+        "fields": {
+            "name": "First Name",
+            "lastname": "Last Name",
+            "nationalcode": "National ID",
+            "gender": "Gender",
+            "birthday": "Birthday",
+            "phonenumber": "Phone Number",
+            "aboutme": "About Me"
+        },
+        "placeholders": {
+            "name": "Enter your first name",
+            "lastname": "Enter your last name",
+            "nationalcode": "Enter your 10-digit national ID",
+            "gender": "Select gender",
+            "birthday": "",
+            "phonenumber": "Enter your phone number",
+            "aboutme": "Write more about yourself"
+        },
+        "buttons": {
+            "edit": "Edit Information"
+        },
+        "modal": {
+            "confirm": "Confirm Image ",
+            "cancel": "Cancel"
+        },
+        "location": {
+            "adress": " Adress",
+            "width": "Latitude",
+            "height": "Longitude",
+            "adressplace": " Enter your home adress or select it on the map",
+            "widthplace": " Enter the Latitude",
+            "heightplace": "Enter the Longitude",
+            "button": "Edit Information"
+        }
+    },
+    "userPanelSearch": {
+        "placeholder": "Search..."
+    },
+    "userPanelFilter": {
+        "option1": "Filters"
+    },
+    "userPanelShowNumber": {
+        "showNumber": "ُShow Number"
+    },
+    "myCourses": {
+        "title1": "Course Name",
+        "title2": "Teacher",
+        "title3": "Payment Status",
+        "title4": "Price (Toman)",
+        "title5": "Last Update",
+        "title6": "Actions"
+    },
+    "myReservedCourses": {
+        "title1": "Course Name",
+        "title2": "Student",
+        "title3": "Status",
+        "title4": "Reserve Date",
+        "title5": "Actions"
+    },
+    "myCoursesComments": {
+        "title1": "Course Title",
+        "title2": "Comment Title",
+        "title3": "Comment Text",
+        "title4": "Status",
+        "title5": "History",
+        "title6": "Actions"
+    },
+    "myNewsComments": {
+        "title1": "News Title",
+        "title2": "Comment Title",
+        "title3": "Comment Text",
+        "title4": "Status",
+        "title5": "History",
+        "title6": "Actions"
+    },
+    "validation": {
+        "nationalId": {
+            "required": "Please enter your national ID *",
+            "invalid": "Invalid national ID *"
+        },
+        "name": {
+            "required": "Please enter your first name *"
+        },
+        "lastname": {
+            "required": "Please enter your last name *"
+        },
+        "phoneNumber": {
+            "required": "Please enter your phone number *",
+            "invalid": "Invalid phone number *"
+        },
+        "birthDate": {
+            "required": "Please enter your birth date *"
+        },
+        "gender": {
+            "required": "Please select an option *"
         }
     }
 }

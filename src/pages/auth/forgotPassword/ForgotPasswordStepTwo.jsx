@@ -10,6 +10,14 @@ import resetData2 from '../../../components/common/Form/initialData/resetData2';
 import { useMutation } from '@tanstack/react-query';
 import ResetPass2 from '../../../core/services/api/post/ResetPass2';
 import { toast } from 'react-toastify';
+import back from '../../../assets/Icons/A/back.png';
+import lock from '../../../assets/Icons/A/lock.png';
+import email from '../../../assets/Icons/A/email.png';
+import sun from '../../../assets/Icons/A/sun.png';
+import moon from '../../../assets/Icons/A/moon.png';
+import eyeClose from '../../../assets/Icons/A/eyeClose.png';
+import eyeOpen from '../../../assets/Icons/A/eyeOpen.png';
+import forgot2 from '../../../assets/Images/A/forgot2.png';
 
 const ForgotPasswordStepTwo = () => {
     const { t, i18n } = useTranslation();
@@ -64,7 +72,9 @@ const ForgotPasswordStepTwo = () => {
                     <div className="flex items-center justify-between">
                         <Link
                             to={'/forgotPassOne'}
-                            className=" pr-8 bg-[url(./icons/back.png)] bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300"
+                            className=" pr-8  bg-no-repeat  bg-[right_1px_center] text-[14px] hover:text-blue-400 
+                            transition duration-300"
+                            style={{ backgroundImage: `url(${back})` }}
                         >
                             {t('forgotPass.back')}
                         </Link>
@@ -83,66 +93,63 @@ const ForgotPasswordStepTwo = () => {
                             <Formik
                                 initialValues={resetData2}
                                 onSubmit={(value) => {
-                                    console.log(value);
-                                    PostNewPass(value);
+                                    console.log(value.newPassword);
+                                    PostNewPass(value.newPassword);
                                 }}
                                 validationSchema={validationSchema}
                             >
                                 {({ errors, touched }) => (
                                     <Form>
                                         <div className=" flex flex-col gap-3 ">
-                                            <div className=" relative flex flex-col ">
-                                                <Field
-                                                    className={` outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full
-                                                 px-13 py-3  placeholder:text-[15px] ${
-                                                     errors.password && touched.password
-                                                         ? 'border-[#EF5350] border-1 '
-                                                         : ''
-                                                 } `}
-                                                    type="text"
-                                                    name="gmail"
-                                                    id="gmail"
-                                                    placeholder={t(
-                                                        'registerStepThree.placeholder.email'
-                                                    )}
-                                                />
-                                                <img
-                                                    src="/icons/email.png"
-                                                    alt=""
-                                                    className=" cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  "
-                                                />
-                                            </div>
-                                            <ErrorMessage
-                                                name={'gmail'}
-                                                component={'span'}
-                                                className="text-[#EF5350] text-[14px]  "
-                                            />
                                             <div className=" relative mt-6 ">
                                                 <Field
-                                                    className={` focus:outline-none bg-[url(./icons/lock.png)] bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
+                                                    className={` focus:outline-none  bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
                                                         errors.confirmPassword &&
                                                         touched.confirmPassword
                                                             ? 'border-[#EF5350] border-1 '
                                                             : ''
                                                     } `}
-                                                    type={showSecondPassword ? 'text' : 'password'}
+                                                    style={{ backgroundImage: `url(${lock})` }}
+                                                    type={showFirstPassword ? 'text' : 'password'}
                                                     name="newPassword"
                                                     id="newPassword"
                                                     placeholder={t('forgotPass.SetNewPass')}
                                                 />
                                                 <img
-                                                    onClick={handleSecondPassword}
-                                                    src={
-                                                        showSecondPassword
-                                                            ? './icons/eyeClose.png'
-                                                            : './icons/eyeOpen.png'
-                                                    }
+                                                    onClick={handleFirstPassword}
+                                                    src={showFirstPassword ? eyeClose : eyeOpen}
                                                     alt=""
                                                     className=" cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  "
                                                 />
                                             </div>
                                             <ErrorMessage
                                                 name={'newPassword'}
+                                                component={'span'}
+                                                className="text-[#EF5350] text-[14px]  "
+                                            />
+                                            <div className=" relative mt-6 ">
+                                                <Field
+                                                    className={` focus:outline-none  bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
+                                                        errors.confirmPassword &&
+                                                        touched.confirmPassword
+                                                            ? 'border-[#EF5350] border-1 '
+                                                            : ''
+                                                    } `}
+                                                    style={{ backgroundImage: `url(${lock})` }}
+                                                    type={showSecondPassword ? 'text' : 'password'}
+                                                    name="confirmPassword"
+                                                    id="confirmPassword"
+                                                    placeholder={t('forgotPass.RepeatPass')}
+                                                />
+                                                <img
+                                                    onClick={handleSecondPassword}
+                                                    src={showSecondPassword ? eyeClose : eyeOpen}
+                                                    alt=""
+                                                    className=" cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  "
+                                                />
+                                            </div>
+                                            <ErrorMessage
+                                                name={'confirmPassword'}
                                                 component={'span'}
                                                 className="text-[#EF5350] text-[14px]  "
                                             />
@@ -180,17 +187,14 @@ const ForgotPasswordStepTwo = () => {
                         } `}
                     >
                         <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center ">
-                            <img
-                                src={`${isDark ? './icons/sun.png' : './icons/moon.png'}  `}
-                                alt=""
-                            />
+                            <img src={isDark ? sun : moon} alt="" />
                         </div>
                     </div>
                     <div className=" mt-5 flex flex-col  items-center justify-center gap-6">
                         <div className=" flex flex-col justify-center items-center  ">
                             <img
                                 className=" max-w-[435px] w-full min-h-[409.592529296875px]  "
-                                src="./images/forgot2.png"
+                                src={forgot2}
                                 alt=""
                             />
                         </div>

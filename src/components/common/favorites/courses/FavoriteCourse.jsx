@@ -1,6 +1,28 @@
 import { motion } from 'framer-motion';
 import React from 'react';
+import greenEye from '../../../../assets/Icons/A/greenEye.png';
+import greenBasket from '../../../../assets/Icons/A/greenBasket.png';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
+import { deleteFavCourses } from '../../../../core/services/api/Delete/DeleteFavoriteCourses';
 const FavoriteCourse = ({ items }) => {
+    /// face data ///
+    const mode = ['انلاین', 'حضوری'];
+    const meetingMode = mode[Math.floor(Math.random() * mode.length)];
+    ///// get from backend ////
+    const queryClient = useQueryClient();
+    const { mutate: deleteCourse, isPending } = useMutation({
+        mutationKey: ['DELETECOURSE'],
+        mutationFn: (value) => deleteFavCourses(value),
+        onSettled: (data) => {
+            if (data.success) {
+                toast.success(data.message);
+                queryClient.invalidateQueries(['FAVCOURSES']);
+            } else if (!data.success) {
+                toast.error(data.message);
+            }
+        },
+    });
     const Animate = {
         hidden: { opacity: 0, y: -20 },
         visible: {
@@ -24,14 +46,24 @@ const FavoriteCourse = ({ items }) => {
                     src={items.coursesImage}
                     alt=""
                 />
-                {items.courses}
+                {items.courseTitle}
             </div>
-            <div className="ps-3 flex-[1.2] text-right overflow-ellipsis ">{items.caption}</div>
-            <div className="px-4 flex-1">{items.meetingMode}</div>
-            <div className="px-4 flex-1">{items.lastUpdate}</div>
+            <div className="ps-3 flex-[1.2] text-right overflow-ellipsis truncate ">{`این دوره توسط استاد ${items.teacheName}`}</div>
+            <div className="px-4 flex-1">{meetingMode}</div>
+            <div className="px-4 flex-1 truncate">{items.lastUpdate}</div>
             <div className="pe-8 w-[100px] text-left flex items-center justify-end gap-4">
-                <div className="w-6 h-4 bg-[url(/icons/greenEye.png)] bg-no-repeat bg-[center_center] "></div>
-                <div className="w-4 h-4 bg-[url(/icons/greenBasket.png)] bg-no-repeat bg-[center_center] "></div>
+                <div
+                    style={{ backgroundImage: `url(${greenEye})` }}
+                    className="w-6 h-4 cursor-pointer bg-no-repeat bg-[center_center] "
+                ></div>
+                <div
+                    onClick={() => {
+                        deleteCourse(items.courseId);
+                        console.log(items.courseId);
+                    }}
+                    style={{ backgroundImage: `url(${greenBasket})` }}
+                    className="w-4 cursor-pointer h-4 bg-no-repeat bg-[center_center] "
+                ></div>
             </div>
         </motion.div>
     );

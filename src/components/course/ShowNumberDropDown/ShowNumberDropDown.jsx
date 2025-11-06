@@ -17,7 +17,7 @@ const ShowNumberDropDown = ({ currentPageSize, onPageSizeChange }) => {
 
   return (
     <select value={currentPageSize} onChange={handleChange} className='font-regular text-base text-[#848484] border 
-    border-[#EAEAEA] py-1 pr-2 pl-2 rounded-[12px]
+    border-[#EAEAEA] py-1 pr-2 pl-2 rounded-[12px]   dark:text-[#CCCCCC]
     lg:py-2 lg:pr-4 lg:pl-4 lg:rounded-[15px]'>
       {options.map((size) => (
         <option key={size} value={size}>

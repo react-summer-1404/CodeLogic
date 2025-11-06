@@ -10,8 +10,29 @@ import Login from '../../../core/services/api/post/login';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import loginData from '../../../components/common/Form/initialData/loginData';
-
+import sun from '../../../assets/Icons/A/sun.png';
+import moon from '../../../assets/Icons/A/moon.png';
+import eyeClose from '../../../assets/Icons/A/eyeClose.png';
+import eyeOpen from '../../../assets/Icons/A/eyeOpen.png';
+import login1 from '../../../assets/Images/A/login1.png';
+import home from '../../../assets/Icons/A/home.png';
+import use from '../../../assets/Icons/A/user.png';
+import lock from '../../../assets/Icons/A/lock.png';
 const LoginPage = () => {
+    const { mutate: postLogin, isPending } = useMutation({
+        mutationKey: ['LOGIN'],
+        mutationFn: (values) => Login(values),
+        onSettled: (data) => {
+            if (data.success) {
+                localStorage.setItem('toke', data.token);
+                toast.success(data.message);
+                navigate(`/userPanel`);
+            } else if (!data.success) {
+                toast.error(data.message);
+            }
+        },
+    });
+
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
 
@@ -33,37 +54,26 @@ const LoginPage = () => {
         setValidationSchema(Login1Val());
     }, [i18n.language]);
 
-    const { mutate: postLogin, isPending } = useMutation({
-        mutationKey: ['LOGIN'],
-        mutationFn: (values) => Login(values),
-        onSettled: (data) => {
-            if (data.success) {
-                toast.success(data.message);
-                navigate(`/Panel`);
-            } else if (!data.success) {
-                toast.error(data.message);
-            }
-        },
-    });
-
     return (
-        <div className="bg-[#EAEAEA] min-h-screen flex items-center justify-center">
+        <div className="bg-[#EAEAEA] dark:bg-[#1E1E1E] min-h-screen flex items-center justify-center">
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                className="flex flex-col md:flex-row  overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg  w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-[60px] p-2 "
+                className="flex flex-col md:flex-row  overflow-hidden  bg-[#ffff] dark:bg-[#333] dark:text-white shadow-lg  w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-[60px] p-2 "
             >
                 <motion.div
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ ease: 'easeOut', type: 'spring', stiffness: 300, delay: 0.5 }}
-                    className=" flex flex-1 flex-col  p-17  gap-10 "
+                    className=" flex flex-1 flex-col   p-17  gap-10 "
                 >
                     <div className="flex justify-between items-center">
                         <Link
                             to={'/'}
-                            className=" pr-8 bg-[url(./icons/home.png)] bg-no-repeat bg-[length:22.489788055419922px_20px] bg-[right_1px_center] text-[14px] hover:text-blue-400 transition duration-300"
+                            className=" pr-8  bg-no-repeat bg-[length:22.489788055419922px_20px] bg-[right_1px_center] text-[14px]
+                             hover:text-blue-400 transition duration-300"
+                            style={{ backgroundImage: `url(${home})` }}
                         >
                             {t('login.HomePage')}
                         </Link>
@@ -88,11 +98,12 @@ const LoginPage = () => {
                                         <div className=" flex flex-col gap-2 ">
                                             <div className="">
                                                 <Field
-                                                    className={`outline-none bg-[url(./icons/user.png)] bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
+                                                    className={`outline-none  bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
                                                         errors.name && touched.name
                                                             ? 'border-[#EF5350] border-1 '
                                                             : ''
                                                     }`}
+                                                    style={{ backgroundImage: `url(${lock})` }}
                                                     type="text"
                                                     name="phoneOrGmail"
                                                     id="phoneOrGmail"
@@ -106,11 +117,12 @@ const LoginPage = () => {
                                             />
                                             <div className=" relative mt-6">
                                                 <Field
-                                                    className={` bg-[url(./icons/lock.png)] bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${
+                                                    className={` bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${
                                                         errors.password && touched.password
                                                             ? 'border-[#EF5350] border-1 '
                                                             : ''
                                                     } `}
+                                                    style={{ backgroundImage: `url(${use})` }}
                                                     type={showPassword ? 'text' : 'password'}
                                                     name="password"
                                                     id="password"
@@ -118,11 +130,7 @@ const LoginPage = () => {
                                                 />
                                                 <img
                                                     onClick={handlePassword}
-                                                    src={
-                                                        showPassword
-                                                            ? './icons/eyeClose.png'
-                                                            : './icons/eyeOpen.png'
-                                                    }
+                                                    src={showPassword ? eyeClose : eyeOpen}
                                                     alt=""
                                                     className=" cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  "
                                                 />
@@ -147,7 +155,10 @@ const LoginPage = () => {
                                                         {t('login.RememberMe')}
                                                     </label>
                                                 </div>
-                                                <Link className="text-[13px] text-[#848484] hover:text-blue-400 transition duration-300">
+                                                <Link
+                                                    to={'/forgotPassOne'}
+                                                    className="text-[13px] text-[#848484] hover:text-blue-400 transition duration-300"
+                                                >
                                                     {t('login.ForgotPassword')}
                                                 </Link>
                                             </div>
@@ -184,7 +195,7 @@ const LoginPage = () => {
                     initial={{ x: -50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ ease: 'easeOut', type: 'spring', stiffness: 300, delay: 0.5 }}
-                    className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-gray-800/50 rounded-[60px] relative"
+                    className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-[#454545] rounded-[60px] relative"
                 >
                     <div
                         onClick={handleDark}
@@ -195,17 +206,14 @@ const LoginPage = () => {
                         } `}
                     >
                         <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center ">
-                            <img
-                                src={`${isDark ? './icons/sun.png' : './icons/moon.png'}  `}
-                                alt=""
-                            />
+                            <img src={isDark ? sun : moon} alt="" />
                         </div>
                     </div>
                     <div className=" mt-5 flex flex-col  items-center justify-center gap-6">
                         <div className=" flex flex-col justify-center items-center  ">
                             <img
                                 className=" max-w-[435px] w-full min-h-[409.592529296875px]  "
-                                src="./images/login1.png"
+                                src={login1}
                                 alt=""
                             />
                         </div>

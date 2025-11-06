@@ -174,12 +174,16 @@
         "title1Item2": "متوسط",
         "title1Item3": "تازه کار",
         "title2": "اساتید",
-        "title2Item1": "دکتر محمدحسین بحرالعلومی",
-        "title2Item2": "آقای ایکس",
-        "title2Item3": "آقای فلان فلانی",
+        "title2Item1": "آقای طاها رحیمی",
+        "title2Item2": "دکتر محمدحسین بحرالعلومی",
+        "title2Item3": "آقای ایکس",
         "title3": "تکنولوژی ها",
-        "title3Item1": "فرانت اند",
-        "title3Item2": "بک اند"
+        "title3Item1": "ری اکت",
+        "title3Item2": "نکست",
+        "title3Item3": "بک اند"
+    },
+    "priceFilter": {
+        "title": "بازه قیمت (تومان)"
     },
     "sortView": {
         "title": "مرتب سازی بر اساس :"
@@ -457,7 +461,7 @@
     },
     "forgotVal2": {
         "required1": "وارد کردن رمز عبور الزامی است",
-        "min": "Password must contain at least 8 characters.",
+        "min": "پسورد باید حداقل شامل 4 کاراکتر باشد",
         "required2": "تایید رمز عبور الزامی است",
         "oneOf": "رمز عبور مطابقت ندارد"
     },
@@ -511,7 +515,9 @@
         "caption": "توضیحات",
         "meetingMode": "حالت برگزاری",
         "lastUpdated": "آخرین بروز رسانی",
-        "Operation": "عملیات"
+        "Operation": "عملیات",
+        "lastUpdate": "جدید ترین ها",
+        "firstUpdate": "اولین بروزرسانی"
     },
     "securitySetting": {
         "currentPassword": "رمز عبور فعلی",
@@ -523,109 +529,147 @@
         "saveSettings": "ذخیره تنظیمات امنیتی",
         "minNumbers": "رمز عبور باید حداقل شامل 1 عدد باشد"
     },
-      
-    "panelside" : {
-    "academy_name": "آکادمی بحر",
-    "menu": "منو",
-    "dashboard": "داشبورد",
-    "user_info": "مشخصات کاربری",
-    "my_courses": "دوره های من",
-    "reserved_courses": "دوره های رزرو شده",
-    "my_payments": "پرداختی های من",
-    "my_comments": "دیدگاه های من",
-    "my_view_on_the_courses" : "دیدگاه های من در دوره ها",
-    "my_view_on_the_news" : "دیدگاه های من در اخبار",
-    "my_favorits" : "علاقه مندی های من",
-    "my_favorite_courses" : "دوره های مورد علاقه من",
-    "my_favorite_news" : "اخبار مورد علاقه من",
-    "security_setting" : "تنظیمات امنیتی",
-    "logout" : "خروج از حساب",
-    "general" : "عمومی"
+
+    "panelside": {
+        "academy_name": "آکادمی بحر",
+        "menu": "منو",
+        "dashboard": "داشبورد",
+        "user_info": "مشخصات کاربری",
+        "my_courses": "دوره های من",
+        "reserved_courses": "دوره های رزرو شده",
+        "my_payments": "پرداختی های من",
+        "my_comments": "دیدگاه های من",
+        "my_view_on_the_courses": "دیدگاه های من در دوره ها",
+        "my_view_on_the_news": "دیدگاه های من در اخبار",
+        "my_favorits": "علاقه مندی های من",
+        "my_favorite_courses": "دوره های مورد علاقه من",
+        "my_favorite_news": "اخبار مورد علاقه من",
+        "security_setting": "تنظیمات امنیتی",
+        "logout": "خروج از حساب",
+        "general": "عمومی"
     },
-    "panelheader" : {
-    "name" : "متین قربانزاده"
+    "panelheader": {
+        "name": "متین قربانزاده"
     },
-    "paneldashboard" : {
-    "my_courses_title" : "دوره های من ",
-    "unpaid_periods" : " دوره های پرداخت نشده",
-    "profile_completed" : "پروفایل تکمیل شده ",
-    "reserved_courses" : "دوره های رزرو شده",
-    "view_all" : "مشاهده همه",
-    "latest_news" : "جدید ترین اخبار"
+    "paneldashboard": {
+        "my_courses_title": "دوره های من ",
+        "unpaid_periods": " دوره های پرداخت نشده",
+        "profile_completed": "پروفایل تکمیل شده ",
+        "reserved_courses": "دوره های رزرو شده",
+        "view_all": "مشاهده همه",
+        "latest_news": "جدید ترین اخبار"
     },
     "userinfo": {
-    
-        "social" : {
-        "email" : "ایمیل",
-        "telegram" : "تلگرام",
-        "linkdin" : "لینکدین",
-        "button": "ویرایش اطلاعات"
+        "social": {
+            "email": "ایمیل",
+            "telegram": "تلگرام",
+            "linkdin": "لینکدین",
+            "button": "ویرایش اطلاعات"
         },
         "tabs": {
-        "general": "اطلاعات کلی",
-        "location": "موقعیت مکانی",
-        "social": "شبکه اجتماعی"
-        },
-        "gender" : {
-        "male" : "مرد",
-        "female" : "زن"
-
-        },
-        "fields": {
-        "name": "نام",
-        "lastname": "نام خانوادگی",
-        "nationalcode": "کد ملی",
-        "gender": "جنسیت",
-        "birthday": "تاریخ تولد",
-        "phonenumber": "شماره تلفن",
-        "aboutme": "درباره من"
-        },
-        "placeholders": {
-        "name": "نام خود را وارد کنید",
-        "lastname": "نام خانوادگی خود را وارد کنید",
-        "nationalcode": "کد ملی 10 رقمی را وارد کنید",
-        "gender": "انتخاب کنید",
-        "birthday": "",
-        "phonenumber": "شماره تلفن خود را وارد کنید",
-        "aboutme": "توضیحات بیشتر راجب خود وارد کنید"
-        },
-        "buttons": {
-        "edit": "ویرایش اطلاعات"
-        },
-        "modal" : {
-        "confirm": "تایید عکس",
-        "cancel" : "انصراف"
-        },
-        "location": {
-        "adress": " آدرس کامل",
-        "width": "عرض جغرافیایی",
-        "height": "طول جغرافیایی",
-        "adressplace": " آدرس محل سکونت خود را وارد کنید یا روی نقشه انتخاب کنید",
-        "widthplace": " عرض جغرافیایی را وارد کنید",
-        "heightplace": "آدرس محل سکونت خود را وارد کنید یا روی نقشه انتخاب کنید",
-        "button": "ویرایش اطلاعات"
-        }
-    },
-        "validation": {
-        "nationalId": {
-        "required": "کد ملی خود را وارد کنید *",
-        "invalid": "کدملی نامعتبر است *"
-        },
-        "name": {
-        "required": "نام خود را وارد کنید *"
-        },
-        "lastname": {
-        "required": "نام خانوادگی خود را وارد کنید *"
-        },
-        "phoneNumber": {
-        "required": "شماره موبایل خود را وارد کنید *",
-        "invalid": "شماره موبایل نامعتبر است *"
-        },
-        "birthDate": {
-        "required": "تاریخ تولد خود را وارد کنید *"
+            "general": "اطلاعات کلی",
+            "location": "موقعیت مکانی",
+            "social": "شبکه اجتماعی"
         },
         "gender": {
-        "required": "گزینه مورد نظر خود را انتخاب کنید *"
+            "male": "مرد",
+            "female": "زن"
+        },
+        "fields": {
+            "name": "نام",
+            "lastname": "نام خانوادگی",
+            "nationalcode": "کد ملی",
+            "gender": "جنسیت",
+            "birthday": "تاریخ تولد",
+            "phonenumber": "شماره تلفن",
+            "aboutme": "درباره من"
+        },
+        "placeholders": {
+            "name": "نام خود را وارد کنید",
+            "lastname": "نام خانوادگی خود را وارد کنید",
+            "nationalcode": "کد ملی 10 رقمی را وارد کنید",
+            "gender": "انتخاب کنید",
+            "birthday": "",
+            "phonenumber": "شماره تلفن خود را وارد کنید",
+            "aboutme": "توضیحات بیشتر راجب خود وارد کنید"
+        },
+        "buttons": {
+            "edit": "ویرایش اطلاعات"
+        },
+        "modal": {
+            "confirm": "تایید عکس",
+            "cancel": "انصراف"
+        },
+        "location": {
+            "adress": " آدرس کامل",
+            "width": "عرض جغرافیایی",
+            "height": "طول جغرافیایی",
+            "adressplace": " آدرس محل سکونت خود را وارد کنید یا روی نقشه انتخاب کنید",
+            "widthplace": " عرض جغرافیایی را وارد کنید",
+            "heightplace": "آدرس محل سکونت خود را وارد کنید یا روی نقشه انتخاب کنید",
+            "button": "ویرایش اطلاعات"
+        }
+    },
+    "userPanelSearch": {
+        "placeholder": "جستجو..."
+    },
+    "userPanelFilter": {
+        "option1": "فیلترها"
+    },
+    "userPanelShowNumber": {
+        "showNumber": "تعداد نمایش"
+    },
+    "myCourses": {
+        "title1": "نام دوره",
+        "title2": "استاد",
+        "title3": "وضعیت پرداخت",
+        "title4": "قیمت (تومان)",
+        "title5": "آخرین به روز رسانی",
+        "title6": "عملیات"
+    },
+    "myReservedCourses": {
+        "title1": "نام دوره",
+        "title2": "دانشجو",
+        "title3": "وضعیت",
+        "title4": "تاریخ رزرو",
+        "title5": "عملیات"
+    },
+    "myCoursesComments": {
+        "title1": "عنوان دوره",
+        "title2": "عنوان دیدگاه",
+        "title3": "متن دیدگاه",
+        "title4": "وضعیت",
+        "title5": "تاریخ",
+        "title6": "عملیات"
+    },
+    "myNewsComments": {
+        "title1": "عنوان خبر",
+        "title2": "عنوان دیدگاه",
+        "title3": "متن دیدگاه",
+        "title4": "وضعیت",
+        "title5": "تاریخ",
+        "title6": "عملیات"
+    },
+    "validation": {
+        "nationalId": {
+            "required": "کد ملی خود را وارد کنید *",
+            "invalid": "کدملی نامعتبر است *"
+        },
+        "name": {
+            "required": "نام خود را وارد کنید *"
+        },
+        "lastname": {
+            "required": "نام خانوادگی خود را وارد کنید *"
+        },
+        "phoneNumber": {
+            "required": "شماره موبایل خود را وارد کنید *",
+            "invalid": "شماره موبایل نامعتبر است *"
+        },
+        "birthDate": {
+            "required": "تاریخ تولد خود را وارد کنید *"
+        },
+        "gender": {
+            "required": "گزینه مورد نظر خود را انتخاب کنید *"
         }
     }
 }

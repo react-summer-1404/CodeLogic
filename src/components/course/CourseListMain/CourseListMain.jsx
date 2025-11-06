@@ -1,44 +1,59 @@
-import React, { useState, useMemo, useCallback } from 'react'
-import CourseCardView1 from '../../common/CourseCardView1/CourseCardView1'
-import CourseCardView2 from '../../common/CourseCardView2/CourseCardView2'
+import React, { useState } from 'react'
+import CourseCardView1 from '../../common/course/CourseCardView1/CourseCardView1'
+import CourseCardView2 from '../../common/course/CourseCardView2/CourseCardView2'
 import SortView from '../SortView/SortView'
 import ReactPaginate from 'react-paginate'
+import { postFavoriteCourses } from '../../../core/services/api/post/postFavoriteCourses'
+import { deleteFavoriteCourses } from '../../../core/services/api/delete/deleteFavoriteCourses'
 
 
 const VIEW_TYPE_LIST = 'list';
 const VIEW_TYPE_GRID = 'grid';
 
+ 
+const CourseListMain = ({ coursesData, isLoading, currentPage , setCurrentPage , setSortingCol , pageSize , setPageSize }) => {
 
 
-const CourseListMain = ({ coursesData, isLoading, setSortingCol, currentPage, setCurrentPage, pageSize, setPageSize}) => {
-
-
-  const [currentView, setCurrentView] = useState(VIEW_TYPE_GRID);
+  const [currentView, setCurrentView] = useState(() => {
+    return localStorage.getItem('courseViewType') || VIEW_TYPE_GRID;
+  });
   const CourseCardComponent = currentView === VIEW_TYPE_LIST ? CourseCardView2 : CourseCardView1
-  // console.log(currentPage)
-
-
-  if (isLoading) return <div>Loading...</div>
-
-
-  const handleViewChange = (viewType) => {
-    setCurrentView(viewType);
+  const handleViewChange = (courseViewType) => {
+    setCurrentView(courseViewType);
+    localStorage.setItem('courseViewType', courseViewType)
   };
+  // console.log(currentPage)
+  
 
 
+  const [favorites, setFavorites] = useState([])
+  const handleToggleFavorite = async (courseId) => {
+    if(favorites.includes(courseId)){
+      await deleteFavoriteCourses(courseId)
+      setFavorites(favorites.filter(id => id !== courseId))
+    }
+    else{
+      await postFavoriteCourses(courseId)
+      setFavorites([...favorites, courseId])
+    }
+  }
+
+
+  
   const handlePageSizeChange = (newSize) => {
     setPageSize(newSize);
     setCurrentPage(1);
   };
-
-
+  
+  
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  
+  if (isLoading) return <div>Loading...</div>
 
-  console.log(coursesData)
-
+  
   return (
     <div className='flex flex-col gap-8 w-full'>
       <SortView onViewChange={handleViewChange} currentView={currentView} currentPageSize={pageSize}
@@ -46,7 +61,9 @@ const CourseListMain = ({ coursesData, isLoading, setSortingCol, currentPage, se
       <div className='flex flex-row flex-wrap gap-y-8 gap-x-4'>
         {
           coursesData?.courseFilterDtos?.map((item, index) => {
-            return <CourseCardComponent item={item} key={index} />
+            return <CourseCardComponent item={item} key={index} 
+            isFavorite={favorites.includes(item.id)}
+            handleToggleFavorite={handleToggleFavorite}/>
           })
         }
       </div>
