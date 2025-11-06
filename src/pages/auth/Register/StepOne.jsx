@@ -154,7 +154,7 @@ const StepOne = () => {
                         : "left-4 sm:left-8 lg:left-30"
                     } flex items-center`}
                   >
-                    <div>
+                    <Link to="/">
                       <HomeIcon
                         className={`ml-2 transition-colors duration-500 ${
                           darkMode ? "text-gray-300" : "text-[#005B77]"
@@ -167,7 +167,7 @@ const StepOne = () => {
                       >
                         {t("registerStepOne.home")}
                       </span>
-                    </div>
+                    </Link>
                     <TranslateButton />
                   </div>
                 </motion.div>
@@ -269,7 +269,7 @@ const StepOne = () => {
                       darkMode ? "text-[#008C78]" : "text-[#008C78]"
                     }`}
                   >
-                    {t("registerStepOne.login")}
+                    <Link to="/login">{t("registerStepOne.login")}</Link>
                   </span>
                 </motion.p>
               </div>
