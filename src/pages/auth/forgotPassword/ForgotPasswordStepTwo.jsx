@@ -56,12 +56,12 @@ const ForgotPasswordStepTwo = () => {
     });
 
     return (
-        <div className="bg-[#EAEAEA] min-h-screen flex items-center justify-center">
+        <div className="bg-[#EAEAEA] dark:bg-[#1E1E1E] min-h-screen flex items-center justify-center">
             <motion.div
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                className="flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg md:flex-row lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] p-2 "
+                className="flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-[#333] dark:text-white shadow-lg md:flex-row lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] p-2 "
             >
                 <motion.div
                     initial={{ opacity: 0, x: 50 }}
@@ -176,7 +176,7 @@ const ForgotPasswordStepTwo = () => {
                     initial={{ x: -50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ ease: 'easeOut', type: 'spring', stiffness: 300, delay: 0.5 }}
-                    className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-gray-800/50 rounded-[60px] relative"
+                    className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-[#454545] rounded-[60px] relative"
                 >
                     <div
                         onClick={handleDark}
