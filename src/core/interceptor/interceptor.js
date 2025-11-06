@@ -1,53 +1,39 @@
-import axios from 'axios';
+import axios from 'axios'
+import { getItem, removeItem, setItem } from '../../utils/helper/storage.services';
 
-const API_BASE_URL = 'https://sepehracademy.liara.run';
-const apiClient = axios.create({
-    baseURL: API_BASE_URL,
+
+const baseURL = "https://sepehracademy.liara.run"
+
+const instance = new axios.create({
+    baseURL: baseURL,
 });
 
 const onSuccess = (response) => {
     return response.data;
-};
+}
 
 const onError = (err) => {
-    return err.response.data;
-};
-
-apiClient.interceptors.request.use((config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+    if (err.response.status === 401) {
+        removeItem('token')
+        window.location.pathname = '/Login'
+        setItem("isLogin", false)
+        setIsLogin(true)
+        removeItem("token")
     }
-    return config;
-});
 
-// const obj = {
-//   userId: 22,
-// }
+    if (err.response.status >= 400 && err.response.status < 500) {
+        alert("Client error: " + err.response.status)
+    }
 
-apiClient.interceptors.response.use(onSuccess, onError);
+    return Promise.reject(err);
+}
 
-export default apiClient;
+instance.interceptors.response.use(onSuccess, onError);
+instance.interceptors.request.use((opt) => {
+    const token = getItem("token");
+    console.log("token:", token)
+    if (token) opt.headers.Authorization = "Bearer " + token;
+    return opt;
+})
 
-// src/interceptor/interceptor.js
-// import axios from "axios";
-
-// const API_BASE_URL = "https://sepehracademy.liara.run";
-
-// const apiClient = axios.create({
-//   baseURL: API_BASE_URL,
-// });
-
-// const onSuccess = (response) => response.data;
-// const onError = (err) => {
-//   if (err.response) return Promise.reject(err.response.data);
-//   return Promise.reject(err);
-// };
-
-// apiClient.interceptors.request.use((config) => {
-//   return config;
-// });
-
-// apiClient.interceptors.response.use(onSuccess, onError);
-
-// export default apiClient;
+export default instance

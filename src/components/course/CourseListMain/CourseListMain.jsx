@@ -1,17 +1,16 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import ReactPaginate from 'react-paginate'
+import { postFavoriteCourses } from '../../../core/services/api/post/postFavoriteCourses'
 import CourseCardView1 from '../../common/course/CourseCardView1/CourseCardView1'
 import CourseCardView2 from '../../common/course/CourseCardView2/CourseCardView2'
 import SortView from '../SortView/SortView'
-import ReactPaginate from 'react-paginate'
-import { postFavoriteCourses } from '../../../core/services/api/post/postFavoriteCourses'
-import { deleteFavoriteCourses } from '../../../core/services/api/delete/deleteFavoriteCourses'
 
 
 const VIEW_TYPE_LIST = 'list';
 const VIEW_TYPE_GRID = 'grid';
 
- 
-const CourseListMain = ({ coursesData, isLoading, currentPage , setCurrentPage , setSortingCol , pageSize , setPageSize }) => {
+
+const CourseListMain = ({ coursesData, isLoading, currentPage, setCurrentPage, setSortingCol, pageSize, setPageSize }) => {
 
 
   const [currentView, setCurrentView] = useState(() => {
@@ -22,48 +21,39 @@ const CourseListMain = ({ coursesData, isLoading, currentPage , setCurrentPage ,
     setCurrentView(courseViewType);
     localStorage.setItem('courseViewType', courseViewType)
   };
-  // console.log(currentPage)
-  
 
 
-  const [favorites, setFavorites] = useState([])
+
   const handleToggleFavorite = async (courseId) => {
-    if(favorites.includes(courseId)){
-      await deleteFavoriteCourses(courseId)
-      setFavorites(favorites.filter(id => id !== courseId))
-    }
-    else{
-      await postFavoriteCourses(courseId)
-      setFavorites([...favorites, courseId])
-    }
+    await postFavoriteCourses(courseId)
   }
 
 
-  
+
   const handlePageSizeChange = (newSize) => {
     setPageSize(newSize);
     setCurrentPage(1);
   };
-  
-  
+
+
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
+
   if (isLoading) return <div>Loading...</div>
 
-  
+
   return (
     <div className='flex flex-col gap-8 w-full'>
       <SortView onViewChange={handleViewChange} currentView={currentView} currentPageSize={pageSize}
-      onPageSizeChange={handlePageSizeChange} setSortingCol={setSortingCol}/>
+        onPageSizeChange={handlePageSizeChange} setSortingCol={setSortingCol} />
       <div className='flex flex-row flex-wrap gap-y-8 gap-x-4'>
         {
           coursesData?.courseFilterDtos?.map((item, index) => {
-            return <CourseCardComponent item={item} key={index} 
-            isFavorite={favorites.includes(item.id)}
-            handleToggleFavorite={handleToggleFavorite}/>
+            return <CourseCardComponent item={item} key={index}
+
+              handleToggleFavorite={handleToggleFavorite} />
           })
         }
       </div>
