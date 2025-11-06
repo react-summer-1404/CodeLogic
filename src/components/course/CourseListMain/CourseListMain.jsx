@@ -23,9 +23,10 @@ const CourseListMain = ({ coursesData, isLoading, currentPage, setCurrentPage, s
   };
 
 
-
+  const [isFavorite, setIsFavorite] = useState(false)
   const handleToggleFavorite = async (courseId) => {
     await addFavoriteCourses(courseId)
+    setIsFavorite(!isFavorite)
   }
 
 
@@ -51,7 +52,8 @@ const CourseListMain = ({ coursesData, isLoading, currentPage, setCurrentPage, s
       <div className='flex flex-row flex-wrap gap-y-8 gap-x-4'>
         {
           coursesData?.courseFilterDtos?.map((item, index) => {
-            return <CourseCardComponent item={item} key={index} handleToggleFavorite={handleToggleFavorite} />
+            return <CourseCardComponent item={item} key={index} handleToggleFavorite={handleToggleFavorite} 
+            isFavorite={isFavorite}/>
           })
         }
       </div>
