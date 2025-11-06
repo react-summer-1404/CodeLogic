@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PersonalComment from "../PersonalComment/PersonalComment";
 import { useTranslation } from "react-i18next";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { NewsCommentValcomment } from "../../../utils/Validations/NewsCommentVal/NewsCommentVal";
+import { NewsCommentValcomment } from "../../../../utils/Validations/NewsCommentVal/NewsCommentVal";
 
 const NewsComment = () => {
   const [initialValues] = useState({ titlecomment: "", description: "" });

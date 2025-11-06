@@ -8,7 +8,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import { Dialog } from "@mui/material";
 import AnswerComment from "../AnswerComment/AnswerComment";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { NewsCommentVal } from "../../../utils/Validations/NewsCommentVal/NewsCommentVal";
+import { NewsCommentVal } from "../../../../utils/Validations/NewsCommentVal/NewsCommentVal";
 
 const PersonalComment = () => {
   const commentData = [

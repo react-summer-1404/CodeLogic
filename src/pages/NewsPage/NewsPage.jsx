@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from "react";
 import { Formik, Form, Field } from "formik";
 import CategoryFilter from "../../components/CategoryFilter/CategoryFilter";
-import NewsCard from "../../components/NewsCard/NewsCard";
+import NewsCard from "../../components/news/NewsCard/NewsCard";
 import SearchIcon from "@mui/icons-material/Search";
 import GridViewIcon from "@mui/icons-material/GridView";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
-import NewsSelectOne from "../../components/NewsSelectOne/NewsSelectOne";
-import NewsSelectTwo from "../../components/NewsSelectTwo/NewsSelectTwo";
+import NewsSelectOne from "../../components/news/NewsSelectOne/NewsSelectOne";
+import NewsSelectTwo from "../../components/news/NewsSelectTwo/NewsSelectTwo";
 import ReactPaginate from "react-paginate";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
