@@ -7,6 +7,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import TranslateButton from "../../../components/TranslateButton/TranslateButton";
+import sun from "../../../assets/Icons/A/sun.png";
+import moon from "../../../assets/Icons/A/moon.png";
 
 const StepTwo = () => {
   const { t, i18n } = useTranslation();
@@ -112,12 +114,7 @@ const StepTwo = () => {
                     }`}
                   >
                     <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center">
-                      <img
-                        src={`${
-                          darkMode ? "./icons/sun.png" : "./icons/moon.png"
-                        }`}
-                        alt="theme icon"
-                      />
+                      <img src={`${darkMode ? sun : moon}`} alt="theme icon" />
                     </div>
                   </div>
 
@@ -255,7 +252,7 @@ const StepTwo = () => {
                     <Link
                       className={`text-center mt-10 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
                         darkMode
-                          ? "bg-yellow-400 text-gray-800 hover:bg-yellow-300"
+                          ? "bg-[#008C78] text-[white] "
                           : "bg-[#008C78] text-white hover:bg-[#007563]"
                       }`}
                       to="/RegisterStepThree"

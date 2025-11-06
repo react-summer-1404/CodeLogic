@@ -11,6 +11,8 @@ import RegisterStepOne from "../../../core/services/api/post/registerStepOne";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import TranslateButton from "../../../components/TranslateButton/TranslateButton";
+import sun from "../../../assets/Icons/A/sun.png";
+import moon from "../../../assets/Icons/A/moon.png";
 
 const StepOne = () => {
   const { t, i18n } = useTranslation();
@@ -111,12 +113,7 @@ const StepOne = () => {
                     }`}
                   >
                     <div className="w-3 h-[90%] rounded-full flex items-center">
-                      <img
-                        src={`${
-                          darkMode ? "/icons/sun.png" : "/icons/moon.png"
-                        }`}
-                        alt="theme icon"
-                      />
+                      <img src={darkMode ? sun : moon} alt="theme icon" />
                     </div>
                   </div>
 
@@ -219,7 +216,7 @@ const StepOne = () => {
                     placeholder={t("registerStepOne.phone_placeholder")}
                     className={`rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       darkMode
-                        ? "bg-[#454545] text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
+                        ? "bg-[#454545] text-gray-200 focus:ring-[#008C78] placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />
@@ -248,7 +245,7 @@ const StepOne = () => {
                     type="submit"
                     className={`text-center mt-4 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
                       darkMode
-                        ? "bg-yellow-400 text-gray-800 hover:bg-yellow-300"
+                        ? "bg-[#008C78] text-[white] "
                         : "bg-[#008C78] text-white hover:bg-[#007563]"
                     }`}
                   >
@@ -269,7 +266,7 @@ const StepOne = () => {
                   {t("registerStepOne.have_account")}{" "}
                   <span
                     className={`font-semibold cursor-pointer hover:underline transition-colors duration-500 ${
-                      darkMode ? "text-yellow-300" : "text-[#008C78]"
+                      darkMode ? "text-[#008C78]" : "text-[#008C78]"
                     }`}
                   >
                     {t("registerStepOne.login")}
