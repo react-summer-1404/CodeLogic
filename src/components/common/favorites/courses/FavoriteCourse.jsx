@@ -11,7 +11,7 @@ const FavoriteCourse = ({ items }) => {
     const meetingMode = mode[Math.floor(Math.random() * mode.length)];
     ///// get from backend ////
     const queryClient = useQueryClient();
-    const { mutate: deleteCourse, isPending } = useMutation({
+    const { mutate: deleteCourse } = useMutation({
         mutationKey: ['DELETECOURSE'],
         mutationFn: (value) => deleteFavCourses(value),
         onSettled: (data) => {
@@ -37,7 +37,7 @@ const FavoriteCourse = ({ items }) => {
             variants={Animate}
             initial="hidden"
             animate="visible"
-            className=" dark:bg-black dark:text-[#ffff] w-full text-[16px] text-center font-semibold bg-[#ffff] rounded-t-4xl flex items-center py-5 border-b border-[#EAEAEA] "
+            className=" dark:bg-[#454545] dark:text-[#ffff] w-full text-[16px] text-center font-semibold bg-[#ffff] rounded-t-4xl flex items-center py-5 border-b border-[#EAEAEA] "
             style={{ direction: 'rtl' }}
         >
             <div className="ps-8 flex items-center justify-start gap-4 flex-[1.5] text-right">
@@ -58,7 +58,7 @@ const FavoriteCourse = ({ items }) => {
                 ></div>
                 <div
                     onClick={() => {
-                        deleteCourse(items.courseId);
+                        deleteCourse(items.favoriteId);
                         console.log(items.courseId);
                     }}
                     style={{ backgroundImage: `url(${greenBasket})` }}

@@ -105,7 +105,7 @@ const FavoriteNews = () => {
                     className="relative max-w-[40%] w-full"
                 >
                     <input
-                        className=" dark:bg-black dark:text-[#ffff] dark:placeholder:text-white
+                        className=" dark:bg-[#454545] dark:text-[#ffff] dark:placeholder:text-white
                      w-full h-full shadow py-2 px-3 bg-[#ffff] rounded-[16px] focus:outline-none "
                         type="text"
                         onChange={(e) => {
@@ -122,7 +122,7 @@ const FavoriteNews = () => {
                         alt=""
                     />
                 </motion.div>
-                <div className="flex h-full items-center bg-[#ffff] dark:bg-black dark:text-[#ffff] rounded-xl border shadow md:p-1 border-[#EAEAEA] ">
+                <div className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow md:p-1 border-[#EAEAEA] ">
                     <span className="text-[16px] invisible md:visible">
                         {t('coursesPayment.filters')}
                     </span>
@@ -133,7 +133,7 @@ const FavoriteNews = () => {
                             setCurrentPage(1);
                         }}
                         className=" rounded-xl text-sm cursor-pointer  ps-2 text-gray-600
-                         dark:bg-black dark:text-[#ffff] bg-[#ffff]"
+                         dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]"
                     >
                         <option value="all">({t('favoriteNews.all')})</option>
                         <option value="بیشترین لایک">({t('favoriteNews.mostLikes')})</option>
@@ -146,7 +146,7 @@ const FavoriteNews = () => {
                 variants={fadeInUp(0)}
                 initial="hidden"
                 animate="visible"
-                className=" dark:bg-black dark:text-[#ffff]
+                className=" dark:bg-[#454545] dark:text-[#ffff]
              h-[85%] bg-[#ffff] shadow rounded-4xl flex flex-col justify-between"
             >
                 <div className="flex flex-col h-[70%]">
@@ -178,7 +178,7 @@ const FavoriteNews = () => {
                             onClick={() => {
                                 setCurrentPage((prev) => prev - 1);
                             }}
-                            className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 mr-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
+                            className="  dark:bg-[#454545] dark:text-[#ffff] cursor-pointer flex gap-3 mr-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
                             <img src={pl} alt="" />
                             {t('favoriteNews.back')}
@@ -203,14 +203,14 @@ const FavoriteNews = () => {
                             onClick={() => {
                                 setCurrentPage((prev) => prev + 1);
                             }}
-                            className="  dark:bg-black dark:text-[#ffff] cursor-pointer flex gap-3 ml-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
+                            className="  dark:bg-[#454545] dark:text-[#ffff] cursor-pointer flex gap-3 ml-2 items-center bg-[#ffff] text-[16px] text-[#848484] "
                         >
                             {t('favoriteNews.next')}
                             <img src={pr} alt="" />
                         </button>
                     </div>
                     {/* filtering counts ------ */}
-                    <div className="flex items-center dark:bg-black dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
+                    <div className="flex items-center dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
                         <span className="text-[16px]">{t('favoriteNews.NumberShows')}</span>
                         <select
                             value={newsPerPage}
@@ -218,7 +218,7 @@ const FavoriteNews = () => {
                                 setNewsPerPage(Number(e.target.value));
                                 setCurrentPage(1);
                             }}
-                            className=" rounded-xl text-sm cursor-pointer px-3 py-1  dark:bg-black dark:text-[#ffff]"
+                            className=" rounded-xl text-sm cursor-pointer px-3 py-1 dark:bg-[#454545] dark:text-[#ffff]"
                         >
                             <option value={2}>2</option>
                             <option value={4}>4</option>
