@@ -131,14 +131,14 @@ const PanelRight = ({ isMobileMenu }) => {
           >
             <PersonIcon
               className={`text-[18px] md:text-[20px] ${
-                isActive("/Panel/UserInfo")
+                isActive("/userPanel/UserInfo")
                   ? "text-[#008C78] !text-[24px] md:!text-[26px]"
                   : "text-[#848484]"
               }`}
             />
             <span
               className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
-                isActive("/Panel/UserInfo")
+                isActive("/userPanel/UserInfo")
                   ? "text-[#1e1e1e] font-semibold dark:text-[white]"
                   : "text-[#848484]"
               } ${isRtl ? "" : "ml-2"}`}
@@ -149,35 +149,63 @@ const PanelRight = ({ isMobileMenu }) => {
         </Link>
 
         <motion.div className="flex items-center mb-4" variants={itemVariants}>
-          <MenuBookIcon className="text-[18px] md:text-[20px] text-[#848484]" />
-          <Link to={'/userPanel/myCourses'}
-            className={`text-[15px] md:text-[17px] lg:text-[18px] text-[#848484] mr-2 ${
-              isRtl ? "" : "ml-3"
+          <MenuBookIcon
+            className={`text-[18px] md:text-[20px] ${
+              isActive("/userPanel/myCourses")
+                ? "text-[#008C78] !text-[24px] md:!text-[26px]"
+                : "text-[#848484]"
             }`}
+          />
+          <Link
+            to={"/userPanel/myCourses"}
+            className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
+              isActive("/userPanel/myCourses")
+                ? "text-[#1e1e1e] font-semibold dark:text-[white]"
+                : "text-[#848484]"
+            } ${isRtl ? "" : "ml-2"}`}
           >
             {t("panelside.my_courses")}
           </Link>
         </motion.div>
 
         <motion.div className="flex items-center mb-4" variants={itemVariants}>
-          <BookmarkIcon className="text-[18px] md:text-[20px] text-[#848484]" />
-          <Link to={'/userPanel/myReservedCourses'}
-            className={`text-[15px] md:text-[17px] lg:text-[18px] text-[#848484] mr-2 ${
-              isRtl ? "" : "ml-2"
+          <BookmarkIcon
+            className={`text-[18px] md:text-[20px] ${
+              isActive("/userPanel/myReservedCourses")
+                ? "text-[#008C78] !text-[24px] md:!text-[26px]"
+                : "text-[#848484]"
             }`}
+          />
+          <Link
+            to={"/userPanel/myReservedCourses"}
+            className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
+              isActive("/userPanel/myReservedCourses")
+                ? "text-[#1e1e1e] font-semibold dark:text-[white]"
+                : "text-[#848484]"
+            } ${isRtl ? "" : "ml-2"}`}
           >
             {t("panelside.reserved_courses")}
           </Link>
         </motion.div>
 
         <motion.div className="flex items-center mb-4" variants={itemVariants}>
-          <WalletIcon className="text-[18px] md:text-[20px] text-[#848484]" />
-          <span
-            className={`text-[15px] md:text-[17px] lg:text-[18px] text-[#848484] mr-2 ${
-              isRtl ? "" : "ml-2"
+          <WalletIcon
+            className={`text-[18px] md:text-[20px] ${
+              isActive("/userPanel/coursesPayments")
+                ? "text-[#008C78] !text-[24px] md:!text-[26px]"
+                : "text-[#848484]"
             }`}
+          />
+          <span
+            className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
+              isActive("/userPanel/coursesPayments")
+                ? "text-[#1e1e1e] font-semibold dark:text-[white]"
+                : "text-[#848484]"
+            } ${isRtl ? "" : "ml-2"}`}
           >
-            {t("panelside.my_payments")}
+            <Link to="/userPanel/coursesPayments">
+              {t("panelside.my_payments")}
+            </Link>
           </span>
         </motion.div>
 
@@ -214,8 +242,21 @@ const PanelRight = ({ isMobileMenu }) => {
                   className="mb-2 flex items-center"
                   variants={subMenuItemVariants}
                 >
-                  <CircleOutlinedIcon className="text-[13px] md:text-[15px] text-[#848484] ml-2" />
-                  <Link to={'/userPanel/myCoursesComments'} className="text-[14px] md:text-[16px] text-[#848484]">
+                  <CircleOutlinedIcon
+                    className={`text-[18px] md:text-[20px] ${
+                      isActive("/userPanel/myCoursesComments")
+                        ? "text-[#008C78] !text-[24px] md:!text-[26px]"
+                        : "text-[#848484]"
+                    }`}
+                  />
+                  <Link
+                    to={"/userPanel/myCoursesComments"}
+                    className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
+                      isActive("/userPanel/myCoursesComments")
+                        ? "text-[#1e1e1e] font-semibold dark:text-[white]"
+                        : "text-[#848484]"
+                    } ${isRtl ? "" : "ml-2"}`}
+                  >
                     {t("panelside.my_view_on_the_courses")}
                   </Link>
                 </motion.div>
@@ -223,8 +264,21 @@ const PanelRight = ({ isMobileMenu }) => {
                   className="mb-2 flex items-center"
                   variants={subMenuItemVariants}
                 >
-                  <CircleOutlinedIcon className="text-[13px] md:text-[15px] text-[#848484] ml-2" />
-                  <Link to={'/userPanel/myNewsComments'} className="text-[14px] md:text-[16px] text-[#848484]">
+                  <CircleOutlinedIcon
+                    className={`text-[18px] md:text-[20px] ${
+                      isActive("/userPanel/MyNewsComments")
+                        ? "text-[#008C78] !text-[24px] md:!text-[26px]"
+                        : "text-[#848484]"
+                    }`}
+                  />
+                  <Link
+                    to={"/userPanel/MyNewsComments"}
+                    className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
+                      isActive("/userPanel/MyNewsComments")
+                        ? "text-[#1e1e1e] font-semibold dark:text-[white]"
+                        : "text-[#848484]"
+                    } ${isRtl ? "" : "ml-2"}`}
+                  >
                     {t("panelside.my_view_on_the_news")}
                   </Link>
                 </motion.div>
@@ -266,18 +320,46 @@ const PanelRight = ({ isMobileMenu }) => {
                   className="mb-2 flex items-center"
                   variants={subMenuItemVariants}
                 >
-                  <CircleOutlinedIcon className="text-[13px] md:text-[15px] text-[#848484] ml-2" />
-                  <span className="text-[14px] md:text-[16px] text-[#848484]">
-                    {t("panelside.my_favorite_courses")}
+                  <CircleOutlinedIcon
+                    className={`text-[18px] md:text-[20px] ${
+                      isActive("/userPanel/favoriteCourses")
+                        ? "text-[#008C78] !text-[24px] md:!text-[26px]"
+                        : "text-[#848484]"
+                    }`}
+                  />
+                  <span
+                    className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
+                      isActive("/userPanel/favoriteCourses")
+                        ? "text-[#1e1e1e] font-semibold dark:text-[white]"
+                        : "text-[#848484]"
+                    } ${isRtl ? "" : "ml-2"}`}
+                  >
+                    <Link to={"/userPanel/favoriteCourses"}>
+                      {t("panelside.my_favorite_courses")}
+                    </Link>
                   </span>
                 </motion.div>
                 <motion.div
                   className="mb-2 flex items-center"
                   variants={subMenuItemVariants}
                 >
-                  <CircleOutlinedIcon className="text-[13px] md:text-[15px] text-[#848484] ml-2" />
-                  <span className="text-[14px] md:text-[16px] text-[#848484]">
-                    {t("panelside.my_favorite_news")}
+                  <CircleOutlinedIcon
+                    className={`text-[18px] md:text-[20px] ${
+                      isActive("/userPanel/favoriteNews")
+                        ? "text-[#008C78] !text-[24px] md:!text-[26px]"
+                        : "text-[#848484]"
+                    }`}
+                  />
+                  <span
+                    className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
+                      isActive("/userPanel/favoriteNews")
+                        ? "text-[#1e1e1e] font-semibold dark:text-[white]"
+                        : "text-[#848484]"
+                    } ${isRtl ? "" : "ml-2"}`}
+                  >
+                    <Link to={"/userPanel/favoriteNews"}>
+                      {t("panelside.my_favorite_news")}
+                    </Link>
                   </span>
                 </motion.div>
               </motion.div>
@@ -293,20 +375,30 @@ const PanelRight = ({ isMobileMenu }) => {
         </motion.p>
 
         <motion.div className="flex items-center mb-2" variants={itemVariants}>
-          <SecurityIcon className="text-[18px] md:text-[20px] text-[#848484]" />
-          <span
-            className={`text-[15px] md:text-[17px] lg:text-[18px] text-[#848484] mr-2 ${
-              isRtl ? "" : "ml-2"
+          <SecurityIcon
+            className={`text-[18px] md:text-[20px] ${
+              isActive("/userPanel/securitySettings")
+                ? "text-[#008C78] !text-[24px] md:!text-[26px]"
+                : "text-[#848484]"
             }`}
+          />
+          <span
+            className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
+              isActive("/userPanel/securitySettings")
+                ? "text-[#1e1e1e] font-semibold dark:text-[white]"
+                : "text-[#848484]"
+            } ${isRtl ? "" : "ml-2"}`}
           >
-            {t("panelside.security_setting")}
+            <Link to={"/userPanel/securitySettings"}>
+              {t("panelside.security_setting")}
+            </Link>
           </span>
         </motion.div>
 
         <motion.div className="flex items-center" variants={itemVariants}>
           <LogoutIcon className="text-[18px] md:text-[20px] text-[#848484]" />
           <span
-            className={`text-[15px] md:text-[17px] lg:text-[18px] text-[#848484] mr-2 ${
+            className={`text-[15px] md:text-[17px] lg:text-[18px] cursor-pointer text-[#848484] mr-2 ${
               isRtl ? "" : "ml-2"
             }`}
           >
