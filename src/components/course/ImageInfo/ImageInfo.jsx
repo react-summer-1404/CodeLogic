@@ -1,12 +1,41 @@
 import React, { useState } from 'react'
 import Like from '../../../assets/Icons/Like'
 import DisLike from '../../../assets/Icons/DisLike'
+import {postLikeCourses} from '../../../core/services/api/post/postLikeCourses'
+import {postDissLikeCourses} from '../../../core/services/api/post/postDissLikeCourses'
 
 
 
 const ImageInfo = ({ course }) => {
 
-    const [active, setActive] = useState(false);
+    const [liked, setLiked] = useState(false);
+    const [disLiked, setDisliked] = useState(false);
+    const [likeCount, setLikeCount] = useState(course.likeCount);
+    const [disLikeCount, setDisLikeCount] = useState(course.dissLikeCount);
+
+    const handleLike = () => {
+    if (disLiked) return; 
+    if (liked) {
+        setLiked(false);
+        setLikeCount(likeCount - 1);
+    } else {
+        setLiked(true);
+        setLikeCount(likeCount + 1);
+        postLikeCourses(course.courseId);
+    }
+    };
+    const handleDislike = () => {
+    if (liked) return;
+    if (disLiked) {
+        setDisliked(false);
+        setDisLikeCount(disLikeCount - 1);
+    } else {
+        setDisliked(true);
+        setDisLikeCount(disLikeCount + 1);
+        postDissLikeCourses(course.courseId);
+    }
+    };
+
 
     return (
         <div className='flex flex-col gap-4'>
@@ -20,20 +49,24 @@ const ImageInfo = ({ course }) => {
                     </span>
                 </div>
                 <div className='flex gap-2'>
-                    <div onClick={() => {setActive(!active)}} className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] 
-                    rounded-[48px]   
+                    <div 
+                    onClick={handleLike} 
+                    className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] rounded-[48px] cursor-pointer 
                     dark:bg-[#393939]'>
-                        <span className='font-regular text-base text-[#848484]'>{course.likeCount}</span>
+                        <span className='font-regular text-base text-[#848484]'>{likeCount}</span>
                         {
-                            active ? <span className='rotate-180 transform scale-x-[-1]'><Like/></span> : <DisLike/>
+                            liked ? <span className='rotate-180 transform scale-x-[-1]'><Like/></span> : <DisLike/>
                         }
                     </div>
-                    <div  onClick={() => {setActive(!active)}} className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] 
-                    rounded-[48px]   
+                    <div  
+                    onClick={handleDislike} 
+                    className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] rounded-[48px] cursor-pointer  
                     dark:bg-[#393939]'>
-                        <span className='font-regular text-base text-[#848484]'>{course.dissLikeCount}</span>
+                        <span className='font-regular text-base text-[#848484]'>{disLikeCount}</span>
                         {
-                            active ? <span className='rotate-180 transform scale-x-[-1]'><DisLike/></span> : <Like/>
+                            disLiked 
+                            ? <span className=''><Like/></span> 
+                            : <span className='rotate-180 transform scale-x-[-1]'><DisLike/></span>
                         }
                     </div>
                 </div>

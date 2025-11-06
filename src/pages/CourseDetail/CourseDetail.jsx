@@ -7,6 +7,8 @@ import { useQuery } from '@tanstack/react-query'
 import GetAllCourses from '../../core/services/api/Get/GetAllCourses'
 
 
+
+
 const CourseDetail = () => {
 
   const { t } = useTranslation();
