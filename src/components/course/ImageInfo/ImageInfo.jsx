@@ -15,21 +15,23 @@ const ImageInfo = ({ course }) => {
 
     const handleLike = () => {
     if (disLiked) return; 
-    if (liked) {
+    else if(liked){
         setLiked(false);
         setLikeCount(likeCount - 1);
-    } else {
+    } 
+    else{
         setLiked(true);
         setLikeCount(likeCount + 1);
         likeCourses(course.courseId);
     }
     };
-    const handleDislike = () => {
+    const handleDisLike = () => {
     if (liked) return;
-    if (disLiked) {
+    else if(disLiked){
         setDisliked(false);
         setDisLikeCount(disLikeCount - 1);
-    } else {
+    } 
+    else{
         setDisliked(true);
         setDisLikeCount(disLikeCount + 1);
         disLikeCourses(course.courseId);
@@ -50,21 +52,21 @@ const ImageInfo = ({ course }) => {
                 </div>
                 <div className='flex gap-2'>
                     <div 
-                    onClick={handleLike} 
+                    onClick={handleDisLike} 
                     className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] rounded-[48px] cursor-pointer 
-                    dark:bg-[#393939]'>
-                        <span className='font-regular text-base text-[#848484]'>{likeCount}</span>
-                        {
-                            liked ? <span className='rotate-180 transform scale-x-[-1]'><Like/></span> : <DisLike/>
-                        }
-                    </div>
-                    <div  
-                    onClick={handleDislike} 
-                    className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] rounded-[48px] cursor-pointer  
                     dark:bg-[#393939]'>
                         <span className='font-regular text-base text-[#848484]'>{disLikeCount}</span>
                         {
-                            disLiked 
+                            disLiked ? <span className='rotate-180 transform scale-x-[-1]'><Like/></span> : <DisLike/>
+                        }
+                    </div>
+                    <div  
+                    onClick={handleLike} 
+                    className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] rounded-[48px] cursor-pointer  
+                    dark:bg-[#393939]'>
+                        <span className='font-regular text-base text-[#848484]'>{likeCount}</span>
+                        {
+                            liked 
                             ? <span className=''><Like/></span> 
                             : <span className='rotate-180 transform scale-x-[-1]'><DisLike/></span>
                         }
