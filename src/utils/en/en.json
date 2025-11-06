@@ -175,6 +175,12 @@
       "details": "Course Details",
       "comments": "User Comments"
     },
+    "cmval" : {
+        "title":"Enter the answer title",
+        "des":"Enter the answer description",
+        "commenttitle": "Enter your comment",
+        "commentdes":"Enter your description"
+    },
     "details": {
       "section1": {
         "title": "What is a Script and How is it Used in Programming?",

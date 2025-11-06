@@ -1,7 +1,6 @@
 import React, { useMemo, useRef } from "react";
 import img1 from "../../assets/Images/Ellipsee.png";
 import img2 from "../../assets/Images/Groupp.png";
-import img3 from "../../assets/Images/Rectangleside.png";
 import NewsSideBar from "../../components/NewsDetails/NewsSideBar/NewsSideBar";
 import TitleImage from "../../components/NewsDetails/TitleImage/TitleImage";
 import NewsComment from "../../components/NewsDetails/NewsComment/NewsComment";
@@ -12,6 +11,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import getAllNews from "../../core/services/api/Get/News";
+import { Link } from "react-router-dom";
 
 const newsData = [
   {
@@ -307,17 +307,19 @@ const NewsDetails = () => {
               </span>
 
               {sortedNews.map((news) => (
-                <NewsSideBar
-                  key={news.id}
-                  image={news.currentImageAddressTumb}
-                  title={news.title}
-                  name={news.addUserFullName}
-                  date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  }).format(new Date(news.insertDate))}
-                />
+                <Link to={`/news/${news.id}`}>
+                  <NewsSideBar
+                    key={news.id}
+                    image={news.currentImageAddressTumb}
+                    title={news.title}
+                    name={news.addUserFullName}
+                    date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    }).format(new Date(news.insertDate))}
+                  />
+                </Link>
               ))}
             </motion.div>
           </motion.div>

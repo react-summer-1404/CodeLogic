@@ -9,7 +9,7 @@ const NewsSideBar = ({ image, title, name, date }) => {
       />
 
       <div className="w-full flex flex-wrap sm:w-full md:w-[77%] lg:w-[77%]">
-        <p>{title}</p>
+        <p className=" font-semibold text-[black] dark:text-[white]">{title}</p>
         <div className="flex justify-between items-center w-full mt-3  ">
           <p className="text-[#848484] font-[10px]">{name}</p>
           <p className="text-[#848484] font-[10px]">{date}</p>
