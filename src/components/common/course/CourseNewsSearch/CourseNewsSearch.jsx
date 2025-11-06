@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState, useCallback} from 'react'
+import debounce from 'lodash.debounce'
 import Search from '../../../../assets/Icons/Search'
 import { useTranslation } from 'react-i18next'
 
@@ -7,15 +8,16 @@ import { useTranslation } from 'react-i18next'
 const CourseNewsSearch = ({handleSearchSubmit}) => {
 
     const [search, setSearch] = useState('');
-    const handleKeyDown = (e) => {
-        if(e.key === 'Enter' && handleSearchSubmit){
-            handleSearchSubmit(search);
-        }
-    };
-    const handleSearchClick = () => {
-        if(handleSearchSubmit){
-            handleSearchSubmit(search);
-        }
+    const debouncedSearch = useCallback(
+        debounce((value) => {
+        handleSearchSubmit(value);
+        }, 2000),
+        []
+    );
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setSearch(value);
+        debouncedSearch(value);
     };
 
 
@@ -24,12 +26,17 @@ const CourseNewsSearch = ({handleSearchSubmit}) => {
 
     return (
         <div className='relative'>
-            <input type='search' placeholder={t('courseListSide.searchPlaceholder')} value={search} onChange={(e) => {setSearch(e.target.value)}} 
-            onKeyDown={handleKeyDown} 
+            <input 
+            type='search' 
+            placeholder={t('courseListSide.searchPlaceholder')} 
+            value={search} 
+            onChange={handleChange} 
             className='w-full h-[46px] px-4 font-regular text-base text-[#848484] bg-[#FFFFFF] rounded-[15px] outline-0
+            dark:text-[#CCCCCC] dark:bg-[#454545]
             md:w-[284px]'/>
-            <div onClick={handleSearchClick} className={`absolute top-[15px] ${isRtl ? 'left-4' : 'right-4'}`}>
-                <Search />
+            <div className={`absolute top-[15px] ${isRtl ? 'left-4' : 'right-4'}
+            dark:text-[#CCCCCC]`}>
+                <Search/>
             </div>
         </div>
   )

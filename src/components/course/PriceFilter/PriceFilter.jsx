@@ -15,16 +15,17 @@ const PriceFilter = () => {
         return `${value}°C`;
     }
     const [value, setValue] = React.useState([20, 37]);
-    const handleChange = (event, newValue) => {
+    const priceChange = (event, newValue) => {
         setValue(newValue);
     };
 
 
     return (
-        <div className='flex flex-col gap-6 w-full p-4 bg-[#FFFFFF] rounded-[15px] cursor-pointer
+        <div className='flex flex-col gap-6 w-full p-4 bg-[#FFFFFF] rounded-[15px] cursor-pointer   dark:bg-[#454545]
         md:w-[284px]'>
-            <div onClick={() => {setIsOpen(!isOpen)}} className='flex justify-between items-center w-full'>
-                <span className='font-bo ld text-[18px] text-[#1E1E1E]'>{t('priceFilter.title')}</span>
+            <div onClick={() => {setIsOpen(!isOpen)}} className='flex justify-between items-center w-full
+            dark:text-[#DDDDDD]'>
+                <span className='font-bo ld text-[18px] text-[#1E1E1E]   dark:text-[#DDDDDD]'>{t('priceFilter.title')}</span>
                 <button className={`${isOpen ? 'rotate-90' : 'rotate-270'}`}>
                     <Arrow/>
                 </button>
@@ -34,7 +35,7 @@ const PriceFilter = () => {
                     <Slider
                         getAriaLabel={() => 'Temperature range'}
                         value={value}
-                        onChange={handleChange}
+                        onChange={priceChange}
                         valueLabelDisplay="auto"
                         getAriaValueText={valuetext}
                         min={0}
