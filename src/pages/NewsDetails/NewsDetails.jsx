@@ -11,6 +11,8 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import getAllNews from "../../core/services/api/Get/News";
+import getNewsDetails from "../../core/services/api/Get/NewsDetails";
+
 import { Link } from "react-router-dom";
 
 const newsData = [
@@ -181,6 +183,10 @@ const NewsDetails = () => {
     queryFn: getAllNews,
   });
 
+  const { datadetail } = useQuery({
+    queryFn: getNewsDetails,
+  });
+
   const sortedNews = useMemo(() => {
     if (!data?.news) return [];
     return [...data.news]
@@ -260,7 +266,7 @@ const NewsDetails = () => {
             className="font-bold text-xl sm:text-2xl md:text-3xl text-[#1E1E1E] dark:text-[#fff] text-center"
             variants={itemVariants}
           >
-            f
+            {datadetail.title}
           </motion.p>
         </div>
         <div className="flex flex-col sm:flex-row items-start justify-between max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
