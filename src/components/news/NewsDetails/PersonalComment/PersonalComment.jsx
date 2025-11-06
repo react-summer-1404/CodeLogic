@@ -7,6 +7,8 @@ import { useTranslation } from "react-i18next";
 import ChatIcon from "@mui/icons-material/Chat";
 import { Dialog } from "@mui/material";
 import AnswerComment from "../AnswerComment/AnswerComment";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { NewsCommentVal } from "../../../utils/Validations/NewsCommentVal/NewsCommentVal";
 
 const PersonalComment = () => {
   const commentData = [
@@ -35,6 +37,10 @@ const PersonalComment = () => {
       key: "comment6",
     },
   ];
+
+  const [initialValues] = useState({ title: "", answer: "" });
+
+  const [validationSchema, setValidationSchema] = useState(NewsCommentVal());
 
   const [open, setOpen] = useState(false);
 
@@ -98,27 +104,44 @@ const PersonalComment = () => {
           {t("personalComment.actions.replyButton")}
         </button>
       </div>
+      <Formik initialValues={initialValues} validationSchema={validationSchema}>
+        {() => (
+          <Form>
+            {showReply && (
+              <div className="mt-6 space-y-3 relative">
+                <Field
+                  type="text"
+                  name="title"
+                  className="w-full px-5 py-3 text-[#848484] mb-10  rounded-4xl outline-none border-none bg-[#F3F4F6] dark:bg-[#9d9d9d] dark:text-[black]  "
+                  placeholder={t("personalComment.replyForm.titlePlaceholder")}
+                />
+                <div className="text-[red] absolute right-5 top-14">
+                  <ErrorMessage name="title" />
+                </div>
 
-      {showReply && (
-        <div className="mt-6 space-y-3">
-          <input
-            className="w-full px-5 py-3 text-[#848484] mb-5  rounded-4xl outline-none border-none bg-[#F3F4F6] dark:bg-[#9d9d9d] dark:text-[black]  "
-            placeholder={t("personalComment.replyForm.titlePlaceholder")}
-          />
+                <Field
+                  type="text"
+                  name="answer"
+                  className="w-full px-5 pb-15 text-[#848484] h-[100px] mb-5  rounded-4xl outline-none border-none bg-[#F3F4F6] dark:bg-[#9d9d9d] dark:text-[black]  "
+                  placeholder={t("personalComment.replyForm.textPlaceholder")}
+                />
+                <div className="text-[red] absolute right-5 top-48">
+                  <ErrorMessage name="answer" />
+                </div>
 
-          <input
-            className="w-full px-5 pb-15 text-[#848484] h-[100px]  rounded-4xl outline-none border-none bg-[#F3F4F6] dark:bg-[#9d9d9d] dark:text-[black]  "
-            placeholder={t("personalComment.replyForm.textPlaceholder")}
-          />
-          <ChatBubbleOutlineIcon className="mt-3 dark:text-[#848484]" />
-          <button
-            onClick={() => setShowReply(false)}
-            className="text-[#1E1E1E] mr-3  cursor-pointer hover:text-[#008C78] dark:text-[#848484]"
-          >
-            {t("personalComment.actions.closeReply")}
-          </button>
-        </div>
-      )}
+                <ChatBubbleOutlineIcon className="mt-3 dark:text-[#848484]" />
+                <button
+                  onClick={() => setShowReply(false)}
+                  className="text-[#1E1E1E] mr-3  cursor-pointer hover:text-[#008C78] dark:text-[#848484]"
+                >
+                  {t("personalComment.actions.closeReply")}
+                </button>
+              </div>
+            )}
+          </Form>
+        )}
+      </Formik>
+
       <Dialog
         PaperProps={{
           sx: (theme) => ({

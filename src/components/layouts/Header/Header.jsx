@@ -99,7 +99,7 @@ const Header = () => {
           {isDark ? "☀️" : "🌙"}
         </button>
         <TranslateButton />
-        <Link to={"/RegisterStepOne"}>
+        <Link to={"/Login"}>
           <button className=" cursor-pointer  bg-[#008c78] text-white font-bold rounded-full px-2 sm:px-4 md:px-6 py-1 sm:py-2 md:py-3 text-xs sm:text-sm md:text-base transition-colors duration-300 hover:bg-[#007563]">
             {t("navbar.login")}
           </button>
