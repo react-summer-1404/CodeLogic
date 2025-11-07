@@ -201,7 +201,7 @@
         "price": "قیمت",
         "toman": "تومان",
         "reserveBtn": "همین حالا رزرو کنید",
-        "isReserved": "رزرو شده است",
+        "deleteReserveBtn": "لغو رزرو",
         "off": "تخفیف"
     },
     "userSatisfaction": {

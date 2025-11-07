@@ -201,7 +201,7 @@
         "price": "Price",
         "toman": "Toman",
         "reserveBtn": "Reserve Now",
-        "isReserved": "Reserved",
+        "deleteReserveBtn": "Cancel Reserve",
         "off": "Off"
     },
     "userSatisfaction": {

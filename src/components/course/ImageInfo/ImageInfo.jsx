@@ -13,7 +13,7 @@ const ImageInfo = ({ course }) => {
     const [likeCount, setLikeCount] = useState(course.likeCount);
     const [disLikeCount, setDisLikeCount] = useState(course.dissLikeCount);
 
-    const handleLike = () => {
+    const onLike = () => {
     if (disLiked) return; 
     else if(liked){
         setLiked(false);
@@ -25,7 +25,7 @@ const ImageInfo = ({ course }) => {
         likeCourses(course.courseId);
     }
     };
-    const handleDisLike = () => {
+    const onDisLike = () => {
     if (liked) return;
     else if(disLiked){
         setDisliked(false);
@@ -52,7 +52,7 @@ const ImageInfo = ({ course }) => {
                 </div>
                 <div className='flex gap-2'>
                     <div 
-                    onClick={handleDisLike} 
+                    onClick={onDisLike} 
                     className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] rounded-[48px] cursor-pointer 
                     dark:bg-[#393939]'>
                         <span className='font-regular text-base text-[#848484]'>{disLikeCount}</span>
@@ -61,7 +61,7 @@ const ImageInfo = ({ course }) => {
                         }
                     </div>
                     <div  
-                    onClick={handleLike} 
+                    onClick={onLike} 
                     className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] rounded-[48px] cursor-pointer  
                     dark:bg-[#393939]'>
                         <span className='font-regular text-base text-[#848484]'>{likeCount}</span>

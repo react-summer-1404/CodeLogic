@@ -4,6 +4,7 @@ import Clock from '../../../assets/Icons/Clock'
 import Users from '../../../assets/Icons/Users'
 import { useTranslation } from 'react-i18next'
 import {reserveCourses} from '../../../core/services/api/post/reserveCourses'
+import {deleteReserveCourses} from '../../../core/services/api/delete/deleteReserveCourses'
 
 
 const CourseInfo = ({course}) => {
@@ -14,8 +15,13 @@ const CourseInfo = ({course}) => {
     const [isReserve , setIsReserve] = useState(
         localStorage.getItem(course.courseId) === 'true'
     )
-    const handleReserveCourses = () => {
-        reserveCourses(course.courseId);
+    const toggleReserveCourses = () => {
+        if(isReserve){
+            deleteReserveCourses(course.courseId)
+        }
+        else{
+            reserveCourses(course.courseId);
+        }
         const newState = !isReserve;
         setIsReserve(newState);
         localStorage.setItem(course.courseId, newState);
@@ -80,11 +86,11 @@ const CourseInfo = ({course}) => {
                     </div>
                 </div>
                 <button 
-                onClick={handleReserveCourses}
+                onClick={toggleReserveCourses}
                 className={`py-4 px-24 font-regular text-[18px] text-[#FFFFFF] rounded-[20px] cursor-pointer
-                ${isReserve ? 'bg-[#1E1E1E]' : 'bg-[#24D0B7]'} `}>
+                ${isReserve ? 'bg-[#CC0000]   dark:bg-[#FF0000]' : 'bg-[#24D0B7]'} `}>
                     {
-                        isReserve ? t('courseInfo.isReserved') : t('courseInfo.reserveBtn')
+                        isReserve ? t('courseInfo.deleteReserveBtn') : t('courseInfo.reserveBtn')
                     }
                 </button>
             </div>
