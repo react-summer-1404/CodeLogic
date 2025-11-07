@@ -398,7 +398,7 @@ const FavoriteNews = () => {
             <button
               onClick={() => handleCloseModal()}
               className=" cursor-pointer border dark:border-[#EAEAEA] mx-auto
-               dark:text-white px-3 py-2 rounded-2xl hover:shadow-md w-[15%]"
+               dark:text-white px-3 py-2 rounded-2xl hover:shadow-md inline"
             >
               بازگشت
             </button>
