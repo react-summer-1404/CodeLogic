@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import greenEye from "../../../../assets/Icons/A/greenEye.png";
 import greenBasket from "../../../../assets/Icons/A/greenBasket.png";
-
-const FavoriteNew = ({ items, deleteItem }) => {
+import htmlImg from "../../../../assets/Images/HTML5Course.png";
+const FavoriteNew = ({ items, deleteItem, getOverViewData }) => {
   const handleDelete = () => {
-    deleteItem(items.newsId);
+    deleteItem(items.id);
+  };
+  const handleOverView = () => {
+    getOverViewData(items.news);
   };
 
   //// framer ////
@@ -28,7 +31,12 @@ const FavoriteNew = ({ items, deleteItem }) => {
       <div className="ps-8 flex items-center justify-start gap-4 flex-[1.5] text-right">
         <img
           className="w-[28px] h-[28px] rounded-full object-cover"
-          src={items.news.currentImageAddress}
+          src={
+            items.news.currentImageAddress ===
+            "http://sepehracademy.liara.run/files/undefined"
+              ? `${htmlImg}`
+              : `${items.news.currentImageAddress}`
+          }
           alt=""
         />
         {items.news.title}
@@ -39,6 +47,7 @@ const FavoriteNew = ({ items, deleteItem }) => {
       <div className="px-4 flex-1 truncate">{items.news.updateDate}</div>
       <div className="pe-8 w-[100px] text-left flex items-center justify-end gap-4">
         <div
+          onClick={handleOverView}
           style={{ backgroundImage: `url(${greenEye})` }}
           className="w-6 h-4 cursor-pointer bg-no-repeat bg-[center_center] "
         ></div>

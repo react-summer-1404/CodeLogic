@@ -13,6 +13,9 @@ import { useDebounce } from "use-debounce";
 import loadingIcon from "../../../assets/Images/A/loading.gif";
 import { toast } from "react-toastify";
 import { deleteFavNews } from "../../../core/services/api/Delete/DeleteFavoriteNews";
+import openEye from "../../../assets/Icons/A/openEye.png";
+import starIcon from "../../../assets/Icons/A/star.png";
+import htmlImg from "../../../assets/Images/HTML5Course.png";
 const FavoriteNews = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "fa";
@@ -72,6 +75,18 @@ const FavoriteNews = () => {
     if (p > totalPages || p < 1) return;
     setCurrentPage(p);
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  //// overview ////
+  const [showOverviewModal, setShowOverviewModal] = useState(false);
+  const [overViewData, setOverViewData] = useState(null);
+
+  const getOverViewData = (news) => {
+    setShowOverviewModal(true);
+    setOverViewData(news);
+  };
+  const handleCloseModal = () => {
+    setShowOverviewModal(false);
+    setOverViewData(null);
   };
 
   /// motion framer ///
@@ -190,6 +205,7 @@ const FavoriteNews = () => {
               {currentNews.length > 0 ? (
                 currentNews.map((items) => (
                   <FavoriteNew
+                    getOverViewData={getOverViewData}
                     deleteItem={deleteItem}
                     key={items.id}
                     items={items}
@@ -260,6 +276,7 @@ const FavoriteNews = () => {
           </div>
         </div>
       </motion.div>
+      {/* ////// delete modal //// */}
       {openModal && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -321,6 +338,70 @@ const FavoriteNews = () => {
                 {t("deleteModal.cancel")}
               </button>
             </div>
+          </motion.div>
+        </motion.div>
+      )}
+      {/* ///// overview modal //// */}
+      {showOverviewModal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={() => handleCloseModal()}
+          className=" fixed inset-0 bg-black/50 backdrop-blur flex justify-center items-center "
+        >
+          <motion.div
+            initial={{ opacity: 0, y: -100 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              transition: {
+                type: "spring",
+                stiffness: 300,
+                duration: 300,
+              },
+            }}
+            className=" w-[60%] bg-[#eee] rounded-3xl flex
+          flex-col  mt-3 gap-6  py-4 px-6 dark:text-white dark:bg-[#333] "
+          >
+            <h2 className="text-[19px] text-[#008C78] dark:text-[#008C78] mx-auto font-bold">
+              {overViewData.title}
+            </h2>
+            <img
+              className="rounded-4xl shadow-md w-[55%] mx-auto"
+              src={
+                overViewData.currentImageAddress ===
+                "http://sepehracademy.liara.run/files/undefined"
+                  ? `${htmlImg}`
+                  : `${overViewData.currentImageAddress}`
+              }
+              alt=""
+            />
+            <p className="text-[14px] text-[#848484] dark:text-[#848484] mt-2 mx-auto ">
+              {overViewData.miniDescribe}
+            </p>
+            <div className=" flex flex-row justify-between items-center w-[25%] mx-auto ">
+              <div
+                style={{ backgroundImage: `url(${openEye})` }}
+                className=" text-[14px] text-[#848484] bg-no-repeat bg-[right_center] pr-6 "
+              >
+                666
+              </div>
+              <div
+                style={{ backgroundImage: `url(${starIcon})` }}
+                className=" text-[14px] text-[#F8BC24] bg-no-repeat bg-[left_center] pl-6 "
+              >
+                34
+              </div>
+            </div>
+            <button
+              onClick={() => handleCloseModal()}
+              className=" cursor-pointer border dark:border-[#EAEAEA] mx-auto
+               dark:text-white px-3 py-2 rounded-2xl hover:shadow-md w-[15%]"
+            >
+              بازگشت
+            </button>
           </motion.div>
         </motion.div>
       )}

@@ -5,8 +5,8 @@ import greenBasket from "../../../../assets/Icons/A/greenBasket.png";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { deleteFavCourses } from "../../../../core/services/api/delete/deleteFavCourses";
-const FavoriteCourse = ({ items, deleteItem }) => {
-  /// face data ///
+const FavoriteCourse = ({ items, deleteItem, getOverViewData }) => {
+  /// fake data ///
   const mode = ["انلاین", "حضوری"];
   const meetingMode = mode[Math.floor(Math.random() * mode.length)];
   const Animate = {
@@ -20,6 +20,9 @@ const FavoriteCourse = ({ items, deleteItem }) => {
   const handleDelete = () => {
     deleteItem(items.favoriteId);
   };
+  const handleOverView = () => {
+    getOverViewData(items);
+  };
   return (
     <motion.div
       variants={Animate}
@@ -31,16 +34,17 @@ const FavoriteCourse = ({ items, deleteItem }) => {
       <div className="ps-8 flex items-center justify-start gap-4 flex-[1.5] text-right">
         <img
           className="w-[28px] h-[28px] rounded-full object-cover"
-          src={items.coursesImage}
+          src="http://sepehracademy.liara.run/files/Image-1761935008550.jpg"
           alt=""
         />
         {items.courseTitle}
       </div>
-      <div className="ps-3 flex-[1.2] text-right overflow-ellipsis truncate ">{`این دوره توسط استاد ${items.teacheName}`}</div>
+      <div className="ps-3 flex-[1.2] text-right overflow-ellipsis truncate ">{`این دوره توسط استاد ${items.teacheName} برگزار میشود`}</div>
       <div className="px-4 flex-1">{meetingMode}</div>
       <div className="px-4 flex-1 truncate">{items.lastUpdate}</div>
       <div className="pe-8 w-[100px] text-left flex items-center justify-end gap-4">
         <div
+          onClick={handleOverView}
           style={{ backgroundImage: `url(${greenEye})` }}
           className="w-6 h-4 cursor-pointer bg-no-repeat bg-[center_center] "
         ></div>
