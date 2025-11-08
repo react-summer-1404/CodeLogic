@@ -44,7 +44,7 @@ const Header = () => {
           {t("navbar.home")}
         </Link>
         <Link
-          to={"/courselist"}
+          to={"/courseList"}
           className={` cursor-pointer  text-sm md:text-base lg:text-lg font-semibold transition-colors duration-200 hover:text-[#008c78] ${
             isDark ? "text-white hover:text-[#00bfa5]" : ""
           }`}

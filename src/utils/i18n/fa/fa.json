@@ -249,13 +249,14 @@
   "newsPage": {
     "breadcrumb": "صفحه اصلی - اخبار",
     "headerTitle": "اخبار و مقالات",
-    "results": "200 نتیجه",
+    "results": " نتیجه",
     "searchPlaceholder": "جستجو کنید...",
     "sortBy": "مرتب سازی بر اساس :"
   },
   "categoryFilter": {
     "title": "دسته‌بندی‌ها",
     "more": "+ نمایش بیشتر",
+    "less": "- نمایش کمتر",
     "categories": {
       "educational": "آموزشی",
       "general": "اطلاعات عمومی",
@@ -270,7 +271,8 @@
     "dataone": "تعداد نمایش"
   },
   "NewsDetails": {
-    "breadcrumbs": "صفحه اصلی - اخبار - اسکریپت چیست و چه کاربردی در برنامه‌نویسی",
+    "breadcrumbs1": " صفحه اصلی - ",
+    "breadcrumbs2": "اخبار - ",
     "pageTitle": "اسکریپت چیست و چه کاربردی در برنامه‌نویسی",
     "authorLabel": "نویسنده:",
     "authorName": "تایلر بیتون",
@@ -304,6 +306,12 @@
     "tabs": {
       "details": "مشخصات دوره",
       "comments": "نظرات کاربران"
+    },
+     "cmval" : {
+        "title":"  عنوان پاسخ را بنویسید ",
+        "des":" متن پاسخ را بنویسید  ",
+         "commenttitle": " عنوان دیدگاه خود را بنویسید ",
+        "commentdes":" متن دیدگاه خود را بنویسید "
     },
     "details": {
       "section1": {

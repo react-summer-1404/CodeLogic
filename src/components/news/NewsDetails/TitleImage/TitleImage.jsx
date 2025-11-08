@@ -3,10 +3,8 @@ import img1 from "../../../../assets/Images/Rectanglee.png";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { useTranslation } from "react-i18next";
 
-const TitleImage = () => {
-  const { t } = useTranslation();
+const TitleImage = ({ newsDetail }) => {
   const [vote, setvote] = useState();
 
   const handleVote = () => {
@@ -19,10 +17,15 @@ const TitleImage = () => {
       <div className="w-full flex items-center justify-between">
         <div className="px-4 py-3 flex justify-between  gap-1 ">
           <p className="text-[#848484] font-[14px] rounded-3xl py-2 px-3 lg:border lg:border-[#848484]">
-            {t("titleImage.category")}
+            {newsDetail?.newsCatregoryName}
           </p>
           <span className="text-[#848484] font-[16px]  py-2 px-3">
-            {t("titleImage.date")}
+            {newsDetail?.insertDate &&
+              new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              }).format(new Date(newsDetail.insertDate))}
           </span>
           <div className="py-2 px-3">
             <VisibilityIcon className="text-[#848484] font-[16px]" />

@@ -30,11 +30,13 @@ import NewsPage from "../../pages/NewsPage/NewsPage";
 const router = createBrowserRouter([
   {
     path: "/",
+
     element: <Layout />,
+
     children: [
       { index: true, element: <Landing /> },
-      { path: "/courselist", element: <CourseList /> },
-      { path: "/coursedetail/:id", element: <CourseDetail /> },
+      { path: "/courseList", element: <CourseList /> },
+      { path: "/courseDetail/:id", element: <CourseDetail /> },
       { path: "/news", element: <NewsPage /> },
       { path: "/teachers", element: <TeachersPage /> },
       { path: "/teacher/:id", element: <TeachersDetail /> },

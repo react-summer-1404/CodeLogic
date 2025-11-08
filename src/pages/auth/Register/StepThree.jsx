@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import regone from "../../../assets/Images/regone.svg";
 import { RegisterStepThree } from "../../../utils/Validations/RegisterVal/Register.validation";
 import TranslateButton from "../../../components/TranslateButton/TranslateButton";
+import sun from "../../../assets/Icons/A/sun.png";
+import moon from "../../../assets/Icons/A/moon.png";
 
 const StepThree = () => {
   const { t, i18n } = useTranslation();
@@ -101,12 +103,7 @@ const StepThree = () => {
                     }`}
                   >
                     <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center">
-                      <img
-                        src={`${
-                          darkMode ? "./icons/sun.png" : "./icons/moon.png"
-                        }`}
-                        alt="theme icon"
-                      />
+                      <img src={`${darkMode ? sun : moon}`} alt="theme icon" />
                     </div>
                   </div>
 
@@ -202,7 +199,7 @@ const StepThree = () => {
                     placeholder={t("registerStepThree.placeholder.email")}
                     className={`!mb-10 rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       darkMode
-                        ? "bg-[#454545] text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
+                        ? "bg-[#454545] text-gray-200 focus:ring-[#008C78] placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />
@@ -233,7 +230,7 @@ const StepThree = () => {
                     placeholder={t("registerStepThree.placeholder.password")}
                     className={`!mb-10 rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       darkMode
-                        ? "bg-[#454545] text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
+                        ? "bg-[#454545] text-gray-200 focus:ring-[#008C78] placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />
@@ -275,7 +272,7 @@ const StepThree = () => {
                     )}
                     className={`rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       darkMode
-                        ? "bg-[#454545] text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
+                        ? "bg-[#454545] text-gray-200 focus:ring-[#008C78] placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />
@@ -311,7 +308,7 @@ const StepThree = () => {
                       type="submit"
                       className={`text-center mt-4 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
                         darkMode
-                          ? "bg-yellow-400 text-gray-800 hover:bg-yellow-300"
+                          ? "bg-[#008C78] text-gray-800 hover:bg-[#008C78]"
                           : "bg-[#008C78] text-white hover:bg-[#007563]"
                       }`}
                     >
@@ -330,10 +327,10 @@ const StepThree = () => {
                     {t("registerStepThree.have_account")}{" "}
                     <span
                       className={`font-semibold cursor-pointer hover:underline transition-colors duration-500 ${
-                        darkMode ? "text-yellow-300" : "text-[#008C78]"
+                        darkMode ? "text-[#008C78]" : "text-[#008C78]"
                       }`}
                     >
-                      {t("registerStepThree.login")}
+                      <Link to="/login">{t("registerStepThree.login")}</Link>
                     </span>
                   </motion.p>
                 </motion.div>

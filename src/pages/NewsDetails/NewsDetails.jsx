@@ -13,170 +13,7 @@ import { useQuery } from "@tanstack/react-query";
 import getAllNews from "../../core/services/api/Get/News";
 import getNewsDetails from "../../core/services/api/Get/NewsDetails";
 
-import { useParams } from "react-router-dom";
-
-const newsData = [
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "پایتون + ماینکرفت = یادگیری برنامه‌نویسی با بازی!",
-    description:
-      "پایتون یکی از محبوب‌ترین زبان‌های برنامه‌نویسی دنیاست؛ ساده، قابل فهم و در عین حال قدرتمند! ماین...",
-    views: 22,
-    rating: 3.1,
-    category: "آموزشی",
-    date: "1404/03/13",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "جاوااسکریپت از صفر تا صد",
-    description: "جاوااسکریپت یکی از زبان‌های پرکاربرد در توسعه وب است...",
-    views: 55,
-    rating: 4.5,
-    category: "آموزشی",
-    date: "1404/05/20",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "آموزش ری‌اکت از مقدماتی تا پیشرفته",
-    description:
-      "ری‌اکت یکی از محبوب‌ترین کتابخانه‌های فرانت‌اند است و در دنیای وب کاربرد زیادی دارد...",
-    views: 120,
-    rating: 4.8,
-    category: "آموزشی",
-    date: "1404/07/11",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "پایتون + ماینکرفت = یادگیری برنامه‌نویسی با بازی!",
-    description:
-      "پایتون یکی از محبوب‌ترین زبان‌های برنامه‌نویسی دنیاست؛ ساده، قابل فهم و در عین حال قدرتمند! ماین...",
-    views: 22,
-    rating: 3.1,
-    category: "آموزشی",
-    date: "1404/03/13",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "جاوااسکریپت از صفر تا صد",
-    description: "جاوااسکریپت یکی از زبان‌های پرکاربرد در توسعه وب است...",
-    views: 55,
-    rating: 4.5,
-    category: "آموزشی",
-    date: "1404/05/20",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "آموزش ری‌اکت از مقدماتی تا پیشرفته",
-    description:
-      "ری‌اکت یکی از محبوب‌ترین کتابخانه‌های فرانت‌اند است و در دنیای وب کاربرد زیادی دارد...",
-    views: 120,
-    rating: 4.8,
-    category: "آموزشی",
-    date: "1404/07/11",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "پایتون + ماینکرفت = یادگیری برنامه‌نویسی با بازی!",
-    description:
-      "پایتون یکی از محبوب‌ترین زبان‌های برنامه‌نویسی دنیاست؛ ساده، قابل فهم و در عین حال قدرتمند! ماین...",
-    views: 22,
-    rating: 3.1,
-    category: "آموزشی",
-    date: "1404/03/13",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "جاوااسکریپت از صفر تا صد",
-    description: "جاوااسکریپت یکی از زبان‌های پرکاربرد در توسعه وب است...",
-    views: 55,
-    rating: 4.5,
-    category: "آموزشی",
-    date: "1404/05/20",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "آموزش ری‌اکت از مقدماتی تا پیشرفته",
-    description:
-      "ری‌اکت یکی از محبوب‌ترین کتابخانه‌های فرانت‌اند است و در دنیای وب کاربرد زیادی دارد...",
-    views: 120,
-    rating: 4.8,
-    category: "آموزشی",
-    date: "1404/07/11",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "پایتون + ماینکرفت = یادگیری برنامه‌نویسی با بازی!",
-    description:
-      "پایتون یکی از محبوب‌ترین زبان‌های برنامه‌نویسی دنیاست؛ ساده، قابل فهم و در عین حال قدرتمند! ماین...",
-    views: 22,
-    rating: 3.1,
-    category: "آموزشی",
-    date: "1404/03/13",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "جاوااسکریپت از صفر تا صد",
-    description: "جاوااسکریپت یکی از زبان‌های پرکاربرد در توسعه وب است...",
-    views: 55,
-    rating: 4.5,
-    category: "آموزشی",
-    date: "1404/05/20",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "آموزش ری‌اکت از مقدماتی تا پیشرفته",
-    description:
-      "ری‌اکت یکی از محبوب‌ترین کتابخانه‌های فرانت‌اند است و در دنیای وب کاربرد زیادی دارد...",
-    views: 120,
-    rating: 4.8,
-    category: "آموزشی",
-    date: "1404/07/11",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "پایتون + ماینکرفت = یادگیری برنامه‌نویسی با بازی!",
-    description:
-      "پایتون یکی از محبوب‌ترین زبان‌های برنامه‌نویسی دنیاست؛ ساده، قابل فهم و در عین حال قدرتمند! ماین...",
-    views: 22,
-    rating: 3.1,
-    category: "آموزشی",
-    date: "1404/03/13",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "جاوااسکریپت از صفر تا صد",
-    description: "جاوااسکریپت یکی از زبان‌های پرکاربرد در توسعه وب است...",
-    views: 55,
-    rating: 4.5,
-    category: "آموزشی",
-    date: "1404/05/20",
-  },
-  {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-    title: "آموزش ری‌اکت از مقدماتی تا پیشرفته",
-    description:
-      "ری‌اکت یکی از محبوب‌ترین کتابخانه‌های فرانت‌اند است و در دنیای وب کاربرد زیادی دارد...",
-    views: 120,
-    rating: 4.8,
-    category: "آموزشی",
-    date: "1404/07/11",
-  },
-];
+import { Link, useParams } from "react-router-dom";
 
 const NewsDetails = () => {
   const { data } = useQuery({
@@ -204,6 +41,20 @@ const NewsDetails = () => {
       .sort((a, b) => new Date(b.insertDate) - new Date(a.insertDate))
       .slice(0, 6);
   }, [data]);
+
+  const categoryNews = useMemo(() => {
+    if (!data?.news || !newsDetail?.newsCatregoryName) return [];
+
+    const filtered = data.news.filter(
+      (item) =>
+        item.newsCatregoryName === newsDetail.newsCatregoryName &&
+        item.id !== newsDetail.id
+    );
+
+    return filtered
+      .sort((a, b) => new Date(b.insertDate) - new Date(a.insertDate))
+      .slice(0, 6);
+  }, [data, newsDetail]);
 
   const { t } = useTranslation();
   const sliderRef = useRef(null);
@@ -271,14 +122,25 @@ const NewsDetails = () => {
               className="font-bold mb-5 text-[#008C78] dark:text-[#ccc]"
               variants={itemVariants}
             >
-              {t("NewsDetails.breadcrumbs")}
+              <Link to="/">
+                <span className="cursor-pointer">
+                  {t("NewsDetails.breadcrumbs1")}{" "}
+                </span>
+              </Link>
+              <Link to="/news">
+                <span className="cursor-pointer">
+                  {t("NewsDetails.breadcrumbs2")}{" "}
+                </span>
+              </Link>
+
+              <span>{newsDetail?.title}</span>
             </motion.span>
 
             <motion.p
               className="font-bold text-xl sm:text-2xl md:text-3xl text-[#1E1E1E] dark:text-[#fff] text-center"
               variants={itemVariants}
             >
-              {newsDetail.title}
+              {newsDetail?.title}
             </motion.p>
           </div>
           <div className="flex flex-col sm:flex-row items-start justify-between max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
@@ -300,7 +162,7 @@ const NewsDetails = () => {
                 </span>
                 <span className="font-[18px] font-bold text-[#1E1E1E] dark:text-[white] ">
                   {" "}
-                  {newsDetail.addUserFullName}
+                  {newsDetail?.addUserFullName}
                 </span>
               </motion.div>
 
@@ -348,7 +210,7 @@ const NewsDetails = () => {
               className="w-full flex flex-wrap sm:w-3/4 lg:w-[69%] sm:ml-6"
               variants={itemVariants}
             >
-              <TitleImage />
+              <TitleImage newsDetail={newsDetail} />
               <NewsComment />
             </motion.div>
           </div>
@@ -381,20 +243,27 @@ const NewsDetails = () => {
             className="w-full flex flex-row-reverse gap-4 md:gap-6 lg:gap-8 overflow-x-auto overflow-y-hidden scroll-smooth px-4 sm:px-6 md:px-8 lg:px-10 mb-20 scrollbar-none"
             variants={containerVariants}
           >
-            {newsData.map((item, index) => (
+            {categoryNews.map((news, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
                 className="flex-shrink-0 w-[85%] sm:w-[70%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
               >
-                <NewsCard
-                  titleKey="news.title1"
-                  descriptionKey="news.desc1"
-                  viewsKey="news.views1"
-                  ratingKey="news.rating1"
-                  categoryKey="news.category1"
-                  dateKey="news.date1"
-                />
+                <Link to={`/news/${news.id}`}>
+                  <NewsCard
+                    image={news.currentImageAddressTumb}
+                    title={news.title}
+                    description={news.miniDescribe}
+                    views={news.currentView}
+                    rating={3.2}
+                    category={news.newsCatregoryName}
+                    date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    }).format(new Date(news.insertDate))}
+                  />
+                </Link>
               </motion.div>
             ))}
           </motion.div>
