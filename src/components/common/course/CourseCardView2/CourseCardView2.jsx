@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Heart from '../../../../assets/Icons/Heart'
@@ -18,16 +19,17 @@ const CourseCardView2 = ({ item, handleToggleFavorite}) => {
     }
     
 
-
     return (
-        <div className='flex flex-shrink-0 gap-8 w-[1044px] p-4 bg-[#FFFFFF] rounded-[20px] relative
-    dark:bg-[#606060]'>
-            <div className='w-[520px] h-[200px]'>
-                <img src={item.imageAddress} className='w-full h-full rounded-xl' />
-            </div>
-            <Link to={`/coursedetail/${item.courseId}`} className='flex flex-col justify-between w-full h-[217px] mb-[-16px] 
-        p-4 bg-[#FFFFFF] rounded-[20px] transform cursor-pointer -translate-y-4
-        dark:bg-[#606060]'>
+        <div className='hidden flex flex-shrink-0 gap-8 w-[640px] p-4 bg-[#FFFFFF] rounded-[20px] relative   dark:bg-[#606060]
+        sm:flex sm:w-[520px] sm:h-[184px] 
+        lg:w-[720px] lg:h-[208px]
+        xl:w-[1044px] xl:h-[232px]'>
+            <img src={item.imageAddress} className='w-[304px] h-full rounded-xl
+            sm:w-[304px]
+            md:w-[320px]
+            lg:w-[337px]'/>
+            <Link to={`/courseDetail/${item.courseId}`} className='flex flex-col justify-between w-full h-full 
+            bg-[#FFFFFF] rounded-[20px] cursor-pointer   dark:bg-[#606060]'>
                 <div className='flex flex-col gap-1 text-[#1E1E1E]'>
                     <h2 className='font-bold text-base'>{t(`${item.title}`)}</h2>
                     <p className='font-regular text-sm'>{t(`${item.describe}`)}</p>

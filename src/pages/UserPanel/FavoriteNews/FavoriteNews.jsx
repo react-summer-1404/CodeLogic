@@ -381,7 +381,7 @@ const FavoriteNews = () => {
             <p className="text-[14px] text-[#848484] dark:text-[#848484] mt-2 mx-auto ">
               {overViewData.miniDescribe}
             </p>
-            <div className=" flex flex-row justify-between items-center w-[25%] mx-auto ">
+            <div className=" flex flex-row justify-between items-center w-full md:w-[25%] mx-auto ">
               <div
                 style={{ backgroundImage: `url(${openEye})` }}
                 className=" text-[14px] text-[#848484] bg-no-repeat bg-[right_center] pr-6 "

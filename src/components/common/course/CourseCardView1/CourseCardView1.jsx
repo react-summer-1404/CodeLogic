@@ -19,12 +19,14 @@ const CourseCardView1 = ({ item , handleToggleFavorite}) => {
     }
 
     return (
-        <div dir='rtl' className='flex flex-col flex-shrink-0 items-center w-[350px] rounded-[20px] relative 
-        hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>
-            <img src={item.imageAddress} className='w-full h-[259px] rounded-t-[20px]' />
-            <Link to={`/coursedetail/${item.courseId}`} className='flex flex-col justify-between w-full h-[217px] mb-[-16px] 
-            p-4 bg-[#FFFFFF] rounded-[20px] transform -translate-y-4 cursor-pointer  
-            dark:bg-[#606060]'>
+        <div dir='rtl' className='flex flex-col flex-shrink-0 items-center w-[240px] rounded-xl relative 
+        hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]
+        sm:w-[350px] sm:rounded-[20px]'>
+            <img src={item.imageAddress} className='w-full h-[160px] rounded-t-xl
+            sm:h-[259px] sm:rounded-t-[20px]'/>
+            <Link to={`/courseDetail/${item.courseId}`} className='flex flex-col justify-between w-full mb-[-16px] 
+            p-4 bg-[#FFFFFF] rounded-xl transform -translate-y-4 cursor-pointer   dark:bg-[#606060]
+            sm:h-[217px] sm:rounded-[20px]'>
                 <div className='flex flex-col gap-1'>
                     <h2 className='font-bold text-base   dark:text-[#EEEEEE]'>{t(`${item.title}`)}</h2>
                     <p className='max-w-[317px] font-regular text-sm   dark:text-[#DDDDDD]'>{t(`${item.describe}`)}</p>

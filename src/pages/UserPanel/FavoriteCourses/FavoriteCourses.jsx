@@ -140,7 +140,7 @@ const FavoriteCourses = () => {
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="relative max-w-[439px] w-full"
+          className="relative max-w-[40%] w-full"
         >
           <input
             className=" dark:bg-[#454545] dark:text-[#ffff] dark:placeholder:text-white
