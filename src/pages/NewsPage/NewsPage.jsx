@@ -26,11 +26,11 @@ const NewsPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState("newest");
-  const [cardsPerRow, setCardsPerRow] = useState(3);
-
   const [selectedCategory, setSelectedCategory] = useState(null);
 
-  const itemsPerPage = selectedView === "grid" ? 12 : 5;
+  const [cardsPerPage, setCardsPerPage] = useState(12);
+
+  const itemsPerPage = cardsPerPage;
 
   const filteredNews = useMemo(() => {
     if (!data?.news) return [];
@@ -95,12 +95,12 @@ const NewsPage = () => {
 
   const getCardWidthClass = () => {
     if (selectedView === "list") return "w-full";
-    if (cardsPerRow === 2) return "w-full sm:w-[calc(50%-8px)]";
-    if (cardsPerRow === 3) return "w-full sm:w-[calc(33.333%-10.66px)]";
-    if (cardsPerRow === 4) return "w-full sm:w-[calc(25%-12px)]";
+
     return "w-full sm:w-[calc(33.333%-10.66px)]";
   };
+
   if (isLoading) return <div>loading</div>;
+
   return (
     <div className="bg-[#F3F4F6] dark:bg-[#1e1e1e] min-h-screen">
       <motion.div
@@ -115,7 +115,7 @@ const NewsPage = () => {
         <p className="font-bold text-xl sm:text-2xl md:text-3xl text-[#1E1E1E] dark:text-[#fff] text-center">
           {t("newsPage.headerTitle")}
           <span className="text-sm !ml-2 text-[#848484] dark:text-[#ccc] mr-2">
-            {t("newsPage.results")}
+            ( {data?.news?.length} {t("newsPage.results")} )
           </span>
         </p>
       </motion.div>
@@ -142,7 +142,6 @@ const NewsPage = () => {
                   placeholder={t("newsPage.searchPlaceholder")}
                   className="shadow-md font-medium text-[#848484] dark:text-[#ccc] bg-[#fff] dark:bg-[#333] rounded-xl px-4 py-3 text-sm outline-none w-full transition-all duration-300 pr-10"
                 />
-
                 <button
                   type="submit"
                   className={`absolute top-1/2 -translate-y-1/2 ${
@@ -183,15 +182,16 @@ const NewsPage = () => {
                 }}
               />
 
-              {selectedView === "grid" && (
-                <NewsSelectTwo
-                  value={cardsPerRow}
-                  onChange={(val) => {
-                    const number = parseInt(val);
-                    if (!isNaN(number)) setCardsPerRow(number);
-                  }}
-                />
-              )}
+              <NewsSelectTwo
+                value={String(cardsPerPage)}
+                onChange={(val) => {
+                  const number = parseInt(val, 10);
+                  if (!isNaN(number)) {
+                    setCardsPerPage(number);
+                    setCurrentPage(0);
+                  }
+                }}
+              />
             </div>
 
             <div className="!gap-3 flex justify-center items-center">
@@ -226,7 +226,7 @@ const NewsPage = () => {
           </motion.div>
 
           <motion.div
-            key={`${currentPage}-${selectedView}-${searchQuery}-${cardsPerRow}-${sortOption}-${selectedCategory}`}
+            key={`${currentPage}-${selectedView}-${searchQuery}-${cardsPerPage}-${sortOption}-${selectedCategory}`}
             variants={cardContainerVariants}
             initial="hidden"
             animate="visible"

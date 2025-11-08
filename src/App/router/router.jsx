@@ -26,11 +26,14 @@ import FavoriteNews from "../../pages/UserPanel/FavoriteNews/FavoriteNews";
 import FavoriteCourses from "../../pages/UserPanel/FavoriteCourses/FavoriteCourses";
 import SecuritySettings from "../../pages/UserPanel/securitySettings/SecuritySettings";
 import NewsPage from "../../pages/NewsPage/NewsPage";
+import ScrollProgressBar from "../../components/ScrollProgressBar/ScrollProgressBar";
 
 const router = createBrowserRouter([
   {
     path: "/",
+
     element: <Layout />,
+
     children: [
       { index: true, element: <Landing /> },
       { path: "/courselist", element: <CourseList /> },

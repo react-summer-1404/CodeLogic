@@ -249,7 +249,7 @@
   "newsPage": {
     "breadcrumb": "Home - News",
     "headerTitle": "News & Articles",
-    "results": "200 results",
+    "results": " results",
     "searchPlaceholder": "Search...",
     "sortBy": "Sort by:"
   },
@@ -270,7 +270,8 @@
     "dataone": "view"
   },
   "NewsDetails": {
-    "breadcrumbs": "Home - News - What is a Script and How is it Used in Programming?",
+    "breadcrumbs1": " Home - ",
+    "breadcrumbs2": "News - ",
     "pageTitle": "What is a Script and How is it Used in Programming?",
     "authorLabel": "Author:",
     "authorName": "Tyler Biton",
@@ -304,6 +305,12 @@
     "tabs": {
       "details": "Course Details",
       "comments": "User Comments"
+    },
+       "cmval" : {
+        "title":"Enter the answer title",
+        "des":"Enter the answer description",
+        "commenttitle": "Enter your comment",
+        "commentdes":"Enter your description"
     },
     "details": {
       "section1": {
