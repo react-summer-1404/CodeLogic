@@ -26,7 +26,6 @@ import FavoriteNews from "../../pages/UserPanel/FavoriteNews/FavoriteNews";
 import FavoriteCourses from "../../pages/UserPanel/FavoriteCourses/FavoriteCourses";
 import SecuritySettings from "../../pages/UserPanel/securitySettings/SecuritySettings";
 import NewsPage from "../../pages/NewsPage/NewsPage";
-import ScrollProgressBar from "../../components/ScrollProgressBar/ScrollProgressBar";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +37,7 @@ const router = createBrowserRouter([
       { index: true, element: <Landing /> },
       { path: "/courseList", element: <CourseList /> },
       { path: "/courseDetail/:id", element: <CourseDetail /> },
-      { path: "/newsList", element: <NewsPage /> },
+      { path: "/news", element: <NewsPage /> },
       { path: "/teachers", element: <TeachersPage /> },
       { path: "/teacher/:id", element: <TeachersDetail /> },
       { path: "/news/:id", element: <NewsDetails /> },
