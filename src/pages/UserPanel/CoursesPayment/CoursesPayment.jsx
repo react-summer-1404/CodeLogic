@@ -118,7 +118,7 @@ const CoursesPayment = () => {
         </AnimatePresence>
 
         <div className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
-          <span className=" invisible md:visible text-[16px]">
+          <span className=" hidden md:inline text-[16px]">
             {t("coursesPayment.filters")}
           </span>
           <select
@@ -204,7 +204,7 @@ const CoursesPayment = () => {
           </div>
           {/* ------------ filterCount */}
           <div className="flex items-center dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow-md  border-[#EAEAEA] ">
-            <span className="  text-[16px]">
+            <span className=" hidden md:inline text-[16px]">
               {t("coursesPayment.NumberShows")}
             </span>
             <select

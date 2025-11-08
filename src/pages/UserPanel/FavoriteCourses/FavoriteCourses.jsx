@@ -161,7 +161,7 @@ const FavoriteCourses = () => {
           />
         </motion.div>
         <div className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
-          <span className="text-[16px]  invisible md:visible">
+          <span className="text-[16px] hidden md:inline">
             {t("coursesPayment.filters")}
           </span>
           <select
@@ -258,7 +258,7 @@ const FavoriteCourses = () => {
           </div>
           {/* filtering counts ------ */}
           <div className="flex items-center dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
-            <span className="text-[16px]">
+            <span className="hidden md:inline text-[16px]">
               {t("favoriteCourses.NumberShows")}
             </span>
             <select
