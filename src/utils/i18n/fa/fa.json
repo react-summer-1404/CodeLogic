@@ -256,6 +256,7 @@
   "categoryFilter": {
     "title": "دسته‌بندی‌ها",
     "more": "+ نمایش بیشتر",
+    "less": "- نمایش کمتر",
     "categories": {
       "educational": "آموزشی",
       "general": "اطلاعات عمومی",
