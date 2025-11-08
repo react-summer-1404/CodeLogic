@@ -19,6 +19,7 @@ const CourseNewsSearch = ({handleSearchSubmit}) => {
         setSearch(value);
         debouncedSearch(value);
     };
+    
 
 
     const {t,i18n} = useTranslation();
