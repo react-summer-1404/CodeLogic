@@ -9,6 +9,8 @@ import { useMutation } from "@tanstack/react-query";
 import { securitySet } from "../../../core/services/api/post/securitySettings";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { PutTwoStepVerify } from "../../../core/services/api/put/PutTwoStepVerify.js";
+import { twpStepAuthValidation } from "../../../utils/Validations/securitySettings/twoStepAuth.js";
 const SecuritySettings = () => {
   const navigate = useNavigate();
   //// post values ////
@@ -21,6 +23,21 @@ const SecuritySettings = () => {
       } else if (!data.success) {
         toast.error(data.message);
       }
+    },
+  });
+  //// put twp step auth ////
+  const { mutate: putTwoStep } = useMutation({
+    mutationKey: ["TOWSTEPAUTH"],
+    mutationFn: (values) => PutTwoStepVerify(values),
+    onSettled: (data, err) => {
+      if (data.success) {
+        toast.success(data.message);
+      } else if (!data.success) {
+        toast.error(data.message || "مشکلی پیش امده");
+      }
+    },
+    onError: (err) => {
+      toast.error("مشکلی پیش امده");
     },
   });
   //// 18n /////
@@ -210,9 +227,9 @@ const SecuritySettings = () => {
       </div>
       <div className="mt-7">
         <Formik
-          initialValues={{ currentPassword: "", twoStepEnabled: false }}
-          onSubmit={(values) => console.log(values)}
-          validationSchema={validationSchema}
+          initialValues={{ twoStepAuth: "" }}
+          onSubmit={(values) => putTwoStep(values)}
+          validationSchema={twpStepAuthValidation}
         >
           <Form>
             <motion.div
