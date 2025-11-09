@@ -56,7 +56,7 @@ const FavoriteNews = () => {
   const favNews = favNewsData?.myFavoriteNews || [];
   const filteredNews = favNews
     .filter((n) =>
-      n.title.trim().toLowerCase().includes(query.trim().toLowerCase())
+      n.news.title.trim().toLowerCase().includes(query.trim().toLowerCase())
     )
     .sort((a, b) => {
       if (filterOption === "بیشترین لایک") {
@@ -289,7 +289,7 @@ const FavoriteNews = () => {
             setOpenModal(false);
             setSelectedId(null);
           }}
-          className=" fixed inset-0 bg-black/50 backdrop-blur flex justify-center "
+          className=" fixed inset-0 bg-black/50 backdrop-blur flex justify-center items-center "
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.5, y: -100 }}

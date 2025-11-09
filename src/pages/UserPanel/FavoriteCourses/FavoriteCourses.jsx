@@ -286,7 +286,7 @@ const FavoriteCourses = () => {
             setOpenModal(false);
             setSelectedId(null);
           }}
-          className=" fixed inset-0 bg-black/50 backdrop-blur flex justify-center "
+          className=" fixed inset-0 bg-black/50 backdrop-blur flex justify-center items-center "
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.5, y: -100 }}
