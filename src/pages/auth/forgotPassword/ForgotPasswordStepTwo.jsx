@@ -56,12 +56,12 @@ const ForgotPasswordStepTwo = () => {
   });
 
   return (
-    <div className="bg-[#EAEAEA] min-h-screen flex items-center justify-center">
+    <div className="bg-[#EAEAEA] dark:bg-[#1E1E1E] min-h-screen flex items-center justify-center">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg md:flex-row lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] p-2 "
+        className="flex flex-col rounded-[60px] overflow-hidden  bg-[#ffff] dark:bg-[#333] dark:text-white shadow-lg md:flex-row lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] p-2 "
       >
         <motion.div
           initial={{ opacity: 0, x: 50 }}
@@ -108,7 +108,7 @@ const ForgotPasswordStepTwo = () => {
                     <div className=" flex flex-col gap-6 ">
                       <div className=" relative mt-5 ">
                         <Field
-                          className={` focus:outline-none  bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
+                          className={` focus:outline-none  bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
                             errors.newPassword && touched.newPassword
                               ? "border-[#EF5350] border-1 "
                               : ""
@@ -134,7 +134,7 @@ const ForgotPasswordStepTwo = () => {
 
                       <div className=" relative mt-6 ">
                         <Field
-                          className={` focus:outline-none  bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
+                          className={` focus:outline-none  bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
                             errors.confirmPassword && touched.confirmPassword
                               ? "border-[#EF5350] border-1 "
                               : ""
@@ -186,7 +186,7 @@ const ForgotPasswordStepTwo = () => {
             stiffness: 300,
             delay: 0.5,
           }}
-          className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-gray-800/50 rounded-[60px] relative"
+          className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-[#454545] rounded-[60px] relative"
         >
           <div
             onClick={handleDark}

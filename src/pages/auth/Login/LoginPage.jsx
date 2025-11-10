@@ -105,7 +105,7 @@ const LoginPage = () => {
                     <div className=" flex flex-col gap-5 ">
                       <div className="relative">
                         <Field
-                          className={`outline-none  bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
+                          className={`outline-none  bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545]  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
                             errors.phoneOrGmail && touched.phoneOrGmail
                               ? "border-[#EF5350] border-1 "
                               : ""
@@ -125,7 +125,7 @@ const LoginPage = () => {
 
                       <div className=" relative mt-6">
                         <Field
-                          className={` bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${
+                          className={` bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${
                             errors.password && touched.password
                               ? "border-[#EF5350] border-1 "
                               : ""

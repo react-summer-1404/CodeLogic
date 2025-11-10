@@ -55,14 +55,14 @@ const ForgotPasswordStepOne = () => {
   });
 
   return (
-    <div className="bg-[#EAEAEA] min-h-screen flex items-center justify-center">
+    <div className="bg-[#EAEAEA] dark:bg-[#1E1E1E] min-h-screen flex items-center justify-center">
       <AnimatePresence>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex flex-col  overflow-hidden  bg-[#ffff] dark:bg-black dark:text-white shadow-lg md:flex-row lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-[60px] p-2 "
+          className="flex flex-col  overflow-hidden  bg-[#ffff] dark:bg-[#333] dark:text-white shadow-lg md:flex-row lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-[60px] p-2 "
         >
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -109,7 +109,7 @@ const ForgotPasswordStepOne = () => {
                         <div className="flex flex-col gap-1 relative">
                           <Field
                             className={` outline-none bg-no-repeat  bg-[length:14px_13px] bg-[right_20px_center]
-                                                       bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-12 py-3  placeholder:text-[15px] 
+                                                       bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full px-12 py-3  placeholder:text-[15px] 
                                                        ${
                                                          errors.email &&
                                                          touched.email
@@ -157,7 +157,7 @@ const ForgotPasswordStepOne = () => {
               stiffness: 300,
               delay: 0.5,
             }}
-            className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-gray-800/50 rounded-[60px] relative"
+            className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-[#454545]  rounded-[60px] relative"
           >
             <div
               onClick={handleDark}
