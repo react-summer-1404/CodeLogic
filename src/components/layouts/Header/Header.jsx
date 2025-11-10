@@ -6,6 +6,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SelectComp from "../../SelectComp/SelectComp";
 import TranslateButton from "../../TranslateButton/TranslateButton";
 import { useTheme } from "../../../utils/hooks/useTheme/useTheme";
+import { getItem } from "../../../utils/helper/storage.services";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -14,6 +15,8 @@ const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
+
+  const isLogin = getItem("token");
 
   return (
     <nav
@@ -99,9 +102,11 @@ const Header = () => {
           {isDark ? "☀️" : "🌙"}
         </button>
         <TranslateButton />
-        <Link to={"/Login"}>
+
+        <Link to={isLogin ? "/UserPanel" : "/Login"}>
+          {" "}
           <button className=" cursor-pointer  bg-[#008c78] text-white font-bold rounded-full px-2 sm:px-4 md:px-6 py-1 sm:py-2 md:py-3 text-xs sm:text-sm md:text-base transition-colors duration-300 hover:bg-[#007563]">
-            {t("navbar.login")}
+            {isLogin ? t("navbar.userpanel") : t("navbar.login")}{" "}
           </button>
         </Link>
       </div>

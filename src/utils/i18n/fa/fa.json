@@ -6,7 +6,8 @@
     "news": "اخبار",
     "search_placeholder": "جستجو کنید...",
     "select_placeholder": "انتخاب کنید...",
-    "login": "ورود / ثبت نام"
+    "login": "ورود / ثبت نام",
+    "userpanel" : "صفحه کاربری"
   },
   "heroSection": {
     "title1": "یادگیری برنامه‌نویسی با اساتید مجرب ،",
@@ -247,7 +248,9 @@
     "date2": "۱۵ مهر ۱۴۰۴"
   },
   "newsPage": {
-    "breadcrumb": "صفحه اصلی - اخبار",
+    
+    "breadcrumb1": " صفحه اصلی",
+    "breadcrumb2": "- اخبار",
     "headerTitle": "اخبار و مقالات",
     "results": " نتیجه",
     "searchPlaceholder": "جستجو کنید...",

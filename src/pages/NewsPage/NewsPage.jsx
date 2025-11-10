@@ -110,8 +110,11 @@ const NewsPage = () => {
         className="pt-10 flex flex-col justify-center items-center px-4"
       >
         <span className="font-bold mb-5 text-[#008C78] dark:text-[#ccc]">
-          {t("newsPage.breadcrumb")}
+          <Link to="/">{t("newsPage.breadcrumb1")}</Link>
+
+          {t("newsPage.breadcrumb2")}
         </span>
+
         <p className="font-bold text-xl sm:text-2xl md:text-3xl text-[#1E1E1E] dark:text-[#fff] text-center">
           {t("newsPage.headerTitle")}
           <span className="text-sm !ml-2 text-[#848484] dark:text-[#ccc] mr-2">
@@ -240,22 +243,21 @@ const NewsPage = () => {
                 variants={cardItemVariants}
                 className={getCardWidthClass()}
               >
-                <Link to={`/news/${news.id}`}>
-                  <NewsCard
-                    image={news.currentImageAddressTumb}
-                    title={news.title}
-                    description={news.miniDescribe}
-                    views={news.currentView}
-                    rating={3.2}
-                    category={news.newsCatregoryName}
-                    date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    }).format(new Date(news.insertDate))}
-                    viewType={selectedView}
-                  />
-                </Link>
+                <NewsCard
+                  id={news.id}
+                  image={news.currentImageAddressTumb}
+                  title={news.title}
+                  description={news.miniDescribe}
+                  views={news.currentView}
+                  rating={3.2}
+                  category={news.newsCatregoryName}
+                  date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  }).format(new Date(news.insertDate))}
+                  viewType={selectedView}
+                />
               </motion.div>
             ))}
           </motion.div>

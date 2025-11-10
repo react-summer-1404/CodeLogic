@@ -6,7 +6,8 @@
     "news": "News",
     "search_placeholder": "Search...",
     "select_placeholder": "Select...",
-    "login": "Login / Register"
+    "login": "Login / Register",
+    "userpanel" : "User Panel"
   },
   "heroSection": {
     "title1": "Learning programming with experienced teachers,",
@@ -247,7 +248,8 @@
     "date2": "Oct 15, 2025"
   },
   "newsPage": {
-    "breadcrumb": "Home - News",
+    "breadcrumb1": "Home ",
+    "breadcrumb2": "- News",
     "headerTitle": "News & Articles",
     "results": " results",
     "searchPlaceholder": "Search...",
