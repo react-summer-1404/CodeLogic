@@ -16,6 +16,7 @@ import { deleteFavNews } from "../../../core/services/api/Delete/DeleteFavoriteN
 import openEye from "../../../assets/Icons/A/openEye.png";
 import starIcon from "../../../assets/Icons/A/star.png";
 import htmlImg from "../../../assets/Images/HTML5Course.png";
+import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";
 const FavoriteNews = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "fa";
@@ -195,24 +196,23 @@ const FavoriteNews = () => {
       >
         <div className="flex flex-col h-[70%]">
           <NewsHeader />
-          {isPending && (
-            <div className="mx-auto">
-              <img src={loadingIcon} alt="" />
-            </div>
-          )}
+          {isPending &&
+            [...Array(2)].map((items, index) => (
+              <FavoritesSkeleton key={index + 1} />
+            ))}
           {!isPending && (
             <div className="overflow-y-auto h-full">
               {currentNews.length > 0 ? (
-                currentNews.map((items) => (
+                currentNews.map((items, index) => (
                   <FavoriteNew
                     getOverViewData={getOverViewData}
                     deleteItem={deleteItem}
-                    key={items.id}
+                    key={index}
                     items={items}
                   />
                 ))
               ) : (
-                <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
+                <h1 className="text-red-600 text-2xl font-bold text-center mt-20 ">
                   {t("favoriteNews.notFound")}
                 </h1>
               )}

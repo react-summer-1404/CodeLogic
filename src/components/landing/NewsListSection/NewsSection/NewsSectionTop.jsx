@@ -51,7 +51,7 @@ const NewsSectionTop = ({ card }) => {
           className={` ${
             isAdded ? "bg-red-600/30" : "bg-white/20"
           }  bg-no-repeat bg-[center_center]  p-5 backdrop-blur-md rounded-full
-             w-[24px] h-[20.799999237060547px] `}
+             w-[24px] h-[20.799999237060547px] transition duration-300 `}
           style={{
             backgroundImage: `url(${heartIcon})`,
             cursor: `url(${cursorIcon}),pointer`,

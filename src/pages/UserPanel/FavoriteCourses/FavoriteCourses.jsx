@@ -13,6 +13,7 @@ import loadingIcon from "../../../assets/Images/A/loading.gif";
 import { getFavoriteCourses } from "../../../core/services/api/Get/GetFavoriteCourses";
 import { toast } from "react-toastify";
 import { deleteFavCourses } from "../../../core/services/api/delete/deleteFavCourses";
+import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";
 const FavoriteCourses = () => {
   const { data: coursesData = {}, isPending } = useQuery({
     queryKey: ["FAVCOURSES"],
@@ -193,11 +194,10 @@ const FavoriteCourses = () => {
       >
         <div className="flex flex-col h-[70%]">
           <CourseHeader />
-          {isPending && (
-            <div className="mx-auto">
-              <img src={loadingIcon} alt="" />
-            </div>
-          )}
+          {isPending &&
+            [...Array(2)].map((items, index) => (
+              <FavoritesSkeleton key={index + 2} />
+            ))}
           {!isPending && (
             <div className="overflow-y-auto h-full">
               {currentCourses.length > 0 ? (
@@ -210,7 +210,7 @@ const FavoriteCourses = () => {
                   />
                 ))
               ) : (
-                <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
+                <h1 className="text-red-600 text-2xl font-bold text-center mt-20 ">
                   {t("favoriteCourses.notFound")}
                 </h1>
               )}
