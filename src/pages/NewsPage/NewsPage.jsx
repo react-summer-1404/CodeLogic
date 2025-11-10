@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import CategoryFilter from "../../components/CategoryFilter/CategoryFilter";
 import NewsCard from "../../components/news/NewsCard/NewsCard";
@@ -13,11 +13,29 @@ import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import getAllNews from "../../core/services/api/Get/News";
 import { Link } from "react-router-dom";
+import NewsPageSkeleton from "../../components/common/skeleton/NewsPageSkeleton/NewsPageSkeleton";
 
 const NewsPage = () => {
   const { data, isLoading } = useQuery({
     queryFn: getAllNews,
   });
+
+  const [isDarkMode, setIsDarkMode] = useState(
+    document.documentElement.classList.contains("dark")
+  );
+
+  useEffect(() => {
+    const HandleDark = new MutationObserver(() => {
+      setIsDarkMode(document.documentElement.classList.contains("dark"));
+    });
+
+    HandleDark.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => HandleDark.disconnect();
+  }, []);
 
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "fa";
@@ -27,33 +45,27 @@ const NewsPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState("newest");
   const [selectedCategory, setSelectedCategory] = useState(null);
-
   const [cardsPerPage, setCardsPerPage] = useState(12);
-
   const itemsPerPage = cardsPerPage;
 
   const filteredNews = useMemo(() => {
     if (!data?.news) return [];
-
     let result = [...data.news];
 
-    if (selectedCategory) {
+    if (selectedCategory)
       result = result.filter(
         (news) => news.newsCatregoryName === selectedCategory
       );
-    }
 
-    if (searchQuery.trim()) {
+    if (searchQuery.trim())
       result = result.filter((news) =>
         news.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
-    }
 
-    if (sortOption === "newest") {
+    if (sortOption === "newest")
       result.sort((a, b) => new Date(b.insertDate) - new Date(a.insertDate));
-    } else if (sortOption === "oldest") {
+    else if (sortOption === "oldest")
       result.sort((a, b) => new Date(a.insertDate) - new Date(b.insertDate));
-    }
 
     return result;
   }, [data, searchQuery, sortOption, selectedCategory]);
@@ -93,13 +105,14 @@ const NewsPage = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-  const getCardWidthClass = () => {
-    if (selectedView === "list") return "w-full";
+  const getCardWidthClass = () =>
+    selectedView === "list" ? "w-full" : "w-full sm:w-[calc(33.333%-10.66px)]";
 
-    return "w-full sm:w-[calc(33.333%-10.66px)]";
-  };
-
-  if (isLoading) return <div>loading</div>;
+  if (isLoading) {
+    return (
+      <NewsPageSkeleton selectedView={selectedView} isDarkMode={isDarkMode} />
+    );
+  }
 
   return (
     <div className="bg-[#F3F4F6] dark:bg-[#1e1e1e] min-h-screen">
@@ -111,7 +124,6 @@ const NewsPage = () => {
       >
         <span className="font-bold mb-5 text-[#008C78] dark:text-[#ccc]">
           <Link to="/">{t("newsPage.breadcrumb1")}</Link>
-
           {t("newsPage.breadcrumb2")}
         </span>
 
@@ -177,14 +189,12 @@ const NewsPage = () => {
               <span className="dark:text-[#fff] text-sm">
                 {t("newsPage.sortBy")}
               </span>
-
               <NewsSelectOne
                 onChange={(val) => {
                   setSortOption(val);
                   setCurrentPage(0);
                 }}
               />
-
               <NewsSelectTwo
                 value={String(cardsPerPage)}
                 onChange={(val) => {
@@ -199,11 +209,8 @@ const NewsPage = () => {
 
             <div className="!gap-3 flex justify-center items-center">
               <div
-                onClick={() => {
-                  setSelectedView("list");
-                  setCurrentPage(0);
-                }}
-                className={`mr-3 sm:mr-5 flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border transition-all duration-300 cursor-pointer ${
+                onClick={() => setSelectedView("list")}
+                className={`mr-3 sm:mr-5 flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border cursor-pointer ${
                   selectedView === "list"
                     ? "bg-[#008C78] text-white border-[#008C78]"
                     : "text-[#A6A6A6] border border-[#A6A6A6] dark:border-[#555]"
@@ -211,13 +218,9 @@ const NewsPage = () => {
               >
                 <FormatListBulletedIcon className="!text-xl sm:!text-2xl" />
               </div>
-
               <div
-                onClick={() => {
-                  setSelectedView("grid");
-                  setCurrentPage(0);
-                }}
-                className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border transition-all duration-300 cursor-pointer ${
+                onClick={() => setSelectedView("grid")}
+                className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border cursor-pointer ${
                   selectedView === "grid"
                     ? "bg-[#008C78] text-white border-[#008C78]"
                     : "text-[#A6A6A6] border border-[#A6A6A6] dark:border-[#555]"
