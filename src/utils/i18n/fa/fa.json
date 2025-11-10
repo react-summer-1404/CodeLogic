@@ -638,10 +638,18 @@
   },
   "myReservedCourses": {
     "title1": "نام دوره",
-    "title2": "دانشجو",
+    "title2": "مدرس",
     "title3": "وضعیت",
     "title4": "تاریخ رزرو",
     "title5": "عملیات"
+  },
+  "myReservedCoursesFilter": {
+    "reserved": "رزرو شده",
+    "await": "در انتظار تایید"
+  },
+  "myReservedCourse": {
+    "reserved": "رزرو شده",
+    "await": "در انتظار تایید"
   },
   "myCoursesComments": {
     "title1": "عنوان دوره",

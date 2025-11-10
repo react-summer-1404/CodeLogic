@@ -636,10 +636,18 @@
   },
   "myReservedCourses": {
     "title1": "Course Name",
-    "title2": "Student",
+    "title2": "Teacher",
     "title3": "Status",
     "title4": "Reserve Date",
     "title5": "Actions"
+  },
+  "myReservedCoursesFilter": {
+    "reserved": "Reserved",
+    "await": "Waiting"
+  },
+  "myReservedCourse": {
+    "reserved": "Reserved",
+    "await": "Waiting"
   },
   "myCoursesComments": {
     "title1": "Course Title",

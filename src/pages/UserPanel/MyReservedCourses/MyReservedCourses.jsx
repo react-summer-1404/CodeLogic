@@ -1,35 +1,61 @@
-import React from 'react'
+import React, { useState } from 'react'
 import UserPanelSearch from '../../../components/common/userPanel/UserPanelSearch/UserPanelSearch'
 import UserPanelFilter from '../../../components/common/userPanel/UserPanelFilter/UserPanelFilter'
 import UserPanelTitle from '../../../components/common/userPanel/UserPanelTitle/UserPanelTitle'
 import MyReservedCourse from '../../../components/common/userPanel/MyReservedCourse/MyReservedCourse'
 import UserPanelShowNumber from '../../../components/common/userPanel/UserPanelShowNumber/UserPanelShowNumber'
 import ReactPaginate from 'react-paginate'
-import { useTranslation } from 'react-i18next'
+import { t } from 'i18next'
+import { useQuery } from '@tanstack/react-query'
+import GetMyReservedCourses from '../../../core/services/api/get/GetMyReservedCourses'
 
 
 
 const MyReservedCourses = () => {
 
-  const {t} = useTranslation();
+  const [searchQuery , setSearchQuery] = useState('');
+  const handleSearch = (searchTerm) => {
+    setSearchQuery(searchTerm);
+  };
+  
+
+  const [filteredData , setFilteredData] = useState();
+  const handleFilter = (filter) => {
+
+  }
+
+
+  const { data: myReservedCoursesData, isLoading } = useQuery({
+    queryKey: ['GETMYRESERVEDCOURSES', searchQuery],
+    queryFn: () => GetMyReservedCourses({
+      Query: searchQuery, SortType: 'accept'
+    })
+  })
+
 
   return (
     <div className='flex flex-col gap-10 h-[85%] p-8 bg-[#F3F4F6] rounded-4xl   dark:bg-[#333333]'>
       <div className='flex justify-between items-center'>
-        <UserPanelSearch width={'w-[439px]'}/>  
-        <UserPanelFilter/>
+        <UserPanelSearch width={'w-[439px]'} handleSearch={handleSearch}/>  
+        <UserPanelFilter handleFilter={handleFilter}/>
       </div>
       <div className='flex flex-col justify-between h-[440px] p-6 bg-[#FFFFFF] rounded-2xl   dark:bg-[#454545]'>
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4  relative'>
           <UserPanelTitle 
           titleData={{
             title1: t('myReservedCourses.title1'), justify1: 'justify-start', w1: 'w-64',
-            title2: t('myReservedCourses.title2'), justify2: 'justify-center', w2: 'w-50',
-            title3: t('myReservedCourses.title3'), justify3: 'justify-center', w3: 'w-36',
-            title4: t('myReservedCourses.title4'), justify4: 'justify-center', w4: 'w-60',
-            title5: t('myReservedCourses.title5'), justify5: 'justify-center', w5: 'w-32'
+            title2: t('myReservedCourses.title2'), justify2: 'justify-center', w2: 'w-58',
+            title3: t('myReservedCourses.title3'), justify3: 'justify-center', w3: 'w-40',
+            title4: t('myReservedCourses.title4'), justify4: 'justify-center', w4: 'w-54',
+            title5: t('myReservedCourses.title5'), justify5: 'justify-center', w5: 'w-28'
           }}/>
-          <MyReservedCourse/>
+          <div>
+            <div className='flex flex-col max-h-66 overflow-y-scroll'>
+              {myReservedCoursesData?.map((item , index) => {
+                return <MyReservedCourse item={item} key={index}/>
+              })}
+            </div>
+          </div>
         </div>
         <div className='flex justify-between items-center'>
           <ReactPaginate
