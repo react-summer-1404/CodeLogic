@@ -195,7 +195,7 @@ const FavoriteCourses = () => {
         <div className="flex flex-col h-[70%]">
           <CourseHeader />
           {isPending &&
-            [...Array(2)].map((items, index) => (
+            [...Array(coursesPerPage)].map((items, index) => (
               <FavoritesSkeleton key={index + 2} />
             ))}
           {!isPending && (

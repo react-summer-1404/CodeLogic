@@ -206,7 +206,7 @@ const TeachersDetail = () => {
               style={{ direction: "ltr" }}
             >
               {isCoursesLoading &&
-                [...Array(3)].map((item, index) => (
+                [...Array(coursesPerPage)].map((item, index) => (
                   <DetailSkeleton key={index + 2} />
                 ))}
               {!isCoursesLoading && courses.length > 0 ? (

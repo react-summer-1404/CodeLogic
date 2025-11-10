@@ -186,7 +186,7 @@ const TeachersPage = () => {
               style={{ direction: "ltr" }}
             >
               {isPending &&
-                [...Array(5)].map((item, i) => (
+                [...Array(TeachersPerPage)].map((item, i) => (
                   <TeachersSkeleton key={i + 2} />
                 ))}
               {!isPending && currentTeachers.length > 0 ? (

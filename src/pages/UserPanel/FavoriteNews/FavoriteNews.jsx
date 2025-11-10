@@ -197,7 +197,7 @@ const FavoriteNews = () => {
         <div className="flex flex-col h-[70%]">
           <NewsHeader />
           {isPending &&
-            [...Array(2)].map((items, index) => (
+            [...Array(newsPerPage)].map((items, index) => (
               <FavoritesSkeleton key={index + 1} />
             ))}
           {!isPending && (
