@@ -37,7 +37,7 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-
+  const isRTL = i18n.language === "fa";
   const [isDark, setIsDark] = useState(false);
   const handleDark = () => {
     setIsDark((prev) => !prev);
@@ -88,8 +88,7 @@ const LoginPage = () => {
           </div>
           <div className="flex flex-col justify-center items-center gap-5  ">
             <h2 className="text-[24px] font-bold text-[#008C78] ">
-              {" "}
-              {t("login.LoginToUserAccount")}{" "}
+              {t("login.LoginToUserAccount")}
             </h2>
             <div className="w-full mt-7 px-6">
               <Formik
@@ -105,7 +104,11 @@ const LoginPage = () => {
                     <div className=" flex flex-col gap-5 ">
                       <div className="relative">
                         <Field
-                          className={`outline-none  bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545]  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
+                          className={`outline-none  bg-no-repeat  ${
+                            isRTL
+                              ? "bg-[right_20px_center]"
+                              : "bg-[left_20px_center]"
+                          }  bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545]  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
                             errors.phoneOrGmail && touched.phoneOrGmail
                               ? "border-[#EF5350] border-1 "
                               : ""
@@ -125,7 +128,11 @@ const LoginPage = () => {
 
                       <div className=" relative mt-6">
                         <Field
-                          className={` bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${
+                          className={` bg-no-repeat   ${
+                            isRTL
+                              ? "bg-[right_20px_center]"
+                              : "bg-[left_20px_center]"
+                          } bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${
                             errors.password && touched.password
                               ? "border-[#EF5350] border-1 "
                               : ""
@@ -140,7 +147,9 @@ const LoginPage = () => {
                           onClick={handlePassword}
                           src={showPassword ? eyeClose : eyeOpen}
                           alt=""
-                          className=" cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  "
+                          className={` cursor-pointer absolute ${
+                            isRTL ? "left-7" : "right-7"
+                          } top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  `}
                         />
                         <ErrorMessage
                           name={"password"}

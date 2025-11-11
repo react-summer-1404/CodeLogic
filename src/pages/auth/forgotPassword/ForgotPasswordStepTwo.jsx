@@ -27,6 +27,7 @@ const ForgotPasswordStepTwo = () => {
 
   ////
   const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === "fa";
   const [isDark, setIsDark] = useState(false);
   const handleDark = () => {
     setIsDark((prev) => !prev);
@@ -118,7 +119,11 @@ const ForgotPasswordStepTwo = () => {
                     <div className=" flex flex-col gap-6 ">
                       <div className=" relative mt-5 ">
                         <Field
-                          className={` focus:outline-none  bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
+                          className={` focus:outline-none  bg-no-repeat    ${
+                            isRTL
+                              ? "bg-[right_20px_center]"
+                              : "bg-[left_20px_center]"
+                          } bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
                             errors.newPassword && touched.newPassword
                               ? "border-[#EF5350] border-1 "
                               : ""
@@ -133,7 +138,9 @@ const ForgotPasswordStepTwo = () => {
                           onClick={handleFirstPassword}
                           src={showFirstPassword ? eyeClose : eyeOpen}
                           alt=""
-                          className=" cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  "
+                          className={` cursor-pointer absolute ${
+                            isRTL ? "left-7" : "right-7"
+                          } top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover `}
                         />
                         <ErrorMessage
                           name={"newPassword"}
@@ -158,7 +165,10 @@ const ForgotPasswordStepTwo = () => {
                           onClick={handleSecondPassword}
                           src={showSecondPassword ? eyeClose : eyeOpen}
                           alt=""
-                          className=" cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  "
+                          className={` cursor-pointer absolute  ${
+                            isRTL ? "left-7" : "right-7"
+                          } top-1/2 -translate-y-1/2
+                             w-[17px] h-[15px] object-cover  `}
                         />
                         <ErrorMessage
                           name={"resetValue"}

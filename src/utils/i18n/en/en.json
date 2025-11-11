@@ -696,5 +696,16 @@
     "ConfirmDeletion": "Confirm deletion",
     "Deleting": "Deleting",
     "cancel": "Cancel"
+  },
+  "contactUs": {
+    "header1": "Contact Us",
+    "header2": "You can send us a message via the contact form on this page.",
+    "p1": "Need help? We're here! Fill out the form below and we'll get back to you quickly",
+    "p2": "call",
+    "p3": "Were here to help you make the best decision If youre looking for professional service transparent pricing and fast support simply fill out the form and our experts will contact you as soon as possible Whether you have questions, need guidance, or want to know the exact price of our services — our team is ready to help you navigate the path with a free consultation.By filling out the form below, you can get the information you need and make an informed choice without any obligation ",
+    "name": "First Name & Last Name",
+    "email": "Enter your email",
+    "phone": "Your number",
+    "text": "Message text"
   }
 }
