@@ -12,13 +12,21 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import getAllNews from "../../core/services/api/Get/News";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import NewsPageSkeleton from "../../components/common/skeleton/NewsPageSkeleton/NewsPageSkeleton";
 
 const NewsPage = () => {
   const { data, isLoading } = useQuery({
     queryFn: getAllNews,
   });
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const search = params.get("search") || "";
+    setSearchQuery(search);
+  }, [location.search]);
 
   const [isDarkMode, setIsDarkMode] = useState(
     document.documentElement.classList.contains("dark")

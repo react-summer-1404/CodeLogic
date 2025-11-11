@@ -7,7 +7,8 @@
     "search_placeholder": "جستجو کنید...",
     "select_placeholder": "انتخاب کنید...",
     "login": "ورود / ثبت نام",
-    "userpanel" : "صفحه کاربری"
+    "userpanel" : "صفحه کاربری",
+    "notfound" : "نتیجه‌ای یافت نشد"
   },
   "heroSection": {
     "title1": "یادگیری برنامه‌نویسی با اساتید مجرب ،",
