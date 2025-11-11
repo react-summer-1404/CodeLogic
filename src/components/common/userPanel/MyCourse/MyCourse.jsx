@@ -6,7 +6,7 @@ import ReactCourseImg from '../../../../assets/Images/A/courses/2.png'
 
 const textClass = 'font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]'
 
-const MyCourse = () => {
+const MyCourse = ({item}) => {
   return (
     <div className='flex items-center py-[14px] border-t border-b border-[#EAEAEA]'>
       <div className='flex items-center gap-4 w-64'>

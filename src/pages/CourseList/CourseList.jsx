@@ -30,7 +30,6 @@ const CourseList = () => {
   const [endDate, setEndDate] = useState(null)
   const handleSetStartDate = (startDate) => {
     setStartDate(startDate)
-    console.log('startDate:', startDate)
   }
   const handleSetEndDate = (endDate) => {
     setEndDate(endDate)
@@ -77,8 +76,7 @@ const CourseList = () => {
       courseLevelId: courseLevel,
       teacherName: teachers,
       technologyList: technologies,
-      CostDown: price[0],
-      CostUp: price[1]
+      CostDown: price[0], CostUp: price[1]
     })
   })
 

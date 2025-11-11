@@ -1,18 +1,25 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
+import { t } from 'i18next'
 
 
-const UserPanelFilter = () => {
+const UserPanelFilter = ({handleFilter}) => {
 
-  const {t} = useTranslation();
+  const handleChange = (e) => {
+    const value = e.target.value;
+    if (value === 'true') handleFilter(true);
+    else if (value === 'false') handleFilter(false);
+  };
+
 
   return (
-    <select className='py-[10px] px-4 font-regular text-base text-[#1E1E1E] bg-[#FFFFFF] border border-[#EAEAEA] rounded-2xl
-    outline-0
+    <select
+    onChange={handleChange} 
+    className='py-[10px] px-4 font-regular text-base text-[#1E1E1E] bg-[#FFFFFF] border border-[#EAEAEA] rounded-2xl outline-0   
     dark:text-[#CCCCCC] dark:bg-[#454545]'>
-      <option>{t('userPanelFilter.option1')}</option>
+      <option value={'true'}>{t('myReservedCoursesFilter.reserved')}</option>
+      <option value={'false'}>{t('myReservedCoursesFilter.await')}</option>
     </select>
   )
 }
-
+ 
 export default UserPanelFilter
