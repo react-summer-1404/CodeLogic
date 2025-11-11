@@ -9,3 +9,4 @@ export const gmailSlice = createSlice({
     },
   },
 });
+export const { addGmail } = gmailSlice.actions;

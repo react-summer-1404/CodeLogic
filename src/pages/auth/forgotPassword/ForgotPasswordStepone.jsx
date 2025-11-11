@@ -17,7 +17,7 @@ import home from "../../../assets/Icons/A/home.png";
 import email from "../../../assets/Icons/A/email.png";
 import forgot1 from "../../../assets/Images/A/forgot1.png";
 import { useDispatch } from "react-redux";
-import { gmailSlice } from "../../../utils/redux/slice/gmailSlice";
+import { addGmail, gmailSlice } from "../../../utils/redux/slice/gmailSlice";
 
 const ForgotPasswordStepOne = () => {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const ForgotPasswordStepOne = () => {
     mutationKey: ["POSTPASS"],
     mutationFn: (values) => {
       const res = ResetPass1(values);
-      dispatch(gmailSlice.actions.addGmail(values.email));
+      dispatch(addGmail(values.email));
       return res;
     },
     onSettled: (data) => {
