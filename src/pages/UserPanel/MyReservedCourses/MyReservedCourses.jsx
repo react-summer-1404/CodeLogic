@@ -13,6 +13,19 @@ import GetMyReservedCourses from '../../../core/services/api/get/GetMyReservedCo
 
 const MyReservedCourses = () => {
 
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [pageSize, setPageSize] = useState(3);
+  const handlePageSizeChange = (newSize) => {
+    setPageSize(newSize);
+    setCurrentPage(1);
+  };
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+
   const [searchQuery , setSearchQuery] = useState('');
   const handleSearch = (searchTerm) => {
     setSearchQuery(searchTerm);
@@ -50,7 +63,7 @@ const MyReservedCourses = () => {
             title5: t('myReservedCourses.title5'), justify5: 'justify-center', w5: 'w-28'
           }}/>
           <div>
-            <div className='flex flex-col max-h-66 overflow-y-scroll'>
+            <div className='flex flex-col max-h-66 overflow-y-scroll'> 
               {myReservedCoursesData?.map((item , index) => {
                 return <MyReservedCourse item={item} key={index}/>
               })}
@@ -62,11 +75,11 @@ const MyReservedCourses = () => {
             breakLabel="..."
             nextLabel=" >"
             previousLabel="< "
-            // onPageChange={handlePageChange}
-            // pageCount={pageSize}
+            onPageChange={handlePageChange}
+            pageCount={pageSize}
             marginPagesDisplayed={1}
             pageRangeDisplayed={3}
-            // forcePage={currentPage}
+            forcePage={currentPage}
             containerClassName="flex flex-wrap justify-center gap-1 sm:gap-2"
             pageClassName="px-3 py-2 sm:px-5 sm:py-3 rounded-[15px] font-semibold shadow-md cursor-pointer text-sm sm:text-xl bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
             activeClassName="!bg-[#008C78] text-white rounded-2xl shadow-md"
