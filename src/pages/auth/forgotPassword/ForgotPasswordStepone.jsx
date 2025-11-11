@@ -16,8 +16,11 @@ import sun from "../../../assets/Icons/A/sun.png";
 import home from "../../../assets/Icons/A/home.png";
 import email from "../../../assets/Icons/A/email.png";
 import forgot1 from "../../../assets/Images/A/forgot1.png";
+import { useDispatch } from "react-redux";
+import { gmailSlice } from "../../../utils/redux/slice/gmailSlice";
 
 const ForgotPasswordStepOne = () => {
+  const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [validationSchema, setValidationSchema] = useState(ForgotVal1());
@@ -43,7 +46,11 @@ const ForgotPasswordStepOne = () => {
 
   const { mutate: postPass, isPending } = useMutation({
     mutationKey: ["POSTPASS"],
-    mutationFn: (values) => ResetPass1(values),
+    mutationFn: (values) => {
+      const res = ResetPass1(values);
+      dispatch(gmailSlice.actions.addGmail(values.email));
+      return res;
+    },
     onSettled: (data) => {
       if (data.success) {
         toast.success(data.message);
@@ -103,7 +110,7 @@ const ForgotPasswordStepOne = () => {
                   }}
                   validationSchema={validationSchema}
                 >
-                  {({ errors, touched }) => (
+                  {({ errors, touched, values }) => (
                     <Form>
                       <div className=" flex flex-col gap-10">
                         <div className="flex flex-col gap-1 relative">

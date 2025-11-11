@@ -36,12 +36,14 @@ const FavoriteCourse = ({ items, deleteItem, getOverViewData }) => {
         <div className="ps-8 flex items-center justify-start gap-4 flex-[1.5] text-right">
           <img
             className="w-[28px] h-[28px] rounded-full object-cover"
-            src="http://sepehracademy.liara.run/files/Image-1761935008550.jpg"
+            src={items.course.imageAddress}
             alt=""
           />
           {items.courseTitle}
         </div>
-        <div className="ps-3 flex-[1.2] text-right overflow-ellipsis truncate ">{`این دوره توسط استاد ${items.teacheName} برگزار میشود`}</div>
+        <div className="ps-3 flex-[1.2] text-right overflow-ellipsis truncate ">
+          {items.course.describe}
+        </div>
         <div className="px-4 flex-1">{meetingMode}</div>
         <div className="px-4 flex-1 truncate">{items.lastUpdate}</div>
         <div className="pe-8 w-[100px] text-left flex items-center justify-end gap-4">
@@ -67,11 +69,11 @@ const FavoriteCourse = ({ items, deleteItem, getOverViewData }) => {
         </h2>
         <img
           className="rounded-4xl shadow-md w-[55%] mx-auto"
-          src="http://sepehracademy.liara.run/files/Image-1761935008550.jpg"
+          src={items.course.imageAddress}
           alt=""
         />
         <p className=" text-center text-[14px] text-[#848484] dark:text-[#848484]">
-          {`این دوره توسط استاد ${items.teacheName} برگزار میشود`}
+          {items.course.describe}
         </p>
         <div className="flex flex-col items-center text-[14px] text-[#848484] dark:text-[#848484]">
           <span>{items.lastUpdate}</span>

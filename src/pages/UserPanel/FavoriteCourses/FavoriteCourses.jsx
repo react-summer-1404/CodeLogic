@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import CourseHeader from "../../../components/common/favorites/courses/FavoriteCourseHeader/CourseHeader";
-import { useTranslation } from "react-i18next";
 import { FavoriteCoursesData } from "../../../components/common/data/Favorites/FavoriteCourses";
 import FavoriteCourse from "../../../components/common/favorites/courses/FavoriteCourse";
 import { AnimatePresence, motion } from "framer-motion";
@@ -14,6 +13,7 @@ import { getFavoriteCourses } from "../../../core/services/api/Get/GetFavoriteCo
 import { toast } from "react-toastify";
 import { deleteFavCourses } from "../../../core/services/api/delete/deleteFavCourses";
 import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";
+import { useTranslation } from "react-i18next";
 const FavoriteCourses = () => {
   const { data: coursesData = {}, isPending } = useQuery({
     queryKey: ["FAVCOURSES"],
@@ -369,13 +369,22 @@ const FavoriteCourses = () => {
             </h2>
             <img
               className="rounded-4xl shadow-md w-[55%] mx-auto"
-              src="http://sepehracademy.liara.run/files/Image-1761935008550.jpg"
+              src={overViewData.course.imageAddress}
               alt=""
             />
             <p className="text-[14px] text-[#848484] dark:text-[#848484] mt-2 mx-auto ">
-              {`این دوره توسط استاد ${overViewData.teacheName} برگزار میشود`}
+              {overViewData.course.describe}
             </p>
-
+            <div className="flex justify-center items-center gap-2">
+              <span className="font-regular text-lg font-bold text-[#1E1E1E]   dark:text-[#EEEEEE]">
+                {t("قیمت")}
+              </span>
+              <div className="flex">
+                <span className="font-bold text-base text-[#008C78]">
+                  {t(`${overViewData.course.cost} تومان`)}
+                </span>
+              </div>
+            </div>
             <div className="text-[14px] text-[#848484] dark:text-[#848484] mx-auto">
               {t("favoriteCourses.lastUpdated")}:{overViewData.lastUpdate}
             </div>

@@ -462,7 +462,8 @@
     "RepeatPass": "Repeat password",
     "RegisterNewPass": "Register a new password",
     "title2": "The final step to get back on the learning path!",
-    "caption2": "By setting a new password, you will regain access to your account and can continue learning without stopping."
+    "caption2": "By setting a new password, you will regain access to your account and can continue learning without stopping.",
+    "resetValue": "Please enter the code sent to your email."
   },
   "forgotVal1": {
     "required": "Entering an email is required.",

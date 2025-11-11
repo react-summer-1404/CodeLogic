@@ -374,7 +374,9 @@ const FavoriteNews = () => {
               className="rounded-4xl shadow-md w-[55%] mx-auto"
               src={
                 overViewData.currentImageAddress ===
-                "http://sepehracademy.liara.run/files/undefined"
+                  "http://sepehracademy.liara.run/files/undefined" ||
+                overViewData.currentImageAddress ===
+                  "http://localhost:300/files/Image-1761849433020.png"
                   ? `${htmlImg}`
                   : `${overViewData.currentImageAddress}`
               }

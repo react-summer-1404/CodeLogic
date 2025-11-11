@@ -116,7 +116,7 @@ const TeachersPage = () => {
               {t("teachersPage.titles.Teachers")}
             </h2>
           </div>
-          <div className="flex flex-col items-center gap-4 md:gap-1 pb-20 ">
+          <div className="flex flex-col items-center gap-4 md:gap-0 pb-20 ">
             <div
               className="mt-12 dark:text-[#EEEEEE] dark:border dark:border-[#EAEAEA]   dark:bg-[#1E1E1E] flex bg-[#ffff] 
                             h-[72px] w-full shadow-md  rounded-[15px] items-center justify-between px-5 py-3 "
@@ -178,15 +178,17 @@ const TeachersPage = () => {
               </motion.button>
             </div>
             {/* ///responsive //// */}
-            <SliderButtons sliderRef={sliderRef} />
+            <div className="block md:hidden w-full">
+              <SliderButtons sliderRef={sliderRef} />
+            </div>
             {/* //// cards //// */}
             <div
-              className="flex flex-nowrap gap-5 pb-5  md:flex-wrap w-full overflow-x-auto scroll-smooth "
+              className="flex flex-nowrap gap-3 pb-5 pt-3 md:mt-4 px-2  md:flex-wrap w-full overflow-x-auto scroll-smooth "
               ref={sliderRef}
               style={{ direction: "ltr" }}
             >
               {isPending &&
-                [...Array(TeachersPerPage)].map((item, i) => (
+                [...Array(4)].map((item, i) => (
                   <TeachersSkeleton key={i + 2} />
                 ))}
               {!isPending && currentTeachers.length > 0 ? (

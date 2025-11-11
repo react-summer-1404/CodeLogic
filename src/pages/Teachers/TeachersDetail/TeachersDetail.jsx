@@ -197,12 +197,14 @@ const TeachersDetail = () => {
               </motion.button>
             </div>
             {/* //// responsive //// */}
-            <SliderButtons sliderRef={sliderRef} />
+            <div className="block md:hidden">
+              <SliderButtons sliderRef={sliderRef} />
+            </div>
             {/* //// cards //// */}
             <div
               ref={sliderRef}
-              className="w-full flex flex-nowrap justify-items-start my-3 md:my-0 md:flex-wrap  overflow-y-hidden
-                                 overflow-x-auto scroll-smooth pb-4 gap-4 "
+              className="w-full flex flex-nowrap justify-items-start my-3 md:my-0 md:mt-4 md:flex-wrap  overflow-y-hidden
+                               px-3  overflow-x-auto scroll-smooth pt-3 pb-4 gap-4 "
               style={{ direction: "ltr" }}
             >
               {isCoursesLoading &&

@@ -27,7 +27,7 @@ const DetailCard = ({ item }) => {
     <div
       dir="rtl"
       className="flex flex-col flex-shrink-0 items-center w-[350px] md:basis-[calc(33.8%-1rem)] rounded-[20px] relative cursor-pointer  
-        hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
+        transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78] "
     >
       <img
         src={item.imageAddress}

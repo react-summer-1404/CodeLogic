@@ -10,7 +10,7 @@ const SliderTeacher = ({ item }) => {
     <div
       onClick={() => navigate(`/Teacher/${item.teacherId}`)}
       className="flex flex-col flex-shrink-0 items-center w-[350px] h-[346px] p-4 bg-[#FFFFFF] rounded-[20px] md:basis-[calc(25%-1rem)]  dark:bg-[#606060]
-    hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
+    transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78] "
     >
       <img
         src={item.pictureAddress}

@@ -18,8 +18,14 @@ import moon from "../../../assets/Icons/A/moon.png";
 import eyeClose from "../../../assets/Icons/A/eyeClose.png";
 import eyeOpen from "../../../assets/Icons/A/eyeOpen.png";
 import forgot2 from "../../../assets/Images/A/forgot2.png";
+import { useSelector } from "react-redux";
 
 const ForgotPasswordStepTwo = () => {
+  ///redux ///
+  const gmail = useSelector((state) => state.gmailred.gmail);
+  console.log(gmail);
+
+  ////
   const { t, i18n } = useTranslation();
   const [isDark, setIsDark] = useState(false);
   const handleDark = () => {
@@ -98,8 +104,12 @@ const ForgotPasswordStepTwo = () => {
               <Formik
                 initialValues={resetData2}
                 onSubmit={(value) => {
-                  console.log(value.newPassword);
-                  PostNewPass(value.newPassword);
+                  const finalValues = {
+                    gmail: gmail,
+                    newPassword: value.newPassword,
+                    resetValue: value.resetValue,
+                  };
+                  PostNewPass(finalValues);
                 }}
                 validationSchema={validationSchema}
               >
@@ -134,16 +144,15 @@ const ForgotPasswordStepTwo = () => {
 
                       <div className=" relative mt-6 ">
                         <Field
-                          className={` focus:outline-none  bg-no-repeat   bg-[right_20px_center]  bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
+                          className={` focus:outline-none bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full pl-13 pr-6 py-3  placeholder:text-[15px] ${
                             errors.confirmPassword && touched.confirmPassword
                               ? "border-[#EF5350] border-1 "
                               : ""
                           } `}
-                          style={{ backgroundImage: `url(${lock})` }}
                           type={showSecondPassword ? "text" : "password"}
-                          name="confirmPassword"
-                          id="confirmPassword"
-                          placeholder={t("forgotPass.RepeatPass")}
+                          name="resetValue"
+                          id="resetValue"
+                          placeholder={t("forgotPass.resetValue")}
                         />
                         <img
                           onClick={handleSecondPassword}
@@ -152,7 +161,7 @@ const ForgotPasswordStepTwo = () => {
                           className=" cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  "
                         />
                         <ErrorMessage
-                          name={"confirmPassword"}
+                          name={"resetValue"}
                           component={"span"}
                           className="text-[#EF5350] text-[14px] absolute top-16 right-0 "
                         />
