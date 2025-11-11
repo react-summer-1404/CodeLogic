@@ -22,6 +22,7 @@ import { addGmail, gmailSlice } from "../../../utils/redux/slice/gmailSlice";
 const ForgotPasswordStepOne = () => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === "fa";
   const navigate = useNavigate();
   const [validationSchema, setValidationSchema] = useState(ForgotVal1());
   useEffect(() => {
@@ -115,7 +116,11 @@ const ForgotPasswordStepOne = () => {
                       <div className=" flex flex-col gap-10">
                         <div className="flex flex-col gap-1 relative">
                           <Field
-                            className={` outline-none bg-no-repeat  bg-[length:14px_13px] bg-[right_20px_center]
+                            className={` outline-none bg-no-repeat  bg-[length:14px_13px]  ${
+                              isRTL
+                                ? "bg-[right_20px_center]"
+                                : "bg-[left_20px_center]"
+                            }
                                                        bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full px-12 py-3  placeholder:text-[15px] 
                                                        ${
                                                          errors.email &&

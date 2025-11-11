@@ -1,0 +1,174 @@
+import React from "react";
+import bgCover from "../../assets/Images/A/contactUs.png";
+import ContactUsSide from "../../components/ContactUsSide/ContactUsSide";
+import { Field, Form, Formik } from "formik";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import telephone from "../../assets/Icons/A/telephone.png";
+import textUs from "../../assets/Icons/A/textUs.png";
+import emailIcon from "../../assets/Icons/A/email.png";
+import userIcon from "../../assets/Icons/a/user.png";
+import { useTranslation } from "react-i18next";
+const ContactUs = () => {
+  const { i18n, t } = useTranslation();
+  const isRTL = i18n.language === "fa";
+  const goDown = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const goOut = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+  const container = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+        when: "beforeChildren",
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  };
+  return (
+    <motion.div
+      variants={goDown}
+      initial="hidden"
+      animate="visible"
+      className="bg-[#F3F4F6] dark:bg-[#1E1E1E] pb-8"
+    >
+      <motion.div
+        variants={goOut}
+        initial="hidden"
+        animate="visible"
+        className=" relative w-full"
+      >
+        <div>
+          <img src={bgCover} alt="" className="w-full" />
+        </div>
+        <div className="bg-[#00000081] absolute inset-0 "></div>
+        <div className="absolute top-[50%] right-10 translate-y-[-50%] ">
+          <h2 className="text-[32px] font-bold text-[#ffff]">
+            {t("contactUs.header1")}
+          </h2>
+          <p className="text-[16px] text-[#ffff] ">{t("contactUs.header2")}</p>
+        </div>
+      </motion.div>
+      <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-4 md:gap-70 py-[45px]">
+        <motion.div
+          initial={{ x: 40, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 300, type: "spring", stiffness: 250 }}
+          className=" px-7 md:p-0 w-[full] md:w-[40%] h-full"
+        >
+          <ContactUsSide />
+        </motion.div>
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="visible"
+          className="w-full md:w-[33%] px-10 md:p-0 mt-4 md:m-0"
+        >
+          <Formik
+            initialValues={{
+              name: "",
+              number: "",
+              email: "",
+              text: "",
+            }}
+            onSubmit={(values) => {
+              console.log(values);
+              toast.success("پیام شما با موفقیت ارسال شد");
+            }}
+          >
+            <Form>
+              <div
+                className="w-full h-full shadow-md rounded-4xl bg-[#FFFFFF] dark:bg-[#333]
+               py-[30px] px-[16px] flex flex-col gap-8 items-center"
+              >
+                <motion.div variants={item} className="w-[90%]">
+                  <Field
+                    name="name"
+                    type="text"
+                    className={`outline-none shadow  bg-no-repeat  ${
+                      isRTL ? "bg-[right_20px_center]" : "bg-[left_20px_center]"
+                    }  bg-[#F3F4F6]
+                   dark:text-[#ffff] dark:bg-[#454545]  w-full rounded-full px-13 py-3  placeholder:text-[15px] `}
+                    placeholder={t("contactUs.name")}
+                    style={{ backgroundImage: `url(${userIcon})` }}
+                  />
+                </motion.div>
+                <motion.div variants={item} className="w-[90%]">
+                  <Field
+                    name="email"
+                    className={`outline-none shadow  bg-no-repeat  ${
+                      isRTL ? "bg-[right_20px_center]" : "bg-[left_20px_center]"
+                    }  bg-[#F3F4F6]
+                   dark:text-[#ffff] dark:bg-[#454545]  w-full rounded-full px-13 py-3  placeholder:text-[15px] `}
+                    type="text"
+                    placeholder={t("contactUs.email")}
+                    style={{ backgroundImage: `url(${emailIcon})` }}
+                  />
+                </motion.div>
+                <motion.div variants={item} className="w-[90%]">
+                  <Field
+                    name="number"
+                    type="text"
+                    className={`outline-none shadow  bg-no-repeat  ${
+                      isRTL ? "bg-[right_20px_center]" : "bg-[left_20px_center]"
+                    }  bg-[#F3F4F6]
+                   dark:text-[#ffff] dark:bg-[#454545]  w-full rounded-full px-13 py-3  placeholder:text-[15px] `}
+                    placeholder={t("contactUs.phone")}
+                    style={{ backgroundImage: `url(${telephone})` }}
+                  />
+                </motion.div>
+                <motion.div variants={item} className="w-[90%]">
+                  <Field
+                    name="text"
+                    type="text"
+                    className={`outline-none shadow  bg-no-repeat  ${
+                      isRTL ? "bg-[right_20px_center]" : "bg-[left_20px_center]"
+                    }  bg-[#F3F4F6]
+                   dark:text-[#ffff] dark:bg-[#454545]  w-full rounded-full px-13 py-3  placeholder:text-[15px] `}
+                    placeholder={t("contactUs.text")}
+                    style={{ backgroundImage: `url(${textUs})` }}
+                  />
+                </motion.div>
+                <motion.button
+                  whileHover={{
+                    scale: "1.02",
+                    boxShadow: "0 0 8px #cccccc",
+                  }}
+                  whileTap={{ scale: "0.98" }}
+                  transition={{ ease: "easeInOut", duration: 350 }}
+                  type="submit"
+                  className="w-[90%] bg-[#008C78] text-white text-[16px] rounded-full px-5 py-3  "
+                >
+                  ارسال
+                </motion.button>
+              </div>
+            </Form>
+          </Formik>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
+
+export default ContactUs;

@@ -26,6 +26,7 @@ import FavoriteNews from "../../pages/UserPanel/FavoriteNews/FavoriteNews";
 import FavoriteCourses from "../../pages/UserPanel/FavoriteCourses/FavoriteCourses";
 import SecuritySettings from "../../pages/UserPanel/securitySettings/SecuritySettings";
 import NewsPage from "../../pages/NewsPage/NewsPage";
+import ContactUs from "../../pages/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
       { path: "/teachers", element: <TeachersPage /> },
       { path: "/teacher/:id", element: <TeachersDetail /> },
       { path: "/news/:id", element: <NewsDetails /> },
+      { path: "/contactUs", element: <ContactUs /> },
     ],
   },
   {
