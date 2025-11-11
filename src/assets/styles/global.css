@@ -36,7 +36,9 @@ body.ltr {
   src: url("../../assets/Fonts/Estedad-Bold.woff2") format("woff2");
   font-weight: 700;
 }
-
+.font-toast {
+  font-family: Estedad !important;
+}
 @theme {
   --breakpoint-sa: 300px;
 }

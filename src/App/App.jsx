@@ -8,7 +8,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ToastContainer />
+      <ToastContainer position="top-center" toastClassName="font-toast" />
       <RouterProvider router={router} />
     </QueryClientProvider>
   );

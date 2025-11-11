@@ -23,6 +23,7 @@
     "i18next": "^25.6.0",
     "leaflet": "^1.9.4",
     "lodash.debounce": "^4.0.8",
+    "lottie-react": "^2.4.1",
     "react": "^19.1.1",
     "react-date-object": "^2.1.9",
     "react-dom": "^19.1.1",

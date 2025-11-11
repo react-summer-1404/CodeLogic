@@ -14,6 +14,8 @@ import { useQuery } from "@tanstack/react-query";
 import getAllNews from "../../core/services/api/Get/News";
 import { Link, useLocation } from "react-router-dom";
 import NewsPageSkeleton from "../../components/common/skeleton/NewsPageSkeleton/NewsPageSkeleton";
+import Lottie from "lottie-react";
+import empty from "../../assets/Images/empty.json";
 
 const NewsPage = () => {
   const { data, isLoading } = useQuery({
@@ -248,50 +250,65 @@ const NewsPage = () => {
               selectedView === "list" ? "flex-col" : "flex-row"
             }`}
           >
-            {currentItems.map((news, index) => (
-              <motion.div
-                key={index}
-                variants={cardItemVariants}
-                className={getCardWidthClass()}
-              >
-                <NewsCard
-                  id={news.id}
-                  image={news.currentImageAddressTumb}
-                  title={news.title}
-                  description={news.miniDescribe}
-                  views={news.currentView}
-                  rating={3.2}
-                  category={news.newsCatregoryName}
-                  date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  }).format(new Date(news.insertDate))}
-                  viewType={selectedView}
+            {currentItems.length > 0 ? (
+              currentItems.map((news, index) => (
+                <motion.div
+                  key={index}
+                  variants={cardItemVariants}
+                  className={getCardWidthClass()}
+                >
+                  <NewsCard
+                    id={news.id}
+                    image={news.currentImageAddressTumb}
+                    title={news.title}
+                    description={news.miniDescribe}
+                    views={news.currentView}
+                    rating={3.2}
+                    category={news.newsCatregoryName}
+                    date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    }).format(new Date(news.insertDate))}
+                    viewType={selectedView}
+                  />
+                </motion.div>
+              ))
+            ) : (
+              <div className="w-full">
+                <Lottie
+                  className="w-[200px] h-[170px] my-10 mx-auto"
+                  animationData={empty}
+                  loop={true}
                 />
-              </motion.div>
-            ))}
+                <p className="font-bold text-[black] text-[20px] text-center dark:text-[#848484]">
+                  {" "}
+                  {t("newsPage.emptyres")}{" "}
+                </p>
+              </div>
+            )}
           </motion.div>
-
-          <div className="flex justify-center my-10">
-            <ReactPaginate
-              breakLabel="..."
-              nextLabel=" >"
-              previousLabel="< "
-              onPageChange={handlePageChange}
-              pageCount={pageCount}
-              marginPagesDisplayed={1}
-              pageRangeDisplayed={3}
-              forcePage={currentPage}
-              containerClassName="flex flex-wrap justify-center gap-1 sm:gap-2"
-              pageClassName="px-3 py-2 sm:px-5 sm:py-3 rounded-[15px] font-semibold shadow-md cursor-pointer text-sm sm:text-xl bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
-              activeClassName="!bg-[#008C78] text-white rounded-2xl shadow-md"
-              previousClassName="px-2 py-1 sm:px-3 sm:py-1 rounded-2xl shadow-md cursor-pointer text-sm bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
-              nextClassName="px-2 py-1 sm:px-3 sm:py-1 rounded-2xl shadow-md cursor-pointer text-sm bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
-              previousLinkClassName="font-bold text-lg sm:text-2xl px-1 sm:px-2 py-1 flex items-center justify-center h-full w-full"
-              nextLinkClassName="font-bold text-lg sm:text-2xl px-1 sm:px-2 py-1 flex items-center justify-center h-full w-full"
-            />
-          </div>
+          {filteredNews.length > 0 && (
+            <div className="flex justify-center my-10">
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel=" >"
+                previousLabel="< "
+                onPageChange={handlePageChange}
+                pageCount={pageCount}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={3}
+                forcePage={currentPage}
+                containerClassName="flex flex-wrap justify-center gap-1 sm:gap-2"
+                pageClassName="px-3 py-2 sm:px-5 sm:py-3 rounded-[15px] font-semibold shadow-md cursor-pointer text-sm sm:text-xl bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
+                activeClassName="!bg-[#008C78] text-white rounded-2xl shadow-md"
+                previousClassName="px-2 py-1 sm:px-3 sm:py-1 rounded-2xl shadow-md cursor-pointer text-sm bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
+                nextClassName="px-2 py-1 sm:px-3 sm:py-1 rounded-2xl shadow-md cursor-pointer text-sm bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
+                previousLinkClassName="font-bold text-lg sm:text-2xl px-1 sm:px-2 py-1 flex items-center justify-center h-full w-full"
+                nextLinkClassName="font-bold text-lg sm:text-2xl px-1 sm:px-2 py-1 flex items-center justify-center h-full w-full"
+              />
+            </div>
+          )}
         </div>
       </motion.div>
     </div>

@@ -255,7 +255,10 @@
     "headerTitle": "اخبار و مقالات",
     "results": " نتیجه",
     "searchPlaceholder": "جستجو کنید...",
-    "sortBy": "مرتب سازی بر اساس :"
+    "sortBy": "مرتب سازی بر اساس :",
+    "emptyres" : "  خبر مورد نظر یافت نشد ",
+    "addfavotitesuc" : "خبر مورد نظر اضافه شد",
+    "addfavotiteerr" : "شما قبلا این خبر را اضافه کرده‌اید"
   },
   "categoryFilter": {
     "title": "دسته‌بندی‌ها",

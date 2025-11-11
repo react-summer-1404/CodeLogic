@@ -254,7 +254,10 @@
     "headerTitle": "News & Articles",
     "results": " results",
     "searchPlaceholder": "Search...",
-    "sortBy": "Sort by:"
+    "sortBy": "Sort by:",
+    "emptyres" : "No news found",
+    "addfavotitesuc" : "The requested news was added ",
+    "addfavotiteerr" : "You have already added this news"
   },
   "categoryFilter": {
     "title": "Categories",
