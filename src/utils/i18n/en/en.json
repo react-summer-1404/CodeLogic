@@ -307,11 +307,11 @@
       "details": "Course Details",
       "comments": "User Comments"
     },
-       "cmval" : {
-        "title":"Enter the answer title",
-        "des":"Enter the answer description",
-        "commenttitle": "Enter your comment",
-        "commentdes":"Enter your description"
+    "cmval": {
+      "title": "Enter the answer title",
+      "des": "Enter the answer description",
+      "commenttitle": "Enter your comment",
+      "commentdes": "Enter your description"
     },
     "details": {
       "section1": {
@@ -462,7 +462,8 @@
     "RepeatPass": "Repeat password",
     "RegisterNewPass": "Register a new password",
     "title2": "The final step to get back on the learning path!",
-    "caption2": "By setting a new password, you will regain access to your account and can continue learning without stopping."
+    "caption2": "By setting a new password, you will regain access to your account and can continue learning without stopping.",
+    "resetValue": "Please enter the code sent to your email."
   },
   "forgotVal1": {
     "required": "Entering an email is required.",
@@ -535,7 +536,9 @@
     "changePass": "Change password",
     "twpStepEnabled": "I would like to use two-step login.",
     "saveSettings": "Save security settings",
-    "minNumbers": "password must contain at least 1 number"
+    "minNumbers": "password must contain at least 1 number",
+    "required": "This field cannot be empty.",
+    "telegramId": "Enter your Telegram ID."
   },
   "panelside": {
     "academy_name": "Bahr Academy",

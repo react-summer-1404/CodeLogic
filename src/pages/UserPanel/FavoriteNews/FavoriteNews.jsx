@@ -16,6 +16,7 @@ import { deleteFavNews } from "../../../core/services/api/Delete/DeleteFavoriteN
 import openEye from "../../../assets/Icons/A/openEye.png";
 import starIcon from "../../../assets/Icons/A/star.png";
 import htmlImg from "../../../assets/Images/HTML5Course.png";
+import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";
 const FavoriteNews = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "fa";
@@ -56,7 +57,7 @@ const FavoriteNews = () => {
   const favNews = favNewsData?.myFavoriteNews || [];
   const filteredNews = favNews
     .filter((n) =>
-      n.title.trim().toLowerCase().includes(query.trim().toLowerCase())
+      n.news.title.trim().toLowerCase().includes(query.trim().toLowerCase())
     )
     .sort((a, b) => {
       if (filterOption === "بیشترین لایک") {
@@ -195,24 +196,23 @@ const FavoriteNews = () => {
       >
         <div className="flex flex-col h-[70%]">
           <NewsHeader />
-          {isPending && (
-            <div className="mx-auto">
-              <img src={loadingIcon} alt="" />
-            </div>
-          )}
+          {isPending &&
+            [...Array(newsPerPage)].map((items, index) => (
+              <FavoritesSkeleton key={index + 1} />
+            ))}
           {!isPending && (
             <div className="overflow-y-auto h-full">
               {currentNews.length > 0 ? (
-                currentNews.map((items) => (
+                currentNews.map((items, index) => (
                   <FavoriteNew
                     getOverViewData={getOverViewData}
                     deleteItem={deleteItem}
-                    key={items.id}
+                    key={index}
                     items={items}
                   />
                 ))
               ) : (
-                <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
+                <h1 className="text-red-600 text-2xl font-bold text-center mt-20 ">
                   {t("favoriteNews.notFound")}
                 </h1>
               )}
@@ -289,7 +289,7 @@ const FavoriteNews = () => {
             setOpenModal(false);
             setSelectedId(null);
           }}
-          className=" fixed inset-0 bg-black/50 backdrop-blur flex justify-center "
+          className=" fixed inset-0 bg-black/50 backdrop-blur flex justify-center items-center "
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.5, y: -100 }}
@@ -374,7 +374,9 @@ const FavoriteNews = () => {
               className="rounded-4xl shadow-md w-[55%] mx-auto"
               src={
                 overViewData.currentImageAddress ===
-                "http://sepehracademy.liara.run/files/undefined"
+                  "http://sepehracademy.liara.run/files/undefined" ||
+                overViewData.currentImageAddress ===
+                  "http://localhost:300/files/Image-1761849433020.png"
                   ? `${htmlImg}`
                   : `${overViewData.currentImageAddress}`
               }

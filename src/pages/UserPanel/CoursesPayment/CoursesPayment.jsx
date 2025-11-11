@@ -157,7 +157,7 @@ const CoursesPayment = () => {
                 <CoursePayment key={items.id} items={items} />
               ))
             ) : (
-              <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
+              <h1 className="text-red-600 text-2xl font-bold text-center mt-20 ">
                 {t("coursesPayment.notFound")}
               </h1>
             )}

@@ -38,7 +38,9 @@ const FavoriteNew = ({ items, deleteItem, getOverViewData }) => {
             className="w-[28px] h-[28px] rounded-full object-cover"
             src={
               items.news.currentImageAddress ===
-              "http://sepehracademy.liara.run/files/undefined"
+                "http://sepehracademy.liara.run/files/undefined" ||
+              items.news.currentImageAddress ===
+                "http://localhost:300/files/Image-1761849433020.png"
                 ? `${htmlImg}`
                 : `${items.news.currentImageAddress}`
             }
@@ -75,7 +77,9 @@ const FavoriteNew = ({ items, deleteItem, getOverViewData }) => {
           className="rounded-4xl shadow-md w-[55%] mx-auto"
           src={
             items.news.currentImageAddress ===
-            "http://sepehracademy.liara.run/files/undefined"
+              "http://sepehracademy.liara.run/files/undefined" ||
+            items.news.currentImageAddress ===
+              "http://localhost:300/files/Image-1761849433020.png"
               ? `${htmlImg}`
               : `${items.news.currentImageAddress}`
           }

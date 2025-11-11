@@ -102,11 +102,11 @@ const LoginPage = () => {
               >
                 {({ errors, touched }) => (
                   <Form>
-                    <div className=" flex flex-col gap-2 ">
-                      <div className="">
+                    <div className=" flex flex-col gap-5 ">
+                      <div className="relative">
                         <Field
-                          className={`outline-none  bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
-                            errors.name && touched.name
+                          className={`outline-none  bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545]  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
+                            errors.phoneOrGmail && touched.phoneOrGmail
                               ? "border-[#EF5350] border-1 "
                               : ""
                           }`}
@@ -116,15 +116,16 @@ const LoginPage = () => {
                           id="phoneOrGmail"
                           placeholder={t("login.EmailOrPhoneNumber")}
                         />
+                        <ErrorMessage
+                          name={"phoneOrGmail"}
+                          component={"span"}
+                          className="text-[#EF5350] text-[14px] absolute top-15 right-0 "
+                        />
                       </div>
-                      <ErrorMessage
-                        name={"phoneOrGmail"}
-                        component={"span"}
-                        className="text-[#EF5350] text-[14px] "
-                      />
+
                       <div className=" relative mt-6">
                         <Field
-                          className={` bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${
+                          className={` bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${
                             errors.password && touched.password
                               ? "border-[#EF5350] border-1 "
                               : ""
@@ -141,13 +142,14 @@ const LoginPage = () => {
                           alt=""
                           className=" cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  "
                         />
+                        <ErrorMessage
+                          name={"password"}
+                          component={"span"}
+                          className="text-[#EF5350] text-[14px] absolute right-0 top-15 "
+                        />
                       </div>
-                      <ErrorMessage
-                        name={"password"}
-                        component={"span"}
-                        className="text-[#EF5350] text-[14px] "
-                      />
-                      <div className="w-full flex justify-between mt-5 ">
+
+                      <div className="w-full flex justify-between mt-6 ">
                         <div className="flex gap-2">
                           <Field
                             className=""
