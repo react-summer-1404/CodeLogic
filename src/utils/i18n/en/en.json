@@ -109,18 +109,22 @@
   },
   "registerStepOne": {
     "validation": {
-      "required": "Please enter your phone number *",
-      "invalid": "Invalid phone number *"
+      "required": "Please enter your gmail *",
+      "invalid": "Invalid gmail *"
     },
     "start_learning": "Start your learning journey here!",
     "description": "By creating your account, you'll access courses, educational content, and advanced tools. This is the first step for growth!",
     "home": "Home",
     "create_account": "Create Account",
     "enter_phone": "Enter your phone number to create an account",
-    "phone_placeholder": "Enter your phone number",
+    "gmail_placeholder": "Enter your gmail",
     "send_code": "Send OTP",
     "have_account": "Already have an account?",
-    "login": "Login"
+    "login": "Login",
+    "loading" : "Processing",
+    "verifysuc" : "Your code has been confirmed",
+    "resendcode" : "Resend Code",
+    "sending" : "Sending..."
   },
   "registerStepTwo": {
     "validation": {

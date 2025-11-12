@@ -4,13 +4,9 @@ import i18n from "../../i18n/i18n.js";
 
 export const RegisterValidation = () => {
   return Yup.object().shape({
-    phoneNumber: Yup.string()
-      .required(() => i18n.t("registerStepOne.validation.required"))
-      .test(
-        "phoneNumber",
-        () => i18n.t("registerStepOne.validation.invalid"),
-        (value) => checkNumber(value)
-      ),
+    email: Yup.string()
+      .email(i18n.t("registerStepOne.validation.invalid"))
+      .required(i18n.t("registerStepOne.validation.required")),
   });
 };
 
