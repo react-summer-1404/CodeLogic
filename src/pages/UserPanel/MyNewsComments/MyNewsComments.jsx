@@ -1,22 +1,37 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { useQuery } from '@tanstack/react-query'
 import UserPanelSearch from '../../../components/common/userPanel/UserPanelSearch/UserPanelSearch'
 import UserPanelFilter from '../../../components/common/userPanel/UserPanelFilter/UserPanelFilter'
 import UserPanelTitle from '../../../components/common/userPanel/UserPanelTitle/UserPanelTitle'
 import UserPanelShowNumber from '../../../components/common/userPanel/UserPanelShowNumber/UserPanelShowNumber'
-import ReactPaginate from 'react-paginate'
-import { useTranslation } from 'react-i18next'
 import MyNewsComment from '../../../components/common/userPanel/MyNewsComment/MyNewsComment'
+import myNewsComments from '../../../core/services/api/get/myNewsComments'
+import ReactPaginate from 'react-paginate'
+import { t } from 'i18next'
 
 
 
 const MyNewsComments = () => {
 
-  const {t} = useTranslation();
+
+  const [searchQuery , setSearchQuery] = useState('');
+  const handleSearch = (searchTerm) => {
+    setSearchQuery(searchTerm);
+  };
+
+
+  const { data: myNewsCommentsData, isLoading } = useQuery({
+    queryKey: ['MYNEWSCOMMENTS', searchQuery],
+    queryFn: () => myNewsComments({
+      Query: searchQuery
+    })  
+  })
+
 
   return (
     <div className='flex flex-col gap-10 h-[85%] p-8 bg-[#F3F4F6] rounded-4xl   dark:bg-[#333333]'>
       <div className='flex justify-between items-center'>
-        <UserPanelSearch width={'w-[439px]'}/>  
+        <UserPanelSearch width={'w-[439px]'} handleSearch={handleSearch}/>  
         <UserPanelFilter/>
       </div>
       <div className='flex flex-col justify-between h-[440px] p-6 bg-[#FFFFFF] rounded-2xl   dark:bg-[#454545]'>
@@ -30,7 +45,13 @@ const MyNewsComments = () => {
             title5: t('myNewsComments.title5'), justify5: 'justify-center', w5: 'w-30',
             title6: t('myNewsComments.title6'), justify6: 'justify-center', w6: 'w-24',
           }}/>
-          <MyNewsComment/>
+          <div>
+            {
+              myNewsCommentsData?.myNewsCommetDtos?.map((item , index) => {
+                return <MyNewsComment item={item} key={index}/>
+              })
+            }
+          </div>
         </div>
         <div className='flex justify-between items-center'>
           <ReactPaginate
