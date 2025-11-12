@@ -19,6 +19,7 @@ import home from "../../../assets/Icons/A/home.png";
 import use from "../../../assets/Icons/A/user.png";
 import lock from "../../../assets/Icons/A/lock.png";
 import { setItem } from "../../../utils/helper/storage.services";
+import { useTheme } from "../../../utils/hooks/useTheme/useTheme";
 const LoginPage = () => {
   const { mutate: postLogin, isPending } = useMutation({
     mutationKey: ["LOGIN"],
@@ -38,10 +39,8 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "fa";
-  const [isDark, setIsDark] = useState(false);
-  const handleDark = () => {
-    setIsDark((prev) => !prev);
-  };
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
 
   const [showPassword, setShowPassword] = useState(false);
   const handlePassword = () => {
@@ -218,7 +217,7 @@ const LoginPage = () => {
           className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-[#454545] rounded-[60px] relative"
         >
           <div
-            onClick={handleDark}
+            onClick={toggleTheme}
             className={` cursor-pointer py-3 px-2  w-12 h-6   rounded-full  absolute top-14 left-7 flex  ${
               isDark
                 ? "bg-yellow-300/40 justify-end "

@@ -147,7 +147,7 @@ const TeachersPage = () => {
                     value={TempSearch}
                   />
                 </div>
-                <div className="flex h-full items-center dark:bg-black dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
+                <div className="flex h-full items-center dark:bg-[#1E1E1E] dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
                   <span className="text-[16px] ps-1">
                     {t("teachersPage.filters.ShowMore")}
                   </span>
@@ -156,7 +156,7 @@ const TeachersPage = () => {
                     onChange={(e) => {
                       setTempCount(Number(e.target.value));
                     }}
-                    className=" rounded-xl text-sm cursor-pointer px-2 py-1  dark:bg-black dark:text-[#ffff]"
+                    className=" rounded-xl text-sm cursor-pointer px-2 py-1  dark:bg-[#1E1E1E] dark:text-[#ffff]"
                   >
                     <option value={16}>16</option>
                     <option value={20}>20</option>

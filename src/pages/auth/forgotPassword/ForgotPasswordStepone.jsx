@@ -18,6 +18,7 @@ import email from "../../../assets/Icons/A/email.png";
 import forgot1 from "../../../assets/Images/A/forgot1.png";
 import { useDispatch } from "react-redux";
 import { addGmail, gmailSlice } from "../../../utils/redux/slice/gmailSlice";
+import { useTheme } from "../../../utils/hooks/useTheme/useTheme";
 
 const ForgotPasswordStepOne = () => {
   const dispatch = useDispatch();
@@ -29,13 +30,8 @@ const ForgotPasswordStepOne = () => {
     setValidationSchema(ForgotVal1());
   }, [i18n.language]);
 
-  const [isDark, setIsDark] = useState(false);
-  const handleDark = () => {
-    setIsDark((prev) => !prev);
-  };
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-  }, [isDark]);
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
   const fadeInUp = (delay) => ({
     hidden: { opacity: 0, y: -20 },
     visible: {
@@ -172,7 +168,7 @@ const ForgotPasswordStepOne = () => {
             className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-[#454545]  rounded-[60px] relative"
           >
             <div
-              onClick={handleDark}
+              onClick={toggleTheme}
               className={` cursor-pointer py-3 px-2 w-12 h-6 rounded-full absolute top-14 left-7 flex ${
                 isDark
                   ? "bg-yellow-300/40 justify-end "

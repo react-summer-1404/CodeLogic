@@ -19,6 +19,7 @@ import eyeClose from "../../../assets/Icons/A/eyeClose.png";
 import eyeOpen from "../../../assets/Icons/A/eyeOpen.png";
 import forgot2 from "../../../assets/Images/A/forgot2.png";
 import { useSelector } from "react-redux";
+import { useTheme } from "../../../utils/hooks/useTheme/useTheme";
 
 const ForgotPasswordStepTwo = () => {
   ///redux ///
@@ -28,10 +29,8 @@ const ForgotPasswordStepTwo = () => {
   ////
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "fa";
-  const [isDark, setIsDark] = useState(false);
-  const handleDark = () => {
-    setIsDark((prev) => !prev);
-  };
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
   const [validationSchema, setValidationSchema] = useState(ForgotVal2());
   useEffect(() => {
     setValidationSchema(ForgotVal2());
@@ -45,9 +44,7 @@ const ForgotPasswordStepTwo = () => {
   const handleSecondPassword = () => {
     setShowSecondPassword((prev) => !prev);
   };
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-  }, [isDark]);
+
   const navigate = useNavigate();
   const { mutate: PostNewPass, isPending } = useMutation({
     mutationKey: ["POSTNEWPASS"],
@@ -208,7 +205,7 @@ const ForgotPasswordStepTwo = () => {
           className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-[#454545] rounded-[60px] relative"
         >
           <div
-            onClick={handleDark}
+            onClick={toggleTheme}
             className={` cursor-pointer py-3 px-2  w-12 h-6   rounded-full  absolute top-14 left-7 flex  ${
               isDark
                 ? "bg-yellow-300/40 justify-end "
