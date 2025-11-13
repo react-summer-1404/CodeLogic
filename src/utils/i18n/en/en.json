@@ -347,7 +347,9 @@
       "titleLabel": "Comment Title",
       "titlePlaceholder": "Write the title of your comment",
       "textLabel": "Comment Text",
-      "textPlaceholder": "Write your comment text"
+      "textPlaceholder": "Write your comment text",
+      "toastsuc" : "Your feedback has been recorded",
+      "toasterr" : "Error in operation"
     }
   },
   "personalComment": {
@@ -362,14 +364,18 @@
     "actions": {
       "replyButton": "Reply",
       "answer": "answer",
-      "closeReply": "Close Replies"
+      "closeReply": "Close Replies",
+      "noComments" : "There are no comments"
+
     },
     "replyForm": {
       "titlePlaceholder": "Write your reply title",
-      "textPlaceholder": "Write your reply text"
+      "textPlaceholder": "Write your reply text",
+      "reply" : "Send Message"
     }
   },
   "answerComment": {
+    "loading" : "Processing...",
     "comment1": {
       "name": "Edward Johnson",
       "date": "June 3, 2025",

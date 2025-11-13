@@ -213,7 +213,7 @@ const NewsDetails = () => {
             variants={itemVariants}
           >
             <TitleImage newsDetail={newsDetail} />
-            <NewsComment />
+            <NewsComment newsId={id} />
           </motion.div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutl
 
 const AnswerComment = ({ image, date, text, title, name, like, dislike }) => {
   return (
-    <div className="w-full max-w-3xl mx-auto bg-white shadow-2xl rounded-4xl p-5 mt-8 dark:bg-[#333]">
+    <div className="w-[500px] max-w-3xl mx-auto bg-white shadow-2xl rounded-4xl p-5 mt-8 dark:bg-[#333]  ">
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
           <img src={image} className="w-12 h-12 rounded-full object-cover" />
