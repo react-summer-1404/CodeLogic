@@ -10,7 +10,7 @@ function App() {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <ToastContainer />
+        <ToastContainer position="top-center" toastClassName="font-toast" />
         <RouterProvider router={router} />
       </QueryClientProvider>
     </Provider>

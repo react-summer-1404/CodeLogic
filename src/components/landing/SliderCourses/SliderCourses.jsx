@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import GetAllCourses from '../../../core/services/api/Get/GetAllCourses';
 import CourseCardView1 from '../../common/course/CourseCardView1/CourseCardView1';
-import ButtonsSeeMore from '../../common/ButtonsSeeMore/ButtonsSeeMore';
+import ButtonsSeeMore from '../../common/landing/ButtonsSeeMore/ButtonsSeeMore';
 import { Link } from 'react-router-dom';
 
 const SliderCourses = () => {

@@ -2,13 +2,29 @@ import React from 'react'
 import Eye from '../../../../assets/Icons/Eye'
 import Receipt from '../../../../assets/Icons/Receipt'
 import ReactCourseImg from '../../../../assets/Images/A/courses/2.png'
+import { motion } from 'framer-motion'
 
 
 const textClass = 'font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]'
 
 const MyCourse = ({item}) => {
+
+  const Animate = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { ease: "easeOut", duration: 0.35 },
+    },
+  };
+
+
   return (
-    <div className='flex items-center py-[14px] border-t border-b border-[#EAEAEA]'>
+    <motion.div 
+    variants={Animate}
+    initial="hidden"
+    animate="visible"
+    className='flex items-center py-[14px] border-t border-b border-[#EAEAEA]'>
       <div className='flex items-center gap-4 w-64'>
         <img src={ReactCourseImg}/>
         <div>
@@ -31,7 +47,7 @@ const MyCourse = ({item}) => {
         <Eye/>
         <Receipt/>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

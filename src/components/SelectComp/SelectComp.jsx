@@ -1,17 +1,21 @@
 import React from "react";
 import Select from "react-select";
 
-const SelectComp = ({ placeholder = "انتخاب کنید...", isRtl = true }) => {
+const SelectComp = ({
+  placeholder = "انتخاب کنید...",
+  isRtl = true,
+  onChange,
+}) => {
   const options = [
     { value: "news", label: isRtl ? "اخبار" : "News" },
-    { value: "articles", label: isRtl ? "مقالات" : "Articles" },
     { value: "courses", label: isRtl ? "دوره‌ها" : "Courses" },
   ];
 
   return (
     <div className={isRtl ? "text-right" : "text-left"}>
       <Select
-        defaultValue={options[2]}
+        onChange={(selected) => onChange(selected ? selected.value : "")}
+        defaultValue={options[0]}
         options={options}
         isClearable
         placeholder={placeholder}
@@ -90,7 +94,6 @@ const SelectComp = ({ placeholder = "انتخاب کنید...", isRtl = true }) 
           }),
           menu: (base) => ({
             ...base,
-
             direction: isRtl ? "rtl" : "ltr",
             textAlign: isRtl ? "right" : "left",
           }),

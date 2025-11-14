@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import CategoryFilter from "../../components/CategoryFilter/CategoryFilter";
 import NewsCard from "../../components/news/NewsCard/NewsCard";
@@ -12,12 +12,44 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import getAllNews from "../../core/services/api/Get/News";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import NewsPageSkeleton from "../../components/common/skeleton/NewsPageSkeleton/NewsPageSkeleton";
+import Lottie from "lottie-react";
+import empty from "../../assets/Images/empty.json";
+import img2 from "../../assets/Images/HTML5Course.png";
+
+
+
 
 const NewsPage = () => {
   const { data, isLoading } = useQuery({
     queryFn: getAllNews,
   });
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const search = params.get("search");
+    setSearchQuery(search);
+  }, [location.search]);
+
+  const [isDarkMode, setIsDarkMode] = useState(
+    document.documentElement.classList.contains("dark")
+  );
+
+  useEffect(() => {
+    const HandleDark = new MutationObserver(() => {
+      setIsDarkMode(document.documentElement.classList.contains("dark"));
+    });
+
+    HandleDark.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => HandleDark.disconnect();
+  }, []);
 
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "fa";
@@ -27,33 +59,27 @@ const NewsPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState("newest");
   const [selectedCategory, setSelectedCategory] = useState(null);
-
   const [cardsPerPage, setCardsPerPage] = useState(12);
-
   const itemsPerPage = cardsPerPage;
 
   const filteredNews = useMemo(() => {
     if (!data?.news) return [];
-
     let result = [...data.news];
 
-    if (selectedCategory) {
+    if (selectedCategory)
       result = result.filter(
         (news) => news.newsCatregoryName === selectedCategory
       );
-    }
 
-    if (searchQuery.trim()) {
+    if (searchQuery?.trim())
       result = result.filter((news) =>
         news.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
-    }
 
-    if (sortOption === "newest") {
+    if (sortOption === "newest")
       result.sort((a, b) => new Date(b.insertDate) - new Date(a.insertDate));
-    } else if (sortOption === "oldest") {
+    else if (sortOption === "oldest")
       result.sort((a, b) => new Date(a.insertDate) - new Date(b.insertDate));
-    }
 
     return result;
   }, [data, searchQuery, sortOption, selectedCategory]);
@@ -93,13 +119,14 @@ const NewsPage = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-  const getCardWidthClass = () => {
-    if (selectedView === "list") return "w-full";
+  const getCardWidthClass = () =>
+    selectedView === "list" ? "w-full" : "w-full sm:w-[calc(33.333%-10.66px)]";
 
-    return "w-full sm:w-[calc(33.333%-10.66px)]";
-  };
-
-  if (isLoading) return <div>loading</div>;
+  if (isLoading) {
+    return (
+      <NewsPageSkeleton selectedView={selectedView} isDarkMode={isDarkMode} />
+    );
+  }
 
   return (
     <div className="bg-[#F3F4F6] dark:bg-[#1e1e1e] min-h-screen">
@@ -110,8 +137,10 @@ const NewsPage = () => {
         className="pt-10 flex flex-col justify-center items-center px-4"
       >
         <span className="font-bold mb-5 text-[#008C78] dark:text-[#ccc]">
-          {t("newsPage.breadcrumb")}
+          <Link to="/">{t("newsPage.breadcrumb1")}</Link>
+          {t("newsPage.breadcrumb2")}
         </span>
+
         <p className="font-bold text-xl sm:text-2xl md:text-3xl text-[#1E1E1E] dark:text-[#fff] text-center">
           {t("newsPage.headerTitle")}
           <span className="text-sm !ml-2 text-[#848484] dark:text-[#ccc] mr-2">
@@ -174,14 +203,12 @@ const NewsPage = () => {
               <span className="dark:text-[#fff] text-sm">
                 {t("newsPage.sortBy")}
               </span>
-
               <NewsSelectOne
                 onChange={(val) => {
                   setSortOption(val);
                   setCurrentPage(0);
                 }}
               />
-
               <NewsSelectTwo
                 value={String(cardsPerPage)}
                 onChange={(val) => {
@@ -196,11 +223,8 @@ const NewsPage = () => {
 
             <div className="!gap-3 flex justify-center items-center">
               <div
-                onClick={() => {
-                  setSelectedView("list");
-                  setCurrentPage(0);
-                }}
-                className={`mr-3 sm:mr-5 flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border transition-all duration-300 cursor-pointer ${
+                onClick={() => setSelectedView("list")}
+                className={`mr-3 sm:mr-5 flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border cursor-pointer ${
                   selectedView === "list"
                     ? "bg-[#008C78] text-white border-[#008C78]"
                     : "text-[#A6A6A6] border border-[#A6A6A6] dark:border-[#555]"
@@ -208,13 +232,9 @@ const NewsPage = () => {
               >
                 <FormatListBulletedIcon className="!text-xl sm:!text-2xl" />
               </div>
-
               <div
-                onClick={() => {
-                  setSelectedView("grid");
-                  setCurrentPage(0);
-                }}
-                className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border transition-all duration-300 cursor-pointer ${
+                onClick={() => setSelectedView("grid")}
+                className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border cursor-pointer ${
                   selectedView === "grid"
                     ? "bg-[#008C78] text-white border-[#008C78]"
                     : "text-[#A6A6A6] border border-[#A6A6A6] dark:border-[#555]"
@@ -234,19 +254,25 @@ const NewsPage = () => {
               selectedView === "list" ? "flex-col" : "flex-row"
             }`}
           >
-            {currentItems.map((news, index) => (
-              <motion.div
-                key={index}
-                variants={cardItemVariants}
-                className={getCardWidthClass()}
-              >
-                <Link to={`/news/${news.id}`}>
+            {currentItems.length > 0 ? (
+              currentItems.map((news, index) => (
+                <motion.div
+                  key={index}
+                  variants={cardItemVariants}
+                  className={getCardWidthClass()}
+                >
                   <NewsCard
-                    image={news.currentImageAddressTumb}
+                    id={news.id}
+                    image={
+                      news.currentImageAddress &&
+                      !news.currentImageAddress.includes("undefined")
+                        ? news.currentImageAddress
+                        : img2
+                    }
                     title={news.title}
                     description={news.miniDescribe}
                     views={news.currentView}
-                    rating={3.2}
+                    rating={news.newsRate.avg.toFixed(1)}
                     category={news.newsCatregoryName}
                     date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
                       day: "numeric",
@@ -255,30 +281,43 @@ const NewsPage = () => {
                     }).format(new Date(news.insertDate))}
                     viewType={selectedView}
                   />
-                </Link>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))
+            ) : (
+              <div className="w-full">
+                <Lottie
+                  className="w-[200px] h-[170px] my-10 mx-auto"
+                  animationData={empty}
+                  loop={true}
+                />
+                <p className="font-bold text-[black] text-[20px] text-center dark:text-[#848484]">
+                  {" "}
+                  {t("newsPage.emptyres")}{" "}
+                </p>
+              </div>
+            )}
           </motion.div>
-
-          <div className="flex justify-center my-10">
-            <ReactPaginate
-              breakLabel="..."
-              nextLabel=" >"
-              previousLabel="< "
-              onPageChange={handlePageChange}
-              pageCount={pageCount}
-              marginPagesDisplayed={1}
-              pageRangeDisplayed={3}
-              forcePage={currentPage}
-              containerClassName="flex flex-wrap justify-center gap-1 sm:gap-2"
-              pageClassName="px-3 py-2 sm:px-5 sm:py-3 rounded-[15px] font-semibold shadow-md cursor-pointer text-sm sm:text-xl bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
-              activeClassName="!bg-[#008C78] text-white rounded-2xl shadow-md"
-              previousClassName="px-2 py-1 sm:px-3 sm:py-1 rounded-2xl shadow-md cursor-pointer text-sm bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
-              nextClassName="px-2 py-1 sm:px-3 sm:py-1 rounded-2xl shadow-md cursor-pointer text-sm bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
-              previousLinkClassName="font-bold text-lg sm:text-2xl px-1 sm:px-2 py-1 flex items-center justify-center h-full w-full"
-              nextLinkClassName="font-bold text-lg sm:text-2xl px-1 sm:px-2 py-1 flex items-center justify-center h-full w-full"
-            />
-          </div>
+          {filteredNews.length > 0 && (
+            <div className="flex justify-center my-10">
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel=" >"
+                previousLabel="< "
+                onPageChange={handlePageChange}
+                pageCount={pageCount}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={3}
+                forcePage={currentPage}
+                containerClassName="flex flex-wrap justify-center gap-1 sm:gap-2"
+                pageClassName="px-3 py-2 sm:px-5 sm:py-3 rounded-[15px] font-semibold shadow-md cursor-pointer text-sm sm:text-xl bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
+                activeClassName="!bg-[#008C78] text-white rounded-2xl shadow-md"
+                previousClassName="px-2 py-1 sm:px-3 sm:py-1 rounded-2xl shadow-md cursor-pointer text-sm bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
+                nextClassName="px-2 py-1 sm:px-3 sm:py-1 rounded-2xl shadow-md cursor-pointer text-sm bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
+                previousLinkClassName="font-bold text-lg sm:text-2xl px-1 sm:px-2 py-1 flex items-center justify-center h-full w-full"
+                nextLinkClassName="font-bold text-lg sm:text-2xl px-1 sm:px-2 py-1 flex items-center justify-center h-full w-full"
+              />
+            </div>
+          )}
         </div>
       </motion.div>
     </div>

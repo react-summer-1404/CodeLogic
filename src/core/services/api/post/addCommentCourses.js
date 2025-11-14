@@ -1,8 +1,6 @@
 import http from '../../../interceptor/interceptor.js';
 
-
-
-export const addCommentCourses = async (id, title , describe) => {
+export const addCommentCourses = async (id, title, describe) => {
     try {
         const formData = new FormData();
         formData.append('CourseId', id);
@@ -10,10 +8,7 @@ export const addCommentCourses = async (id, title , describe) => {
         formData.append('Describe', describe);
         const result = await http.post(
             '/Course/AddCommentCourse',
-            { data: formData },
-            {
-                'content-type': 'form-data',
-            }
+            formData  
         );
         console.log(result);
         return result;

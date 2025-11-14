@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import StarIcon from "@mui/icons-material/Star";
 import LayersIcon from "@mui/icons-material/Layers";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { PostFavoriteNews } from "../../../core/services/api/post/PostFavoriteNews";
+import { useMutation } from "@tanstack/react-query";
+import { motion } from "framer-motion";
+import NewsCardSkeleton from "../../common/skeleton/NewsCardSkeleton/NewsCardSkeleton";
 
 const NewsCard = ({
   image,
@@ -15,14 +21,65 @@ const NewsCard = ({
   category,
   date,
   viewType,
+  id,
+  isLoading = false,
 }) => {
-  const { i18n } = useTranslation();
+  const [liked, setLiked] = useState(false);
+
+  const { t, i18n } = useTranslation();
+
+  const { mutate: postFavoriteTop } = useMutation({
+    mutationKey: ["Postfavorite"],
+    mutationFn: (value) => PostFavoriteNews(value),
+    onError: () => {
+      setLiked(false);
+      toast.error(t("newsPage.addfavotiteerr"));
+    },
+    onSettled: (data) => {
+      if (data?.success) {
+        toast.success(t("newsPage.addfavotitesuc"));
+      } else if (data && !data.success) {
+        toast.error(data.message);
+      }
+    },
+  });
+
+  const [isDarkMode, setIsDarkMode] = useState(
+    document.documentElement.classList.contains("dark")
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.documentElement.classList.contains("dark"));
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const isRtl = i18n.language === "fa";
   const isList = viewType === "list";
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  if (isLoading) {
+    return <NewsCardSkeleton viewType={viewType} />;
+  }
+
   return (
-    <div
-      className={`bg-transparent rounded-2xl overflow-hidden shadow-[0px_0px_1px_1px_#ccc] cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78]
+    <motion.div
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+      transition={{ duration: 0.5 }}
+      className={`bg-transparent rounded-2xl overflow-hidden shadow-[0px_0px_1px_1px_#ccc] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78]
         ${
           isList
             ? "flex w-full h-[150px] md:h-[180px] lg:h-[200px]"
@@ -50,23 +107,37 @@ const NewsCard = ({
           }`}
         />
 
-        <div className="absolute top-3 right-3 bg-white/70 backdrop-blur-sm p-1 rounded-full">
-          <FavoriteBorderIcon sx={{ color: "#555", fontSize: 22 }} />
+        <div
+          onClick={() => {
+            if (!liked) {
+              setLiked(true);
+              postFavoriteTop(id);
+            } else {
+              setLiked(true);
+              postFavoriteTop(id);
+            }
+          }}
+          className={`absolute top-3 right-3 p-2 rounded-full cursor-pointer duration-200
+            ${liked ? "bg-red-500" : "bg-black/45 backdrop-blur-sm"}
+          `}
+        >
+          <FavoriteBorderIcon
+            sx={{ color: liked ? "white" : "white", fontSize: 24 }}
+          />
         </div>
-      </div>
-
+      </div>{" "}
       <div
         className={`bg-white dark:bg-[#333] rounded-2xl shadow-sm px-4 pt-4 pb-3 relative z-10 flex flex-col justify-between
           ${
             isList
               ? "w-3/5 md:w-[65%] lg:w-[70%]  rounded-l-none"
-              : "-mt-4 min-h-[160px] "
+              : "-mt-4 min-h-[160px]"
           }
         `}
       >
         <div className={isRtl ? "text-right" : "text-left"}>
           <h3 className="text-sm sm:text-[15px] font-bold text-gray-800 leading-snug dark:text-white line-clamp-2">
-            {title}
+            <Link to={`/news/${id}`}>{title}</Link>
           </h3>
 
           <p
@@ -111,7 +182,7 @@ const NewsCard = ({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

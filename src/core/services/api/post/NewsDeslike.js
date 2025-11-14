@@ -1,8 +1,8 @@
 import http from "../../../interceptor/interceptor.js";
 
-export const PostFavoriteNews = async (id) => {
+export const Newsdeslike = async (id) => {
   try {
-    const result = await http.post(`/News/AddFavoriteNews?NewsId=${id}`);
+    const result = await http.post(`/News/NewsDissLike/${id}`);
     console.log(result);
     return result;
   } catch (err) {

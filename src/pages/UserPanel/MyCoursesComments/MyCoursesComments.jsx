@@ -44,12 +44,14 @@ const MyCoursesComments = () => {
             title5: t('myCoursesComments.title5'), justify5: 'justify-center', w5: 'w-30',
             title6: t('myCoursesComments.title6'), justify6: 'justify-center', w6: 'w-24',
           }}/>
-          <div>
-            {
-              myCoursesCommentsData?.myCommentsDtos?.map((item , index) => {
-                return <MyCoursesComment item={item} key={index}/>
-              })
-            }  
+          <div className='flex flex-col max-h-66 overflow-y-scroll'>
+            <div>
+              {
+                myCoursesCommentsData?.myCommentsDtos?.map((item , index) => {
+                  return <MyCoursesComment item={item} key={index}/>
+                })
+              }  
+            </div>
           </div>
         </div>
         <div className='flex justify-between items-center'>
