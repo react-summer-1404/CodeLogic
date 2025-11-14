@@ -1,5 +1,5 @@
 import React from 'react'
-import SideDropDown from '../../common/SideDropDown/SideDropDown';
+import SideDropDown from '../../common/course/SideDropDown/SideDropDown';
 import PriceFilter from '../PriceFilter/PriceFilter';
 import { useTranslation } from 'react-i18next';
 import CourseNewsSearch from '../../common/course/CourseNewsSearch/CourseNewsSearch';

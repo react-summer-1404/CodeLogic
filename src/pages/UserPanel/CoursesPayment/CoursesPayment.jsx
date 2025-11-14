@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import CourseHeader from "../../../components/common/course/CoursePayment/CourseHeader/CourseHeader";
-import CoursePayment from "../../../components/common/course/CoursePayment/CoursePayment";
+import CourseHeader from "../../../components/common/userPanel/CoursePayment/CourseHeader/CourseHeader";
+import CoursePayment from "../../../components/common/userPanel/CoursePayment/CoursePayment";
 import { paymentsData } from "../../../components/common/data/CoursePayments/payments";
 import { AnimatePresence, motion, number } from "framer-motion";
 import { useTranslation } from "react-i18next";

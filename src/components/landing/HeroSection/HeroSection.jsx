@@ -1,6 +1,6 @@
 import React from 'react'
 import Working from '../../../assets/Images/working.svg'
-import TextImage from '../../common/TextImage/TextImage'
+import TextImage from '../../common/landing/TextImage/TextImage'
 import { useTranslation } from 'react-i18next'
 
 
