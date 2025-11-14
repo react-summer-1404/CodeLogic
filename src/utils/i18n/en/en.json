@@ -371,7 +371,10 @@
     "replyForm": {
       "titlePlaceholder": "Write your reply title",
       "textPlaceholder": "Write your reply text",
-      "reply" : "Send Message"
+      "reply" : "Send Message",
+      "toastsuc" : "Response submitted successfully",
+      "toasterr" : "Failed to submit response"
+
     }
   },
   "answerComment": {

@@ -7,16 +7,22 @@ import { Dialog } from "@mui/material";
 import AnswerComment from "../AnswerComment/AnswerComment";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import getNewsDetailComment from "../../../../core/services/api/Get/getNewsDetailComment";
 import { NewsCommentVal } from "../../../../utils/Validations/NewsCommentVal/NewsCommentVal";
 import Lottie from "lottie-react";
 import empty from "../../../../assets/Images/empty.json";
 import GetNewsDetailsReplyComment from "../../../../core/services/api/Get/GetNewsDetailsReplyComment";
+import AddNewsDetailsCommentReply from "../../../../core/services/api/post/AddNewsDetailsCommentReply";
 import { PacmanLoader } from "react-spinners";
+import { toast } from "react-toastify";
+
+import { CommentLikeDislike } from "../../../../core/services/api/post/CommentLikeDislike";
 
 const PersonalComment = ({ newsId }) => {
   const { t } = useTranslation();
+
+  const queryClient = useQueryClient();
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -28,6 +34,8 @@ const PersonalComment = ({ newsId }) => {
 
   const [repliesCountByComment, setRepliesCountByComment] = useState({});
 
+  const [userLikeStatus, setUserLikeStatus] = useState({});
+
   const toggleReplyFor = useCallback((commentId) => {
     setShowReplyById((prev) => ({
       ...prev,
@@ -37,6 +45,92 @@ const PersonalComment = ({ newsId }) => {
 
   const replyInitialValues = { title: "", answer: "" };
   const replyValidationSchema = NewsCommentVal();
+
+  const handleOpenReplies = useCallback(async (cid) => {
+    setSelectedCommentId(cid);
+    handleOpen();
+
+    try {
+      const replies = await GetNewsDetailsReplyComment(cid);
+      setRepliesCountByComment((prev) => ({
+        ...prev,
+        [cid]: replies.length,
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
+  const { mutate: addReply, isPending: isAddingReply } = useMutation({
+    mutationFn: (payload) => AddNewsDetailsCommentReply(payload),
+    onSuccess: (variables) => {
+      toast.success(t("personalComment.replyForm.toastsuc"));
+      variables.formikHelpers.resetForm();
+
+      setRepliesCountByComment((prev) => ({
+        ...prev,
+        [variables.comment.id]: (prev[variables.comment.id] ?? 0) + 1,
+      }));
+
+      queryClient.invalidateQueries(["replyComments", variables.comment.id]);
+
+      handleOpenReplies(variables.comment.id);
+
+      setShowReplyById((prev) => ({ ...prev, [variables.comment.id]: false }));
+    },
+    // onError: () => {
+    //   toast.error(t("personalComment.replyForm.toasterr"));
+    // },
+  });
+
+  const handleFormSubmit = (values, comment, formikHelpers) => {
+    const payload = {
+      newsId: newsId,
+      title: values.title,
+      describe: values.answer,
+      parentId: comment.id,
+    };
+
+    addReply(payload, { comment, formikHelpers });
+  };
+
+  const { mutate: toggleLikeDislike } = useMutation({
+    mutationFn: ({ commentId, isLike }) =>
+      CommentLikeDislike(commentId, isLike),
+    onSuccess: (variables) => {
+      queryClient.invalidateQueries(["newsComments", newsId]);
+
+      const action = variables.isLike ? "لایک" : "دیسلایک";
+      toast.success(`کامنت با موفقیت ${action} شد.`);
+
+      setUserLikeStatus((prev) => {
+        const newActionStatus = variables.isLike ? 1 : -1;
+        const currentStatus = prev[variables.commentId];
+
+        const toggledStatus =
+          currentStatus === newActionStatus ? 0 : newActionStatus;
+
+        return {
+          ...prev,
+          [variables.commentId]: toggledStatus,
+        };
+      });
+    },
+    onError: (error, variables) => {
+      const action = variables.isLike ? "لایک" : "دیسلایک";
+
+      toast.error(`شما قبلا این نظر را ${action} کرده اید`);
+      console.error(error);
+    },
+  });
+
+  const handleToggleLikeDislike = useCallback(
+    (commentId, isLike) => {
+      if (!commentId) return;
+      toggleLikeDislike({ commentId, isLike });
+    },
+    [toggleLikeDislike]
+  );
 
   const { data: commentsResponse } = useQuery({
     queryKey: ["newsComments", newsId],
@@ -68,26 +162,7 @@ const PersonalComment = ({ newsId }) => {
     (a, b) => new Date(b.inserDate) - new Date(a.inserDate)
   );
 
-  const handleReplySubmit = async (values, comment) => {
-    setShowReplyById((prev) => ({ ...prev, [comment.id]: false }));
-  };
-
   const toggleShowAllComments = () => setShowAllComments((prev) => !prev);
-
-  const handleOpenReplies = async (cid) => {
-    setSelectedCommentId(cid);
-    handleOpen();
-
-    try {
-      const replies = await GetNewsDetailsReplyComment(cid);
-      setRepliesCountByComment((prev) => ({
-        ...prev,
-        [cid]: replies.length,
-      }));
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const { data: repliesResponse, isLoading } = useQuery({
     queryKey: ["replyComments", selectedCommentId],
@@ -97,6 +172,23 @@ const PersonalComment = ({ newsId }) => {
 
   useEffect(() => {
     if (commentsList.length > 0) {
+      let initialLikeStatus = {};
+
+      commentsList.forEach((comment) => {
+        let status = 0;
+
+        if (comment.currentUserIsLike) {
+          status = 1;
+        } else if (comment.currentUserIsDissLike) {
+          status = -1;
+        }
+        initialLikeStatus[comment.id] = status;
+      });
+
+      if (Object.keys(initialLikeStatus).length > 0) {
+        setUserLikeStatus((prev) => ({ ...prev, ...initialLikeStatus }));
+      }
+
       commentsList.forEach(async (comment) => {
         try {
           const replies = await GetNewsDetailsReplyComment(comment.id);
@@ -112,11 +204,25 @@ const PersonalComment = ({ newsId }) => {
   }, [commentsList]);
 
   return (
-    <div className="w-full max-w-3xl mx-auto bg-white rounded-lg p-5 mt-8 dark:bg-[#333] ">
+    <div className="!w-full  mx-auto bg-white  p-5  dark:bg-[#333] rounded-b-3xl  ">
       {commentsList && commentsList.length > 0 ? (
         (showAllComments ? commentsList : commentsList.slice(0, 3)).map(
           (comment) => {
             const cid = comment.id;
+
+            const persistentStatus = comment.currentUserIsLike
+              ? 1
+              : comment.currentUserIsDissLike
+              ? -1
+              : 0;
+
+            const currentLikeStatus =
+              userLikeStatus[cid] !== undefined
+                ? userLikeStatus[cid]
+                : persistentStatus;
+
+            const isLiked = currentLikeStatus === 1;
+            const isDisliked = currentLikeStatus === -1;
 
             return (
               <div
@@ -157,16 +263,50 @@ const PersonalComment = ({ newsId }) => {
                 </div>
 
                 <div className="flex items-center gap-5 mt-4 text-gray-600 text-sm">
-                  <div className="flex items-center gap-1">
-                    <ThumbDownOffAltOutlinedIcon className="text-[#1E1E1E] dark:text-[#848484]" />
-                    <span className="dark:text-[#848484]">
+                  <div
+                    onClick={() => handleToggleLikeDislike(cid, false)}
+                    className={`flex items-center gap-1 cursor-pointer ${
+                      isDisliked
+                        ? "text-[#008C78] dark:text-[#00BFA5]"
+                        : "text-[#1E1E1E] dark:text-[#848484]"
+                    }`}
+                  >
+                    <ThumbDownOffAltOutlinedIcon
+                      className={
+                        isDisliked
+                          ? "text-current"
+                          : "text-[#1E1E1E] dark:text-[#848484]"
+                      }
+                    />
+                    <span
+                      className={
+                        isDisliked ? "text-current" : "dark:text-[#848484]"
+                      }
+                    >
                       {comment.dissLikeCount}
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-1">
-                    <ThumbUpOutlinedIcon className="text-[#1E1E1E] dark:text-[#848484]" />
-                    <span className="dark:text-[#848484]">
+                  <div
+                    onClick={() => handleToggleLikeDislike(cid, true)}
+                    className={`flex items-center gap-1 cursor-pointer ${
+                      isLiked
+                        ? "text-[#008C78] dark:text-[#00BFA5]"
+                        : "text-[#1E1E1E] dark:text-[#848484]"
+                    }`}
+                  >
+                    <ThumbUpOutlinedIcon
+                      className={
+                        isLiked
+                          ? "text-current"
+                          : "text-[#1E1E1E] dark:text-[#848484]"
+                      }
+                    />
+                    <span
+                      className={
+                        isLiked ? "text-current" : "dark:text-[#848484]"
+                      }
+                    >
                       {comment.likeCount}
                     </span>
                   </div>
@@ -198,8 +338,7 @@ const PersonalComment = ({ newsId }) => {
                       initialValues={replyInitialValues}
                       validationSchema={replyValidationSchema}
                       onSubmit={(values, formikHelpers) => {
-                        handleReplySubmit(values, comment);
-                        formikHelpers.resetForm();
+                        handleFormSubmit(values, comment, formikHelpers);
                       }}
                     >
                       {() => (
@@ -232,8 +371,11 @@ const PersonalComment = ({ newsId }) => {
                             <button
                               type="submit"
                               className="bg-[#008C78] text-white px-4 py-2 cursor-pointer rounded-full"
+                              disabled={isAddingReply}
                             >
-                              {t("personalComment.replyForm.reply")}
+                              {isAddingReply
+                                ? "در حال ارسال..."
+                                : t("personalComment.replyForm.reply")}
                             </button>
                             <button
                               type="button"
@@ -312,6 +454,12 @@ const PersonalComment = ({ newsId }) => {
           repliesResponse.map((reply, index) => (
             <AnswerComment
               key={index}
+              commentId={reply.id}
+              parentId={selectedCommentId}
+              initialLikeCount={reply.likeCount}
+              initialDislikeCount={reply.dissLikeCount}
+              currentUserIsLike={reply.currentUserIsLike}
+              currentUserIsDissLike={reply.currentUserIsDissLike}
               image={img1}
               name={`User ${reply.userId}`}
               date={
@@ -325,8 +473,6 @@ const PersonalComment = ({ newsId }) => {
               }
               title={reply.title}
               text={reply.describe}
-              like={reply.likeCount}
-              dislike={reply.dissLikeCount}
             />
           ))
         ) : (

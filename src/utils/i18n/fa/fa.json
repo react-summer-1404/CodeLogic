@@ -372,7 +372,9 @@
     "replyForm": {
       "titlePlaceholder": "عنوان پاسخ را بنویسید",
       "textPlaceholder": "متن پاسخ را بنویسید",
-      "reply" : "ارسال پیام"
+      "reply" : "ارسال پیام",
+      "toastsuc" : "پاسخ شما با موفقیت ثبت شد",
+      "toasterr" : "خطا در ثبت پاسخ"
     }
   },
   "answerComment": {

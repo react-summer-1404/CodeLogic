@@ -1,5 +1,4 @@
-import React, { useMemo, useRef } from "react";
-import img2 from "../../assets/Images/Groupp.png";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import NewsSideBar from "../../components/news/NewsDetails/NewsSideBar/NewsSideBar";
 import TitleImage from "../../components/news/NewsDetails/TitleImage/TitleImage";
 import NewsComment from "../../components/news/NewsDetails/NewsComment/NewsComment";
@@ -8,11 +7,17 @@ import WestIcon from "@mui/icons-material/West";
 import EastIcon from "@mui/icons-material/East";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import getAllNews from "../../core/services/api/Get/News";
 import getNewsDetails from "../../core/services/api/Get/NewsDetails";
 import { Link, useParams } from "react-router-dom";
 import NewsDetailsSkeleton from "../../components/common/skeleton/NewsDetailsSkeleton/NewsDetailsSkeleton";
+import { toast } from "react-toastify";
+import { NewsRate } from "../../core/services/api/post/NewsRate";
+import StarIcon from "@mui/icons-material/Star";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import img1 from "../../assets/Images/Ellipsee.png";
+import img2 from "../../assets/Images/HTML5Course.png";
 
 const NewsDetails = () => {
   const { data } = useQuery({
@@ -81,6 +86,58 @@ const NewsDetails = () => {
         behavior: "smooth",
       });
     }
+  };
+
+  const StarRating = ({ newsId, initialRating }) => {
+    const [rating, setRating] = useState(initialRating);
+    const [hover, setHover] = useState(null);
+
+    useEffect(() => {
+      setRating(initialRating);
+    }, [initialRating]);
+
+    const rateMutation = useMutation({
+      mutationFn: ({ id, rate }) => NewsRate(id, rate),
+      onSuccess: (data, variables) => {
+        setRating(variables.rate);
+        toast.success("امتیاز شما با موفقیت ثبت شد ");
+      },
+      onError: (error) => {
+        if (error.response && error.response.status === 400) {
+          toast.warn("شما قبلاً امتیاز خود را ثبت کرده اید");
+        } else {
+          toast.error("خطا در ثبت امتیاز");
+        }
+      },
+    });
+
+    const handleRate = (value) => {
+      rateMutation.mutate({ id: newsId, rate: value });
+    };
+
+    return (
+      <div className="flex items-center gap-2">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <span
+            key={star}
+            onClick={() => handleRate(star)}
+            onMouseEnter={() => setHover(star)}
+            onMouseLeave={() => setHover(null)}
+            className="cursor-pointer transition-transform transform hover:scale-110"
+          >
+            {star <= hover ? (
+              <StarIcon className="text-yellow-400 text-[28px]" />
+            ) : (
+              <StarBorderIcon className="text-yellow-400 text-[28px]" />
+            )}
+          </span>
+        ))}
+        <span className="font-[16px] text-[#848484] mr-40 ">
+          {rating.toFixed(1)}
+          <span className="mr-1">امتیاز</span>
+        </span>
+      </div>
+    );
   };
 
   const containerVariants = {
@@ -155,8 +212,12 @@ const NewsDetails = () => {
               variants={itemVariants}
             >
               <img
-                className="rounded-full"
-                src={newsDetail.addUserProfileImage}
+                className="rounded-full w-[50%]  h-[75%] "
+                src={
+                  newsDetail.addUserProfileImage
+                    ? newsDetail.addUserProfileImage
+                    : img1
+                }
               />
               <span className="font-[16px] text-[#848484] ">
                 {" "}
@@ -175,11 +236,12 @@ const NewsDetails = () => {
               <span className="font-bold w-full text-[#1E1E1E] font-[18px] px-4 dark:text-[white] ">
                 {t("NewsDetails.userSatisfaction")}
               </span>
-              <div className="flex items-center w-full mt-7 justify-start lg:justify-between px-4">
-                <img src={img2} />
-                <span className="font-[16px] text-[#848484] hidden lg:block">
-                  {t("NewsDetails.ratingValue")}
-                </span>
+
+              <div className="flex items-center w-full mt-7 justify-start lg:justify-between px-4  ">
+                <StarRating
+                  newsId={newsDetail?.id}
+                  initialRating={newsDetail?.newsRate?.avg || 0}
+                />
               </div>
             </motion.div>
 
@@ -194,7 +256,12 @@ const NewsDetails = () => {
               {sortedNews.map((news) => (
                 <NewsSideBar
                   key={news.id}
-                  image={news.currentImageAddressTumb}
+                  image={
+                    news.currentImageAddress &&
+                    !news.currentImageAddress.includes("undefined")
+                      ? news.currentImageAddress
+                      : img2
+                  }
                   title={news.title}
                   name={news.addUserFullName}
                   id={news.id}
@@ -251,21 +318,25 @@ const NewsDetails = () => {
               variants={itemVariants}
               className="flex-shrink-0 w-[85%] sm:w-[70%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
             >
-              <Link to={`/news/${news.id}`}>
-                <NewsCard
-                  image={news.currentImageAddressTumb}
-                  title={news.title}
-                  description={news.miniDescribe}
-                  views={news.currentView}
-                  rating={3.2}
-                  category={news.newsCatregoryName}
-                  date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  }).format(new Date(news.insertDate))}
-                />
-              </Link>
+              <NewsCard
+                id={news.id}
+                image={
+                  news.currentImageAddress &&
+                  !news.currentImageAddress.includes("undefined")
+                    ? news.currentImageAddress
+                    : img2
+                }
+                title={news.title}
+                description={news.miniDescribe}
+                views={news.currentView}
+                rating={news.newsRate.avg.toFixed(1)}
+                category={news.newsCatregoryName}
+                date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                }).format(new Date(news.insertDate))}
+              />
             </motion.div>
           ))}
         </motion.div>

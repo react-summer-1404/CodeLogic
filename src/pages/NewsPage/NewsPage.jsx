@@ -16,6 +16,7 @@ import { Link, useLocation } from "react-router-dom";
 import NewsPageSkeleton from "../../components/common/skeleton/NewsPageSkeleton/NewsPageSkeleton";
 import Lottie from "lottie-react";
 import empty from "../../assets/Images/empty.json";
+import img2 from "../../assets/Images/HTML5Course.png";
 
 const NewsPage = () => {
   const { data, isLoading } = useQuery({
@@ -26,7 +27,7 @@ const NewsPage = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const search = params.get("search") || "";
+    const search = params.get("search");
     setSearchQuery(search);
   }, [location.search]);
 
@@ -259,11 +260,16 @@ const NewsPage = () => {
                 >
                   <NewsCard
                     id={news.id}
-                    image={news.currentImageAddressTumb}
+                    image={
+                      news.currentImageAddress &&
+                      !news.currentImageAddress.includes("undefined")
+                        ? news.currentImageAddress
+                        : img2
+                    }
                     title={news.title}
                     description={news.miniDescribe}
                     views={news.currentView}
-                    rating={3.2}
+                    rating={news.newsRate.avg.toFixed(1)}
                     category={news.newsCatregoryName}
                     date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
                       day: "numeric",
