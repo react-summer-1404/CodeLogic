@@ -248,7 +248,8 @@
     "titleInputsPlcholder": "عنوان دیدگاه خود را بنویسید",
     "textInputsTitle": "متن دیدگاه",
     "textInputsPlcholder": "متن دیدگاه خود را بنویسید",
-    "send": "ارسال"
+    "send": "ارسال",
+    "successToast": "نظر شما افزوده شد"
   },
   "news": {
     "title1": "انتشار React 18",
@@ -693,6 +694,9 @@
     "title5": "تاریخ",
     "title6": "عملیات"
   },
+  "myCoursesComment": {
+    "successToast": "نظر شما حذف شد"
+  },
   "myNewsComments": {
     "title1": "عنوان خبر",
     "title2": "عنوان دیدگاه",
@@ -700,6 +704,9 @@
     "title4": "وضعیت",
     "title5": "تاریخ",
     "title6": "عملیات"
+  },
+  "myNewsComment": {
+    "successToast": "نظر شما حذف شد"
   },
   "validation": {
     "nationalId": {

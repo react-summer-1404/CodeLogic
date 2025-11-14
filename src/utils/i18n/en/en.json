@@ -247,7 +247,8 @@
     "titleInputsPlcholder": "Enter your comment's title",
     "textInputsTitle": "Comment Desc",
     "textInputsPlcholder": "Enter your comment's text",
-    "send": "Send"
+    "send": "Send",
+    "successToast": "Your comment has been added"
   },
   "news": {
     "title1": "React 18 Released",
@@ -690,6 +691,9 @@
     "title5": "History",
     "title6": "Actions"
   },
+  "myCoursesComment": {
+    "successToast": "Your comment has been deleted"
+  },
   "myNewsComments": {
     "title1": "News Title",
     "title2": "Comment Title",
@@ -697,6 +701,9 @@
     "title4": "Status",
     "title5": "History",
     "title6": "Actions"
+  },
+  "myNewsComment": {
+    "successToast": "Your comment has been deleted"
   },
   "validation": {
     "nationalId": {

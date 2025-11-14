@@ -45,11 +45,11 @@ const CourseDetail = () => {
         </h2>
       </div>
       <div
-        className="flex flex-col items-center gap-12 pt-8 px-6 pb-[170px]
+        className="flex flex-col gap-12 pt-8 px-6 pb-[170px]
       md:flex md:flex-row md:px-10"
       >
-        <CourseDetailSide course={course} />
-        <CourseDetailMain course={course} />
+        <CourseDetailSide course={course}/>
+        <CourseDetailMain course={course}/>
       </div>
     </div>
   );

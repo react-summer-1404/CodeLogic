@@ -1,7 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Formik, Form, Field } from 'formik';
-import { addCommentCourses } from '../../../../core/services/api/post/addCommentCourses';
+import { addCommentCourses } from '../../../core/services/api/post/addCommentCourses';
+import { toast } from 'react-toastify';
+
 
 const CourseCommentForm = ({course}) => {
 
@@ -12,6 +14,7 @@ const CourseCommentForm = ({course}) => {
     const onSubmit = async (values, { resetForm }) => {
       await addCommentCourses(course.courseId ,values.title, values.describe)
        resetForm()
+       toast.success(t('courseCommentForm.successToast'))
     }
 
   return (

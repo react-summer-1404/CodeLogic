@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import img1 from "../../../../assets/Images/commentt.png";
+import img1 from "../../../../assets/Images/commentUser.png";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
 import ChatIcon from "@mui/icons-material/Chat";
@@ -16,8 +16,9 @@ import GetNewsDetailsReplyComment from "../../../../core/services/api/Get/GetNew
 import AddNewsDetailsCommentReply from "../../../../core/services/api/post/AddNewsDetailsCommentReply";
 import { PacmanLoader } from "react-spinners";
 import { toast } from "react-toastify";
-
 import { CommentLikeDislike } from "../../../../core/services/api/post/CommentLikeDislike";
+
+
 
 const PersonalComment = ({ newsId }) => {
   const { t } = useTranslation();

@@ -3,7 +3,8 @@ import Eye from '../../../../assets/Icons/Eye'
 import Garbage from '../../../../assets/Icons/Garbage'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
-
+import { deleteCoursesComments } from '../../../../core/services/api/delete/deleteCoursesComments'
+import { toast } from 'react-toastify'
 
 
 const textClass = 'font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]'
@@ -20,6 +21,11 @@ const MyCoursesComment = ({item}) => {
         transition: { ease: "easeOut", duration: 0.35 },
         },
     };
+
+    const onDelete = () => {
+        deleteCoursesComments(item.id)
+        toast.success(t('myCoursesComment.successToast'))
+    }
 
   return (
     <motion.div 
@@ -49,8 +55,14 @@ const MyCoursesComment = ({item}) => {
             <span className={textClass}>{item.insertDate.slice(0,10)}</span>
         </div>
         <div className='flex justify-center gap-4 w-24'>
-            <Eye/>
-            <Garbage/>
+            <span className='cursor-pointer'>
+                <Eye/>
+            </span>
+            <span 
+            onClick={onDelete}
+            className='cursor-pointer'>
+                <Garbage/>
+            </span>
         </div>
     </motion.div>
   )
