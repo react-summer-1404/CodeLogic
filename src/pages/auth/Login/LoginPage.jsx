@@ -19,16 +19,27 @@ import home from "../../../assets/Icons/A/home.png";
 import use from "../../../assets/Icons/A/user.png";
 import lock from "../../../assets/Icons/A/lock.png";
 import { setItem } from "../../../utils/helper/storage.services";
+import { useTheme } from "../../../utils/hooks/useTheme/useTheme";
+import { useDispatch } from "react-redux";
+import { addPhoneGmail } from "../../../utils/redux/slice/phoneGmailSlice";
 const LoginPage = () => {
+  const dispatch = useDispatch();
   const { mutate: postLogin, isPending } = useMutation({
     mutationKey: ["LOGIN"],
-    mutationFn: (values) => Login(values),
+    mutationFn: (values) => {
+      const res = Login(values);
+      dispatch(addPhoneGmail(values.phoneOrGmail));
+      return res;
+    },
     onSettled: (data) => {
-      if (data.success) {
+      if (data.success && data.token !== null) {
         console.log("Login token", data.token);
         setItem("token", data.token);
         toast.success(data.message);
         navigate(`/userPanel`);
+      } else if (data.success && data.token === null) {
+        toast.success(data.message);
+        navigate("/loginValidation");
       } else if (!data.success) {
         toast.error(data.message);
       }
@@ -37,11 +48,9 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-
-  const [isDark, setIsDark] = useState(false);
-  const handleDark = () => {
-    setIsDark((prev) => !prev);
-  };
+  const isRTL = i18n.language === "fa";
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
 
   const [showPassword, setShowPassword] = useState(false);
   const handlePassword = () => {
@@ -88,8 +97,7 @@ const LoginPage = () => {
           </div>
           <div className="flex flex-col justify-center items-center gap-5  ">
             <h2 className="text-[24px] font-bold text-[#008C78] ">
-              {" "}
-              {t("login.LoginToUserAccount")}{" "}
+              {t("login.LoginToUserAccount")}
             </h2>
             <div className="w-full mt-7 px-6">
               <Formik
@@ -102,11 +110,15 @@ const LoginPage = () => {
               >
                 {({ errors, touched }) => (
                   <Form>
-                    <div className=" flex flex-col gap-2 ">
-                      <div className="">
+                    <div className=" flex flex-col gap-5 ">
+                      <div className="relative">
                         <Field
-                          className={`outline-none  bg-no-repeat  bg-[right_20px_center]  bg-[#F3F4F6] dark:bg-gray-500  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
-                            errors.name && touched.name
+                          className={`outline-none  bg-no-repeat  ${
+                            isRTL
+                              ? "bg-[right_20px_center]"
+                              : "bg-[left_20px_center]"
+                          }  bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545]  w-full rounded-full px-13 py-3  placeholder:text-[15px] ${
+                            errors.phoneOrGmail && touched.phoneOrGmail
                               ? "border-[#EF5350] border-1 "
                               : ""
                           }`}
@@ -116,15 +128,20 @@ const LoginPage = () => {
                           id="phoneOrGmail"
                           placeholder={t("login.EmailOrPhoneNumber")}
                         />
+                        <ErrorMessage
+                          name={"phoneOrGmail"}
+                          component={"span"}
+                          className="text-[#EF5350] text-[14px] absolute top-15 right-0 "
+                        />
                       </div>
-                      <ErrorMessage
-                        name={"phoneOrGmail"}
-                        component={"span"}
-                        className="text-[#EF5350] text-[14px] "
-                      />
+
                       <div className=" relative mt-6">
                         <Field
-                          className={` bg-no-repeat  bg-[right_20px_center] bg-[#F3F4F6] dark:bg-gray-500 w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${
+                          className={` bg-no-repeat   ${
+                            isRTL
+                              ? "bg-[right_20px_center]"
+                              : "bg-[left_20px_center]"
+                          } bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full px-13 py-3 outline-none placeholder:text-[15px] ${
                             errors.password && touched.password
                               ? "border-[#EF5350] border-1 "
                               : ""
@@ -139,15 +156,18 @@ const LoginPage = () => {
                           onClick={handlePassword}
                           src={showPassword ? eyeClose : eyeOpen}
                           alt=""
-                          className=" cursor-pointer absolute left-7 top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  "
+                          className={` cursor-pointer absolute ${
+                            isRTL ? "left-7" : "right-7"
+                          } top-1/2 -translate-y-1/2 w-[17px] h-[15px] object-cover  `}
+                        />
+                        <ErrorMessage
+                          name={"password"}
+                          component={"span"}
+                          className="text-[#EF5350] text-[14px] absolute right-0 top-15 "
                         />
                       </div>
-                      <ErrorMessage
-                        name={"password"}
-                        component={"span"}
-                        className="text-[#EF5350] text-[14px] "
-                      />
-                      <div className="w-full flex justify-between mt-5 ">
+
+                      <div className="w-full flex justify-between mt-6 ">
                         <div className="flex gap-2">
                           <Field
                             className=""
@@ -207,7 +227,7 @@ const LoginPage = () => {
           className="flex flex-1 flex-col items-center justify-center  p-9  bg-[#EEFFFC] dark:bg-[#454545] rounded-[60px] relative"
         >
           <div
-            onClick={handleDark}
+            onClick={toggleTheme}
             className={` cursor-pointer py-3 px-2  w-12 h-6   rounded-full  absolute top-14 left-7 flex  ${
               isDark
                 ? "bg-yellow-300/40 justify-end "

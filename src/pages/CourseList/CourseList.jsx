@@ -32,6 +32,7 @@ const CourseList = () => {
     setStartDate(startDate);
     console.log("startDate:", startDate);
   };
+
   const handleSetEndDate = (endDate) => {
     setEndDate(endDate);
   };
@@ -71,6 +72,23 @@ const CourseList = () => {
       technologies,
       price,
     ],
+
+    //   queryFn: () =>
+    //     GetAllCourses({
+    //       RowsOfPage: pageSize,
+    //       PageNumber: currentPage,
+    //       Query: searchQuery,
+    //       SortType: "startTime",
+    //       StartDate: startDate,
+    //       EndDate: endDate,
+    //       courseLevelId: courseLevel,
+    //       teacherName: teachers,
+    //       technologyList: technologies,
+    //       CostDown: price[0],
+    //       CostUp: price[1],
+    //     }),
+    // });
+
     queryFn: () =>
       GetAllCourses({
         RowsOfPage: pageSize,

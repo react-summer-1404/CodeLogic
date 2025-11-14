@@ -3,13 +3,23 @@ import UserPanelSearch from '../../../components/common/userPanel/UserPanelSearc
 import UserPanelFilter from '../../../components/common/userPanel/UserPanelFilter/UserPanelFilter'
 import UserPanelTitle from '../../../components/common/userPanel/UserPanelTitle/UserPanelTitle' 
 import UserPanelShowNumber from '../../../components/common/userPanel/UserPanelShowNumber/UserPanelShowNumber'
-import { useTranslation } from 'react-i18next'
-import ReactPaginate from 'react-paginate'
 import MyCourse from '../../../components/common/userPanel/MyCourse/MyCourse'
+import ReactPaginate from 'react-paginate'
+import { useTranslation } from 'react-i18next'
+import { useQuery } from '@tanstack/react-query'
+import GetMyCourses from '../../../core/services/api/get/GetMyCourses'
 
 
 
 const MyCourses = () => {
+
+  const { data: myCoursesData, isLoading } = useQuery({
+    queryKey: ['GETMYCOURSES'],
+    queryFn: () => GetMyCourses()
+  })
+
+
+
 
   const {t} = useTranslation();
 
@@ -30,7 +40,11 @@ const MyCourses = () => {
             title5: t('myCourses.title5'), justify5: 'justify-center', w5: 'w-34',
             title6: t('myCourses.title6'), justify6: 'justify-center', w6: 'w-32'
           }}/>
-          <MyCourse/>
+          {
+            myCoursesData?.listOfMyCourses.map((item , index) => {
+              return <MyCourse item={item} key={index}/>
+            })
+          }
         </div>
         <div className='flex justify-between items-center'>
           <ReactPaginate

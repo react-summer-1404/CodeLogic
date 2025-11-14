@@ -5,6 +5,8 @@ import {
   setItem,
 } from "../../utils/helper/storage.services";
 
+import { toast } from "react-toastify";
+
 const baseURL = "https://sepehracademy.liara.run";
 
 const instance = new axios.create({
@@ -16,10 +18,9 @@ const onSuccess = (response) => {
 };
 
 const onError = (err) => {
-  if (err.response.status === 401) {
+  if (err.response.status === 401 || err.response.status === 403) {
     removeItem("token");
-    window.location.pathname = "/Login";
-    console.log(err);
+    toast.error("لطفا ابتداوارد شوید");
     setItem("isLogin", false);
     removeItem("token");
   }

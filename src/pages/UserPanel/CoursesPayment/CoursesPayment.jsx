@@ -114,11 +114,11 @@ const CoursesPayment = () => {
               src={searchIcon}
               alt=""
             />
-          </motion.div>
+          </motion.div> 
         </AnimatePresence>
 
         <div className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
-          <span className=" invisible md:visible text-[16px]">
+          <span className=" hidden md:inline text-[16px]">
             {t("coursesPayment.filters")}
           </span>
           <select
@@ -157,7 +157,7 @@ const CoursesPayment = () => {
                 <CoursePayment key={items.id} items={items} />
               ))
             ) : (
-              <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
+              <h1 className="text-red-600 text-2xl font-bold text-center mt-20 ">
                 {t("coursesPayment.notFound")}
               </h1>
             )}
@@ -204,7 +204,7 @@ const CoursesPayment = () => {
           </div>
           {/* ------------ filterCount */}
           <div className="flex items-center dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow-md  border-[#EAEAEA] ">
-            <span className="  text-[16px]">
+            <span className=" hidden md:inline text-[16px]">
               {t("coursesPayment.NumberShows")}
             </span>
             <select

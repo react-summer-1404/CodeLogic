@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import CourseHeader from "../../../components/common/favorites/courses/FavoriteCourseHeader/CourseHeader";
-import { useTranslation } from "react-i18next";
 import { FavoriteCoursesData } from "../../../components/common/data/Favorites/FavoriteCourses";
 import FavoriteCourse from "../../../components/common/favorites/courses/FavoriteCourse";
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,6 +12,8 @@ import loadingIcon from "../../../assets/Images/A/loading.gif";
 import { getFavoriteCourses } from "../../../core/services/api/Get/GetFavoriteCourses";
 import { toast } from "react-toastify";
 import { deleteFavCourses } from "../../../core/services/api/delete/deleteFavCourses";
+import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";
+import { useTranslation } from "react-i18next";
 const FavoriteCourses = () => {
   const { data: coursesData = {}, isPending } = useQuery({
     queryKey: ["FAVCOURSES"],
@@ -161,7 +162,7 @@ const FavoriteCourses = () => {
           />
         </motion.div>
         <div className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
-          <span className="text-[16px]  invisible md:visible">
+          <span className="text-[16px] hidden md:inline">
             {t("coursesPayment.filters")}
           </span>
           <select
@@ -193,11 +194,10 @@ const FavoriteCourses = () => {
       >
         <div className="flex flex-col h-[70%]">
           <CourseHeader />
-          {isPending && (
-            <div className="mx-auto">
-              <img src={loadingIcon} alt="" />
-            </div>
-          )}
+          {isPending &&
+            [...Array(coursesPerPage)].map((items, index) => (
+              <FavoritesSkeleton key={index + 2} />
+            ))}
           {!isPending && (
             <div className="overflow-y-auto h-full">
               {currentCourses.length > 0 ? (
@@ -210,7 +210,7 @@ const FavoriteCourses = () => {
                   />
                 ))
               ) : (
-                <h1 className="text-green-600 text-2xl font-bold text-center mt-20 ">
+                <h1 className="text-red-600 text-2xl font-bold text-center mt-20 ">
                   {t("favoriteCourses.notFound")}
                 </h1>
               )}
@@ -258,7 +258,7 @@ const FavoriteCourses = () => {
           </div>
           {/* filtering counts ------ */}
           <div className="flex items-center dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
-            <span className="text-[16px]">
+            <span className="hidden md:inline text-[16px]">
               {t("favoriteCourses.NumberShows")}
             </span>
             <select
@@ -286,7 +286,7 @@ const FavoriteCourses = () => {
             setOpenModal(false);
             setSelectedId(null);
           }}
-          className=" fixed inset-0 bg-black/50 backdrop-blur flex justify-center "
+          className=" fixed inset-0 bg-black/50 backdrop-blur flex justify-center items-center "
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.5, y: -100 }}
@@ -369,13 +369,22 @@ const FavoriteCourses = () => {
             </h2>
             <img
               className="rounded-4xl shadow-md w-[55%] mx-auto"
-              src="http://sepehracademy.liara.run/files/Image-1761935008550.jpg"
+              src={overViewData.course.imageAddress}
               alt=""
             />
             <p className="text-[14px] text-[#848484] dark:text-[#848484] mt-2 mx-auto ">
-              {`این دوره توسط استاد ${overViewData.teacheName} برگزار میشود`}
+              {overViewData.course.describe}
             </p>
-
+            <div className="flex justify-center items-center gap-2">
+              <span className="font-regular text-lg font-bold text-[#1E1E1E]   dark:text-[#EEEEEE]">
+                {t("قیمت")}
+              </span>
+              <div className="flex">
+                <span className="font-bold text-base text-[#008C78]">
+                  {t(`${overViewData.course.cost} تومان`)}
+                </span>
+              </div>
+            </div>
             <div className="text-[14px] text-[#848484] dark:text-[#848484] mx-auto">
               {t("favoriteCourses.lastUpdated")}:{overViewData.lastUpdate}
             </div>

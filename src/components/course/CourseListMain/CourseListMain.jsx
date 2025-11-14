@@ -46,13 +46,12 @@ const CourseListMain = ({ coursesData, isLoading, currentPage, setCurrentPage, s
     setPageSize(newSize);
     setCurrentPage(1);
   };
-
-
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  
   if (isLoading) return <div>Loading...</div>
 
 
