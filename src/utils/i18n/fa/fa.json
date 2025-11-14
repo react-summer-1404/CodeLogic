@@ -1,4 +1,4 @@
-{
+ {
   "navbar": {
     "academy": "آکادمی بحر",
     "home": "صفحه اصلی",
@@ -209,15 +209,26 @@
     "toman": "تومان",
     "reserveBtn": "همین حالا رزرو کنید",
     "deleteReserveBtn": "لغو رزرو",
-    "off": "تخفیف"
+    "off": "تخفیف",
+    "reserveSuccessToast": "دوره موردنظر با موفقیت رزرو شد",
+    "removeSuccessToast": "دوره موردنظر با موفقیت حذف شد"
   },
   "userSatisfaction": {
     "title": "رضایت کاربران",
-    "score": "امتیاز"
+    "score": "امتیاز",
+    "successToast": "امتیاز شما ثبت شد!",
+    "errorToast": "خطا در ارسال امتیاز",
+    "infoToast": "شما قبلا امتیاز داده اید"
   },
   "courseTeacher": {
     "courseTeacher": "مدرس دوره",
     "buttonText": "مشاهده اطلاعات بیشتر"
+  },
+  "imageInfo": {
+    "addLikeSuccessToast": "شما این دوره را لایک کردید",
+    "removeLikeSuccessToast": "لایک شما حذف شد",
+    "addDisLikeSuccessToast": "شما این دوره را دیسلایک کردید",
+    "removeDisLikeSuccessToast": "دیسلایک شما حذف شد"
   },
   "courseCommentsTab": {
     "courseSpecifications": "مشخصات دوره",

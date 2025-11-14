@@ -14,7 +14,7 @@ const UserSatisfaction = ({course}) => {
     lg:gap-[20px] lg:w-[380px]'>
         <h3 className='font-bold text-lg text-[#1E1E1E]   dark:text-[#FFFFFF]'>{t('userSatisfaction.title')}</h3>
         <div className='flex justify-between'>
-          <StarsRating/>
+          <StarsRating course={course}/>
           <div className={`flex gap-1 font-regular text-base text-[#848484]   dark:text-[#CCCCCC] ${isRtl ? 'rtl' : 'ltr'}`}>
             <span>{course.courseRate.avg}</span>
             <span>{t('userSatisfaction.score')}</span>

@@ -208,15 +208,26 @@
     "toman": "Toman",
     "reserveBtn": "Reserve Now",
     "deleteReserveBtn": "Cancel Reserve",
-    "off": "Off"
+    "off": "Off",
+    "reserveSuccessToast": "The desired course was successfully booked",
+    "removeSuccessToast": "The desired course was successfully deleted"
   },
   "userSatisfaction": {
-    "title": "User Satisfaction",
-    "score": "score"
+    "title": "User Satisfaction", 
+    "score": "score",
+    "successToast": "Your score has been recorded",
+    "errorToast": "Error sending score",
+    "infoToast": "You have already given score"
   },
   "courseTeacher": {
     "courseTeacher": "Course Teracher",
     "buttonText": "View more information"
+  },
+  "imageInfo": {
+    "addLikeSuccessToast": "You liked this course",
+    "removeLikeSuccessToast": "Your like has been removed",
+    "addDisLikeSuccessToast": "You disliked this course",
+    "removeDisLikeSuccessToast": "Your dislike has been removed"
   },
   "courseCommentsTab": {
     "courseSpecifications": "Course Specifications",
