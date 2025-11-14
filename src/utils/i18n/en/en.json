@@ -6,7 +6,9 @@
     "news": "News",
     "search_placeholder": "Search...",
     "select_placeholder": "Select...",
-    "login": "Login / Register"
+    "login": "Login / Register",
+    "userpanel" : "User Panel",
+    "notfound" : "No Results Found"
   },
   "heroSection": {
     "title1": "Learning programming with experienced teachers,",
@@ -107,18 +109,22 @@
   },
   "registerStepOne": {
     "validation": {
-      "required": "Please enter your phone number *",
-      "invalid": "Invalid phone number *"
+      "required": "Please enter your gmail *",
+      "invalid": "Invalid gmail *"
     },
     "start_learning": "Start your learning journey here!",
     "description": "By creating your account, you'll access courses, educational content, and advanced tools. This is the first step for growth!",
     "home": "Home",
     "create_account": "Create Account",
     "enter_phone": "Enter your phone number to create an account",
-    "phone_placeholder": "Enter your phone number",
+    "gmail_placeholder": "Enter your gmail",
     "send_code": "Send OTP",
     "have_account": "Already have an account?",
-    "login": "Login"
+    "login": "Login",
+    "loading" : "Processing",
+    "verifysuc" : "Your code has been confirmed",
+    "resendcode" : "Resend Code",
+    "sending" : "Sending..."
   },
   "registerStepTwo": {
     "validation": {
@@ -247,11 +253,15 @@
     "date2": "Oct 15, 2025"
   },
   "newsPage": {
-    "breadcrumb": "Home - News",
+    "breadcrumb1": "Home ",
+    "breadcrumb2": "- News",
     "headerTitle": "News & Articles",
     "results": " results",
     "searchPlaceholder": "Search...",
-    "sortBy": "Sort by:"
+    "sortBy": "Sort by:",
+    "emptyres" : "No news found",
+    "addfavotitesuc" : "The requested news was added ",
+    "addfavotiteerr" : "You have already added this news"
   },
   "categoryFilter": {
     "title": "Categories",
@@ -337,7 +347,9 @@
       "titleLabel": "Comment Title",
       "titlePlaceholder": "Write the title of your comment",
       "textLabel": "Comment Text",
-      "textPlaceholder": "Write your comment text"
+      "textPlaceholder": "Write your comment text",
+      "toastsuc" : "Your feedback has been recorded",
+      "toasterr" : "Error in operation"
     }
   },
   "personalComment": {
@@ -352,14 +364,21 @@
     "actions": {
       "replyButton": "Reply",
       "answer": "answer",
-      "closeReply": "Close Replies"
+      "closeReply": "Close Replies",
+      "noComments" : "There are no comments"
+
     },
     "replyForm": {
       "titlePlaceholder": "Write your reply title",
-      "textPlaceholder": "Write your reply text"
+      "textPlaceholder": "Write your reply text",
+      "reply" : "Send Message",
+      "toastsuc" : "Response submitted successfully",
+      "toasterr" : "Failed to submit response"
+
     }
   },
   "answerComment": {
+    "loading" : "Processing...",
     "comment1": {
       "name": "Edward Johnson",
       "date": "June 3, 2025",

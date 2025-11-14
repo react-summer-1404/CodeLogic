@@ -1,23 +1,78 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import regtwo from "../../../assets/Images/regtwo.svg";
 import EastIcon from "@mui/icons-material/East";
 import { Formik, Form, Field } from "formik";
 import { RegisterStepTwo } from "../../../utils/Validations/RegisterVal/Register.validation";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import TranslateButton from "../../../components/TranslateButton/TranslateButton";
 import sun from "../../../assets/Icons/A/sun.png";
 import moon from "../../../assets/Icons/A/moon.png";
+import { toast } from "react-toastify";
+import { useMutation } from "@tanstack/react-query";
+import RegisterStepTwoApi from "../../../core/services/api/post/registerStepTwo";
+import RegisterStepOne from "../../../core/services/api/post/registerStepOne";
+import { ClockLoader } from "react-spinners";
 
 const StepTwo = () => {
   const { t, i18n } = useTranslation();
-
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  console.log("searchParams: ", searchParams.get("phoneNumber"));
-  const [initialValues] = useState({ code: ["", "", "", "", ""] });
+  const gmail = searchParams.get("gmail");
+  const [initialValues] = useState({ code: ["", "", "", "", "", ""] });
   const [darkMode, setDarkMode] = useState(false);
   const inputsRef = useRef([]);
+
+  const [time, setTime] = useState(120);
+  const [canResend, setCanResend] = useState(false);
+
+  useEffect(() => {
+    if (time > 0) {
+      const timer = setTimeout(() => setTime((prev) => prev - 1), 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setCanResend(true);
+    }
+  }, [time]);
+
+  const formatTime = (seconds) => {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+  };
+
+  const handleSubmit = (values) => {
+    const finalCode = values.code.join("");
+    verifyCode({ gmail, verifyCode: finalCode });
+  };
+
+  const { mutate: verifyCode, isPending } = useMutation({
+    mutationKey: ["VERIFY_CODE"],
+    mutationFn: (payload) => RegisterStepTwoApi(payload),
+    onSettled: (data) => {
+      if (data?.success) {
+        toast.success(t("registerStepOne.verifysuc"));
+        navigate(`/RegisterStepThree?gmail=${encodeURIComponent(gmail)}`);
+      } else if (!data?.success) {
+        toast.error("کد وارد شده اشتباه است");
+      }
+    },
+  });
+
+  const { mutate: resendCode, isPending: isResending } = useMutation({
+    mutationKey: ["RESEND_CODE"],
+    mutationFn: () => RegisterStepOne({ gmail }),
+    onSettled: (data) => {
+      if (data?.success) {
+        toast.success("کد جدید ارسال شد");
+        setTime(120);
+        setCanResend(false);
+      } else {
+        toast.error("خطا در ارسال مجدد کد");
+      }
+    },
+  });
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
@@ -38,11 +93,6 @@ const StepTwo = () => {
       newCode[index] = "";
       setFieldValue("code", newCode);
     }
-  };
-
-  const handleSubmit = (values) => {
-    const finalCode = values.code.join("");
-    console.log("Code:", finalCode);
   };
 
   const fadeInUp = (delay) => ({
@@ -76,7 +126,6 @@ const StepTwo = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.5 } },
   };
-
   return (
     <motion.div
       initial="hidden"
@@ -146,7 +195,7 @@ const StepTwo = () => {
                   initial="hidden"
                   animate="visible"
                 >
-                  <div className="  w-[65%] flex items-center justify-between   mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
+                  <div className="w-[65%] flex items-center justify-between mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
                     <Link to="/RegisterStepOne">
                       <div>
                         <EastIcon
@@ -163,7 +212,6 @@ const StepTwo = () => {
                         </span>
                       </div>
                     </Link>
-
                     <TranslateButton />
                   </div>
                 </motion.div>
@@ -215,15 +263,13 @@ const StepTwo = () => {
                         onKeyDown={(e) =>
                           handleKeyDown(e, index, values, setFieldValue)
                         }
-                        className={`
-                          w-14 h-14 mx-3 text-center text-lg rounded-2xl transition-colors duration-300 focus:outline-none bg-[#ecececaf] ${
-                            digit
-                              ? "border-2 border-[#008C78]"
-                              : touched.code?.[index]
-                              ? "border-2 border-red-500"
-                              : "border-2 border-transparent focus:border-[#008C78]"
-                          }
-                        `}
+                        className={`w-14 h-14 mx-3 text-center text-lg rounded-2xl transition-colors duration-300 focus:outline-none bg-[#ecececaf] ${
+                          digit
+                            ? "border-2 border-[#008C78]"
+                            : touched.code?.[index]
+                            ? "border-2 border-red-500"
+                            : "border-2 border-transparent focus:border-[#008C78]"
+                        }`}
                       />
                     ))}
                   </div>
@@ -235,8 +281,8 @@ const StepTwo = () => {
                       <div
                         className={` text-red-500 text-sm mt-1 font-semibold text-center absolute  ${
                           i18n.language === "fa"
-                            ? " top-16 right-27"
-                            : "left-27 top-16"
+                            ? " top-16 right-18"
+                            : "left-18 top-16"
                         } `}
                       >
                         {t("registerStepTwo.validation.required")}
@@ -249,29 +295,56 @@ const StepTwo = () => {
                     animate="visible"
                     className="w-full flex justify-center"
                   >
-                    <Link
+                    <button
+                      disabled={isPending}
+                      type="submit"
                       className={`text-center mt-10 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
                         darkMode
-                          ? "bg-[#008C78] text-[white] "
+                          ? "bg-[#008C78] text-[white]"
                           : "bg-[#008C78] text-white hover:bg-[#007563]"
                       }`}
-                      to="/RegisterStepThree"
                     >
-                      {t("registerStepTwo.confirm_otp")}
-                    </Link>
+                      {isPending ? (
+                        <div className="flex items-center justify-center gap-3">
+                          <p>{t("registerStepOne.loading")} </p>
+                          <ClockLoader size={23} color="white" />
+                        </div>
+                      ) : (
+                        t("registerStepTwo.confirm_otp")
+                      )}
+                    </button>
                   </motion.div>
                 </motion.div>
 
-                <motion.p
+                <motion.div
                   variants={fadeInUp(1.8)}
                   initial="hidden"
                   animate="visible"
-                  className={`text-sm mt-4 sm:mt-6 text-center transition-colors duration-500 ${
-                    darkMode ? "text-gray-300" : "text-[#333333]"
-                  }`}
+                  className="text-sm mt-4 sm:mt-6 text-center transition-colors duration-500"
                 >
-                  01:23
-                </motion.p>
+                  {!canResend ? (
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-[#333333]"}
+                    >
+                      {formatTime(time)}
+                    </span>
+                  ) : (
+                    <button
+                      type="button"
+                      disabled={isResending}
+                      onClick={() => resendCode()}
+                      className={`font-bold  cursor-pointer transition-colors duration-500 ${
+                        darkMode ? "text-[#008C78] " : "text-[#008C78] "
+                      }`}
+                    >
+                      {isResending ? (
+                        <p> {t("registerStepOne.sending")} </p>
+                      ) : (
+                        <p> {t("registerStepOne.resendcode")}</p>
+                      )}
+                    </button>
+                  )}
+                </motion.div>
               </div>
             </motion.div>
           </Form>

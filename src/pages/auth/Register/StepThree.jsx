@@ -6,18 +6,49 @@ import { Field, Form, Formik } from "formik";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import regone from "../../../assets/Images/regone.svg";
 import { RegisterStepThree } from "../../../utils/Validations/RegisterVal/Register.validation";
 import TranslateButton from "../../../components/TranslateButton/TranslateButton";
 import sun from "../../../assets/Icons/A/sun.png";
 import moon from "../../../assets/Icons/A/moon.png";
+import { useSearchParams } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import RegisterStepThreeApi from "../../../core/services/api/post/registerStepThree";
+import { ClockLoader } from "react-spinners";
 
 const StepThree = () => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const gmail = searchParams.get("gmail");
+
+  const { mutate: registerUser, isLoading } = useMutation({
+    mutationFn: (payload) => RegisterStepThreeApi(payload),
+    onSuccess: (data) => {
+      if (data?.success) {
+        toast.success("ثبت‌ نام با موفقیت انجام شد");
+        navigate(`/Login`);
+      } else {
+        toast.error(data?.message);
+      }
+    },
+    onError: () => {
+      toast.error("خطا در انجام ثبت‌ نام");
+    },
+  });
+
+  const handleSubmit = (values) => {
+    registerUser({
+      gmail,
+      phoneNumber: values.phoneNumber,
+      password: values.password,
+    });
+  };
 
   const [initialValues] = useState({
-    email: "",
+    phoneNumber: "",
     password: "",
     confirmPassword: "",
   });
@@ -74,7 +105,7 @@ const StepThree = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={RegisterStepThree}
-        onSubmit={(values) => console.log("Submitted:", values)}
+        onSubmit={handleSubmit}
       >
         {({ errors, touched }) => (
           <Form className="w-full flex justify-center">
@@ -195,7 +226,7 @@ const StepThree = () => {
                   />
                   <Field
                     type="text"
-                    name="email"
+                    name="phoneNumber"
                     placeholder={t("registerStepThree.placeholder.email")}
                     className={`!mb-10 rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       darkMode
@@ -203,7 +234,7 @@ const StepThree = () => {
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />
-                  {touched.email && errors.email && (
+                  {touched.phoneNumber && errors.phoneNumber && (
                     <div
                       className={` text-red-500 text-sm absolute  font-semibold text-center ${
                         i18n.language === "fa"
@@ -211,7 +242,7 @@ const StepThree = () => {
                           : "left-20 top-14"
                       }  `}
                     >
-                      {errors.email}
+                      {errors.phoneNumber}
                     </div>
                   )}
 
@@ -308,11 +339,18 @@ const StepThree = () => {
                       type="submit"
                       className={`text-center mt-4 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
                         darkMode
-                          ? "bg-[#008C78] text-gray-800 hover:bg-[#008C78]"
+                          ? "bg-[#008C78] text-[white] hover:bg-[#008C78]"
                           : "bg-[#008C78] text-white hover:bg-[#007563]"
                       }`}
                     >
-                      {t("registerStepThree.submit")}
+                      {isLoading ? (
+                        <div className="flex items-center justify-center gap-3">
+                          <p>{t("registerStepOne.loading")} </p>
+                          <ClockLoader size={23} color="white" />
+                        </div>
+                      ) : (
+                        t("registerStepThree.submit")
+                      )}
                     </button>
                   </motion.div>
 

@@ -32,6 +32,7 @@ const SecuritySettings = () => {
     onSettled: (data) => {
       if (data.success) {
         toast.success(data.message);
+        navigate("/login");
       } else if (!data.success) {
         toast.error(data.message);
       }

@@ -20,16 +20,26 @@ import use from "../../../assets/Icons/A/user.png";
 import lock from "../../../assets/Icons/A/lock.png";
 import { setItem } from "../../../utils/helper/storage.services";
 import { useTheme } from "../../../utils/hooks/useTheme/useTheme";
+import { useDispatch } from "react-redux";
+import { addPhoneGmail } from "../../../utils/redux/slice/phoneGmailSlice";
 const LoginPage = () => {
+  const dispatch = useDispatch();
   const { mutate: postLogin, isPending } = useMutation({
     mutationKey: ["LOGIN"],
-    mutationFn: (values) => Login(values),
+    mutationFn: (values) => {
+      const res = Login(values);
+      dispatch(addPhoneGmail(values.phoneOrGmail));
+      return res;
+    },
     onSettled: (data) => {
-      if (data.success) {
+      if (data.success && data.token !== null) {
         console.log("Login token", data.token);
         setItem("token", data.token);
         toast.success(data.message);
         navigate(`/userPanel`);
+      } else if (data.success && data.token === null) {
+        toast.success(data.message);
+        navigate("/loginValidation");
       } else if (!data.success) {
         toast.error(data.message);
       }
