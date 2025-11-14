@@ -167,7 +167,7 @@ const TeachersDetail = () => {
                     {t("teachersPage.filters.ShowMore")}
                   </span>
                   <select
-                    value={coursesPerPage}
+                    value={tempCount}
                     onChange={(e) => {
                       setTempCount(Number(e.target.value));
                     }}

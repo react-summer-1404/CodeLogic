@@ -114,7 +114,7 @@ const CoursesPayment = () => {
               src={searchIcon}
               alt=""
             />
-          </motion.div> 
+          </motion.div>
         </AnimatePresence>
 
         <div className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
