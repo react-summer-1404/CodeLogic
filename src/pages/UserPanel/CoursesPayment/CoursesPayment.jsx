@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import CourseHeader from "../../../components/common/course/CoursePayment/CourseHeader/CourseHeader";
-import CoursePayment from "../../../components/common/course/CoursePayment/CoursePayment";
+import CourseHeader from "../../../components/common/userPanel/CoursePayment/CourseHeader/CourseHeader";
+import CoursePayment from "../../../components/common/userPanel/CoursePayment/CoursePayment";
 import { paymentsData } from "../../../components/common/data/CoursePayments/payments";
 import { AnimatePresence, motion, number } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -114,7 +114,7 @@ const CoursesPayment = () => {
               src={searchIcon}
               alt=""
             />
-          </motion.div> 
+          </motion.div>
         </AnimatePresence>
 
         <div className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
