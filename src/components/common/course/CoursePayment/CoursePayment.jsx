@@ -1,0 +1,96 @@
+import React from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import documentIcon from "../../../../assets/Icons/A/document.png";
+import { useTranslation } from "react-i18next";
+
+const CoursePayment = ({ items }) => {
+  const { t } = useTranslation();
+  /// motion ///
+  const Animate = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { ease: "easeOut", duration: 0.35 },
+    },
+  };
+  return (
+    <>
+      <motion.div
+        variants={Animate}
+        initial="hidden"
+        animate="visible"
+        style={{ direction: "rtl" }}
+        className=" dark:bg-[#454545] dark:text-[#ffff] transition-all w-full text-[16px] 
+            hidden md:flex text-center items-center bg-[#ffff] py-4 border-b border-[#EAEAEA] "
+      >
+        <div className="flex-[1.3] text-right ps-8">{items.courseGroup}</div>
+        <div className="px-4 flex-1">{items.paymentDate}</div>
+        <div className=" px-4 flex-1">{items.enteredDate}</div>
+        <div
+          className={` px-1 py-1 rounded-xl flex-[0.8] text-[16px] ${
+            items.paymentStatus === "تایید شده"
+              ? "bg-[#EEFFFC] text-[#008C78] "
+              : "bg-[#FFECEC] text-[#E7000B] "
+          } `}
+        >
+          {items.paymentStatus}
+        </div>
+        <div className="px-4 flex-1">{items.amount.toLocaleString()}</div>
+        <div className="flex items-center justify-center w-[100px] pe-8  ">
+          <img className="cursor-pointer" src={documentIcon} alt="" />
+        </div>
+      </motion.div>
+      <div
+        className="flex md:hidden flex-col items-center gap-5 dark:text-white dark:bg-[#333]
+      w-[60%] bg-[#eee] rounded-3xl mx-auto mt-4 py-4 text-[16px]
+      "
+      >
+        <div className="flex gap-2 text-[##008C78]">
+          {t("coursesPayment.CourseGroup")}:
+          <div className="text-[14px] text-[#848484] dark:text-[#848484]">
+            {items.courseGroup}
+          </div>
+        </div>
+        <div className="flex gap-2 text-[##008C78]">
+          {t("coursesPayment.paymentDate")}:
+          <div className="text-[14px] text-[#848484] dark:text-[#848484]">
+            {items.paymentDate}
+          </div>
+        </div>
+        <div className="flex gap-2 text-[##008C78]">
+          {t("coursesPayment.DateEntered")}:
+          <div className="text-[14px] text-[#848484] dark:text-[#848484]">
+            {items.enteredDate}
+          </div>
+        </div>
+        <div className="flex gap-2 text-[##008C78]">
+          {t("coursesPayment.PaymentStatus")}:
+          <div
+            className={` px-1 py-1 rounded-xl text-[14px] ${
+              items.paymentStatus === "تایید شده"
+                ? "bg-[#EEFFFC] text-[#008C78] "
+                : "bg-[#FFECEC] text-[#E7000B] "
+            } `}
+          >
+            {items.paymentStatus}
+          </div>
+        </div>
+        <div className="flex gap-2 text-[##008C78]">
+          {t("coursesPayment.Payment")}:
+          <div className="text-[14px] text-[#848484] dark:text-[#848484]">
+            {items.amount.toLocaleString()}
+          </div>
+        </div>
+        <div className="flex gap-2">
+          {t("coursesPayment.Operation")}:
+          <div className="flex items-center justify-center w-[100px] pe-8  ">
+            <img className="cursor-pointer" src={documentIcon} alt="" />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default CoursePayment;

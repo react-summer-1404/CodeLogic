@@ -1,8 +1,16 @@
 import axios from "axios";
+import {
+  getItem,
+  removeItem,
+  setItem,
+} from "../../utils/helper/storage.services";
 
-const API_BASE_URL = "https://sepehracademy.liara.run";
-const apiClient = axios.create({
-  baseURL: API_BASE_URL,
+import { toast } from "react-toastify";
+
+const baseURL = "https://sepehracademy.liara.run";
+
+const instance = new axios.create({
+  baseURL: baseURL,
 });
 
 const onSuccess = (response) => {
@@ -10,12 +18,26 @@ const onSuccess = (response) => {
 };
 
 const onError = (err) => {
-  return err.response.data;
+  if (err.response.status === 401 || err.response.status === 403) {
+    removeItem("token");
+    toast.error("لطفا ابتداوارد شوید");
+    setItem("isLogin", false);
+    removeItem("token");
+  }
+
+  if (err.response.status >= 400 && err.response.status < 500) {
+    console.log("Client error: " + err.response.status);
+  }
+
+  return Promise.reject(err);
 };
 
-apiClient.interceptors.request.use((config) => {
-  return config;
+instance.interceptors.response.use(onSuccess, onError);
+instance.interceptors.request.use((opt) => {
+  const token = getItem("token");
+  console.log("token:", token);
+  if (token) opt.headers.Authorization = "Bearer " + token;
+  return opt;
 });
-apiClient.interceptors.response.use(onSuccess, onError);
 
-export default apiClient;
+export default instance;

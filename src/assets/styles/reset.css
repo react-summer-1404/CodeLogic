@@ -1,6 +1,7 @@
 .courses__control {
   font-weight: 500 !important ;
-  width: 200px !important;
+
+  width: 200px;
   border: none !important;
   outline: none !important;
   border-radius: 28px !important;
@@ -44,13 +45,6 @@
 .courses__option--is-selected {
   background-color: #ffffff !important;
   color: #000000 !important;
-}
-
-.Toastify__toast--error {
-  font-family: "Estedad" !important;
-}
-.Toastify__toast--success {
-  font-family: "Estedad" !important;
 }
 
 @media (max-width: 1200px) {

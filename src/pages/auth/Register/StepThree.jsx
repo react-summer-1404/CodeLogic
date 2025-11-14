@@ -6,15 +6,49 @@ import { Field, Form, Formik } from "formik";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import regone from "../../../assets/Images/regone.svg";
 import { RegisterStepThree } from "../../../utils/Validations/RegisterVal/Register.validation";
+import TranslateButton from "../../../components/TranslateButton/TranslateButton";
+import sun from "../../../assets/Icons/A/sun.png";
+import moon from "../../../assets/Icons/A/moon.png";
+import { useSearchParams } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import RegisterStepThreeApi from "../../../core/services/api/post/registerStepThree";
+import { ClockLoader } from "react-spinners";
 
 const StepThree = () => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const gmail = searchParams.get("gmail");
+
+  const { mutate: registerUser, isLoading } = useMutation({
+    mutationFn: (payload) => RegisterStepThreeApi(payload),
+    onSuccess: (data) => {
+      if (data?.success) {
+        toast.success("ثبت‌ نام با موفقیت انجام شد");
+        navigate(`/Login`);
+      } else {
+        toast.error(data?.message);
+      }
+    },
+    onError: () => {
+      toast.error("خطا در انجام ثبت‌ نام");
+    },
+  });
+
+  const handleSubmit = (values) => {
+    registerUser({
+      gmail,
+      phoneNumber: values.phoneNumber,
+      password: values.password,
+    });
+  };
 
   const [initialValues] = useState({
-    email: "",
+    phoneNumber: "",
     password: "",
     confirmPassword: "",
   });
@@ -65,19 +99,19 @@ const StepThree = () => {
       animate="visible"
       variants={containerVariant}
       className={`flex justify-center items-center min-h-screen transition-colors duration-500 ${
-        darkMode ? "bg-gray-900" : "bg-[#EAEAEA]"
+        darkMode ? "bg-[#1e1e1e]" : "bg-[#EAEAEA]"
       }`}
     >
       <Formik
         initialValues={initialValues}
         validationSchema={RegisterStepThree}
-        onSubmit={(values) => console.log("Submitted:", values)}
+        onSubmit={handleSubmit}
       >
         {({ errors, touched }) => (
           <Form className="w-full flex justify-center">
             <div
               className={`flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] lg:h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
-                darkMode ? "bg-gray-800" : "bg-white"
+                darkMode ? "bg-[#333]" : "bg-white"
               }`}
             >
               <motion.div
@@ -88,7 +122,7 @@ const StepThree = () => {
               >
                 <div
                   className={`w-[95%] sm:w-[90%] md:w-[95%] h-auto lg:h-[95.67%] rounded-xl flex flex-col justify-center items-center mb-6 lg:mb-0 mr-0 lg:mr-2 relative transition-colors duration-500 ${
-                    darkMode ? "bg-gray-700" : "bg-[#EEFFFC]"
+                    darkMode ? "bg-[#454545]" : "bg-[#EEFFFC]"
                   }`}
                 >
                   <div
@@ -100,12 +134,7 @@ const StepThree = () => {
                     }`}
                   >
                     <div className="w-3 h-[90%] rounded-full transition-all duration-500 flex items-center">
-                      <img
-                        src={`${
-                          darkMode ? "./icons/sun.png" : "./icons/moon.png"
-                        }`}
-                        alt="theme icon"
-                      />
+                      <img src={`${darkMode ? sun : moon}`} alt="theme icon" />
                     </div>
                   </div>
 
@@ -137,22 +166,25 @@ const StepThree = () => {
                   initial="hidden"
                   animate="visible"
                 >
-                  <Link to="/RegisterStepTwo">
-                    <div className="mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
-                      <EastIcon
-                        className={`cursor-pointer ml-2 transition-colors duration-500 ${
-                          darkMode ? "text-gray-300" : "text-[#005B77]"
-                        }`}
-                      />
-                      <span
-                        className={`cursor-pointer font-bold transition-colors duration-500 ${
-                          darkMode ? "text-gray-300" : "text-[#005B77]"
-                        }`}
-                      >
-                        {t("registerStepThree.back")}
-                      </span>
-                    </div>
-                  </Link>
+                  <div className="  w-[65%] flex items-center justify-between mb-6 text-sm absolute top-4 sm:top-6 lg:top-10 right-4 sm:right-8 lg:right-30 flex items-center">
+                    <Link to="/RegisterStepTwo">
+                      <div>
+                        <EastIcon
+                          className={`cursor-pointer ml-2 transition-colors duration-500 ${
+                            darkMode ? "text-gray-300" : "text-[#005B77]"
+                          }`}
+                        />
+                        <span
+                          className={`cursor-pointer font-bold transition-colors duration-500 ${
+                            darkMode ? "text-gray-300" : "text-[#005B77]"
+                          }`}
+                        >
+                          {t("registerStepThree.back")}
+                        </span>
+                      </div>
+                    </Link>
+                    <TranslateButton />
+                  </div>
                 </motion.div>
 
                 <motion.h2
@@ -194,15 +226,15 @@ const StepThree = () => {
                   />
                   <Field
                     type="text"
-                    name="email"
+                    name="phoneNumber"
                     placeholder={t("registerStepThree.placeholder.email")}
                     className={`!mb-10 rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       darkMode
-                        ? "bg-gray-600 text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
+                        ? "bg-[#454545] text-gray-200 focus:ring-[#008C78] placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />
-                  {touched.email && errors.email && (
+                  {touched.phoneNumber && errors.phoneNumber && (
                     <div
                       className={` text-red-500 text-sm absolute  font-semibold text-center ${
                         i18n.language === "fa"
@@ -210,7 +242,7 @@ const StepThree = () => {
                           : "left-20 top-14"
                       }  `}
                     >
-                      {errors.email}
+                      {errors.phoneNumber}
                     </div>
                   )}
 
@@ -229,7 +261,7 @@ const StepThree = () => {
                     placeholder={t("registerStepThree.placeholder.password")}
                     className={`!mb-10 rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       darkMode
-                        ? "bg-gray-600 text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
+                        ? "bg-[#454545] text-gray-200 focus:ring-[#008C78] placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />
@@ -271,7 +303,7 @@ const StepThree = () => {
                     )}
                     className={`rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       darkMode
-                        ? "bg-gray-600 text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
+                        ? "bg-[#454545] text-gray-200 focus:ring-[#008C78] placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />
@@ -307,11 +339,18 @@ const StepThree = () => {
                       type="submit"
                       className={`text-center mt-4 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
                         darkMode
-                          ? "bg-yellow-400 text-gray-800 hover:bg-yellow-300"
+                          ? "bg-[#008C78] text-[white] hover:bg-[#008C78]"
                           : "bg-[#008C78] text-white hover:bg-[#007563]"
                       }`}
                     >
-                      {t("registerStepThree.submit")}
+                      {isLoading ? (
+                        <div className="flex items-center justify-center gap-3">
+                          <p>{t("registerStepOne.loading")} </p>
+                          <ClockLoader size={23} color="white" />
+                        </div>
+                      ) : (
+                        t("registerStepThree.submit")
+                      )}
                     </button>
                   </motion.div>
 
@@ -326,10 +365,10 @@ const StepThree = () => {
                     {t("registerStepThree.have_account")}{" "}
                     <span
                       className={`font-semibold cursor-pointer hover:underline transition-colors duration-500 ${
-                        darkMode ? "text-yellow-300" : "text-[#008C78]"
+                        darkMode ? "text-[#008C78]" : "text-[#008C78]"
                       }`}
                     >
-                      {t("registerStepThree.login")}
+                      <Link to="/login">{t("registerStepThree.login")}</Link>
                     </span>
                   </motion.p>
                 </motion.div>

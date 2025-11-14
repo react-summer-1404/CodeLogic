@@ -7,7 +7,6 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: Estedad;
-  font-size: 16px;
 }
 body.rtl {
   direction: rtl;
@@ -37,7 +36,30 @@ body.ltr {
   src: url("../../assets/Fonts/Estedad-Bold.woff2") format("woff2");
   font-weight: 700;
 }
-
+.font-toast {
+  font-family: Estedad !important;
+}
 @theme {
   --breakpoint-sa: 300px;
+}
+@layer utilities {
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+.dark .css-d3zrhx-MuiPaper-root-MuiDialog-paper {
+  background-color: #1e1e1e !important;
+}
+.dark .css-p0jfm2-control {
+  background-color: #333 !important;
+}
+.dark ::-webkit-scrollbar-track {
+  background-color: #1e1e1e !important;
+}
+.dark .css-1rme2r2-MuiPaper-root-MuiDialog-paper {
+  background-color: #1e1e1e !important;
 }
