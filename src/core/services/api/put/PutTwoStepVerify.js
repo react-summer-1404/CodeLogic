@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import http from "../../../interceptor/interceptor.js";
 export const PutTwoStepVerify = async (payload) => {
   try {
@@ -5,6 +6,8 @@ export const PutTwoStepVerify = async (payload) => {
     console.log(result);
     return result;
   } catch (err) {
-    console.log(err);
+    if (err.status === 400) {
+      toast.error("ابتدا ربات را با لینک استارت کنید");
+    }
   }
 };
