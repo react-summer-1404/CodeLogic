@@ -1,7 +1,7 @@
 import React from 'react'
-import BigArrowRight from '../../../assets/Icons/BigArrowRight'
-import BigArrowLeft from '../../../assets/Icons/BigArrowLeft'
-import Arrow from '../../../assets/Icons/Arrow'
+import BigArrowRight from '../../../../assets/Icons/BigArrowRight'
+import BigArrowLeft from '../../../../assets/Icons/BigArrowLeft'
+import Arrow from '../../../../assets/Icons/Arrow'
 import { useTranslation } from 'react-i18next'
 
 const ButtonsSeeMore = ({seeAllText, sliderRef}) => {
