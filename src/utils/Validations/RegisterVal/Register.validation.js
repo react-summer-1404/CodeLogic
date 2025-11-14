@@ -19,9 +19,11 @@ export const RegisterStepTwo = () =>
 
 export const RegisterStepThree = () =>
   Yup.object().shape({
-    email: Yup.string()
-      .email(i18n.t("registerStepThree.validation.email_invalid"))
-      .required(i18n.t("registerStepThree.validation.email_required")),
+    phoneNumber: Yup.string()
+      .required("شماره موبایل خود را وارد کنید *")
+      .test("phoneNumber", "شماره موبایل نامعتبر است * ", (value) =>
+        checkNumber(value)
+      ),
     password: Yup.string()
       .required(i18n.t("registerStepThree.validation.password_required"))
       .min(8, i18n.t("registerStepThree.validation.password_min"))

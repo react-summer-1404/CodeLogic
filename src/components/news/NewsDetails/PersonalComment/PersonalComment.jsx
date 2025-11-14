@@ -451,30 +451,32 @@ const PersonalComment = ({ newsId }) => {
             <PacmanLoader size={18} color="#848484" />
           </div>
         ) : (repliesResponse?.length ?? 0) > 0 ? (
-          repliesResponse.map((reply, index) => (
-            <AnswerComment
-              key={index}
-              commentId={reply.id}
-              parentId={selectedCommentId}
-              initialLikeCount={reply.likeCount}
-              initialDislikeCount={reply.dissLikeCount}
-              currentUserIsLike={reply.currentUserIsLike}
-              currentUserIsDissLike={reply.currentUserIsDissLike}
-              image={img1}
-              name={`User ${reply.userId}`}
-              date={
-                reply.inserDate
-                  ? new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    }).format(new Date(reply.inserDate))
-                  : ""
-              }
-              title={reply.title}
-              text={reply.describe}
-            />
-          ))
+          [...repliesResponse]
+            .sort((a, b) => new Date(b.inserDate) - new Date(a.inserDate))
+            .map((reply, index) => (
+              <AnswerComment
+                key={index}
+                commentId={reply.id}
+                parentId={selectedCommentId}
+                initialLikeCount={reply.likeCount}
+                initialDislikeCount={reply.dissLikeCount}
+                currentUserIsLike={reply.currentUserIsLike}
+                currentUserIsDissLike={reply.currentUserIsDissLike}
+                image={img1}
+                name={`User ${reply.userId}`}
+                date={
+                  reply.inserDate
+                    ? new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      }).format(new Date(reply.inserDate))
+                    : ""
+                }
+                title={reply.title}
+                text={reply.describe}
+              />
+            ))
         ) : (
           <div className="w-[500px]">
             <Lottie

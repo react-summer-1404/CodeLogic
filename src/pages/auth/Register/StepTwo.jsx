@@ -42,13 +42,18 @@ const StepTwo = () => {
     return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
   };
 
+  const handleSubmit = (values) => {
+    const finalCode = values.code.join("");
+    verifyCode({ gmail, verifyCode: finalCode });
+  };
+
   const { mutate: verifyCode, isPending } = useMutation({
     mutationKey: ["VERIFY_CODE"],
     mutationFn: (payload) => RegisterStepTwoApi(payload),
     onSettled: (data) => {
       if (data?.success) {
         toast.success(t("registerStepOne.verifysuc"));
-        navigate("/RegisterStepThree");
+        navigate(`/RegisterStepThree?gmail=${encodeURIComponent(gmail)}`);
       } else if (!data?.success) {
         toast.error("کد وارد شده اشتباه است");
       }
@@ -68,11 +73,6 @@ const StepTwo = () => {
       }
     },
   });
-  console.log("GMAIL PARAM:", gmail);
-  const handleSubmit = (values) => {
-    const finalCode = values.code.join("");
-    verifyCode({ gmail, verifyCode: finalCode });
-  };
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
 

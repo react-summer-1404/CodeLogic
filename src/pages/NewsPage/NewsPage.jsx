@@ -68,7 +68,7 @@ const NewsPage = () => {
         (news) => news.newsCatregoryName === selectedCategory
       );
 
-    if (searchQuery.trim())
+    if (searchQuery?.trim())
       result = result.filter((news) =>
         news.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
