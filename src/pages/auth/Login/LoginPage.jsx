@@ -38,6 +38,7 @@ const LoginPage = () => {
         toast.success(data.message);
         navigate(`/userPanel`);
       } else if (data.success && data.token === null) {
+        toast.success(data.message);
         navigate("/loginValidation");
       } else if (!data.success) {
         toast.error(data.message);
