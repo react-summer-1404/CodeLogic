@@ -35,9 +35,7 @@ const CourseDetail = () => {
       </div>
     );
   }
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+
 
   return (
     <div className="dark:bg-[#1E1E1E]">

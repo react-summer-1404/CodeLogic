@@ -62,8 +62,8 @@ const MyReservedCourses = () => {
             title4: t('myReservedCourses.title4'), justify4: 'justify-center', w4: 'w-54',
             title5: t('myReservedCourses.title5'), justify5: 'justify-center', w5: 'w-28'
           }}/>
-          <div>
-            <div className='flex flex-col max-h-66 overflow-y-scroll'> 
+          <div className='flex flex-col max-h-66 overflow-y-scroll'>
+            <div> 
               {myReservedCoursesData?.map((item , index) => {
                 return <MyReservedCourse item={item} key={index}/>
               })}
