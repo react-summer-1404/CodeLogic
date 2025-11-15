@@ -16,6 +16,7 @@ const CourseDetailMain = ({course}) => {
     localStorage.setItem('courseActiveTab', activeTab);
   }, [activeTab]);
 
+
   return (
     <div className='flex flex-col gap-4 
     md:w-[400px]
@@ -33,7 +34,7 @@ const CourseDetailMain = ({course}) => {
       {
         activeTab === 'comment' && (
           <>
-            <CourseComments/> 
+            <CourseComments course={course}/> 
           </>
         )
       }

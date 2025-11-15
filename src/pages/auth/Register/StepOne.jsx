@@ -11,11 +11,15 @@ import RegisterStepOne from "../../../core/services/api/post/registerStepOne";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import TranslateButton from "../../../components/TranslateButton/TranslateButton";
+import sun from "../../../assets/Icons/A/sun.png";
+import moon from "../../../assets/Icons/A/moon.png";
+import EmailIcon from "@mui/icons-material/Email";
+import { ClockLoader } from "react-spinners";
 
 const StepOne = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const [initialValues] = useState({ phoneNumber: "" });
+  const [initialValues] = useState({ email: "" });
   const [darkMode, setDarkMode] = useState(false);
   const [validationSchema, setValidationSchema] = useState(
     RegisterValidation()
@@ -25,15 +29,15 @@ const StepOne = () => {
     setValidationSchema(RegisterValidation());
   }, [i18n.language]);
 
-  const { mutate: postPhoneNumber, isPending } = useMutation({
-    mutationKey: ["SEND_PHONENUMBER"],
+  const { mutate: postGmail, isPending } = useMutation({
+    mutationKey: ["SEND_GMAIL"],
     mutationFn: (values) => RegisterStepOne(values),
     onSettled: (data, _, variables) => {
-      if (data.success) {
+      if (data?.success) {
         toast.success(data.message);
-        navigate(`/RegisterStepTwo?phoneNumber=${variables.phoneNumber}`);
-      } else if (!data.success) {
-        toast.error(data.message);
+        navigate(`/RegisterStepTwo?gmail=${variables.gmail}`);
+      } else if (!data?.success) {
+        toast.error(data?.message);
       }
     },
   });
@@ -81,7 +85,7 @@ const StepOne = () => {
       } `}
     >
       <Formik
-        onSubmit={(values) => postPhoneNumber(values)}
+        onSubmit={(values) => postGmail({ gmail: values.email })}
         initialValues={initialValues}
         validationSchema={validationSchema}
       >
@@ -111,12 +115,7 @@ const StepOne = () => {
                     }`}
                   >
                     <div className="w-3 h-[90%] rounded-full flex items-center">
-                      <img
-                        src={`${
-                          darkMode ? "/icons/sun.png" : "/icons/moon.png"
-                        }`}
-                        alt="theme icon"
-                      />
+                      <img src={darkMode ? sun : moon} alt="theme icon" />
                     </div>
                   </div>
 
@@ -157,7 +156,7 @@ const StepOne = () => {
                         : "left-4 sm:left-8 lg:left-30"
                     } flex items-center`}
                   >
-                    <div>
+                    <Link to="/">
                       <HomeIcon
                         className={`ml-2 transition-colors duration-500 ${
                           darkMode ? "text-gray-300" : "text-[#005B77]"
@@ -170,7 +169,7 @@ const StepOne = () => {
                       >
                         {t("registerStepOne.home")}
                       </span>
-                    </div>
+                    </Link>
                     <TranslateButton />
                   </div>
                 </motion.div>
@@ -203,7 +202,7 @@ const StepOne = () => {
                   animate="visible"
                   className="flex flex-col items-center relative"
                 >
-                  <PhoneIphoneIcon
+                  <EmailIcon
                     className={`absolute top-3 ${
                       i18n.language === "fa"
                         ? "right-4 sm:right-6 md:right-20"
@@ -215,16 +214,16 @@ const StepOne = () => {
 
                   <Field
                     type="text"
-                    name="phoneNumber"
-                    placeholder={t("registerStepOne.phone_placeholder")}
+                    name="email"
+                    placeholder={t("registerStepOne.gmail_placeholder")}
                     className={`rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
                       darkMode
-                        ? "bg-[#454545] text-gray-200 focus:ring-yellow-400 placeholder-gray-300"
+                        ? "bg-[#454545] text-gray-200 focus:ring-[#008C78] placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
                   />
 
-                  {touched.phoneNumber && errors.phoneNumber && (
+                  {touched.email && errors.email && (
                     <div
                       className={`text-red-500 text-sm absolute font-semibold ${
                         i18n.language === "fa"
@@ -232,7 +231,7 @@ const StepOne = () => {
                           : "left-20 top-14"
                       }`}
                     >
-                      {errors.phoneNumber}
+                      {errors.email}
                     </div>
                   )}
                 </motion.div>
@@ -248,13 +247,18 @@ const StepOne = () => {
                     type="submit"
                     className={`text-center mt-4 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
                       darkMode
-                        ? "bg-yellow-400 text-gray-800 hover:bg-yellow-300"
+                        ? "bg-[#008C78] text-[white] "
                         : "bg-[#008C78] text-white hover:bg-[#007563]"
                     }`}
                   >
-                    {isPending
-                      ? "درحال پردازش"
-                      : t("registerStepOne.send_code")}
+                    {isPending ? (
+                      <div className="flex items-center justify-center gap-3">
+                        <p>{t("registerStepOne.loading")} </p>
+                        <ClockLoader size={23} color="white" />
+                      </div>
+                    ) : (
+                      t("registerStepOne.send_code")
+                    )}
                   </button>
                 </motion.div>
 
@@ -269,10 +273,10 @@ const StepOne = () => {
                   {t("registerStepOne.have_account")}{" "}
                   <span
                     className={`font-semibold cursor-pointer hover:underline transition-colors duration-500 ${
-                      darkMode ? "text-yellow-300" : "text-[#008C78]"
+                      darkMode ? "text-[#008C78]" : "text-[#008C78]"
                     }`}
                   >
-                    {t("registerStepOne.login")}
+                    <Link to="/login">{t("registerStepOne.login")}</Link>
                   </span>
                 </motion.p>
               </div>

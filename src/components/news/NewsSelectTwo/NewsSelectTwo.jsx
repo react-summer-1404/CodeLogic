@@ -12,8 +12,9 @@ const NewsSelectTwo = ({ value, onChange }) => {
     () => [
       { value: "none", label: t("NewsSelectTwo.dataone"), isDisabled: true },
       { value: "3", label: "3" },
-      { value: "2", label: "2" },
       { value: "4", label: "4" },
+      { value: "6", label: "6" },
+      { value: "12", label: "12" },
     ],
     [i18n.language, t]
   );
@@ -40,7 +41,7 @@ const NewsSelectTwo = ({ value, onChange }) => {
       ...base,
       borderRadius: "0.5rem",
       boxShadow: "0 0 6px rgba(0,0,0,0.05)",
-      zIndex: 10,
+      zIndex: 100,
     }),
     option: (base, state) => ({
       ...base,

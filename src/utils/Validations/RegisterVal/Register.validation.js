@@ -4,13 +4,9 @@ import i18n from "../../i18n/i18n.js";
 
 export const RegisterValidation = () => {
   return Yup.object().shape({
-    phoneNumber: Yup.string()
-      .required(() => i18n.t("registerStepOne.validation.required"))
-      .test(
-        "phoneNumber",
-        () => i18n.t("registerStepOne.validation.invalid"),
-        (value) => checkNumber(value)
-      ),
+    email: Yup.string()
+      .email(i18n.t("registerStepOne.validation.invalid"))
+      .required(i18n.t("registerStepOne.validation.required")),
   });
 };
 
@@ -23,9 +19,11 @@ export const RegisterStepTwo = () =>
 
 export const RegisterStepThree = () =>
   Yup.object().shape({
-    email: Yup.string()
-      .email(i18n.t("registerStepThree.validation.email_invalid"))
-      .required(i18n.t("registerStepThree.validation.email_required")),
+    phoneNumber: Yup.string()
+      .required("شماره موبایل خود را وارد کنید *")
+      .test("phoneNumber", "شماره موبایل نامعتبر است * ", (value) =>
+        checkNumber(value)
+      ),
     password: Yup.string()
       .required(i18n.t("registerStepThree.validation.password_required"))
       .min(8, i18n.t("registerStepThree.validation.password_min"))

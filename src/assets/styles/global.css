@@ -36,7 +36,9 @@ body.ltr {
   src: url("../../assets/Fonts/Estedad-Bold.woff2") format("woff2");
   font-weight: 700;
 }
-
+.font-toast {
+  font-family: Estedad !important;
+}
 @theme {
   --breakpoint-sa: 300px;
 }
@@ -56,5 +58,8 @@ body.ltr {
   background-color: #333 !important;
 }
 .dark ::-webkit-scrollbar-track {
+  background-color: #1e1e1e !important;
+}
+.dark .css-1rme2r2-MuiPaper-root-MuiDialog-paper {
   background-color: #1e1e1e !important;
 }

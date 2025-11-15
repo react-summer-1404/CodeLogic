@@ -1,14 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Calendar from '../../../assets/Icons/Calendar'
 import Clock from '../../../assets/Icons/Clock'
 import Users from '../../../assets/Icons/Users'
 import { useTranslation } from 'react-i18next'
+import {reserveCourses} from '../../../core/services/api/post/reserveCourses'
+import {deleteReserveCourses} from '../../../core/services/api/delete/deleteReserveCourses'
+import { toast } from 'react-toastify'
 
 
 const CourseInfo = ({course}) => {
 
     const { t, i18n } = useTranslation();
     const isRtl = i18n.language === 'fa';
+
+    const [isReserve , setIsReserve] = useState(
+        localStorage.getItem(course.courseId) === 'true'
+    )
+    const toggleReserveCourses = () => {
+        if(isReserve){
+            deleteReserveCourses(course.courseId)
+            toast.success(t('courseInfo.removeSuccessToast'))
+        }
+        else{
+            reserveCourses(course.courseId);
+            toast.success(t('courseInfo.reserveSuccessToast'))
+        }
+        const newState = !isReserve;
+        setIsReserve(newState);
+        localStorage.setItem(course.courseId, newState);
+    }
+
 
     return (
         <div className='flex flex-col gap-12 w-[320px] p-4 bg-[#FFFFFF] rounded-[25px] shadow-[0_0_10px_rgba(0,0,0,0.15)]
@@ -67,7 +88,14 @@ const CourseInfo = ({course}) => {
                         </div>
                     </div>
                 </div>
-                <button className='py-4 px-24 font-regular text-[18px] text-[#FFFFFF] bg-[#24D0B7] rounded-[20px]'>{t('courseInfo.reserveBtn')}</button>
+                <button 
+                onClick={toggleReserveCourses}
+                className={`py-4 px-24 font-regular text-[18px] text-[#FFFFFF] rounded-[20px] cursor-pointer
+                ${isReserve ? 'bg-[#CC0000]   dark:bg-[#FF0000]' : 'bg-[#24D0B7]'} `}>
+                    {
+                        isReserve ? t('courseInfo.deleteReserveBtn') : t('courseInfo.reserveBtn')
+                    }
+                </button>
             </div>
         </div>
     )

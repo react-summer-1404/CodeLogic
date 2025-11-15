@@ -5,17 +5,15 @@ import Arrow from '../../../assets/Icons/Arrow'
 import { useTranslation } from 'react-i18next';
 
 
-const PriceFilter = () => {
+const PriceFilter = ({handleSetPrice}) => {
 
     const {t} = useTranslation(); 
 
     const [isOpen, setIsOpen] = useState();
 
-    function valuetext(value) {
-        return `${value}°C`;
-    }
-    const [value, setValue] = React.useState([20, 37]);
+    const [value, setValue] = useState([0, 10000]);
     const priceChange = (event, newValue) => {
+        handleSetPrice(newValue);
         setValue(newValue);
     };
 
@@ -25,7 +23,7 @@ const PriceFilter = () => {
         md:w-[284px]'>
             <div onClick={() => {setIsOpen(!isOpen)}} className='flex justify-between items-center w-full
             dark:text-[#DDDDDD]'>
-                <span className='font-bo ld text-[18px] text-[#1E1E1E]   dark:text-[#DDDDDD]'>{t('priceFilter.title')}</span>
+                <span className='font-bold text-[18px] text-[#1E1E1E]   dark:text-[#DDDDDD]'>{t('priceFilter.title')}</span>
                 <button className={`${isOpen ? 'rotate-90' : 'rotate-270'}`}>
                     <Arrow/>
                 </button>
@@ -37,9 +35,9 @@ const PriceFilter = () => {
                         value={value}
                         onChange={priceChange}
                         valueLabelDisplay="auto"
-                        getAriaValueText={valuetext}
                         min={0}
-                        max={10000000}
+                        max={10000}
+                        step={1000}
                         sx={{
                             color: '#008C78', 
                             '& .MuiSlider-thumb': {

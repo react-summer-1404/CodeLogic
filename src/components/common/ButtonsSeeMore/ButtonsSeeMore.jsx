@@ -28,7 +28,7 @@ const ButtonsSeeMore = ({seeAllText, sliderRef}) => {
           <BigArrowLeft/>
         </button>
       </div>
-      <button className='flex items-center gap-2'>
+      <button className='flex items-center gap-2 cursor-pointer'>
         <span className='font-regular text-sm text-[#848484]'>{seeAllText}</span> 
         <span className={`${isRtl ? '' : 'rotate-180'}`}>
           <Arrow/>
