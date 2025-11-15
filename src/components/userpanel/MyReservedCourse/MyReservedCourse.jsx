@@ -34,9 +34,10 @@ const MyReservedCourse = ({item}) => {
       variants={Animate}
       initial="hidden"
       animate="visible"
-      className='flex flex-col items-center py-[14px] border-t border-b border-[#EAEAEA]
-      md:flex md:flex-row'>
-        <div className='flex items-center gap-4 w-64'>
+      className='flex flex-col items-center gap-6 w-full py-[14px] bg-[#CCCCCC] border-t border-b border-[#EAEAEA] rounded-xl
+      md:flex-row md:bg-[#FFFFFF] md:rounded-none'>
+        <div className='flex flex-col items-center gap-4 w-64
+        md:flex-row'>
           <img src={item.image} className='w-7 h-7 rounded-[48px]'/>
           <div>
             <span className={textClass}>{item.courseName}</span>

@@ -3,6 +3,7 @@ import CourseListSide from "../../components/course/CourseListSide/CourseListSid
 import CourseListMain from "../../components/course/CourseListMain/CourseListMain";
 import CourseListSkeleton from '../../components/common/skeleton/CourseListSkeleton/CourseListSkeleton'
 import GetAllCourses from "../../core/services/api/Get/GetAllCourses";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "react-router-dom";
@@ -94,10 +95,13 @@ const CourseList = () => {
 
   return (
     <div className="flex flex-col items-center w-full   dark:bg-[#1E1E1E]">
-      <div
-        className="flex flex-col items-center gap-2 pt-10
-      md:flex md:flex-row"
-      >
+      <div className="flex gap-1 text-[#008C78] pt-10 font-regular text-sm">
+        <Link to={'/'}>صفحه اصلی</Link>
+        {'>'}
+        <span to={'/courseList'}>صفحه دوره ها</span>
+      </div>
+      <div className="flex flex-col items-center gap-2 pt-4
+      md:flex md:flex-row">
         <h2 className="font-bold text-[32px] text-[#1E1E1E]   dark:text-[#EEEEEE]">
           {t("courseList.title")}
         </h2>

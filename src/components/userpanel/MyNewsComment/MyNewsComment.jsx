@@ -40,23 +40,27 @@ const MyNewsComment = ({item}) => {
         variants={Animate}
         initial="hidden"
         animate="visible"
-        className='flex items-center py-[14px] border-t border-b border-[#EAEAEA]'>
-            <div className='w-60'>
+        className='flex flex-col items-center gap-6 py-[14px] bg-[#CCCCCC] border-t border-b border-[#EAEAEA] rounded-xl
+        md:flex-row md:bg-[#FFFFFF] md:rounded-none'>
+            <div className='md:w-60'>
                 <span className={textClass}>آموزش ری اکت</span>
             </div>
-            <div className='w-52'>
+            <div className='md:w-52'>
                 <span className={textClass}>{item.title}</span>
             </div>
-            <div className='w-52'>
+            <div className='md:w-52'>
                 <span className={textClass}>{item.describe}</span>
             </div>
-            <div className='flex justify-center w-28'>
+            <div className='flex justify-center 
+            md:w-28'>
                 <span className='py-[2px] px-[12px] font-regular text-base text-[#008C78] bg-[#EEFFFC] rounded-lg'>تایید شده</span>
             </div>
-            <div className='flex justify-center w-30'>
+            <div className='flex justify-center 
+            md:w-30'>
                 <span className={textClass}>{item.inserDate.slice(0,10)}</span>
             </div>
-            <div className='flex justify-center gap-4 w-24'>
+            <div className='flex justify-center gap-4 
+            md:w-24'>
                 <span onClick={() =>{handleToggleModal(true)}} className='cursor-pointer'>
                     <Eye/>
                 </span>

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import CourseCardView1 from '../../common/CourseCardView1/CourseCardView1'
-import CourseCardView2 from '../../common/CourseCardView1/CourseCardView1'
+import CourseCardView2 from '../../common/CourseCardView2/CourseCardView2'
 import SortView from '../SortView/SortView'
 import { addFavoriteCourses } from '../../../core/services/api/post/addFavoriteCourses'
 import { deleteFavCourses } from '../../../core/services/api/delete/deleteFavCourses'
@@ -58,7 +58,7 @@ const CourseListMain = ({ coursesData, isLoading, currentPage, setCurrentPage, s
   return (
     <div className='flex flex-col gap-8 w-full'>
       <SortView onViewChange={handleViewChange} currentView={currentView} currentPageSize={pageSize}
-        onPageSizeChange={handlePageSizeChange} setSortingCol={setSortingCol} />
+      onPageSizeChange={handlePageSizeChange} setSortingCol={setSortingCol} />
       <div className='flex flex-row flex-wrap gap-y-8 gap-x-4'>
         {
           coursesData?.courseFilterDtos?.map((item, index) => {

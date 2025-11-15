@@ -47,8 +47,9 @@ const UserPanelSearch = ({width , handleSearch}) => {
                 exit="exit"
                 placeholder={t('userPanelSearch.placeholder')}
                 onChange={handleChange} 
-                className={`${width} h-12 indent-[16px] font-regular text-base text-[#848484] bg-[#FFFFFF] border border-[#EAEAEA] 
-                rounded-2xl outline-0   dark:text-[#CCCCCC] dark:bg-[#454545]`}/>
+                className={`w-48 h-12 indent-[16px] font-regular text-base text-[#848484] bg-[#FFFFFF] border border-[#EAEAEA] 
+                rounded-2xl outline-0   dark:text-[#CCCCCC] dark:bg-[#454545]
+                ${width}`}/>
                 <span className={`text-[#848484] absolute top-4 ${isRtl ? 'left-4' : 'right-4'}   dark:text-[#CCCCCC]`}>
                     <Search/>
                 </span>
