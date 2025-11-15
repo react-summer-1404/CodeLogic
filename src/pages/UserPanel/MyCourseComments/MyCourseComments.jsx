@@ -4,14 +4,14 @@ import UserPanelSearch from '../../../components/common/UserPanelSearch/UserPane
 import UserPanelFilter from '../../../components/common/UserPanelFilter/UserPanelFilter'
 import UserPanelTitle from '../../../components/common/UserPanelTitle/UserPanelTitle'
 import UserPanelShowNumber from '../../../components/common/UserPanelShowNumber/UserPanelShowNumber'
-import MyCoursesComment from '../../../components/userPanel/MyCoursesComment/MyCoursesComment'
+import MyCourseComment from '../../../components/userPanel/MyCourseComment/MyCourseComment'
 import myCoursesComments from '../../../core/services/api/get/MyCoursesComments'
 import ReactPaginate from 'react-paginate'
 import { t } from 'i18next'
 
 
 
-const MyCoursesComments = () => {
+const MyCourseComments = () => {
 
   const [searchQuery , setSearchQuery] = useState('');
   const handleSearch = (searchTerm) => {
@@ -37,18 +37,18 @@ const MyCoursesComments = () => {
         <div className='flex flex-col gap-4'>
           <UserPanelTitle 
           titleData={{
-            title1: t('myCoursesComments.title1'), justify1:'justify-start', w1: 'w-60',
-            title2: t('myCoursesComments.title2'), justify2: 'justify-start', w2: 'w-52',
-            title3: t('myCoursesComments.title3'), justify3: 'justify-start', w3: 'w-52',
-            title4: t('myCoursesComments.title4'), justify4: 'justify-center', w4: 'w-28',
-            title5: t('myCoursesComments.title5'), justify5: 'justify-center', w5: 'w-30',
-            title6: t('myCoursesComments.title6'), justify6: 'justify-center', w6: 'w-24',
+            title1: t('myCourseComments.title1'), justify1:'justify-start', w1: 'w-60',
+            title2: t('myCourseComments.title2'), justify2: 'justify-start', w2: 'w-52',
+            title3: t('myCourseComments.title3'), justify3: 'justify-start', w3: 'w-52',
+            title4: t('myCourseComments.title4'), justify4: 'justify-center', w4: 'w-28',
+            title5: t('myCourseComments.title5'), justify5: 'justify-center', w5: 'w-30',
+            title6: t('myCourseComments.title6'), justify6: 'justify-center', w6: 'w-24',
           }}/>
           <div className='flex flex-col max-h-66 overflow-y-scroll'>
             <div>
               {
                 myCoursesCommentsData?.myCommentsDtos?.map((item , index) => {
-                  return <MyCoursesComment item={item} key={index}/>
+                  return <MyCourseComment item={item} key={index}/>
                 })
               }  
             </div>
@@ -79,4 +79,4 @@ const MyCoursesComments = () => {
   )
 }
 
-export default MyCoursesComments
+export default MyCourseComments

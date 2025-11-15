@@ -244,15 +244,15 @@ const PanelRight = ({ isMobileMenu }) => {
                 >
                   <CircleOutlinedIcon
                     className={`text-[18px] md:text-[20px] ${
-                      isActive("/userPanel/myCoursesComments")
+                      isActive("/userPanel/myCourseComments")
                         ? "text-[#008C78] !text-[24px] md:!text-[26px]"
                         : "text-[#848484]"
                     }`}
                   />
                   <Link
-                    to={"/userPanel/myCoursesComments"}
+                    to={"/userPanel/myCourseComments"}
                     className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
-                      isActive("/userPanel/myCoursesComments")
+                      isActive("/userPanel/myCourseComments")
                         ? "text-[#1e1e1e] font-semibold dark:text-[white]"
                         : "text-[#848484]"
                     } ${isRtl ? "" : "ml-2"}`}
