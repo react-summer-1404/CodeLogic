@@ -5,10 +5,11 @@ import Star from '../../../../assets/Icons/Star'
 import Heart from '../../../../assets/Icons/Heart'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom' 
+import CourseCardView1Skeleton from '../../skeleton/CourseCardSkeletonView1/CourseCardSkeletonView1'
 
 
 
-const CourseCardView1 = ({ item , handleToggleFavorite}) => {
+const CourseCardView1 = ({ item , handleToggleFavorite, isLoading}) => {
 
     const {t} = useTranslation();
 
@@ -16,6 +17,10 @@ const CourseCardView1 = ({ item , handleToggleFavorite}) => {
     const onToggleFavorite = () => {
         handleToggleFavorite(item.courseId)
         setIsFavorite(!isFavorite)
+    }
+
+    if(isLoading){
+        return <CourseCardView1Skeleton/>
     }
 
     return (

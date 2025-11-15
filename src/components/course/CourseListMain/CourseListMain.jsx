@@ -62,7 +62,7 @@ const CourseListMain = ({ coursesData, isLoading, currentPage, setCurrentPage, s
       <div className='flex flex-row flex-wrap gap-y-8 gap-x-4'>
         {
           coursesData?.courseFilterDtos?.map((item, index) => {
-            return <CourseCardComponent item={item} key={index} handleToggleFavorite={handleToggleFavorite}/>
+            return <CourseCardComponent item={item} key={index} handleToggleFavorite={handleToggleFavorite} isLoading={isLoading}/>
           })
         }
       </div>

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import CourseListSide from "../../components/course/CourseListSide/CourseListSide";
 import CourseListMain from "../../components/course/CourseListMain/CourseListMain";
+import CourseListSkeleton from '../../components/common/skeleton/CourseListSkeleton/CourseListSkeleton'
+import GetAllCourses from "../../core/services/api/Get/GetAllCourses";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
-import GetAllCourses from "../../core/services/api/Get/GetAllCourses";
 import { useLocation } from "react-router-dom";
 
 const DEFAULT_SORT_TYPE = "DESC";
@@ -85,6 +86,10 @@ const CourseList = () => {
     setSearchQuery(search);
   }, [location.search]);
 
+
+  if(isLoading){
+    return <CourseListSkeleton/>
+  }
 
 
   return (

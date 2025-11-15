@@ -9,9 +9,11 @@ import JoinTeachers from "../../components/landing/JoinTeachers/JoinTeachers";
 import NewsListSection from "../../components/landing/NewsListSection/NewsListSection";
 
 const Landing = () => {
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <div className="bg-[#F3F4F6]   dark:bg-[#1E1E1E]">
       <HeroSection />

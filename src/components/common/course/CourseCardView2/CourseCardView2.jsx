@@ -5,10 +5,11 @@ import Heart from '../../../../assets/Icons/Heart'
 import Level from '../../../../assets/Icons/Level'
 import Star from '../../../../assets/Icons/Star'
 import Teacher from '../../../../assets/Icons/Teacher'
+import CourseCardView2Skeleton from '../../skeleton/CourseCardSkeletonView2/CourseCardSkeletonView2'
 
 
 
-const CourseCardView2 = ({ item, handleToggleFavorite}) => {
+const CourseCardView2 = ({ item, handleToggleFavorite, isLoading}) => {
 
     const { t } = useTranslation();
 
@@ -18,6 +19,9 @@ const CourseCardView2 = ({ item, handleToggleFavorite}) => {
         setIsFavorite(!isFavorite)
     }
     
+    if(isLoading){
+        return <CourseCardView2Skeleton/>
+    }
 
     return (
         <div className='hidden flex flex-shrink-0 gap-8 w-[640px] p-4 bg-[#FFFFFF] rounded-[20px] relative   dark:bg-[#606060]
