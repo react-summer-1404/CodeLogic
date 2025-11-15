@@ -7,8 +7,8 @@
     "search_placeholder": "Search...",
     "select_placeholder": "Select...",
     "login": "Login / Register",
-    "userpanel" : "User Panel",
-    "notfound" : "No Results Found"
+    "userpanel": "User Panel",
+    "notfound": "No Results Found"
   },
   "heroSection": {
     "title1": "Learning programming with experienced teachers,",
@@ -121,10 +121,10 @@
     "send_code": "Send OTP",
     "have_account": "Already have an account?",
     "login": "Login",
-    "loading" : "Processing",
-    "verifysuc" : "Your code has been confirmed",
-    "resendcode" : "Resend Code",
-    "sending" : "Sending..."
+    "loading": "Processing",
+    "verifysuc": "Your code has been confirmed",
+    "resendcode": "Resend Code",
+    "sending": "Sending..."
   },
   "registerStepTwo": {
     "validation": {
@@ -213,7 +213,7 @@
     "removeSuccessToast": "The desired course was successfully deleted"
   },
   "userSatisfaction": {
-    "title": "User Satisfaction", 
+    "title": "User Satisfaction",
     "score": "score",
     "successToast": "Your score has been recorded",
     "errorToast": "Error sending score",
@@ -271,9 +271,9 @@
     "results": " results",
     "searchPlaceholder": "Search...",
     "sortBy": "Sort by:",
-    "emptyres" : "No news found",
-    "addfavotitesuc" : "The requested news was added ",
-    "addfavotiteerr" : "You have already added this news"
+    "emptyres": "No news found",
+    "addfavotitesuc": "The requested news was added ",
+    "addfavotiteerr": "You have already added this news"
   },
   "categoryFilter": {
     "title": "Categories",
@@ -360,8 +360,8 @@
       "titlePlaceholder": "Write the title of your comment",
       "textLabel": "Comment Text",
       "textPlaceholder": "Write your comment text",
-      "toastsuc" : "Your feedback has been recorded",
-      "toasterr" : "Error in operation"
+      "toastsuc": "Your feedback has been recorded",
+      "toasterr": "Error in operation"
     }
   },
   "personalComment": {
@@ -377,20 +377,18 @@
       "replyButton": "Reply",
       "answer": "answer",
       "closeReply": "Close Replies",
-      "noComments" : "There are no comments"
-
+      "noComments": "There are no comments"
     },
     "replyForm": {
       "titlePlaceholder": "Write your reply title",
       "textPlaceholder": "Write your reply text",
-      "reply" : "Send Message",
-      "toastsuc" : "Response submitted successfully",
-      "toasterr" : "Failed to submit response"
-
+      "reply": "Send Message",
+      "toastsuc": "Response submitted successfully",
+      "toasterr": "Failed to submit response"
     }
   },
   "answerComment": {
-    "loading" : "Processing...",
+    "loading": "Processing...",
     "comment1": {
       "name": "Edward Johnson",
       "date": "June 3, 2025",
@@ -587,7 +585,10 @@
     "my_favorite_news": "My favorite news   ",
     "security_setting": "Security setting ",
     "logout": " Log out ",
-    "general": "General"
+    "general": "General",
+    "logOut": "Are you sure for logging out ?",
+    "yes": "Yes",
+    "back": "Back"
   },
   "panelheader": {
     "name": "matin ghorbanzade"

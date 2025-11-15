@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import img1 from "../../assets/Images/PanelRight.png";
 import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -15,6 +15,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { getItem, removeItem } from "../../utils/helper/storage.services";
+import { toast } from "react-toastify";
 
 const containerVariants = {
   initial: { opacity: 0, x: 50 },
@@ -60,13 +62,14 @@ const subMenuItemVariants = {
 const PanelRight = ({ isMobileMenu }) => {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "fa";
-
+  const [openLogoutModal, setOpenLogoutModal] = useState(false);
+  const navigate = useNavigate();
   const location = useLocation();
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
   const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
 
   const isActive = (path) => location.pathname === path;
-
+  const token = getItem("token");
   const visibilityClasses = isMobileMenu
     ? "w-full h-full"
     : "hidden md:flex md:w-[28%] lg:w-[22.37%]";
@@ -395,7 +398,11 @@ const PanelRight = ({ isMobileMenu }) => {
           </span>
         </motion.div>
 
-        <motion.div className="flex items-center" variants={itemVariants}>
+        <motion.div
+          className="flex items-center cursor-pointer"
+          variants={itemVariants}
+          onClick={() => setOpenLogoutModal(true)}
+        >
           <LogoutIcon className="text-[18px] md:text-[20px] text-[#848484]" />
           <span
             className={`text-[15px] md:text-[17px] lg:text-[18px] cursor-pointer text-[#848484] mr-2 ${
@@ -406,6 +413,75 @@ const PanelRight = ({ isMobileMenu }) => {
           </span>
         </motion.div>
       </div>
+      {openLogoutModal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={() => {
+            setOpenLogoutModal(false);
+          }}
+          className=" fixed inset-0 bg-black/50 backdrop-blur flex justify-center items-center z-20 "
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5, y: -100 }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              transition: {
+                type: "spring",
+                stiffness: 220,
+                damping: 18,
+                mass: 0.8,
+              },
+            }}
+            exit={{
+              opacity: 0,
+              scale: 0.7,
+              y: 40,
+              transition: {
+                type: "spring",
+                stiffness: 180,
+                damping: 20,
+              },
+            }}
+            className=" w-[30%] h-[25%] bg-[#eee] rounded-3xl flex
+                  flex-col justify-center mt-3 gap-10 items-center p-4 dark:text-white dark:bg-[#333] "
+          >
+            <h2 className="font-bold">{t("panelside.logOut")}</h2>
+            <div className="flex items-center gap-5 justify-between">
+              <motion.button
+                whileHover={{
+                  scale: 1.1,
+                  boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+                }}
+                transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  if (token) {
+                    removeItem("token");
+                    toast.success(" با موفقیت از حساب کاربری خود خارج شدید");
+                    navigate("/");
+                    setOpenLogoutModal(false);
+                  } else {
+                    toast.error("ابتدا وارد شوید");
+                    navigate("/login");
+                    setOpenLogoutModal(false);
+                  }
+                }}
+                className=" cursor-pointer bg-[#008C78] text-white rounded-2xl py-2 px-4"
+              >
+                {t("panelside.yes")}
+              </motion.button>
+              <button className=" cursor-pointer dark:border dark:border-[#EAEAEA] dark:text-white px-3 py-2 rounded-2xl">
+                {t("panelside.back")}
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </motion.div>
   );
 };

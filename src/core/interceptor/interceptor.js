@@ -19,7 +19,6 @@ const onSuccess = (response) => {
 
 const onError = (err) => {
   if (err.response.status === 401 || err.response.status === 403) {
-    removeItem("token");
     toast.error("لطفا ابتداوارد شوید");
     setItem("isLogin", false);
     removeItem("token");
