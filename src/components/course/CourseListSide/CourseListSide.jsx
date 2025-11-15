@@ -31,7 +31,6 @@ handleSetPrice}) => {
       item2={t('sideDropDown.title3Item2')} item3={'sideDropDown.title3Item3'} 
       handleSetTechnologies={handleSetTechnologies}/>
       <PriceFilter handleSetPrice={handleSetPrice}/>
-
     </div>
   )
 }

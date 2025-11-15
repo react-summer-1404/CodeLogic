@@ -28,9 +28,9 @@ const MyCourseComments = () => {
 
 
   return (
-    <div className='flex flex-col gap-10 h-[85%] p-8 bg-[#F3F4F6] rounded-4xl   dark:bg-[#333333]'>
+    <div className='flex flex-col gap-10 h-[84%] mt-4 p-8 bg-[#F3F4F6] rounded-4xl   dark:bg-[#333333]'>
       <div className='flex justify-between items-center'>
-        <UserPanelSearch width={'w-[439px]'} handleSearch={handleSearch}/>  
+        <UserPanelSearch width={'md:w-[320px]'} handleSearch={handleSearch}/>  
         <UserPanelFilter/>
       </div>
       <div className='flex flex-col justify-between h-[440px] p-6 bg-[#FFFFFF] rounded-2xl   dark:bg-[#454545]'>
@@ -44,8 +44,10 @@ const MyCourseComments = () => {
             title5: t('myCourseComments.title5'), justify5: 'justify-center', w5: 'w-30',
             title6: t('myCourseComments.title6'), justify6: 'justify-center', w6: 'w-24',
           }}/>
-          <div className='flex flex-col max-h-66 overflow-y-scroll'>
-            <div>
+          <div className='max-h-32 overflow-y-scroll
+          lg:max-h-64'>
+            <div className='flex flex-col gap-4
+            md:gap-0'>
               {
                 myCoursesCommentsData?.myCommentsDtos?.map((item , index) => {
                   return <MyCourseComment item={item} key={index}/>

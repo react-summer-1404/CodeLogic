@@ -5,6 +5,8 @@ import greenBasket from "../../../../assets/Icons/A/greenBasket.png";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { deleteFavCourses } from "../../../../core/services/api/delete/deleteFavCourses";
+
+
 const FavoriteCourse = ({ items, deleteItem, getOverViewData }) => {
   /// fake data ///
   const mode = ["انلاین", "حضوری"];
