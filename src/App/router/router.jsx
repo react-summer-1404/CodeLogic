@@ -14,26 +14,23 @@ import ForgotPasswordStepTwo from "../../pages/auth/forgotPassword/ForgotPasswor
 import CourseDetail from "../../pages/CourseDetail/CourseDetail";
 import TeachersPage from "../../pages/Teachers/TeachersPage/TeachersPage";
 import TeachersDetail from "../../pages/Teachers/TeachersDetail/TeachersDetail";
-import Panel from "../../pages/UserPanel/Panel";
-import PanelDashboard from "../../pages/UserPanel/PanelDashboard";
-import PanelUserInfo from "../../pages/UserPanel/PanelUserInfo";
+import Panel from "../../pages/UserPanel/UserPanel";
+import PanelDashboard from "../../pages/UserPanel/UserPanelDashboard";
+import PanelUserInfo from "../../pages/UserPanel/UserPanelUserInfo";
 import MyCourses from "../../pages/UserPanel/MyCourses/MyCourses";
 import MyReservedCourses from "../../pages/UserPanel/MyReservedCourses/MyReservedCourses";
-import MyCoursesComments from "../../pages/UserPanel/MyCoursesComments/MyCoursesComments";
+import MyCourseComments from "../../pages/UserPanel/MyCourseComments/MyCourseComments";
 import MyNewsComments from "../../pages/UserPanel/MyNewsComments/MyNewsComments";
 import CoursesPayment from "../../pages/UserPanel/CoursesPayment/CoursesPayment";
 import FavoriteNews from "../../pages/UserPanel/FavoriteNews/FavoriteNews";
 import FavoriteCourses from "../../pages/UserPanel/FavoriteCourses/FavoriteCourses";
 import SecuritySettings from "../../pages/UserPanel/securitySettings/SecuritySettings";
 import NewsPage from "../../pages/NewsPage/NewsPage";
-import ContactUs from "../../pages/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
   {
     path: "/",
-
     element: <Layout />,
-
     children: [
       { index: true, element: <Landing /> },
       { path: "/courseList", element: <CourseList /> },
@@ -42,7 +39,6 @@ const router = createBrowserRouter([
       { path: "/teachers", element: <TeachersPage /> },
       { path: "/teacher/:id", element: <TeachersDetail /> },
       { path: "/news/:id", element: <NewsDetails /> },
-      { path: "/contactUs", element: <ContactUs /> },
     ],
   },
   {
@@ -53,7 +49,7 @@ const router = createBrowserRouter([
       { path: "userInfo", element: <PanelUserInfo /> },
       { path: "myCourses", element: <MyCourses /> },
       { path: "myReservedCourses", element: <MyReservedCourses /> },
-      { path: "myCoursesComments", element: <MyCoursesComments /> },
+      { path: "myCourseComments", element: <MyCourseComments /> },
       { path: "myNewsComments", element: <MyNewsComments /> },
       { path: "coursesPayments", element: <CoursesPayment /> },
       { path: "favoriteNews", element: <FavoriteNews /> },

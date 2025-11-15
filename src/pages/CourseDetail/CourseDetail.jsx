@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import GetAllCourses from "../../core/services/api/Get/GetAllCourses";
+import CourseDetailSkeleton from "../../components/common/skeleton/CourseDetailSkeleton/CourseDetailSkeleton";
 
 const CourseDetail = () => {
   const { t } = useTranslation();
@@ -18,9 +19,7 @@ const CourseDetail = () => {
 
   if (isLoading) {
     return (
-      <div className="p-10 text-center dark:text-[#EEEEEE]">
-        {t("در حال بارگذاری...")}
-      </div>
+      <CourseDetailSkeleton/>
     );
   }
 

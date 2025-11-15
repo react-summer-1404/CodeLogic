@@ -242,6 +242,12 @@
   "courseComments": {
     "title": "همه ی نظرات"
   },
+  "courseComment": {
+    "likeSuccessToast": "شما این نظر را لایک کردید",
+    "removeLikeSuccessToast": "لایک شما حذف شد",
+    "disLikeSuccessToast": "شما این نظر را دیسلایک کردید",
+    "removeDisLikeSuccessToast": "دیسلایک شما حذف شد"
+  },
   "courseCommentForm": {
     "titleInputsTitle": "عنوان دیدگاه",
     "titleInputsPlcholder": "عنوان دیدگاه خود را بنویسید",
@@ -642,7 +648,7 @@
     },
     "modal": {
       "confirm": "تایید عکس",
-      "cancel": "انصراف"
+      "Delete": "حذف عکس"
     },
     "location": {
       "adress": " آدرس کامل",
@@ -686,7 +692,13 @@
     "reserved": "رزرو شده",
     "await": "در انتظار تایید"
   },
-  "myCoursesComments": {
+  "reservedCourseModal": {
+    "student": "دانشجو:",
+    "status": "وضعیت:",
+    "reservationDate": "تاریخ رزرو:",
+    "backBtn": "بازگشت"
+  },
+  "myCourseComments": {
     "title1": "عنوان دوره",
     "title2": "عنوان دیدگاه",
     "title3": "متن دیدگاه",
@@ -694,8 +706,15 @@
     "title5": "تاریخ",
     "title6": "عملیات"
   },
-  "myCoursesComment": {
+  "myCourseComment": {
     "successToast": "نظر شما حذف شد"
+  },
+  "courseCommentModal": {
+    "courseTitle": "عنوان دوره:",
+    "commentTitle": "عنوان دیدگاه:",
+    "commentText": "متن دیدگاه:",
+    "status": "وضعیت:",
+    "commentDate": "تاریخ:"
   },
   "myNewsComments": {
     "title1": "عنوان خبر",
@@ -707,6 +726,13 @@
   },
   "myNewsComment": {
     "successToast": "نظر شما حذف شد"
+  },
+  "newsCommentModal": {
+    "newsTitle": "عنوان خبر:",
+    "commentTitle": "عنوان دیدگاه:",
+    "commentText": "متن دیدگاه:",
+    "status": "وضعیت:",
+    "commentDate": "تاریخ:"
   },
   "validation": {
     "nationalId": {

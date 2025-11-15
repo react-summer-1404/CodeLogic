@@ -1,113 +1,96 @@
 import React, { useEffect, useState } from "react";
 import CourseListSide from "../../components/course/CourseListSide/CourseListSide";
 import CourseListMain from "../../components/course/CourseListMain/CourseListMain";
+import CourseListSkeleton from '../../components/common/skeleton/CourseListSkeleton/CourseListSkeleton'
+import GetAllCourses from "../../core/services/api/Get/GetAllCourses";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
-import GetAllCourses from "../../core/services/api/Get/GetAllCourses";
 import { useLocation } from "react-router-dom";
 
 const DEFAULT_SORT_TYPE = "DESC";
 
 const CourseList = () => {
-  const location = useLocation();
+  
+  
+  const [sortingCol, setSortingCol] = useState(DEFAULT_SORT_TYPE);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [pageSize, setPageSize] = useState(3);
+  
+  
+  const [searchQuery, setSearchQuery] = useState("");
+  const handleSearchSubmit = (searchTerm) => {
+    setSearchQuery(searchTerm);
+  };
+  
+  
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const handleSetStartDate = (startDate) => {
+    setStartDate(startDate);
+  };
+  const handleSetEndDate = (endDate) => {
+    setEndDate(endDate);
+  };
+  
+  
+  const [courseLevel, setCourseLevel] = useState();
+  const handleSetCourseLevel = (courseLevel) => {
+    setCourseLevel(courseLevel);
+  };
+  
+  
+  const [teachers, setTeachers] = useState("");
+  const handleSetTeachers = (teachers) => {
+    setTeachers(teachers);
+  };
+  
+  
+  const [technologies, setTechnologies] = useState("");
+  const handleSetTechnologies = (technologies) => {
+    setTechnologies(technologies);
+  };
+  
+  
+  const [price, setPrice] = useState([0, 10000]);
+  const handleSetPrice = (price) => {
+    console.log(price);
+    setPrice(price);
+  };
+  
+  
+  const { data: coursesData, isLoading } = useQuery({
+    queryKey: ["GETALLCOURSES", searchQuery, pageSize, currentPage, sortingCol, startDate, endDate, courseLevel, teachers, technologies,
+      price,
+    ],
+    queryFn: () => GetAllCourses({ RowsOfPage: pageSize, PageNumber: currentPage, Query: searchQuery, SortType: "startTime",
+      StartDate: startDate, EndDate: endDate,
+      courseLevelId: courseLevel,
+      teacherName: teachers,
+      technologyList: technologies,
+      CostDown: price[0],
+      CostUp: price[1],
+    }),
+  });
+  
 
+  let result = coursesData?.totalCount;
+  
+
+  const { t } = useTranslation();
+  
+  
+  const location = useLocation();
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const search = params.get("search") || "";
     setSearchQuery(search);
   }, [location.search]);
 
-  const [sortingCol, setSortingCol] = useState(DEFAULT_SORT_TYPE);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [pageSize, setPageSize] = useState(3);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const handleSearchSubmit = (searchTerm) => {
-    setSearchQuery(searchTerm);
-  };
+  if(isLoading){
+    return <CourseListSkeleton/>
+  }
 
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const handleSetStartDate = (startDate) => {
-    setStartDate(startDate);
-    console.log("startDate:", startDate);
-  };
-
-  const handleSetEndDate = (endDate) => {
-    setEndDate(endDate);
-  };
-
-  const [courseLevel, setCourseLevel] = useState();
-  const handleSetCourseLevel = (courseLevel) => {
-    setCourseLevel(courseLevel);
-  };
-
-  const [teachers, setTeachers] = useState("");
-  const handleSetTeachers = (teachers) => {
-    setTeachers(teachers);
-  };
-
-  const [technologies, setTechnologies] = useState("");
-  const handleSetTechnologies = (technologies) => {
-    setTechnologies(technologies);
-  };
-
-  const [price, setPrice] = useState([0, 10000]);
-  const handleSetPrice = (price) => {
-    console.log(price);
-    setPrice(price);
-  };
-
-  const { data: coursesData, isLoading } = useQuery({
-    queryKey: [
-      "GETALLCOURSES",
-      searchQuery,
-      pageSize,
-      currentPage,
-      sortingCol,
-      startDate,
-      endDate,
-      courseLevel,
-      teachers,
-      technologies,
-      price,
-    ],
-
-    //   queryFn: () =>
-    //     GetAllCourses({
-    //       RowsOfPage: pageSize,
-    //       PageNumber: currentPage,
-    //       Query: searchQuery,
-    //       SortType: "startTime",
-    //       StartDate: startDate,
-    //       EndDate: endDate,
-    //       courseLevelId: courseLevel,
-    //       teacherName: teachers,
-    //       technologyList: technologies,
-    //       CostDown: price[0],
-    //       CostUp: price[1],
-    //     }),
-    // });
-
-    queryFn: () =>
-      GetAllCourses({
-        RowsOfPage: pageSize,
-        PageNumber: currentPage,
-        Query: searchQuery,
-        SortType: "startTime",
-        StartDate: startDate,
-        EndDate: endDate,
-        courseLevelId: courseLevel,
-        teacherName: teachers,
-        technologyList: technologies,
-        CostDown: price[0],
-        CostUp: price[1],
-      }),
-  });
-
-  let result = coursesData?.totalCount;
-
-  const { t } = useTranslation();
 
   return (
     <div className="flex flex-col items-center w-full   dark:bg-[#1E1E1E]">

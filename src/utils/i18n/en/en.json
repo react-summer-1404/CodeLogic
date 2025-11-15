@@ -242,6 +242,12 @@
   "courseComments": {
     "title": "All Comments"
   },
+  "courseComment": {
+    "likeSuccessToast": "You liked this comment",
+    "removeLikeSuccessToast": "Your like has been removed",
+    "disLikeSuccessToast": "You disliked this comment",
+    "removeDisLikeSuccessToast": "Your dislike has been removed"
+  },
   "courseCommentForm": {
     "titleInputsTitle": "Comment Title",
     "titleInputsPlcholder": "Enter your comment's title",
@@ -640,7 +646,7 @@
     },
     "modal": {
       "confirm": "Confirm Image ",
-      "cancel": "Cancel"
+      "delete": "Delete Image"
     },
     "location": {
       "adress": " Adress",
@@ -684,7 +690,13 @@
     "reserved": "Reserved",
     "await": "Waiting"
   },
-  "myCoursesComments": {
+  "reservedCourseModal": {
+    "student": "Student:",
+    "status": "Status:",
+    "reservationDate": "Reservation Date:",
+    "backBtn": "Back"
+  },
+  "myCourseComments": {
     "title1": "Course Title",
     "title2": "Comment Title",
     "title3": "Comment Text",
@@ -692,8 +704,15 @@
     "title5": "History",
     "title6": "Actions"
   },
-  "myCoursesComment": {
+  "myCourseComment": {
     "successToast": "Your comment has been deleted"
+  },
+  "courseCommentModal": {
+    "courseTitle": "Course Title:",
+    "commentTitle": "Comment Title:",
+    "commentText": "Comment Text:",
+    "status": "Status:",
+    "commentDate": "Comment Date:"
   },
   "myNewsComments": {
     "title1": "News Title",
@@ -705,6 +724,13 @@
   },
   "myNewsComment": {
     "successToast": "Your comment has been deleted"
+  },
+  "newsCommentModal": {
+    "newsTitle": "News Title:",
+    "commentTitle": "Comment Title:",
+    "commentText": "Comment Text:",
+    "status": "Status:",
+    "commentDate": "Comment Date:"
   },
   "validation": {
     "nationalId": {

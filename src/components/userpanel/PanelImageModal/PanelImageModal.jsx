@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -8,40 +8,154 @@ import {
   Avatar,
 } from "@mui/material";
 
-import img1 from "../../../assets/Images/userinfo.png";
-import img2 from "../../../assets/Images/Modal.png";
+import img1 from "../../../assets/Images/userinfo2.jpg";
 import img3 from "../../../assets/Images/plus.png";
 import { useTranslation } from "react-i18next";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { AddProfileImage } from "../../../core/services/api/post/AddProfileImage";
+import { SelectPictureImage } from "../../../core/services/api/post/SelectPictureImage";
+import { DeleteProfileImage } from "../../../core/services/api/delete/DeleteProfileImage";
+import { toast } from "react-toastify";
 
-const MAX_CUSTOM_IMAGES = 6;
+const MAX_IMAGES = 6;
 
-const PanelImageModal = ({ open, onClose, onConfirm }) => {
+const PanelImageModal = ({
+  open,
+  onClose,
+  onConfirm,
+  apiImagesData = [],
+  currentProfileUrl,
+}) => {
   const { t } = useTranslation();
 
-  const [selectedImage, setSelectedImage] = useState(img1);
-  const [customImages, setCustomImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(currentProfileUrl || img1);
+
+  const [selectedImageId, setSelectedImageId] = useState(null);
+
   const fileInputRef = useRef(null);
 
-  const images = [img1, img2];
+  const fixedImages = [{ id: null, puctureAddress: img1 }];
 
-  const handleImageClick = (img) => {
-    if (img === img3) {
-      if (customImages.length < MAX_CUSTOM_IMAGES) {
-        fileInputRef.current.click();
+  const allImages = [
+    ...fixedImages,
+    ...apiImagesData.filter(
+      (img) =>
+        !fixedImages.some(
+          (fImg) => fImg.puctureAddress === img.puctureAddress
+        ) && img.puctureAddress
+    ),
+  ];
+
+  const queryClient = useQueryClient();
+
+  const getSelectedImageInfo = (address = selectedImage) => {
+    return allImages.find((img) => img.puctureAddress === address);
+  };
+
+  const addImageMutation = useMutation({
+    mutationFn: AddProfileImage,
+    onSuccess: () => {
+      toast.success("عکس جدید با موفقیت اضافه شد");
+      queryClient.invalidateQueries(["profileInfo"]);
+    },
+    onError: () => {
+      toast.error("خطا در افزودن عکس");
+    },
+  });
+
+  const selectImageMutation = useMutation({
+    mutationFn: SelectPictureImage,
+    onSuccess: () => {
+      toast.success("عکس پروفایل با موفقیت انتخاب شد");
+      queryClient.invalidateQueries(["profileInfo"]);
+    },
+    onError: () => {
+      toast.error("خطا در انتخاب عکس");
+    },
+  });
+
+  const deleteImageMutation = useMutation({
+    mutationFn: DeleteProfileImage,
+    onSuccess: () => {
+      toast.success("عکس با موفقیت حذف شد");
+      queryClient.invalidateQueries(["profileInfo"]);
+    },
+    onError: () => {
+      toast.error("خطا در حذف عکس");
+    },
+  });
+
+  useEffect(() => {
+    if (open) {
+      const currentInfo = getSelectedImageInfo(currentProfileUrl);
+
+      if (currentProfileUrl) {
+        setSelectedImage(currentProfileUrl);
+        setSelectedImageId(currentInfo?.id);
+      } else if (allImages.length > 0) {
+        setSelectedImage(allImages[0].puctureAddress);
+        setSelectedImageId(allImages[0].id);
+      } else {
+        setSelectedImage(img1);
+        setSelectedImageId(null);
       }
-    } else {
-      setSelectedImage(img);
+    }
+  }, [open, currentProfileUrl, apiImagesData.length]);
+
+  const handleImageClick = (imgAddress, imgId) => {
+    if (imgAddress === img3) {
+      if (apiImagesData.length < MAX_IMAGES) {
+        fileInputRef.current.click();
+      } else {
+        toast.warn(`شما مجاز به آپلود حداکثر ${MAX_IMAGES} عکس هستید.`);
+      }
+      return;
+    }
+
+    setSelectedImage(imgAddress);
+    setSelectedImageId(imgId);
+  };
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      await addImageMutation.mutateAsync(file);
+    }
+    e.target.value = null;
+  };
+
+  const handleDeleteImage = () => {
+    if (selectedImageId) {
+      deleteImageMutation.mutate(selectedImageId);
     }
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file && customImages.length < MAX_CUSTOM_IMAGES) {
-      const imageURL = URL.createObjectURL(file);
-      setCustomImages((prev) => [...prev, imageURL]);
-      setSelectedImage(imageURL);
+  const handleConfirm = () => {
+    const selectedInfo = getSelectedImageInfo();
+
+    if (selectedInfo?.id) {
+      selectImageMutation.mutate(selectedInfo.id, {
+        onSuccess: () => {
+          onConfirm(selectedImage);
+          onClose();
+        },
+      });
+    } else {
+      onConfirm(selectedImage);
+      onClose();
     }
   };
+
+  const isPending =
+    addImageMutation.isPending ||
+    selectImageMutation.isPending ||
+    deleteImageMutation.isPending;
+
+  const canConfirm = !!selectedImage && !isPending;
+
+  const canDelete = !!selectedImageId && !isPending;
+
+  const isUploadLimitReached = apiImagesData.length >= MAX_IMAGES;
 
   return (
     <Dialog
@@ -51,7 +165,6 @@ const PanelImageModal = ({ open, onClose, onConfirm }) => {
         sx: {
           borderRadius: "16px",
           width: "100%",
-
           backgroundColor: "#fff",
         },
       }}
@@ -70,39 +183,18 @@ const PanelImageModal = ({ open, onClose, onConfirm }) => {
           />
 
           <Box display="flex" flexWrap="wrap" justifyContent="center" gap={2}>
-            {images.map((img, i) => (
+            {allImages.map((img, i) => (
               <Avatar
-                key={`fixed-${i}`}
-                src={img}
-                alt={`Option ${i}`}
-                onClick={() => handleImageClick(img)}
+                key={`available-${img.id || img.puctureAddress}`}
+                src={img.puctureAddress}
+                alt={`Image ${i}`}
+                onClick={() => handleImageClick(img.puctureAddress, img.id)}
                 sx={{
                   width: 70,
                   height: 70,
                   borderRadius: "8px",
                   border:
-                    selectedImage === img
-                      ? "2px solid #008C78"
-                      : "2px solid transparent",
-                  cursor: "pointer",
-                  transition: "0.3s",
-                  "&:hover": { transform: "scale(1.05)" },
-                }}
-              />
-            ))}
-
-            {customImages.map((img, i) => (
-              <Avatar
-                key={`custom-${i}`}
-                src={img}
-                alt={`Custom ${i}`}
-                onClick={() => setSelectedImage(img)}
-                sx={{
-                  width: 70,
-                  height: 70,
-                  borderRadius: "8px",
-                  border:
-                    selectedImage === img
+                    selectedImage === img.puctureAddress
                       ? "2px solid #008C78"
                       : "2px solid transparent",
                   cursor: "pointer",
@@ -115,24 +207,16 @@ const PanelImageModal = ({ open, onClose, onConfirm }) => {
             <Avatar
               src={img3}
               alt="Add"
-              onClick={() => handleImageClick(img3)}
+              onClick={() => handleImageClick(img3, null)}
               sx={{
                 width: 70,
                 height: 70,
                 borderRadius: "8px",
                 border: "2px solid transparent",
-                cursor:
-                  customImages.length >= MAX_CUSTOM_IMAGES
-                    ? "not-allowed"
-                    : "pointer",
-                opacity: customImages.length >= MAX_CUSTOM_IMAGES ? 0.5 : 1,
+                cursor: isUploadLimitReached ? "not-allowed" : "pointer",
                 transition: "0.3s",
-                "&:hover": {
-                  transform:
-                    customImages.length >= MAX_CUSTOM_IMAGES
-                      ? "none"
-                      : "scale(1.05)",
-                },
+                "&:hover": { transform: "scale(1.05)" },
+                opacity: isUploadLimitReached ? 0.6 : 1,
               }}
             />
           </Box>
@@ -143,6 +227,7 @@ const PanelImageModal = ({ open, onClose, onConfirm }) => {
             ref={fileInputRef}
             style={{ display: "none" }}
             onChange={handleFileChange}
+            disabled={isPending || isUploadLimitReached}
           />
         </Box>
       </DialogContent>
@@ -152,21 +237,26 @@ const PanelImageModal = ({ open, onClose, onConfirm }) => {
         sx={{ justifyContent: "space-between", px: 3, pb: 2, pt: 0 }}
       >
         <Button
-          onClick={onClose}
-          variant="outlined"
+          onClick={handleDeleteImage}
+          variant="contained"
+          disabled={!canDelete}
           sx={{
-            borderColor: "#848484",
-            color: "#848484",
+            backgroundColor: "#ff0000ff",
+            color: "#ffffffff",
             borderRadius: "12px",
             px: 3,
             fontFamily: "Estedad",
           }}
         >
-          {t("userinfo.modal.cancel")}
+          {deleteImageMutation.isPending
+            ? "درحال حذف..."
+            : t("userinfo.modal.Delete")}
         </Button>
+
         <Button
-          onClick={() => onConfirm(selectedImage)}
+          onClick={handleConfirm}
           variant="contained"
+          disabled={!canConfirm}
           sx={{
             fontFamily: "Estedad",
             backgroundColor: "#008C78",
@@ -175,7 +265,7 @@ const PanelImageModal = ({ open, onClose, onConfirm }) => {
             px: 3,
           }}
         >
-          {t("userinfo.modal.confirm")}
+          {isPending ? "درحال انجام..." : t("userinfo.modal.confirm")}
         </Button>
       </DialogActions>
     </Dialog>

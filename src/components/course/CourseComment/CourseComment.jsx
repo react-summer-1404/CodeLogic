@@ -1,12 +1,49 @@
-import React from 'react'
+import React, {useState} from 'react'
 import CourseCommentImg from '../../../assets/Images/commentUser.png'
 import Comment from '../../../assets/Icons/Comment'
 import Like from '../../../assets/Icons/Like'
 import DisLike from '../../../assets/Icons/DisLike'
-
+import {likeCourseComments} from '../../../core/services/api/post/likeCourseComments'
+import {disLikeCourseComments} from '../../../core/services/api/post/disLikeCourseComments'
 
 
 const CourseComment = ({item}) => {
+
+    const [liked, setLiked] = useState(false);
+    const [disLiked, setDisliked] = useState(false);
+    const [likeCount, setLikeCount] = useState(item.likeCount);
+    const [disLikeCount, setDisLikeCount] = useState(item.dissLikeCount);
+    
+    const onLike = () => {
+        if (liked) {
+            setLiked(false);
+            setLikeCount(likeCount - 1);
+            toast.success(t('courseComment.removeLikeSuccessToast'))
+        } 
+        else{
+            setLiked(true);
+            setDisliked(false);
+            setLikeCount(likeCount + 1);
+            if (disLiked) setDisLikeCount(disLikeCount - 1);
+            likeCourseComments(item.id);
+            toast.success(t('courseComment.likeSuccessToast'))
+        }
+    };  
+    const onDisLike = () => {
+        if (disLiked) {
+            setDisliked(false);
+            setDisLikeCount(disLikeCount - 1);
+            toast.success(t('courseComment.removeDisLikeSuccessToast'))
+        } 
+        else{
+            setDisliked(true);
+            setLiked(false);
+            setDisLikeCount(disLikeCount + 1);
+            if (liked) setLikeCount(likeCount - 1);
+            disLikeCourseComments(item.id);
+            toast.success(t('courseComment.disLikeSuccessToast'))
+        }
+    };
 
   return (
     <div>
@@ -26,11 +63,15 @@ const CourseComment = ({item}) => {
                 <Comment/>
                 <span className='font-regular text-xs'>بستن پاسخ ها</span>
             </button>
-            <button className='flex gap-1 text-[#1E1E1E]'>
+            <button 
+            onClick={onLike}
+            className='flex gap-1 text-[#1E1E1E] cursor-pointer'>
                 <DisLike/>
                 <span className='font-regular text-xs'>{item.commentLikeNum}</span>
             </button>
-            <button className='flex gap-1 text-[#1E1E1E]'>
+            <button 
+            onClick={onDisLike}
+            className='flex gap-1 text-[#1E1E1E] cursor-pointer'>
                 <span className='rotate-180'>
                     <DisLike/>
                 </span>
