@@ -3,10 +3,14 @@ import Like from '../../../assets/Icons/Like'
 import DisLike from '../../../assets/Icons/DisLike'
 import {likeCourses} from '../../../core/services/api/post/likeCourses'
 import {disLikeCourses} from '../../../core/services/api/post/disLikeCourses'
+import { toast } from 'react-toastify'
+import { useTranslation } from 'react-i18next'
 
 
 
 const ImageInfo = ({ course }) => {
+
+    const {t} = useTranslation()
 
     const [liked, setLiked] = useState(false);
     const [disLiked, setDisliked] = useState(false);
@@ -14,28 +18,34 @@ const ImageInfo = ({ course }) => {
     const [disLikeCount, setDisLikeCount] = useState(course.dissLikeCount);
 
     const onLike = () => {
-    if (disLiked) return; 
-    else if(liked){
-        setLiked(false);
-        setLikeCount(likeCount - 1);
-    } 
-    else{
-        setLiked(true);
-        setLikeCount(likeCount + 1);
-        likeCourses(course.courseId);
-    }
-    };
+        if (liked) {
+            setLiked(false);
+            setLikeCount(likeCount - 1);
+            toast.success(t('imageInfo.removeLikeSuccessToast'))
+        } 
+        else{
+            setLiked(true);
+            setDisliked(false);
+            setLikeCount(likeCount + 1);
+            if (disLiked) setDisLikeCount(disLikeCount - 1);
+            likeCourses(course.courseId);
+            toast.success(t('imageInfo.addLikeSuccessToast'))
+        }
+    };  
     const onDisLike = () => {
-    if (liked) return;
-    else if(disLiked){
-        setDisliked(false);
-        setDisLikeCount(disLikeCount - 1);
-    } 
-    else{
-        setDisliked(true);
-        setDisLikeCount(disLikeCount + 1);
-        disLikeCourses(course.courseId);
-    }
+        if (disLiked) {
+            setDisliked(false);
+            setDisLikeCount(disLikeCount - 1);
+            toast.success(t('imageInfo.removeDisLikeSuccessToast'))
+        } 
+        else{
+            setDisliked(true);
+            setLiked(false);
+            setDisLikeCount(disLikeCount + 1);
+            if (liked) setLikeCount(likeCount - 1);
+            disLikeCourses(course.courseId);
+            toast.success(t('imageInfo.addDisLikeSuccessToast'))
+        }
     };
 
 

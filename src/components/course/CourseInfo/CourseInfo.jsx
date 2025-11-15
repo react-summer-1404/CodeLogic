@@ -5,6 +5,7 @@ import Users from '../../../assets/Icons/Users'
 import { useTranslation } from 'react-i18next'
 import {reserveCourses} from '../../../core/services/api/post/reserveCourses'
 import {deleteReserveCourses} from '../../../core/services/api/delete/deleteReserveCourses'
+import { toast } from 'react-toastify'
 
 
 const CourseInfo = ({course}) => {
@@ -18,9 +19,11 @@ const CourseInfo = ({course}) => {
     const toggleReserveCourses = () => {
         if(isReserve){
             deleteReserveCourses(course.courseId)
+            toast.success(t('courseInfo.removeSuccessToast'))
         }
         else{
             reserveCourses(course.courseId);
+            toast.success(t('courseInfo.reserveSuccessToast'))
         }
         const newState = !isReserve;
         setIsReserve(newState);

@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import { useQuery } from '@tanstack/react-query'
-import UserPanelSearch from '../../../components/common/userPanel/UserPanelSearch/UserPanelSearch'
-import UserPanelFilter from '../../../components/common/userPanel/UserPanelFilter/UserPanelFilter'
-import UserPanelTitle from '../../../components/common/userPanel/UserPanelTitle/UserPanelTitle'
-import UserPanelShowNumber from '../../../components/common/userPanel/UserPanelShowNumber/UserPanelShowNumber'
-import MyCoursesComment from '../../../components/common/userPanel/MyCoursesComment/MyCoursesComment'
+import UserPanelSearch from '../../../components/common/UserPanelSearch/UserPanelSearch'
+import UserPanelFilter from '../../../components/common/UserPanelFilter/UserPanelFilter'
+import UserPanelTitle from '../../../components/common/UserPanelTitle/UserPanelTitle'
+import UserPanelShowNumber from '../../../components/common/UserPanelShowNumber/UserPanelShowNumber'
+import MyCoursesComment from '../../../components/userPanel/MyCoursesComment/MyCoursesComment'
 import myCoursesComments from '../../../core/services/api/get/MyCoursesComments'
 import ReactPaginate from 'react-paginate'
 import { t } from 'i18next'
@@ -44,12 +44,14 @@ const MyCoursesComments = () => {
             title5: t('myCoursesComments.title5'), justify5: 'justify-center', w5: 'w-30',
             title6: t('myCoursesComments.title6'), justify6: 'justify-center', w6: 'w-24',
           }}/>
-          <div>
-            {
-              myCoursesCommentsData?.myCommentsDtos?.map((item , index) => {
-                return <MyCoursesComment item={item} key={index}/>
-              })
-            }  
+          <div className='flex flex-col max-h-66 overflow-y-scroll'>
+            <div>
+              {
+                myCoursesCommentsData?.myCommentsDtos?.map((item , index) => {
+                  return <MyCoursesComment item={item} key={index}/>
+                })
+              }  
+            </div>
           </div>
         </div>
         <div className='flex justify-between items-center'>

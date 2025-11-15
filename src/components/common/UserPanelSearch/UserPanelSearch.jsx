@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import Search from '../../../../assets/Icons/Search'
+import Search from '../../../assets/Icons/Search'
 import debounce from 'lodash.debounce'
 import { AnimatePresence, motion, number } from 'framer-motion';
 import { useTranslation } from 'react-i18next';

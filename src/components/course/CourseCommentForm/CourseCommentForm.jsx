@@ -1,22 +1,21 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Formik, Form, Field } from 'formik';
-import { addCommentCourses } from '../../../../core/services/api/post/addCommentCourses';
-
+import { addCommentCourses } from '../../../core/services/api/post/addCommentCourses';
+import { toast } from 'react-toastify';
 
 
 const CourseCommentForm = ({course}) => {
 
     const {t} = useTranslation();
-
     const fieldClass = 
     'py-4 font-regular text-base text-[#848484] indent-4 bg-[#F3F4F6] rounded-[25px] outline-0 dark:bg-[#1E1E1E]'
 
     const onSubmit = async (values, { resetForm }) => {
       await addCommentCourses(course.courseId ,values.title, values.describe)
        resetForm()
+       toast.success(t('courseCommentForm.successToast'))
     }
-
 
   return (
     <Formik initialValues={{ title: '', describe: '' }} onSubmit={onSubmit}>

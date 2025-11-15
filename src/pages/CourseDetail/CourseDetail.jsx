@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import GetAllCourses from "../../core/services/api/Get/GetAllCourses";
+import CourseDetailSkeleton from "../../components/common/skeleton/CourseDetailSkeleton/CourseDetailSkeleton";
 
 const CourseDetail = () => {
   const { t } = useTranslation();
@@ -18,9 +19,7 @@ const CourseDetail = () => {
 
   if (isLoading) {
     return (
-      <div className="p-10 text-center dark:text-[#EEEEEE]">
-        {t("در حال بارگذاری...")}
-      </div>
+      <CourseDetailSkeleton/>
     );
   }
 
@@ -35,9 +34,7 @@ const CourseDetail = () => {
       </div>
     );
   }
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+
 
   return (
     <div className="dark:bg-[#1E1E1E]">
@@ -47,11 +44,11 @@ const CourseDetail = () => {
         </h2>
       </div>
       <div
-        className="flex flex-col items-center gap-12 pt-8 px-6 pb-[170px]
+        className="flex flex-col gap-12 pt-8 px-6 pb-[170px]
       md:flex md:flex-row md:px-10"
       >
-        <CourseDetailSide course={course} />
-        <CourseDetailMain course={course} />
+        <CourseDetailSide course={course}/>
+        <CourseDetailMain course={course}/>
       </div>
     </div>
   );

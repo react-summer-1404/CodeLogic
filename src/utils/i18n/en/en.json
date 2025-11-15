@@ -208,15 +208,26 @@
     "toman": "Toman",
     "reserveBtn": "Reserve Now",
     "deleteReserveBtn": "Cancel Reserve",
-    "off": "Off"
+    "off": "Off",
+    "reserveSuccessToast": "The desired course was successfully booked",
+    "removeSuccessToast": "The desired course was successfully deleted"
   },
   "userSatisfaction": {
-    "title": "User Satisfaction",
-    "score": "score"
+    "title": "User Satisfaction", 
+    "score": "score",
+    "successToast": "Your score has been recorded",
+    "errorToast": "Error sending score",
+    "infoToast": "You have already given score"
   },
   "courseTeacher": {
     "courseTeacher": "Course Teracher",
     "buttonText": "View more information"
+  },
+  "imageInfo": {
+    "addLikeSuccessToast": "You liked this course",
+    "removeLikeSuccessToast": "Your like has been removed",
+    "addDisLikeSuccessToast": "You disliked this course",
+    "removeDisLikeSuccessToast": "Your dislike has been removed"
   },
   "courseCommentsTab": {
     "courseSpecifications": "Course Specifications",
@@ -231,12 +242,19 @@
   "courseComments": {
     "title": "All Comments"
   },
+  "courseComment": {
+    "likeSuccessToast": "You liked this comment",
+    "removeLikeSuccessToast": "Your like has been removed",
+    "disLikeSuccessToast": "You disliked this comment",
+    "removeDisLikeSuccessToast": "Your dislike has been removed"
+  },
   "courseCommentForm": {
     "titleInputsTitle": "Comment Title",
     "titleInputsPlcholder": "Enter your comment's title",
     "textInputsTitle": "Comment Desc",
     "textInputsPlcholder": "Enter your comment's text",
-    "send": "Send"
+    "send": "Send",
+    "successToast": "Your comment has been added"
   },
   "news": {
     "title1": "React 18 Released",
@@ -679,6 +697,9 @@
     "title5": "History",
     "title6": "Actions"
   },
+  "myCoursesComment": {
+    "successToast": "Your comment has been deleted"
+  },
   "myNewsComments": {
     "title1": "News Title",
     "title2": "Comment Title",
@@ -686,6 +707,9 @@
     "title4": "Status",
     "title5": "History",
     "title6": "Actions"
+  },
+  "myNewsComment": {
+    "successToast": "Your comment has been deleted"
   },
   "validation": {
     "nationalId": {

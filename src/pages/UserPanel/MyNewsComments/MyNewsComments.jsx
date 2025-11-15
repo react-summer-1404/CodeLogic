@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import { useQuery } from '@tanstack/react-query'
-import UserPanelSearch from '../../../components/common/userPanel/UserPanelSearch/UserPanelSearch'
-import UserPanelFilter from '../../../components/common/userPanel/UserPanelFilter/UserPanelFilter'
-import UserPanelTitle from '../../../components/common/userPanel/UserPanelTitle/UserPanelTitle'
-import UserPanelShowNumber from '../../../components/common/userPanel/UserPanelShowNumber/UserPanelShowNumber'
-import MyNewsComment from '../../../components/common/userPanel/MyNewsComment/MyNewsComment'
+import UserPanelSearch from '../../../components/common/UserPanelSearch/UserPanelSearch'
+import UserPanelFilter from '../../../components/common/UserPanelFilter/UserPanelFilter'
+import UserPanelTitle from '../../../components/common/UserPanelTitle/UserPanelTitle'
+import UserPanelShowNumber from '../../../components/common/UserPanelShowNumber/UserPanelShowNumber'
+import MyNewsComment from '../../../components/userPanel/MyNewsComment/MyNewsComment'
 import myNewsComments from '../../../core/services/api/get/myNewsComments'
 import ReactPaginate from 'react-paginate'
 import { t } from 'i18next'
@@ -45,12 +45,14 @@ const MyNewsComments = () => {
             title5: t('myNewsComments.title5'), justify5: 'justify-center', w5: 'w-30',
             title6: t('myNewsComments.title6'), justify6: 'justify-center', w6: 'w-24',
           }}/>
-          <div>
-            {
-              myNewsCommentsData?.myNewsCommetDtos?.map((item , index) => {
-                return <MyNewsComment item={item} key={index}/>
-              })
-            }
+          <div className='flex flex-col max-h-66 overflow-y-scroll'>
+            <div>
+              {
+                myNewsCommentsData?.myNewsCommetDtos?.map((item , index) => {
+                  return <MyNewsComment item={item} key={index}/>
+                })
+              }
+            </div>
           </div>
         </div>
         <div className='flex justify-between items-center'>

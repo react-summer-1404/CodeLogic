@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import GetAllTeachers from "../../../core/services/api/Get/GetAllTeachers";
 import ButtonsSeeMore from "../../common/ButtonsSeeMore/ButtonsSeeMore";
-import SliderTeacher from "./SliderTeacher/SliderTeacher";
+import SliderTeacher from "../SliderTeacher/SliderTeacher";
 import { Link } from "react-router-dom";
 
 const SliderTeachers = () => {

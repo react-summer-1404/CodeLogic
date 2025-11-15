@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import UserPanelSearch from '../../../components/common/userPanel/UserPanelSearch/UserPanelSearch'
-import UserPanelFilter from '../../../components/common/userPanel/UserPanelFilter/UserPanelFilter'
-import UserPanelTitle from '../../../components/common/userPanel/UserPanelTitle/UserPanelTitle'
-import MyReservedCourse from '../../../components/common/userPanel/MyReservedCourse/MyReservedCourse'
-import UserPanelShowNumber from '../../../components/common/userPanel/UserPanelShowNumber/UserPanelShowNumber'
+import UserPanelSearch from '../../../components/common/UserPanelSearch/UserPanelSearch'
+import UserPanelFilter from '../../../components/common/UserPanelFilter/UserPanelFilter'
+import UserPanelTitle from '../../../components/common/UserPanelTitle/UserPanelTitle'
+import MyReservedCourse from '../../../components/userPanel/MyReservedCourse/MyReservedCourse'
+import UserPanelShowNumber from '../../../components/common/UserPanelShowNumber/UserPanelShowNumber'
 import GetMyReservedCourses from '../../../core/services/api/get/GetMyReservedCourses'
 import ReactPaginate from 'react-paginate'
 import { t } from 'i18next'
@@ -62,8 +62,8 @@ const MyReservedCourses = () => {
             title4: t('myReservedCourses.title4'), justify4: 'justify-center', w4: 'w-54',
             title5: t('myReservedCourses.title5'), justify5: 'justify-center', w5: 'w-28'
           }}/>
-          <div>
-            <div className='flex flex-col max-h-66 overflow-y-scroll'> 
+          <div className='flex flex-col max-h-66 overflow-y-scroll'>
+            <div> 
               {myReservedCoursesData?.map((item , index) => {
                 return <MyReservedCourse item={item} key={index}/>
               })}

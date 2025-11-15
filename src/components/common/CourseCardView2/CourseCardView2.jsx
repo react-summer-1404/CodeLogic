@@ -1,35 +1,42 @@
-import React, { useState } from 'react'
-import Teacher from '../../../../assets/Icons/Teacher'
-import Level from '../../../../assets/Icons/Level'
-import Star from '../../../../assets/Icons/Star'
-import Heart from '../../../../assets/Icons/Heart'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom' 
+import { Link } from 'react-router-dom'
+import Heart from '../../../assets/Icons/Heart'
+import Level from '../../../assets/Icons/Level'
+import Star from '../../../assets/Icons/Star'
+import Teacher from '../../../assets/Icons/Teacher'
+import CourseCardView2Skeleton from '../skeleton/CourseCardSkeletonView2/CourseCardSkeletonView2'
 
 
 
-const CourseCardView1 = ({ item , handleToggleFavorite}) => {
+const CourseCardView2 = ({ item, handleToggleFavorite, isLoading}) => {
 
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     const [isFavorite , setIsFavorite] = useState();
     const onToggleFavorite = () => {
         handleToggleFavorite(item.courseId)
         setIsFavorite(!isFavorite)
     }
+    
+    if(isLoading){
+        return <CourseCardView2Skeleton/>
+    }
 
     return (
-        <div dir='rtl' className='flex flex-col flex-shrink-0 items-center w-[240px] rounded-xl relative 
-        hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]
-        sm:w-[350px] sm:rounded-[20px]'>
-            <img src={item.imageAddress} className='w-full h-[160px] rounded-t-xl
-            sm:h-[259px] sm:rounded-t-[20px]'/>
-            <Link to={`/courseDetail/${item.courseId}`} className='flex flex-col justify-between w-full mb-[-16px] 
-            p-4 bg-[#FFFFFF] rounded-xl transform -translate-y-4 cursor-pointer   dark:bg-[#606060]
-            sm:h-[217px] sm:rounded-[20px]'>
-                <div className='flex flex-col gap-1'>
-                    <h2 className='font-bold text-base   dark:text-[#EEEEEE]'>{t(`${item.title}`)}</h2>
-                    <p className='max-w-[317px] font-regular text-sm   dark:text-[#DDDDDD]'>{t(`${item.describe}`)}</p>
+        <div className='hidden flex flex-shrink-0 gap-8 w-[640px] p-4 bg-[#FFFFFF] rounded-[20px] relative   dark:bg-[#606060]
+        sm:flex sm:w-[520px] sm:h-[184px] 
+        lg:w-[720px] lg:h-[208px]
+        xl:w-[1044px] xl:h-[232px]'>
+            <img src={item.imageAddress} className='w-[304px] h-full rounded-xl
+            sm:w-[304px]
+            md:w-[320px]
+            lg:w-[337px]'/>
+            <Link to={`/courseDetail/${item.courseId}`} className='flex flex-col justify-between w-full h-full 
+            bg-[#FFFFFF] rounded-[20px] cursor-pointer   dark:bg-[#606060]'>
+                <div className='flex flex-col gap-1 text-[#1E1E1E]'>
+                    <h2 className='font-bold text-base'>{t(`${item.title}`)}</h2>
+                    <p className='font-regular text-sm'>{t(`${item.describe}`)}</p>
                 </div>
                 <div>
                     <div className='flex justify-between pt-8'>
@@ -65,4 +72,4 @@ const CourseCardView1 = ({ item , handleToggleFavorite}) => {
     )
 }
 
-export default CourseCardView1 
+export default CourseCardView2

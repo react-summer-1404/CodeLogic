@@ -1,18 +1,33 @@
 import React, { useState } from 'react'
-import Eye from '../../../../assets/Icons/Eye'
-import Receipt from '../../../../assets/Icons/Receipt'
+import Eye from '../../../assets/Icons/Eye'
+import Receipt from '../../../assets/Icons/Receipt'
+import { motion } from 'framer-motion'
 import { t } from 'i18next'
 
 
 const textClass = 'font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]'
 
-const MyCourse = ({item}) => {
+const   MyCourse = ({item}) => {
 
   const [isAccept , setIsAccept] = useState(false)
 
+  const Animate = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { ease: "easeOut", duration: 0.35 },
+    },
+  };
+
 
   return (
-    <div className='flex items-center py-[14px] border-t border-b border-[#EAEAEA]'>
+    <motion.div
+    variants={Animate}
+    initial="hidden"
+    animate="visible"
+    className='flex flex-col items-center py-[14px] border-t border-b border-[#EAEAEA]
+    md:flex md:flex-row'>
       <div className='flex items-center gap-4 w-64'>
         <img src={item.image} className='w-7 h-7 rounded-[48px]'/>
         <div>
@@ -41,7 +56,7 @@ const MyCourse = ({item}) => {
           <Receipt/>
         </span>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
