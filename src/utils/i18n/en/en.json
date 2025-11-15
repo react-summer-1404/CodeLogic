@@ -627,7 +627,7 @@
     },
     "modal": {
       "confirm": "Confirm Image ",
-      "cancel": "Cancel"
+      "delete": "Delete Image"
     },
     "location": {
       "adress": " Adress",
