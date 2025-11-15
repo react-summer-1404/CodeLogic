@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import img1 from "../../assets/Images/userinfo.png";
 import CreateIcon from "@mui/icons-material/Create";
+import img1 from "../../assets/Images/userinfo2.jpg";
 import { Field, Form, Formik } from "formik";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -15,6 +15,14 @@ import {
   useMap,
 } from "react-leaflet";
 import L from "leaflet";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import GetProfileInfo from "../../core/services/api/Get/GetProfileInfo";
+import { UpdateProfileInfo } from "../../core/services/api/put/UpdateProfileInfo";
+import { toast } from "react-toastify";
+import DatePicker from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+import DateObject from "react-date-object";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -28,6 +36,7 @@ L.Icon.Default.mergeOptions({
 
 const LocationMarker = ({ lat, lng, setAddress, setLat, setLng }) => {
   const map = useMap();
+
   const [position, setPosition] = useState({
     lat: lat || 35.6892,
     lng: lng || 51.389,
@@ -135,25 +144,45 @@ const LocationMarker = ({ lat, lng, setAddress, setLat, setLng }) => {
   );
 };
 
-const PanelUserInfo = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const [profileImage, setProfileImage] = useState(img1);
-
-  const [initialValues] = useState({
-    name: "",
-    lastname: "",
-    nationalcode: "",
-    gender: "",
-    birthday: "",
-    phonenumber: "",
-    aboutme: "",
-    adress: "",
-    lat: "",
-    lng: "",
-    email: "",
-    telegram: "",
-    linkdin: "",
+const UserPanelUserInfo = () => {
+  const { data: profileData } = useQuery({
+    queryKey: ["profileInfo"],
+    queryFn: async () => {
+      const res = await GetProfileInfo();
+      return res?.data ?? res;
+    },
   });
+  const ph = (field, fallback = "") => {
+    if (!profileData) return fallback;
+    const d = profileData;
+
+    const map = {
+      name: d.fName,
+      lastname: d.lName,
+      nationalcode: d.nationalCode,
+      phonenumber: d.phoneNumber,
+      birthday: d.birthDay?.split("T")[0],
+      aboutme: d.userAbout,
+      gender: d.gender,
+      adress: d.homeAdderess,
+      email: d.email,
+      telegram: d.telegramLink,
+      linkdin: d.linkdinProfile,
+    };
+
+    return map[field] || fallback;
+  };
+
+  const [openModal, setOpenModal] = useState(false);
+  const [profileImage, setProfileImage] = useState(
+    profileData?.currentPictureAddress
+  );
+
+  useEffect(() => {
+    if (profileData && profileData.currentPictureAddress) {
+      setProfileImage(profileData.currentPictureAddress);
+    }
+  }, [profileData]);
 
   const [activeTab, setActiveTab] = useState("general");
 
@@ -178,6 +207,29 @@ const PanelUserInfo = () => {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "fa";
 
+  const queryClient = useQueryClient();
+
+  const updateProfileMutation = useMutation({
+    mutationFn: UpdateProfileInfo,
+    onSuccess: () => {
+      toast.success("ویرایش پروفایل با موفقیت انجام شد");
+      queryClient.invalidateQueries(["profileInfo"]);
+    },
+    onError: (err) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+
+  const birthdayPlaceholder = profileData?.birthDay
+    ? new DateObject({
+        date: new Date(profileData.birthDay),
+        calendar: persian,
+        locale: persian_fa,
+      }).format("YYYY/MM/DD")
+    : ph("birthday");
+
+  const apiImagesData = profileData?.userImage || [];
+  const currentProfileUrl = profileData?.currentPictureAddress;
   return (
     <motion.div
       variants={containerVariants}
@@ -222,7 +274,32 @@ const PanelUserInfo = () => {
           </motion.button>
         </div>
 
-        <Formik initialValues={initialValues}>
+        <Formik
+          enableReinitialize={true}
+          initialValues={{
+            name: profileData?.fName,
+            lastname: profileData?.lName,
+            nationalcode: profileData?.nationalCode,
+            gender:
+              profileData?.gender === true
+                ? "male"
+                : profileData?.gender === false
+                ? "female"
+                : "",
+            birthday: profileData?.birthDay,
+            phonenumber: profileData?.phoneNumber,
+            aboutme: profileData?.userAbout,
+            adress: profileData?.homeAdderess,
+            lat: profileData?.latitude,
+            lng: profileData?.longitude,
+            email: profileData?.email,
+            telegram: profileData?.telegramLink,
+            linkdin: profileData?.linkdinProfile,
+          }}
+          onSubmit={(values) => {
+            updateProfileMutation.mutate(values);
+          }}
+        >
           {({ setFieldValue, values }) => (
             <Form className="w-full h-[92%]">
               <AnimatePresence mode="wait">
@@ -237,7 +314,7 @@ const PanelUserInfo = () => {
                   >
                     <motion.div
                       variants={itemVariants}
-                      className="w-full h-[20%] flex items-center justify-center relative "
+                      className="w-full h-[20%] flex items-center justify-center relative  "
                     >
                       <div className="  h-full relative inline-block">
                         <img
@@ -262,11 +339,13 @@ const PanelUserInfo = () => {
                           setProfileImage(selectedImage);
                           setOpenModal(false);
                         }}
+                        apiImagesData={apiImagesData}
+                        currentProfileUrl={currentProfileUrl}
                       />
                     </motion.div>
 
                     <div
-                      className={`w-full h-[80%] grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-2 sm:gap-x-0 sm:gap-y-3 ${
+                      className={`w-full h-[80%] grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-2 sm:gap-x-0 sm:gap-y-3  ${
                         isRtl ? "pr-13" : "pl-13"
                       }`}
                     >
@@ -277,7 +356,7 @@ const PanelUserInfo = () => {
                         <Field
                           type="text"
                           name="name"
-                          placeholder={t("userinfo.placeholders.name")}
+                          placeholder={ph("name")}
                           className="dark:bg-[#454545] dark:focus:ring-0 dark:border-[#848484] dark:text-[#ccc] outline-none w-full mb-1 bg-[white] focus:outline-none focus:ring-2 focus:ring-[#008C78] transition duration-400 px-5 py-2 border-1 border-[#EAEAEA] text-[#848484] rounded-2xl"
                         />
                       </motion.div>
@@ -289,7 +368,7 @@ const PanelUserInfo = () => {
                         <Field
                           type="text"
                           name="lastname"
-                          placeholder={t("userinfo.placeholders.lastname")}
+                          placeholder={ph("lastname")}
                           className="dark:bg-[#454545] dark:focus:ring-0 dark:border-[#848484] dark:text-[#ccc] outline-none w-full mb-1 bg-[white] focus:outline-none focus:ring-2 focus:ring-[#008C78] transition duration-400 px-5 py-2 border-1 border-[#EAEAEA] text-[#848484] rounded-2xl"
                         />
                       </motion.div>
@@ -301,7 +380,7 @@ const PanelUserInfo = () => {
                         <Field
                           type="text"
                           name="nationalcode"
-                          placeholder={t("userinfo.placeholders.nationalcode")}
+                          placeholder={ph("nationalcode")}
                           className="dark:bg-[#454545] dark:focus:ring-0 dark:border-[#848484] dark:text-[#ccc] outline-none w-full mb-1 bg-[white] focus:outline-none focus:ring-2 focus:ring-[#008C78] transition duration-400 px-5 py-2 border-1 border-[#EAEAEA] text-[#848484] rounded-2xl"
                         />
                       </motion.div>
@@ -320,7 +399,7 @@ const PanelUserInfo = () => {
                             border-[#EAEAEA] text-[#848484] rounded-2xl appearance-none cursor-pointer"
                           >
                             <option value="" disabled>
-                              {t("userinfo.placeholders.gender")}
+                              {ph("gender")}
                             </option>
                             <option value="male">
                               {t("userinfo.gender.male")}
@@ -344,10 +423,20 @@ const PanelUserInfo = () => {
                         <p className="mb-2 indent-3 text-[16px] dark:text-[white]">
                           {t("userinfo.fields.birthday")}
                         </p>
-                        <Field
-                          name="birthday"
-                          type="date"
-                          className="dark:bg-[#454545] dark:focus:ring-0 dark:border-[#848484] dark:text-[#ccc] outline-none w-full mb-1 bg-[white] focus:outline-none focus:ring-2 focus:ring-[#008C78] transition duration-400 px-5 py-2 border-1 border-[#EAEAEA] text-[#848484] rounded-2xl"
+
+                        <DatePicker
+                          calendar={persian}
+                          locale={persian_fa}
+                          containerClassName="w-full"
+                          inputClass=" cursor-pointer  dark:bg-[#454545] dark:focus:ring-0 dark:border-[#848484] dark:text-[#ccc] outline-none w-full mb-1 bg-[white] focus:outline-none focus:ring-2 focus:ring-[#008C78] transition duration-400 px-5 py-2 border-1 border-[#EAEAEA] text-[#848484] rounded-2xl"
+                          value={values.birthday}
+                          onChange={(date) => {
+                            setFieldValue(
+                              "birthday",
+                              date?.toDate?.()?.toISOString()
+                            );
+                          }}
+                          placeholder={birthdayPlaceholder}
                         />
                       </motion.div>
 
@@ -358,7 +447,7 @@ const PanelUserInfo = () => {
                         <Field
                           name="phonenumber"
                           type="text"
-                          placeholder={t("userinfo.placeholders.phonenumber")}
+                          placeholder={ph("phonenumber")}
                           className="dark:bg-[#454545] dark:focus:ring-0 dark:border-[#848484] dark:text-[#ccc] outline-none w-full mb-1 bg-[white] focus:outline-none focus:ring-2 focus:ring-[#008C78] transition duration-400 px-5 py-2 border-1 border-[#EAEAEA] text-[#848484] rounded-2xl"
                         />
                       </motion.div>
@@ -370,7 +459,7 @@ const PanelUserInfo = () => {
                         <Field
                           name="aboutme"
                           type="text"
-                          placeholder={t("userinfo.placeholders.aboutme")}
+                          placeholder={ph("aboutme")}
                           className="dark:bg-[#454545] dark:focus:ring-0 dark:border-[#848484] dark:text-[#ccc] outline-none w-full mb-1 bg-[white] focus:outline-none focus:ring-2 focus:ring-[#008C78] transition duration-400 px-5 py-2 border-1 border-[#EAEAEA] text-[#848484] rounded-2xl"
                         />
                       </motion.div>
@@ -380,6 +469,7 @@ const PanelUserInfo = () => {
                         variants={itemVariants}
                       >
                         <button
+                          type="submit"
                           className={`bg-[#008C78] text-[white] rounded-3xl p-3 mt-8 cursor-pointer `}
                         >
                           {t("userinfo.buttons.edit")}
@@ -487,10 +577,11 @@ const PanelUserInfo = () => {
                         <Field
                           type="text"
                           name="email"
-                          placeholder="example@gmail.com"
+                          placeholder={ph("email")}
                           className="dark:bg-[#454545] dark:focus:ring-0 dark:border-[#848484] dark:text-[#ccc] outline-none w-full mb-1 bg-[white] focus:outline-none focus:ring-2 focus:ring-[#008C78] transition duration-400 px-5 py-2 border-1 border-[#EAEAEA] text-[#848484] rounded-2xl"
                         />
                       </motion.div>
+
                       <motion.div variants={itemVariants} className="w-[47%]">
                         <p className="mb-2 indent-3 text-[16px] dark:text-[white]">
                           {t("userinfo.social.telegram")}
@@ -498,11 +589,12 @@ const PanelUserInfo = () => {
                         <Field
                           type="text"
                           name="telegram"
-                          placeholder="t.me/example"
+                          placeholder={ph("telegram")}
                           className="dark:bg-[#454545] dark:focus:ring-0 dark:border-[#848484] dark:text-[#ccc] outline-none w-full mb-1 bg-[white] focus:outline-none focus:ring-2 focus:ring-[#008C78] transition duration-400 px-5 py-2 border-1 border-[#EAEAEA] text-[#848484] rounded-2xl"
                         />
                       </motion.div>
                     </div>
+
                     <motion.div variants={itemVariants} className="w-[47%]">
                       <p className="mb-2 indent-3 text-[16px] dark:text-[white]">
                         {t("userinfo.social.linkdin")}
@@ -510,18 +602,18 @@ const PanelUserInfo = () => {
                       <Field
                         type="text"
                         name="linkdin"
-                        placeholder="linkedin"
+                        placeholder={ph("linkdin")}
                         className="dark:bg-[#454545] dark:focus:ring-0 dark:border-[#848484] dark:text-[#ccc] outline-none w-full mb-1 bg-[white] focus:outline-none focus:ring-2 focus:ring-[#008C78] transition duration-400 px-5 py-2 border-1 border-[#EAEAEA] text-[#848484] rounded-2xl"
                       />
                     </motion.div>
-                    <motion.div
+
+                    <motion.button
                       variants={itemVariants}
-                      className="bg-[#008C78] text-[white] rounded-2xl p-3 w-[15%] text-center cursor-pointer"
+                      type="submit"
+                      className="bg-[#008C78] text-[white] rounded-2xl p-3 w-[15%] text-center cursor-pointer mt-4"
                     >
-                      <button className="cursor-pointer">
-                        {t("userinfo.social.button")}
-                      </button>
-                    </motion.div>
+                      {t("userinfo.social.button")}
+                    </motion.button>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -533,4 +625,4 @@ const PanelUserInfo = () => {
   );
 };
 
-export default PanelUserInfo;
+export default UserPanelUserInfo;

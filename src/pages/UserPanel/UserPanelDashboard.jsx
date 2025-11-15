@@ -60,7 +60,7 @@ const itemVariants = {
   animate: { opacity: 1, y: 0, transition: { duration: 0.3 } },
 };
 
-const PanelDashboard = () => {
+const UserPanelDashboard = () => {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "fa";
 
@@ -257,4 +257,4 @@ const PanelDashboard = () => {
   );
 };
 
-export default PanelDashboard;
+export default UserPanelDashboard;

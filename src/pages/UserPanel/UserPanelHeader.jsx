@@ -8,7 +8,7 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import TranslateButton from "../../components/TranslateButton/TranslateButton";
-import PanelRight from "./PanelRight";
+import UserPanelRight from "./UserPanelRight";
 import { Link } from "react-router-dom";
 
 const headerVariants = {
@@ -29,7 +29,7 @@ const itemVariants = {
   animate: { opacity: 1, y: 0, transition: { duration: 0.3 } },
 };
 
-const PanelHeader = () => {
+const UserPanelHeader = () => {
   const { t } = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
@@ -76,7 +76,7 @@ const PanelHeader = () => {
             variants={itemVariants}
             className="bg-[#008C78] rounded-full p-2 cursor-pointer flex"
           >
-            <Link to={'/'}>
+            <Link to={"/"}>
               <HomeRoundedIcon className="text-[white] !text-3xl" />
             </Link>
           </motion.div>
@@ -104,11 +104,11 @@ const PanelHeader = () => {
         </button>
 
         <div className="pt-20 h-full">
-          <PanelRight isMobileMenu={true} />
+          <UserPanelRight isMobileMenu={true} />
         </div>
       </motion.div>
     </>
   );
 };
 
-export default PanelHeader;
+export default UserPanelHeader;
