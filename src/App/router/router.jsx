@@ -31,9 +31,7 @@ import ContactUs from "../../pages/ContactUs/ContactUs";
 const router = createBrowserRouter([
   {
     path: "/",
-
     element: <Layout />,
-
     children: [
       { index: true, element: <Landing /> },
       { path: "/courseList", element: <CourseList /> },
