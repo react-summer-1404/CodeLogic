@@ -311,7 +311,7 @@ const FavoriteCourses = () => {
                 damping: 20,
               },
             }}
-            className=" w-[30%] h-[25%] bg-[#eee] rounded-3xl flex 
+            className=" w-[80%] md:w-[30%] h-[30%] md:h-[25%] bg-[#eee] rounded-3xl flex 
                       flex-col justify-center mt-3 gap-10 items-center p-4 dark:text-white dark:bg-[#333] "
           >
             <h2 className="font-bold">{t("deleteModal.title")}</h2>
