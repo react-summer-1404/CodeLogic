@@ -13,9 +13,8 @@ import leftIcon from "../../../assets/Icons/A/left.png";
 import rightIcon from "../../../assets/Icons/A/right.png";
 import searchIcon from "../../../assets/Icons/A/search.png";
 import TeachersSkeleton from "../../../components/common/skeleton/Teachers/TeachersSkeleton";
-
-
-
+import empty from "../../../assets/Images/empty.json";
+import Lottie from "lottie-react";
 const TeachersPage = () => {
   //// get teachers data ////
   const { data: teachersData = [], isPending } = useQuery({
@@ -120,12 +119,16 @@ const TeachersPage = () => {
           </div>
           <div className="flex flex-col items-center gap-4 md:gap-0 pb-20 ">
             <div
-              className="mt-12 dark:text-[#EEEEEE] dark:border dark:border-[#EAEAEA]   dark:bg-[#1E1E1E] flex bg-[#ffff] 
-                            h-[72px] w-full shadow-md  rounded-[15px] items-center justify-between px-5 py-3 "
+              className="mt-12 dark:text-[#EEEEEE] dark:border dark:border-[#EAEAEA]   dark:bg-[#1E1E1E] flex flex-col
+               md:flex-row bg-[#ffff]  gap-4
+                            md:h-[72px] w-full shadow-md  rounded-[15px] md:items-center md:justify-between md:px-5 py-3 "
             >
               {/* ///// filtering //// */}
-              <div className="flex gap-4 w-[60%] h-full items-center justify-between ">
-                <div className=" w-[80%] h-full   ">
+              <div
+                className="flex flex-col md:flex-row gap-4 md:gap-0 md:w-[60%] mx-auto md:m-0 h-full 
+              md:items-center md:justify-between "
+              >
+                <div className=" md:w-[80%] h-full   ">
                   <motion.input
                     whileFocus={{
                       boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
@@ -149,7 +152,10 @@ const TeachersPage = () => {
                     value={TempSearch}
                   />
                 </div>
-                <div className="flex h-full items-center dark:bg-[#1E1E1E] dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
+                <div
+                  className="flex h-full items-center dark:bg-[#1E1E1E] dark:text-[#ffff] 
+                rounded-xl border shadow-md p-1 mx-auto md:m-0 border-[#EAEAEA] "
+                >
                   <span className="text-[16px] ps-1">
                     {t("teachersPage.filters.ShowMore")}
                   </span>
@@ -174,7 +180,7 @@ const TeachersPage = () => {
                 transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={applySearch}
-                className="text-center text-[14px] text-[#ffff] h-full w-[11%] rounded-2xl bg-[#008C78] "
+                className="text-center text-[14px] text-[#ffff] mx-auto md:m-0 h-full w-[50%] py-2 md:py-0 md:w-[11%] rounded-2xl bg-[#008C78] "
               >
                 {t("teachersPage.filters.search")}
               </motion.button>
@@ -190,7 +196,7 @@ const TeachersPage = () => {
               style={{ direction: "ltr" }}
             >
               {isPending &&
-                [...Array(4)].map((item, i) => (
+                [...Array(TeachersPerPage)].map((item, i) => (
                   <TeachersSkeleton key={i + 2} />
                 ))}
               {!isPending && currentTeachers.length > 0 ? (
@@ -202,9 +208,16 @@ const TeachersPage = () => {
                   />
                 ))
               ) : (
-                <p className=" text-center p-5 text-red-600 font-bold text-4xl mx-auto">
-                  {t("NoResultFound")}
-                </p>
+                <div className="w-full">
+                  <Lottie
+                    className="w-[200px] h-[170px] my-4 mx-auto"
+                    animationData={empty}
+                    loop={true}
+                  />
+                  <p className="font-semibold text-[black] text-[20px] text-center dark:text-[#848484]">
+                    {t("navbar.notfound")}
+                  </p>
+                </div>
               )}
             </div>
             {/* //// buttons  //// */}

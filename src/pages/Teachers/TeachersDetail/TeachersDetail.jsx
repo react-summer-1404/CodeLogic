@@ -16,7 +16,9 @@ import GetCoursesPaginate from "../../../core/services/api/Get/GetCoursesByPagin
 import TeacherSkeleton from "../../../components/common/skeleton/TeachersDetail/TeacherSkeleton";
 import DetailSkeleton from "../../../components/common/skeleton/TeachersDetail/DetailSkeleton";
 import Skeleton from "react-loading-skeleton";
-
+import ReactPaginate from "react-paginate";
+import Lottie from "lottie-react";
+import empty from "../../../assets/Images/empty.json";
 const TeachersDetail = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "fa";
@@ -48,10 +50,10 @@ const TeachersDetail = () => {
   });
   //// pagination ////
   const courses = coursesData?.courseFilterDtos || [];
-  const totalPage = coursesData?.totalCount;
-  const goToPage = (page) => {
-    if (page < 1 || page >= totalPage) return;
-    setCurrentPage(page);
+  const totalPage = Math.ceil(courses.length / coursesPerPage);
+  const handlePageChange = (p) => {
+    const selectedPage = p.selected + 1;
+    setCurrentPage(selectedPage);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const applyFilter = () => {
@@ -123,22 +125,23 @@ const TeachersDetail = () => {
         </div>
         <div className=" flex flex-col md:flex-row md:flex-nowrap gap-10 w-full  justify-between pt-4 pb-20 ">
           {isTeacherLoading ? (
-            <div className="w-[35%] md:w-[23%] mx-auto md:mx-0 ">
+            <div className="w-[80%] md:w-[23%] mx-auto md:mx-0 ">
               <TeacherSkeleton />
             </div>
           ) : (
-            <div className="w-[35%] md:w-[23%] mx-auto md:mx-0 ">
+            <div className="w-[80%] md:w-[23%] mx-auto md:mx-0 ">
               <TeacherCard item={teacher} />
             </div>
           )}
           <div className="w-[100%] md:w-[80%] flex flex-col justify-center mx-auto md:mx-0">
             <div
-              className=" flex dark:text-[#EEEEEE] dark:border dark:border-[#EAEAEA]   dark:bg-[#1E1E1E]
-                             bg-[#ffff] h-[72px] w-full shadow-md  rounded-[15px] items-center justify-between px-5 py-3 "
+              className=" flex flex-col md:flex-row dark:text-[#EEEEEE] dark:border dark:border-[#EAEAEA]   dark:bg-[#1E1E1E]
+                             bg-[#ffff] md:h-[72px] w-full shadow-md  rounded-[15px]
+                              items-center md:justify-between md:px-5 py-3 "
             >
               {/* ///// filtering //// */}
-              <div className="flex gap-4 w-[60%] h-full items-center justify-between ">
-                <div className=" w-[78%] h-full   ">
+              <div className="flex flex-col md:flex-row gap-4 md:w-[60%] h-full items-center md:justify-between ">
+                <div className=" md:w-[78%] h-full   ">
                   <motion.input
                     whileFocus={{
                       boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
@@ -162,7 +165,7 @@ const TeachersDetail = () => {
                     value={tempSearch}
                   />
                 </div>
-                <div className="flex w-[24%] items-center h-full dark:bg-[#1E1E1E] dark:text-[#ffff] rounded-xl border shadow p-1  border-[#EAEAEA] ">
+                <div className="flex md:w-[24%] items-center h-full dark:bg-[#1E1E1E] dark:text-[#ffff] rounded-xl border shadow p-1  border-[#EAEAEA] ">
                   <span className="text-[16px] ps-1 ">
                     {t("teachersPage.filters.ShowMore")}
                   </span>
@@ -191,7 +194,7 @@ const TeachersDetail = () => {
                 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={applyFilter}
-                className="text-center text-[14px] text-[#ffff] h-full w-[11%] rounded-2xl bg-[#008C78] "
+                className="text-center text-[14px] text-[#ffff] h-full md:w-[11%] px-4 py-2 md:p-0 mt-3 md:m-0 rounded-2xl bg-[#008C78] "
               >
                 {t("teachersPage.filters.search")}
               </motion.button>
@@ -216,45 +219,37 @@ const TeachersDetail = () => {
                   <DetailCard item={item} key={index} />
                 ))
               ) : (
-                <p className=" text-center p-5 text-red-600 font-bold text-4xl mx-auto">
-                  {t("NoResultFound")}
-                </p>
+                <div className="w-full">
+                  <Lottie
+                    className="w-[200px] h-[170px] my-4 mx-auto"
+                    animationData={empty}
+                    loop={true}
+                  />
+                  <p className="font-semibold text-[black] text-[20px] text-center dark:text-[#848484]">
+                    {t("navbar.notfound")}
+                  </p>
+                </div>
               )}
             </div>
             {/* //// buttons //// */}
-            <div
-              className=" flex items-center justify-center gap-3"
-              style={{ direction: "ltr" }}
-            >
-              <button
-                disabled={currentPage === 1}
-                onClick={() => goToPage(currentPage - 1)}
-                className=' dark:bg-[#606060] cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3
-                                     bg-[#EAEAEA] dark:text-[#ffff] text-[#1E1E1E]"}  bg-[center_center] bg-no-repeat '
-                style={{ backgroundImage: `url(${leftIcon})` }}
-              ></button>
-              <div className="flex items-center justify-center gap-3">
-                {Array.from({ length: totalPage }, (_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => goToPage(i + 1)}
-                    className={` dark:bg-[#606060] transition-all duration-300 cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3 ${
-                      currentPage === i + 1
-                        ? "bg-[#008C78] dark:bg-[#008C78]  text-[#ffff]"
-                        : " bg-[#EAEAEA] text-[#1E1E1E]"
-                    } `}
-                  >
-                    {i + 1}
-                  </button>
-                ))}
-              </div>
-              <button
-                disabled={currentPage === totalPage}
-                onClick={() => goToPage(currentPage + 1)}
-                className='cursor-pointer shadow-lg text-center w-[50px] h-[50px] rounded-[15px] p-3
-                                     bg-[#EAEAEA] dark:text-[#ffff] dark:bg-[#606060] text-[#1E1E1E]"} bg-[center_center] bg-no-repeat '
-                style={{ backgroundImage: `url(${rightIcon})` }}
-              ></button>
+            <div>
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel=" >"
+                previousLabel="< "
+                onPageChange={handlePageChange}
+                pageCount={totalPage}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={3}
+                forcePage={currentPage - 1}
+                containerClassName="flex flex-wrap justify-center gap-1 sm:gap-2"
+                pageClassName="px-3 py-2 sm:px-5 sm:py-3 rounded-[15px] font-semibold shadow-md cursor-pointer text-sm sm:text-xl bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
+                activeClassName="!bg-[#008C78] text-white rounded-2xl shadow-md"
+                previousClassName="px-2 py-1 sm:px-3 sm:py-1 rounded-2xl shadow-md cursor-pointer text-sm bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
+                nextClassName="px-2 py-1 sm:px-3 sm:py-1 rounded-2xl shadow-md cursor-pointer text-sm bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
+                previousLinkClassName="font-bold text-lg sm:text-2xl px-1 sm:px-2 py-1 flex items-center justify-center h-full w-full"
+                nextLinkClassName="font-bold text-lg sm:text-2xl px-1 sm:px-2 py-1 flex items-center justify-center h-full w-full"
+              />
             </div>
           </div>
         </div>

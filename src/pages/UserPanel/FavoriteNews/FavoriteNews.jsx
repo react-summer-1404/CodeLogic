@@ -17,6 +17,8 @@ import openEye from "../../../assets/Icons/A/openEye.png";
 import starIcon from "../../../assets/Icons/A/star.png";
 import htmlImg from "../../../assets/Images/HTML5Course.png";
 import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";
+import Lottie from "lottie-react";
+import empty from "../../../assets/Images/empty.json";
 const FavoriteNews = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "fa";
@@ -60,12 +62,15 @@ const FavoriteNews = () => {
       n.news.title.trim().toLowerCase().includes(query.trim().toLowerCase())
     )
     .sort((a, b) => {
-      if (filterOption === "بیشترین لایک") {
-        return b.likesCount - a.likesCount;
-      } else if (filterOption === "بیشترین بازدید") {
-        return b.viewsCount - a.viewsCount;
+      const dateA = new Date(a.news.updateDate);
+      const dateB = new Date(b.news.updateDate);
+      if (filterOption === "جدید ترین ها") {
+        return dateB - dateA;
+      } else if (filterOption === "اولین بروزرسانی") {
+        return dateA - dateB;
+      } else {
+        return 0;
       }
-      return 0;
     });
 
   const startIndex = (currentPage - 1) * newsPerPage;
@@ -136,14 +141,14 @@ const FavoriteNews = () => {
       className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-5 flex
      max-h-[89%] h-full flex-col justify-between mx-auto mt-4 rounded-4xl "
     >
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col gap-3 md:gap-0 md:flex-row md:justify-between items-center pb-5 md:p-0">
         {/* filtering ------ */}
         <motion.div
           variants={rightAnimate}
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="relative max-w-[40%] w-full"
+          className="relative [w-50%] md:max-w-[40%] md:w-full"
         >
           <input
             className=" dark:bg-[#454545] dark:text-[#ffff] dark:placeholder:text-white
@@ -163,8 +168,11 @@ const FavoriteNews = () => {
             alt=""
           />
         </motion.div>
-        <div className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow md:p-1 border-[#EAEAEA] ">
-          <span className="text-[16px] hidden md:inline">
+        <div
+          className="flex h-full py-4  items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff]
+         rounded-xl border shadow md:p-1 border-[#EAEAEA] "
+        >
+          <span className="text-[16px] hidden md:inline ps-3">
             {t("coursesPayment.filters")}
           </span>
           <select
@@ -173,15 +181,15 @@ const FavoriteNews = () => {
               setFilterOption(e.target.value);
               setCurrentPage(1);
             }}
-            className=" rounded-xl text-sm cursor-pointer  ps-2 text-gray-600
+            className=" rounded-xl text-sm cursor-pointer py-1 ps-2 text-gray-600
                          dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]"
           >
-            <option value="all">({t("favoriteNews.all")})</option>
-            <option value="بیشترین لایک">
-              ({t("favoriteNews.mostLikes")})
+            <option value="all">({t("favoriteCourses.all")})</option>
+            <option value="جدید ترین ها">
+              ({t("favoriteCourses.lastUpdate")})
             </option>
-            <option value="بیشترین بازدید">
-              ({t("favoriteNews.mostViews")})
+            <option value="اولین بروزرسانی">
+              ({t("favoriteCourses.firstUpdate")})
             </option>
           </select>
         </div>
@@ -212,9 +220,16 @@ const FavoriteNews = () => {
                   />
                 ))
               ) : (
-                <h1 className="text-red-600 text-2xl font-bold text-center mt-20 ">
-                  {t("favoriteNews.notFound")}
-                </h1>
+                <div className="w-full">
+                  <Lottie
+                    className="w-[200px] h-[170px] my-4 mx-auto"
+                    animationData={empty}
+                    loop={true}
+                  />
+                  <p className="font-semibold text-[black] text-[20px] text-center dark:text-[#848484]">
+                    {t("navbar.notfound")}
+                  </p>
+                </div>
               )}
             </div>
           )}
