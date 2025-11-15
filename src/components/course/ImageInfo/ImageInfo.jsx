@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Like from '../../../assets/Icons/Like'
 import DisLike from '../../../assets/Icons/DisLike'
 import {likeCourses} from '../../../core/services/api/post/likeCourses'
@@ -12,11 +12,14 @@ const ImageInfo = ({ course }) => {
 
     const {t} = useTranslation()
 
-    const [liked, setLiked] = useState(false);
-    const [disLiked, setDisliked] = useState(false);
-    const [likeCount, setLikeCount] = useState(course.likeCount);
-    const [disLikeCount, setDisLikeCount] = useState(course.dissLikeCount);
+    const key = `like_${course.courseId}`;
+    const saved = JSON.parse(localStorage.getItem(key) || '{}');
+    const [liked, setLiked] = useState(saved.liked || false);
+    const [disLiked, setDisliked] = useState(saved.disLiked || false);
+    const [likeCount, setLikeCount] = useState(course.likeCount + (saved.liked ? 1 : 0));
+    const [disLikeCount, setDisLikeCount] = useState(course.dissLikeCount + (saved.disLiked ? 1 : 0));
 
+    
     const onLike = () => {
         if (liked) {
             setLiked(false);
@@ -48,7 +51,11 @@ const ImageInfo = ({ course }) => {
         }
     };
 
-
+    
+    useEffect(() => {
+        localStorage.setItem(key, JSON.stringify({ liked, disLiked }));
+    }, [liked, disLiked]);
+    
     return (
         <div className='flex flex-col gap-4'>
             <img src={course.imageAddress} className='w-full h-[160px] rounded-xl
