@@ -242,6 +242,12 @@
   "courseComments": {
     "title": "All Comments"
   },
+  "courseComment": {
+    "likeSuccessToast": "You liked this comment",
+    "removeLikeSuccessToast": "Your like has been removed",
+    "disLikeSuccessToast": "You disliked this comment",
+    "removeDisLikeSuccessToast": "Your dislike has been removed"
+  },
   "courseCommentForm": {
     "titleInputsTitle": "Comment Title",
     "titleInputsPlcholder": "Enter your comment's title",

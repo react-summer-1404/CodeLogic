@@ -243,6 +243,12 @@
   "courseComments": {
     "title": "همه ی نظرات"
   },
+  "courseComment": {
+    "likeSuccessToast": "شما این نظر را لایک کردید",
+    "removeLikeSuccessToast": "لایک شما حذف شد",
+    "disLikeSuccessToast": "شما این نظر را دیسلایک کردید",
+    "removeDisLikeSuccessToast": "دیسلایک شما حذف شد"
+  },
   "courseCommentForm": {
     "titleInputsTitle": "عنوان دیدگاه",
     "titleInputsPlcholder": "عنوان دیدگاه خود را بنویسید",
