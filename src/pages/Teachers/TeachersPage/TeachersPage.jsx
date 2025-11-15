@@ -1,7 +1,7 @@
 import { AnimatePresence, motion, number } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import SliderTeacher from "../../../components/landing/SliderTeachers/SliderTeacher/SliderTeacher";
+import SliderTeacher from "../../../components/landing/SliderTeacher/SliderTeacher";
 import SliderButtons from "../../../components/common/sliders/buttons/sliderButtons";
 import { Atom } from "react-loading-indicators";
 import { useTranslation } from "react-i18next";
@@ -13,6 +13,8 @@ import leftIcon from "../../../assets/Icons/A/left.png";
 import rightIcon from "../../../assets/Icons/A/right.png";
 import searchIcon from "../../../assets/Icons/A/search.png";
 import TeachersSkeleton from "../../../components/common/skeleton/Teachers/TeachersSkeleton";
+
+
 
 const TeachersPage = () => {
   //// get teachers data ////

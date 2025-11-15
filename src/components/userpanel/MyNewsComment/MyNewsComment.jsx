@@ -1,8 +1,8 @@
 import React from 'react'
-import Eye from '../../../../assets/Icons/Eye'
-import Garbage from '../../../../assets/Icons/Garbage'
+import Eye from '../../../assets/Icons/Eye'
+import Garbage from '../../../assets/Icons/Garbage'
 import { motion } from 'framer-motion'
-import { deleteNewsComments } from '../../../../core/services/api/delete/deleteNewsComments'
+import { deleteNewsComments } from '../../../core/services/api/delete/deleteNewsComments'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
 

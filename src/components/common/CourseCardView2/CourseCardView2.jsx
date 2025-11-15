@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import Heart from '../../../../assets/Icons/Heart'
-import Level from '../../../../assets/Icons/Level'
-import Star from '../../../../assets/Icons/Star'
-import Teacher from '../../../../assets/Icons/Teacher'
-import CourseCardView2Skeleton from '../../skeleton/CourseCardSkeletonView2/CourseCardSkeletonView2'
+import Heart from '../../../assets/Icons/Heart'
+import Level from '../../../assets/Icons/Level'
+import Star from '../../../assets/Icons/Star'
+import Teacher from '../../../assets/Icons/Teacher'
+import CourseCardView2Skeleton from '../skeleton/CourseCardSkeletonView2/CourseCardSkeletonView2'
 
 
 

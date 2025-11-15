@@ -2,8 +2,8 @@ import React, { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import GetAllTeachers from "../../../core/services/api/Get/GetAllTeachers";
-import ButtonsSeeMore from "../../common/landing/ButtonsSeeMore/ButtonsSeeMore";
-import SliderTeacher from "./SliderTeacher/SliderTeacher";
+import ButtonsSeeMore from "../../common/ButtonsSeeMore/ButtonsSeeMore";
+import SliderTeacher from "../SliderTeacher/SliderTeacher";
 import { Link } from "react-router-dom";
 
 const SliderTeachers = () => {

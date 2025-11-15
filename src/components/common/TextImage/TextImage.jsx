@@ -1,5 +1,5 @@
 import React from 'react'
-import BigArrowLeft from '../../../../assets/Icons/BigArrowLeft'
+import BigArrowLeft from '../../../assets/Icons/BigArrowLeft'
 import { useTranslation } from 'react-i18next'
 
 

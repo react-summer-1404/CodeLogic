@@ -1,6 +1,6 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import documentIcon from "../../../../assets/Icons/A/document.png";
+import documentIcon from "../../../assets/Icons/A/document.png";
 import { useTranslation } from "react-i18next";
 
 const CoursePayment = ({ items }) => {

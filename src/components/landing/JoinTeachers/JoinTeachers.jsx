@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
-import TextImage from '../../common/landing/TextImage/TextImage'
+import TextImage from '../../common/TextImage/TextImage'
 import Talking from '../../../assets/Images/talking.svg'
 
 

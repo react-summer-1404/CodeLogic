@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import Arrow from '../../../../assets/Icons/Arrow'
+import Arrow from '../../../assets/Icons/Arrow'
 
 
 

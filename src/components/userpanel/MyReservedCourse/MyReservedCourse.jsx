@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Eye from '../../../../assets/Icons/Eye'
-import Receipt from '../../../../assets/Icons/Receipt'
+import Eye from '../../../assets/Icons/Eye'
+import Receipt from '../../../assets/Icons/Receipt'
 import { motion } from 'framer-motion'
 import { t } from 'i18next'
 

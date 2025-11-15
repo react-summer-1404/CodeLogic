@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react'
 import debounce from 'lodash.debounce'
-import Search from '../../../../assets/Icons/Search'
+import Search from '../../../assets/Icons/Search'
 import { useTranslation } from 'react-i18next'
 
 

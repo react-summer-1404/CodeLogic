@@ -1,9 +1,9 @@
 import React from 'react'
-import Eye from '../../../../assets/Icons/Eye'
-import Garbage from '../../../../assets/Icons/Garbage'
+import Eye from '../../../assets/Icons/Eye'
+import Garbage from '../../../assets/Icons/Garbage'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
-import { deleteCoursesComments } from '../../../../core/services/api/delete/deleteCoursesComments'
+import { deleteCoursesComments } from '../../../core/services/api/delete/deleteCoursesComments'
 import { toast } from 'react-toastify'
 
 

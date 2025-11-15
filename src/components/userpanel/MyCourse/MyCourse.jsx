@@ -1,7 +1,7 @@
 import React from 'react'
-import Eye from '../../../../assets/Icons/Eye'
-import Receipt from '../../../../assets/Icons/Receipt'
-import ReactCourseImg from '../../../../assets/Images/A/courses/2.png'
+import Eye from '../../../assets/Icons/Eye'
+import Receipt from '../../../assets/Icons/Receipt'
+import ReactCourseImg from '../../../assets/Images/A/courses/2.png'
 import { motion } from 'framer-motion'
 
 
