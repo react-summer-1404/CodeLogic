@@ -1,14 +1,13 @@
-import React, {useState} from 'react'
-import { motion } from 'framer-motion'
-import { useTranslation } from 'react-i18next'
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
-const textClass = 'font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]'
+const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
 
-const ReservedCoursesModal = ({item, handleToggleModal}) => {
-  
-  const {t} = useTranslation()
+const ReservedCoursesModal = ({ item, handleToggleModal }) => {
+  const { t } = useTranslation();
 
-  const [isAccept , setIsAccept] = useState(false)
+  const [isAccept, setIsAccept] = useState(false);
 
   const Animate = {
     hidden: { opacity: 0, y: -20 },
@@ -18,44 +17,60 @@ const ReservedCoursesModal = ({item, handleToggleModal}) => {
       transition: { ease: "easeOut", duration: 0.35 },
     },
   };
-  
+
   return (
     <motion.div
-    variants={Animate}
-    initial="hidden"
-    animate="visible"
-    className='flex flex-col items-center gap-6 w-144 h-84 pt-8 bg-[#FFFFFF] border border-[#EAEAEA] rounded-xl fixed top-32 
-    right-120 inset-0 z-48'>
-      <div className='flex flex-col items-center gap-4'>
-        <img src={item.image} className='w-7 h-7 rounded-[48px]'/>
+      variants={Animate}
+      initial="hidden"
+      animate="visible"
+      className="flex flex-col items-center gap-6 w-144 h-84 pt-8 bg-[#FFFFFF] border border-[#EAEAEA] rounded-xl fixed top-32 
+    right-120 inset-0 z-48"
+    >
+      <div className="flex flex-col items-center gap-4">
+        <img src={item.image} className="w-7 h-7 rounded-[48px]" />
         <div>
           <span className={textClass}>{item.courseName}</span>
         </div>
       </div>
-      <div className='flex justify-center gap-2'>
-        <span className='font-semibold text-base text-[#1E1E1E]'>{t('reservedCourseModal.student')}</span>
+      <div className="flex justify-center gap-2">
+        <span className="font-semibold text-base text-[#1E1E1E]">
+          {t("reservedCourseModal.student")}
+        </span>
         <span className={textClass}>{item.teacher}</span>
       </div>
-      <div className='flex justify-center gap-2'>
-        <span className='font-semibold text-base text-[#1E1E1E]'>{t('reservedCourseModal.status')}</span>
-        <span className={`py-[2px] px-[10px] font-regular text-base rounded-[8px] 
-        ${isAccept ? 'text-[#008C78] bg-[#EEFFFC]' : 'text-[#E7000B] bg-[#FFECEC]'}`}>
-          {
-            isAccept ? t('myReservedCourse.reserved') : t('myReservedCourse.await')
-          }
+      <div className="flex justify-center gap-2">
+        <span className="font-semibold text-base text-[#1E1E1E]">
+          {t("reservedCourseModal.status")}
+        </span>
+        <span
+          className={`py-[2px] px-[10px] font-regular text-base rounded-[8px] 
+        ${
+          isAccept
+            ? "text-[#008C78] bg-[#EEFFFC]"
+            : "text-[#E7000B] bg-[#FFECEC]"
+        }`}
+        >
+          {isAccept
+            ? t("myReservedCourse.reserved")
+            : t("myReservedCourse.await")}
         </span>
       </div>
-      <div className='flex justify-center gap-2'>
-        <span className='font-semibold text-base text-[#1E1E1E]'>{t('reservedCourseModal.reservationDate')}</span>
-        <span className={textClass}>{item.insertDate.slice(0,10)}</span>
+      <div className="flex justify-center gap-2">
+        <span className="font-semibold text-base text-[#1E1E1E]">
+          {t("reservedCourseModal.reservationDate")}
+        </span>
+        <span className={textClass}>{item.insertDate.slice(0, 10)}</span>
       </div>
-      <button 
-      onClick={() => {handleToggleModal(false)}}
-      className='py-1 px-2 border rounded-lg cursor-pointer'>
-        {t('reservedCourseModal.backBtn')}
+      <button
+        onClick={() => {
+          handleToggleModal(false);
+        }}
+        className="py-1 px-2 border rounded-lg cursor-pointer"
+      >
+        {t("reservedCourseModal.backBtn")}
       </button>
     </motion.div>
-  )
-}
+  );
+};
 
-export default ReservedCoursesModal
+export default ReservedCoursesModal;

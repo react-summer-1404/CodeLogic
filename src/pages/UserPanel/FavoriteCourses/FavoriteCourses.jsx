@@ -230,7 +230,7 @@ const FavoriteCourses = () => {
           )}
         </div>
         {/* buttons ------- */}
-        <div className="flex justify-between p-8">
+        <div className="flex flex-col items-center md:items-start gap-3 md:gap-0 md:flex-row md:justify-between p-4 md:p-8">
           <div className="flex items-center gap-2" style={{ direction: "ltr" }}>
             <button
               disabled={currentPage === 1}

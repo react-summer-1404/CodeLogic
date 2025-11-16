@@ -34,8 +34,11 @@ const MyReservedCourse = ({ item }) => {
         className="flex flex-col items-center py-[14px] border-t border-b border-[#EAEAEA]
       md:flex md:flex-row"
       >
-        <div className="flex items-center gap-4 w-64">
-          <img src={item.image} className="w-7 h-7 rounded-full object-cover" />
+        <div className="flex flex-col md:flex-row items-center gap-4 w-64">
+          <img
+            src={item.image}
+            className=" md:w-7 md:h-7 rounded-full object-cover"
+          />
           <div>
             <span className={textClass}>{item.courseName}</span>
           </div>
