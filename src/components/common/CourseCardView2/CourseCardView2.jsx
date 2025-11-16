@@ -57,7 +57,7 @@ const CourseCardView2 = ({ item, handleToggleFavorite, isLoading}) => {
                             </div>
                         </div>
                         <div className='flex items-center gap-1'>
-                            <span className='font-regular text-sm text-[#F8BC24]'>{t(`${item.courseRate.avg}`)}</span>
+                            <span className='font-regular text-sm text-[#F8BC24]'>{t(`${Math.floor(item.courseRate.avg)}`)}</span>
                             <Star />
                         </div>
                     </div>
