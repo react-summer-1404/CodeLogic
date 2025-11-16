@@ -54,8 +54,8 @@ const MyReservedCourses = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10 h-[85%] p-8 bg-[#F3F4F6] rounded-4xl   dark:bg-[#333333]">
-      <div className="flex flex-col gap-5 md:gap-0 md:flex-row md:justify-between items-center">
+    <div className="flex flex-col gap-5 md:gap-10 h-[85%] p-8 bg-[#F3F4F6] rounded-4xl   dark:bg-[#333333]">
+      <div className="flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between items-center">
         <UserPanelSearch width={"  md:w-[439px]"} handleSearch={handleSearch} />
         <div
           className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff]
