@@ -23,8 +23,8 @@ const ReservedCoursesModal = ({ item, handleToggleModal }) => {
       variants={Animate}
       initial="hidden"
       animate="visible"
-      className="flex flex-col items-center gap-6 w-144 h-84 pt-8 bg-[#FFFFFF] border border-[#EAEAEA] rounded-xl fixed top-32 
-    right-120 inset-0 z-48"
+      className="flex flex-col items-center gap-6 w-[80%] shadow-2xl h-[50%] md:w-144 md:h-84 pt-8 bg-[#FFFFFF] border border-[#EAEAEA] rounded-xl fixed md:top-32 
+    md:right-120 mx-auto mt-45 md:m-0 inset-0 z-48"
     >
       <div className="flex flex-col items-center gap-4">
         <img src={item.image} className="w-7 h-7 rounded-[48px]" />
