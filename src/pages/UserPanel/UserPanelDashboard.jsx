@@ -65,14 +65,14 @@ const UserPanelDashboard = () => {
   const isRtl = i18n.language === "fa";
 
   return (
-    <div className=" w-full bg-[#F3F4F6] h-[85%] flex items-center rounded-4xl p-5 dark:bg-[#333] ">
+    <div className=" w-full bg-[#F3F4F6] mt-5 md:m-0 md:h-[85%] flex items-center rounded-4xl p-5 dark:bg-[#333] ">
       <div className=" w-full h-full flex flex-col justify-between ">
-        <div className=" w-full h-[25%] flex justify-between">
+        <div className=" w-full h-[25%] flex flex-col gap-5 md:flex-row md:justify-between">
           <motion.div
             variants={headerVariants}
             initial="initial"
             animate="animate"
-            className=" h-full w-[30%] rounded-3xl bg-white dark:bg-[#454545]"
+            className=" h-full md:w-[30%] rounded-3xl bg-white dark:bg-[#454545]"
           >
             <motion.div
               variants={itemVariants}
@@ -88,20 +88,20 @@ const UserPanelDashboard = () => {
               </div>
             </motion.div>
 
-            <motion.span
+            <motion.sp
               variants={itemVariants}
               className={` text-[#008C78] text-[48px] pr-6 ${
                 isRtl ? "" : "pl-6"
               } `}
             >
               5
-            </motion.span>
+            </motion.sp>
           </motion.div>
           <motion.div
             variants={headerVariants}
             initial="initial"
             animate="animate"
-            className=" h-full w-[30%] rounded-3xl bg-white dark:bg-[#454545]"
+            className=" h-full md:w-[30%] rounded-3xl bg-white dark:bg-[#454545]"
           >
             <motion.div
               variants={itemVariants}
@@ -131,7 +131,7 @@ const UserPanelDashboard = () => {
             variants={headerVariants}
             initial="initial"
             animate="animate"
-            className=" h-full w-[35%] rounded-3xl bg-white dark:bg-[#454545] relative"
+            className=" h-full md:w-[35%] rounded-3xl bg-white dark:bg-[#454545] relative"
           >
             <motion.div
               variants={headerVariants}
@@ -148,25 +148,26 @@ const UserPanelDashboard = () => {
             </motion.div>
             <motion.div
               variants={headerVariants}
-              className={` rounded-full border-7 border-[#008c78] w-[21%] h-[54%] flex items-center justify-center mr-65 absolute top-10 ${
-                isRtl ? "" : "ml-65"
-              } `}
+              className={` rounded-full border-7 border-[#008c78] w-20 mx-auto mb-2 md:mb-0 h-20 md:w-[21%] md:h-[54%] flex flex-col items-center
+                 justify-center md:mr-65 md:absolute md:top-10 ${
+                   isRtl ? "" : "md:ml-65"
+                 } `}
             >
               <p className="text-[#008c78] font-bold ">100%</p>
             </motion.div>
           </motion.div>
         </div>
-        <div className=" w-full h-[70%]  flex justify-between">
+        <div className=" w-full md:h-[70%]  flex flex-col md:flex-row md:justify-between">
           <motion.div
             variants={headerVariants}
             initial="initial"
             animate="animate"
-            className=" h-full w-[49%] bg-[white]  rounded-3xl dark:bg-[#454545]  "
+            className=" h-full mt-5 py-4 md:m-0 md:p-0 md:w-[49%] bg-[white]  rounded-3xl dark:bg-[#454545]  "
           >
             <motion.div
               variants={itemVariants}
-              className={` flex justify-between items-center   w-[45%] py-4 pr-6 ${
-                isRtl ? "" : "pl-6 w-[65%]"
+              className={` flex justify-between items-center   md:w-[45%] px-6 py-4 md:pr-6 ${
+                isRtl ? "" : "md:pl-6 md:w-[65%]"
               }`}
             >
               <p
@@ -211,17 +212,17 @@ const UserPanelDashboard = () => {
             variants={headerVariants}
             initial="initial"
             animate="animate"
-            className=" h-full w-[49%] bg-[white] rounded-3xl dark:bg-[#454545] "
+            className="h-full mt-5 py-4 md:m-0 md:p-0 md:w-[49%] bg-[white]  rounded-3xl dark:bg-[#454545] "
           >
             <motion.div
               variants={itemVariants}
-              className={` flex justify-between items-center   w-[45%] py-4 pr-6 ${
-                isRtl ? "" : "pl-6 w-[65%]"
+              className={` flex justify-between items-center   md:w-[45%] py-4 pr-6 ${
+                isRtl ? "" : "pl-6 md:w-[65%]"
               }`}
             >
               <p
                 className={`  text-[20px] text-[#1e1e1e] dark:text-[#848484] ${
-                  isRtl ? "" : "w-[40%]   "
+                  isRtl ? "" : "md:w-[40%]   "
                 } `}
               >
                 {t("paneldashboard.latest_news")}

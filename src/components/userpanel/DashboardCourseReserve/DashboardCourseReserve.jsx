@@ -30,7 +30,7 @@ const DashboardCourseReserve = ({ image, title, status }) => {
       variants={headerVariants}
       initial="initial"
       animate="animate"
-      className={` w-[90%] h-[20%] px-2  flex flex-row justify-between items-center mb-4 mx-auto rounded-3xl shadow-[0px_0px_1px_1px_#EAEAEA] cursor-pointer duration-300  hover:shadow-[0px_0px_10px_1px_#008c78] dark:bg-[#454545] dark:shadow-[0px_0px_1px_1px_#848484]  `}
+      className={` w-[90%] md:h-[20%] py-2 md:py-0 md:px-2  flex flex-row justify-between items-center mb-4 mx-auto rounded-3xl shadow-[0px_0px_1px_1px_#EAEAEA] cursor-pointer duration-300  hover:shadow-[0px_0px_10px_1px_#008c78] dark:bg-[#454545] dark:shadow-[0px_0px_1px_1px_#848484]  `}
     >
       <motion.img
         variants={itemVariants}
