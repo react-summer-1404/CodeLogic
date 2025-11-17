@@ -54,7 +54,6 @@ const CourseList = () => {
   
   const [price, setPrice] = useState([0, 10000]);
   const handleSetPrice = (price) => {
-    console.log(price);
     setPrice(price);
   };
   

@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import UserPanelSearch from "../../../components/common/UserPanelSearch/UserPanelSearch";
-import UserPanelFilter from "../../../components/common/UserPanelFilter/UserPanelFilter";
 import UserPanelTitle from "../../../components/common/UserPanelTitle/UserPanelTitle";
 import MyReservedCourse from "../../../components/userPanel/MyReservedCourse/MyReservedCourse";
-import UserPanelShowNumber from "../../../components/common/UserPanelShowNumber/UserPanelShowNumber";
 import GetMyReservedCourses from "../../../core/services/api/get/GetMyReservedCourses";
 import ReactPaginate from "react-paginate";
 import { t } from "i18next";
-import { useDebounce } from "use-debounce";
 import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";
 import Lottie from "lottie-react";
 import empty from "../../../assets/Images/empty.json";
+
+
+
 const MyReservedCourses = () => {
   const { data: myReservedCoursesData, isPending } = useQuery({
     queryKey: ["GETMYRESERVEDCOURSES"],
@@ -29,6 +29,8 @@ const MyReservedCourses = () => {
   const startIndex = (currentPage - 1) * coursesPerPage;
   const endIndex = startIndex + coursesPerPage;
   const reservedData = myReservedCoursesData || [];
+
+
   const filteredCourses = reservedData.filter((courses) => {
     const matchesTitle = courses.courseName
       .toLowerCase()
@@ -41,6 +43,8 @@ const MyReservedCourses = () => {
     const matchesFilters = courses.accept === bool;
     return matchesFilters && matchesTitle;
   });
+
+  
   const currentCourses = filteredCourses.slice(startIndex, endIndex);
   const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
   const handlePageChange = (p) => {
@@ -56,7 +60,7 @@ const MyReservedCourses = () => {
   return (
     <div className="flex flex-col gap-5 md:gap-10 h-[85%] p-8 bg-[#F3F4F6] rounded-4xl   dark:bg-[#333333]">
       <div className="flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between items-center">
-        <UserPanelSearch width={"  md:w-[439px]"} handleSearch={handleSearch} />
+        <UserPanelSearch width={"md:w-[439px]"} handleSearch={handleSearch} />
         <div
           className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff]
          rounded-xl border shadow p-2 md:p-1 border-[#EAEAEA] "
@@ -70,9 +74,7 @@ const MyReservedCourses = () => {
               setFilterOption(e.target.value);
               setCurrentPage(1);
             }}
-            className=" rounded-xl text-sm cursor-pointer  ps-2 text-gray-600
-                         dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]"
-          >
+            className="rounded-xl text-sm cursor-pointer  ps-2 text-gray-600   dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]">
             <option value="همه">({t("favoriteNews.all")})</option>
             <option value="false">
               ({t("coursesPayment.AwaitingConfirmation")})

@@ -1,6 +1,6 @@
 import Http from '../../../interceptor/interceptor';
 
-const myCoursesComments = async (params) => {
+const myCourseComments = async (params) => {
     try {
         const result = await Http.get('/SharePanel/GetMyCoursesComments', { params });
         return result;
@@ -9,4 +9,4 @@ const myCoursesComments = async (params) => {
     }
 };
 
-export default myCoursesComments;
+export default myCourseComments;
