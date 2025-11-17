@@ -24,7 +24,8 @@ const CourseCardView2 = ({ item, handleToggleFavorite, isLoading}) => {
     }
 
     return (
-        <div className='hidden flex flex-shrink-0 gap-8 w-[640px] p-4 bg-[#FFFFFF] rounded-[20px] relative   dark:bg-[#606060]
+        <div className='hidden flex flex-shrink-0 gap-8 w-[640px] p-4 bg-[#FFFFFF] rounded-[20px] duration-300 relative   dark:bg-[#606060]
+        hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78]
         sm:flex sm:w-[520px] sm:h-[184px] 
         lg:w-[720px] lg:h-[208px]
         xl:w-[1044px] xl:h-[232px]'>

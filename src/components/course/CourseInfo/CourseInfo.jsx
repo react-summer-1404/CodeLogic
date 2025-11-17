@@ -31,6 +31,8 @@ const CourseInfo = ({course}) => {
         localStorage.setItem(course.courseId, newState);
     }
 
+    const discountedPrice = course.cost * 0.5
+
 
     return (
         <div className='flex flex-col gap-12 w-[320px] p-4 bg-[#FFFFFF] rounded-[25px] shadow-[0_0_10px_rgba(0,0,0,0.15)]
@@ -80,11 +82,11 @@ const CourseInfo = ({course}) => {
                         <div className='flex flex-col'>
                             <div className='flex gap-8'>
                                 <span className='font-regular text-sm text-[#1E1E1E]   dark:text-[#CCCCCC]'>{t('courseInfo.price')}</span>
-                                <span className='font-regular text-sm text-[#848484]'>{course.cost}</span>
+                                <span className='font-regular text-sm text-[#848484] line-through'>{course.cost}</span>
                             </div>
                             <div className={`flex gap-1 font-bold text-[18px] text-[#008C78] ${isRtl ? 'rtl' : 'ltr'}`}>
                                 <span>{t('courseInfo.toman')}</span>
-                                <span>{course.cost}</span>
+                                <span>{discountedPrice}</span>
                             </div>
                         </div>
                     </div>
