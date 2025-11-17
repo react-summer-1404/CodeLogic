@@ -316,9 +316,9 @@ const UserPanelUserInfo = () => {
                       variants={itemVariants}
                       className="w-full h-[20%] flex items-center justify-center relative  "
                     >
-                      <div className="  h-full relative inline-block">
+                      <div className="  h-full w-[10%] relative inline-block ">
                         <img
-                          className="h-full  cursor-pointer rounded-full object-cover"
+                          className="h-full   cursor-pointer rounded-full object-cover"
                           src={profileImage}
                           onClick={() => setOpenModal(true)}
                         />

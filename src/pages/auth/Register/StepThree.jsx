@@ -1,5 +1,5 @@
 import EastIcon from "@mui/icons-material/East";
-import EmailIcon from "@mui/icons-material/Email";
+import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import LockIcon from "@mui/icons-material/Lock";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { Field, Form, Formik } from "formik";
@@ -29,7 +29,7 @@ const StepThree = () => {
     onSuccess: (data) => {
       if (data?.success) {
         toast.success("ثبت‌ نام با موفقیت انجام شد");
-        navigate(`/Login`);
+        navigate(`/userPanel`);
       } else {
         toast.error(data?.message);
       }
@@ -215,7 +215,7 @@ const StepThree = () => {
                   animate="visible"
                   className="flex flex-col items-center relative"
                 >
-                  <EmailIcon
+                  <PhoneIphoneIcon
                     className={`absolute top-3 ${
                       i18n.language === "fa" ? "right-4" : "left-4"
                     } sm:${i18n.language === "fa" ? "right-6" : "left-6"} md:${
