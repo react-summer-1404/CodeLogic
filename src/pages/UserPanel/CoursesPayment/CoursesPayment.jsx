@@ -8,35 +8,37 @@ import pr from "../../../assets/Icons/A/pr.png";
 import pl from "../../../assets/Icons/A/pl.png";
 import searchIcon from "../../../assets/Icons/A/search.png";
 import ReactPaginate from "react-paginate";
-
+import { useQuery } from "@tanstack/react-query";
+import { GetCoursesPayments } from "../../../core/services/api/Get/GetCoursesPayments";
+import { useDebounce } from "use-debounce";
+import CoursesPaymentsSkeleton from "../../../components/common/skeleton/CoursesPayments/CoursesPaymentsSkeleton";
 const CoursesPayment = () => {
+  //// get payments ///
+  const { data: PaymentsData, isPending } = useQuery({
+    queryKey: ["COURSESPAYMENTS"],
+    queryFn: () => GetCoursesPayments(),
+  });
+  const coursesPaymentsData = PaymentsData || [];
   // i18n //
   const { i18n, t } = useTranslation();
   const isRTL = i18n.language === "fa";
   // pagination //
   const [searchTerm, setSearchTerm] = useState("");
+  const [value] = useDebounce(searchTerm, 700);
   const [currentPage, setcurrentPage] = useState(1);
   const [paymentsPerPage, setPaymentsPerPage] = useState(2);
-  const [filterStatus, setFilterStatus] = useState("all");
+  const [filterStatus, setFilterStatus] = useState("همه");
 
-  const filteredPayments = paymentsData.filter((p) => {
+  const filteredPayments = coursesPaymentsData.filter((p) => {
     const matchesSearch =
-      p.courseGroup
-        .toLowerCase()
-        .trim()
-        .includes(searchTerm.trim().toLowerCase()) ||
-      p.paymentDate
-        .toLowerCase()
-        .trim()
-        .includes(searchTerm.trim().toLowerCase());
-    const matchesStatus =
-      filterStatus === "all"
-        ? true
-        : p.paymentStatus
-            .toLowerCase()
-            .trim()
-            .match(filterStatus.trim().toLowerCase());
-    return matchesSearch && matchesStatus;
+      p.courseId.trim().toLowerCase().includes(value.trim().toLowerCase()) ||
+      p.PeymentDate.trim().toLowerCase().includes(value.trim().toLowerCase());
+    if (filterStatus === "همه") {
+      return matchesSearch;
+    }
+    const bool = filterStatus === "true";
+    const matchesFilters = p.accept === bool;
+    return matchesFilters && matchesSearch;
   });
   const startIndex = (currentPage - 1) * paymentsPerPage;
   const endIndex = startIndex + paymentsPerPage;
@@ -44,10 +46,17 @@ const CoursesPayment = () => {
   const totalPages = Math.ceil(filteredPayments.length / paymentsPerPage);
   const handlePageChange = (p) => {
     const selectedPage = p.selected + 1;
-    setCurrentPage(selectedPage);
+    setcurrentPage(selectedPage);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  /// toggle modal ///
+  const [openModal, setOpenModal] = useState(false);
+  const [modalData, setModalData] = useState(null);
 
+  const handleToggleModal = (courseId) => {
+    setOpenModal(true);
+    setModalData(PaymentsData.find((items) => items.courseId === courseId));
+  };
   /// motion framer ///
   const fadeInUp = (delay) => ({
     hidden: { opacity: 0, y: -20 },
@@ -62,19 +71,6 @@ const CoursesPayment = () => {
       transition: { duration: 0.4, ease: "easeOut", delay },
     },
   });
-  const leftAnimate = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { type: "spring", stiffness: 300, duration: 0.3 },
-    },
-    exit: {
-      opacity: 0,
-      x: -50,
-      transition: { duration: 0.35, type: "spring", stiffness: 250 },
-    },
-  };
   const rightAnimate = {
     hidden: { opacity: 0, x: 50 },
     visible: {
@@ -119,12 +115,11 @@ const CoursesPayment = () => {
             />
           </motion.div>
         </AnimatePresence>
-
         <div
-          className="flex h-full py-4  items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff]
-         rounded-xl border shadow md:p-1 border-[#EAEAEA] "
+          className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff]
+         rounded-xl border shadow p-2 md:p-1 border-[#EAEAEA] "
         >
-          <span className=" hidden md:inline text-[16px] ps-3">
+          <span className="text-[16px] hidden md:inline ps-3">
             {t("coursesPayment.filters")}
           </span>
           <select
@@ -133,17 +128,14 @@ const CoursesPayment = () => {
               setFilterStatus(e.target.value);
               setcurrentPage(1);
             }}
-            className=" rounded-xl text-sm cursor-pointer py-1 ps-2 text-gray-600
+            className=" rounded-xl text-sm cursor-pointer  ps-2 text-gray-600
                          dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]"
           >
-            <option value="all">({t("coursesPayment.all")})</option>
-            <option value="تایید شده">({t("coursesPayment.confirmed")})</option>
-            <option value="در انتظار تایید">
+            <option value="همه">({t("favoriteNews.all")})</option>
+            <option value="false">
               ({t("coursesPayment.AwaitingConfirmation")})
             </option>
-            <option value="تایید نشده">
-              ({t("coursesPayment.notConfirmed")})
-            </option>
+            <option value="true">({t("coursesPayment.confirmed")})</option>
           </select>
         </div>
       </div>
@@ -157,17 +149,27 @@ const CoursesPayment = () => {
       >
         <div className="flex flex-col h-[70%] ">
           <CourseHeader />
-          <div className="overflow-y-auto h-full">
-            {currentPayments.length > 0 ? (
-              currentPayments.map((items) => (
-                <CoursePayment key={items.id} items={items} />
-              ))
-            ) : (
-              <h1 className="text-red-600 text-2xl font-bold text-center mt-20 ">
-                {t("coursesPayment.notFound")}
-              </h1>
-            )}
-          </div>
+          {isPending &&
+            [...Array(paymentsPerPage)].map((_, i) => (
+              <CoursesPaymentsSkeleton key={i + 4} />
+            ))}
+          {!isPending && (
+            <div className="overflow-y-auto h-full">
+              {currentPayments.length > 0 ? (
+                currentPayments.map((items) => (
+                  <CoursePayment
+                    key={items.id}
+                    items={items}
+                    handleToggleModal={handleToggleModal}
+                  />
+                ))
+              ) : (
+                <h1 className="text-red-600 text-2xl font-bold text-center mt-20 ">
+                  {t("coursesPayment.notFound")}
+                </h1>
+              )}
+            </div>
+          )}
         </div>
         {/* -------- buttons */}
         <div className="flex flex-col md:flex-row md:justify-between p-4 md:p-8">
@@ -213,6 +215,73 @@ const CoursesPayment = () => {
           </div>
         </div>
       </motion.div>
+      {/* open modal */}
+      {openModal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={() => setOpenModal(false)}
+          className=" fixed inset-0 bg-black/50 backdrop-blur flex justify-center items-center "
+        >
+          <motion.div
+            initial={{ opacity: 0, y: -100 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              transition: {
+                type: "spring",
+                stiffness: 300,
+                duration: 300,
+              },
+            }}
+            className=" w-[90%] md:w-[30%] bg-[#eee] rounded-3xl flex
+                flex-col items-center mt-3 gap-6  py-4 px-6 dark:text-white dark:bg-[#333] "
+          >
+            <h2 className="text-[19px] text-[#008C78] dark:text-[#008C78] mx-auto font-bold">
+              {modalData.courseId}
+            </h2>
+            <div className="flex gap-2 text-[##008C78]">
+              {t("coursesPayment.paymentDate")}:
+              <div className="text-[14px] text-[#848484] dark:text-[#848484] truncate ">
+                {modalData.PeymentDate}
+              </div>
+            </div>
+            <div className="flex gap-2 text-[##008C78] ">
+              {t("coursesPayment.DateEntered")}:
+              <div className="text-[14px] text-[#848484] dark:text-[#848484] truncate">
+                {modalData.instertDate}
+              </div>
+            </div>
+            <div className="flex gap-2 text-[##008C78]">
+              {t("coursesPayment.PaymentStatus")}:
+              <div
+                className={` px-1 py-1 rounded-xl text-[14px]${
+                  modalData.accept === true
+                    ? "bg-[#EEFFFC] text-[#008C78] "
+                    : "bg-[#FFECEC] text-[#E7000B] "
+                } `}
+              >
+                {modalData.accept === true ? "تایید شده" : "درانتظار تایید"}
+              </div>
+            </div>
+            <div className="flex gap-2 text-[##008C78]">
+              {t("coursesPayment.Payment")}:
+              <div className="text-[14px] text-[#848484] dark:text-[#848484]">
+                {modalData.Paid.toLocaleString()}
+              </div>
+            </div>
+            <button
+              onClick={() => setOpenModal(false)}
+              className=" cursor-pointer border dark:border-[#EAEAEA] mx-auto
+                     dark:text-white px-3 py-2 rounded-2xl hover:shadow-md inline"
+            >
+              {t("login.Back")}
+            </button>
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 };

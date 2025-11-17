@@ -24,7 +24,7 @@ const MyReservedCourses = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [coursesPerPage, setCoursesPerPage] = useState(2);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filterOption, setFilterOption] = useState("all");
+  const [filterOption, setFilterOption] = useState("همه");
 
   const startIndex = (currentPage - 1) * coursesPerPage;
   const endIndex = startIndex + coursesPerPage;
@@ -34,7 +34,7 @@ const MyReservedCourses = () => {
       .toLowerCase()
       .trim()
       .includes(searchQuery.trim().toLowerCase());
-    if (filterOption === "all") {
+    if (filterOption === "همه") {
       return matchesTitle;
     }
     const bool = filterOption === "true";
