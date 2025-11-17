@@ -24,8 +24,8 @@ const CourseCardView1 = ({ item , handleToggleFavorite, isLoading}) => {
     }
 
     return (
-        <div dir='rtl' className='flex flex-col flex-shrink-0 items-center w-[240px] rounded-xl relative 
-        hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]
+        <div dir='rtl' className='flex flex-col flex-shrink-0 items-center w-[240px] rounded-xl duration-300 relative 
+        hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78]
         sm:w-[350px] sm:rounded-[20px]'>
             <img src={item.imageAddress} className='w-full h-[160px] rounded-t-xl
             sm:h-[259px] sm:rounded-t-[20px]'/>
