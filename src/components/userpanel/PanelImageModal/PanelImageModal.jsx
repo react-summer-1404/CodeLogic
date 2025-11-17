@@ -16,6 +16,7 @@ import { AddProfileImage } from "../../../core/services/api/post/AddProfileImage
 import { SelectPictureImage } from "../../../core/services/api/post/SelectPictureImage";
 import { DeleteProfileImage } from "../../../core/services/api/delete/DeleteProfileImage";
 import { toast } from "react-toastify";
+import { ClockLoader } from "react-spinners";
 
 const MAX_IMAGES = 6;
 
@@ -107,7 +108,7 @@ const PanelImageModal = ({
       if (apiImagesData.length < MAX_IMAGES) {
         fileInputRef.current.click();
       } else {
-        toast.warn(`شما مجاز به آپلود حداکثر ${MAX_IMAGES} عکس هستید.`);
+        toast.info(`شما مجاز به آپلود حداکثر ${MAX_IMAGES} عکس هستید.`);
       }
       return;
     }
@@ -150,10 +151,6 @@ const PanelImageModal = ({
     addImageMutation.isPending ||
     selectImageMutation.isPending ||
     deleteImageMutation.isPending;
-
-  const canConfirm = !!selectedImage && !isPending;
-
-  const canDelete = !!selectedImageId && !isPending;
 
   const isUploadLimitReached = apiImagesData.length >= MAX_IMAGES;
 
@@ -239,7 +236,7 @@ const PanelImageModal = ({
         <Button
           onClick={handleDeleteImage}
           variant="contained"
-          disabled={!canDelete}
+          // disabled={!canDelete}
           sx={{
             backgroundColor: "#ff0000ff",
             color: "#ffffffff",
@@ -248,15 +245,20 @@ const PanelImageModal = ({
             fontFamily: "Estedad",
           }}
         >
-          {deleteImageMutation.isPending
-            ? "درحال حذف..."
-            : t("userinfo.modal.Delete")}
+          {deleteImageMutation.isPending ? (
+            <div className="flex items-center justify-center gap-3">
+              <p> در حال حذف... </p>
+              <ClockLoader size={20} color="white" />
+            </div>
+          ) : (
+            t("userinfo.modal.Delete")
+          )}
         </Button>
 
         <Button
           onClick={handleConfirm}
           variant="contained"
-          disabled={!canConfirm}
+          // disabled={!canConfirm}
           sx={{
             fontFamily: "Estedad",
             backgroundColor: "#008C78",
@@ -265,7 +267,14 @@ const PanelImageModal = ({
             px: 3,
           }}
         >
-          {isPending ? "درحال انجام..." : t("userinfo.modal.confirm")}
+          {addImageMutation.isPending ? (
+            <div className="flex items-center justify-center gap-3">
+              <p> درحال انجام... </p>
+              <ClockLoader size={20} color="white" />
+            </div>
+          ) : (
+            t("userinfo.modal.confirm")
+          )}
         </Button>
       </DialogActions>
     </Dialog>

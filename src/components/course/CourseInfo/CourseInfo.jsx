@@ -14,10 +14,11 @@ const CourseInfo = ({course}) => {
     const isRtl = i18n.language === 'fa';
 
     const [isReserve , setIsReserve] = useState(
-        localStorage.getItem(course.courseId) === 'true'
+        course.isDelete ? false : localStorage.getItem(course.courseId) === 'true'
     )
     const toggleReserveCourses = () => {
-        if(isReserve){
+        if(course.isDelete) return;
+        else if(isReserve){
             deleteReserveCourses(course.courseId)
             toast.success(t('courseInfo.removeSuccessToast'))
         }

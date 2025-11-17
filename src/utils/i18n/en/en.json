@@ -116,7 +116,7 @@
     "description": "By creating your account, you'll access courses, educational content, and advanced tools. This is the first step for growth!",
     "home": "Home",
     "create_account": "Create Account",
-    "enter_phone": "Enter your phone number to create an account",
+    "enter_phone": "Enter your email to create an account",
     "gmail_placeholder": "Enter your gmail",
     "send_code": "Send OTP",
     "have_account": "Already have an account?",
