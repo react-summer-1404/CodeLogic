@@ -18,9 +18,6 @@ import Lottie from "lottie-react";
 import empty from "../../assets/Images/empty.json";
 import img2 from "../../assets/Images/HTML5Course.png";
 
-
-
-
 const NewsPage = () => {
   const { data, isLoading } = useQuery({
     queryFn: getAllNews,

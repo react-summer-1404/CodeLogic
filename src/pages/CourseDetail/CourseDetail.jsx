@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import CourseDetailSide from "../../components/course/CourseDetailSide/CourseDetailSide";
 import CourseDetailMain from "../../components/course/CourseDetailMain/CourseDetailMain";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import GetAllCourses from "../../core/services/api/Get/GetAllCourses";
 import CourseDetailSkeleton from "../../components/common/skeleton/CourseDetailSkeleton/CourseDetailSkeleton";
@@ -37,8 +37,15 @@ const CourseDetail = () => {
 
 
   return (
-    <div className="dark:bg-[#1E1E1E]">
-      <div className="flex flex-col items-center pt-10">
+    <div className="flex flex-col items-center   dark:bg-[#1E1E1E]">
+      <div className="flex gap-1 text-[#008C78] pt-10 font-regular text-sm">
+        <Link to={'/'}>صفحه اصلی</Link>
+        {'>'}
+        <Link to={'/courseList'}>صفحه دوره ها</Link>
+        {'>'}
+        <span>{course.title}</span>
+      </div>
+      <div className="flex flex-col items-center pt-4">
         <h2 className="font-bold text-[28px] text-[#1E1E1E]  dark:text-[#EEEEEE]">
           {course.title}
         </h2>

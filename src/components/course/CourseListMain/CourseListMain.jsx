@@ -1,46 +1,46 @@
-import { useState } from 'react'
-import ReactPaginate from 'react-paginate'
-import CourseCardView1 from '../../common/CourseCardView1/CourseCardView1'
-import CourseCardView2 from '../../common/CourseCardView1/CourseCardView1'
-import SortView from '../SortView/SortView'
-import { addFavoriteCourses } from '../../../core/services/api/post/addFavoriteCourses'
-import { deleteFavCourses } from '../../../core/services/api/delete/deleteFavCourses'
+import { useState } from "react";
+import ReactPaginate from "react-paginate";
+import CourseCardView1 from "../../common/CourseCardView1/CourseCardView1";
+import CourseCardView2 from "../../common/CourseCardView2/CourseCardView2";
+import SortView from "../SortView/SortView";
+import { addFavoriteCourses } from "../../../core/services/api/post/addFavoriteCourses";
+import { deleteFavCourses } from "../../../core/services/api/delete/deleteFavCourses";
 
+const VIEW_TYPE_LIST = "list";
+const VIEW_TYPE_GRID = "grid";
 
-const VIEW_TYPE_LIST = 'list';
-const VIEW_TYPE_GRID = 'grid';
-
-
-const CourseListMain = ({ coursesData, isLoading, currentPage, setCurrentPage, setSortingCol, pageSize, setPageSize }) => {
-
-
+const CourseListMain = ({
+  coursesData,
+  isLoading,
+  currentPage,
+  setCurrentPage,
+  setSortingCol,
+  pageSize,
+  setPageSize,
+}) => {
   const [currentView, setCurrentView] = useState(() => {
-    return localStorage.getItem('courseViewType') || VIEW_TYPE_GRID;
+    return localStorage.getItem("courseViewType") || VIEW_TYPE_GRID;
   });
-  const CourseCardComponent = currentView === VIEW_TYPE_LIST ? CourseCardView2 : CourseCardView1
+  const CourseCardComponent =
+    currentView === VIEW_TYPE_LIST ? CourseCardView2 : CourseCardView1;
   const handleViewChange = (courseViewType) => {
     setCurrentView(courseViewType);
-    localStorage.setItem('courseViewType', courseViewType)
+    localStorage.setItem("courseViewType", courseViewType);
   };
 
-
-
-  const [favorites, setFavorites] = useState({})
+  const [favorites, setFavorites] = useState({});
   const handleToggleFavorite = async (courseId) => {
-    const isFavorite = favorites[courseId] || false
-      if(isFavorite){
-        await deleteFavCourses(courseId)
-      } 
-      else{
-        await addFavoriteCourses(courseId)
-      }
-      setFavorites((prev) => ({
-        ...prev,
-        [courseId]: !isFavorite,
-      }))
-  }
-
-
+    const isFavorite = favorites[courseId] || false;
+    if (isFavorite) {
+      await deleteFavCourses(courseId);
+    } else {
+      await addFavoriteCourses(courseId);
+    }
+    setFavorites((prev) => ({
+      ...prev,
+      [courseId]: !isFavorite,
+    }));
+  };
 
   const handlePageSizeChange = (newSize) => {
     setPageSize(newSize);
@@ -51,20 +51,28 @@ const CourseListMain = ({ coursesData, isLoading, currentPage, setCurrentPage, s
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  
-  if (isLoading) return <div>Loading...</div>
-
+  if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div className='flex flex-col gap-8 w-full'>
-      <SortView onViewChange={handleViewChange} currentView={currentView} currentPageSize={pageSize}
-        onPageSizeChange={handlePageSizeChange} setSortingCol={setSortingCol} />
-      <div className='flex flex-row flex-wrap gap-y-8 gap-x-4'>
-        {
-          coursesData?.courseFilterDtos?.map((item, index) => {
-            return <CourseCardComponent item={item} key={index} handleToggleFavorite={handleToggleFavorite} isLoading={isLoading}/>
-          })
-        }
+    <div className="flex flex-col gap-8 w-full">
+      <SortView
+        onViewChange={handleViewChange}
+        currentView={currentView}
+        currentPageSize={pageSize}
+        onPageSizeChange={handlePageSizeChange}
+        setSortingCol={setSortingCol}
+      />
+      <div className="flex flex-row flex-wrap gap-y-8 gap-x-4">
+        {coursesData?.courseFilterDtos?.map((item, index) => {
+          return (
+            <CourseCardComponent
+              item={item}
+              key={index}
+              handleToggleFavorite={handleToggleFavorite}
+              isLoading={isLoading}
+            />
+          );
+        })}
       </div>
       <div className="flex justify-center my-10">
         <ReactPaginate
@@ -86,7 +94,7 @@ const CourseListMain = ({ coursesData, isLoading, currentPage, setCurrentPage, s
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CourseListMain
+export default CourseListMain;

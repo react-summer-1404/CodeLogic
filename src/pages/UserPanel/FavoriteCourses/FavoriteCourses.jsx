@@ -14,6 +14,8 @@ import { toast } from "react-toastify";
 import { deleteFavCourses } from "../../../core/services/api/delete/deleteFavCourses";
 import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";
 import { useTranslation } from "react-i18next";
+import Lottie from "lottie-react";
+import empty from "../../../assets/Images/empty.json";
 const FavoriteCourses = () => {
   const { data: coursesData = {}, isPending } = useQuery({
     queryKey: ["FAVCOURSES"],
@@ -134,14 +136,14 @@ const FavoriteCourses = () => {
       className="bg-[#F3F4F6] dark:bg-[#333]  w-full p-5 flex
      max-h-[89%] h-full flex-col justify-between mt-4 rounded-4xl "
     >
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col gap-3 md:gap-0 md:flex-row md:justify-between items-center pb-5 md:p-0">
         {/* filters ------- */}
         <motion.div
           variants={rightAnimate}
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="relative max-w-[40%] w-full"
+          className="relative [w-50%] md:max-w-[40%] md:w-full"
         >
           <input
             className=" dark:bg-[#454545] dark:text-[#ffff] dark:placeholder:text-white
@@ -161,8 +163,11 @@ const FavoriteCourses = () => {
             alt=""
           />
         </motion.div>
-        <div className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow p-1 border-[#EAEAEA] ">
-          <span className="text-[16px] hidden md:inline">
+        <div
+          className="flex h-full py-4  items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff]
+         rounded-xl border shadow md:p-1 border-[#EAEAEA] "
+        >
+          <span className="text-[16px] hidden md:inline ps-3">
             {t("coursesPayment.filters")}
           </span>
           <select
@@ -210,15 +215,22 @@ const FavoriteCourses = () => {
                   />
                 ))
               ) : (
-                <h1 className="text-red-600 text-2xl font-bold text-center mt-20 ">
-                  {t("favoriteCourses.notFound")}
-                </h1>
+                <div className="w-full">
+                  <Lottie
+                    className="w-[200px] h-[170px] my-4 mx-auto"
+                    animationData={empty}
+                    loop={true}
+                  />
+                  <p className="font-semibold text-[black] text-[20px] text-center dark:text-[#848484]">
+                    {t("navbar.notfound")}
+                  </p>
+                </div>
               )}
             </div>
           )}
         </div>
         {/* buttons ------- */}
-        <div className="flex justify-between p-8">
+        <div className="flex flex-col items-center md:items-start gap-3 md:gap-0 md:flex-row md:justify-between p-4 md:p-8">
           <div className="flex items-center gap-2" style={{ direction: "ltr" }}>
             <button
               disabled={currentPage === 1}
@@ -311,7 +323,7 @@ const FavoriteCourses = () => {
                 damping: 20,
               },
             }}
-            className=" w-[30%] h-[25%] bg-[#eee] rounded-3xl flex 
+            className=" w-[80%] md:w-[30%] h-[30%] md:h-[25%] bg-[#eee] rounded-3xl flex 
                       flex-col justify-center mt-3 gap-10 items-center p-4 dark:text-white dark:bg-[#333] "
           >
             <h2 className="font-bold">{t("deleteModal.title")}</h2>

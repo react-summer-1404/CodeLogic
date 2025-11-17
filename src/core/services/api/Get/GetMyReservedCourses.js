@@ -1,12 +1,15 @@
-import Http from '../../../interceptor/interceptor';
+import Http from "../../../interceptor/interceptor";
 
 const GetMyCourses = async (params) => {
-    try {
-        const result = await Http.get('/SharePanel/GetMyCoursesReserve', { params });
-        return result;
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    const result = await Http.get("/SharePanel/GetMyCoursesReserve", {
+      params,
+    });
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export default GetMyCourses;

@@ -1,4 +1,4 @@
- {
+{
   "navbar": {
     "academy": "آکادمی بحر",
     "home": "صفحه اصلی",
@@ -7,8 +7,8 @@
     "search_placeholder": "جستجو کنید...",
     "select_placeholder": "انتخاب کنید...",
     "login": "ورود / ثبت نام",
-    "userpanel" : "صفحه کاربری",
-    "notfound" : "نتیجه‌ای یافت نشد"
+    "userpanel": "صفحه کاربری",
+    "notfound": "نتیجه‌ای یافت نشد"
   },
   "heroSection": {
     "title1": "یادگیری برنامه‌نویسی با اساتید مجرب ،",
@@ -121,11 +121,10 @@
     "send_code": "ارسال کد یکبار مصرف",
     "have_account": "حساب کاربری دارید؟",
     "login": "وارد شوید",
-    "loading" : "درحال پردازش ",
-    "verifysuc" : "کد شما تایید شد",
-    "resendcode" : "ارسال مجدد کد",
-    "sending" : "در حال ارسال..."
-    
+    "loading": "درحال پردازش ",
+    "verifysuc": "کد شما تایید شد",
+    "resendcode": "ارسال مجدد کد",
+    "sending": "در حال ارسال..."
   },
   "registerStepTwo": {
     "validation": {
@@ -272,16 +271,15 @@
     "date2": "۱۵ مهر ۱۴۰۴"
   },
   "newsPage": {
-    
     "breadcrumb1": " صفحه اصلی",
     "breadcrumb2": "- اخبار",
     "headerTitle": "اخبار و مقالات",
     "results": " نتیجه",
     "searchPlaceholder": "جستجو کنید...",
     "sortBy": "مرتب سازی بر اساس :",
-    "emptyres" : "  خبر مورد نظر یافت نشد ",
-    "addfavotitesuc" : "خبر مورد نظر اضافه شد",
-    "addfavotiteerr" : "شما قبلا این خبر را اضافه کرده‌اید"
+    "emptyres": "  خبر مورد نظر یافت نشد ",
+    "addfavotitesuc": "خبر مورد نظر اضافه شد",
+    "addfavotiteerr": "شما قبلا این خبر را اضافه کرده‌اید"
   },
   "categoryFilter": {
     "title": "دسته‌بندی‌ها",
@@ -368,8 +366,8 @@
       "titlePlaceholder": "عنوان دیدگاه خود را بنویسید",
       "textLabel": "متن دیدگاه",
       "textPlaceholder": "متن دیدگاه خود را بنویسید",
-      "toastsuc" : "نظر شما با موفقیت ثبت شد",
-      "toasterr" : "خطا در انجام عملیات"
+      "toastsuc": "نظر شما با موفقیت ثبت شد",
+      "toasterr": "خطا در انجام عملیات"
     }
   },
   "personalComment": {
@@ -385,18 +383,18 @@
       "replyButton": "پاسخ دادن",
       "answer": "پاسخ",
       "closeReply": "بستن پاسخ‌ها",
-      "noComments" : "نظری وجود ندارد"
+      "noComments": "نظری وجود ندارد"
     },
     "replyForm": {
       "titlePlaceholder": "عنوان پاسخ را بنویسید",
       "textPlaceholder": "متن پاسخ را بنویسید",
-      "reply" : "ارسال پیام",
-      "toastsuc" : "پاسخ شما با موفقیت ثبت شد",
-      "toasterr" : "خطا در ثبت پاسخ"
+      "reply": "ارسال پیام",
+      "toastsuc": "پاسخ شما با موفقیت ثبت شد",
+      "toasterr": "خطا در ثبت پاسخ"
     }
   },
   "answerComment": {
-    "loading" : "در حال بارگذاری...",
+    "loading": "در حال بارگذاری...",
     "comment1": {
       "name": "ادوارد جانسون",
       "date": "14 خرداد 1404",
@@ -404,7 +402,6 @@
       "text": "لورم ایپسوم متن ساختگکه لازم است.",
       "like": "200",
       "dislike": "50"
-      
     },
     "comment2": {
       "name": "ادوارد جانسون",
@@ -596,7 +593,10 @@
     "my_favorite_news": "اخبار مورد علاقه من",
     "security_setting": "تنظیمات امنیتی",
     "logout": "خروج از حساب",
-    "general": "عمومی"
+    "general": "عمومی",
+    "logOut": "ایا از خروج حساب خود اطمینان دارید",
+    "yes": "بله",
+    "back": "بازگشت"
   },
   "panelheader": {
     "name": "متین قربانزاده"
@@ -692,7 +692,13 @@
     "reserved": "رزرو شده",
     "await": "در انتظار تایید"
   },
-  "myCoursesComments": {
+  "reservedCourseModal": {
+    "student": "دانشجو:",
+    "status": "وضعیت:",
+    "reservationDate": "تاریخ رزرو:",
+    "backBtn": "بازگشت"
+  },
+  "myCourseComments": {
     "title1": "عنوان دوره",
     "title2": "عنوان دیدگاه",
     "title3": "متن دیدگاه",
@@ -700,8 +706,15 @@
     "title5": "تاریخ",
     "title6": "عملیات"
   },
-  "myCoursesComment": {
+  "myCourseComment": {
     "successToast": "نظر شما حذف شد"
+  },
+  "courseCommentModal": {
+    "courseTitle": "عنوان دوره:",
+    "commentTitle": "عنوان دیدگاه:",
+    "commentText": "متن دیدگاه:",
+    "status": "وضعیت:",
+    "commentDate": "تاریخ:"
   },
   "myNewsComments": {
     "title1": "عنوان خبر",
@@ -713,6 +726,13 @@
   },
   "myNewsComment": {
     "successToast": "نظر شما حذف شد"
+  },
+  "newsCommentModal": {
+    "newsTitle": "عنوان خبر:",
+    "commentTitle": "عنوان دیدگاه:",
+    "commentText": "متن دیدگاه:",
+    "status": "وضعیت:",
+    "commentDate": "تاریخ:"
   },
   "validation": {
     "nationalId": {
