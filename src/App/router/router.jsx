@@ -26,6 +26,7 @@ import FavoriteNews from "../../pages/UserPanel/FavoriteNews/FavoriteNews";
 import FavoriteCourses from "../../pages/UserPanel/FavoriteCourses/FavoriteCourses";
 import SecuritySettings from "../../pages/UserPanel/securitySettings/SecuritySettings";
 import NewsPage from "../../pages/NewsPage/NewsPage";
+import NotFound from "../../pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,7 @@ const router = createBrowserRouter([
   { path: "/loginValidation", element: <LoginValidationPage /> },
   { path: "/forgotPassOne", element: <ForgotPasswordStepOne /> },
   { path: "/forgotPassTwo", element: <ForgotPasswordStepTwo /> },
+  { path: "*", element: <NotFound /> },
 ]);
 
 export default router;
