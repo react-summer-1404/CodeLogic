@@ -3,8 +3,10 @@ import BigArrowRight from '../../../assets/Icons/BigArrowRight'
 import BigArrowLeft from '../../../assets/Icons/BigArrowLeft'
 import Arrow from '../../../assets/Icons/Arrow'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
-const ButtonsSeeMore = ({seeAllText, sliderRef}) => {
+
+const ButtonsSeeMore = ({seeAllText, sliderRef, to}) => {
   
   const scrollRight = () => {
     sliderRef.current.scrollBy({ left: 300, behavior: 'smooth' });
@@ -28,12 +30,12 @@ const ButtonsSeeMore = ({seeAllText, sliderRef}) => {
           <BigArrowLeft/>
         </button>
       </div>
-      <button className='flex items-center gap-2 cursor-pointer'>
+      <Link to={to} className='flex items-center gap-2 cursor-pointer'>
         <span className='font-regular text-sm text-[#848484]'>{seeAllText}</span> 
         <span className={`${isRtl ? '' : 'rotate-180'}`}>
           <Arrow/>
         </span> 
-      </button>
+      </Link>
     </div>
   )
 }

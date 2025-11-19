@@ -19,27 +19,20 @@ const SliderCourses = () => {
     return (
         <div className="flex flex-col items-between gap-8 w-full pt-[104px]">
             <div className="flex flex-col items-center gap-2">
-                <h2
-                    className="font-bold text-[#008C78]   dark:text-[#EEEEEE]]
-                    sa:text-[24px]   sm:text-[28px]   lg:text-[32px]"
-                >
+                <h2 className="font-bold text-[#008C78]   dark:text-[#EEEEEE]]
+                sa:text-[24px]   sm:text-[28px]   lg:text-[32px]">
                     {t('sliderCourses.title')}
                 </h2>
-                <p
-                    className="font-regular   dark:text-[#DDDDDD]
-                    sa:text-sm   sm:text-lg   lg:text-2xl"
-                >
+                <p className="font-regular   dark:text-[#DDDDDD]
+                sa:text-sm   sm:text-lg   lg:text-2xl">
                     {t('sliderCourses.desc')}
                 </p>
             </div>
-            <Link to={'/courseList'}>
-                <ButtonsSeeMore seeAllText={t('sliderCourses.seeAllText')} sliderRef={sliderRef} />
-            </Link>
+            <ButtonsSeeMore seeAllText={t('sliderCourses.seeAllText')} sliderRef={sliderRef} to={'/courseList'}/>
             <div
-                className="flex flex-nowrap gap-8 w-full pb-2 px-10 overflow-hidden scroll-smooth scrollbar-hide"
-                dir="ltr"
-                ref={sliderRef}
-            >
+            className="flex flex-nowrap gap-8 w-full py-4 px-10 overflow-hidden scroll-smooth scrollbar-hide"
+            dir="ltr"
+            ref={sliderRef}>
                 {coursesData?.courseFilterDtos?.slice(0, 5).map((item, index) => {
                     return <CourseCardView1 item={item} key={index} />;
                 })}

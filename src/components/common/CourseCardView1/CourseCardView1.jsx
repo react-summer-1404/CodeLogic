@@ -11,7 +11,8 @@ import CourseCardView1Skeleton from '../skeleton/CourseCardSkeletonView1/CourseC
 
 const CourseCardView1 = ({ item , handleToggleFavorite, isLoading}) => {
 
-    const {t} = useTranslation();
+    const {t, i18n} = useTranslation();
+    const isRtl = i18n.language === 'fa'
 
     const [isFavorite , setIsFavorite] = useState();
     const onToggleFavorite = () => {
@@ -31,7 +32,8 @@ const CourseCardView1 = ({ item , handleToggleFavorite, isLoading}) => {
             sm:h-[259px] sm:rounded-t-[20px]'/>
             <Link to={`/courseDetail/${item.courseId}`} className='flex flex-col justify-between w-full mb-[-16px] 
             p-4 bg-[#FFFFFF] rounded-xl transform -translate-y-4 cursor-pointer   dark:bg-[#606060]
-            sm:h-[217px] sm:rounded-[20px]'>
+            sm:h-[217px] sm:rounded-[20px]' 
+            dir={isRtl ? 'rtl' : 'ltr'}>
                 <div className='flex flex-col gap-1'>
                     <h2 className='font-bold text-base   dark:text-[#EEEEEE]'>{t(`${item.title}`)}</h2>
                     <p className='max-w-[317px] font-regular text-sm   dark:text-[#DDDDDD]'>{t(`${item.describe}`)}</p>
@@ -49,9 +51,9 @@ const CourseCardView1 = ({ item , handleToggleFavorite, isLoading}) => {
                     </div>
                     <div className='flex justify-between pt-2'>
                         <div className='flex flex-col justify-end gap-1'>
-                            <span className='font-regular text-xs text-[#1E1E1E]   dark:text-[#EEEEEE]'>{t('قیمت')}</span>
+                            <span className='font-regular text-xs text-[#1E1E1E]   dark:text-[#EEEEEE]'>{t('courseCard.price')}</span>
                             <div className='flex'>
-                                <span className='font-bold text-base text-[#008C78]'>{t(`${item.cost} تومان`)}</span>
+                                <span className='font-bold text-base text-[#008C78]'>{item.cost} {t('courseCard.toman')}</span>
                             </div>
                         </div>
                         <div className='flex items-center gap-1'>

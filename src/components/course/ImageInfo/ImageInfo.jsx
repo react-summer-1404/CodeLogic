@@ -49,7 +49,7 @@ const ImageInfo = ({ course }) => {
             disLikeCourses(course.courseId);
             toast.success(t('imageInfo.addDisLikeSuccessToast'))
         }
-    };
+    }; 
 
     
     useEffect(() => {

@@ -32,17 +32,11 @@ const SliderTeachers = () => {
           {t("sliderTeachers.desc")}
         </p>
       </div>
-      <Link to={'teachers'}>
-        <ButtonsSeeMore
-          seeAllText={t("sliderTeachers.seeAllText")}
-          sliderRef={sliderRef}
-        />
-      </Link>
+      <ButtonsSeeMore seeAllText={t("sliderTeachers.seeAllText")} sliderRef={sliderRef} to={'teachers'}/>
       <div
-        className="flex flex-nowrap gap-5 overflow-hidden w-full pt-8 pb-2 px-10 scroll-smooth scrollbar-hide"
-        dir="ltr"
-        ref={sliderRef}
-      >
+      className="flex flex-nowrap gap-5 overflow-hidden w-full pt-8 pb-2 px-10 scroll-smooth scrollbar-hide"
+      dir="ltr"
+      ref={sliderRef}>
         {teachersData?.map((item, index) => {
           return <SliderTeacher item={item} key={index} />;
         })}

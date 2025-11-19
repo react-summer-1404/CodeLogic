@@ -52,9 +52,9 @@ const CourseCardView2 = ({ item, handleToggleFavorite, isLoading}) => {
                     </div>
                     <div className='flex justify-between pt-2'>
                         <div className='flex flex-col justify-end gap-1'>
-                            <span className='font-regular text-xs text-[#1E1E1E]   dark:text-[#EEEEEE]'>{t('قیمت')}</span>
+                            <span className='font-regular text-xs text-[#1E1E1E]   dark:text-[#EEEEEE]'>{t('courseCard.price')}</span>
                             <div className='flex'>
-                                <span className='font-bold text-base text-[#008C78]'>{t(`${item.cost} تومان`)}</span>
+                                <span className='font-bold text-base text-[#008C78]'>{item.cost} {t('courseCard.toman')}</span>
                             </div>
                         </div>
                         <div className='flex items-center gap-1'>

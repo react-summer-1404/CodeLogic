@@ -174,6 +174,10 @@
     "start": "شروع",
     "end": "پایان"
   },
+  "courseCard": {
+    "price": "قیمت",
+    "toman": "تومان"
+  },
   "sideDropDown": {
     "title1": "سطح دوره",
     "title1Item1": "حرفه‌ای",
@@ -240,16 +244,16 @@
     "description": "توضیحات"
   },
   "courseComments": {
-    "title": "همه ی نظرات",
-    "likeSuccessToast": "شما این نظر را لایک کردید",
-    "removeLikeSuccessToast": "لایک شما حذف شد",
-    "disLikeSuccessToast": "شما این نظر را دیسلایک کردید",
-    "removeDisLikeSuccessToast": "دیسلایک شما حذف شد"
+    "title": "همه ی نظرات"
   },
   "courseComment": {
     "closeReplyBtn": "بستن پاسخ ها",
     "openReplyBtn": "پاسخ دادن",
-    "replyNumber": "تعداد پاسخ ها"
+    "replyNumber": "تعداد پاسخ ها",
+    "likeSuccessToast": "شما این نظر را لایک کردید",
+    "removeLikeSuccessToast": "لایک شما حذف شد",
+    "disLikeSuccessToast": "شما این نظر را دیسلایک کردید",
+    "removeDisLikeSuccessToast": "دیسلایک شما حذف شد"
   },
   "courseCommentForm": {
     "titleInputsTitle": "عنوان دیدگاه",

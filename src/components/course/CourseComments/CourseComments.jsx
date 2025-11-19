@@ -12,11 +12,11 @@ const CourseComments = ({course}) => {
 
   const courseCommentsDataa = [
     {id:1 , commentUserName: 'ادوارد جانسون', commentDate: '9 خرداد 1404', commentTitle: 'عنوان کامنت', commentDescribe: 'متن کامنت',
-    commentLikeNum: 200, commentDisLikeNum: 200},
+    commentLikeCount: 200, commentDisLikeCount: 200},
     {id:2 , commentUserName: 'ادوارد جانسون', commentDate: '9 خرداد 1404', commentTitle: 'عنوان کامنت', commentDescribe: 'متن کامنت',
-    commentLikeNum: 200, commentDisLikeNum: 200},
+    commentLikeCount: 200, commentDisLikeCount: 200},
     {id:3 , commentUserName: 'ادوارد جانسون', commentDate: '9 خرداد 1404', commentTitle: 'عنوان کامنت', commentDescribe: 'متن کامنت',
-    commentLikeNum: 200, commentDisLikeNum: 200},
+    commentLikeCount: 200, commentDisLikeCount: 200},
   ]
 
   const {data: courseCommentsData, isLoading} = useQuery({
