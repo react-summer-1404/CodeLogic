@@ -240,21 +240,28 @@
     "description": "Description"
   },
   "courseComments": {
-    "title": "All Comments"
-  },
-  "courseComment": {
+    "title": "All Comments",
     "likeSuccessToast": "You liked this comment",
     "removeLikeSuccessToast": "Your like has been removed",
     "disLikeSuccessToast": "You disliked this comment",
     "removeDisLikeSuccessToast": "Your dislike has been removed"
+  },
+  "courseComment": {
+    "openReplyBtn": "Reply",
+    "closeReplyBtn": "Close reply"
   },
   "courseCommentForm": {
     "titleInputsTitle": "Comment Title",
     "titleInputsPlcholder": "Enter your comment's title",
     "textInputsTitle": "Comment Desc",
     "textInputsPlcholder": "Enter your comment's text",
-    "send": "Send",
-    "successToast": "Your comment has been added"
+    "sendBtn": "Send",
+    "successToast": "Your comment is sended"
+  },
+  "courseCommentReply": {
+    "titleInputsPlcholder": "Enter your reply's title",
+    "textInputsPlcholder": "Enter your reply's text",
+    "successToast": "Your reply is sended"
   },
   "news": {
     "title1": "React 18 Released",
