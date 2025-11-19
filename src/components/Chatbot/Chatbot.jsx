@@ -64,7 +64,7 @@ export default function ChatBot() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className=" cursor-pointer fixed bottom-27 right-7.5 w-16 h-16 rounded-full bg-gradient-to-br from-[#008c78] to-[#00bfa5] text-white shadow-2xl flex items-center justify-center text-3xl hover:scale-110 transition-transform duration-300 z-50"
+        className=" cursor-pointer fixed bottom-27 right-7.5 w-16 h-16 rounded-full bg-[#008c78]  text-white shadow-2xl flex items-center justify-center text-3xl hover:scale-110 transition-transform duration-300 z-50"
       >
         <Lottie
           animationSpeed={2}
@@ -82,7 +82,7 @@ export default function ChatBot() {
           ></div>
 
           <div className="relative bg-white w-[400px] max-w-[90%] h-[600px] rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 animate-fadeIn">
-            <div className="bg-gradient-to-r from-[#008c78] to-[#00bfa5] p-4 flex justify-between items-center text-white shadow-md">
+            <div className="bg-[#008c78]  p-4 flex justify-between items-center text-white shadow-md">
               <h3 className="text-lg font-bold">چت‌ بات </h3>
               <button
                 onClick={() => setOpen(false)}
@@ -135,7 +135,7 @@ export default function ChatBot() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="پیامت را بنویس…"
-                className="flex-1 px-3 py-2 border-2 border-[#008c78] rounded-lg focus:outline-none duration-300  focus:shadow-[0px_0px_5px_1px_#008c78]"
+                className="flex-1 px-3 py-2 border-2 border-[#008c78] rounded-lg  focus:outline-none duration-300  "
               />
               <button
                 onClick={sendMessage}

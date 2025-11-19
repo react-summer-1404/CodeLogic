@@ -1,8 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
-const DashboardLatestNews = ({ image, title, date }) => {
+const DashboardLatestNews = ({ image, title, date, id }) => {
   const { i18n } = useTranslation();
   const isRtl = i18n.language === "fa";
 
@@ -41,12 +42,14 @@ const DashboardLatestNews = ({ image, title, date }) => {
       />
 
       <div className="w-full flex flex-wrap ">
-        <motion.p
-          variants={itemVariants}
-          className="font-semibold text-[16px] text-[#1E1E1E] dark:text-[white] "
-        >
-          {title}
-        </motion.p>
+        <Link to={`/news/${id}`}>
+          <motion.p
+            variants={itemVariants}
+            className="font-semibold text-[16px] text-[#1E1E1E] dark:text-[white] "
+          >
+            {title}
+          </motion.p>
+        </Link>
 
         <motion.div
           variants={itemVariants}
