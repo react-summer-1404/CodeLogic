@@ -247,8 +247,9 @@
     "removeDisLikeSuccessToast": "دیسلایک شما حذف شد"
   },
   "courseComment": {
+    "closeReplyBtn": "بستن پاسخ ها",
     "openReplyBtn": "پاسخ دادن",
-    "closeReplyBtn": "بستن پاسخ ها"
+    "replyNumber": "تعداد پاسخ ها"
   },
   "courseCommentForm": {
     "titleInputsTitle": "عنوان دیدگاه",

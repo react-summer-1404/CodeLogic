@@ -247,8 +247,9 @@
     "removeDisLikeSuccessToast": "Your dislike has been removed"
   },
   "courseComment": {
+    "closeReplyBtn": "Close reply",
     "openReplyBtn": "Reply",
-    "closeReplyBtn": "Close reply"
+    "replyNumber": "Reply number"
   },
   "courseCommentForm": {
     "titleInputsTitle": "Comment Title",
