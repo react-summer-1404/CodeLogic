@@ -240,21 +240,28 @@
     "description": "توضیحات"
   },
   "courseComments": {
-    "title": "همه ی نظرات"
-  },
-  "courseComment": {
+    "title": "همه ی نظرات",
     "likeSuccessToast": "شما این نظر را لایک کردید",
     "removeLikeSuccessToast": "لایک شما حذف شد",
     "disLikeSuccessToast": "شما این نظر را دیسلایک کردید",
     "removeDisLikeSuccessToast": "دیسلایک شما حذف شد"
+  },
+  "courseComment": {
+    "openReplyBtn": "پاسخ دادن",
+    "closeReplyBtn": "بستن پاسخ ها"
   },
   "courseCommentForm": {
     "titleInputsTitle": "عنوان دیدگاه",
     "titleInputsPlcholder": "عنوان دیدگاه خود را بنویسید",
     "textInputsTitle": "متن دیدگاه",
     "textInputsPlcholder": "متن دیدگاه خود را بنویسید",
-    "send": "ارسال",
-    "successToast": "نظر شما افزوده شد"
+    "sendBtn": "ارسال",
+    "successToast": "نظر شما ارسال شد"
+  },
+  "courseCommentReply": {
+    "titleInputsPlcholder": "عنوان پاسخ خود را بنویسید",
+    "textInputsPlcholder": "متن پاسخ خود را بنویسید",
+    "successToast": "پاسخ شما ارسال شد"
   },
   "news": {
     "title1": "انتشار React 18",

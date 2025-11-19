@@ -1,13 +1,16 @@
 import React, {useState} from 'react'
 import CourseCommentImg from '../../../assets/Images/commentUser.png'
 import Comment from '../../../assets/Icons/Comment'
-import Like from '../../../assets/Icons/Like'
 import DisLike from '../../../assets/Icons/DisLike'
 import {likeCourseComments} from '../../../core/services/api/post/likeCourseComments'
 import {disLikeCourseComments} from '../../../core/services/api/post/disLikeCourseComments'
+import { useTranslation } from 'react-i18next'
+import CourseCommentForm from '../CourseCommentForm/CourseCommentForm'
 
 
 const CourseComment = ({item}) => {
+
+    const {t} = useTranslation()
 
     const [liked, setLiked] = useState(false);
     const [disLiked, setDisliked] = useState(false);
@@ -18,7 +21,7 @@ const CourseComment = ({item}) => {
         if (liked) {
             setLiked(false);
             setLikeCount(likeCount - 1);
-            toast.success(t('courseComment.removeLikeSuccessToast'))
+            toast.success(t('courseComments.removeLikeSuccessToast'))
         } 
         else{
             setLiked(true);
@@ -26,14 +29,14 @@ const CourseComment = ({item}) => {
             setLikeCount(likeCount + 1);
             if (disLiked) setDisLikeCount(disLikeCount - 1);
             likeCourseComments(item.id);
-            toast.success(t('courseComment.likeSuccessToast'))
+            toast.success(t('courseComments.likeSuccessToast'))
         }
     };  
     const onDisLike = () => {
         if (disLiked) {
             setDisliked(false);
             setDisLikeCount(disLikeCount - 1);
-            toast.success(t('courseComment.removeDisLikeSuccessToast'))
+            toast.success(t('courseComments.removeDisLikeSuccessToast'))
         } 
         else{
             setDisliked(true);
@@ -41,9 +44,17 @@ const CourseComment = ({item}) => {
             setDisLikeCount(disLikeCount + 1);
             if (liked) setLikeCount(likeCount - 1);
             disLikeCourseComments(item.id);
-            toast.success(t('courseComment.disLikeSuccessToast'))
+            toast.success(t('courseComments.disLikeSuccessToast'))
         }
     };
+
+
+    const [isOpen, setIsOpen] = useState(false)
+    const onToggleReply = (value) => {
+        setIsOpen(value)
+    }
+
+
 
   return (
     <div>
@@ -61,7 +72,9 @@ const CourseComment = ({item}) => {
         <div className='flex items-center gap-6 mt-4'>
             <button className='flex gap-1 text-[#1E1E1E]'>
                 <Comment/>
-                <span className='font-regular text-xs'>بستن پاسخ ها</span>
+                <span onClick={() => {onToggleReply(false)}} className='font-regular text-xs cursor-pointer'>
+                    {t('courseComment.closeReplyBtn')}
+                </span>
             </button>
             <button 
             onClick={onLike}
@@ -77,8 +90,18 @@ const CourseComment = ({item}) => {
                 </span>
                 <span className='font-regular text-xs'>{item.commentDisLikeNum}</span>
             </button>
-            <button className='font-regular text-xs text-[#008C78]'>پاسخ دادن</button>
+            <button onClick={() => {onToggleReply(true)}} className='font-regular text-xs text-[#008C78] cursor-pointer'>
+                {t('courseComment.openReplyBtn')}
+            </button>
         </div>
+        {isOpen 
+        && 
+        <div className='mt-8'>
+            <CourseCommentForm 
+            titlePlaceholder={t('courseCommentReply.titleInputsPlcholder')}
+            textPlaceholder={t('courseCommentReply.textInputsPlcholder')}/>
+        </div>
+        }
     </div>
   )
 }
