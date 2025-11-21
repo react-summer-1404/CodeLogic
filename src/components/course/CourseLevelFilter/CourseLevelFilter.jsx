@@ -1,0 +1,49 @@
+import { useState, useEffect } from 'react'
+import Arrow from '../../../assets/Icons/Arrow'
+import getCourseLevel from '../../../core/services/api/get/getCourseLevel'
+import { useTranslation } from 'react-i18next'
+
+const CourseLevelFilter = ({handleSetCourseLevel}) => {
+
+  const {t} = useTranslation()
+
+  const [isOpen, setIsOpen] = useState(false)
+  const [levels, setLevels] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getCourseLevel()
+      setLevels(data)
+    }
+    fetchData()
+  }, []) 
+
+  
+  return (
+    <div className='flex flex-col gap-4 w-full p-4 bg-white rounded-[15px] dark:bg-[#454545] md:w-[284px]'>
+      <div onClick={() => setIsOpen(!isOpen)} className='flex justify-between items-center w-full cursor-pointer'>
+        <span className='font-bold text-[18px]'>{t('courseLevelFilter.title')}</span>
+        <button className={`${isOpen ? 'rotate-90' : 'rotate-270'}`}>
+          <Arrow />
+        </button>
+      </div>
+
+      {isOpen && (
+        <div className='flex flex-col gap-4'>
+          {levels.map(item => (
+            <label key={item.id} className='flex items-center gap-2'>
+              <input
+                type='checkbox'
+                onChange={() => {handleSetCourseLevel(item.id)}}
+                className='w-[26px] h-[26px] rounded-2xl border-gray-300'
+              />
+              <span>{item.levelName}</span>
+            </label>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default CourseLevelFilter

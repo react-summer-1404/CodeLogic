@@ -1,5 +1,5 @@
 import React from 'react'
-import CourseComment from '../CourseComment/CourseComment'
+import CourseComment from '../../common/CourseComment/CourseComment'
 import CourseCommentForm from '../CourseCommentForm/CourseCommentForm'
 import getCourseComments from '../../../core/services/api/get/getCourseComments'
 import { useTranslation } from 'react-i18next'

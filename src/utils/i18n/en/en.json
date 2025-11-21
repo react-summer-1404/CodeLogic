@@ -176,21 +176,15 @@
   },
   "courseCard": {
     "price": "Price",
-    "toman": "Toman"
+    "toman": "Toman",
+    "likeSuccessToast": "You liked this course",
+    "disLikeSuccessToast": "You disliked this course"
   },
-  "sideDropDown": {
-    "title1": "Course level",
-    "title1Item1": "Professional",
-    "title1Item2": "Middle",
-    "title1Item3": "Beginner",
-    "title2": "Professors",
-    "title2Item1": "Mr. Taha Rahimy",
-    "title2Item2": "Dr. MohammadHosseinBahrololumi",
-    "title2Item3": "Mr. X",
-    "title3": "Technologies",
-    "title3Item1": "React",
-    "title3Item2": "Next",
-    "title3Item3": "Backend"
+  "courseLevelFilter":{
+    "title": "Course level"
+  },
+  "courseCatFilter": {
+    "title": "دسته بندی"
   },
   "priceFilter": {
     "title": "Price Range (Toman)"

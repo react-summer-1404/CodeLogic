@@ -176,21 +176,15 @@
   },
   "courseCard": {
     "price": "قیمت",
-    "toman": "تومان"
+    "toman": "تومان",
+    "likeSuccessToast": "شما این دوره را لایک کردید",
+    "disLikeSuccessToast": "شما این دوره را دیسلایک کردید"
   },
-  "sideDropDown": {
-    "title1": "سطح دوره",
-    "title1Item1": "حرفه‌ای",
-    "title1Item2": "متوسط",
-    "title1Item3": "تازه کار",
-    "title2": "اساتید",
-    "title2Item1": "آقای طاها رحیمی",
-    "title2Item2": "دکتر محمدحسین بحرالعلومی",
-    "title2Item3": "آقای ایکس",
-    "title3": "تکنولوژی ها",
-    "title3Item1": "ری اکت",
-    "title3Item2": "نکست",
-    "title3Item3": "بک اند"
+  "courseLevelFilter":{
+    "title": "سطح دوره"
+  },
+  "courseCatFilter": {
+    "title": "دسته بندی"
   },
   "priceFilter": {
     "title": "بازه قیمت (تومان)"

@@ -6,6 +6,7 @@ import Heart from '../../../assets/Icons/Heart'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom' 
 import CourseCardView1Skeleton from '../skeleton/CourseCardSkeletonView1/CourseCardSkeletonView1'
+import { toast } from 'react-toastify'
 
 
 
@@ -18,6 +19,8 @@ const CourseCardView1 = ({ item , handleToggleFavorite, isLoading}) => {
     const onToggleFavorite = () => {
         handleToggleFavorite(item.courseId)
         setIsFavorite(!isFavorite)
+        if(isFavorite === false) toast.success(t('courseCard.likeSuccessToast'))
+        else if(isFavorite === true) toast.success(t('courseCard.disLikeSuccessToast'))
     }
 
     if(isLoading){

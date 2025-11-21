@@ -1,13 +1,13 @@
 import React from 'react'
-import SideDropDown from '../../common/SideDropDown/SideDropDown';
+import CourseLevelFilter from '../CourseLevelFilter/CourseLevelFilter';
 import PriceFilter from '../PriceFilter/PriceFilter';
 import { useTranslation } from 'react-i18next';
 import CourseNewsSearch from '../../common/CourseNewsSearch/CourseNewsSearch';
 import StartEndDate from '../StartEndDate/StartEndDate';
+import CourseCatFilter from '../CourseCatFilter/CourseCatFilter';
 
 
-const CourseListSide = ({handleSearchSubmit , handleSetStartDate , handleSetEndDate , handleSetCourseLevel, 
-handleSetTeachers, handleSetTechnologies,
+const CourseListSide = ({handleSearchSubmit , handleSetStartDate , handleSetEndDate , handleSetCourseLevel, handleSetTechnologies,
 handleSetPrice}) => {
   
   const {t} = useTranslation();  
@@ -16,20 +16,9 @@ handleSetPrice}) => {
     <div className='w-full flex flex-col gap-4
     md:w-[284px]'>
       <CourseNewsSearch handleSearchSubmit={handleSearchSubmit}/>
-      
       <StartEndDate handleSetStartDate={handleSetStartDate} handleSetEndDate={handleSetEndDate}/>
-      
-      <SideDropDown title={t('sideDropDown.title1')} item1={t('sideDropDown.title1Item1')} 
-      item2={t('sideDropDown.title1Item2')} item3={t('sideDropDown.title1Item3')} 
-      handleSetCourseLevel={handleSetCourseLevel}/>
-      
-      <SideDropDown title={t('sideDropDown.title2')} item1={t('sideDropDown.title2Item1')} 
-      item2={t('sideDropDown.title2Item2')} item3={t('sideDropDown.title2Item3')} 
-      handleSetTeachers={handleSetTeachers}/>
-      
-      <SideDropDown title={t('sideDropDown.title3')} item1={t('sideDropDown.title3Item1')} 
-      item2={t('sideDropDown.title3Item2')} item3={'sideDropDown.title3Item3'} 
-      handleSetTechnologies={handleSetTechnologies}/>
+      <CourseLevelFilter handleSetCourseLevel={handleSetCourseLevel}/>
+      <CourseCatFilter handleSetTechnologies={handleSetTechnologies}/>
       <PriceFilter handleSetPrice={handleSetPrice}/>
     </div>
   )

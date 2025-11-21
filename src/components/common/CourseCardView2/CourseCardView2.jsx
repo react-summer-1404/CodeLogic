@@ -17,6 +17,8 @@ const CourseCardView2 = ({ item, handleToggleFavorite, isLoading}) => {
     const onToggleFavorite = () => {
         handleToggleFavorite(item.courseId)
         setIsFavorite(!isFavorite)
+        if(isFavorite === false) toast.success(t('courseCard.likeSuccessToast'))
+        else if(isFavorite === true) toast.success(t('courseCard.disLikeSuccessToast'))
     }
     
     if(isLoading){

@@ -15,8 +15,10 @@ const Section1 = () => {
   ]
 
   return (
-    <div className='flex justify-center w-full text-[#FFFFFF] divide-x-[2px] divide-[#FFFFFF] bg-[#008C78]   dark:divide-[#EEEEEE]
-    sa:py-4   sm:py-6   lg:py-8'>
+    <div className='flex flex-col justify-center items-center w-full text-[#FFFFFF] divide-y-[2px] divide-[#FFFFFF] bg-[#008C78]   
+    dark:divide-[#EEEEEE]
+    sm:flex-row sm:py-6 sm:divide-y-0 sm:divide-x-[2px]
+    lg:py-8'>
       {sectionData.map((item, index) => {return <Section1Card item={item} key={index}/>})}
     </div>
   )

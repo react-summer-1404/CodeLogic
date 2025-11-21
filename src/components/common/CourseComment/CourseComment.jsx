@@ -6,8 +6,8 @@ import DisLike from '../../../assets/Icons/DisLike'
 import {likeCourseComments} from '../../../core/services/api/post/likeCourseComments'
 import {disLikeCourseComments} from '../../../core/services/api/post/disLikeCourseComments'
 import { useTranslation } from 'react-i18next'
-import CourseCommentForm from '../CourseCommentForm/CourseCommentForm'
-import CommentReplyModal from '../commentReplyModal/CommentReplyModal'
+import CourseCommentForm from '../../course/CourseCommentForm/CourseCommentForm'
+import CommentReplyModal from '../../course/commentReplyModal/CommentReplyModal'
 import { toast } from 'react-toastify'
 
 
@@ -88,7 +88,7 @@ const CourseComment = ({item}) => {
                 onClick={onLike}
                 className='flex gap-1 text-[#1E1E1E] cursor-pointer'>
                     {
-                        disLiked ? <span className='rotate-180 transform scale-x-[-1]'><Like/></span> : <DisLike/>
+                        liked ? <span className='rotate-180 transform scale-x-[-1]'><Like/></span> : <DisLike/>
                     }
                     <span className='font-regular text-xs'>{likeCount}</span>
                 </button>
@@ -96,7 +96,7 @@ const CourseComment = ({item}) => {
                 onClick={onDisLike}
                 className='flex gap-1 text-[#1E1E1E] cursor-pointer'>
                     {
-                        liked 
+                        disLiked 
                         ? <span className=''><Like/></span> 
                         : <span className='rotate-180 transform scale-x-[-1]'><DisLike/></span>
                     }
