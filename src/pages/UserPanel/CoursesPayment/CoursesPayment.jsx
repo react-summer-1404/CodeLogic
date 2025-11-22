@@ -12,6 +12,8 @@ import { useQuery } from "@tanstack/react-query";
 import { GetCoursesPayments } from "../../../core/services/api/Get/GetCoursesPayments";
 import { useDebounce } from "use-debounce";
 import CoursesPaymentsSkeleton from "../../../components/common/skeleton/CoursesPayments/CoursesPaymentsSkeleton";
+import Lottie from "lottie-react";
+import empty from "../../../assets/Images/empty.json";
 const CoursesPayment = () => {
   //// get payments ///
   const { data: PaymentsData, isPending } = useQuery({
@@ -164,9 +166,16 @@ const CoursesPayment = () => {
                   />
                 ))
               ) : (
-                <h1 className="text-red-600 text-2xl font-bold text-center mt-20 ">
-                  {t("coursesPayment.notFound")}
-                </h1>
+                <div className="w-full">
+                  <Lottie
+                    className="w-[200px] h-[170px] my-4 mx-auto"
+                    animationData={empty}
+                    loop={true}
+                  />
+                  <p className="font-semibold text-[black] text-[20px] text-center dark:text-[#848484]">
+                    {t("navbar.notfound")}
+                  </p>
+                </div>
               )}
             </div>
           )}
