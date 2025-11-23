@@ -5,6 +5,7 @@ import CourseCardView2 from "../../common/CourseCardView2/CourseCardView2";
 import SortView from "../SortView/SortView";
 import { addFavoriteCourses } from "../../../core/services/api/post/addFavoriteCourses";
 import { deleteFavCourses } from "../../../core/services/api/delete/deleteFavCourses";
+import { toast } from "react-toastify";
 
 const VIEW_TYPE_LIST = "list";
 const VIEW_TYPE_GRID = "grid";
@@ -62,7 +63,7 @@ const CourseListMain = ({
         onPageSizeChange={handlePageSizeChange}
         setSortingCol={setSortingCol}
       />
-      <div className="flex flex-row flex-wrap gap-y-8 gap-x-4">
+      <div className="flex flex-row flex-wrap gap-y-8 gap-x-4 ">
         {coursesData?.courseFilterDtos?.map((item, index) => {
           return (
             <CourseCardComponent
