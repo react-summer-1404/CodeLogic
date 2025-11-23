@@ -10,6 +10,8 @@ import { useTranslation } from "react-i18next";
 import TranslateButton from "../../components/TranslateButton/TranslateButton";
 import UserPanelRight from "./UserPanelRight";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import GetProfileInfo from "../../core/services/api/Get/GetProfileInfo";
 
 const headerVariants = {
   initial: { opacity: 0, y: -50 },
@@ -30,6 +32,14 @@ const itemVariants = {
 };
 
 const UserPanelHeader = () => {
+  const { data: profileData } = useQuery({
+    queryKey: ["profileInfo"],
+    queryFn: async () => {
+      const res = await GetProfileInfo();
+      return res?.data ?? res;
+    },
+  });
+
   const { t } = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
@@ -45,10 +55,14 @@ const UserPanelHeader = () => {
         animate="animate"
       >
         <motion.div className="flex items-center gap-5" variants={itemVariants}>
-          <img src={img1} alt="user" className="object-contain rounded-full" />
+          <img
+            src={profileData?.currentPictureAddress}
+            alt="user"
+            className="object-cover rounded-full w-[8%] h-[8%]"
+          />
           <div className="flex flex-col">
             <p className="text-[20px] text-black dark:text-[#848484]">
-              {t("panelheader.name")}
+              {profileData?.fName + " " + profileData?.lName}
             </p>
           </div>
         </motion.div>
