@@ -21,7 +21,7 @@ const CourseLevelFilter = ({handleSetCourseLevel}) => {
   
   return (
     <div className='flex flex-col gap-4 w-full p-4 bg-white rounded-[15px] dark:bg-[#454545] md:w-[284px]'>
-      <div onClick={() => setIsOpen(!isOpen)} className='flex justify-between items-center w-full cursor-pointer'>
+      <div onClick={() => setIsOpen(!isOpen)} className='flex justify-between items-center w-full text-[#DDDDDD] cursor-pointer'>
         <span className='font-bold text-[18px]'>{t('courseLevelFilter.title')}</span>
         <button className={`${isOpen ? 'rotate-90' : 'rotate-270'}`}>
           <Arrow />
@@ -37,7 +37,7 @@ const CourseLevelFilter = ({handleSetCourseLevel}) => {
                 onChange={() => {handleSetCourseLevel(item.id)}}
                 className='w-[26px] h-[26px] rounded-2xl border-gray-300'
               />
-              <span>{item.levelName}</span>
+              <span className='dark:text-[#CCCCCC]'>{item.levelName}</span>
             </label>
           ))}
         </div>

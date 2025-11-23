@@ -179,7 +179,8 @@
     "toman": "تومان",
     "startDate": "تاریخ شروع:",
     "endDate": "تاریخ پایان:",
-    "technologies": "تکنولوژی ها",
+    "technologies": "تکنولوژی ها:",
+    "withoutTechnology": "بدون تکنولوژی",
     "addFavSuccessToast": "این دوره به علاقه مندی ها افزوده شد",
     "removeFavSuccessToast": "این دوره از علاقه مندی ها حذف شد"
   },

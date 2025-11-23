@@ -179,7 +179,8 @@
     "toman": "Toman",
     "startDate": "Start date:",
     "endDate": "End date:",
-    "technologies": "Technologies",
+    "technologies": "Technologies:",
+    "withoutTechnology": "Without technology",
     "addFavSuccessToast": "This course added to favorites",
     "removeFavSuccessToast": "This course removed from favorites"
   },
