@@ -177,14 +177,17 @@
   "courseCard": {
     "price": "قیمت",
     "toman": "تومان",
-    "likeSuccessToast": "شما این دوره را لایک کردید",
-    "disLikeSuccessToast": "شما این دوره را دیسلایک کردید"
+    "startDate": "تاریخ شروع:",
+    "endDate": "تاریخ پایان:",
+    "technologies": "تکنولوژی ها",
+    "addFavSuccessToast": "این دوره به علاقه مندی ها افزوده شد",
+    "removeFavSuccessToast": "این دوره از علاقه مندی ها حذف شد"
   },
   "courseLevelFilter":{
     "title": "سطح دوره"
   },
-  "courseCatFilter": {
-    "title": "دسته بندی"
+  "courseTechFilter": {
+    "title": "تکنولوژی ها"
   },
   "priceFilter": {
     "title": "بازه قیمت (تومان)"

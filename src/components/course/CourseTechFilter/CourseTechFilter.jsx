@@ -3,7 +3,7 @@ import Arrow from '../../../assets/Icons/Arrow'
 import getCourseTechnologies from '../../../core/services/api/get/getCourseTechnologies'
 import { useTranslation } from 'react-i18next'
 
-const CourseCatFilter = ({handleSetTechnologies}) => {
+const CourseTechFilter = ({handleSetTechnologies}) => {
 
   const {t} = useTranslation()
 
@@ -22,7 +22,7 @@ const CourseCatFilter = ({handleSetTechnologies}) => {
   return (
     <div className='flex flex-col gap-4 w-full p-4 bg-white rounded-[15px] dark:bg-[#454545] md:w-[284px]'>
       <div onClick={() => setIsOpen(!isOpen)} className='flex justify-between items-center w-full cursor-pointer'>
-        <span className='font-bold text-[18px]'>{t('courseCatFilter.title')}</span>
+        <span className='font-bold text-[18px]'>{t('courseTechFilter.title')}</span>
         <button className={`${isOpen ? 'rotate-90' : 'rotate-270'}`}>
           <Arrow />
         </button>
@@ -46,4 +46,4 @@ const CourseCatFilter = ({handleSetTechnologies}) => {
   )
 }
 
-export default CourseCatFilter
+export default CourseTechFilter

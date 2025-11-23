@@ -4,7 +4,7 @@ import PriceFilter from '../PriceFilter/PriceFilter';
 import { useTranslation } from 'react-i18next';
 import CourseNewsSearch from '../../common/CourseNewsSearch/CourseNewsSearch';
 import StartEndDate from '../StartEndDate/StartEndDate';
-import CourseCatFilter from '../CourseCatFilter/CourseCatFilter';
+import CourseTechFilter from '../CourseTechFilter/CourseTechFilter';
 
 
 const CourseListSide = ({handleSearchSubmit , handleSetStartDate , handleSetEndDate , handleSetCourseLevel, handleSetTechnologies,
@@ -18,7 +18,7 @@ handleSetPrice}) => {
       <CourseNewsSearch handleSearchSubmit={handleSearchSubmit}/>
       <StartEndDate handleSetStartDate={handleSetStartDate} handleSetEndDate={handleSetEndDate}/>
       <CourseLevelFilter handleSetCourseLevel={handleSetCourseLevel}/>
-      <CourseCatFilter handleSetTechnologies={handleSetTechnologies}/>
+      <CourseTechFilter handleSetTechnologies={handleSetTechnologies}/>
       <PriceFilter handleSetPrice={handleSetPrice}/>
     </div>
   )

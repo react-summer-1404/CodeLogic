@@ -177,14 +177,17 @@
   "courseCard": {
     "price": "Price",
     "toman": "Toman",
-    "likeSuccessToast": "You liked this course",
-    "disLikeSuccessToast": "You disliked this course"
+    "startDate": "Start date:",
+    "endDate": "End date:",
+    "technologies": "Technologies",
+    "addFavSuccessToast": "This course added to favorites",
+    "removeFavSuccessToast": "This course removed from favorites"
   },
   "courseLevelFilter":{
     "title": "Course level"
   },
-  "courseCatFilter": {
-    "title": "دسته بندی"
+  "courseTechFilter": {
+    "title": "Technologies"
   },
   "priceFilter": {
     "title": "Price Range (Toman)"
