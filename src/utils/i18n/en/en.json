@@ -168,6 +168,10 @@
     "title": "Training courses",
     "result": "Result"
   },
+  "courseListNav":{
+    "landing": "Landing",
+    "courseList": "Course list"
+  }, 
   "courseListSide": {
     "searchPlaceholder": "Search...",
     "startEndDate": "Starting and ending date",
@@ -199,6 +203,10 @@
   "timeDropDown": {
     "option1": "Newest",
     "option2": "Oldest"
+  },
+  "courseDetailNav": {
+    "landing": "Landing",
+    "courseList": "Course list"
   },
   "courseInfo": {
     "startDate": "StartDate",

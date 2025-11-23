@@ -106,9 +106,9 @@ const CourseList = () => {
   return (
     <div className="flex flex-col items-center w-full   dark:bg-[#1E1E1E]">
       <div className="flex gap-1 text-[#008C78] pt-10 font-regular text-sm">
-        <Link to={"/"}>صفحه اصلی</Link>
+        <Link to={"/"}>{t('courseListNav.landing')}</Link>
         {">"}
-        <span to={"/courseList"}>صفحه دوره ها</span>
+        <span to={"/courseList"}>{t('courseListNav.courseList')}</span>
       </div>
       <div
         className="flex flex-col items-center gap-2 pt-4

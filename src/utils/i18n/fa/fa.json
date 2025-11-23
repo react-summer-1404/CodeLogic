@@ -168,6 +168,10 @@
     "title": "دوره های آموزشی",
     "result": "نتیجه"
   },
+  "courseListNav":{
+    "landing": "صفحه اصلی",
+    "courseList": "دوره ها"
+  }, 
   "courseListSide": {
     "searchPlaceholder": "جستجو...",
     "startEndDate": "تاریخ شروع برگزاری و پایان",
@@ -199,6 +203,10 @@
   "timeDropDown": {
     "option1": "جدیدترین",
     "option2": "قدیمی ترین"
+  },
+  "courseDetailNav": {
+    "landing": "صفحه اصلی",
+    "courseList": "دوره ها"
   },
   "courseInfo": {
     "startDate": "تاریخ شروع",
