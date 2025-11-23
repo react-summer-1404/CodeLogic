@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import UserPanelRight from "./UserPanelRight";
 import UserPanelHeader from "./UserPanelHeader";
+import ChatBot from "../../components/Chatbot/Chatbot";
 
 const UserPanel = () => {
   return (
@@ -10,6 +11,7 @@ const UserPanel = () => {
       <div className="h-[93.75%] md:w-[68%] lg:w-[74.04%] flex flex-col justify-between">
         <UserPanelHeader />
         <Outlet />
+        <ChatBot />
       </div>
     </div>
   );
