@@ -1,7 +1,6 @@
-import { toast } from "react-toastify";
 import http from "../../../interceptor/interceptor.js";
 
-export const addFavoriteCourses = async (params) => {
+export const addFavCourses = async (params) => {
   try {
     const result = await http.post("/Course/AddCourseFavorite", {
       courseId: params,

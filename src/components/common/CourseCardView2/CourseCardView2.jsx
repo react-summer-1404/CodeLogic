@@ -1,186 +1,15 @@
-// import { useState } from "react";
-// import { useTranslation } from "react-i18next";
-// import { Link } from "react-router-dom";
-// import Heart from "../../../assets/Icons/Heart";
-// import Level from "../../../assets/Icons/Level";
-// import Star from "../../../assets/Icons/Star";
-// import Teacher from "../../../assets/Icons/Teacher";
-// import CourseCardView2Skeleton from "../skeleton/CourseCardSkeletonView2/CourseCardSkeletonView2";
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import Heart from '../../../assets/Icons/Heart';
+import Level from '../../../assets/Icons/Level';
+import Star from '../../../assets/Icons/Star';
+import Teacher from '../../../assets/Icons/Teacher';
+import CourseCardView2Skeleton from '../skeleton/CourseCardSkeletonView2/CourseCardSkeletonView2';
 
-// const CourseCardView2 = ({ item, handleToggleFavorite, isLoading }) => {
-//   const { t } = useTranslation();
-
-//   const [isFavorite, setIsFavorite] = useState();
-//   const onToggleFavorite = () => {
-//     handleToggleFavorite(item.courseId);
-//     setIsFavorite(!isFavorite);
-//   };
-
-//   if (isLoading) {
-//     return <CourseCardView2Skeleton />;
-//   }
-
-//   const startDateShamsi = new Date(item.startTime).toLocaleDateString("fa-IR");
-//   const endDateShamsi = new Date(item.endTime).toLocaleDateString("fa-IR");
-
-// <<<<<<< HEAD
-//     const [isFavorite , setIsFavorite] = useState();
-//     const onToggleFavorite = () => {
-//         handleToggleFavorite(item.courseId)
-//         setIsFavorite(!isFavorite)
-//         if(isFavorite === false) toast.success(t('courseCard.likeSuccessToast'))
-//         else if(isFavorite === true) toast.success(t('courseCard.disLikeSuccessToast'))
-//     }
-
-//     if(isLoading){
-//         return <CourseCardView2Skeleton/>
-//     }
-
-//     return (
-//         <div className='hidden flex flex-shrink-0 gap-8 w-[640px] p-4 bg-[#FFFFFF] rounded-[20px] duration-300 relative   dark:bg-[#606060]
-//         hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78]
-// =======
-//   const description = t(`${item.describe}`);
-
-//   const descriptionslice =
-//     description.length > 100 ? description.slice(0, 100) + "..." : description;
-
-//   return (
-//     <div
-//       className="   hidden flex flex-shrink-0 gap-8 w-[640px] p-4 bg-[#FFFFFF] rounded-[20px] relative   dark:bg-[#606060]
-// >>>>>>> feature/panel/dashboard
-//         sm:flex sm:w-[520px] sm:h-[184px]
-//         lg:w-[720px] lg:h-[208px]
-//         xl:w-[1044px] xl:h-[232px]"
-//     >
-//       <img
-//         src={item.imageAddress}
-//         className="w-[304px] h-full rounded-xl
-//             sm:w-[304px]
-//             md:w-[320px]
-// <<<<<<< HEAD
-//             lg:w-[337px]'/>
-//             <Link to={`/courseDetail/${item.courseId}`} className='flex flex-col justify-between w-full h-full
-//             bg-[#FFFFFF] rounded-[20px] cursor-pointer   dark:bg-[#606060]'>
-//                 <div className='flex flex-col gap-1 text-[#1E1E1E]'>
-//                     <h2 className='font-bold text-base'>{t(`${item.title}`)}</h2>
-//                     <p className='font-regular text-sm'>{t(`${item.describe}`)}</p>
-//                 </div>
-//                 <div>
-//                     <div className='flex justify-between pt-8'>
-//                         <div className='flex items-center gap-1   dark:text-[#DDDDDD]'>
-//                             <Teacher className='text-[#848484]' />
-//                             <span className='font-regular text-xs text-[#848484]   dark:text-[#DDDDDD]'>{t(`${item.teacherName}`)}</span>
-//                         </div>
-//                         <div className='flex items-center gap-1   dark:text-[#DDDDDD]'>
-//                             <Level className='text-[#848484]' />
-//                             <span className='font-regular text-xs text-[#848484]   dark:text-[#DDDDDD]'>{t(`${item.levelName}`)}</span>
-//                         </div>
-//                     </div>
-//                     <div className='flex justify-between pt-2'>
-//                         <div className='flex flex-col justify-end gap-1'>
-//                             <span className='font-regular text-xs text-[#1E1E1E]   dark:text-[#EEEEEE]'>{t('courseCard.price')}</span>
-//                             <div className='flex'>
-//                                 <span className='font-bold text-base text-[#008C78]'>{item.cost} {t('courseCard.toman')}</span>
-//                             </div>
-//                         </div>
-//                         <div className='flex items-center gap-1'>
-//                             <span className='font-regular text-sm text-[#F8BC24]'>{t(`${Math.floor(item.courseRate.avg)}`)}</span>
-//                             <Star />
-//                         </div>
-//                     </div>
-//                 </div>
-//             </Link>
-//             <button onClick={onToggleFavorite}
-//             className={`p-2 rounded-[50px] transition absolute top-[13px] right-[14px] cursor-pointer opacity-25 text-[#EEEEEE]
-//             ${isFavorite ? 'bg-[#FF0000]' : 'bg-[#000000]'}`}>
-//                 <Heart />
-//             </button>
-// =======
-//             lg:w-[337px]"
-//       />
-//       <Link
-//         to={`/courseDetail/${item.courseId}`}
-//         className="flex flex-col justify-between w-full h-full
-//             bg-[#FFFFFF] rounded-[20px] cursor-pointer   dark:bg-[#606060]"
-//       >
-//         <div className="flex flex-col gap-1 text-[#1E1E1E]">
-//           <h2 className="font-bold text-base">{t(`${item.title}`)}</h2>
-//           <p className="font-regular text-sm">{descriptionslice}</p>
-// >>>>>>> feature/panel/dashboard
-//         </div>
-//         <div className=" rounded-md shadow-xl bg-[#eee] px-4 dark:bg-[#606060]">
-//           <div className="flex justify-between pt-4 ">
-//             <div className="flex items-center gap-1   dark:text-[#DDDDDD]">
-//               <Teacher className="text-[#848484]" />
-//               <span className="text-[15px] text-[#848484]   dark:text-[#DDDDDD]">
-//                 {t(`${item.teacherName}`)}
-//               </span>
-//             </div>
-//             <div className="flex items-center gap-1   dark:text-[#DDDDDD]">
-//               <Level className="text-[#848484]" />
-//               <span className="text-[15px] text-[#848484]   dark:text-[#DDDDDD]">
-//                 {t(`${item.levelName}`)}
-//               </span>
-//             </div>
-//           </div>
-//           <div className="flex justify-between pt-4">
-//             <div className="flex flex-col justify-end gap-1">
-//               <div className="flex gap-1">
-//                 <span className=" text-[15px] text-[#1E1E1E]   dark:text-[#EEEEEE]">
-//                   قیمت:
-//                 </span>
-//                 <span className="font-bold text-base text-[#008C78]">
-//                   {t(`${item.cost} تومان`)}
-//                 </span>
-//               </div>
-//             </div>
-
-//             <div className="flex items-center gap-1">
-//               <span className="font-regular text-sm text-[#F8BC24]">
-//                 {t(`${Math.floor(item.courseRate.avg)}`)}
-//               </span>
-//               <Star />
-//             </div>
-//           </div>
-//           <div className="flex justify-between pt-4 pb-4  ">
-//             <div>
-//               <p className="font-semibold text-base text-[#848484] text-[15px] ">
-//                 <span className="">تاریخ شروع: </span>
-//                 {startDateShamsi}
-//               </p>
-//             </div>
-//             <div>
-//               <span className="font-semibold text-base text-[#848484] text-[15px]">
-//                 <span>تاریخ پایان:</span>
-//                 {endDateShamsi}
-//               </span>
-//             </div>
-//           </div>
-//         </div>
-//       </Link>
-//       <button
-//         onClick={onToggleFavorite}
-//         className={`p-2 rounded-[50px] transition absolute top-[13px] right-[14px] cursor-pointer opacity-25 text-[#EEEEEE]
-//             ${isFavorite ? "bg-[#FF0000]" : "bg-[#000000]"}`}
-//       >
-//         <Heart />
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default CourseCardView2;
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import Heart from "../../../assets/Icons/Heart";
-import Level from "../../../assets/Icons/Level";
-import Star from "../../../assets/Icons/Star";
-import Teacher from "../../../assets/Icons/Teacher";
-import CourseCardView2Skeleton from "../skeleton/CourseCardSkeletonView2/CourseCardSkeletonView2";
 
 const CourseCardView2 = ({ item, handleToggleFavorite, isLoading }) => {
+
   const { t } = useTranslation();
 
   const [isFavorite, setIsFavorite] = useState();
@@ -193,81 +22,77 @@ const CourseCardView2 = ({ item, handleToggleFavorite, isLoading }) => {
     return <CourseCardView2Skeleton />;
   }
 
-  const startDateShamsi = new Date(item.startTime).toLocaleDateString("fa-IR");
-  const endDateShamsi = new Date(item.endTime).toLocaleDateString("fa-IR");
+  const startDateShamsi = new Date(item.startTime).toLocaleDateString('fa-IR');
+  const endDateShamsi = new Date(item.endTime).toLocaleDateString('fa-IR');
 
   const description = t(`${item.describe}`);
 
   const descriptionslice =
-    description.length > 100 ? description.slice(0, 100) + "..." : description;
+    description.length > 100 ? description.slice(0, 100) + '...' : description;
 
   return (
     <div
-      className="   hidden flex flex-shrink-0 gap-8 w-[640px] p-4 bg-[#FFFFFF] rounded-[20px] relative   dark:bg-[#606060]
-        sm:flex sm:w-[520px] sm:h-[184px] 
-        lg:w-[720px] lg:h-[208px]
-        xl:w-[1044px] xl:h-[232px]"
-    >
-      <img
-        src={item.imageAddress}
-        className="w-[304px] h-full rounded-xl
-            sm:w-[304px]
-            md:w-[320px]
-            lg:w-[337px]"
-      />
+      className='hidden flex flex-shrink-0 gap-8 w-[640px] p-4 bg-[#FFFFFF] rounded-[20px] duration-300 relative   dark:bg-[#606060]
+      hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78]
+      sm:flex sm:w-[520px] sm:h-[184px] 
+      lg:w-[720px] lg:h-[208px]
+      xl:w-[1044px] xl:h-[232px]'>
+      <img src={item.imageAddress} className='w-[304px] h-full rounded-xl
+      sm:w-[304px]
+      md:w-[320px]
+      lg:w-[337px]'/>
       <Link
         to={`/courseDetail/${item.courseId}`}
-        className="flex flex-col justify-between w-full h-full 
-            bg-[#FFFFFF] rounded-[20px] cursor-pointer   dark:bg-[#606060]"
-      >
-        <div className="flex flex-col gap-1 text-[#1E1E1E]">
-          <h2 className="font-bold text-base">{t(`${item.title}`)}</h2>
-          <p className="font-regular text-sm">{descriptionslice}</p>
+        className='flex flex-col justify-between w-full h-full bg-[#FFFFFF] rounded-[20px] cursor-pointer   dark:bg-[#606060]'>
+        <div className='flex flex-col gap-1 text-[#1E1E1E]'>
+          <h2 className='font-bold text-base   dark:text-[#EEEEEE]'>{t(`${item.title}`)}</h2>
+          <p className='font-regular text-sm   dark:text-[#DDDDDD]'>{descriptionslice}</p>
         </div>
-        <div className=" rounded-md shadow-xl bg-[#eee] px-4 dark:bg-[#606060]">
-          <div className="flex justify-between pt-4 ">
-            <div className="flex items-center gap-1   dark:text-[#DDDDDD]">
-              <Teacher className="text-[#848484]" />
-              <span className="text-[15px] text-[#848484]   dark:text-[#DDDDDD]">
-                {t(`${item.teacherName}`)}
-              </span>
+        <div className='flex flex-col gap-2 rounded-md shadow-xl bg-[#EEEEEE] py-2 px-4 dark:bg-[#454545]'>
+          <div className='flex flex-col justify-between gap-2'>
+            <div className='flex gap-2 font-regular text-sm dark:text-[#DDDDDD]'>
+              <span>{t('courseCard.technologies')}</span> 
+              <span>{item.technologyList.trim() !== "" ? item.technologyList : t('courseCard.withoutTechnology')}</span>
             </div>
-            <div className="flex items-center gap-1   dark:text-[#DDDDDD]">
-              <Level className="text-[#848484]" />
-              <span className="text-[15px] text-[#848484]   dark:text-[#DDDDDD]">
-                {t(`${item.levelName}`)}
-              </span>
-            </div>
-          </div>
-          <div className="flex justify-between pt-4">
-            <div className="flex flex-col justify-end gap-1">
-              <div className="flex gap-1">
-                <span className=" text-[15px] text-[#1E1E1E]   dark:text-[#EEEEEE]">
-                  قیمت:
+            <div className='flex justify-between'>
+              <div className='flex items-center gap-1   dark:text-[#DDDDDD]'>
+                <Teacher className='text-[#848484]'/>
+                <span className='text-[15px] text-[#848484]   dark:text-[#DDDDDD]'>
+                  {t(`${item.teacherName}`)}
                 </span>
-                <span className="font-bold text-base text-[#008C78]">
-                  {t(`${item.cost} تومان`)}
+              </div>
+              <div className='flex items-center gap-1   dark:text-[#DDDDDD]'>
+                <Level className='text-[#848484]'/>
+                <span className='text-[15px] text-[#848484]   dark:text-[#DDDDDD]'>
+                  {t(`${item.levelName}`)}
                 </span>
               </div>
             </div>
-
-            <div className="flex items-center gap-1">
-              <span className="font-regular text-sm text-[#F8BC24]">
+          </div>
+          <div className='flex justify-between'>
+            <div className='flex flex-col justify-end gap-1'>
+              <div className='flex gap-1'>
+                <span className=' text-[15px] text-[#1E1E1E]   dark:text-[#EEEEEE]'>{t('courseCard.price')}</span>
+                <span className='font-bold text-base text-[#008C78]'>{item.cost}{t('courseCard.toman')}</span>
+              </div>
+            </div>
+            <div className='flex items-center gap-1'>
+              <span className='font-regular text-sm text-[#F8BC24]'>
                 {t(`${Math.floor(item.courseRate.avg)}`)}
               </span>
               <Star />
             </div>
           </div>
-          <div className="flex justify-between pt-4 pb-4  ">
+          <div className='flex justify-between'>
             <div>
-              <p className="font-semibold text-base text-[#848484] text-[15px] ">
-                <span className="">تاریخ شروع: </span>
+              <p className='flex gap-2 font-semibold text-base text-[#848484] text-[15px] '>
+                <span className=''>{t('courseCard.startDate')}</span>
                 {startDateShamsi}
               </p>
             </div>
             <div>
-              <span className="font-semibold text-base text-[#848484] text-[15px]">
-                <span>تاریخ پایان:</span>
+              <span className='flex gap-2 font-semibold text-base text-[#848484] text-[15px]'>
+                <span>{t('courseCard.endDate')}</span>
                 {endDateShamsi}
               </span>
             </div>
@@ -277,7 +102,7 @@ const CourseCardView2 = ({ item, handleToggleFavorite, isLoading }) => {
       <button
         onClick={onToggleFavorite}
         className={`p-2 rounded-[50px] transition absolute top-[13px] right-[14px] cursor-pointer opacity-25 text-[#EEEEEE] 
-            ${isFavorite ? "bg-[#FF0000]" : "bg-[#000000]"}`}
+            ${isFavorite ? 'bg-[#FF0000]' : 'bg-[#000000]'}`}
       >
         <Heart />
       </button>

@@ -3,22 +3,19 @@ import ReactPaginate from "react-paginate";
 import CourseCardView1 from "../../common/CourseCardView1/CourseCardView1";
 import CourseCardView2 from "../../common/CourseCardView2/CourseCardView2";
 import SortView from "../SortView/SortView";
-import { addFavoriteCourses } from "../../../core/services/api/post/addFavoriteCourses";
+import { addFavCourses } from "../../../core/services/api/post/addFavCourses";
 import { deleteFavCourses } from "../../../core/services/api/delete/deleteFavCourses";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const VIEW_TYPE_LIST = "list";
 const VIEW_TYPE_GRID = "grid";
 
-const CourseListMain = ({
-  coursesData,
-  isLoading,
-  currentPage,
-  setCurrentPage,
-  setSortingCol,
-  pageSize,
-  setPageSize,
-}) => {
+const CourseListMain = ({coursesData, isLoading, currentPage, setCurrentPage, setSortingCol, pageSize, setPageSize}) => {
+
+  const {t} = useTranslation()
+
+
   const [currentView, setCurrentView] = useState(() => {
     return localStorage.getItem("courseViewType") || VIEW_TYPE_GRID;
   });
@@ -34,8 +31,10 @@ const CourseListMain = ({
     const isFavorite = favorites[courseId] || false;
     if (isFavorite) {
       await deleteFavCourses(courseId);
+      toast.success(t('courseCard.removeFavSuccessToast'))
     } else {
-      await addFavoriteCourses(courseId);
+      await addFavCourses(courseId);
+      toast.success(t('courseCard.addFavSuccessToast'))
     }
     setFavorites((prev) => ({
       ...prev,

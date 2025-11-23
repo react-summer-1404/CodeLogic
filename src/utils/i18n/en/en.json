@@ -168,6 +168,10 @@
     "title": "Training courses",
     "result": "Result"
   },
+  "courseListNav":{
+    "landing": "Landing",
+    "courseList": "Course list"
+  }, 
   "courseListSide": {
     "searchPlaceholder": "Search...",
     "startEndDate": "Starting and ending date",
@@ -177,14 +181,18 @@
   "courseCard": {
     "price": "Price",
     "toman": "Toman",
-    "likeSuccessToast": "You liked this course",
-    "disLikeSuccessToast": "You disliked this course"
+    "startDate": "Start date:",
+    "endDate": "End date:",
+    "technologies": "Technologies:",
+    "withoutTechnology": "Without technology",
+    "addFavSuccessToast": "This course added to favorites",
+    "removeFavSuccessToast": "This course removed from favorites"
   },
   "courseLevelFilter":{
     "title": "Course level"
   },
-  "courseCatFilter": {
-    "title": "دسته بندی"
+  "courseTechFilter": {
+    "title": "Technologies"
   },
   "priceFilter": {
     "title": "Price Range (Toman)"
@@ -195,6 +203,10 @@
   "timeDropDown": {
     "option1": "Newest",
     "option2": "Oldest"
+  },
+  "courseDetailNav": {
+    "landing": "Landing",
+    "courseList": "Course list"
   },
   "courseInfo": {
     "startDate": "StartDate",

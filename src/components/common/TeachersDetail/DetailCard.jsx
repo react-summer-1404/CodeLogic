@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { Navigate, useNavigate } from "react-router-dom";
 import heartIcon from "../../../assets/Icons/A/heart.png";
 import { useMutation } from "@tanstack/react-query";
-import { addFavoriteCourses } from "../../../core/services/api/post/addFavoriteCourses";
+import { addFavCourses } from "../../../core/services/api/post/addFavCourses";
 import { toast } from "react-toastify";
 const DetailCard = ({ item }) => {
   const [isAdded, setIsAdded] = useState(false);
@@ -15,7 +15,7 @@ const DetailCard = ({ item }) => {
   const { t } = useTranslation();
   const { mutate: postFavDetail } = useMutation({
     mutationKey: ["POSTFAVDETAIL"],
-    mutationFn: (id) => addFavoriteCourses(id),
+    mutationFn: (id) => addFavCourses(id),
     onSettled: (data) => {
       if (data.success) {
         setIsAdded(true);
