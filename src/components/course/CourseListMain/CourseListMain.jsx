@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 const VIEW_TYPE_LIST = "list";
 const VIEW_TYPE_GRID = "grid";
 
-const CourseListMain = ({coursesData, isLoading, currentPage, setCurrentPage, setSortingCol, pageSize, setPageSize}) => {
+const CourseListMain = ({coursesData, isLoading, currentPage, setCurrentPage, sortType, setSortType, pageSize, setPageSize}) => {
 
   const {t} = useTranslation()
 
@@ -60,7 +60,8 @@ const CourseListMain = ({coursesData, isLoading, currentPage, setCurrentPage, se
         currentView={currentView}
         currentPageSize={pageSize}
         onPageSizeChange={handlePageSizeChange}
-        setSortingCol={setSortingCol}
+        sortType={sortType}
+        setSortType={setSortType}
       />
       <div className="flex flex-row flex-wrap gap-y-8 gap-x-4 ">
         {coursesData?.courseFilterDtos?.map((item, index) => {
