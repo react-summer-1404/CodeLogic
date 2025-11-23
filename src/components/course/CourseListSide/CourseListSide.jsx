@@ -1,10 +1,10 @@
 import React from 'react'
 import CourseLevelFilter from '../CourseLevelFilter/CourseLevelFilter';
+import CourseTechFilter from '../CourseTechFilter/CourseTechFilter';
 import PriceFilter from '../PriceFilter/PriceFilter';
 import { useTranslation } from 'react-i18next';
 import CourseNewsSearch from '../../common/CourseNewsSearch/CourseNewsSearch';
 import StartEndDate from '../StartEndDate/StartEndDate';
-import CourseTechFilter from '../CourseTechFilter/CourseTechFilter';
 
 
 const CourseListSide = ({handleSearchSubmit , handleSetStartDate , handleSetEndDate , handleSetCourseLevel, handleSetTechnologies,

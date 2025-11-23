@@ -21,7 +21,7 @@ const CourseTechFilter = ({handleSetTechnologies}) => {
   
   return (
     <div className='flex flex-col gap-4 w-full p-4 bg-white rounded-[15px] dark:bg-[#454545] md:w-[284px]'>
-      <div onClick={() => setIsOpen(!isOpen)} className='flex justify-between items-center w-full text-[#DDDDDD] cursor-pointer'>
+      <div onClick={() => setIsOpen(!isOpen)} className='flex justify-between items-center w-full cursor-pointer   dark:text-[#DDDDDD]'>
         <span className='font-bold text-[18px]'>{t('courseTechFilter.title')}</span>
         <button className={`${isOpen ? 'rotate-90' : 'rotate-270'}`}>
           <Arrow />
