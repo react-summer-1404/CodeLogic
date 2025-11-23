@@ -18,8 +18,6 @@ import { PacmanLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { CommentLikeDislike } from "../../../../core/services/api/post/CommentLikeDislike";
 
-
-
 const PersonalComment = ({ newsId }) => {
   const { t } = useTranslation();
 
@@ -63,25 +61,7 @@ const PersonalComment = ({ newsId }) => {
   }, []);
 
   const { mutate: addReply, isPending: isAddingReply } = useMutation({
-    mutationFn: (payload) => AddNewsDetailsCommentReply(payload),
-    onSuccess: (variables) => {
-      toast.success(t("personalComment.replyForm.toastsuc"));
-      variables.formikHelpers.resetForm();
-
-      setRepliesCountByComment((prev) => ({
-        ...prev,
-        [variables.comment.id]: (prev[variables.comment.id] ?? 0) + 1,
-      }));
-
-      queryClient.invalidateQueries(["replyComments", variables.comment.id]);
-
-      handleOpenReplies(variables.comment.id);
-
-      setShowReplyById((prev) => ({ ...prev, [variables.comment.id]: false }));
-    },
-    // onError: () => {
-    //   toast.error(t("personalComment.replyForm.toasterr"));
-    // },
+    mutationFn: AddNewsDetailsCommentReply,
   });
 
   const handleFormSubmit = (values, comment, formikHelpers) => {
@@ -92,7 +72,26 @@ const PersonalComment = ({ newsId }) => {
       parentId: comment.id,
     };
 
-    addReply(payload, { comment, formikHelpers });
+    addReply(payload, {
+      onSuccess: () => {
+        toast.success(t("personalComment.replyForm.toastsuc"));
+
+        formikHelpers.resetForm();
+
+        setRepliesCountByComment((prev) => ({
+          ...prev,
+          [comment.id]: (prev[comment.id] ?? 0) + 1,
+        }));
+
+        setShowReplyById((prev) => ({ ...prev, [comment.id]: false }));
+
+        queryClient.invalidateQueries(["replyComments", comment.id]);
+      },
+      onError: (err) => {
+        console.error(err);
+        toast.error("خطا در ثبت پاسخ");
+      },
+    });
   };
 
   const { mutate: toggleLikeDislike } = useMutation({

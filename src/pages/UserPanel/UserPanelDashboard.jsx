@@ -4,30 +4,13 @@ import DashboardLatestNews from "../../components/userpanel/DashboardLatestNews/
 import NorthWestIcon from "@mui/icons-material/NorthWest";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import img1 from "../../assets/Images/Rectanglepc.png";
 import { useQuery } from "@tanstack/react-query";
 import getAllNews from "../../core/services/api/Get/News";
 import img2 from "../../assets/Images/HTML5Course.png";
 import { Link } from "react-router-dom";
 import GetProfileInfo from "../../core/services/api/Get/GetProfileInfo";
-
-const courseData = [
-  {
-    image: img1,
-    title: "دوره آموزش جامع HTML5",
-    status: "رزرو شده",
-  },
-  {
-    image: img1,
-    title: " آموزش تبدیل گفتار به نوشتار با پایتون  ",
-    status: "در انتظار تایید ",
-  },
-  {
-    image: img1,
-    title: " دوره اتصال React به PHP به همراه 3 پروژه عملی  ",
-    status: " در انتظار تایید",
-  },
-];
+import GetReservedDashboard from "../../core/services/api/Get/GetReservedDashboard";
+import GetMyCourses from "../../core/services/api/Get/GetMyCourses";
 
 const headerVariants = {
   initial: { opacity: 0 },
@@ -49,6 +32,27 @@ const itemVariants = {
 };
 
 const UserPanelDashboard = () => {
+  const { data: resCourses } = useQuery({
+    queryKey: ["resCourses"],
+    queryFn: GetReservedDashboard,
+  });
+
+  const latestCourses = useMemo(() => {
+    if (!resCourses) return [];
+    return [...resCourses]
+      .sort((a, b) => new Date(b.insertDate) - new Date(a.insertDate))
+      .slice(0, 3);
+  }, [resCourses]);
+
+  const { data: myCourses } = useQuery({
+    queryKey: ["myCourses"],
+    queryFn: GetMyCourses,
+  });
+
+  const unpaidCount =
+    myCourses?.listOfMyCourses?.filter((c) => c.paymentStatus === "پرداخت نشده")
+      .length ?? 0;
+
   const { data } = useQuery({
     queryKey: "getallnews",
     queryFn: getAllNews,
@@ -98,19 +102,19 @@ const UserPanelDashboard = () => {
   );
 
   return (
-    <div className=" w-full bg-[#F3F4F6] h-[85%] flex items-center rounded-4xl p-5 dark:bg-[#333] ">
+    <div className=" w-full bg-[#F3F4F6] mt-5 md:m-0 md:h-[85%] flex items-center rounded-4xl p-5 dark:bg-[#333] ">
       <div className=" w-full h-full flex flex-col justify-between ">
-        <div className=" w-full h-[25%] flex justify-between">
+        <div className=" w-full h-[25%] flex flex-col gap-5 md:flex-row md:justify-between">
           <motion.div
             variants={headerVariants}
             initial="initial"
             animate="animate"
-            className=" h-full w-[30%] rounded-3xl bg-white dark:bg-[#454545]"
+            className=" h-full md:w-[30%] rounded-3xl bg-white dark:bg-[#454545]  "
           >
             <motion.div
               variants={itemVariants}
-              className={` flex justify-between items-center  w-[55%] py-4 pr-6 ${
-                isRtl ? "" : "pl-6 w-[65%]"
+              className={` flex items-center gap-2 py-4 pr-6 ${
+                isRtl ? "" : "pl-6"
               }`}
             >
               <p className="text-[20px] text-[#1e1e1e] dark:text-[#848484] ">
@@ -127,20 +131,20 @@ const UserPanelDashboard = () => {
                 isRtl ? "" : "pl-6"
               } `}
             >
-              5
+              {myCourses?.listOfMyCourses?.length ?? 0}
             </motion.span>
           </motion.div>
           <motion.div
             variants={headerVariants}
             initial="initial"
             animate="animate"
-            className=" h-full w-[30%] rounded-3xl bg-white dark:bg-[#454545]"
+            className=" h-full  md:w-[30%] rounded-3xl bg-white dark:bg-[#454545] "
           >
             <motion.div
               variants={itemVariants}
-              className={`flex justify-between items-center  w-[85%] py-4 pr-6  ${
-                isRtl ? "" : "pl-6 w-[90%]"
-              } `}
+              className={` flex items-center gap-2 py-4 pr-6 ${
+                isRtl ? "" : "pl-6"
+              }`}
             >
               <p className="text-[20px] text-[#1e1e1e] dark:text-[#848484] ">
                 {t("paneldashboard.unpaid_periods")}
@@ -156,7 +160,7 @@ const UserPanelDashboard = () => {
                 isRtl ? "" : "pl-6"
               } `}
             >
-              12
+              {unpaidCount}
             </motion.span>
           </motion.div>
 
@@ -164,15 +168,13 @@ const UserPanelDashboard = () => {
             variants={headerVariants}
             initial="initial"
             animate="animate"
-            className=" h-full w-[35%] rounded-3xl bg-white dark:bg-[#454545] relative"
+            className="h-full md:w-[35%] py-4 rounded-3xl bg-white dark:bg-[#454545] relative flex items-center justify-between md:block p-4"
           >
             <motion.div
               variants={headerVariants}
-              className={` flex justify-between items-center  w-[65%] py-4 pr-6 ${
-                isRtl ? "" : "pl-6 w-[70%]"
-              } `}
+              className="flex flex-row items-center gap-2 md:absolute md:top-5 md:right-6 z-10"
             >
-              <p className="text-[20px] text-[#1e1e1e] dark:text-[#848484] ">
+              <p className="text-[20px] text-[#1e1e1e] dark:text-[#848484] whitespace-nowrap">
                 {t("paneldashboard.profile_completed")}
               </p>
               <div className="p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484]">
@@ -181,8 +183,8 @@ const UserPanelDashboard = () => {
             </motion.div>
 
             <div
-              className={`absolute top-10 w-[21%] h-[54%] flex items-center justify-center rounded-full ${
-                isRtl ? "mr-65" : "ml-65"
+              className={`relative w-26 h-26 md:absolute md:top-10 md:w-[21%] md:h-[54%] flex items-center justify-center rounded-full ${
+                isRtl ? "md:mr-65" : "md:ml-65"
               }`}
             >
               <svg
@@ -222,17 +224,17 @@ const UserPanelDashboard = () => {
             </div>
           </motion.div>
         </div>
-        <div className=" w-full h-[70%]  flex justify-between">
+        <div className=" w-full md:h-[70%]  flex flex-col md:flex-row md:justify-between">
           <motion.div
             variants={headerVariants}
             initial="initial"
             animate="animate"
-            className=" h-full w-[49%] bg-[white]  rounded-3xl dark:bg-[#454545]  "
+            className=" h-full mt-5 py-4 md:m-0 md:p-0 md:w-[49%] bg-[white]  rounded-3xl dark:bg-[#454545]  "
           >
             <motion.div
               variants={itemVariants}
-              className={` flex justify-between items-center   w-[45%] py-4 pr-6 ${
-                isRtl ? "" : "pl-6 w-[65%]"
+              className={` flex justify-between items-center   md:w-[45%] px-6 py-4 md:pr-6 ${
+                isRtl ? "" : "md:pl-6 md:w-[65%]"
               }`}
             >
               <p
@@ -251,18 +253,33 @@ const UserPanelDashboard = () => {
               </div>
             </motion.div>
 
-            {courseData.map((item, index) => {
+            {latestCourses.map((item) => {
               const shortTitle =
-                item.title.length > 48
-                  ? item.title.slice(0, 48) + "…"
-                  : item.title;
+                item.courseName.length > 48
+                  ? item.courseName.slice(0, 48) + "…"
+                  : item.courseName;
+
+              const statusBg = item.accept ? "#D7FFE8" : "#FFD7D7";
+              const statusColor = item.accept ? "#0FA958" : "#D93F3F";
 
               return (
                 <DashboardCourseReserve
-                  key={index}
+                  key={item.id}
                   image={item.image}
                   title={shortTitle}
-                  status={item.status}
+                  status={
+                    <span
+                      style={{
+                        color: statusColor,
+                        backgroundColor: statusBg,
+                        padding: "4px 10px",
+                        borderRadius: "8px",
+                        fontSize: "14px",
+                      }}
+                    >
+                      {item.accept ? "تایید شده" : "تایید نشده"}
+                    </span>
+                  }
                 />
               );
             })}
@@ -279,17 +296,17 @@ const UserPanelDashboard = () => {
             variants={headerVariants}
             initial="initial"
             animate="animate"
-            className=" h-full w-[49%] bg-[white] rounded-3xl dark:bg-[#454545] "
+            className=" h-full mt-5 py-4 md:m-0 md:p-0 md:w-[49%] bg-[white] rounded-3xl dark:bg-[#454545] "
           >
             <motion.div
               variants={itemVariants}
-              className={` flex justify-between items-center   w-[45%] py-4 pr-6 ${
-                isRtl ? "" : "pl-6 w-[65%]"
+              className={` flex justify-between items-center   md:w-[45%] py-4 pr-6 ${
+                isRtl ? "" : "pl-6 md:w-[65%]"
               }`}
             >
               <p
                 className={`  text-[20px] text-[#1e1e1e] dark:text-[#848484] ${
-                  isRtl ? "" : "w-[40%]   "
+                  isRtl ? "" : "md:w-[40%]   "
                 } `}
               >
                 {t("paneldashboard.latest_news")}
