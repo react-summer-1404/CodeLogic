@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next'
 
 const CourseNewsSearch = ({handleSearchSubmit}) => {
 
-    const [search, setSearch] = useState('');
     const debouncedSearch = useCallback(
         debounce((value) => {
         handleSearchSubmit(value);
@@ -16,7 +15,6 @@ const CourseNewsSearch = ({handleSearchSubmit}) => {
     );
     const handleChange = (e) => {
         const value = e.target.value;
-        setSearch(value);
         debouncedSearch(value);
     };
     
@@ -30,7 +28,6 @@ const CourseNewsSearch = ({handleSearchSubmit}) => {
             <input 
             type='search' 
             placeholder={t('courseListSide.searchPlaceholder')} 
-            value={search} 
             onChange={handleChange} 
             className='w-full h-[46px] px-4 font-regular text-base text-[#848484] bg-[#FFFFFF] rounded-[15px] outline-0
             dark:text-[#CCCCCC] dark:bg-[#454545]
