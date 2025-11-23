@@ -62,7 +62,7 @@ const CourseListMain = ({
         onPageSizeChange={handlePageSizeChange}
         setSortingCol={setSortingCol}
       />
-      <div className="flex flex-row flex-wrap gap-y-8 gap-x-4">
+      <div className="flex flex-row flex-wrap gap-y-8 gap-x-4 ">
         {coursesData?.courseFilterDtos?.map((item, index) => {
           return (
             <CourseCardComponent

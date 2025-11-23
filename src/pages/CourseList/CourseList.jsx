@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CourseListSide from "../../components/course/CourseListSide/CourseListSide";
 import CourseListMain from "../../components/course/CourseListMain/CourseListMain";
-import CourseListSkeleton from '../../components/common/skeleton/CourseListSkeleton/CourseListSkeleton'
 import GetAllCourses from "../../core/services/api/Get/GetAllCourses";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -11,19 +10,15 @@ import { useLocation } from "react-router-dom";
 const DEFAULT_SORT_TYPE = "DESC";
 
 const CourseList = () => {
-  
-  
   const [sortingCol, setSortingCol] = useState(DEFAULT_SORT_TYPE);
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(3);
-  
-  
+
   const [searchQuery, setSearchQuery] = useState("");
   const handleSearchSubmit = (searchTerm) => {
     setSearchQuery(searchTerm);
   };
-  
-  
+
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const handleSetStartDate = (startDate) => {
@@ -32,54 +27,60 @@ const CourseList = () => {
   const handleSetEndDate = (endDate) => {
     setEndDate(endDate);
   };
-  
-  
+
   const [courseLevel, setCourseLevel] = useState();
   const handleSetCourseLevel = (courseLevel) => {
     setCourseLevel(courseLevel);
   };
-  
-  
+
   const [teachers, setTeachers] = useState("");
   const handleSetTeachers = (teachers) => {
     setTeachers(teachers);
   };
-  
-  
+
   const [technologies, setTechnologies] = useState("");
   const handleSetTechnologies = (technologies) => {
     setTechnologies(technologies);
   };
-  
-  
+
   const [price, setPrice] = useState([0, 10000]);
   const handleSetPrice = (price) => {
     console.log(price);
     setPrice(price);
   };
-  
-  
+
   const { data: coursesData, isLoading } = useQuery({
-    queryKey: ["GETALLCOURSES", searchQuery, pageSize, currentPage, sortingCol, startDate, endDate, courseLevel, teachers, technologies,
+    queryKey: [
+      "GETALLCOURSES",
+      searchQuery,
+      pageSize,
+      currentPage,
+      sortingCol,
+      courseLevel,
+      teachers,
+      technologies,
       price,
     ],
-    queryFn: () => GetAllCourses({ RowsOfPage: pageSize, PageNumber: currentPage, Query: searchQuery, SortType: "startTime",
-      StartDate: startDate, EndDate: endDate,
-      courseLevelId: courseLevel,
-      teacherName: teachers,
-      technologyList: technologies,
-      CostDown: price[0],
-      CostUp: price[1],
-    }),
+    queryFn: () =>
+      GetAllCourses({
+        RowsOfPage: pageSize,
+        PageNumber: currentPage,
+        Query: searchQuery,
+        SortType: "startTime",
+        StartDate: null,
+        EndDate: null,
+        courseLevelId: courseLevel,
+        teacherName: teachers,
+        technologyList: technologies,
+        CostDown: price[0],
+        CostUp: price[1],
+      }),
   });
-  
 
   let result = coursesData?.totalCount;
-  
 
   const { t } = useTranslation();
-  
-  
+
   const location = useLocation();
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -87,16 +88,32 @@ const CourseList = () => {
     setSearchQuery(search);
   }, [location.search]);
 
+  const filteredCourses = coursesData?.courseFilterDtos?.filter((course) => {
+    if (!startDate || !endDate) return true;
+
+    const courseStartDateStr = course.startTime.slice(0, 10);
+    const courseEndDateStr = course.endTime.slice(0, 10);
+
+    const userStartDateStr = startDate.slice(0, 10);
+    const userEndDateStr = endDate.slice(0, 10);
+
+    return (
+      courseStartDateStr <= userStartDateStr &&
+      courseEndDateStr >= userEndDateStr
+    );
+  });
 
   return (
     <div className="flex flex-col items-center w-full   dark:bg-[#1E1E1E]">
       <div className="flex gap-1 text-[#008C78] pt-10 font-regular text-sm">
-        <Link to={'/'}>صفحه اصلی</Link>
-        {'>'}
-        <span to={'/courseList'}>صفحه دوره ها</span>
+        <Link to={"/"}>صفحه اصلی</Link>
+        {">"}
+        <span to={"/courseList"}>صفحه دوره ها</span>
       </div>
-      <div className="flex flex-col items-center gap-2 pt-4
-      md:flex md:flex-row">
+      <div
+        className="flex flex-col items-center gap-2 pt-4
+      md:flex md:flex-row"
+      >
         <h2 className="font-bold text-[32px] text-[#1E1E1E]   dark:text-[#EEEEEE]">
           {t("courseList.title")}
         </h2>
@@ -118,7 +135,7 @@ const CourseList = () => {
           handleSetPrice={handleSetPrice}
         />
         <CourseListMain
-          coursesData={coursesData}
+          coursesData={{ ...coursesData, courseFilterDtos: filteredCourses }}
           isLoading={isLoading}
           searchQuery={searchQuery}
           currentPage={currentPage}

@@ -38,7 +38,7 @@ async function fetchNews() {
     const data = await res.json();
     return data?.news || [];
   } catch (err) {
-    console.error("❌ خطا در GET اخبار:", err);
+    console.error(" خطا در GET اخبار:", err);
     return [];
   }
 }
@@ -136,11 +136,11 @@ ${newsContext}
     const data = await response.json();
     return res.json(data);
   } catch (err) {
-    console.error("❌ خطا در چت:", err);
+    console.error(" خطا در چت:", err);
     return res.status(500).json({ error: "Timeout or server error" });
   }
 });
 
-app.get("/", (req, res) => res.send("✔️ Chatbot server running"));
+app.get("/", (req, res) => res.send(" Chatbot server running"));
 
-app.listen(PORT, () => console.log(`🚀 Server running at port ${PORT}`));
+app.listen(PORT, () => console.log(` Server running at port ${PORT}`));
