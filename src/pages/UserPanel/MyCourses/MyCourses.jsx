@@ -79,22 +79,22 @@ const MyCourses = () => {
             titleData={{
               title1: t("myCourses.title1"),
               justify1: "justify-start",
-              w1: "w-64",
+              w1: "md:w-64",
               title2: t("myCourses.title2"),
               justify2: "justify-center",
-              w2: "w-50",
+              w2: "md:w-50",
               title3: t("myCourses.title3"),
               justify3: "justify-center",
-              w3: "w-30",
+              w3: "md:w-30",
               title4: t("myCourses.title4"),
               justify4: "justify-center",
-              w4: "w-36",
+              w4: "md:w-36",
               title5: t("myCourses.title5"),
               justify5: "justify-center",
-              w5: "w-34",
+              w5: "md:w-34",
               title6: t("myCourses.title6"),
               justify6: "justify-center",
-              w6: "w-32",
+              w6: "md:w-32",
             }}
           />
           {isLoading ? (

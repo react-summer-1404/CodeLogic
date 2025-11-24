@@ -180,7 +180,7 @@
     "likeSuccessToast": "You liked this course",
     "disLikeSuccessToast": "You disliked this course"
   },
-  "courseLevelFilter":{
+  "courseLevelFilter": {
     "title": "Course level"
   },
   "courseCatFilter": {
@@ -777,5 +777,13 @@
     "email": "Enter your email",
     "phone": "Your number",
     "text": "Message text"
+  },
+  "payment": {
+    "pending": "Completing the operation...",
+    "success": "Your payment was successful!",
+    "failed": "Payment failed!",
+    "back": "Go to panel",
+    "q1": "Do you want to pay for this course?",
+    "loading": "Processing..."
   }
 }

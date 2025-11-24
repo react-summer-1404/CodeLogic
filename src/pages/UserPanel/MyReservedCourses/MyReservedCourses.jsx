@@ -10,8 +10,6 @@ import FavoritesSkeleton from "../../../components/common/skeleton/favorites/Fav
 import Lottie from "lottie-react";
 import empty from "../../../assets/Images/empty.json";
 
-
-
 const MyReservedCourses = () => {
   const { data: myReservedCoursesData, isPending } = useQuery({
     queryKey: ["GETMYRESERVEDCOURSES"],
@@ -30,21 +28,22 @@ const MyReservedCourses = () => {
   const endIndex = startIndex + coursesPerPage;
   const reservedData = myReservedCoursesData || [];
 
+  const filteredCourses = reservedData
+    .filter((courses) => {
+      const matchesTitle = courses.courseName
+        .toLowerCase()
+        .trim()
+        .includes(searchQuery.trim().toLowerCase());
 
-  const filteredCourses = reservedData.filter((courses) => {
-    const matchesTitle = courses.courseName
-      .toLowerCase()
-      .trim()
-      .includes(searchQuery.trim().toLowerCase());
-    if (filterOption === "همه") {
       return matchesTitle;
-    }
-    const bool = filterOption === "true";
-    const matchesFilters = courses.accept === bool;
-    return matchesFilters && matchesTitle;
-  });
+    })
+    .sort((a, b) => {
+      if (filterOption === "جدید ترین ها") {
+        return b.insertDate.slice(0, 10) - a.insertDate.slice(0, 10);
+      }
+      return 0;
+    });
 
-  
   const currentCourses = filteredCourses.slice(startIndex, endIndex);
   const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
   const handlePageChange = (p) => {
@@ -74,12 +73,13 @@ const MyReservedCourses = () => {
               setFilterOption(e.target.value);
               setCurrentPage(1);
             }}
-            className="rounded-xl text-sm cursor-pointer  ps-2 text-gray-600   dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]">
+            className="rounded-xl text-sm cursor-pointer  ps-2 text-gray-600   dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]"
+          >
             <option value="همه">({t("favoriteNews.all")})</option>
-            <option value="false">
-              ({t("coursesPayment.AwaitingConfirmation")})
+
+            <option value="جدید ترین ها">
+              ({t("favoriteCourses.lastUpdate")})
             </option>
-            <option value="true">({t("coursesPayment.confirmed")})</option>
           </select>
         </div>
       </div>

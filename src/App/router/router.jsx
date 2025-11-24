@@ -27,6 +27,7 @@ import FavoriteCourses from "../../pages/UserPanel/FavoriteCourses/FavoriteCours
 import SecuritySettings from "../../pages/UserPanel/securitySettings/SecuritySettings";
 import NewsPage from "../../pages/NewsPage/NewsPage";
 import NotFound from "../../pages/NotFound/NotFound";
+import PaymentRedirectPage from "../../pages/paymentRedirect/PaymentRedirectPage";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
       { path: "/teachers", element: <TeachersPage /> },
       { path: "/teacher/:id", element: <TeachersDetail /> },
       { path: "/news/:id", element: <NewsDetails /> },
+      { path: "/redirect/", element: <PaymentRedirectPage /> },
     ],
   },
   {
