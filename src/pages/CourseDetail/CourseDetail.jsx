@@ -8,6 +8,7 @@ import GetAllCourses from "../../core/services/api/Get/GetAllCourses";
 import CourseDetailSkeleton from "../../components/common/skeleton/CourseDetailSkeleton/CourseDetailSkeleton";
 
 const CourseDetail = () => {
+  
   const { t } = useTranslation();
 
   const { id } = useParams();
@@ -39,9 +40,9 @@ const CourseDetail = () => {
   return (
     <div className="flex flex-col items-center   dark:bg-[#1E1E1E]">
       <div className="flex gap-1 text-[#008C78] pt-10 font-regular text-sm">
-        <Link to={'/'}>صفحه اصلی</Link>
+        <Link to={'/'}>{t('courseDetailNav.landing')}</Link>
         {'>'}
-        <Link to={'/courseList'}>صفحه دوره ها</Link>
+        <Link to={'/courseList'}>{t('courseDetailNav.courseList')}</Link>
         {'>'}
         <span>{course.title}</span>
       </div>

@@ -168,6 +168,10 @@
     "title": "دوره های آموزشی",
     "result": "نتیجه"
   },
+  "courseListNav":{
+    "landing": "صفحه اصلی",
+    "courseList": "دوره ها"
+  }, 
   "courseListSide": {
     "searchPlaceholder": "جستجو...",
     "startEndDate": "تاریخ شروع برگزاری و پایان",
@@ -177,14 +181,18 @@
   "courseCard": {
     "price": "قیمت",
     "toman": "تومان",
-    "likeSuccessToast": "شما این دوره را لایک کردید",
-    "disLikeSuccessToast": "شما این دوره را دیسلایک کردید"
+    "startDate": "تاریخ شروع:",
+    "endDate": "تاریخ پایان:",
+    "technologies": "تکنولوژی ها:",
+    "withoutTechnology": "بدون تکنولوژی",
+    "addFavSuccessToast": "این دوره به علاقه مندی ها افزوده شد",
+    "removeFavSuccessToast": "این دوره از علاقه مندی ها حذف شد"
   },
   "courseLevelFilter": {
     "title": "سطح دوره"
   },
-  "courseCatFilter": {
-    "title": "دسته بندی"
+  "courseTechFilter": {
+    "title": "تکنولوژی ها"
   },
   "priceFilter": {
     "title": "بازه قیمت (تومان)"
@@ -195,6 +203,10 @@
   "timeDropDown": {
     "option1": "جدیدترین",
     "option2": "قدیمی ترین"
+  },
+  "courseDetailNav": {
+    "landing": "صفحه اصلی",
+    "courseList": "دوره ها"
   },
   "courseInfo": {
     "startDate": "تاریخ شروع",
