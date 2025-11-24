@@ -52,8 +52,8 @@ const DashboardCourseReserve = ({ image, title, status }) => {
           variants={itemVariants}
           className="flex justify-between items-center w-full mt-3  "
         >
-          <p className="text-[#1e1e1e] text-[16px] dark:text-[#848484]">
-            وضعیت :<span>{status}</span>
+          <p className="text-[#1e1e1e] text-[16px] dark:text-[#848484] ">
+            وضعیت :<span className="mr-2">{status}</span>
           </p>
         </motion.div>
       </div>

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Eye from "../../../assets/Icons/Eye";
 import Receipt from "../../../assets/Icons/Receipt";
 import ReactCourseImg from "../../../assets/Images/A/courses/2.png";
 import { motion } from "framer-motion";
 import AddCardIcon from "@mui/icons-material/AddCard";
+import MyCoursesOverView from "../MyCoursesOverViewModal/MyCoursesOverView";
+import MyCoursesPaidModal from "../../MyCoursesPaidModal/MyCoursesPaidModal";
 
 const textClass =
   "font-regular text-base text-[#1E1E1E] truncate  dark:text-[#DDDDDD]";
@@ -17,61 +19,129 @@ const MyCourse = ({ item }) => {
       transition: { ease: "easeOut", duration: 0.35 },
     },
   };
+  const [openOverViewModal, setOpenOverViewModal] = useState(false);
+  const handleCloseOverViewModal = (value) => {
+    setOpenOverViewModal(value);
+  };
+  const [openPaidModal, setOpenPaidModal] = useState(false);
+  const handleClosePaidModal = (value) => {
+    setOpenPaidModal(value);
+  };
 
   return (
-    <motion.div
-      variants={Animate}
-      initial="hidden"
-      animate="visible"
-      className="flex items-center py-[14px] border-t border-b border-[#EAEAEA]"
-    >
-      <div className="flex items-center gap-4 w-64">
+    <>
+      <motion.div
+        variants={Animate}
+        initial="hidden"
+        animate="visible"
+        className="hidden md:flex items-center py-[14px] border-t border-b border-[#EAEAEA]"
+      >
+        <div className="flex items-center gap-4 w-64">
+          <img
+            className="w-[28px] h-[28px] rounded-full object-cover"
+            src={item.tumbImageAddress}
+          />
+          <div>
+            <span className={textClass}>{item.course.title}</span>
+          </div>
+        </div>
+        <div className="flex justify-center w-50">
+          <span
+            className={textClass}
+          >{`${item.course.teacher.fName}  ${item.course.teacher.lName}`}</span>
+        </div>
+        <div className="flex justify-center w-30">
+          <span
+            className={`py-[2px] px-[10px] font-regular text-base 
+            ${
+              item.paymentStatus === "پرداخت شده"
+                ? " text-[#008C78] bg-[#EEFFFC]"
+                : "bg-[#FFECEC] text-[#E7000B] "
+            } rounded-[8px]`}
+          >
+            {item.paymentStatus}
+          </span>
+        </div>
+        <div className="flex justify-center w-36">
+          <span className={textClass}>{item.cost.toLocaleString()}</span>
+        </div>
+        <div className="flex justify-center w-34 ">
+          <span className={textClass}>{item.lastUpdate}</span>
+        </div>
+        <div className="flex justify-center items-center gap-4 w-32 ">
+          <div onClick={() => setOpenOverViewModal(true)}>
+            <Eye />
+          </div>
+          {item.paymentStatus === "پرداخت نشده" ? (
+            ""
+          ) : (
+            <div onClick={() => setOpenPaidModal(true)}>
+              <Receipt />
+            </div>
+          )}
+        </div>
+      </motion.div>
+      <div
+        className="flex md:hidden flex-col items-center gap-4 dark:text-white dark:bg-[#333]
+          w-[80%] bg-[#eee] rounded-3xl mx-auto mt-4 py-4
+          "
+      >
+        <h2 className="text-[19px] text-[#008C78] dark:text-[#008C78] mx-auto font-bold">
+          {item.course.title}
+        </h2>
         <img
-          className="w-[28px] h-[28px] rounded-full object-cover"
+          className="rounded-4xl shadow-md w-[55%] mx-auto"
           src={item.tumbImageAddress}
+          alt=""
         />
-        <div>
-          <span className={textClass}>{item.course.title}</span>
+        <div className="flex justify-center">
+          <span
+            className={textClass}
+          >{`${item.course.teacher.fName}  ${item.course.teacher.lName}`}</span>
         </div>
-      </div>
-      <div className="flex justify-center w-50">
-        <span
-          className={textClass}
-        >{`${item.course.teacher.fName}  ${item.course.teacher.lName}`}</span>
-      </div>
-      <div className="flex justify-center w-30">
-        <span
-          className={`py-[2px] px-[10px] font-regular text-base 
-          ${
-            item.paymentStatus === "پرداخت شده"
-              ? " text-[#008C78] bg-[#EEFFFC]"
-              : "bg-[#FFECEC] text-[#E7000B] "
-          } rounded-[8px]`}
-        >
-          {item.paymentStatus}
+        <div className="flex justify-center">
+          <span
+            className={`py-[2px] px-[10px] font-regular text-base 
+            ${
+              item.paymentStatus === "پرداخت شده"
+                ? " text-[#008C78] bg-[#EEFFFC]"
+                : "bg-[#FFECEC] text-[#E7000B] "
+            } rounded-[8px]`}
+          >
+            {item.paymentStatus}
+          </span>
+        </div>
+        <div className="flex justify-center w-36">
+          <span className={textClass}>{item.cost.toLocaleString()}</span>
+        </div>
+        <span className=" mx-auto text-[14px] text-[#848484] dark:text-[#848484] truncate ">
+          {item.lastUpdate}
         </span>
-      </div>
-      <div className="flex justify-center w-36">
-        <span className={textClass}>{item.cost.toLocaleString()}</span>
-      </div>
-      <div className="flex justify-center w-34 ">
-        <span className={textClass}>{item.lastUpdate}</span>
-      </div>
-      <div className="flex justify-center items-center gap-4 w-32 ">
-        <div>
-          <Eye />
+        <div className="  flex items-center  gap-4">
+          <div onClick={() => setOpenOverViewModal(true)}>
+            <Eye />
+          </div>
+          {item.paymentStatus === "پرداخت نشده" ? (
+            <div>
+              <AddCardIcon className="text-[#008C78] cursor-pointer" />
+            </div>
+          ) : (
+            <div>
+              <Receipt />
+            </div>
+          )}
         </div>
-        {item.paymentStatus === "پرداخت نشده" ? (
-          <div>
-            <AddCardIcon className="text-[#008C78] cursor-pointer" />
-          </div>
-        ) : (
-          <div>
-            <Receipt />
-          </div>
-        )}
       </div>
-    </motion.div>
+      {openOverViewModal && (
+        <MyCoursesOverView
+          item={item}
+          handleCloseModal={handleCloseOverViewModal}
+        />
+      )}
+      {openPaidModal && (
+        <MyCoursesPaidModal handleClosePaidModal={handleClosePaidModal} />
+      )}
+    </>
   );
 };
 

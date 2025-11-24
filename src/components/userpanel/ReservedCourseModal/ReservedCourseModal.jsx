@@ -7,8 +7,6 @@ const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
 const ReservedCoursesModal = ({ item, handleToggleModal }) => {
   const { t } = useTranslation();
 
-  const [isAccept, setIsAccept] = useState(false);
-
   const Animate = {
     hidden: { opacity: 0, y: -20 },
     visible: {
@@ -24,7 +22,7 @@ const ReservedCoursesModal = ({ item, handleToggleModal }) => {
       initial="hidden"
       animate="visible"
       className="flex flex-col items-center gap-6 w-[80%] shadow-2xl h-[50%] md:w-144 md:h-84 pt-8 bg-[#FFFFFF] border border-[#EAEAEA] rounded-xl fixed md:top-32 
-    md:right-120 mx-auto mt-45 md:m-0 inset-0 z-48"
+    md:right-120 mx-auto mt-45 md:m-0 inset-0 z-48 dark:bg-[#333]"
     >
       <div className="flex flex-col items-center gap-4">
         <img src={item.image} className="w-7 h-7 rounded-[48px]" />
@@ -45,12 +43,12 @@ const ReservedCoursesModal = ({ item, handleToggleModal }) => {
         <span
           className={`py-[2px] px-[10px] font-regular text-base rounded-[8px] 
         ${
-          isAccept
+          item.accept
             ? "text-[#008C78] bg-[#EEFFFC]"
             : "text-[#E7000B] bg-[#FFECEC]"
         }`}
         >
-          {isAccept
+          {item.accept
             ? t("myReservedCourse.reserved")
             : t("myReservedCourse.await")}
         </span>
@@ -65,7 +63,7 @@ const ReservedCoursesModal = ({ item, handleToggleModal }) => {
         onClick={() => {
           handleToggleModal(false);
         }}
-        className="py-1 px-2 border rounded-lg cursor-pointer"
+        className="py-1 px-2 border dark:border-[#EAEAEA] dark:text-[#EAEAEA] rounded-lg cursor-pointer"
       >
         {t("reservedCourseModal.backBtn")}
       </button>

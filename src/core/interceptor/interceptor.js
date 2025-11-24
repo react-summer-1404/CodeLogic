@@ -21,7 +21,7 @@ const onError = (err) => {
     toast.error("لطفا ابتداوارد شوید");
     setItem("isLogin", false);
   }
-  if (err.response.status === 403) {
+  if (err.response.status === 401) {
     removeItem("token");
   }
   if (err.response.status >= 400 && err.response.status < 500) {
