@@ -16,8 +16,8 @@ const ImageInfo = ({ course }) => {
     const saved = JSON.parse(localStorage.getItem(key) || '{}');
     const [liked, setLiked] = useState(saved.liked || false);
     const [disLiked, setDisliked] = useState(saved.disLiked || false);
-    const [likeCount, setLikeCount] = useState(course.likeCount + (saved.liked ? 1 : 0));
-    const [disLikeCount, setDisLikeCount] = useState(course.dissLikeCount + (saved.disLiked ? 1 : 0));
+    const [likeCount, setLikeCount] = useState(course.likeCount);
+    const [disLikeCount, setDisLikeCount] = useState(course.dissLikeCount);
 
     
     const onLike = () => {

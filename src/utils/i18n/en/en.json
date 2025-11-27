@@ -188,7 +188,7 @@
     "addFavSuccessToast": "This course added to favorites",
     "removeFavSuccessToast": "This course removed from favorites"
   },
-  "courseLevelFilter":{
+  "courseLevelFilter": {
     "title": "Course level"
   },
   "courseTechFilter": {
@@ -789,5 +789,13 @@
     "email": "Enter your email",
     "phone": "Your number",
     "text": "Message text"
+  },
+  "payment": {
+    "pending": "Completing the operation...",
+    "success": "Your payment was successful!",
+    "failed": "Payment failed!",
+    "back": "Go to panel",
+    "q1": "Do you want to pay for this course?",
+    "loading": "Processing..."
   }
 }

@@ -48,7 +48,7 @@ const CourseCardView2 = ({ item, handleToggleFavorite, isLoading }) => {
           <h2 className='font-bold text-base   dark:text-[#EEEEEE]'>{t(`${item.title}`)}</h2>
           <p className='font-regular text-sm   dark:text-[#DDDDDD]'>{descriptionslice}</p>
         </div>
-        <div className='flex flex-col gap-2 rounded-md shadow-xl bg-[#EEEEEE] py-2 px-4 dark:bg-[#454545]'>
+        <div className='flex flex-col gap-2 rounded-md bg-[#EEEEEE] py-2 px-4 dark:bg-[#454545]'>
           <div className='flex flex-col justify-between gap-2'>
             <div className='flex gap-2 font-regular text-sm dark:text-[#DDDDDD]'>
               <span>{t('courseCard.technologies')}</span> 

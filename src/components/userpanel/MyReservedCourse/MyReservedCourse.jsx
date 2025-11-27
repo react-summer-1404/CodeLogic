@@ -4,11 +4,13 @@ import Receipt from "../../../assets/Icons/Receipt";
 import { motion } from "framer-motion";
 import { t } from "i18next";
 import ReservedCoursesModal from "../ReservedCourseModal/ReservedCourseModal";
+import AddCardIcon from "@mui/icons-material/AddCard";
+import PaymentModal from "../PaymentModal/PaymentModal";
 
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
 
 const MyReservedCourse = ({ item }) => {
-  const [isAccept, setIsAccept] = useState(false);
+  const [openPaymentModal, setOpenPaymentModal] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,6 +25,9 @@ const MyReservedCourse = ({ item }) => {
 
   const handleToggleModal = () => {
     setIsOpen(!isOpen);
+  };
+  const handleClosePayment = (value) => {
+    setOpenPaymentModal(value);
   };
 
   return (
@@ -50,12 +55,12 @@ const MyReservedCourse = ({ item }) => {
           <span
             className={`py-[2px] px-[10px] font-regular text-base rounded-[8px] 
           ${
-            isAccept
+            item.accept
               ? "text-[#008C78] bg-[#EEFFFC]"
               : "text-[#E7000B] bg-[#FFECEC]"
           }`}
           >
-            {isAccept
+            {item.accept
               ? t("myReservedCourse.reserved")
               : t("myReservedCourse.await")}
           </span>
@@ -63,7 +68,7 @@ const MyReservedCourse = ({ item }) => {
         <div className="flex justify-center w-56">
           <span className={textClass}>{item.insertDate.slice(0, 10)}</span>
         </div>
-        <div className="flex justify-center gap-4 w-28">
+        <div className="flex justify-center items-center gap-4 w-28">
           <span
             onClick={() => {
               handleToggleModal(true);
@@ -72,9 +77,14 @@ const MyReservedCourse = ({ item }) => {
           >
             <Eye />
           </span>
-          <span className="cursor-pointer">
-            <Receipt />
-          </span>
+          {item.accept && (
+            <span
+              onClick={() => setOpenPaymentModal(true)}
+              className="cursor-pointer"
+            >
+              <AddCardIcon className="text-[#008C78]" />
+            </span>
+          )}
         </div>
       </motion.div>
       {isOpen && (
@@ -82,6 +92,9 @@ const MyReservedCourse = ({ item }) => {
           item={item}
           handleToggleModal={handleToggleModal}
         />
+      )}
+      {openPaymentModal && (
+        <PaymentModal item={item} handleClosePayment={handleClosePayment} />
       )}
     </>
   );

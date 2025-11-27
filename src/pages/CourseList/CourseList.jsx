@@ -7,10 +7,9 @@ import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "react-router-dom";
 
-const DEFAULT_SORT_TYPE = "DESC";
 
 const CourseList = () => {
-  const [sortingCol, setSortingCol] = useState(DEFAULT_SORT_TYPE);
+
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(3);
 
@@ -18,6 +17,7 @@ const CourseList = () => {
   const handleSearchSubmit = (searchTerm) => {
     setSearchQuery(searchTerm);
   };
+
 
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -28,47 +28,58 @@ const CourseList = () => {
     setEndDate(endDate);
   };
 
+
   const [courseLevel, setCourseLevel] = useState();
   const handleSetCourseLevel = (courseLevel) => {
     setCourseLevel(courseLevel);
   };
+
 
   const [teachers, setTeachers] = useState("");
   const handleSetTeachers = (teachers) => {
     setTeachers(teachers);
   };
 
+
   const [technologies, setTechnologies] = useState("");
   const handleSetTechnologies = (technologies) => {
     setTechnologies(technologies);
   };
 
+  
   const [price, setPrice] = useState([0, 10000]);
   const handleSetPrice = (price) => {
     console.log(price);
     setPrice(price);
   };
 
+
+  const [sortType, setSortType] = useState("ASC");
+
+
   const { data: coursesData, isLoading } = useQuery({
     queryKey: [
       "GETALLCOURSES",
       searchQuery,
       pageSize,
-      currentPage,
-      sortingCol,
+      currentPage, 
+      sortType,
       courseLevel,
       teachers,
       technologies,
       price,
+      startDate,
+      endDate,
     ],
     queryFn: () =>
       GetAllCourses({
         RowsOfPage: pageSize,
-        PageNumber: currentPage,
+        PageNumber: currentPage + 1,
         Query: searchQuery,
-        SortType: "startTime",
-        StartDate: null,
-        EndDate: null,
+        SortingCol: 'startTime',
+        SortType: sortType,
+        StartDate: startDate,
+        EndDate: endDate,
         courseLevelId: courseLevel,
         teacherName: teachers,
         technologyList: technologies,
@@ -140,7 +151,8 @@ const CourseList = () => {
           searchQuery={searchQuery}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
-          setSortingCol={setSortingCol}
+          sortType={sortType}
+          setSortType={setSortType}
           pageSize={pageSize}
           setPageSize={setPageSize}
         />
