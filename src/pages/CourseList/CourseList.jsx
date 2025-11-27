@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 
 
 const CourseList = () => {
+
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(3);
 
@@ -16,6 +17,7 @@ const CourseList = () => {
   const handleSearchSubmit = (searchTerm) => {
     setSearchQuery(searchTerm);
   };
+
 
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -26,21 +28,25 @@ const CourseList = () => {
     setEndDate(endDate);
   };
 
+
   const [courseLevel, setCourseLevel] = useState();
   const handleSetCourseLevel = (courseLevel) => {
     setCourseLevel(courseLevel);
   };
+
 
   const [teachers, setTeachers] = useState("");
   const handleSetTeachers = (teachers) => {
     setTeachers(teachers);
   };
 
+
   const [technologies, setTechnologies] = useState("");
   const handleSetTechnologies = (technologies) => {
     setTechnologies(technologies);
   };
 
+  
   const [price, setPrice] = useState([0, 10000]);
   const handleSetPrice = (price) => {
     console.log(price);
