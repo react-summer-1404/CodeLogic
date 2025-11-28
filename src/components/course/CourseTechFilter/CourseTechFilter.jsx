@@ -9,16 +9,31 @@ const CourseTechFilter = ({handleSetTechnologies}) => {
 
   const [isOpen, setIsOpen] = useState(false)
   const [technologies, setTechnologies] = useState([])
+  const [selected, setSelected] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getCourseTechnologies()
-      setTechnologies(data)
+
+      const unique = Array.from(
+        new Map(data.map(item => [item.techName, item]))
+        .values()
+      )
+
+      setTechnologies(unique)
     }
     fetchData()
   }, [])
 
-  
+  const handleChange = (id) => {
+    const updated = selected.includes(id)
+      ? selected.filter(x => x !== id)
+      : [...selected, id]
+
+    setSelected(updated)
+    handleSetTechnologies(updated.join(','))
+  }
+
   return (
     <div className='flex flex-col gap-4 w-full p-4 bg-white rounded-[15px] dark:bg-[#454545] md:w-[284px]'>
       <div onClick={() => setIsOpen(!isOpen)} className='flex justify-between items-center w-full cursor-pointer   dark:text-[#DDDDDD]'>
@@ -27,13 +42,15 @@ const CourseTechFilter = ({handleSetTechnologies}) => {
           <Arrow />
         </button>
       </div>
+
       {isOpen && (
         <div className='flex flex-col gap-4'>
           {technologies.map(item => (
             <label key={item.id} className='flex items-center gap-2'>
               <input
                 type='checkbox'
-                onChange={() => {handleSetTechnologies(item.techName)}}
+                checked={selected.includes(item.id)}
+                onChange={() => handleChange(item.id)}
                 className='w-[26px] h-[26px] rounded-2xl border-gray-300'
               />
               <span className='dark:text-[#CCCCCC]'>{item.techName}</span>
