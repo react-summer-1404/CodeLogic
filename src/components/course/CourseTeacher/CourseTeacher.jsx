@@ -2,6 +2,8 @@ import React from 'react'
 import CourseTeacherIMG from '../../../assets/Images/courseteacher.png'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import getAllTeachers from '../../../core/services/api/get/GetAllTeachers'
+
 
 
 const CourseTeacher = ({ course }) => {

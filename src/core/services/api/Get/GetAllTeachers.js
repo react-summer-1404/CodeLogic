@@ -4,7 +4,7 @@ const GetAllTeachers = async (params) => {
     try {
         const result = await Http.get(
             "/Home/GetTeachers",
-             params 
+            params 
         );
         return result;
     } catch (error) {
