@@ -1,27 +1,81 @@
-import React from 'react'
-import CourseLevelFilter from '../CourseLevelFilter/CourseLevelFilter';
-import CourseTechFilter from '../CourseTechFilter/CourseTechFilter';
-import PriceFilter from '../PriceFilter/PriceFilter';
-import { useTranslation } from 'react-i18next';
-import CourseNewsSearch from '../../common/CourseNewsSearch/CourseNewsSearch';
-import StartEndDate from '../StartEndDate/StartEndDate';
+// import React from "react";
+// import CourseLevelFilter from "../CourseLevelFilter/CourseLevelFilter";
+// import CourseTechFilter from "../CourseTechFilter/CourseTechFilter";
+// import PriceFilter from "../PriceFilter/PriceFilter";
+// import { useTranslation } from "react-i18next";
+// import CourseNewsSearch from "../../common/CourseNewsSearch/CourseNewsSearch";
+// import StartEndDate from "../StartEndDate/StartEndDate";
 
+// const CourseListSide = ({
+//   handleSearchSubmit,
+//   handleSetStartDate,
+//   handleSetEndDate,
+//   handleSetCourseLevel,
+//   handleSetTechnologies,
+//   handleSetPrice,
+// }) => {
+//   const { t } = useTranslation();
 
-const CourseListSide = ({handleSearchSubmit , handleSetStartDate , handleSetEndDate , handleSetCourseLevel, handleSetTechnologies,
-handleSetPrice}) => {
-  
-  const {t} = useTranslation();  
+//   return (
+//     <div
+//       className="w-full flex flex-col gap-4
+//     md:w-[284px] "
+//     >
+//       <CourseNewsSearch handleSearchSubmit={handleSearchSubmit} />
+//       <StartEndDate
+//         handleSetStartDate={handleSetStartDate}
+//         handleSetEndDate={handleSetEndDate}
+//       />
+//       <CourseLevelFilter handleSetCourseLevel={handleSetCourseLevel} />
+//       <CourseTechFilter handleSetTechnologies={handleSetTechnologies} />
+//       <PriceFilter handleSetPrice={handleSetPrice} />
+//     </div>
+//   );
+// };
 
+// export default CourseListSide;
+import React from "react";
+import CourseLevelFilter from "../CourseLevelFilter/CourseLevelFilter";
+import CourseTechFilter from "../CourseTechFilter/CourseTechFilter";
+import PriceFilter from "../PriceFilter/PriceFilter";
+import CourseNewsSearch from "../../common/CourseNewsSearch/CourseNewsSearch";
+import StartEndDate from "../StartEndDate/StartEndDate";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
+const CourseListSide = ({
+  handleSearchSubmit,
+  handleSetStartDate,
+  handleSetEndDate,
+  handleSetCourseLevel,
+  handleSetTechnologies,
+  handleSetPrice,
+  isLoading,
+}) => {
   return (
-    <div className='w-full flex flex-col gap-4
-    md:w-[284px]'>
-      <CourseNewsSearch handleSearchSubmit={handleSearchSubmit}/>
-      <StartEndDate handleSetStartDate={handleSetStartDate} handleSetEndDate={handleSetEndDate}/>
-      <CourseLevelFilter handleSetCourseLevel={handleSetCourseLevel}/>
-      <CourseTechFilter handleSetTechnologies={handleSetTechnologies}/>
-      <PriceFilter handleSetPrice={handleSetPrice}/>
+    <div className="w-full flex flex-col gap-4 md:w-[284px]">
+      {isLoading ? (
+        <>
+          <Skeleton height={40} className="rounded-xl w-[284px]" />
+          <Skeleton height={50} className="rounded-xl w-[284px]" />
+          <Skeleton height={50} className="rounded-xl w-[284px]" />
+          <Skeleton height={50} className="rounded-xl w-[284px]" />
+          <Skeleton height={50} className="rounded-xl w-[284px]" />
+        </>
+      ) : (
+        <>
+          <CourseNewsSearch handleSearchSubmit={handleSearchSubmit} />
+          <StartEndDate
+            handleSetStartDate={handleSetStartDate}
+            handleSetEndDate={handleSetEndDate}
+          />
+          <CourseLevelFilter handleSetCourseLevel={handleSetCourseLevel} />
+          <CourseTechFilter handleSetTechnologies={handleSetTechnologies} />
+          <PriceFilter handleSetPrice={handleSetPrice} />
+        </>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default CourseListSide
+export default CourseListSide;

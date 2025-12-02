@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import Teacher from '../../../assets/Icons/Teacher';
-import Level from '../../../assets/Icons/Level';
-import Star from '../../../assets/Icons/Star';
-import Heart from '../../../assets/Icons/Heart';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import CourseCardView1Skeleton from '../skeleton/CourseCardSkeletonView1/CourseCardSkeletonView1';
+import React, { useState } from "react";
+import Teacher from "../../../assets/Icons/Teacher";
+import Level from "../../../assets/Icons/Level";
+import Star from "../../../assets/Icons/Star";
+import Heart from "../../../assets/Icons/Heart";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import img2 from "../../../assets/Images/HTML5Course.png";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
-
-const CourseCardView1 = ({ item, handleToggleFavorite, isLoading }) => {
-
-  const { t,i18n } = useTranslation();
-  const isRtl = i18n.language === 'fa'
+const CourseCardView1 = ({ item, handleToggleFavorite }) => {
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === "fa";
 
   const [isFavorite, setIsFavorite] = useState();
   const onToggleFavorite = () => {
@@ -19,76 +18,90 @@ const CourseCardView1 = ({ item, handleToggleFavorite, isLoading }) => {
     setIsFavorite(!isFavorite);
   };
 
-
-  if (isLoading) {
-    return <CourseCardView1Skeleton />;
-  }
-
   const descripmion = t(`${item.describe}`);
 
-  const descripmionslice = descripmion.length > 70 ? descripmion.slice(0, 70) + '...' : descripmion;
+  const descripmionslice =
+    descripmion.length > 70 ? descripmion.slice(0, 70) + "..." : descripmion;
 
-  
   return (
     <div
-      dir={`${isRtl ? 'rtl' : 'ltr'}`}
-      className='flex flex-col flex-shrink-0 items-center w-[240px] rounded-xl duration-300 relative 
+      dir={`${isRtl ? "rtl" : "ltr"}`}
+      className="flex flex-col shadow-[0px_0px_1px_1px_#ccc]  flex-shrink-0 items-center w-[240px] rounded-xl duration-300 relative 
         hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78]
-        sm:w-[350px] sm:rounded-[20px]'
+        sm:w-[350px] sm:rounded-[20px]"
     >
       <img
-        src={item.imageAddress}
-        className='w-full h-[160px] rounded-t-xl
-            sm:h-[259px] sm:rounded-t-[20px]'
+        src={
+          item.imageAddress && !item.imageAddress.includes("undefined")
+            ? item.imageAddress
+            : img2
+        }
+        className="w-full h-[160px] rounded-t-xl
+            sm:h-[259px] sm:rounded-t-[20px]"
       />
       <Link
         to={`/courseDetail/${item.courseId}`}
-        className='flex flex-col justify-between w-full mb-[-16px] 
+        className="flex flex-col justify-between w-full mb-[-16px] 
             p-4 bg-[#FFFFFF] rounded-xl transform -translate-y-4 cursor-pointer   dark:bg-[#606060]
-            sm:h-[217px] sm:rounded-[20px]'
+            sm:h-[237px] sm:rounded-[20px]"
       >
-        <div className='flex flex-col gap-1'>
-          <h2 className='font-bold text-base   dark:text-[#EEEEEE]'>
+        <div className="flex flex-col gap-1">
+          <h2 className="font-bold text-base   dark:text-[#EEEEEE]">
             {t(`${item.title}`)}
           </h2>
-          <p className='max-w-[317px] max-h-[40px] font-regular text-sm   dark:text-[#DDDDDD]'>
+          <p className="max-w-[317px] max-h-[40px] font-regular text-sm  mb-5 dark:text-[#DDDDDD]">
             {descripmionslice}
           </p>
         </div>
         <div>
-          <div className='flex flex-col justify-between gap-2 mt-4'>
-            <div className='flex gap-2 font-regular text-sm dark:text-[#DDDDDD]'>
-              <span>{t('courseCard.technologies')}</span> 
-              <span>{item.technologyList.trim() !== "" ? item.technologyList : t('courseCard.withoutTechnology')}</span>
+          <div className="flex flex-col justify-between gap-2 mt-4">
+            <div className="flex justify-between gap-2 font-regular text-sm mb-5 dark:text-[#DDDDDD]">
+              <div>
+                <span>{t("courseCard.technologies")}</span>
+                <span className="mr-1">
+                  {item.technologyList.trim() !== ""
+                    ? item.technologyList
+                    : t("courseCard.withoutTechnology")}
+                </span>
+              </div>
+
+              <span style={{ fontSize: "14px" }}>
+                <CalendarMonthIcon sx={{ fontSize: 16, marginLeft: "3px" }} />
+                {new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                }).format(new Date(item.startTime))}
+              </span>
             </div>
-            <div className='flex justify-between'>
-              <div className='flex items-center gap-1   dark:text-[#DDDDDD]'>
-                <Teacher className='text-[#848484]'/>
-                <span className='font-regular text-xs text-[#848484]   dark:text-[#DDDDDD]'>
+            <div className="flex justify-between">
+              <div className="flex items-center gap-1   dark:text-[#DDDDDD]">
+                <Teacher className="text-[#848484]" />
+                <span className="font-regular text-xs text-[#848484]   dark:text-[#DDDDDD]">
                   {t(`${item.teacherName}`)}
                 </span>
               </div>
-              <div className='flex items-center gap-1   dark:text-[#DDDDDD]'>
-                <Level className='text-[#848484]' />
-                <span className='font-regular text-xs text-[#848484]   dark:text-[#DDDDDD]'>
+              <div className="flex items-center gap-1   dark:text-[#DDDDDD]">
+                <Level className="text-[#848484]" />
+                <span className="font-regular text-xs text-[#848484]   dark:text-[#DDDDDD]">
                   {t(`${item.levelName}`)}
                 </span>
               </div>
             </div>
           </div>
-          <div className='flex justify-between mt-2'>
-            <div className='flex flex-col justify-end gap-1'>
-              <span className='font-regular text-xs text-[#1E1E1E]   dark:text-[#EEEEEE]'>
-                {t('courseCard.price')}
-              </span>
-              <div className='flex flex-col'>
-                <span className='font-bold text-base text-[#008C78]'>
-                  {item.cost}{t('courseCard.toman')}
+          <div className="flex justify-between mt-2">
+            <div className="flex flex-col justify-end gap-1">
+              <span className="font-regular text-xs text-[#1E1E1E]   dark:text-[#EEEEEE]"></span>
+              <div className="flex flex-col">
+                <span className="font-bold text-base text-[#008C78]">
+                  {item.cost}
+
+                  {t("courseCard.toman")}
                 </span>
               </div>
             </div>
-            <div className='flex items-center gap-1'>
-              <span className='font-regular text-sm text-[#F8BC24]'>
+            <div className="flex items-center gap-1">
+              <span className="font-regular text-sm text-[#F8BC24]">
                 {t(`${Math.floor(item.courseRate.avg)}`)}
               </span>
               <Star />
@@ -99,7 +112,7 @@ const CourseCardView1 = ({ item, handleToggleFavorite, isLoading }) => {
       <button
         onClick={onToggleFavorite}
         className={`p-2 rounded-[50px] transition absolute top-[13px] right-[14px] cursor-pointer opacity-25 text-[#EEEEEE] 
-            ${isFavorite ? 'bg-[#FF0000]' : 'bg-[#000000]'}`}
+            ${isFavorite ? "bg-[#FF0000]" : "bg-[#000000]"}`}
       >
         <Heart />
       </button>

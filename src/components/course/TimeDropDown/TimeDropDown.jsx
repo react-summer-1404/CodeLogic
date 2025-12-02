@@ -6,9 +6,9 @@ const TimeDropDown = ({ sortType, setSortType }) => {
 
   return (
     <select
-    value={sortType}
-    onChange={(e) => setSortType(e.target.value)}
-    className="font-regular text-base text-[#848484] border border-[#EAEAEA] outline-0 py-1 pr-2 pl-2 rounded-[12px]   dark:text-[#CCCCCC]
+      value={sortType}
+      onChange={(e) => setSortType(e.target.value)}
+      className="font-regular text-base text-[#848484] border border-[#EAEAEA] outline-0 py-1 pr-2 pl-2 rounded-[12px]   dark:text-[#CCCCCC]
     lg:py-2 lg:pr-4 lg:pl-4 lg:rounded-[15px]"
     >
       <option value="DESC">{t("timeDropDown.option1")}</option>
