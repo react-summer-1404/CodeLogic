@@ -125,7 +125,7 @@ const NewsComment = ({ newsId }) => {
           >
             {() => (
               <Form className="">
-                <div className="w-full bg-[white] rounded-t-3xl px-6 py-4 flex flex-wrap dark:bg-[#333] relative ">
+                <div className="w-full bg-[white] rounded-t-3xl px-6 py-4 flex flex-wrap dark:bg-[#333] relative border-5 border-green-400 ">
                   <p className="text-[black] font-bold text-[18px] w-full mb-7 dark:text-[white]">
                     {t("newsComment.comments.allComments")}
                     <span className="text-[#1E1E1E] mr-3 bg-[#EAEAEA] rounded-full px-3 py-1 font-bold text-[16px] dark:bg-[#1e1e1e] dark:text-[white]">
