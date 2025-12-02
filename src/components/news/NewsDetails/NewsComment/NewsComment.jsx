@@ -84,7 +84,7 @@ const NewsComment = ({ newsId }) => {
   };
 
   return (
-    <div className="px-10 w-full  ">
+    <div className="px-10 w-full   ">
       <div className="py-10 px-4  ">
         <button
           onClick={() => setActiveTab("details")}
@@ -111,41 +111,13 @@ const NewsComment = ({ newsId }) => {
       {activeTab === "details" && (
         <div className="space-y-4 leading-8 text-gray-700 ">
           <div className="mb-10 ">
-            {/* <h2 className="text-[#1E1E1E] font-[18px] font-bold">
-              {t("newsComment.details.section1.title")}
-            </h2> */}
             <p className="font-[16px] text-[#848484] ">{newsDetail.describe}</p>
           </div>
-          {/* <div className="mb-10">
-            <h2 className="text-[#1E1E1E] font-[18px] font-bold">
-              {t("newsComment.details.section2.title")}
-            </h2>
-            <p className="font-[16px] text-[#848484] ">
-              {t("newsComment.details.section2.text")}
-            </p>
-          </div>
-
-          <div className="mb-10">
-            <h2 className="text-[#1E1E1E] font-[18px] font-bold">
-              {t("newsComment.details.section3.title")}
-            </h2>
-            <p className="font-[16px] text-[#848484] ">
-              {t("newsComment.details.section3.text")}
-            </p>
-          </div>
-          <div className="mb-10">
-            <h2 className="text-[#1E1E1E] font-[18px] font-bold">
-              {t("newsComment.details.section4.title")}
-            </h2>
-            <p className="font-[16px] text-[#848484] ">
-              {t("newsComment.details.section4.text")}
-            </p>
-          </div> */}
         </div>
       )}
 
       {activeTab === "comments" && (
-        <div className="w-full ">
+        <div className="w-full  ">
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}

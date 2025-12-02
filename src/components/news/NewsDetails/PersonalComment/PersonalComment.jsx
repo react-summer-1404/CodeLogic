@@ -97,9 +97,7 @@ const PersonalComment = ({ newsId }) => {
   const { mutate: toggleLikeDislike } = useMutation({
     mutationFn: ({ commentId, isLike }) =>
       CommentLikeDislike(commentId, isLike),
-    onSuccess: (variables) => {
-      queryClient.invalidateQueries(["newsComments", newsId]);
-
+    onSuccess: (data, variables) => {
       const action = variables.isLike ? "لایک" : "دیسلایک";
       toast.success(`کامنت با موفقیت ${action} شد.`);
 
@@ -115,10 +113,11 @@ const PersonalComment = ({ newsId }) => {
           [variables.commentId]: toggledStatus,
         };
       });
+
+      queryClient.invalidateQueries(["newsComments", newsId]);
     },
     onError: (error, variables) => {
       const action = variables.isLike ? "لایک" : "دیسلایک";
-
       toast.error(`شما قبلا این نظر را ${action} کرده اید`);
       console.error(error);
     },
@@ -395,9 +394,9 @@ const PersonalComment = ({ newsId }) => {
           }
         )
       ) : (
-        <div className="w-full">
+        <div className="w-full ">
           <Lottie
-            className="w-[200px] h-[170px] my-10 mx-auto"
+            className="w-[200px] h-[170px] my-10 mx-auto "
             animationData={empty}
             loop={true}
           />
@@ -419,6 +418,7 @@ const PersonalComment = ({ newsId }) => {
       )}
 
       <Dialog
+        maxWidth={false}
         PaperProps={{
           sx: (theme) => ({
             backgroundColor:
@@ -427,6 +427,7 @@ const PersonalComment = ({ newsId }) => {
             borderRadius: "16px",
             padding: "24px",
             maxHeight: "80vh",
+            width: "70%",
             overflowX: "hidden",
             overflowY: "auto",
             "&::-webkit-scrollbar": { width: "10px" },
@@ -446,18 +447,19 @@ const PersonalComment = ({ newsId }) => {
         onClose={handleClose}
       >
         {isLoading ? (
-          <div className="w-[500px] flex items-center justify-evenly py-10 font-semibold text-[#848484]">
+          <div className="w-[500px] flex items-center justify-evenly mx-auto py-10 font-semibold text-[#848484]">
             <p> {t("answerComment.loading")} </p>
             <PacmanLoader size={18} color="#848484" />
           </div>
         ) : (repliesResponse?.length ?? 0) > 0 ? (
           [...repliesResponse]
             .sort((a, b) => new Date(b.inserDate) - new Date(a.inserDate))
-            .map((reply, index) => (
+            .map((reply) => (
               <AnswerComment
-                key={index}
+                key={reply.id}
                 commentId={reply.id}
                 parentId={selectedCommentId}
+                newsId={newsId}
                 initialLikeCount={reply.likeCount}
                 initialDislikeCount={reply.dissLikeCount}
                 currentUserIsLike={reply.currentUserIsLike}
@@ -478,9 +480,9 @@ const PersonalComment = ({ newsId }) => {
               />
             ))
         ) : (
-          <div className="w-[500px]">
+          <div className="w-[500px] mx-auto">
             <Lottie
-              className="w-[200px] h-[170px] my-5 mx-auto"
+              className="w-[200px] h-[170px] my-10 mx-auto"
               animationData={empty}
               loop={true}
             />
