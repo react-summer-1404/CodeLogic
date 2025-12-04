@@ -8,20 +8,17 @@ import GetAllCourses from "../../core/services/api/Get/GetAllCourses";
 import CourseDetailSkeleton from "../../components/common/skeleton/CourseDetailSkeleton/CourseDetailSkeleton";
 
 const CourseDetail = () => {
-  
   const { t } = useTranslation();
 
   const { id } = useParams();
 
   const { data: coursesData, isLoading } = useQuery({
-    queryKey: ["GETALLCOURSES"],
+    queryKey: ["GETALLCOURSES", id],
     queryFn: () => GetAllCourses(),
   });
 
   if (isLoading) {
-    return (
-      <CourseDetailSkeleton/>
-    );
+    return <CourseDetailSkeleton />;
   }
 
   const course = coursesData?.courseFilterDtos.find(
@@ -36,14 +33,13 @@ const CourseDetail = () => {
     );
   }
 
-
   return (
     <div className="flex flex-col items-center   dark:bg-[#1E1E1E]">
       <div className="flex gap-1 text-[#008C78] pt-10 font-regular text-sm">
-        <Link to={'/'}>{t('courseDetailNav.landing')}</Link>
-        {'>'}
-        <Link to={'/courseList'}>{t('courseDetailNav.courseList')}</Link>
-        {'>'}
+        <Link to={"/"}>{t("courseDetailNav.landing")}</Link>
+        {">"}
+        <Link to={"/courseList"}>{t("courseDetailNav.courseList")}</Link>
+        {">"}
         <span>{course.title}</span>
       </div>
       <div className="flex flex-col items-center pt-4">
@@ -55,8 +51,8 @@ const CourseDetail = () => {
         className="flex flex-col gap-12 pt-8 px-6 pb-[170px]
       md:flex md:flex-row md:px-10"
       >
-        <CourseDetailSide course={course}/>
-        <CourseDetailMain course={course}/>
+        <CourseDetailSide course={course} />
+        <CourseDetailMain course={course} />
       </div>
     </div>
   );
