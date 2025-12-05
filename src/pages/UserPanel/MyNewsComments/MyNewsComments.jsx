@@ -96,7 +96,7 @@ const MyNewsComments = () => {
               title5: t('myNewsComments.title5'), justify5: 'justify-center', w5: 'w-30',
               title6: t('myNewsComments.title6'), justify6: 'justify-center', w6: 'w-24',
             }} />
-          <div className='max-h-66 overflow-y-scroll'>
+          <div className='max-h-66 overflow-y-auto'>
             <div className='flex flex-col gap-4 md:gap-0'>
               {
                 isLoading ? (

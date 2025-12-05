@@ -18,10 +18,10 @@ const Section1 = () => {
 
 
   const sectionData = [
-    {id:1, title:t('section1.title1'), members: landingReportsData?.teacherCount},
-    {id:2, title:t('section1.title2'), members: landingReportsData?.studentCount},
-    {id:3, title:t('section1.title3'), members: landingReportsData?.courseCount},
-    {id:4, title:t('section1.title4'), members:'+15'}
+    {id:1, title:t('section1.title1'), members: `${landingReportsData?.teacherCount}+`},
+    {id:2, title:t('section1.title2'), members: `${landingReportsData?.studentCount}+`},
+    {id:3, title:t('section1.title3'), members: `${landingReportsData?.courseCount}+`},
+    {id:4, title:t('section1.title4'), members:'15+'}
   ]
 
 

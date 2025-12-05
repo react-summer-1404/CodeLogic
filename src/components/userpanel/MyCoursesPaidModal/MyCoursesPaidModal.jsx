@@ -1,6 +1,6 @@
 import Lottie from "lottie-react";
 import React from "react";
-import success from "../../assets/Images/Success.json";
+import success from "../../../assets/Images/Success.json";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 const MyCoursesPaidModal = ({ handleClosePaidModal }) => {

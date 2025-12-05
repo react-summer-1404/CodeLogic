@@ -15,7 +15,7 @@ const CourseDetail = () => {
   console.log(id);
 
   const { data: coursesData, isLoading } = useQuery({
-    queryKey: ["GETALLCOURSES"],
+    queryKey: ["GETALLCOURSES", id],
     queryFn: () => GetAllCourses(),
   });
 
@@ -54,6 +54,7 @@ const CourseDetail = () => {
       md:flex md:flex-row md:px-10"
       >
         <CourseDetailSide course={course} />
+
         <CourseDetailMain courseId={id} course={course} />
       </div>
     </div>
