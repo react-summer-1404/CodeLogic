@@ -26,11 +26,7 @@ const CourseComments = ({course}) => {
   return (
     <div className='flex flex-col gap-6 w-full mt-[20px] p-8 bg-[#FFFFFF] rounded-[25px]   dark:bg-[#393939]'>
       <h3 className='font-bold text-[18px] text-[#1E1E1E]   dark:text-[#DDDDDD]'>{t('courseComments.title')}</h3>
-      <CourseCommentForm 
-      course={course} 
-      titlePlaceholder={t('courseCommentForm.titleInputsPlcholder')}
-      textPlaceholder={t('courseCommentForm.textInputsPlcholder')}
-      hasTitle={true}/>
+      <CourseCommentForm course={course}/>
       <div className='flex flex-col gap-8'>
         {
           courseCommentsDataa?.map((item , index) => {

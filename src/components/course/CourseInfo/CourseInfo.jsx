@@ -42,9 +42,8 @@ const CourseInfo = ({ course }) => {
   return (
     <div
       className="flex flex-col gap-12 w-[320px] p-4 bg-[#FFFFFF] rounded-[25px] shadow-[0_0_10px_rgba(0,0,0,0.15)]
-        dark:bg-[#393939]
-        lg:gap-16 lg:w-[380px]"
-    >
+      dark:bg-[#393939]
+      lg:gap-16 lg:w-[380px]">
       <h3 className="font-bold text-xl text-[#1E1E1E]   dark:text-[#DDDDDD]">
         {course.title}
       </h3>

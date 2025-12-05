@@ -5,7 +5,7 @@ import ReactCourseImg from "../../../assets/Images/A/courses/2.png";
 import { motion } from "framer-motion";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import MyCoursesOverView from "../MyCoursesOverViewModal/MyCoursesOverView";
-import MyCoursesPaidModal from "../../MyCoursesPaidModal/MyCoursesPaidModal";
+import MyCoursesPaidModal from "../../userpanel/MyCoursesPaidModal/MyCoursesPaidModal";
 
 const textClass =
   "font-regular text-base text-[#1E1E1E] truncate  dark:text-[#DDDDDD]";

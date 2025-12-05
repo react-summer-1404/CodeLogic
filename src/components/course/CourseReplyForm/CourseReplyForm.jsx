@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { addCommentCourses } from '../../../core/services/api/post/addCommentCourses';
 import { replyCourseComment } from '../../../core/services/api/post/replyCourseComment' 
 import { useTranslation } from 'react-i18next'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -21,16 +20,16 @@ const validationSchema = yup.object().shape({
 });
 
 
-const CourseCommentForm = ({course}) => {
+const CourseReplyForm = ({course}) => {
 
   const {t} = useTranslation();
 
   const fieldClass = 'py-4 font-regular text-base text-[#848484] indent-4 bg-[#F3F4F6] rounded-[25px] outline-0 dark:bg-[#1E1E1E]'
 
   const onSubmit = async (values, { resetForm }) => {
-    await addCommentCourses(course.courseId, values.title, values.describe)
-    resetForm()
-    toast.success(t('courseCommentForm.successToast'))
+    await replyCourseComment(course.courseId, course.commentId, values.title, values.describe)
+    resetForm() 
+    toast.success(t('courseCommentReply.successToast'))
   }
 
   
@@ -45,7 +44,7 @@ const CourseCommentForm = ({course}) => {
               <label className='font-bold text-base text-[#1E1E1E]
               dark:text-[#CCCCCC]'>{t('courseCommentForm.titleInputsTitle')}</label>
             }
-            <Field name='title' type="text" placeholder={t('courseCommentForm.titleInputsPlcholder')} className={fieldClass}/>
+            <Field name='title' type="text" placeholder={t('courseCommentReply.titleInputsPlcholder')} className={fieldClass}/>
           </div>
           <ErrorMessage name='title' component={'span'} className='font-regular text-sm text-[#CC0000]'/>
         </div>
@@ -55,7 +54,7 @@ const CourseCommentForm = ({course}) => {
               <label className='font-bold text-base text-[#1E1E1E]
               dark:text-[#CCCCCC]'>{t('courseCommentForm.textInputsTitle')}</label>
             }
-            <Field name='describe' type="text" placeholder={t('courseCommentForm.textInputsPlcholder')} className={fieldClass}/>
+            <Field name='describe' type="text" placeholder={t('courseCommentReply.textInputsPlcholder')} className={fieldClass}/>
           </div>
           <ErrorMessage name='describe' component={'span'} className='font-regular text-sm text-[#CC0000]'/>
         </div>
@@ -69,4 +68,4 @@ const CourseCommentForm = ({course}) => {
   )
 }
 
-export default CourseCommentForm
+export default CourseReplyForm

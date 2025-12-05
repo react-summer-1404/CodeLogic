@@ -6,7 +6,7 @@ import DisLike from '../../../assets/Icons/DisLike'
 import {likeCourseComments} from '../../../core/services/api/post/likeCourseComments'
 import {disLikeCourseComments} from '../../../core/services/api/post/disLikeCourseComments'
 import { useTranslation } from 'react-i18next'
-import CourseCommentForm from '../../course/CourseCommentForm/CourseCommentForm'
+import CourseReplyForm from '../../course/CourseReplyForm/CourseReplyForm'
 import CommentReplyModal from '../../course/commentReplyModal/CommentReplyModal'
 import { toast } from 'react-toastify'
 
@@ -114,9 +114,7 @@ const CourseComment = ({item}) => {
             {isOpen 
             && 
             <div className='mt-8'>
-                <CourseCommentForm 
-                titlePlaceholder={t('courseCommentReply.titleInputsPlcholder')}
-                textPlaceholder={t('courseCommentReply.textInputsPlcholder')}/>
+                <CourseReplyForm course={item}/>
             </div>
             }
         </div>
