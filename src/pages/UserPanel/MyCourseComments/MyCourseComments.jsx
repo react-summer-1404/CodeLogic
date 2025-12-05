@@ -96,7 +96,7 @@ const MyCourseComments = () => {
               title5: t('myCourseComments.title5'), justify5: 'justify-center', w5: 'w-30',
               title6: t('myCourseComments.title6'), justify6: 'justify-center', w6: 'w-24',
             }} />
-          <div className="flex flex-col max-h-66 overflow-y-scroll">
+          <div className="flex flex-col max-h-66 overflow-y-auto">
             {isPending ? (
               [...Array(commentsPerPage)].map((items, index) => (
                 <FavoritesSkeleton key={index + 2} />

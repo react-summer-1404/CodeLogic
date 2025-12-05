@@ -104,7 +104,7 @@ const MyReservedCourses = () => {
               w5: "w-28",
             }}
           />
-          <div className="flex flex-col max-h-66 overflow-y-scroll">
+          <div className="flex flex-col max-h-66 overflow-y-auto">
             {isPending ? (
               [...Array(coursesPerPage)].map((items, index) => (
                 <FavoritesSkeleton key={index + 2} />

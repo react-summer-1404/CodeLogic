@@ -21,7 +21,9 @@ const CourseCommentModal = ({item, handleToggleModal}) => {
 
 
   return (
-    <>
+    <div 
+      onClick={() => handleToggleModal(false)}
+      className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40">
       <motion.div 
       variants={Animate}
       initial="hidden"
@@ -55,7 +57,7 @@ const CourseCommentModal = ({item, handleToggleModal}) => {
           {t('reservedCourseModal.backBtn')}
         </button>
       </motion.div>
-    </>
+    </div>
   )
 }
 
