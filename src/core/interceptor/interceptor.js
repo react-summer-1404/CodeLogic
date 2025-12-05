@@ -16,16 +16,34 @@ const onSuccess = (response) => {
   return response.data;
 };
 
+// const onError = (err) => {
+//   if (err.response.status === 401 || err.response.status === 403) {
+//     toast.error("لطفا ابتداوارد شوید");
+//     setItem("isLogin", false);
+//   }
+//   if (err.response.status === 401) {
+//     removeItem("token");
+//   }
+//   if (err.response.status >= 400 && err.response.status < 500) {
+//     console.log("Client error: " + err.response.status);
+//   }
+
+//   return Promise.reject(err);
+// };
+
 const onError = (err) => {
-  if (err.response.status === 401 || err.response.status === 403) {
-    toast.error("لطفا ابتداوارد شوید");
+  const status = err?.response?.status;
+
+  if (status === 401 || status === 403) {
+    toast.error("لطفا ابتدا وارد شوید");
     setItem("isLogin", false);
-  }
-  if (err.response.status === 401) {
     removeItem("token");
+
+    return;
   }
-  if (err.response.status >= 400 && err.response.status < 500) {
-    console.log("Client error: " + err.response.status);
+
+  if (status >= 400 && status < 500) {
+    console.log("Client error: " + status);
   }
 
   return Promise.reject(err);
