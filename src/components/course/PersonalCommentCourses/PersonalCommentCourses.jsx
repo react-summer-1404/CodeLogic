@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect } from "react";
-import img1 from "../../../assets/Images/commentUser.png";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
 import ChatIcon from "@mui/icons-material/Chat";
@@ -20,7 +19,7 @@ import { addCourseCommentLike } from "../../../core/services/api/post/addCourseC
 import { addCourseCommentDisslike } from "../../../core/services/api/post/addCourseCommentDisslike";
 import AnswerCommentCourses from "../AnswerCommentCourses/AnswerCommentCourses";
 
-const PersonalCommentCourses = ({ courses, courseId }) => {
+const PersonalCommentCourses = ({ courseId }) => {
   const { t } = useTranslation();
 
   const queryClient = useQueryClient();
@@ -50,7 +49,6 @@ const PersonalCommentCourses = ({ courses, courseId }) => {
   const handleOpenReplies = useCallback(
     async (cid) => {
       if (!courseId) {
-        console.error("Course ID is not defined.");
         return;
       }
 
@@ -60,15 +58,19 @@ const PersonalCommentCourses = ({ courses, courseId }) => {
       try {
         const replies = await GetCourseReplyComments(courseId, cid);
 
-        const count =
-          replies.data && Array.isArray(replies.data) ? replies.data.length : 0;
+        let count = 0;
+        if (Array.isArray(replies)) {
+          count = replies.length;
+        } else if (replies.data && Array.isArray(replies.data)) {
+          count = replies.data.length;
+        }
 
         setRepliesCountByComment((prev) => ({
           ...prev,
           [cid]: count,
         }));
       } catch (err) {
-        console.error("Error fetching course replies:", err);
+        console.error(err);
         setRepliesCountByComment((prev) => ({
           ...prev,
           [cid]: 0,
@@ -122,7 +124,7 @@ const PersonalCommentCourses = ({ courses, courseId }) => {
     onSuccess: (data, variables) => {
       const action = variables.isLike ? "لایک" : "دیسلایک";
 
-      toast.success(`کامنت با موفقیت ${action} شد.`);
+      toast.success(`کامنت با موفقیت ${action} شد`);
 
       setUserLikeStatus((prev) => {
         const newActionStatus = variables.isLike ? 1 : -1;
@@ -197,15 +199,10 @@ const PersonalCommentCourses = ({ courses, courseId }) => {
   useEffect(() => {
     if (commentsList.length > 0) {
       let initialLikeStatus = {};
-
       commentsList.forEach((comment) => {
         let status = 0;
-
-        if (comment.currentUserIsLike) {
-          status = 1;
-        } else if (comment.currentUserIsDissLike) {
-          status = -1;
-        }
+        if (comment.currentUserIsLike) status = 1;
+        else if (comment.currentUserIsDissLike) status = -1;
         initialLikeStatus[comment.id] = status;
       });
 
@@ -217,21 +214,16 @@ const PersonalCommentCourses = ({ courses, courseId }) => {
         try {
           const replies = await GetCourseReplyComments(courseId, comment.id);
 
-          const count =
-            replies.data && Array.isArray(replies.data)
-              ? replies.data.length
-              : 0;
+          const dataArray = Array.isArray(replies)
+            ? replies
+            : replies?.data || [];
 
           setRepliesCountByComment((prev) => ({
             ...prev,
-            [comment.id]: count,
+            [comment.id]: dataArray.length,
           }));
         } catch (err) {
-          console.error("Error in useEffect fetching initial replies:", err);
-          setRepliesCountByComment((prev) => ({
-            ...prev,
-            [comment.id]: 0,
-          }));
+          console.error(err);
         }
       });
     }
@@ -495,46 +487,55 @@ const PersonalCommentCourses = ({ courses, courseId }) => {
             <p> {t("answerComment.loading")} </p>
             <PacmanLoader size={18} color="#848484" />
           </div>
-        ) : (repliesResponse?.data?.length ?? 0) > 0 ? (
-          [...repliesResponse.data]
-
-            .sort((a, b) => new Date(b.inserDate) - new Date(a.inserDate))
-            .map((reply) => (
-              <AnswerCommentCourses
-                key={reply.id}
-                commentId={reply.id}
-                parentId={selectedCommentId}
-                courseId={courseId}
-                initialLikeCount={reply.likeCount}
-                initialDislikeCount={reply.dissLikeCount}
-                currentUserIsLike={reply.currentUserIsLike}
-                currentUserIsDissLike={reply.currentUserIsDissLike}
-                image={img1}
-                name={`User ${reply.userId}`}
-                date={
-                  reply.inserDate
-                    ? new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      }).format(new Date(reply.inserDate))
-                    : ""
-                }
-                title={reply.title}
-                text={reply.describe}
-              />
-            ))
         ) : (
-          <div className="w-[500px] mx-auto">
-            <Lottie
-              className="w-[200px] h-[170px] my-10 mx-auto"
-              animationData={empty}
-              loop={true}
-            />
-            <p className="font-semibold text-[black] text-[20px] text-center dark:text-[#848484]">
-              {t("personalComment.actions.noComments")}
-            </p>
-          </div>
+          (() => {
+            const replyList = Array.isArray(repliesResponse)
+              ? repliesResponse
+              : Array.isArray(repliesResponse?.data)
+              ? repliesResponse.data
+              : [];
+
+            return replyList.length > 0 ? (
+              [...replyList]
+                .sort((a, b) => new Date(b.inserDate) - new Date(a.inserDate))
+                .map((reply) => (
+                  <AnswerCommentCourses
+                    key={reply.id}
+                    commentId={reply.id}
+                    parentId={selectedCommentId}
+                    courseId={courseId}
+                    initialLikeCount={reply.likeCount}
+                    initialDislikeCount={reply.disslikeCount}
+                    currentUserIsLike={reply.currentUserIsLike}
+                    currentUserIsDissLike={reply.currentUserIsDissLike}
+                    image={reply.pictureAddress}
+                    name={` ${reply.author}`}
+                    date={
+                      reply.inserDate
+                        ? new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                          }).format(new Date(reply.inserDate))
+                        : ""
+                    }
+                    title={reply.title}
+                    text={reply.describe}
+                  />
+                ))
+            ) : (
+              <div className="w-[500px] mx-auto">
+                <Lottie
+                  className="w-[200px] h-[170px] my-10 mx-auto"
+                  animationData={empty}
+                  loop={true}
+                />
+                <p className="font-semibold text-[black] text-[20px] text-center dark:text-[#848484]">
+                  {t("personalComment.actions.noComments")}
+                </p>
+              </div>
+            );
+          })()
         )}
       </Dialog>
     </div>

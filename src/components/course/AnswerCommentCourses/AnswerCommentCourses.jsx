@@ -12,7 +12,6 @@ import GetCourseReplyComments from "../../../core/services/api/Get/GetCourseRepl
 import { addReplyCourseComments } from "../../../core/services/api/post/addReplyCourseComments";
 import { addCourseCommentLike } from "../../../core/services/api/post/addCourseCommentLike";
 import { addCourseCommentDisslike } from "../../../core/services/api/post/addCourseCommentDisslike";
-// ----------------------------------------------------------------------------------
 
 const AnswerCommentCourses = ({
   commentId,
@@ -67,7 +66,7 @@ const AnswerCommentCourses = ({
     },
     onSuccess: (data, variables) => {
       const action = variables.isLike ? "لایک" : "دیسلایک";
-      toast.success(`پاسخ با موفقیت ${action} شد.`);
+      toast.success(`پاسخ با موفقیت ${action} شد`);
 
       setCurrentLikeStatus((prevStatus) => {
         const newActionStatus = variables.isLike ? 1 : -1;
@@ -84,7 +83,7 @@ const AnswerCommentCourses = ({
     },
     onError: (error, variables) => {
       const action = variables.isLike ? "لایک" : "دیسلایک";
-      toast.error(`خطا در ${action} کردن نظر`);
+      toast.error(`شما قبلاً آن نظر را ${action} کرده‌اید`);
       console.error(error);
     },
   });
@@ -103,12 +102,14 @@ const AnswerCommentCourses = ({
     refetch: refetchChildren,
   } = useQuery({
     queryKey: ["replyComments", commentId],
-
     queryFn: () => GetCourseReplyComments(courseId, commentId),
-    enabled: showChildComments && Boolean(courseId),
+
+    enabled: Boolean(courseId),
   });
 
-  const childComments = Array.isArray(childCommentsResponse?.data)
+  const childComments = Array.isArray(childCommentsResponse)
+    ? childCommentsResponse
+    : Array.isArray(childCommentsResponse?.data)
     ? childCommentsResponse.data
     : [];
 
@@ -299,11 +300,11 @@ const AnswerCommentCourses = ({
                   parentId={commentId}
                   courseId={courseId}
                   initialLikeCount={child.likeCount}
-                  initialDislikeCount={child.dissLikeCount}
+                  initialDislikeCount={child.disslikeCount}
                   currentUserIsLike={child.currentUserIsLike}
                   currentUserIsDissLike={child.currentUserIsDissLike}
                   image={image}
-                  name={`User ${child.userId}`}
+                  name={` ${child.author}`}
                   date={
                     child.inserDate
                       ? new Intl.DateTimeFormat("fa-IR-u-ca-persian", {

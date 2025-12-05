@@ -57,11 +57,13 @@ const CourseDetailMain = ({ course, courseId }) => {
     mutationFn: (payload) => addCommentCourses(payload),
 
     onSuccess: () => {
-      toast.success(t("newsComment.comments.toastsuc"));
+      toast.success(
+        t("نظر شما با موفقیت ارسال شد. لطفا منتظر تایید ادمین باشید")
+      );
       queryClient.invalidateQueries(["CourseCommnets", courseId]);
     },
     onError: () => {
-      toast.error(t("newsComment.comments.toasterr"));
+      toast.error(t("خطا در ارسال پیام"));
     },
   });
 
