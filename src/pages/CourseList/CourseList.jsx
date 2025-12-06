@@ -220,7 +220,6 @@ const CourseList = () => {
       sortType,
       courseLevel,
       teachers,
-      technologies,
       price,
       startDate,
       endDate,
@@ -236,7 +235,7 @@ const CourseList = () => {
         EndDate: endDate,
         courseLevelId: courseLevel,
         teacherName: teachers,
-        technologyList: technologies,
+        technologyList: "",
         CostDown: price[0],
         CostUp: price[1],
       }),
@@ -250,17 +249,29 @@ const CourseList = () => {
 
   const filteredCourses =
     coursesData?.courseFilterDtos?.filter((course) => {
-      if (!startDate || !endDate) return true;
+      let dateCondition = true;
+      if (startDate && endDate) {
+        const courseStartDateStr = course.startTime.slice(0, 10);
+        const courseEndDateStr = course.endTime.slice(0, 10);
+        const userStartDateStr = startDate.slice(0, 10);
+        const userEndDateStr = endDate.slice(0, 10);
 
-      const courseStartDateStr = course.startTime.slice(0, 10);
-      const courseEndDateStr = course.endTime.slice(0, 10);
-      const userStartDateStr = startDate.slice(0, 10);
-      const userEndDateStr = endDate.slice(0, 10);
+        dateCondition =
+          courseStartDateStr <= userStartDateStr &&
+          courseEndDateStr >= userEndDateStr;
+      }
 
-      return (
-        courseStartDateStr <= userStartDateStr &&
-        courseEndDateStr >= userEndDateStr
-      );
+      let techCondition = true;
+      if (technologies && technologies.length > 0) {
+        const selectedTechs = technologies.split(",");
+        const courseTechsStr = (course.technologyList || "").toLowerCase();
+
+        techCondition = selectedTechs.every((tech) =>
+          courseTechsStr.includes(tech.toLowerCase())
+        );
+      }
+
+      return dateCondition && techCondition;
     }) || [];
 
   const sortedCourses = [...filteredCourses].sort((a, b) => {
@@ -287,7 +298,6 @@ const CourseList = () => {
         <>
           <div className="flex gap-1 pt-10 font-regular text-sm">
             <Skeleton width={80} height={14} />
-
             <Skeleton width={100} height={14} />
           </div>
           <div className="flex flex-col items-center gap-2 pt-4 md:flex md:flex-row">
