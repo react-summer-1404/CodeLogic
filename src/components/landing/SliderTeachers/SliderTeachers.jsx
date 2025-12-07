@@ -5,7 +5,7 @@ import GetAllTeachers from "../../../core/services/api/Get/GetAllTeachers";
 import ButtonsSeeMore from "../../common/ButtonsSeeMore/ButtonsSeeMore";
 import SliderTeacher from "../SliderTeacher/SliderTeacher";
 import { Link } from "react-router-dom";
-
+import Tilt from "react-parallax-tilt";
 const SliderTeachers = () => {
   const { t } = useTranslation();
 
@@ -32,13 +32,22 @@ const SliderTeachers = () => {
           {t("sliderTeachers.desc")}
         </p>
       </div>
-      <ButtonsSeeMore seeAllText={t("sliderTeachers.seeAllText")} sliderRef={sliderRef} to={'teachers'}/>
+      <ButtonsSeeMore
+        seeAllText={t("sliderTeachers.seeAllText")}
+        sliderRef={sliderRef}
+        to={"teachers"}
+      />
       <div
-      className="flex flex-nowrap gap-5 overflow-hidden w-full pt-8 pb-2 px-10 scroll-smooth scrollbar-hide"
-      dir="ltr"
-      ref={sliderRef}>
+        className="flex flex-nowrap gap-5 overflow-hidden w-full pt-8 pb-4 px-10 scroll-smooth scrollbar-hide"
+        dir="ltr"
+        ref={sliderRef}
+      >
         {teachersData?.map((item, index) => {
-          return <SliderTeacher item={item} key={index} />;
+          return (
+            <Tilt>
+              <SliderTeacher item={item} key={index} />
+            </Tilt>
+          );
         })}
       </div>
     </div>
