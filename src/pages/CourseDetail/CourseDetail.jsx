@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import CourseDetailSide from "../../components/course/CourseDetailSide/CourseDetailSide";
 import CourseDetailMain from "../../components/course/CourseDetailMain/CourseDetailMain";
 import { useTranslation } from "react-i18next";
@@ -11,6 +11,8 @@ const CourseDetail = () => {
   const { t } = useTranslation();
 
   const { id } = useParams();
+
+  console.log(id);
 
   const { data: coursesData, isLoading } = useQuery({
     queryKey: ["GETALLCOURSES", id],
@@ -52,7 +54,8 @@ const CourseDetail = () => {
       md:flex md:flex-row md:px-10"
       >
         <CourseDetailSide course={course} />
-        <CourseDetailMain course={course} />
+
+        <CourseDetailMain courseId={id} course={course} />
       </div>
     </div>
   );

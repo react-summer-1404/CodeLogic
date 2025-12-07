@@ -120,8 +120,10 @@ const UserPanelDashboard = () => {
               <p className="text-[20px] text-[#1e1e1e] dark:text-[#848484] ">
                 {t("paneldashboard.my_courses_title")}
               </p>
-              <div className="p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484]">
-                <NorthWestIcon className="text-[#1e1e1e] dark:text-[#848484]" />
+              <div className="p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] hover:bg-[#008C78] hover:border-[#008C78] duration-300 cursor-pointer ">
+                <Link to={"/userPanel/myCourses"}>
+                  <NorthWestIcon className="text-[#1e1e1e] dark:text-[#848484] dark:hover:text-[white] duration-300 " />
+                </Link>
               </div>
             </motion.div>
 
@@ -149,8 +151,10 @@ const UserPanelDashboard = () => {
               <p className="text-[20px] text-[#1e1e1e] dark:text-[#848484] ">
                 {t("paneldashboard.unpaid_periods")}
               </p>
-              <div className="p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484]">
-                <NorthWestIcon className="text-[#1e1e1e] dark:text-[#848484]" />
+              <div className="p-1 border-2 border-[#1E1E1E] rounded-full dark:border-[#848484] hover:bg-[#008C78] hover:border-[#008C78] duration-300 cursor-pointer ">
+                <Link to={"/userPanel/myReservedCourses"}>
+                  <NorthWestIcon className="text-[#1e1e1e] dark:text-[#848484] dark:hover:text-[white] duration-300 " />
+                </Link>
               </div>
             </motion.div>
 
@@ -265,7 +269,14 @@ const UserPanelDashboard = () => {
               return (
                 <DashboardCourseReserve
                   key={item.id}
-                  image={item.image}
+                  image={
+                    item.currentImageAddress &&
+                    !item.currentImageAddress.includes("undefined") &&
+                    !item.currentImageAddress.toLowerCase().includes("local") &&
+                    !item.currentImageAddress.toLowerCase().includes("fakepath")
+                      ? item.currentImageAddress
+                      : img2
+                  }
                   title={shortTitle}
                   status={
                     <span

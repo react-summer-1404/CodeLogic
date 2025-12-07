@@ -1,12 +1,12 @@
-import Http from '../../../interceptor/interceptor';
+import Http from "../../../interceptor/interceptor";
 
-const getCourseTechnologies = async (params) => {
-    try {
-        const result = await Http.get('/Home/GetTechnologies', { params });
-        return result;
-    } catch (error) {
-        console.log(error);
-    }
+const getCourseTechnologies = async () => {
+  try {
+    const result = await Http.get("/Home/GetTechnologies");
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export default getCourseTechnologies;

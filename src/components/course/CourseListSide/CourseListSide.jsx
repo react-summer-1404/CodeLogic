@@ -50,30 +50,19 @@ const CourseListSide = ({
   handleSetCourseLevel,
   handleSetTechnologies,
   handleSetPrice,
-  isLoading,
 }) => {
   return (
     <div className="w-full flex flex-col gap-4 md:w-[284px]">
-      {isLoading ? (
-        <>
-          <Skeleton height={40} className="rounded-xl w-[284px]" />
-          <Skeleton height={50} className="rounded-xl w-[284px]" />
-          <Skeleton height={50} className="rounded-xl w-[284px]" />
-          <Skeleton height={50} className="rounded-xl w-[284px]" />
-          <Skeleton height={50} className="rounded-xl w-[284px]" />
-        </>
-      ) : (
-        <>
-          <CourseNewsSearch handleSearchSubmit={handleSearchSubmit} />
-          <StartEndDate
-            handleSetStartDate={handleSetStartDate}
-            handleSetEndDate={handleSetEndDate}
-          />
-          <CourseLevelFilter handleSetCourseLevel={handleSetCourseLevel} />
-          <CourseTechFilter handleSetTechnologies={handleSetTechnologies} />
-          <PriceFilter handleSetPrice={handleSetPrice} />
-        </>
-      )}
+      <>
+        <CourseNewsSearch handleSearchSubmit={handleSearchSubmit} />
+        <StartEndDate
+          handleSetStartDate={handleSetStartDate}
+          handleSetEndDate={handleSetEndDate}
+        />
+        <CourseLevelFilter handleSetCourseLevel={handleSetCourseLevel} />
+        <CourseTechFilter handleSetTechnologies={handleSetTechnologies} />
+        <PriceFilter handleSetPrice={handleSetPrice} />
+      </>
     </div>
   );
 };

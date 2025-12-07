@@ -1,24 +1,25 @@
 import React, { useState, useCallback, useEffect } from "react";
-import img1 from "../../../../assets/Images/commentUser.png";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
 import ChatIcon from "@mui/icons-material/Chat";
 import { Dialog } from "@mui/material";
-import AnswerComment from "../AnswerComment/AnswerComment";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useTranslation } from "react-i18next";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import getNewsDetailComment from "../../../../core/services/api/Get/getNewsDetailComment";
-import { NewsCommentVal } from "../../../../utils/Validations/NewsCommentVal/NewsCommentVal";
+import { NewsCommentVal } from "../../../utils/Validations/NewsCommentVal/NewsCommentVal";
 import Lottie from "lottie-react";
-import empty from "../../../../assets/Images/empty.json";
-import GetNewsDetailsReplyComment from "../../../../core/services/api/Get/GetNewsDetailsReplyComment";
-import AddNewsDetailsCommentReply from "../../../../core/services/api/post/AddNewsDetailsCommentReply";
+import empty from "../../../assets/Images/empty.json";
 import { PacmanLoader } from "react-spinners";
 import { toast } from "react-toastify";
-import { CommentLikeDislike } from "../../../../core/services/api/post/CommentLikeDislike";
+import load from "../../../assets/Images/Infinity Loader.json";
+import getCourseCommnets from "../../../core/services/api/get/getCourseComments";
+import GetCourseReplyComments from "../../../core/services/api/Get/GetCourseReplyComments";
+import { addReplyCourseComments } from "../../../core/services/api/post/addReplyCourseComments";
+import { addCourseCommentLike } from "../../../core/services/api/post/addCourseCommentLike";
+import { addCourseCommentDisslike } from "../../../core/services/api/post/addCourseCommentDisslike";
+import AnswerCommentCourses from "../AnswerCommentCourses/AnswerCommentCourses";
 
-const PersonalComment = ({ newsId }) => {
+const PersonalCommentCourses = ({ courseId }) => {
   const { t } = useTranslation();
 
   const queryClient = useQueryClient();
@@ -45,31 +46,49 @@ const PersonalComment = ({ newsId }) => {
   const replyInitialValues = { title: "", answer: "" };
   const replyValidationSchema = NewsCommentVal();
 
-  const handleOpenReplies = useCallback(async (cid) => {
-    setSelectedCommentId(cid);
-    handleOpen();
+  const handleOpenReplies = useCallback(
+    async (cid) => {
+      if (!courseId) {
+        return;
+      }
 
-    try {
-      const replies = await GetNewsDetailsReplyComment(cid);
-      setRepliesCountByComment((prev) => ({
-        ...prev,
-        [cid]: replies.length,
-      }));
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
+      setSelectedCommentId(cid);
+      handleOpen();
 
+      try {
+        const replies = await GetCourseReplyComments(courseId, cid);
+
+        let count = 0;
+        if (Array.isArray(replies)) {
+          count = replies.length;
+        } else if (replies.data && Array.isArray(replies.data)) {
+          count = replies.data.length;
+        }
+
+        setRepliesCountByComment((prev) => ({
+          ...prev,
+          [cid]: count,
+        }));
+      } catch (err) {
+        console.error(err);
+        setRepliesCountByComment((prev) => ({
+          ...prev,
+          [cid]: 0,
+        }));
+      }
+    },
+    [courseId, handleOpen]
+  );
   const { mutate: addReply, isPending: isAddingReply } = useMutation({
-    mutationFn: AddNewsDetailsCommentReply,
+    mutationFn: addReplyCourseComments,
   });
 
   const handleFormSubmit = (values, comment, formikHelpers) => {
     const payload = {
-      newsId: newsId,
+      commentId: comment.id,
+      courseId: courseId,
       title: values.title,
       describe: values.answer,
-      parentId: comment.id,
     };
 
     addReply(payload, {
@@ -95,11 +114,17 @@ const PersonalComment = ({ newsId }) => {
   };
 
   const { mutate: toggleLikeDislike } = useMutation({
-    mutationFn: ({ commentId, isLike }) =>
-      CommentLikeDislike(commentId, isLike),
+    mutationFn: ({ commentId, isLike }) => {
+      if (isLike) {
+        return addCourseCommentLike(commentId);
+      } else {
+        return addCourseCommentDisslike(commentId);
+      }
+    },
     onSuccess: (data, variables) => {
       const action = variables.isLike ? "لایک" : "دیسلایک";
-      toast.success(`کامنت با موفقیت ${action} شد.`);
+
+      toast.success(`کامنت با موفقیت ${action} شد`);
 
       setUserLikeStatus((prev) => {
         const newActionStatus = variables.isLike ? 1 : -1;
@@ -114,11 +139,12 @@ const PersonalComment = ({ newsId }) => {
         };
       });
 
-      queryClient.invalidateQueries(["newsComments", newsId]);
+      queryClient.invalidateQueries(["getCourseCommnets", courseId]);
     },
     onError: (error, variables) => {
       const action = variables.isLike ? "لایک" : "دیسلایک";
-      toast.error(`شما قبلا این نظر را ${action} کرده اید`);
+
+      toast.error(`شما قبلاً این کامنت را ${action} کرده‌اید`);
       console.error(error);
     },
   });
@@ -131,10 +157,10 @@ const PersonalComment = ({ newsId }) => {
     [toggleLikeDislike]
   );
 
-  const { data: commentsResponse } = useQuery({
-    queryKey: ["newsComments", newsId],
-    queryFn: () => getNewsDetailComment(newsId),
-    enabled: Boolean(newsId),
+  const { data: commentsResponse, isLoading: commentsLoading } = useQuery({
+    queryKey: ["getCourseCommnets", courseId],
+    queryFn: () => getCourseCommnets(courseId),
+    enabled: Boolean(courseId),
   });
 
   let commentsList = Array.isArray(commentsResponse)
@@ -165,22 +191,18 @@ const PersonalComment = ({ newsId }) => {
 
   const { data: repliesResponse, isLoading } = useQuery({
     queryKey: ["replyComments", selectedCommentId],
-    queryFn: () => GetNewsDetailsReplyComment(selectedCommentId),
-    enabled: Boolean(selectedCommentId),
+
+    queryFn: () => GetCourseReplyComments(courseId, selectedCommentId),
+    enabled: Boolean(courseId) && Boolean(selectedCommentId),
   });
 
   useEffect(() => {
     if (commentsList.length > 0) {
       let initialLikeStatus = {};
-
       commentsList.forEach((comment) => {
         let status = 0;
-
-        if (comment.currentUserIsLike) {
-          status = 1;
-        } else if (comment.currentUserIsDissLike) {
-          status = -1;
-        }
+        if (comment.currentUserIsLike) status = 1;
+        else if (comment.currentUserIsDissLike) status = -1;
         initialLikeStatus[comment.id] = status;
       });
 
@@ -190,17 +212,30 @@ const PersonalComment = ({ newsId }) => {
 
       commentsList.forEach(async (comment) => {
         try {
-          const replies = await GetNewsDetailsReplyComment(comment.id);
+          const replies = await GetCourseReplyComments(courseId, comment.id);
+
+          const dataArray = Array.isArray(replies)
+            ? replies
+            : replies?.data || [];
+
           setRepliesCountByComment((prev) => ({
             ...prev,
-            [comment.id]: replies.length,
+            [comment.id]: dataArray.length,
           }));
         } catch (err) {
-          console.log(err);
+          console.error(err);
         }
       });
     }
-  }, [commentsList]);
+  }, [commentsList, courseId]);
+
+  if (commentsLoading) {
+    return (
+      <div className="w-full flex justify-center py-10">
+        <Lottie animationData={load} />
+      </div>
+    );
+  }
 
   return (
     <div className="!w-full  mx-auto bg-white  p-5  dark:bg-[#333] rounded-b-3xl   ">
@@ -231,21 +266,21 @@ const PersonalComment = ({ newsId }) => {
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
                     <img
-                      src={img1}
+                      src={comment.pictureAddress}
                       className="w-12 h-12 rounded-full object-cover"
                       alt="avatar"
                     />
                     <div>
                       <p className="font-bold text-[#1E1E1E] text-[16px] dark:text-white">
-                        {`User ${comment.userId}`}
+                        {comment.author}
                       </p>
                       <p className="text-[14px] text-[#848484] mt-1">
-                        {comment.inserDate
+                        {comment.insertDate
                           ? new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
                               day: "numeric",
                               month: "long",
                               year: "numeric",
-                            }).format(new Date(comment.inserDate))
+                            }).format(new Date(comment.insertDate))
                           : ""}
                       </p>
                     </div>
@@ -282,7 +317,7 @@ const PersonalComment = ({ newsId }) => {
                         isDisliked ? "text-current" : "dark:text-[#848484]"
                       }
                     >
-                      {comment.dissLikeCount}
+                      {comment.disslikeCount}
                     </span>
                   </div>
 
@@ -350,6 +385,7 @@ const PersonalComment = ({ newsId }) => {
                               "personalComment.replyForm.titlePlaceholder"
                             )}
                           />
+
                           <div className="text-[red] absolute right-5 top-14">
                             <ErrorMessage name="title" />
                           </div>
@@ -451,49 +487,59 @@ const PersonalComment = ({ newsId }) => {
             <p> {t("answerComment.loading")} </p>
             <PacmanLoader size={18} color="#848484" />
           </div>
-        ) : (repliesResponse?.length ?? 0) > 0 ? (
-          [...repliesResponse]
-            .sort((a, b) => new Date(b.inserDate) - new Date(a.inserDate))
-            .map((reply) => (
-              <AnswerComment
-                key={reply.id}
-                commentId={reply.id}
-                parentId={selectedCommentId}
-                newsId={newsId}
-                initialLikeCount={reply.likeCount}
-                initialDislikeCount={reply.dissLikeCount}
-                currentUserIsLike={reply.currentUserIsLike}
-                currentUserIsDissLike={reply.currentUserIsDissLike}
-                image={img1}
-                name={`User ${reply.userId}`}
-                date={
-                  reply.inserDate
-                    ? new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      }).format(new Date(reply.inserDate))
-                    : ""
-                }
-                title={reply.title}
-                text={reply.describe}
-              />
-            ))
         ) : (
-          <div className="w-[500px] mx-auto">
-            <Lottie
-              className="w-[200px] h-[170px] my-10 mx-auto"
-              animationData={empty}
-              loop={true}
-            />
-            <p className="font-semibold text-[black] text-[20px] text-center dark:text-[#848484]">
-              {t("personalComment.actions.noComments")}
-            </p>
-          </div>
+          (() => {
+            const replyList = Array.isArray(repliesResponse)
+              ? repliesResponse
+              : Array.isArray(repliesResponse?.data)
+              ? repliesResponse.data
+              : [];
+
+            return replyList.length > 0 ? (
+              [...replyList]
+                .sort((a, b) => new Date(b.inserDate) - new Date(a.inserDate))
+                .map((reply) => (
+                  <AnswerCommentCourses
+                    key={reply.id}
+                    commentId={reply.id}
+                    parentId={selectedCommentId}
+                    courseId={courseId}
+                    initialLikeCount={reply.likeCount}
+                    initialDislikeCount={reply.disslikeCount}
+                    currentUserIsLike={reply.currentUserIsLike}
+                    currentUserIsDissLike={reply.currentUserIsDissLike}
+                    image={reply.pictureAddress}
+                    name={` ${reply.author}`}
+                    date={
+                      reply.inserDate
+                        ? new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                          }).format(new Date(reply.inserDate))
+                        : ""
+                    }
+                    title={reply.title}
+                    text={reply.describe}
+                  />
+                ))
+            ) : (
+              <div className="w-[500px] mx-auto">
+                <Lottie
+                  className="w-[200px] h-[170px] my-10 mx-auto"
+                  animationData={empty}
+                  loop={true}
+                />
+                <p className="font-semibold text-[black] text-[20px] text-center dark:text-[#848484]">
+                  {t("personalComment.actions.noComments")}
+                </p>
+              </div>
+            );
+          })()
         )}
       </Dialog>
     </div>
   );
 };
 
-export default PersonalComment;
+export default PersonalCommentCourses;

@@ -77,7 +77,9 @@ const TitleImage = ({ newsDetail }) => {
         className="w-full h-[425px]"
         src={
           newsDetail.currentImageAddress &&
-          !newsDetail.currentImageAddress.includes("undefined")
+          !newsDetail.currentImageAddress.includes("undefined") &&
+          !newsDetail.currentImageAddress.toLowerCase().includes("local") &&
+          !newsDetail.currentImageAddress.toLowerCase().includes("fakepath")
             ? newsDetail.currentImageAddress
             : img1
         }
