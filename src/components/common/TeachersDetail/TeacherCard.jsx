@@ -7,7 +7,7 @@ const TeacherCard = ({ item }) => {
   return (
     <Tilt
       className="flex flex-col items-center dark:border dark:border-[#EAEAEA] dark:bg-[#1E1E1E] dark:text-[#fff]  p-4 bg-[#FFFFFF] rounded-[20px] 
-    hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
+    transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78]"
     >
       <img
         src={item.pictureAddress}

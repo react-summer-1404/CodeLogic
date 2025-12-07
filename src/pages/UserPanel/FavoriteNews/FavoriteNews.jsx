@@ -19,6 +19,8 @@ import htmlImg from "../../../assets/Images/HTML5Course.png";
 import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";
 import Lottie from "lottie-react";
 import empty from "../../../assets/Images/empty.json";
+import reactImg from "../../../assets/Images/A/teachersDetail/1.png";
+import { PersianDateConverter } from "../../../utils/helper/dateConverter";
 const FavoriteNews = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "fa";
@@ -379,21 +381,18 @@ const FavoriteNews = () => {
                 duration: 300,
               },
             }}
-            className=" w-[60%] bg-[#eee] rounded-3xl flex
-          flex-col  mt-3 gap-6  py-4 px-6 dark:text-white dark:bg-[#333] "
+            className="  bg-[#eee] rounded-3xl flex w-[30%]
+          flex-col  mt-3 gap-6  py-4 px-1 dark:text-white dark:bg-[#333] "
           >
             <h2 className="text-[19px] text-[#008C78] dark:text-[#008C78] mx-auto font-bold">
               {overViewData.title}
             </h2>
             <img
-              className="rounded-4xl shadow-md w-[55%] mx-auto"
+              className="rounded-4xl shadow-md w-[60%] mx-auto"
               src={
-                overViewData.currentImageAddress ===
-                  "http://sepehracademy.liara.run/files/undefined" ||
-                overViewData.currentImageAddress ===
-                  "http://localhost:300/files/Image-1761849433020.png"
-                  ? `${htmlImg}`
-                  : `${overViewData.currentImageAddress}`
+                !overViewData.currentImageAddress
+                  ? reactImg
+                  : overViewData.currentImageAddress
               }
               alt=""
             />
@@ -413,6 +412,12 @@ const FavoriteNews = () => {
               >
                 34
               </div>
+            </div>
+            <div className="mx-auto">
+              <span>{t("favoriteNews.lastUpdated")} :</span>
+              <span className="ms-1">
+                {PersianDateConverter(overViewData.updateDate)}
+              </span>
             </div>
             <button
               onClick={() => handleCloseModal()}

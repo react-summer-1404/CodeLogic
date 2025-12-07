@@ -16,6 +16,8 @@ import FavoritesSkeleton from "../../../components/common/skeleton/favorites/Fav
 import { useTranslation } from "react-i18next";
 import Lottie from "lottie-react";
 import empty from "../../../assets/Images/empty.json";
+import { PersianDateConverter } from "../../../utils/helper/dateConverter";
+import rectImage from "../../../assets/Images/A/teachersDetail/1.png";
 const FavoriteCourses = () => {
   const { data: coursesData = {}, isPending } = useQuery({
     queryKey: ["FAVCOURSES"],
@@ -373,15 +375,19 @@ const FavoriteCourses = () => {
                 duration: 300,
               },
             }}
-            className=" w-[60%] bg-[#eee] rounded-3xl flex
+            className=" p-4 bg-[#eee] rounded-3xl flex
                 flex-col  mt-3 gap-6  py-4 px-6 dark:text-white dark:bg-[#333] "
           >
             <h2 className="text-[19px] text-[#008C78] dark:text-[#008C78] mx-auto font-bold">
               {overViewData.courseTitle}
             </h2>
             <img
-              className="rounded-4xl shadow-md w-[55%] mx-auto"
-              src={overViewData.course.imageAddress}
+              className="rounded-4xl shadow-md w-[70%] mx-auto"
+              src={
+                !overViewData.course.imageAddress
+                  ? rectImage
+                  : overViewData.course
+              }
               alt=""
             />
             <p className="text-[14px] text-[#848484] dark:text-[#848484] mt-2 mx-auto ">
@@ -398,7 +404,8 @@ const FavoriteCourses = () => {
               </div>
             </div>
             <div className="text-[14px] text-[#848484] dark:text-[#848484] mx-auto">
-              {t("favoriteCourses.lastUpdated")}:{overViewData.lastUpdate}
+              {t("favoriteCourses.lastUpdated")}:
+              {PersianDateConverter(overViewData.lastUpdate)}
             </div>
 
             <button

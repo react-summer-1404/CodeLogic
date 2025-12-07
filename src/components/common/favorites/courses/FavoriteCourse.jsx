@@ -5,8 +5,8 @@ import greenBasket from "../../../../assets/Icons/A/greenBasket.png";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { deleteFavCourses } from "../../../../core/services/api/delete/deleteFavCourses";
-
-
+import { PersianDateConverter } from "../../../../utils/helper/dateConverter.js";
+import reactImage from "../../../../assets/Images/A/teachersDetail/1.png";
 const FavoriteCourse = ({ items, deleteItem, getOverViewData }) => {
   /// fake data ///
   const mode = ["انلاین", "حضوری"];
@@ -38,7 +38,11 @@ const FavoriteCourse = ({ items, deleteItem, getOverViewData }) => {
         <div className="ps-8 flex items-center justify-start gap-4 flex-[1.5] text-right">
           <img
             className="w-[28px] h-[28px] rounded-full object-cover"
-            src={items.course.imageAddress}
+            src={
+              !items.course.imageAddress
+                ? reactImage
+                : items.course.imageAddress
+            }
             alt=""
           />
           {items.courseTitle}
@@ -47,7 +51,9 @@ const FavoriteCourse = ({ items, deleteItem, getOverViewData }) => {
           {items.course.describe}
         </div>
         <div className="px-4 flex-1">{meetingMode}</div>
-        <div className="px-4 flex-1 truncate">{items.lastUpdate}</div>
+        <div className="px-4 flex-1 truncate">
+          {PersianDateConverter(items.lastUpdate)}
+        </div>
         <div className="pe-8 w-[100px] text-left flex items-center justify-end gap-4">
           <div
             onClick={handleOverView}
@@ -71,14 +77,16 @@ const FavoriteCourse = ({ items, deleteItem, getOverViewData }) => {
         </h2>
         <img
           className="rounded-4xl shadow-md w-[55%] mx-auto"
-          src={items.course.imageAddress}
+          src={
+            !items.course.imageAddress ? reactImage : items.course.imageAddress
+          }
           alt=""
         />
         <p className=" text-center text-[14px] text-[#848484] dark:text-[#848484]">
           {items.course.describe}
         </p>
         <div className="flex flex-col items-center text-[14px] text-[#848484] dark:text-[#848484]">
-          <span>{items.lastUpdate}</span>
+          <span>{PersianDateConverter(items.lastUpdate)}</span>
           <span>{meetingMode}</span>
         </div>
         <div className="  flex items-center  gap-4">

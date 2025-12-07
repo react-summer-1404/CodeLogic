@@ -6,7 +6,7 @@ import { t } from "i18next";
 import ReservedCoursesModal from "../ReservedCourseModal/ReservedCourseModal";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import PaymentModal from "../PaymentModal/PaymentModal";
-
+import { PersianDateConverter } from "../../../utils/helper/dateConverter.js";
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
 
 const MyReservedCourse = ({ item }) => {
@@ -66,7 +66,9 @@ const MyReservedCourse = ({ item }) => {
           </span>
         </div>
         <div className="flex justify-center w-56">
-          <span className={textClass}>{item.insertDate.slice(0, 10)}</span>
+          <span className="font-regular text-base text-[#1E1E1E] truncate  dark:text-[#DDDDDD]">
+            {PersianDateConverter(item.insertDate)}
+          </span>
         </div>
         <div className="flex justify-center items-center gap-4 w-28">
           <span

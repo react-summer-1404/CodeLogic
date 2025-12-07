@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import documentIcon from "../../../assets/Icons/A/document.png";
 import { useTranslation } from "react-i18next";
+import { PersianDateConverter } from "../../../utils/helper/dateConverter";
 
 const CoursePayment = ({ items, handleToggleModal }) => {
   const { t } = useTranslation();
@@ -27,8 +28,12 @@ const CoursePayment = ({ items, handleToggleModal }) => {
             hidden md:flex text-center items-center bg-[#ffff] py-4 border-b border-[#EAEAEA] "
       >
         <div className="flex-[1.3] text-right ps-8">{items.courseId}</div>
-        <div className="px-4 flex-1 truncate">{items.PeymentDate}</div>
-        <div className=" px-4 flex-1 truncate ">{items.instertDate}</div>
+        <div className="px-4 flex-1 truncate">
+          {PersianDateConverter(items.PeymentDate)}
+        </div>
+        <div className=" px-4 flex-1 truncate ">
+          {PersianDateConverter(items.instertDate)}
+        </div>
         <div
           className={` px-1 py-1 rounded-xl flex-[0.8] text-[16px] ${
             items.accept === true
@@ -60,13 +65,13 @@ const CoursePayment = ({ items, handleToggleModal }) => {
         <div className="flex gap-2 text-[##008C78]">
           {t("coursesPayment.paymentDate")}:
           <div className="text-[14px] text-[#848484] dark:text-[#848484] truncate ">
-            {items.PeymentDate}
+            {PersianDateConverter(items.PeymentDate)}
           </div>
         </div>
         <div className="flex gap-2 text-[##008C78] ">
           {t("coursesPayment.DateEntered")}:
           <div className="text-[14px] text-[#848484] dark:text-[#848484] truncate">
-            {items.instertDate}
+            {PersianDateConverter(items.instertDate)}
           </div>
         </div>
         <div className="flex gap-2 text-[##008C78]">

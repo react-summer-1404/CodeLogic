@@ -9,6 +9,7 @@ import heartIcon from "../../../assets/Icons/A/heart.png";
 import { useMutation } from "@tanstack/react-query";
 import { addFavCourses } from "../../../core/services/api/post/addFavCourses";
 import { toast } from "react-toastify";
+import reactImg from "../../../assets/Images/A/teachersDetail/1.png";
 import Tilt from "react-parallax-tilt";
 const DetailCard = ({ item }) => {
   const [isAdded, setIsAdded] = useState(false);
@@ -31,7 +32,7 @@ const DetailCard = ({ item }) => {
         transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78] "
     >
       <img
-        src={item.imageAddress}
+        src={!item.imageAddress ? reactImg : item.imageAddress}
         className="w-full h-[259px] rounded-t-[20px]"
       />
       <div
