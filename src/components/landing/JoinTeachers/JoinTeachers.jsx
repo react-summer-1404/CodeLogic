@@ -10,16 +10,14 @@ const JoinTeachers = () => {
   return (
     <motion.div
       initial={{ x: -50, opacity: 0 }}
-      whileInView={{ x: 0, opacity: 1 }}
-      viewport={{ once: true, viewport: 0.5 }}
+      animate={{ x: 0, opacity: 1 }}
       transition={{
         ease: "easeOut",
         type: "spring",
         stiffness: 300,
-        duration: 250,
-        delay: 0.4,
+        delay: 0.3,
       }}
-      className="pt-[58px]"
+      className="pt-[64px]"
     >
       <TextImage
         title1={t("joinTeachers.title1")}
