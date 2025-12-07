@@ -17,8 +17,8 @@ const SliderTeachers = () => {
   const sliderRef = useRef();
 
   return (
-    <div className="flex flex-col items-between gap-8 w-full">
-      <div className="flex flex-col items-center gap-2 pt-[163px]">
+    <div className="flex flex-col items-between gap-8 w-full ">
+      <div className="flex flex-col items-center gap-2 pt-[163px] ">
         <h2
           className="font-bold text-[#008C78]
         sa:text-[24px]   sm:text-[28px]   lg:text-[32px]"
@@ -38,7 +38,7 @@ const SliderTeachers = () => {
         to={"teachers"}
       />
       <div
-        className="flex flex-nowrap gap-5 overflow-hidden w-full pt-8 pb-4 px-10 scroll-smooth scrollbar-hide"
+        className="flex flex-nowrap gap-5 overflow-hidden w-full pt-8 pb-2 px-10 scroll-smooth scrollbar-hide "
         dir="ltr"
         ref={sliderRef}
       >
