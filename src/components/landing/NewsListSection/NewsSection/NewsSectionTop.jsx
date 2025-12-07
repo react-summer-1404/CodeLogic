@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { PostFavoriteNews } from "../../../../core/services/api/post/PostFavoriteNews";
 import { toast } from "react-toastify";
+
 const NewsSectionTop = ({ card }) => {
   const [isAdded, setIsAdded] = useState(false);
 
@@ -36,7 +37,7 @@ const NewsSectionTop = ({ card }) => {
         delay: 0.3,
       }}
       viewport={{ once: true, amount: 0.5 }}
-      className=" w-[60%] md:w-[48%]  relative rounded-3xl overflow-hidden  shadow-lg "
+      className=" w-[60%] md:w-[48%]  relative rounded-3xl overflow-hidden  shadow-lg  "
     >
       <img src={image1} alt="" className="w-full h-full  " />
       <div
