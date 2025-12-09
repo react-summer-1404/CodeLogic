@@ -106,7 +106,7 @@
 // };
 
 // export default CourseListMain;
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import CourseCardView1 from "../../common/CourseCardView1/CourseCardView1";
 import CourseCardView2 from "../../common/CourseCardView2/CourseCardView2";
@@ -118,6 +118,7 @@ import { useTranslation } from "react-i18next";
 import CourseListMainSkeleton from "../../common/skeleton/CourseListMainSkeleton/CourseListMainSkeleton";
 import Lottie from "lottie-react";
 import empty from "../../../assets/Images/empty.json";
+import { useNavigate } from "react-router-dom";
 
 const VIEW_TYPE_LIST = "list";
 const VIEW_TYPE_GRID = "grid";
@@ -134,6 +135,7 @@ const CourseListMain = ({
   pageCount,
 }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const [currentView, setCurrentView] = useState(() => {
     return localStorage.getItem("courseViewType") || VIEW_TYPE_GRID;
@@ -141,6 +143,28 @@ const CourseListMain = ({
 
   const CourseCardComponent =
     currentView === VIEW_TYPE_LIST ? CourseCardView2 : CourseCardView1;
+
+  const [comparedCourseIds, setComparedCourseIds] = useState([]);
+
+  useEffect(() => {
+    if (comparedCourseIds.length === 2) {
+      const url = `/comparison?course1=${comparedCourseIds[0]}&course2=${comparedCourseIds[1]}`;
+      navigate(url);
+      setComparedCourseIds([]);
+    }
+  }, [comparedCourseIds, navigate]);
+
+  const handleToggleCompare = (courseId) => {
+    setComparedCourseIds((prevIds) => {
+      if (prevIds.includes(courseId)) {
+        return prevIds.filter((id) => id !== courseId);
+      } else if (prevIds.length < 2) {
+        return [...prevIds, courseId];
+      } else {
+        return [prevIds[1], courseId];
+      }
+    });
+  };
 
   const handleViewChange = (courseViewType) => {
     setCurrentView(courseViewType);
@@ -185,6 +209,18 @@ const CourseListMain = ({
         isLoading={isLoading}
       />
 
+      {comparedCourseIds.length > 0 && comparedCourseIds.length < 2 && (
+        <div
+          className="bg-[#008c7711] border-l-4 border-[#008C78] text-[#008C78] rounded-2xl p-4 w-[93%]"
+          role="alert"
+        >
+          <p>
+            برای مقایسه دوره، لطفا {2 - comparedCourseIds.length} دوره دیگر را
+            انتخاب کنید.
+          </p>
+        </div>
+      )}
+
       {isLoading ? (
         <CourseListMainSkeleton count={pageSize} />
       ) : coursesData?.courseFilterDtos?.length > 0 ? (
@@ -194,6 +230,8 @@ const CourseListMain = ({
               item={item}
               key={index}
               handleToggleFavorite={handleToggleFavorite}
+              handleToggleCompare={handleToggleCompare}
+              isCompared={comparedCourseIds.includes(item.courseId)}
             />
           ))}
         </div>
