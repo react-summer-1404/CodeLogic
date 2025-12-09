@@ -125,7 +125,7 @@ const LocationMarker = ({ lat, lng, setAddress, setLat, setLng }) => {
         setAddress(reversed.join(" - "));
       }
     } catch (err) {
-      console.error("Error fetching address:", err);
+      console.error(err);
     }
   };
 
