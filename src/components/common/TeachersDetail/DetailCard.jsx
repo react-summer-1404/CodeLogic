@@ -9,6 +9,8 @@ import heartIcon from "../../../assets/Icons/A/heart.png";
 import { useMutation } from "@tanstack/react-query";
 import { addFavCourses } from "../../../core/services/api/post/addFavCourses";
 import { toast } from "react-toastify";
+import reactImg from "../../../assets/Images/A/teachersDetail/1.png";
+import Tilt from "react-parallax-tilt";
 const DetailCard = ({ item }) => {
   const [isAdded, setIsAdded] = useState(false);
   const navigate = useNavigate();
@@ -24,13 +26,13 @@ const DetailCard = ({ item }) => {
     },
   });
   return (
-    <div
+    <Tilt
       dir="rtl"
       className="flex flex-col flex-shrink-0 items-center w-[350px] md:basis-[calc(33.8%-1rem)] rounded-[20px] relative cursor-pointer  
         transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78] "
     >
       <img
-        src={item.imageAddress}
+        src={!item.imageAddress ? reactImg : item.imageAddress}
         className="w-full h-[259px] rounded-t-[20px]"
       />
       <div
@@ -38,16 +40,16 @@ const DetailCard = ({ item }) => {
         className="flex flex-col justify-between w-full h-[217px] mb-[-16px] p-4 bg-[#FFFFFF] rounded-[20px] transform -translate-y-4   
             dark:bg-[#606060]"
       >
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 ">
           <h2 className="font-bold text-base   dark:text-[#EEEEEE]">
-            {t(`${item.title}`)}
+            {item.title}
           </h2>
-          <p className="max-w-[317px] font-regular text-sm   dark:text-[#DDDDDD]">
-            {t(`${item.describe}`)}
+          <p className="max-w-[317px] font-regular text-sm  dark:text-[#DDDDDD] truncate ">
+            {item.describe}
           </p>
         </div>
         <div>
-          <div className="flex justify-between pt-8">
+          <div className="flex justify-between pt-6">
             <div className="flex items-center gap-1   dark:text-[#DDDDDD]">
               <Teacher className="text-[#848484]" />
               <span className="font-regular text-xs text-[#848484]   dark:text-[#DDDDDD]">
@@ -91,7 +93,7 @@ const DetailCard = ({ item }) => {
         } transition duration-300 backdrop-blur-md 
         rounded-[50px] cursor-pointer absolute top-[12px] right-[11px] bg-no-repeat bg-[center_center]`}
       ></button>
-    </div>
+    </Tilt>
   );
 };
 

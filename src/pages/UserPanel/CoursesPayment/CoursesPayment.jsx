@@ -14,6 +14,7 @@ import { useDebounce } from "use-debounce";
 import CoursesPaymentsSkeleton from "../../../components/common/skeleton/CoursesPayments/CoursesPaymentsSkeleton";
 import Lottie from "lottie-react";
 import empty from "../../../assets/Images/empty.json";
+import { PersianDateConverter } from "../../../utils/helper/dateConverter.js";
 const CoursesPayment = () => {
   //// get payments ///
   const { data: PaymentsData, isPending } = useQuery({
@@ -254,13 +255,13 @@ const CoursesPayment = () => {
             <div className="flex gap-2 text-[##008C78]">
               {t("coursesPayment.paymentDate")}:
               <div className="text-[14px] text-[#848484] dark:text-[#848484] truncate ">
-                {modalData.PeymentDate}
+                {PersianDateConverter(modalData.PeymentDate)}
               </div>
             </div>
             <div className="flex gap-2 text-[##008C78] ">
               {t("coursesPayment.DateEntered")}:
               <div className="text-[14px] text-[#848484] dark:text-[#848484] truncate">
-                {modalData.instertDate}
+                {PersianDateConverter(modalData.instertDate)}
               </div>
             </div>
             <div className="flex gap-2 text-[##008C78]">

@@ -16,7 +16,7 @@ const UserSatisfaction = ({course}) => {
         <div className='flex justify-between'>
           <StarsRating course={course}/>
           <div className={`flex gap-1 font-regular text-base text-[#848484]   dark:text-[#CCCCCC] ${isRtl ? 'rtl' : 'ltr'}`}>
-            <span>{Math.floor(course.courseRate.avg)}</span>
+            <span>{Math.floor(course.courseRate)}</span>
             <span>{t('userSatisfaction.score')}</span>
           </div>
         </div>

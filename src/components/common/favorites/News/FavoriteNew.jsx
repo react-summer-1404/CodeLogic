@@ -5,6 +5,8 @@ import greenBasket from "../../../../assets/Icons/A/greenBasket.png";
 import htmlImg from "../../../../assets/Images/HTML5Course.png";
 import openEye from "../../../../assets/Icons/A/openEye.png";
 import { useTranslation } from "react-i18next";
+import reactImg from "../../../../assets/Images/A/teachersDetail/1.png";
+import { PersianDateConverter } from "../../../../utils/helper/dateConverter.js";
 const FavoriteNew = ({ items, deleteItem, getOverViewData }) => {
   const { t } = useTranslation();
   const handleDelete = () => {
@@ -37,12 +39,9 @@ const FavoriteNew = ({ items, deleteItem, getOverViewData }) => {
           <img
             className="w-[28px] h-[28px] rounded-full object-cover"
             src={
-              items.news.currentImageAddress ===
-                "http://sepehracademy.liara.run/files/undefined" ||
-              items.news.currentImageAddress ===
-                "http://localhost:300/files/Image-1761849433020.png"
-                ? `${htmlImg}`
-                : `${items.news.currentImageAddress}`
+              !items.news.currentImageAddress
+                ? reactImg
+                : items.news.currentImageAddress
             }
             alt=""
           />
@@ -51,7 +50,9 @@ const FavoriteNew = ({ items, deleteItem, getOverViewData }) => {
         <div className="px-4 flex-1">43</div>
         <div className="px-4 flex-1">666</div>
         <div className="px-1 flex-1">36</div>
-        <div className="px-4 flex-1 truncate">{items.news.updateDate}</div>
+        <div className="px-4 flex-1 truncate">
+          {PersianDateConverter(items.news.updateDate)}
+        </div>
         <div className="pe-8 w-[100px] text-left flex items-center justify-end gap-4">
           <div
             onClick={handleOverView}
@@ -76,12 +77,9 @@ const FavoriteNew = ({ items, deleteItem, getOverViewData }) => {
         <img
           className="rounded-4xl shadow-md w-[55%] mx-auto"
           src={
-            items.news.currentImageAddress ===
-              "http://sepehracademy.liara.run/files/undefined" ||
-            items.news.currentImageAddress ===
-              "http://localhost:300/files/Image-1761849433020.png"
-              ? `${htmlImg}`
-              : `${items.news.currentImageAddress}`
+            !items.news.currentImageAddress
+              ? reactImg
+              : items.news.currentImageAddress
           }
           alt=""
         />
@@ -112,7 +110,7 @@ const FavoriteNew = ({ items, deleteItem, getOverViewData }) => {
           </div>
         </div>
         <span className=" mx-auto text-[14px] text-[#848484] dark:text-[#848484]">
-          {items.news.updateDate}
+          {PersianDateConverter(items.news.updateDate)}
         </span>
         <div className="  flex items-center  gap-4">
           <div

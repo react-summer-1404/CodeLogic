@@ -5,7 +5,7 @@ import GetAllTeachers from "../../../core/services/api/Get/GetAllTeachers";
 import ButtonsSeeMore from "../../common/ButtonsSeeMore/ButtonsSeeMore";
 import SliderTeacher from "../SliderTeacher/SliderTeacher";
 import { Link } from "react-router-dom";
-
+import Tilt from "react-parallax-tilt";
 const SliderTeachers = () => {
   const { t } = useTranslation();
 
@@ -43,7 +43,11 @@ const SliderTeachers = () => {
         ref={sliderRef}
       >
         {teachersData?.map((item, index) => {
-          return <SliderTeacher item={item} key={index} />;
+          return (
+            <Tilt>
+              <SliderTeacher item={item} key={index} />
+            </Tilt>
+          );
         })}
       </div>
     </div>

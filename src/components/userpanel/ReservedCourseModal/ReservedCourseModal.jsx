@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { PersianDateConverter } from "../../../utils/helper/dateConverter";
 
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
 
@@ -17,15 +18,17 @@ const ReservedCoursesModal = ({ item, handleToggleModal }) => {
   };
 
   return (
-    <div 
+    <div
       onClick={() => handleToggleModal(false)}
-      className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40">
+      className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+    >
       <motion.div
         variants={Animate}
         initial="hidden"
         animate="visible"
         className="flex flex-col items-center gap-6 w-[80%] shadow-2xl h-[50%] md:w-144 md:h-84 pt-8 bg-[#FFFFFF] border border-[#EAEAEA] rounded-xl fixed md:top-32 
-        md:right-120 mx-auto mt-45 md:m-0 inset-0 z-48 dark:bg-[#333]">
+        md:right-120 mx-auto mt-45 md:m-0 inset-0 z-48 dark:bg-[#333]"
+      >
         <div className="flex flex-col items-center gap-4">
           <img src={item.image} className="w-7 h-7 rounded-[48px]" />
           <div>
@@ -59,7 +62,9 @@ const ReservedCoursesModal = ({ item, handleToggleModal }) => {
           <span className="font-semibold text-base text-[#1E1E1E]">
             {t("reservedCourseModal.reservationDate")}
           </span>
-          <span className={textClass}>{item.insertDate.slice(0, 10)}</span>
+          <span className={textClass}>
+            {PersianDateConverter(item.insertDate)}
+          </span>
         </div>
         <button
           onClick={() => {
@@ -70,7 +75,6 @@ const ReservedCoursesModal = ({ item, handleToggleModal }) => {
           {t("reservedCourseModal.backBtn")}
         </button>
       </motion.div>
-
     </div>
   );
 };
