@@ -29,7 +29,7 @@ import NewsPage from "../../pages/NewsPage/NewsPage";
 import NotFound from "../../pages/NotFound/NotFound";
 import PaymentRedirectPage from "../../pages/paymentRedirect/PaymentRedirectPage";
 import Comparison from "../../pages/Comparison/Comparison";
-import Notifications from "../../pages/Notifications/Notifications";
+import UserPanelNotifications from "../../pages/UserPanel/UserPanelNotifications";
 
 const router = createBrowserRouter([
   {
@@ -45,7 +45,6 @@ const router = createBrowserRouter([
       { path: "/news/:id", element: <NewsDetails /> },
       { path: "/redirect/", element: <PaymentRedirectPage /> },
       { path: "/comparison", element: <Comparison /> },
-      { path: "/notifications", element: <Notifications /> },
     ],
   },
   {
@@ -62,6 +61,7 @@ const router = createBrowserRouter([
       { path: "favoriteNews", element: <FavoriteNews /> },
       { path: "favoriteCourses", element: <FavoriteCourses /> },
       { path: "securitySettings", element: <SecuritySettings /> },
+      { path: "notifications", element: <UserPanelNotifications /> },
     ],
   },
   { path: "/registerStepOne", element: <StepOne /> },

@@ -17,6 +17,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { getItem, removeItem } from "../../utils/helper/storage.services";
 import { toast } from "react-toastify";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 
 const containerVariants = {
   initial: { opacity: 0, x: 50 },
@@ -376,6 +377,25 @@ const UserPanelRight = ({ isMobileMenu }) => {
         >
           {t("panelside.general")}
         </motion.p>
+
+        <motion.div className="flex items-center mb-2" variants={itemVariants}>
+          <NotificationsIcon
+            className={`text-[18px] md:text-[20px] ${
+              isActive("/userPanel/notifications")
+                ? "text-[#008C78] !text-[24px] md:!text-[26px]"
+                : "text-[#848484]"
+            }`}
+          />
+          <span
+            className={`text-[15px] md:text-[17px] lg:text-[18px] mr-2 transition-all duration-100 ${
+              isActive("/userPanel/notifications")
+                ? "text-[#1e1e1e] font-semibold dark:text-[white]"
+                : "text-[#848484]"
+            } ${isRtl ? "" : "ml-2"}`}
+          >
+            <Link to={"/userPanel/notifications"}>{t("panelside.notif")}</Link>
+          </span>
+        </motion.div>
 
         <motion.div className="flex items-center mb-2" variants={itemVariants}>
           <SecurityIcon
