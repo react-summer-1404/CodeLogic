@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import regone from "../../../assets/Images/regone.svg";
 import HomeIcon from "@mui/icons-material/Home";
-import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import { Formik, Form, Field } from "formik";
 import { RegisterValidation } from "../../../utils/Validations/RegisterVal/Register.validation";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,12 +14,14 @@ import sun from "../../../assets/Icons/A/sun.png";
 import moon from "../../../assets/Icons/A/moon.png";
 import EmailIcon from "@mui/icons-material/Email";
 import { ClockLoader } from "react-spinners";
+import { useTheme } from "../../../utils/hooks/useTheme/useTheme";
 
 const StepOne = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [initialValues] = useState({ email: "" });
-  const [darkMode, setDarkMode] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
   const [validationSchema, setValidationSchema] = useState(
     RegisterValidation()
   );
@@ -41,8 +42,6 @@ const StepOne = () => {
       }
     },
   });
-
-  const toggleDarkMode = () => setDarkMode(!darkMode);
 
   const fadeInUp = (delay) => ({
     hidden: { opacity: 0, y: -20 },
@@ -81,7 +80,7 @@ const StepOne = () => {
       animate="visible"
       variants={containerVariant}
       className={`flex justify-center items-center min-h-screen transition-colors duration-500 ${
-        darkMode ? "bg-[#1e1e1e]" : "bg-[#EAEAEA]"
+        isDark ? "bg-[#1e1e1e]" : "bg-[#EAEAEA]"
       } `}
     >
       <Formik
@@ -94,7 +93,7 @@ const StepOne = () => {
             <motion.div
               variants={containerVariant}
               className={`flex flex-col lg:flex-row w-[90%] sm:w-[95%] md:w-[90%] h-[72.17%] rounded-4xl shadow-md overflow-hidden transition-colors duration-500 ${
-                darkMode ? "bg-[#333]" : "bg-white"
+                isDark ? "bg-[#333]" : "bg-white"
               }`}
             >
               <div className="w-full lg:w-[47.44%] flex justify-center items-center">
@@ -103,19 +102,19 @@ const StepOne = () => {
                   initial="hidden"
                   animate="visible"
                   className={`w-[95%] sm:w-[90%] md:w-[95%] h-auto lg:h-[95.67%] rounded-xl flex flex-col justify-center items-center mb-6 lg:mb-0 mr-0 lg:mr-2 relative transition-colors duration-500 ${
-                    darkMode ? "bg-[#454545]" : "bg-[#EEFFFC]"
+                    isDark ? "bg-[#454545]" : "bg-[#EEFFFC]"
                   }`}
                 >
                   <div
-                    onClick={toggleDarkMode}
+                    onClick={toggleTheme}
                     className={`cursor-pointer py-3 px-2 w-11 h-5 rounded-full absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-7 flex transition-colors duration-500 ${
-                      darkMode
+                      isDark
                         ? "bg-yellow-300/40 justify-end"
                         : "bg-blue-900/30 justify-start"
                     }`}
                   >
                     <div className="w-3 h-[90%] rounded-full flex items-center">
-                      <img src={darkMode ? sun : moon} alt="theme icon" />
+                      <img src={isDark ? sun : moon} alt="theme icon" />
                     </div>
                   </div>
 
@@ -126,14 +125,14 @@ const StepOne = () => {
                   />
                   <span
                     className={`font-bold text-xl sm:text-2xl md:text-2xl mb-4 sm:mb-6 lg:mb-10 text-center transition-colors duration-500 ${
-                      darkMode ? "text-white" : "text-[#005B77]"
+                      isDark ? "text-white" : "text-[#005B77]"
                     }`}
                   >
                     {t("registerStepOne.start_learning")}
                   </span>
                   <p
                     className={`w-[85%] sm:w-[80%] text-center transition-colors duration-500 ${
-                      darkMode ? "text-gray-300" : "text-[#1E1E1E]"
+                      isDark ? "text-gray-300" : "text-[#1E1E1E]"
                     }`}
                   >
                     {t("registerStepOne.description")}
@@ -159,12 +158,12 @@ const StepOne = () => {
                     <Link to="/">
                       <HomeIcon
                         className={`ml-2 transition-colors duration-500 ${
-                          darkMode ? "text-gray-300" : "text-[#005B77]"
+                          isDark ? "text-gray-300" : "text-[#005B77]"
                         }`}
                       />
                       <span
                         className={`font-bold transition-colors duration-500 ${
-                          darkMode ? "text-gray-300" : "text-[#005B77]"
+                          isDark ? "text-gray-300" : "text-[#005B77]"
                         }`}
                       >
                         {t("registerStepOne.home")}
@@ -179,7 +178,7 @@ const StepOne = () => {
                   initial="hidden"
                   animate="visible"
                   className={`text-xl text-center sm:text-2xl md:text-2xl font-bold mb-2 sm:mb-3 transition-colors duration-500 ${
-                    darkMode ? "text-white" : "text-[#008C78]"
+                    isDark ? "text-white" : "text-[#008C78]"
                   }`}
                 >
                   {t("registerStepOne.create_account")}
@@ -190,7 +189,7 @@ const StepOne = () => {
                   initial="hidden"
                   animate="visible"
                   className={` mb-4 text-center sm:mb-6 md:mb-8 ${
-                    darkMode ? "text-white" : "text-[#333333]"
+                    isDark ? "text-white" : "text-[#333333]"
                   }`}
                 >
                   {t("registerStepOne.enter_phone")}
@@ -208,7 +207,7 @@ const StepOne = () => {
                         ? "right-4 sm:right-6 md:right-20"
                         : "left-4 sm:left-6 md:left-20"
                     } transition-colors duration-500 ${
-                      darkMode ? "text-gray-400" : "text-[grey]"
+                      isDark ? "text-gray-400" : "text-[grey]"
                     }`}
                   />
 
@@ -217,7 +216,7 @@ const StepOne = () => {
                     name="email"
                     placeholder={t("registerStepOne.gmail_placeholder")}
                     className={`rounded-4xl py-3 px-12 sm:px-16 mb-4 sm:mb-6 md:mb-6 w-[90%] sm:w-[80%] md:w-[80%] focus:outline-none focus:ring-2 transition-colors duration-500 ${
-                      darkMode
+                      isDark
                         ? "bg-[#454545] text-gray-200 focus:ring-[#008C78] placeholder-gray-300"
                         : "bg-[#F3F4F6] text-[#383838] focus:ring-[#008C78] placeholder-gray-500"
                     }`}
@@ -246,7 +245,7 @@ const StepOne = () => {
                     disabled={isPending}
                     type="submit"
                     className={`text-center mt-4 font-semibold py-3 rounded-4xl w-[90%] sm:w-[80%] md:w-[80%] transition-colors duration-500 cursor-pointer ${
-                      darkMode
+                      isDark
                         ? "bg-[#008C78] text-[white] "
                         : "bg-[#008C78] text-white hover:bg-[#007563]"
                     }`}
@@ -267,13 +266,13 @@ const StepOne = () => {
                   initial="hidden"
                   animate="visible"
                   className={`text-center text-sm mt-4 sm:mt-6 transition-colors duration-500 ${
-                    darkMode ? "text-gray-300" : "text-[#333333]"
+                    isDark ? "text-gray-300" : "text-[#333333]"
                   }`}
                 >
                   {t("registerStepOne.have_account")}{" "}
                   <span
                     className={`font-semibold cursor-pointer hover:underline transition-colors duration-500 ${
-                      darkMode ? "text-[#008C78]" : "text-[#008C78]"
+                      isDark ? "text-[#008C78]" : "text-[#008C78]"
                     }`}
                   >
                     <Link to="/login">{t("registerStepOne.login")}</Link>

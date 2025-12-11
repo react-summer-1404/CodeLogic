@@ -51,8 +51,8 @@ const CourseCardView1 = ({
     >
       <div
         dir={`${isRtl ? "rtl" : "ltr"}`}
-        className="flex flex-col shadow-[0px_0px_1px_1px_#ccc]  flex-shrink-0 items-center w-[240px] rounded-xl duration-300 relative 
-        
+        className="flex flex-col shadow-[0px_0px_1px_1px_#ccc]  flex-shrink-0 items-center w-[240px] rounded-xl duration-300 relative
+
         sm:w-[350px] sm:rounded-[20px]"
       >
         <img
@@ -66,7 +66,7 @@ const CourseCardView1 = ({
         />
         <Link
           to={`/courseDetail/${item.courseId}`}
-          className="flex flex-col justify-between w-full mb-[-16px] 
+          className="flex flex-col justify-between w-full mb-[-16px]
             p-4 bg-[#FFFFFF] rounded-xl transform -translate-y-4 cursor-pointer   dark:bg-[#606060]
             sm:h-[237px] sm:rounded-[20px]"
         >
@@ -136,14 +136,14 @@ const CourseCardView1 = ({
         </Link>
         <button
           onClick={onToggleFavorite}
-          className={`p-2 rounded-[50px] transition absolute top-[13px] right-[14px] cursor-pointer  text-[white] 
+          className={`p-2 rounded-[50px] transition absolute top-[13px] right-[14px] cursor-pointer  text-[white]
             ${isFavorite ? "bg-red-500" : "bg-black/45 backdrop-blur-sm"}`}
         >
           <Heart />
         </button>
         <button
           onClick={onToggleCompare}
-          className={`p-2 rounded-[50px] transition absolute top-[13px] left-[14px] cursor-pointer  text-[white] 
+          className={`p-2 rounded-[50px] transition absolute top-[13px] left-[14px] cursor-pointer  text-[white]
             ${isCompared ? "bg-[#008C78]" : "bg-black/45 backdrop-blur-sm"}`}
         >
           <CompareIcon />
