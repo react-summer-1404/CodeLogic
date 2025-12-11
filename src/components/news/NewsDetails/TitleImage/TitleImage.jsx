@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { NewsLike } from "../../../../core/services/api/post/NewsLike";
 import { Newsdeslike } from "../../../../core/services/api/post/NewsDeslike";
 import { toast } from "react-toastify";
+import { DeleteLikeNews } from "../../../../core/services/api/Delete/DeleteLikeNews";
 
 const TitleImage = ({ newsDetail }) => {
   const [likeCount, setLikeCount] = useState(newsDetail?._count?.newsLike);
@@ -55,11 +56,24 @@ const TitleImage = ({ newsDetail }) => {
     },
   });
 
+  const deleteLikeMutation = useMutation({
+    mutationFn: (id) => DeleteLikeNews(id),
+    onSuccess: () => {
+      toast.success("لایک شما با موفقیت حذف شد");
+      setLikeCount((prev) => Math.max(prev - 1, 0));
+      setUserVote(null);
+    },
+    onError: () => {
+      toast.error("خطا در حذف لایک ");
+    },
+  });
+
   const handleLike = () => {
     if (userVote === "like") {
-      toast.error("شما  قبلا این خبر را لایک کرده‌اید ");
+      deleteLikeMutation.mutate(newsDetail?.likeId);
       return;
     }
+
     likeMutation.mutate(newsDetail?.id);
   };
 

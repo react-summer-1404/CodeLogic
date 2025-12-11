@@ -8,8 +8,14 @@ import { Link } from "react-router-dom";
 import img2 from "../../../assets/Images/HTML5Course.png";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Tilt from "react-parallax-tilt";
+import CompareIcon from "@mui/icons-material/Compare";
 
-const CourseCardView1 = ({ item, handleToggleFavorite }) => {
+const CourseCardView1 = ({
+  item,
+  handleToggleFavorite,
+  handleToggleCompare,
+  isCompared,
+}) => {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "fa";
 
@@ -17,6 +23,11 @@ const CourseCardView1 = ({ item, handleToggleFavorite }) => {
   const onToggleFavorite = () => {
     handleToggleFavorite(item.courseId);
     setIsFavorite(!isFavorite);
+  };
+
+  const onToggleCompare = (e) => {
+    e.preventDefault();
+    handleToggleCompare(item.courseId);
   };
 
   const descripmion = t(`${item.describe}`);
@@ -125,10 +136,17 @@ const CourseCardView1 = ({ item, handleToggleFavorite }) => {
         </Link>
         <button
           onClick={onToggleFavorite}
-          className={`p-2 rounded-[50px] transition absolute top-[13px] right-[14px] cursor-pointer opacity-25 text-[#EEEEEE] 
-            ${isFavorite ? "bg-[#FF0000]" : "bg-[#000000]"}`}
+          className={`p-2 rounded-[50px] transition absolute top-[13px] right-[14px] cursor-pointer  text-[white] 
+            ${isFavorite ? "bg-red-500" : "bg-black/45 backdrop-blur-sm"}`}
         >
           <Heart />
+        </button>
+        <button
+          onClick={onToggleCompare}
+          className={`p-2 rounded-[50px] transition absolute top-[13px] left-[14px] cursor-pointer  text-[white] 
+            ${isCompared ? "bg-[#008C78]" : "bg-black/45 backdrop-blur-sm"}`}
+        >
+          <CompareIcon />
         </button>
       </div>
     </Tilt>
