@@ -83,3 +83,8 @@ body.ltr {
 ::-webkit-scrollbar-thumb:hover {
   background: #005d4f;
 }
+
+.font-override,
+.font-override * {
+  font-family: "Estedad" !important;
+}
