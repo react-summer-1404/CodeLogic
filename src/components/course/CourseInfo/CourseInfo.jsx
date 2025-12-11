@@ -29,8 +29,8 @@ const CourseInfo = ({ course }) => {
   });
   const onReserveCourses = () => {
     const token = localStorage.getItem("token");
-    if(!token){
-      toast.error("ابتدا وارد شوید");
+    if(!token && !isReserve){
+      toast.error(t('login.loginToast'));
       return;
     }
     if(isReserve){
