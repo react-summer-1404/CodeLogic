@@ -80,10 +80,10 @@ const CourseCardView1 = ({
           </div>
           <div>
             <div className="flex flex-col justify-between gap-2 mt-4">
-              <div className="flex justify-between gap-2 font-regular text-sm mb-5 dark:text-[#DDDDDD]">
-                <div>
+              <div className="flex justify-between truncate gap-2 font-regular text-sm mb-5 dark:text-[#DDDDDD]">
+                <div className=" overflow-hidden ">
                   <span>{t("courseCard.technologies")}</span>
-                  <span className="mr-1">
+                  <span className="mr-1 text-ellipsis overflow-hidden whitespace-nowrap w-[100px] ">
                     {item.technologyList.trim() !== ""
                       ? item.technologyList
                       : t("courseCard.withoutTechnology")}

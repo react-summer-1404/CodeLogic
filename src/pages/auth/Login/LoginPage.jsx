@@ -36,7 +36,7 @@ const LoginPage = () => {
         console.log("Login token", data.token);
         setItem("token", data.token);
         toast.success(data.message);
-        navigate(`/userPanel`);
+        navigate(`/`);
       } else if (data.success && data.token === null) {
         toast.success(data.message);
         navigate("/loginValidation");

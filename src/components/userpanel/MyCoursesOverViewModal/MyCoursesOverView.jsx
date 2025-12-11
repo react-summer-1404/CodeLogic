@@ -3,6 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import Eye from "../../../assets/Icons/Eye";
 import AddCardIcon from "@mui/icons-material/AddCard";
+import { PersianDateConverter } from "../../../utils/helper/dateConverter.js";
 const MyCoursesOverView = ({ item, handleCloseModal }) => {
   const { t } = useTranslation();
 
@@ -33,7 +34,7 @@ const MyCoursesOverView = ({ item, handleCloseModal }) => {
           {item.course.title}
         </h2>
         <img
-          className="rounded-4xl shadow-md w-[75%]  mx-auto"
+          className="rounded-4xl shadow-md max-w-[45%]  mx-auto"
           src={item.tumbImageAddress}
           alt=""
         />
@@ -48,10 +49,12 @@ const MyCoursesOverView = ({ item, handleCloseModal }) => {
         </div>
         <div className="flex flex-col items-center justify-center">
           <div>
-            {t("courseInfo.startDate")}: <span>{item.course.startTime}</span>
+            {t("courseInfo.startDate")}:{" "}
+            <span>{PersianDateConverter(item.course.startTime)}</span>
           </div>
           <div>
-            {t("courseInfo.endDate")} : <span>{item.course.endTime}</span>
+            {t("courseInfo.endDate")} :{" "}
+            <span>{PersianDateConverter(item.course.endTime)}</span>
           </div>
         </div>
         <div className="flex mx-auto items-center">

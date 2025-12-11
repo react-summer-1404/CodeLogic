@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import MyCoursesOverView from "../MyCoursesOverViewModal/MyCoursesOverView";
 import MyCoursesPaidModal from "../../userpanel/MyCoursesPaidModal/MyCoursesPaidModal";
-
+import { PersianDateConverter } from "../../../utils/helper/dateConverter";
 const textClass =
   "font-regular text-base text-[#1E1E1E] truncate  dark:text-[#DDDDDD]";
 
@@ -66,7 +66,9 @@ const MyCourse = ({ item }) => {
           <span className={textClass}>{item.cost.toLocaleString()}</span>
         </div>
         <div className="flex justify-center w-34 ">
-          <span className={textClass}>{item.lastUpdate}</span>
+          <span className={textClass}>
+            {PersianDateConverter(item.lastUpdate)}
+          </span>
         </div>
         <div className="flex justify-center items-center gap-4 w-32 ">
           <div onClick={() => setOpenOverViewModal(true)}>
