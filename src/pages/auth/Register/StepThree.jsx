@@ -17,6 +17,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import RegisterStepThreeApi from "../../../core/services/api/post/registerStepThree";
 import { ClockLoader } from "react-spinners";
+import { setItem } from "../../../utils/helper/storage.services";
 
 const StepThree = () => {
   const { t, i18n } = useTranslation();
@@ -29,7 +30,8 @@ const StepThree = () => {
     onSuccess: (data) => {
       if (data?.success) {
         toast.success("ثبت‌ نام با موفقیت انجام شد");
-        navigate(`/userPanel`);
+        navigate(`/`);
+        setItem("token", data.token);
       } else {
         toast.error(data?.message);
       }

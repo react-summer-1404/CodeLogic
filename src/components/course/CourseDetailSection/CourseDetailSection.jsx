@@ -28,7 +28,7 @@ const CourseDetailSection = ({ course }) => {
     {
       id: 4,
       title: "وضعیت دوره",
-      courseNumber: course.status.statusName,
+      courseNumber: course.status?.statusName ?? "",
       icon: History,
     },
   ];
