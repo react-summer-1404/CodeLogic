@@ -111,7 +111,9 @@ const NewsComment = ({ newsId }) => {
       {activeTab === "details" && (
         <div className="space-y-4 leading-8 text-gray-700 ">
           <div className="mb-10 ">
-            <p className="font-[16px] text-[#848484] ">{newsDetail.describe}</p>
+            <p className="font-[16px] text-[#848484] text-wrap break-words ">
+              {newsDetail.describe}
+            </p>
           </div>
         </div>
       )}

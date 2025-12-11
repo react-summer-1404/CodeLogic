@@ -66,3 +66,20 @@ body.ltr {
 .dark .css-1vvxd0l-MuiPaper-root-MuiDialog-paper {
   background-color: #1e1e1e !important;
 }
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #008c78;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #005d4f;
+}

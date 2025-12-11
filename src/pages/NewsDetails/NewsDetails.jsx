@@ -18,6 +18,8 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import img1 from "../../assets/Images/Ellipsee.png";
 import img2 from "../../assets/Images/HTML5Course.png";
+import Lottie from "lottie-react";
+import empty from "../../assets/Images/empty.json";
 
 const NewsDetails = () => {
   const { data } = useQuery({
@@ -187,7 +189,7 @@ const NewsDetails = () => {
               </span>
             </Link>
             <Link to="/news">
-              <span className="cursor-pointer">
+              <span className="cursor-pointer ">
                 {t("NewsDetails.breadcrumbs2")}{" "}
               </span>
             </Link>
@@ -233,7 +235,7 @@ const NewsDetails = () => {
               className="w-full flex flex-wrap rounded-3xl shadow-md bg-[white] py-5 dark:bg-[#333]"
               variants={itemVariants}
             >
-              <span className="font-bold w-full text-[#1E1E1E] font-[18px] px-4 dark:text-[white] ">
+              <span className="font-bold w-full text-[#1E1E1E] font-[18px] px-4 dark:text-[white]  ">
                 {t("NewsDetails.userSatisfaction")}
               </span>
 
@@ -276,7 +278,7 @@ const NewsDetails = () => {
           </motion.div>
 
           <motion.div
-            className="w-full flex flex-wrap sm:w-3/4 lg:w-[69%] sm:ml-6"
+            className="w-full flex flex-wrap sm:w-3/4 lg:w-[69%] sm:ml-6 "
             variants={itemVariants}
           >
             <TitleImage newsDetail={newsDetail} />
@@ -312,33 +314,45 @@ const NewsDetails = () => {
           className="w-full flex flex-row-reverse gap-4 md:gap-6 lg:gap-8 overflow-x-auto overflow-y-hidden scroll-smooth px-4 sm:px-6 md:px-8 lg:px-10 mb-20 scrollbar-none"
           variants={containerVariants}
         >
-          {categoryNews.map((news, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="flex-shrink-0 w-[85%] sm:w-[70%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
-            >
-              <NewsCard
-                id={news.id}
-                image={
-                  news.currentImageAddress &&
-                  !news.currentImageAddress.includes("undefined")
-                    ? news.currentImageAddress
-                    : img2
-                }
-                title={news.title}
-                description={news.miniDescribe}
-                views={news.currentView}
-                rating={news.newsRate.avg.toFixed(1)}
-                category={news.newsCatregoryName}
-                date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                }).format(new Date(news.insertDate))}
+          {categoryNews.length === 0 ? (
+            <div className="flex flex-col items-center justify-center text-center w-full">
+              <Lottie
+                style={{ width: "200px", height: "200px" }}
+                animationData={empty}
               />
-            </motion.div>
-          ))}
+              <p className="text-center w-full py-8 text-[black] dark:text-[#898989]">
+                اخبار مرتبطی یافت نشد
+              </p>
+            </div>
+          ) : (
+            categoryNews.map((news, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="flex-shrink-0 w-[85%] sm:w-[70%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+              >
+                <NewsCard
+                  id={news.id}
+                  image={
+                    news.currentImageAddress &&
+                    !news.currentImageAddress.includes("undefined")
+                      ? news.currentImageAddress
+                      : img2
+                  }
+                  title={news.title}
+                  description={news.miniDescribe}
+                  views={news.currentView}
+                  rating={news.newsRate.avg.toFixed(1)}
+                  category={news.newsCatregoryName}
+                  date={new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  }).format(new Date(news.insertDate))}
+                />
+              </motion.div>
+            ))
+          )}
         </motion.div>
       </div>
     </motion.div>
