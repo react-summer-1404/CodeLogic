@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { addCommentCourses } from '../../../core/services/api/post/addCommentCourses';
-import { replyCourseComment } from '../../../core/services/api/post/replyCourseComment' 
 import { useTranslation } from 'react-i18next'
+import {useMutation} from '@tanstack/react-query'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
 import * as yup from 'yup'
@@ -27,10 +27,16 @@ const CourseCommentForm = ({course}) => {
 
   const fieldClass = 'py-4 font-regular text-base text-[#848484] indent-4 bg-[#F3F4F6] rounded-[25px] outline-0 dark:bg-[#1E1E1E]'
 
-  const onSubmit = async (values, { resetForm }) => {
-    await addCommentCourses(course.courseId, values.title, values.describe)
+  const token = localStorage.getItem('token')
+  const mutation = useMutation({
+    mutationFn: ({ title, describe }) => addCommentCourses(course.courseId, title, describe, token),
+    onSuccess: () => toast.success(t('courseCommentForm.successToast')),
+    onError: () => toast.error(t('courseCommentForm.errorToast')),
+  })
+  const onSubmit = (values, { resetForm }) => {
+    if (!token) return toast.error(t('login.loginToast'))
+    mutation.mutate(values)
     resetForm()
-    toast.success(t('courseCommentForm.successToast'))
   }
 
   

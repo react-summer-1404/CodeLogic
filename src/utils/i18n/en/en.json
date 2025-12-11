@@ -217,10 +217,10 @@
     "price": "Price",
     "toman": "Toman",
     "reserveBtn": "Reserve Now",
-    "deleteReserveBtn": "Cancel Reserve",
+    "reserved": "Reserved",
     "off": "Off",
     "reserveSuccessToast": "The desired course was successfully booked",
-    "removeSuccessToast": "The desired course was successfully deleted"
+    "reservedInfoToast": "This course is reserved"
   },
   "userSatisfaction": {
     "title": "User Satisfaction",
@@ -493,7 +493,8 @@
     "Title2": "Just one step to the world of learning!",
     "caption2": "The opportunity to grow, progress, and build a better future is here — stay one step ahead with us!",
     "Required": "The field is required.",
-    "login": "login"
+    "login": "login",
+    "loginToast": "Login first"
   },
   "loginVal": {
     "requiredPass": "Password entry is required.",

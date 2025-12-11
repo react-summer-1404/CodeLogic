@@ -61,8 +61,8 @@ const PriceFilter = ({ handleSetPrice }) => {
             />
           </Box>
           <div className="flex justify-between text-[#008C78]">
-            <span>{value}</span>
-            <span>{value}</span>
+            <span>{value[1]}</span>
+            <span>{value[0]}</span>
           </div>
         </div>
       )}
