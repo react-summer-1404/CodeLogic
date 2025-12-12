@@ -105,6 +105,7 @@ const NewsDetails = () => {
         toast.success("امتیاز شما با موفقیت ثبت شد ");
       },
       onError: (error) => {
+        if (error?.response?.status === 401) return;
         if (error.response && error.response.status === 400) {
           toast.warn("شما قبلاً امتیاز خود را ثبت کرده اید");
         } else {
@@ -117,6 +118,8 @@ const NewsDetails = () => {
       rateMutation.mutate({ id: newsId, rate: value });
     };
 
+    const displayRating = hover || rating;
+
     return (
       <div className="flex items-center gap-2">
         {[1, 2, 3, 4, 5].map((star) => (
@@ -127,7 +130,7 @@ const NewsDetails = () => {
             onMouseLeave={() => setHover(null)}
             className="cursor-pointer transition-transform transform hover:scale-110"
           >
-            {star <= hover ? (
+            {star <= displayRating ? (
               <StarIcon className="text-yellow-400 text-[28px]" />
             ) : (
               <StarBorderIcon className="text-yellow-400 text-[28px]" />

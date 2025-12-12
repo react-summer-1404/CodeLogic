@@ -63,7 +63,8 @@ const NewsComment = ({ newsId }) => {
       toast.success(t("newsComment.comments.toastsuc"));
       queryClient.invalidateQueries(["newsComments", newsId]);
     },
-    onError: () => {
+    onError: (error) => {
+      if (error?.response?.status === 401) return;
       toast.error(t("newsComment.comments.toasterr"));
     },
   });

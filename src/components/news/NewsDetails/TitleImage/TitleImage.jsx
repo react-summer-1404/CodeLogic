@@ -34,7 +34,8 @@ const TitleImage = ({ newsDetail }) => {
       }
       setUserVote("like");
     },
-    onError: () => {
+    onError: (err) => {
+      if (err?.response?.status === 401) return;
       toast.error("خطا در ثبت لایک ");
     },
   });
@@ -51,7 +52,8 @@ const TitleImage = ({ newsDetail }) => {
       }
       setUserVote("dislike");
     },
-    onError: () => {
+    onError: (err) => {
+      if (err?.response?.status === 401) return;
       toast.error("خطا در ثبت دیسلایک ");
     },
   });
@@ -63,7 +65,8 @@ const TitleImage = ({ newsDetail }) => {
       setLikeCount((prev) => Math.max(prev - 1, 0));
       setUserVote(null);
     },
-    onError: () => {
+    onError: (err) => {
+      if (err?.response?.status === 401) return;
       toast.error("خطا در حذف لایک ");
     },
   });
