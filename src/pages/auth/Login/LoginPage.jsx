@@ -31,7 +31,10 @@ const LoginPage = () => {
       dispatch(addPhoneGmail(values.phoneOrGmail));
       return res;
     },
-    onSettled: (data) => {
+    onError: (err) => {
+      toast.error(err.response?.data?.message);
+    },
+    onSuccess: (data) => {
       if (data.success && data.token !== null) {
         console.log("Login token", data.token);
         setItem("token", data.token);
@@ -41,7 +44,7 @@ const LoginPage = () => {
         toast.success(data.message);
         navigate("/loginValidation");
       } else if (!data.success) {
-        toast.error(data.message);
+        toast.error(data?.response?.data?.message);
       }
     },
   });

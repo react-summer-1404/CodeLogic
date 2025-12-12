@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import Eye from "../../../assets/Icons/Eye";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter.js";
+import imgg from "../../../assets/Images/A/teachersDetail/2.png";
 const MyCoursesOverView = ({ item, handleCloseModal }) => {
   const { t } = useTranslation();
 
@@ -35,7 +36,11 @@ const MyCoursesOverView = ({ item, handleCloseModal }) => {
         </h2>
         <img
           className="rounded-4xl shadow-md max-w-[45%]  mx-auto"
-          src={item.tumbImageAddress}
+          src={
+            item.tumbImageAddress.slice(0, 4) === "http"
+              ? item.tumbImageAddress
+              : imgg
+          }
           alt=""
         />
         <p className="text-[14px] text-[#848484] dark:text-[#848484] mt-2 mx-auto ">

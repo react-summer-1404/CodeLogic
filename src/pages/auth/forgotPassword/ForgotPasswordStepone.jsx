@@ -48,13 +48,12 @@ const ForgotPasswordStepOne = () => {
       dispatch(addGmail(values.email));
       return res;
     },
-    onSettled: (data) => {
-      if (data.success) {
-        toast.success(data.message);
-        navigate("/forgotPassTwo");
-      } else if (!data.success) {
-        toast.error(data.message);
-      }
+    onSuccess: (data) => {
+      toast.success(data.message);
+      navigate("/forgotPassTwo");
+    },
+    onError: (err) => {
+      toast.error(err.response?.data?.message);
     },
   });
 
