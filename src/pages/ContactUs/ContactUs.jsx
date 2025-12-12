@@ -12,6 +12,12 @@ import { useTranslation } from "react-i18next";
 import { ContactVal } from "../../utils/Validations/contactUs/ContactVal";
 
 const ContactUs = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   const { i18n, t } = useTranslation();
   const isRTL = i18n.language === "fa";
   const [validationSchema, setValidationShema] = useState(ContactVal());

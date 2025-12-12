@@ -7,6 +7,7 @@ import AddCardIcon from "@mui/icons-material/AddCard";
 import MyCoursesOverView from "../MyCoursesOverViewModal/MyCoursesOverView";
 import MyCoursesPaidModal from "../../userpanel/MyCoursesPaidModal/MyCoursesPaidModal";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter";
+import img2 from "../../../assets/Images/HTML5Course.png";
 const textClass =
   "font-regular text-base text-[#1E1E1E] truncate  dark:text-[#DDDDDD]";
 
@@ -39,7 +40,15 @@ const MyCourse = ({ item }) => {
         <div className="flex items-center gap-4 w-64">
           <img
             className="w-[28px] h-[28px] rounded-full object-cover"
-            src={item.tumbImageAddress}
+            src={
+              item.tumbImageAddress &&
+              !item.tumbImageAddress.includes("undefined") &&
+              item.tumbImageAddress.startsWith("http") &&
+              !item.tumbImageAddress.toLowerCase().includes("local") &&
+              !item.tumbImageAddress.toLowerCase().includes("fakepath")
+                ? item.tumbImageAddress
+                : img2
+            }
           />
           <div>
             <span className={textClass}>{item.course.title}</span>

@@ -54,7 +54,10 @@ const UserPanelHeader = () => {
         initial="initial"
         animate="animate"
       >
-        <motion.div className="flex items-center gap-5" variants={itemVariants}>
+        <motion.div
+          className="underpo flex items-center gap-5"
+          variants={itemVariants}
+        >
           <img
             src={profileData?.currentPictureAddress}
             alt="user"

@@ -8,6 +8,7 @@ import AddCardIcon from "@mui/icons-material/AddCard";
 import PaymentModal from "../PaymentModal/PaymentModal";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter.js";
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
+import img2 from "../../../assets/Images/HTML5Course.png";
 
 const MyReservedCourse = ({ item }) => {
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
@@ -41,7 +42,15 @@ const MyReservedCourse = ({ item }) => {
       >
         <div className="flex flex-col md:flex-row items-center gap-4 w-64">
           <img
-            src={item.image}
+            src={
+              item.image &&
+              !item.image.includes("undefined") &&
+              item.image.startsWith("http") &&
+              !item.image.toLowerCase().includes("local") &&
+              !item.image.toLowerCase().includes("fakepath")
+                ? item.image
+                : img2
+            }
             className=" md:w-7 md:h-7 rounded-full object-cover"
           />
           <div>

@@ -29,6 +29,8 @@ import NewsPage from "../../pages/NewsPage/NewsPage";
 import NotFound from "../../pages/NotFound/NotFound";
 import PaymentRedirectPage from "../../pages/paymentRedirect/PaymentRedirectPage";
 import Comparison from "../../pages/Comparison/Comparison";
+import ContactUs from "../../pages/ContactUs/ContactUs";
+
 import UserPanelNotifications from "../../pages/UserPanel/UserPanelNotifications";
 
 const router = createBrowserRouter([
@@ -45,6 +47,7 @@ const router = createBrowserRouter([
       { path: "/news/:id", element: <NewsDetails /> },
       { path: "/redirect/", element: <PaymentRedirectPage /> },
       { path: "/comparison", element: <Comparison /> },
+      { path: "/contactUs", element: <ContactUs /> },
     ],
   },
   {

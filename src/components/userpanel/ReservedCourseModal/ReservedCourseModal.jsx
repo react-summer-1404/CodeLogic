@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter";
+import img2 from "../../../assets/Images/HTML5Course.png";
 
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
 
@@ -30,7 +31,18 @@ const ReservedCoursesModal = ({ item, handleToggleModal }) => {
         md:right-120 mx-auto mt-45 md:m-0 inset-0 z-48 dark:bg-[#333]"
       >
         <div className="flex flex-col items-center gap-4">
-          <img src={item.image} className="w-7 h-7 rounded-[48px]" />
+          <img
+            src={
+              item.image &&
+              !item.image.includes("undefined") &&
+              item.image.startsWith("http") &&
+              !item.image.toLowerCase().includes("local") &&
+              !item.image.toLowerCase().includes("fakepath")
+                ? item.image
+                : img2
+            }
+            className="w-full h-10 rounded-2xl"
+          />
           <div>
             <span className={textClass}>{item.courseName}</span>
           </div>

@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
 
-const UserPanelTitle = ({titleData}) => {
+const UserPanelTitle = ({ titleData }) => {
   return (
     <div>
-      <div className='hidden font-semibold text-base text-[#1E1E1E]    dark:text-[#CCCCCC]
-      md:flex'>
-        <div className={`flex ${titleData.justify1} ${titleData.w1}`}>
+      <div
+        className="hidden font-semibold text-base text-[#1E1E1E]    dark:text-[#CCCCCC]
+      md:flex"
+      >
+        <div className={`flex ${titleData.justify1} ${titleData.w1} `}>
           <span>{titleData.title1}</span>
         </div>
         <div className={`flex ${titleData.justify2} ${titleData.w2}`}>
@@ -14,7 +16,7 @@ const UserPanelTitle = ({titleData}) => {
         <div className={`flex ${titleData.justify3} ${titleData.w3}`}>
           <span>{titleData.title3}</span>
         </div>
-        <div className={`flex ${titleData.justify4} ${titleData.w4}`}>
+        <div className={`flex  ${titleData.justify4} ${titleData.w4}`}>
           <span>{titleData.title4}</span>
         </div>
         <div className={`flex ${titleData.justify5} ${titleData.w5}`}>
@@ -25,7 +27,7 @@ const UserPanelTitle = ({titleData}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UserPanelTitle
+export default UserPanelTitle;
