@@ -18,6 +18,8 @@ const RemoveMultiModal = ({ isOpen, toggleClose, id }) => {
       toast.success(data.message);
       queryClient.invalidateQueries(["ALLMULTIACOUNTS"]);
       toggleClose();
+      removeItem("token");
+      setItem("token", data.token);
     },
   });
   return (
