@@ -70,7 +70,7 @@ const router = createBrowserRouter([
   { path: "/login", element: <LoginPage /> },
   { path: "/loginValidation", element: <LoginValidationPage /> },
   { path: "/forgotPassOne", element: <ForgotPasswordStepOne /> },
-  { path: "/forgotPassTwo", element: <ForgotPasswordStepTwo /> },
+  { path: "/forgotPassTwo/:id", element: <ForgotPasswordStepTwo /> },
   { path: "*", element: <NotFound /> },
 ]);
 
