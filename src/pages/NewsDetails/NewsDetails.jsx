@@ -338,7 +338,10 @@ const NewsDetails = () => {
                   id={news.id}
                   image={
                     news.currentImageAddress &&
-                    !news.currentImageAddress.includes("undefined")
+                    !news.currentImageAddress.includes("undefined") &&
+                    news.currentImageAddress.startsWith("http") &&
+                    !news.currentImageAddress.toLowerCase().includes("local") &&
+                    !news.currentImageAddress.toLowerCase().includes("fakepath")
                       ? news.currentImageAddress
                       : img2
                   }

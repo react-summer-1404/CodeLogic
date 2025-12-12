@@ -95,6 +95,7 @@ const TitleImage = ({ newsDetail }) => {
         src={
           newsDetail.currentImageAddress &&
           !newsDetail.currentImageAddress.includes("undefined") &&
+          newsDetail.currentImageAddress.startsWith("http") &&
           !newsDetail.currentImageAddress.toLowerCase().includes("local") &&
           !newsDetail.currentImageAddress.toLowerCase().includes("fakepath")
             ? newsDetail.currentImageAddress
