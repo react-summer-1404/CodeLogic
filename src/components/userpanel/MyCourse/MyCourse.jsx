@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import MyCoursesOverView from "../MyCoursesOverViewModal/MyCoursesOverView";
 import MyCoursesPaidModal from "../../userpanel/MyCoursesPaidModal/MyCoursesPaidModal";
+import imgg from "../../../assets/Images/A/teachersDetail/2.png";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter";
 const textClass =
   "font-regular text-base text-[#1E1E1E] truncate  dark:text-[#DDDDDD]";
@@ -39,7 +40,11 @@ const MyCourse = ({ item }) => {
         <div className="flex items-center gap-4 w-64">
           <img
             className="w-[28px] h-[28px] rounded-full object-cover"
-            src={item.tumbImageAddress}
+            src={
+              item.tumbImageAddress.slice(0, 4) === "http"
+                ? item.tumbImageAddress
+                : imgg
+            }
           />
           <div>
             <span className={textClass}>{item.course.title}</span>
@@ -93,7 +98,11 @@ const MyCourse = ({ item }) => {
         </h2>
         <img
           className="rounded-4xl shadow-md w-[55%] mx-auto"
-          src={item.tumbImageAddress}
+          src={
+            item.tumbImageAddress.slice(0, 4) === "http"
+              ? item.tumbImageAddress
+              : imgg
+          }
           alt=""
         />
         <div className="flex justify-center">
@@ -117,7 +126,7 @@ const MyCourse = ({ item }) => {
           <span className={textClass}>{item.cost.toLocaleString()}</span>
         </div>
         <span className=" mx-auto text-[14px] text-[#848484] dark:text-[#848484] truncate ">
-          {item.lastUpdate}
+          {PersianDateConverter(item.lastUpdate)}
         </span>
         <div className="  flex items-center  gap-4">
           <div onClick={() => setOpenOverViewModal(true)}>

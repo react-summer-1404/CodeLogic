@@ -49,13 +49,12 @@ const ForgotPasswordStepTwo = () => {
   const { mutate: PostNewPass, isPending } = useMutation({
     mutationKey: ["POSTNEWPASS"],
     mutationFn: (values) => ResetPass2(values),
-    onSettled: (data) => {
-      if (data.success) {
-        toast.success(data.message);
-        navigate("/login");
-      } else if (!data.success) {
-        toast.error(data.message);
-      }
+    onError: (err) => {
+      toast.error(err.response?.data?.message);
+    },
+    onSuccess: (data) => {
+      toast.success(data.message);
+      navigate("/login");
     },
   });
 

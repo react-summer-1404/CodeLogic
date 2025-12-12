@@ -16,13 +16,12 @@ const NewsSectionBottom = ({ card }) => {
   const { mutate: postFavoriteBottom } = useMutation({
     mutationKey: ["POSTBUTTOM"],
     mutationFn: (value) => PostFavoriteNews(value),
-    onSettled: (data) => {
-      if (data.success) {
-        toast.success(data.message);
-        setIsAdded(true);
-      } else if (!data.success) {
-        toast.error(data.message);
-      }
+    onSuccess: (data) => {
+      toast.success(data.message);
+      setIsAdded(true);
+    },
+    onError: (err) => {
+      toast.error(err.response?.data?.message);
     },
   });
   return (

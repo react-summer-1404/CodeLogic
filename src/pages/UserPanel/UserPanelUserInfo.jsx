@@ -147,10 +147,7 @@ const LocationMarker = ({ lat, lng, setAddress, setLat, setLng }) => {
 const UserPanelUserInfo = () => {
   const { data: profileData } = useQuery({
     queryKey: ["profileInfo"],
-    queryFn: async () => {
-      const res = await GetProfileInfo();
-      return res?.data ?? res;
-    },
+    queryFn: () => GetProfileInfo(),
   });
   const ph = (field, fallback = "") => {
     if (!profileData) return fallback;

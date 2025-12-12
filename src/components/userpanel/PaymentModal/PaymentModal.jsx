@@ -16,15 +16,14 @@ const PaymentModal = ({ item, handleClosePayment }) => {
   const { mutate: stepOne, isPending } = useMutation({
     mutationKey: ["STEPONE"],
     mutationFn: () => PaymentStepOne(item.reserveId),
-    onSettled: (data) => {
-      if (data.success) {
-        toast.success(data.message);
-        window.location.href = data.link;
-        // dispatch(addReserveId(item.reserveId));
-        setItem("reserveId", item.reserveId);
-      } else if (!data.success) {
-        toast.error(data.message);
-      }
+    onError: (err) => {
+      toast.error(err.response?.data?.message);
+    },
+    onSuccess: (data) => {
+      toast.success(data.message);
+      window.location.href = data.link;
+      // dispatch(addReserveId(item.reserveId));
+      setItem("reserveId", item.reserveId);
     },
   });
   return (

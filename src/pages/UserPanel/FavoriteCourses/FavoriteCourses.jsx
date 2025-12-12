@@ -38,13 +38,12 @@ const FavoriteCourses = () => {
   const { mutate: deleteCourse, isPending: isDeleting } = useMutation({
     mutationKey: ["DELETECOURSE"],
     mutationFn: (value) => deleteFavCourses(value),
-    onSettled: (data) => {
-      if (data.success) {
-        toast.success(data.message);
-        queryClient.invalidateQueries(["FAVCOURSES"]);
-      } else if (!data.success) {
-        toast.error(data.message);
-      }
+    onError: (err) => {
+      toast.error(err.response?.data?.message);
+    },
+    onSuccess: (data) => {
+      toast.success(data.message);
+      queryClient.invalidateQueries(["FAVCOURSES"]);
     },
   });
   //// pagination ////

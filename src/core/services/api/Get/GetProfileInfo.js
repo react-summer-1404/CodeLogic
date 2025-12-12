@@ -1,8 +1,8 @@
 import Http from "../../../interceptor/interceptor";
 
-const GetProfileInfo = async (payload) => {
+const GetProfileInfo = async () => {
   try {
-    const result = await Http.get("/SharePanel/GetProfileInfo", payload);
+    const result = await Http.get("/SharePanel/GetProfileInfo");
 
     return result;
   } catch (error) {

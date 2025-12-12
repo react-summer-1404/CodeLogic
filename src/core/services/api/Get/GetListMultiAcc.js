@@ -1,13 +1,12 @@
 import Http from "../../../interceptor/interceptor";
 
-const Login = async (payload) => {
+export const GetMultiAcc = async () => {
   try {
-    const result = await Http.post("/Sign/Login", payload);
+    const result = await Http.get("/v2/multiAccount/myAccounts");
     console.log(result);
+
     return result;
   } catch (error) {
     console.log(error);
-    throw error;
   }
 };
-export default Login;

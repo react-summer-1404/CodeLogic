@@ -70,10 +70,7 @@ const UserPanelDashboard = () => {
 
   const { data: profileData } = useQuery({
     queryKey: ["profileInfo"],
-    queryFn: async () => {
-      const res = await GetProfileInfo();
-      return res?.data ?? res;
-    },
+    queryFn: () => GetProfileInfo(),
   });
 
   const profileFields = [
