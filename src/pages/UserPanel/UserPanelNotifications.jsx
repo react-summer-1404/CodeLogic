@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { GetAllNotifications } from "../../core/services/api/Get/GetAllNotifications";
 import {
   Table,
@@ -12,17 +12,18 @@ import {
   Typography,
   Chip,
   Box,
-  Tooltip,
-  IconButton,
+  Button,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import ErrorIcon from "@mui/icons-material/Error";
 import Lottie from "lottie-react";
 import ReactPaginate from "react-paginate";
 import notif from "../../assets/Images/Notification.json";
 import empty from "../../assets/Images/empty.json";
 import infinity from "../../assets/Images/Infinity Loader.json";
+import { UpdateNotifications } from "../../core/services/api/put/UpdateNotifications";
+import { toast } from "react-toastify";
+import { GetNotificationHaventSeen } from "../../core/services/api/Get/GetNotificationHaventSeen";
 
 const formatDate = (isoDate) => {
   if (!isoDate) return "-";
@@ -36,17 +37,47 @@ const formatDate = (isoDate) => {
 };
 
 const UserPanelNotifications = () => {
+  const queryClient = useQueryClient();
   const { data, isLoading } = useQuery({
     queryKey: ["notifications"],
     queryFn: GetAllNotifications,
   });
 
+  const { data: dataseen, isPending } = useQuery({
+    queryKey: ["notificationsseen"],
+    queryFn: GetNotificationHaventSeen,
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: UpdateNotifications,
+    onSuccess: () => {
+      toast.success("عملیات با موفقیت انجام شد");
+      queryClient.invalidateQueries(["notifications"]);
+      queryClient.invalidateQueries(["notificationsseen"]);
+    },
+    onError: () => {
+      toast.error("خطا در انجام عملیات");
+    },
+  });
+
+  const handleSeenClick = (notificationId) => {
+    updateMutation.mutate(notificationId);
+  };
+
   const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedTab, setSelectedTab] = useState("all");
+
+  const filteredData = useMemo(() => {
+    if (selectedTab === "unread") {
+      return Array.isArray(dataseen) ? dataseen : [];
+    }
+    return Array.isArray(data) ? data : [];
+  }, [data, dataseen, selectedTab]);
 
   const totalPages = useMemo(() => {
-    return Math.ceil((data?.length || 0) / itemsPerPage);
-  }, [data]);
+    return Math.ceil((filteredData?.length || 0) / itemsPerPage);
+  }, [filteredData]);
 
   useEffect(() => {
     if (currentPage > Math.max(1, totalPages)) {
@@ -59,13 +90,13 @@ const UserPanelNotifications = () => {
   };
 
   const displayedNotifications = useMemo(() => {
-    if (!data || data.length === 0) return [];
+    if (!filteredData || filteredData.length === 0) return [];
     const start = (currentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    return data.slice(start, end);
-  }, [data, currentPage]);
+    return filteredData.slice(start, end);
+  }, [filteredData, currentPage]);
 
-  if (isLoading) {
+  if (isLoading || (selectedTab === "unread" && isPending)) {
     return (
       <div className=" w-full bg-[#F3F4F6] mt-5 md:m-0 md:h-[85%] flex flex-col justify-center items-center rounded-4xl p-5 dark:bg-[#333] ">
         <Lottie
@@ -81,27 +112,54 @@ const UserPanelNotifications = () => {
 
   return (
     <div className=" font-override w-full bg-[#F3F4F6] mt-5 md:m-0 md:h-[85%] flex flex-col rounded-4xl p-5 dark:bg-[#333] ">
-      <Box className="mb-4 flex items-center gap-3">
-        <div style={{ width: 60, height: 60 }}>
-          <Lottie animationData={notif} />
+      <Box className="mb-4 w-[96%] mx-auto flex items-center justify-between gap-3 ">
+        <div className="flex ">
+          <div style={{ width: 60, height: 60 }}>
+            <Lottie animationData={notif} />
+          </div>
+          <div>
+            <Typography
+              variant="h6"
+              className="font-bold text-[black] dark:text-[white]"
+            >
+              {selectedTab === "all" ? "اعلان‌ها" : "اعلان های خوانده نشده"}
+            </Typography>
+            <Typography variant="body2" className="text-[#898989]">
+              {selectedTab === "all"
+                ? "لیست تمامی اعلان‌های حساب کاربری شما"
+                : "لیست اعلان‌های خوانده نشده حساب کاربری شما"}
+            </Typography>
+          </div>
         </div>
-        <div>
-          <Typography
-            variant="h6"
-            className="font-bold text-[black] dark:text-[white]"
+        <div className="flex ">
+          <p
+            className={`text-[black] font-semibold ml-[30px] dark:text-[white] p-2 cursor-pointer 
+      ${selectedTab === "all" ? "border-b-3 border-[#008C78]" : ""}`}
+            onClick={() => {
+              setSelectedTab("all");
+              setCurrentPage(1);
+            }}
           >
-            اعلان‌ها
-          </Typography>
-          <Typography variant="body2" className="text-[#898989]">
-            لیست تمامی اعلان‌های حساب کاربری شما
-          </Typography>
+            تمام اعلانات
+          </p>
+
+          <p
+            className={`text-[black] font-semibold dark:text-[white] p-2 ml-[20px] cursor-pointer 
+      ${selectedTab === "unread" ? "border-b-3 border-[#008C78]" : ""}`}
+            onClick={() => {
+              setSelectedTab("unread");
+              setCurrentPage(1);
+            }}
+          >
+            اعلان های خوانده نشده
+          </p>
         </div>
       </Box>
 
       <TableContainer
         component={Paper}
         elevation={0}
-        className="!w-[95%] mx-auto !rounded-xl  overflow-hidden !bg-[#F3F4F6] dark:!bg-[#333]"
+        className="!w-[95%] mx-auto !rounded-xl   !bg-[#F3F4F6] dark:!bg-[#333]"
       >
         <Table sx={{ minWidth: 650 }} aria-label="notifications table">
           <TableHead className="bg-[#008C78] ">
@@ -120,13 +178,13 @@ const UserPanelNotifications = () => {
               </TableCell>
               <TableCell
                 align="center"
-                className="font-bold dark:!text-[white] w-[18%]"
+                className="font-bold dark:!text-[white] w-[20%]"
               >
                 تاریخ و ساعت
               </TableCell>
               <TableCell
                 align="center"
-                className="font-bold dark:!text-[white] w-[25%]"
+                className="font-bold dark:!text-[white] w-[23%]"
               >
                 عملیات
               </TableCell>
@@ -172,21 +230,38 @@ const UserPanelNotifications = () => {
                 </TableCell>
 
                 <TableCell align="center">
-                  <Tooltip title="ویرایش اعلان">
-                    <IconButton size="small">
-                      <BorderColorIcon
-                        className="text-[#898989] dark:text-[#898989]"
-                        fontSize="small"
-                      />
-                    </IconButton>
-                  </Tooltip>
+                  {row.seen ? (
+                    <Typography
+                      variant="body2"
+                      className="text-sm font-bold text-[#898989] "
+                    >
+                      خوانده شد
+                    </Typography>
+                  ) : (
+                    <Button
+                      variant="outlined"
+                      onClick={() => handleSeenClick(row.id)}
+                      disabled={updateMutation.isLoading}
+                      sx={{
+                        borderColor: "#008C78",
+                        color: "#008C78",
+                        "&:hover": {
+                          borderColor: "#008C78",
+                          backgroundColor: "#008C78",
+                          color: "white",
+                        },
+                      }}
+                    >
+                      {updateMutation.isLoading ? "..." : "دیدم"}
+                    </Button>
+                  )}
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
 
-        {(!data || data.length === 0) && (
+        {filteredData.length === 0 && (
           <Box className="p-10 text-center flex flex-col items-center justify-center text-gray-400">
             <div style={{ width: 200, height: 200 }}>
               <Lottie animationData={empty} />
@@ -209,7 +284,7 @@ const UserPanelNotifications = () => {
             marginPagesDisplayed={1}
             pageRangeDisplayed={3}
             forcePage={currentPage - 1}
-            containerClassName="flex flex-wrap justify-start gap-1 sm:gap-2 mt-6"
+            containerClassName="flex flex-wrap justify-start gap-1 sm:gap-2 "
             pageClassName="px-3 py-2 sm:px-5 sm:py-3 rounded-[15px] font-semibold shadow-md cursor-pointer text-sm sm:text-xl bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
             activeClassName="!bg-[#008C78] text-white rounded-2xl shadow-md"
             previousClassName="px-2 py-1 sm:px-3 sm:py-1 rounded-2xl shadow-md cursor-pointer text-sm bg-[#EAEAEA] dark:bg-[#555] text-black dark:text-[#fff]"
