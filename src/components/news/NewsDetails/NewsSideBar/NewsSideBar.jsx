@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const NewsSideBar = ({ image, title, name, date, id }) => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   return (
     <div className=" shadow-[0px_0px_1px_1px_#EAEAEA] w-[90%] h-[12%] rounded-2xl flex flex-row items-center justify-between mx-auto mt-5 py-2 px-2 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78] dark:bg-[#333] ">
       {" "}
@@ -17,7 +23,9 @@ const NewsSideBar = ({ image, title, name, date, id }) => {
           {title}
         </Link>
         <div className="flex justify-between items-center w-full mt-3  ">
-          <p className="text-[#848484] font-[10px]">{name}</p>
+          <Link to={`/news/${id}`} className="text-[#848484] font-[10px]">
+            {name}
+          </Link>
           <p className="text-[#848484] font-[10px]">{date}</p>
         </div>
       </div>

@@ -22,6 +22,12 @@ import Lottie from "lottie-react";
 import empty from "../../assets/Images/empty.json";
 
 const NewsDetails = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   const { data } = useQuery({
     queryKey: "getallnews",
     queryFn: getAllNews,
@@ -263,7 +269,10 @@ const NewsDetails = () => {
                   key={news.id}
                   image={
                     news.currentImageAddress &&
-                    !news.currentImageAddress.includes("undefined")
+                    !news.currentImageAddress.includes("undefined") &&
+                    news.currentImageAddress.startsWith("http") &&
+                    !news.currentImageAddress.toLowerCase().includes("local") &&
+                    !news.currentImageAddress.toLowerCase().includes("fakepath")
                       ? news.currentImageAddress
                       : img2
                   }

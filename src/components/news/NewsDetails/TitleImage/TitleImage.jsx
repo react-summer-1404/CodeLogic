@@ -91,7 +91,7 @@ const TitleImage = ({ newsDetail }) => {
   return (
     <div className="w-full flex flex-wrap">
       <img
-        className="w-full h-[425px]"
+        className="w-full h-[425px] rounded-4xl"
         src={
           newsDetail.currentImageAddress &&
           !newsDetail.currentImageAddress.includes("undefined") &&

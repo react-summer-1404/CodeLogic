@@ -11,7 +11,7 @@ const MyCoursesPaidModal = ({ handleClosePaidModal }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
-      className=" fixed inset-0 bg-black/50 backdrop-blur flex justify-center items-center "
+      className=" fixed inset-0 bg-black/50 backdrop-blur flex justify-center items-center  "
       onClick={() => handleClosePaidModal(false)}
     >
       <motion.div

@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import UserPanelSearch from "../../../components/common/UserPanelSearch/UserPanelSearch";
 import UserPanelTitle from "../../../components/common/UserPanelTitle/UserPanelTitle";
 import MyCourseComment from "../../../components/userPanel/MyCourseComment/MyCourseComment";
-import myCourseComments from "../../../core/services/api/get/MyCourseComments"; 
+import myCourseComments from "../../../core/services/api/get/MyCourseComments";
 import ReactPaginate from "react-paginate";
 import { t } from "i18next";
 import Lottie from "lottie-react";
@@ -11,12 +11,10 @@ import empty from "../../../assets/Images/empty.json";
 import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";
 
 const MyCourseComments = () => {
-
   const [currentPage, setCurrentPage] = useState(1);
-  const [commentsPerPage, setCommentsPerPage] = useState(2); 
+  const [commentsPerPage, setCommentsPerPage] = useState(2);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterOption, setFilterOption] = useState("all");
-
 
   const { data: myCourseCommentsData, isLoading: isPending } = useQuery({
     queryKey: ["MYCOURSECOMMENTS", searchQuery],
@@ -27,10 +25,9 @@ const MyCourseComments = () => {
       }),
   });
 
-
   const allComments = myCourseCommentsData?.myCommentsDtos || [];
   const filteredComments = allComments.filter((comment) => {
-    const courseName = comment?.courseName ?? ""; 
+    const courseName = comment?.courseName ?? "";
     const matchesTitle = courseName
       .toLowerCase()
       .trim()
@@ -43,7 +40,6 @@ const MyCourseComments = () => {
     return matchesFilters && matchesTitle;
   });
 
-  
   const startIndex = (currentPage - 1) * commentsPerPage;
   const endIndex = startIndex + commentsPerPage;
   const currentComments = filteredComments.slice(startIndex, endIndex);
@@ -61,9 +57,9 @@ const MyCourseComments = () => {
   };
 
   return (
-    <div className='flex flex-col gap-10 h-[84%] mt-4 p-8 bg-[#F3F4F6] rounded-4xl   dark:bg-[#333333]'>
-      <div className='flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between items-center'>
-        <UserPanelSearch width={'md:w-[320px]'} handleSearch={handleSearch} />
+    <div className="flex flex-col gap-10 h-[84%] mt-4 p-8 bg-[#F3F4F6] rounded-4xl   dark:bg-[#333333]">
+      <div className="flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between items-center">
+        <UserPanelSearch width={"md:w-[320px]"} handleSearch={handleSearch} />
         <div
           className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff]
           rounded-xl border shadow p-2 md:p-1 border-[#EAEAEA] "
@@ -75,28 +71,44 @@ const MyCourseComments = () => {
             value={filterOption}
             onChange={(e) => {
               setFilterOption(e.target.value);
-              setCurrentPage(1); 
+              setCurrentPage(1);
             }}
-            className=" rounded-xl text-sm cursor-pointer ps-2 text-gray-600   dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]">
+            className=" rounded-xl text-sm cursor-pointer ps-2 text-gray-600   dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]"
+          >
             <option value="all">({t("favoriteNews.all")})</option>
-            <option value="false">({t("coursesPayment.AwaitingConfirmation")})</option>
+            <option value="false">
+              ({t("coursesPayment.AwaitingConfirmation")})
+            </option>
             <option value="true">({t("coursesPayment.confirmed")})</option>
           </select>
         </div>
       </div>
 
-      <div className='flex flex-col justify-between h-[440px] p-6 bg-[#FFFFFF] rounded-2xl   dark:bg-[#454545]'>
-        <div className='flex flex-col gap-4  relative'>
+      <div className="flex flex-col justify-between h-[440px] p-6 bg-[#FFFFFF] rounded-2xl   dark:bg-[#454545] ">
+        <div className="flex flex-col gap-4  relative ">
           <UserPanelTitle
             titleData={{
-              title1: t('myCourseComments.title1'), justify1: 'justify-start', w1: 'w-60',
-              title2: t('myCourseComments.title2'), justify2: 'justify-start', w2: 'w-52',
-              title3: t('myCourseComments.title3'), justify3: 'justify-start', w3: 'w-52',
-              title4: t('myCourseComments.title4'), justify4: 'justify-center', w4: 'w-28',
-              title5: t('myCourseComments.title5'), justify5: 'justify-center', w5: 'w-30',
-              title6: t('myCourseComments.title6'), justify6: 'justify-center', w6: 'w-24',
-            }} />
-          <div className="flex flex-col max-h-66 overflow-y-auto">
+              title1: t("myCourseComments.title1"),
+              justify1: "justify-start",
+              w1: "w-60",
+              title2: t("myCourseComments.title2"),
+              justify2: "justify-start",
+              w2: "w-52",
+              title3: t("myCourseComments.title3"),
+              justify3: "justify-start",
+              w3: "w-52",
+              title4: t("myCourseComments.title4"),
+              justify4: "justify-center",
+              w4: "w-28",
+              title5: t("myCourseComments.title5"),
+              justify5: "justify-center",
+              w5: "w-30",
+              title6: t("myCourseComments.title6"),
+              justify6: "justify-center",
+              w6: "w-24",
+            }}
+          />
+          <div className="flex flex-col max-h-66 overflow-y-auto  ">
             {isPending ? (
               [...Array(commentsPerPage)].map((items, index) => (
                 <FavoritesSkeleton key={index + 2} />
@@ -122,7 +134,7 @@ const MyCourseComments = () => {
           </div>
         </div>
 
-        <div className='flex justify-between items-center'>
+        <div className="flex justify-between items-center">
           <ReactPaginate
             breakLabel="..."
             nextLabel=" >"
@@ -149,7 +161,7 @@ const MyCourseComments = () => {
               value={commentsPerPage}
               onChange={(e) => {
                 setCommentsPerPage(Number(e.target.value));
-                setCurrentPage(1);  
+                setCurrentPage(1);
               }}
               className=" rounded-xl text-sm cursor-pointer px-3 py-1 dark:bg-[#454545] dark:text-[#ffff]"
             >

@@ -88,3 +88,8 @@ body.ltr {
 .font-override * {
   font-family: "Estedad" !important;
 }
+@media (max-width: 550px) {
+  .underpo {
+    display: none;
+  }
+}

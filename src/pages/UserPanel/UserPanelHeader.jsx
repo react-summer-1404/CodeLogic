@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import img1 from "../../assets/Images/panelnavbar.png";
 import { useTheme } from "../../utils/hooks/useTheme/useTheme";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import Brightness7RoundedIcon from "@mui/icons-material/Brightness7Rounded";
@@ -62,7 +61,7 @@ const UserPanelHeader = () => {
         animate="animate"
       >
         <motion.div
-          className="flex items-center gap-5 relative "
+          className="underpo flex items-center gap-5"
           variants={itemVariants}
         >
           <img

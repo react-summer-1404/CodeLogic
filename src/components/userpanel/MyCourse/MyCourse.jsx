@@ -8,6 +8,7 @@ import MyCoursesOverView from "../MyCoursesOverViewModal/MyCoursesOverView";
 import MyCoursesPaidModal from "../../userpanel/MyCoursesPaidModal/MyCoursesPaidModal";
 import imgg from "../../../assets/Images/A/teachersDetail/2.png";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter";
+import img2 from "../../../assets/Images/HTML5Course.png";
 const textClass =
   "font-regular text-base text-[#1E1E1E] truncate  dark:text-[#DDDDDD]";
 
@@ -41,9 +42,13 @@ const MyCourse = ({ item }) => {
           <img
             className="w-[28px] h-[28px] rounded-full object-cover"
             src={
-              item.tumbImageAddress.slice(0, 4) === "http"
+              item.tumbImageAddress &&
+              !item.tumbImageAddress.includes("undefined") &&
+              item.tumbImageAddress.startsWith("http") &&
+              !item.tumbImageAddress.toLowerCase().includes("local") &&
+              !item.tumbImageAddress.toLowerCase().includes("fakepath")
                 ? item.tumbImageAddress
-                : imgg
+                : img2
             }
           />
           <div>

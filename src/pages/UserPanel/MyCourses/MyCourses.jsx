@@ -74,7 +74,7 @@ const MyCourses = () => {
         </div>
       </div>
       <div className="flex flex-col justify-between h-[440px] p-6 bg-[#FFFFFF] rounded-2xl   dark:bg-[#454545]">
-        <div className="flex flex-col gap-4 max-h-96 overflow-y-auto">
+        <div className="flex flex-col gap-4 max-h-96 overflow-y-auto  ">
           <UserPanelTitle
             titleData={{
               title1: t("myCourses.title1"),
@@ -136,7 +136,7 @@ const MyCourses = () => {
             previousLinkClassName="font-bold text-lg sm:text-2xl px-1 sm:px-2 py-1 flex items-center justify-center h-full w-full"
             nextLinkClassName="font-bold text-lg sm:text-2xl px-1 sm:px-2 py-1 flex items-center justify-center h-full w-full"
           />
-          <div className="flex items-center dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA] ">
+          <div className="flex items-center dark:bg-[#454545] dark:text-[#ffff] rounded-xl border shadow-md p-1 border-[#EAEAEA]  ">
             <span className="text-[16px] hidden md:inline">
               {t("favoriteNews.NumberShows")}
             </span>

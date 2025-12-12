@@ -5,6 +5,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
@@ -72,12 +73,15 @@ const Footer = () => {
             <li className="cursor-pointer hover:text-black transition-colors duration-300">
               {t("footer.news")}
             </li>
-            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+            <li className="cursor-pointer hover:text-black transition-colors duration-300 ">
               {t("footer.jobs")}
             </li>
-            <li className="cursor-pointer hover:text-black transition-colors duration-300">
-              {t("footer.contact")}
-            </li>
+            <Link to={"/contactus"}>
+              <li className="cursor-pointer hover:text-black transition-colors duration-300 mb-2">
+                {t("footer.contact")}
+              </li>
+            </Link>
+
             <li className="cursor-pointer hover:text-black transition-colors duration-300">
               {t("footer.trust_center")}
             </li>
