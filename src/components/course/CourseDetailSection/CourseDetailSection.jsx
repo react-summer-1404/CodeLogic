@@ -15,20 +15,20 @@ const CourseDetailSection = ({ course }) => {
     {
       id: 1,
       title: "تعداد دانشجو",
-      courseNumber: course.currentRegistrants,
+      courseNumber: course.studentCount,
       icon: Users,
     },
     { id: 2, title: "مدت زمان", courseNumber: endDateShamsi, icon: Clock },
     {
       id: 3,
       title: "سطح دوره",
-      courseNumber: course.levelName,
+      courseNumber: course.courseLevelName,
       icon: Level,
     },
     {
       id: 4,
       title: "وضعیت دوره",
-      courseNumber: course.status?.statusName ?? "",
+      courseNumber: course.statusName ?? "",
       icon: History,
     },
   ];

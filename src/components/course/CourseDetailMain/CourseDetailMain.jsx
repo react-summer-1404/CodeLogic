@@ -62,13 +62,15 @@ const CourseDetailMain = ({ course, courseId }) => {
       );
       queryClient.invalidateQueries(["CourseCommnets", courseId]);
     },
-    onError: () => {
+    onError: (error) => {
+      if (error?.response?.status === 401) return;
       toast.error(t("خطا در ارسال پیام"));
     },
   });
 
   const handleSubmit = (values, { resetForm }) => {
     if (!courseId) {
+      toast.error("آی‌دی دوره یافت نشد");
       return;
     }
 
