@@ -113,7 +113,7 @@ const NewsDetails = () => {
       onError: (error) => {
         if (error?.response?.status === 401) return;
         if (error.response && error.response.status === 400) {
-          toast.warn("شما قبلاً امتیاز خود را ثبت کرده اید");
+          toast.info("شما قبلا امتیاز خود را ثبت کرده اید");
         } else {
           toast.error("خطا در ثبت امتیاز");
         }
