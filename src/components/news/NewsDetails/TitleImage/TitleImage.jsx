@@ -34,7 +34,8 @@ const TitleImage = ({ newsDetail }) => {
       }
       setUserVote("like");
     },
-    onError: () => {
+    onError: (err) => {
+      if (err?.response?.status === 401) return;
       toast.error("خطا در ثبت لایک ");
     },
   });
@@ -51,7 +52,8 @@ const TitleImage = ({ newsDetail }) => {
       }
       setUserVote("dislike");
     },
-    onError: () => {
+    onError: (err) => {
+      if (err?.response?.status === 401) return;
       toast.error("خطا در ثبت دیسلایک ");
     },
   });
@@ -63,7 +65,8 @@ const TitleImage = ({ newsDetail }) => {
       setLikeCount((prev) => Math.max(prev - 1, 0));
       setUserVote(null);
     },
-    onError: () => {
+    onError: (err) => {
+      if (err?.response?.status === 401) return;
       toast.error("خطا در حذف لایک ");
     },
   });
@@ -88,10 +91,11 @@ const TitleImage = ({ newsDetail }) => {
   return (
     <div className="w-full flex flex-wrap">
       <img
-        className="w-full h-[425px]"
+        className="w-full h-[425px] rounded-4xl"
         src={
           newsDetail.currentImageAddress &&
           !newsDetail.currentImageAddress.includes("undefined") &&
+          newsDetail.currentImageAddress.startsWith("http") &&
           !newsDetail.currentImageAddress.toLowerCase().includes("local") &&
           !newsDetail.currentImageAddress.toLowerCase().includes("fakepath")
             ? newsDetail.currentImageAddress

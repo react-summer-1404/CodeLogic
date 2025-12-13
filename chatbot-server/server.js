@@ -1,6 +1,6 @@
-import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import express from "express";
 import fetch from "node-fetch";
 
 dotenv.config();
@@ -11,7 +11,7 @@ app.use(express.json({ limit: "5mb" }));
 
 const PORT = process.env.PORT || 5000;
 const API_KEY = process.env.OPENROUTER_KEY;
-const NEWS_BASE_URL = process.env.NEWS_BASE_URL;
+const NEWS_BASE_URL = "https://sepehracademy.liara.run";
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 
@@ -24,16 +24,12 @@ async function fetchNews() {
   try {
     const url = `${NEWS_BASE_URL}/News?PageNumber=1&RowsOfPage=20&SortType=insertDate&SortingCol=DESC`;
 
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 20000);
-
     const res = await fetch(url, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
-      signal: controller.signal,
     });
 
-    clearTimeout(timeout);
+    console.log("resNews", res);
 
     const data = await res.json();
     return data?.news || [];
@@ -113,8 +109,7 @@ ${newsContext}
       ...userMessages,
     ];
 
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 120000);
+    console.log("newsList", newsList);
 
     const response = await fetch(OPENROUTER_URL, {
       method: "POST",
@@ -124,16 +119,14 @@ ${newsContext}
         "HTTP-Referer": "http://localhost:5173",
         "X-Title": "ChatBot",
       },
-      signal: controller.signal,
       body: JSON.stringify({
-        model: req.body.model || "deepseek/deepseek-r1-0528-qwen3-8b:free",
+        model: "z-ai/glm-4.5-air:free",
         messages: messagesForModel,
       }),
     });
 
-    clearTimeout(timeout);
-
     const data = await response.json();
+    console.log(data);
     return res.json(data);
   } catch (err) {
     console.error(" خطا در چت:", err);

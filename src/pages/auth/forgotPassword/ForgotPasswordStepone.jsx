@@ -19,6 +19,7 @@ import forgot1 from "../../../assets/Images/A/forgot1.png";
 import { useDispatch } from "react-redux";
 import { addGmail, gmailSlice } from "../../../utils/redux/slice/gmailSlice";
 import { useTheme } from "../../../utils/hooks/useTheme/useTheme";
+import { setItem } from "../../../utils/helper/storage.services";
 
 const ForgotPasswordStepOne = () => {
   const dispatch = useDispatch();
@@ -48,13 +49,12 @@ const ForgotPasswordStepOne = () => {
       dispatch(addGmail(values.email));
       return res;
     },
-    onSettled: (data) => {
-      if (data.success) {
-        toast.success(data.message);
-        navigate("/forgotPassTwo");
-      } else if (!data.success) {
-        toast.error(data.message);
-      }
+    onSuccess: (data) => {
+      toast.success(data.message);
+      // navigate("/forgotPassTwo");
+    },
+    onError: (err) => {
+      toast.error(err.response?.data?.message || "کاربر یافت نشد");
     },
   });
 
@@ -103,6 +103,7 @@ const ForgotPasswordStepOne = () => {
                   initialValues={resetData1}
                   onSubmit={(values) => {
                     console.log(values);
+                    setItem("gmail", values.email);
                     postPass(values);
                   }}
                   validationSchema={validationSchema}

@@ -29,7 +29,9 @@ import NewsPage from "../../pages/NewsPage/NewsPage";
 import NotFound from "../../pages/NotFound/NotFound";
 import PaymentRedirectPage from "../../pages/paymentRedirect/PaymentRedirectPage";
 import Comparison from "../../pages/Comparison/Comparison";
-import Notifications from "../../pages/Notifications/Notifications";
+import ContactUs from "../../pages/ContactUs/ContactUs";
+
+import UserPanelNotifications from "../../pages/UserPanel/UserPanelNotifications";
 
 const router = createBrowserRouter([
   {
@@ -45,7 +47,7 @@ const router = createBrowserRouter([
       { path: "/news/:id", element: <NewsDetails /> },
       { path: "/redirect/", element: <PaymentRedirectPage /> },
       { path: "/comparison", element: <Comparison /> },
-      { path: "/notifications", element: <Notifications /> },
+      { path: "/contactUs", element: <ContactUs /> },
     ],
   },
   {
@@ -62,6 +64,7 @@ const router = createBrowserRouter([
       { path: "favoriteNews", element: <FavoriteNews /> },
       { path: "favoriteCourses", element: <FavoriteCourses /> },
       { path: "securitySettings", element: <SecuritySettings /> },
+      { path: "notifications", element: <UserPanelNotifications /> },
     ],
   },
   { path: "/registerStepOne", element: <StepOne /> },
@@ -70,7 +73,7 @@ const router = createBrowserRouter([
   { path: "/login", element: <LoginPage /> },
   { path: "/loginValidation", element: <LoginValidationPage /> },
   { path: "/forgotPassOne", element: <ForgotPasswordStepOne /> },
-  { path: "/forgotPassTwo", element: <ForgotPasswordStepTwo /> },
+  { path: "/forgotPassTwo/:id", element: <ForgotPasswordStepTwo /> },
   { path: "*", element: <NotFound /> },
 ]);
 

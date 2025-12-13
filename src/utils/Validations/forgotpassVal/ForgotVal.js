@@ -13,6 +13,6 @@ export const ForgotVal2 = () => {
     newPassword: Yup.string()
       .required(() => i18n.t("forgotVal2.required1"))
       .min(4, () => i18n.t("forgotVal2.min")),
-    resetValue: Yup.string().required(() => i18n.t("securitySetting.required")),
+    // resetValue: Yup.string().required(() => i18n.t("securitySetting.required")),
   });
 };

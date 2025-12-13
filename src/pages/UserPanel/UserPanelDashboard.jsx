@@ -70,10 +70,7 @@ const UserPanelDashboard = () => {
 
   const { data: profileData } = useQuery({
     queryKey: ["profileInfo"],
-    queryFn: async () => {
-      const res = await GetProfileInfo();
-      return res?.data ?? res;
-    },
+    queryFn: () => GetProfileInfo(),
   });
 
   const profileFields = [
@@ -172,7 +169,8 @@ const UserPanelDashboard = () => {
             variants={headerVariants}
             initial="initial"
             animate="animate"
-            className="h-full md:w-[35%] py-4 rounded-3xl bg-white dark:bg-[#454545] relative flex items-center justify-between md:block p-4"
+            className="h-full md:w-[35%] py-4 rounded-3xl bg-white dark:bg-[#454545] 
+             relative flex flex-col md:block p-4"
           >
             <motion.div
               variants={headerVariants}
@@ -187,9 +185,9 @@ const UserPanelDashboard = () => {
             </motion.div>
 
             <div
-              className={`relative w-26 h-26 md:absolute md:top-10 md:w-[21%] md:h-[54%] flex items-center justify-center rounded-full ${
-                isRtl ? "md:mr-65" : "md:ml-65"
-              }`}
+              className={`relative w-26 h-26 md:absolute md:top-10 md:w-[21%] md:h-[54%] 
+                flex items-center justify-center rounded-full mt-4 md:mt-0
+                ${isRtl ? "md:mr-65" : "md:ml-65"}`}
             >
               <svg
                 width="100%"
@@ -342,7 +340,10 @@ const UserPanelDashboard = () => {
                   id={item.id}
                   image={
                     item.currentImageAddress &&
-                    !item.currentImageAddress.includes("undefined")
+                    !item.currentImageAddress.includes("undefined") &&
+                    item.currentImageAddress.startsWith("http") &&
+                    !item.currentImageAddress.toLowerCase().includes("local") &&
+                    !item.currentImageAddress.toLowerCase().includes("fakepath")
                       ? item.currentImageAddress
                       : img2
                   }

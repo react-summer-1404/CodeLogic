@@ -62,14 +62,13 @@ const LoginValidationPage = () => {
   const { mutate: postCode } = useMutation({
     mutationKey: ["POSTLOGINVAL"],
     mutationFn: (values) => sendOtp(values),
-    onSettled: (data) => {
-      if (data.success) {
-        toast(data.message);
-        setItem("token", data.token);
-        navigate("/userPanel");
-      } else if (!data.success) {
-        toast.error(data.message);
-      }
+    onError: (err) => {
+      toast.error(err.response?.data?.message);
+    },
+    onSuccess: (data) => {
+      toast(data.message);
+      setItem("token", data.token);
+      navigate("/userPanel");
     },
   });
   const { theme, toggleTheme } = useTheme();

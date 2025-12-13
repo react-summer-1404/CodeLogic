@@ -93,7 +93,7 @@ const NewsCard = ({
         initial="hidden"
         animate="visible"
         transition={{ duration: 0.5 }}
-        className={`bg-transparent rounded-2xl overflow-hidden shadow-[0px_0px_1px_1px_#ccc] transition-all duration-300  
+        className={`bg-transparent rounded-2xl overflow-hidden shadow-[0px_0px_1px_1px_#ccc] transition-all duration-300
         ${
           isList
             ? "flex w-full h-[150px] md:h-[180px] lg:h-[200px]"

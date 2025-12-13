@@ -4,7 +4,7 @@ const ResetPass1 = async (payload) => {
   try {
     const result = await http.post("/Sign/ForgetPassword", {
       email: payload.email,
-      baseUrl: "https://localhost:5173/resetpassword",
+      baseUrl: "http://localhost:5173/forgotPassTwo",
     });
     console.log(result);
     return result;

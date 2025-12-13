@@ -17,25 +17,23 @@ const SecuritySettings = () => {
   const { mutate: postSecurityApi, isPending } = useMutation({
     mutationKey: ["SECURITY"],
     mutationFn: (values) => securitySet(values),
-    onSettled: (data) => {
-      if (data.success) {
-        toast.success(data.message);
-      } else if (!data.success) {
-        toast.error(data.message);
-      }
+    onError: (err) => {
+      toast.error(err.response?.data?.message);
+    },
+    onSuccess: (data) => {
+      toast.success(data.message);
     },
   });
   //// put twp step auth ////
   const { mutate: putTwoStep } = useMutation({
     mutationKey: ["TOWSTEPAUTH"],
     mutationFn: (values) => PutTwoStepVerify(values),
-    onSettled: (data) => {
-      if (data.success) {
-        toast.success(data.message);
-        navigate("/login");
-      } else if (!data.success) {
-        toast.error(data.message);
-      }
+    onError: (err) => {
+      toast.error(err.response?.data?.message);
+    },
+    onSuccess: (data) => {
+      toast.success(data.message);
+      navigate("/login");
     },
   });
   //// 18n /////

@@ -1,6 +1,6 @@
 import { ErrorMessage, Field, Formik, Form } from "formik";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import * as Yup from "yup";
 import TranslateButton from "../../../components/TranslateButton/TranslateButton";
@@ -20,11 +20,12 @@ import eyeOpen from "../../../assets/Icons/A/eyeOpen.png";
 import forgot2 from "../../../assets/Images/A/forgot2.png";
 import { useSelector } from "react-redux";
 import { useTheme } from "../../../utils/hooks/useTheme/useTheme";
-
+import { getItem } from "../../../utils/helper/storage.services";
 const ForgotPasswordStepTwo = () => {
-  ///redux ///
-  const gmail = useSelector((state) => state.gmailred.gmail);
-  console.log(gmail);
+  const { id } = useParams();
+  console.log("dd", id);
+
+  const gmail = getItem("gmail");
 
   ////
   const { t, i18n } = useTranslation();
@@ -49,13 +50,12 @@ const ForgotPasswordStepTwo = () => {
   const { mutate: PostNewPass, isPending } = useMutation({
     mutationKey: ["POSTNEWPASS"],
     mutationFn: (values) => ResetPass2(values),
-    onSettled: (data) => {
-      if (data.success) {
-        toast.success(data.message);
-        navigate("/login");
-      } else if (!data.success) {
-        toast.error(data.message);
-      }
+    onError: (err) => {
+      toast.error(err.response?.data?.message);
+    },
+    onSuccess: (data) => {
+      toast.success(data.message);
+      navigate("/login");
     },
   });
 
@@ -105,7 +105,7 @@ const ForgotPasswordStepTwo = () => {
                   const finalValues = {
                     gmail: gmail,
                     newPassword: value.newPassword,
-                    resetValue: value.resetValue,
+                    resetValue: id,
                   };
                   PostNewPass(finalValues);
                 }}
@@ -146,7 +146,7 @@ const ForgotPasswordStepTwo = () => {
                         />
                       </div>
 
-                      <div className=" relative mt-6 ">
+                      {/* <div className=" relative mt-6 ">
                         <Field
                           className={` focus:outline-none bg-[#F3F4F6] dark:text-[#ffff] dark:bg-[#454545] w-full rounded-full pl-13 pr-6 py-3  placeholder:text-[15px] ${
                             errors.confirmPassword && touched.confirmPassword
@@ -172,7 +172,7 @@ const ForgotPasswordStepTwo = () => {
                           component={"span"}
                           className="text-[#EF5350] text-[14px] absolute top-16 right-0 "
                         />
-                      </div>
+                      </div> */}
 
                       <motion.button
                         whileHover={{

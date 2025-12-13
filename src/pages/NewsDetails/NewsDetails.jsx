@@ -22,6 +22,12 @@ import Lottie from "lottie-react";
 import empty from "../../assets/Images/empty.json";
 
 const NewsDetails = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   const { data } = useQuery({
     queryKey: "getallnews",
     queryFn: getAllNews,
@@ -105,6 +111,7 @@ const NewsDetails = () => {
         toast.success("امتیاز شما با موفقیت ثبت شد ");
       },
       onError: (error) => {
+        if (error?.response?.status === 401) return;
         if (error.response && error.response.status === 400) {
           toast.warn("شما قبلاً امتیاز خود را ثبت کرده اید");
         } else {
@@ -117,6 +124,8 @@ const NewsDetails = () => {
       rateMutation.mutate({ id: newsId, rate: value });
     };
 
+    const displayRating = hover || rating;
+
     return (
       <div className="flex items-center gap-2">
         {[1, 2, 3, 4, 5].map((star) => (
@@ -127,7 +136,7 @@ const NewsDetails = () => {
             onMouseLeave={() => setHover(null)}
             className="cursor-pointer transition-transform transform hover:scale-110"
           >
-            {star <= hover ? (
+            {star <= displayRating ? (
               <StarIcon className="text-yellow-400 text-[28px]" />
             ) : (
               <StarBorderIcon className="text-yellow-400 text-[28px]" />
@@ -260,7 +269,10 @@ const NewsDetails = () => {
                   key={news.id}
                   image={
                     news.currentImageAddress &&
-                    !news.currentImageAddress.includes("undefined")
+                    !news.currentImageAddress.includes("undefined") &&
+                    news.currentImageAddress.startsWith("http") &&
+                    !news.currentImageAddress.toLowerCase().includes("local") &&
+                    !news.currentImageAddress.toLowerCase().includes("fakepath")
                       ? news.currentImageAddress
                       : img2
                   }
@@ -335,7 +347,10 @@ const NewsDetails = () => {
                   id={news.id}
                   image={
                     news.currentImageAddress &&
-                    !news.currentImageAddress.includes("undefined")
+                    !news.currentImageAddress.includes("undefined") &&
+                    news.currentImageAddress.startsWith("http") &&
+                    !news.currentImageAddress.toLowerCase().includes("local") &&
+                    !news.currentImageAddress.toLowerCase().includes("fakepath")
                       ? news.currentImageAddress
                       : img2
                   }

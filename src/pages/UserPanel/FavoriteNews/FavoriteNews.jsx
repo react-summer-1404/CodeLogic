@@ -40,13 +40,15 @@ const FavoriteNews = () => {
   const { mutate: deleteNews, isPending: isDeleting } = useMutation({
     mutationKey: ["DELETENEW"],
     mutationFn: (value) => deleteFavNews(value),
-    onSettled: (data) => {
-      if (data.success) {
-        toast.success(data.message);
-        queryClient.invalidateQueries(["FAVNEWS"]);
-      } else if (!data.success) {
-        toast.error(data.message);
-      }
+    onError: (err) => {
+      toast.error(err.response?.data?.message);
+      setOpenModal(false);
+      setSelectedId(null);
+    },
+    onSuccess: (data) => {
+      toast.success(data.message);
+      queryClient.invalidateQueries(["FAVNEWS"]);
+
       setOpenModal(false);
       setSelectedId(null);
     },

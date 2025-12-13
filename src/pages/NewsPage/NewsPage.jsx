@@ -263,6 +263,7 @@ const NewsPage = () => {
                     image={
                       news.currentImageAddress &&
                       !news.currentImageAddress.includes("undefined") &&
+                      news.currentImageAddress.startsWith("http") &&
                       !news.currentImageAddress
                         .toLowerCase()
                         .includes("local") &&

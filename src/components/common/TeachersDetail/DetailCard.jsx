@@ -11,6 +11,7 @@ import { addFavCourses } from "../../../core/services/api/post/addFavCourses";
 import { toast } from "react-toastify";
 import reactImg from "../../../assets/Images/A/teachersDetail/1.png";
 import Tilt from "react-parallax-tilt";
+import imgg from "../../../assets/Images/A/teachersDetail/1.png";
 const DetailCard = ({ item }) => {
   const [isAdded, setIsAdded] = useState(false);
   const navigate = useNavigate();
@@ -18,11 +19,15 @@ const DetailCard = ({ item }) => {
   const { mutate: postFavDetail } = useMutation({
     mutationKey: ["POSTFAVDETAIL"],
     mutationFn: (id) => addFavCourses(id),
-    onSettled: (data) => {
-      if (data.success) {
-        setIsAdded(true);
-        toast.success(data.message);
-      }
+    onSuccess: (data) => {
+      setIsAdded(true);
+      toast.success(data.message);
+    },
+    onError: (err) => {
+      toast.error(
+        err.response?.data?.message ||
+          "این دوره قبلا به علاقه مندی اضافه شده است"
+      );
     },
   });
   return (
@@ -32,7 +37,7 @@ const DetailCard = ({ item }) => {
         transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_0px_10px_1px_#008c78] "
     >
       <img
-        src={!item.imageAddress ? reactImg : item.imageAddress}
+        src={item.imageAddress.slice(0.4) ? item.imageAddress : reactImg}
         className="w-full h-[259px] rounded-t-[20px]"
       />
       <div

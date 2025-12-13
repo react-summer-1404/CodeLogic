@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import img1 from "../../assets/Images/panelnavbar.png";
 import { useTheme } from "../../utils/hooks/useTheme/useTheme";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import Brightness7RoundedIcon from "@mui/icons-material/Brightness7Rounded";
@@ -10,9 +9,12 @@ import { useTranslation } from "react-i18next";
 import TranslateButton from "../../components/TranslateButton/TranslateButton";
 import UserPanelRight from "./UserPanelRight";
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import GetProfileInfo from "../../core/services/api/Get/GetProfileInfo";
-
+import { MultiAccTable } from "../../components/multiAcount/MultiAccTable";
+import { GetMultiAcc } from "../../core/services/api/Get/GetListMultiAcc";
+import { useQuery } from "@tanstack/react-query";
+import loading from "../../assets/Images/A/loading.gif";
+import AddMultiAccModal from "../../components/multiAcount/AddMultiAccModal";
 const headerVariants = {
   initial: { opacity: 0, y: -50 },
   animate: {
@@ -34,10 +36,7 @@ const itemVariants = {
 const UserPanelHeader = () => {
   const { data: profileData } = useQuery({
     queryKey: ["profileInfo"],
-    queryFn: async () => {
-      const res = await GetProfileInfo();
-      return res?.data ?? res;
-    },
+    queryFn: () => GetProfileInfo(),
   });
 
   const { t } = useTranslation();
@@ -45,7 +44,14 @@ const UserPanelHeader = () => {
   const isDark = theme === "dark";
 
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const [openMulti, setOpenMulti] = useState(false);
+  const closeMulti = () => setOpenMulti(false);
+  const { data: accsData = {}, isPending } = useQuery({
+    queryKey: ["ALLMULTIACOUNTS"],
+    queryFn: () => GetMultiAcc(),
+  });
+  const [openAddMulti, setOpenAddMulti] = useState(false);
+  const handleCloseMulti = () => setOpenAddMulti(false);
   return (
     <>
       <motion.div
@@ -54,18 +60,75 @@ const UserPanelHeader = () => {
         initial="initial"
         animate="animate"
       >
-        <motion.div className="flex items-center gap-5" variants={itemVariants}>
+        <motion.div
+          className="underpo flex items-center gap-5"
+          variants={itemVariants}
+        >
           <img
             src={profileData?.currentPictureAddress}
             alt="user"
             className="object-cover rounded-full w-[8%] h-[8%]"
+            onClick={() => setOpenMulti((prev) => !prev)}
           />
           <div className="flex flex-col">
             <p className="text-[20px] text-black dark:text-[#848484]">
               {profileData?.fName + " " + profileData?.lName}
             </p>
           </div>
+          {openMulti && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: {
+                  type: "spring",
+                  stiffness: 300,
+                  duration: 300,
+                },
+              }}
+              onClick={(e) => e.stopPropagation()}
+              className=" bg-[#eee] rounded-xl flex z-100  w-[300px] 
+                flex-col absolute right-0 top-17 shadow-xl gap-6  py-4 dark:text-white dark:bg-[#333] "
+            >
+              <h2 className="mx-auto">اکانت های شما</h2>
+              {isPending ? (
+                <img src={loading} className="mx-auto" />
+              ) : (
+                <div className="flex flex-col w-full">
+                  {accsData?.accounts.map((items, index) => (
+                    <MultiAccTable
+                      toggleClose={closeMulti}
+                      key={index}
+                      items={items}
+                    />
+                  ))}
+                </div>
+              )}
+              <div className="flex items-center justify-center gap-2">
+                <button
+                  onClick={() => setOpenAddMulti(true)}
+                  className=" cursor-pointer bg-[#008C78]
+                    text-white px-3 py-2 rounded-2xl hover:shadow-md inline"
+                >
+                  افزودن اکانت
+                </button>
+                <button
+                  onClick={() => setOpenMulti(false)}
+                  className=" cursor-pointer dark:border dark:border-[#EAEAEA] dark:text-white px-3 py-2 rounded-2xl"
+                >
+                  {t("deleteModal.cancel")}
+                </button>
+              </div>
+            </motion.div>
+          )}
         </motion.div>
+        {openAddMulti && (
+          <AddMultiAccModal
+            isOpen={openAddMulti}
+            handleClose={handleCloseMulti}
+          />
+        )}
 
         <div className="flex items-center gap-6">
           <motion.div variants={itemVariants}>

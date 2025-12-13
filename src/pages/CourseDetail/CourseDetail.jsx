@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CourseDetailSide from "../../components/course/CourseDetailSide/CourseDetailSide";
 import CourseDetailMain from "../../components/course/CourseDetailMain/CourseDetailMain";
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import getCourseById from '../../core/services/api/Get/getCourseById'
+import getCourseById from "../../core/services/api/Get/getCourseById";
 import CourseDetailSkeleton from "../../components/common/skeleton/CourseDetailSkeleton/CourseDetailSkeleton";
 
 const CourseDetail = () => {
-  
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   const { t } = useTranslation();
 
   const { id } = useParams();
@@ -19,7 +25,7 @@ const CourseDetail = () => {
   });
 
   if (isLoading) {
-    return <CourseDetailSkeleton/>;
+    return <CourseDetailSkeleton />;
   }
 
   if (!courseData) {

@@ -5,6 +5,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
@@ -28,23 +29,6 @@ const Footer = () => {
         </div>
 
         <div className="w-full md:w-1/2 relative flex flex-col items-center md:items-start">
-          <div className="relative w-full md:w-auto">
-            <input
-              type="text"
-              placeholder={t("footer.newsletter_placeholder")}
-              className="w-[90%] md:w-[360px] px-4 py-2 rounded-tl-[12px] rounded-tr-0 rounded-bl-0 rounded-br-[12px] bg-white text-[#414141] outline-none"
-            />
-            <button
-              className={` dark:bg-[#008C78] absolute top-0 ${
-                isRtl
-                  ? "left-0 rounded-tl-0 rounded-br-[12px] rounded-tr-0 rounded-bl-0"
-                  : "right-0 rounded-tr-0 rounded-bl-[12px] rounded-tl-0 rounded-br-0"
-              } 
-                          bg-[#008c78] text-white px-5 py-2 cursor-pointer`}
-            >
-              {t("footer.newsletter_button")}
-            </button>
-          </div>
           <span className="hidden md:block mt-16 text-sm text-[#cccccc] w-full md:w-auto">
             {t("footer.newsletter_description")}
           </span>
@@ -89,12 +73,15 @@ const Footer = () => {
             <li className="cursor-pointer hover:text-black transition-colors duration-300">
               {t("footer.news")}
             </li>
-            <li className="cursor-pointer hover:text-black transition-colors duration-300">
+            <li className="cursor-pointer hover:text-black transition-colors duration-300 ">
               {t("footer.jobs")}
             </li>
-            <li className="cursor-pointer hover:text-black transition-colors duration-300">
-              {t("footer.contact")}
-            </li>
+            <Link to={"/contactus"}>
+              <li className="cursor-pointer hover:text-black transition-colors duration-300 mb-2">
+                {t("footer.contact")}
+              </li>
+            </Link>
+
             <li className="cursor-pointer hover:text-black transition-colors duration-300">
               {t("footer.trust_center")}
             </li>
