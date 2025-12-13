@@ -168,10 +168,10 @@
     "title": "Training courses",
     "result": "Result"
   },
-  "courseListNav":{
+  "courseListNav": {
     "landing": "Landing",
     "courseList": "Course list"
-  }, 
+  },
   "courseListSide": {
     "searchPlaceholder": "Search...",
     "startEndDate": "Starting and ending date",
@@ -799,5 +799,11 @@
     "back": "Go to panel",
     "q1": "Do you want to pay for this course?",
     "loading": "Processing..."
+  },
+  "multi": {
+    "addAcc": "add account",
+    "delete": "Are you sure for delete acounts ?",
+    "del": "delete",
+    "accs": "Your accounts"
   }
 }

@@ -15,6 +15,7 @@ import { GetMultiAcc } from "../../core/services/api/Get/GetListMultiAcc";
 import { useQuery } from "@tanstack/react-query";
 import loading from "../../assets/Images/A/loading.gif";
 import AddMultiAccModal from "../../components/multiAcount/AddMultiAccModal";
+import i18n from "../../utils/i18n/i18n";
 const headerVariants = {
   initial: { opacity: 0, y: -50 },
   animate: {
@@ -42,7 +43,7 @@ const UserPanelHeader = () => {
   const { t } = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
-
+  const isRTL = i18n.language === "fa";
   const [menuOpen, setMenuOpen] = useState(false);
   const [openMulti, setOpenMulti] = useState(false);
   const closeMulti = () => setOpenMulti(false);
@@ -88,10 +89,12 @@ const UserPanelHeader = () => {
                 },
               }}
               onClick={(e) => e.stopPropagation()}
-              className=" bg-[#eee] rounded-xl flex z-100  w-[300px] 
-                flex-col absolute right-0 top-17 shadow-xl gap-6  py-4 dark:text-white dark:bg-[#333] "
+              className={` bg-[#eee] rounded-xl flex z-100  w-[300px] 
+                flex-col absolute ${
+                  isRTL ? "right-0" : "left-0"
+                } top-17 shadow-xl gap-6  py-4 dark:text-white dark:bg-[#333] `}
             >
-              <h2 className="mx-auto">اکانت های شما</h2>
+              <h2 className="mx-auto">{t("multi.accs")}</h2>
               {isPending ? (
                 <img src={loading} className="mx-auto" />
               ) : (
@@ -111,7 +114,7 @@ const UserPanelHeader = () => {
                   className=" cursor-pointer bg-[#008C78]
                     text-white px-3 py-2 rounded-2xl hover:shadow-md inline"
                 >
-                  افزودن اکانت
+                  {t("multi.addAcc")}
                 </button>
                 <button
                   onClick={() => setOpenMulti(false)}
