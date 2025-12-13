@@ -9,35 +9,41 @@ import { t } from "i18next";
 import Lottie from "lottie-react";
 import empty from "../../../assets/Images/empty.json";
 import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";
-
+import { useDebounce } from "use-debounce";
+import { motion } from "framer-motion";
+import searchIcon from "../../../assets/Icons/A/search.png";
+import { useTranslation } from "react-i18next";
 const MyCourseComments = () => {
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === "fa";
   const [currentPage, setCurrentPage] = useState(1);
   const [commentsPerPage, setCommentsPerPage] = useState(2);
   const [searchQuery, setSearchQuery] = useState("");
+  const [query] = useDebounce(searchQuery, 700);
   const [filterOption, setFilterOption] = useState("all");
 
   const { data: myCourseCommentsData, isLoading: isPending } = useQuery({
-    queryKey: ["MYCOURSECOMMENTS", searchQuery],
-    queryFn: () =>
-      myCourseComments({
-        Query: searchQuery,
-        SortType: "accept",
-      }),
+    queryKey: ["MYCOURSECOMMENTS"],
+    queryFn: () => myCourseComments(),
   });
 
   const allComments = myCourseCommentsData?.myCommentsDtos || [];
   const filteredComments = allComments.filter((comment) => {
-    const courseName = comment?.courseName ?? "";
+    const courseName = comment?.courseTitle ?? "";
+    const commentName = comment?.title ?? "";
     const matchesTitle = courseName
       .toLowerCase()
-      .trim()
-      .includes(searchQuery.trim().toLowerCase());
-    if (filterOption === "all" || filterOption === "همه") {
-      return matchesTitle;
+      .includes(query.trim().toLowerCase());
+    const matchesCm = commentName
+      .toLowerCase()
+      .includes(query.trim().toLowerCase());
+
+    if (filterOption === "all") {
+      return matchesTitle || matchesCm;
     }
+
     const bool = filterOption === "true";
-    const matchesFilters = comment.accept === bool;
-    return matchesFilters && matchesTitle;
+    return comment.accept === bool && matchesTitle;
   });
 
   const startIndex = (currentPage - 1) * commentsPerPage;
@@ -55,11 +61,49 @@ const MyCourseComments = () => {
     setSearchQuery(searchTerm);
     setCurrentPage(1);
   };
+  const rightAnimate = {
+    hidden: { opacity: 0, x: 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { type: "spring", stiffness: 250, duration: 0.35 },
+    },
+    exit: {
+      opacity: 0,
+      x: 50,
+      transition: { duration: 0.35, type: "spring", stiffness: 250 },
+    },
+  };
 
   return (
     <div className="flex flex-col gap-10 h-[84%] mt-4 p-8 bg-[#F3F4F6] rounded-4xl   dark:bg-[#333333]">
       <div className="flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between items-center">
-        <UserPanelSearch width={"md:w-[320px]"} handleSearch={handleSearch} />
+        <motion.div
+          variants={rightAnimate}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className="relative [w-50%] md:max-w-[40%] md:w-full"
+        >
+          <input
+            className=" dark:bg-[#454545] dark:text-[#ffff] dark:placeholder:text-white
+                     w-full h-full shadow py-2 px-3 bg-[#ffff] rounded-[16px] focus:outline-none "
+            value={searchQuery}
+            type="text"
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setCurrentPage(1);
+            }}
+            placeholder={t("favoriteNews.search")}
+          />
+          <img
+            className={` absolute ${
+              isRTL ? "left-3" : "right-3"
+            } top-[50%] translate-y-[-50%] `}
+            src={searchIcon}
+            alt=""
+          />
+        </motion.div>
         <div
           className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff]
           rounded-xl border shadow p-2 md:p-1 border-[#EAEAEA] "

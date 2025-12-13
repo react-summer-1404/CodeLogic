@@ -1,54 +1,63 @@
-import React, { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import UserPanelSearch from '../../../components/common/UserPanelSearch/UserPanelSearch'
-import UserPanelTitle from '../../../components/common/UserPanelTitle/UserPanelTitle'
-import MyNewsComment from '../../../components/userPanel/MyNewsComment/MyNewsComment'
-import myNewsComments from '../../../core/services/api/get/myNewsComments'
-import ReactPaginate from 'react-paginate'
-import { t } from 'i18next'
-import Lottie from "lottie-react"
-import empty from "../../../assets/Images/empty.json"
-import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton"
-
-
+import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import UserPanelSearch from "../../../components/common/UserPanelSearch/UserPanelSearch";
+import UserPanelTitle from "../../../components/common/UserPanelTitle/UserPanelTitle";
+import MyNewsComment from "../../../components/userPanel/MyNewsComment/MyNewsComment";
+import myNewsComments from "../../../core/services/api/get/myNewsComments";
+import ReactPaginate from "react-paginate";
+import { t } from "i18next";
+import Lottie from "lottie-react";
+import empty from "../../../assets/Images/empty.json";
+import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";
+import { useDebounce } from "use-debounce";
+import { motion } from "framer-motion";
+import searchIcon from "../../../assets/Icons/A/search.png";
+import { useTranslation } from "react-i18next";
 const MyNewsComments = () => {
-
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === "fa";
   const [currentPage, setCurrentPage] = useState(1);
   const [commentsPerPage, setCommentsPerPage] = useState(2);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filterOption, setFilterOption] = useState('all');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [query] = useDebounce(searchQuery, 600);
+  const [filterOption, setFilterOption] = useState("all");
 
   const handleSearch = (searchTerm) => {
     setSearchQuery(searchTerm);
     setCurrentPage(1);
   };
 
-
   const { data: myNewsCommentsData, isLoading } = useQuery({
-    queryKey: ['MYNEWSCOMMENTS', searchQuery],
-    queryFn: () => myNewsComments({
-      Query: searchQuery,
-      SortType: 'accept'
-    })
+    queryKey: ["MYNEWSCOMMENTS"],
+    queryFn: () => myNewsComments(),
   });
-
-
 
   const allComments = myNewsCommentsData?.myNewsCommetDtos || [];
-  const filteredComments = allComments.filter((comment) => {
-    const newsTitle = comment?.newsName ?? "";
-    const matchesTitle = newsTitle
-      .toLowerCase()
-      .trim()
-      .includes(searchQuery.trim().toLowerCase());
-    if (filterOption === "all" || filterOption === "همه") {
-      return matchesTitle;
-    }
-    const bool = filterOption === "true";
-    const matchesFilters = comment.accept === bool;
-    return matchesFilters && matchesTitle;
-  });
+  const normalizedQuery = query.trim().toLowerCase();
 
+  const filteredComments = allComments
+    .filter((comment) => {
+      const describe = comment?.describe?.toLowerCase() || "";
+      const title = comment?.title?.toLowerCase() || "";
+
+      const matchesSearch =
+        !normalizedQuery ||
+        describe.includes(normalizedQuery) ||
+        title.includes(normalizedQuery);
+
+      return matchesSearch;
+    })
+    .sort((a, b) => {
+      if (filterOption === "جدید ترین ها") {
+        return new Date(b.inserDate) - new Date(a.inserDate);
+      }
+
+      if (filterOption === "اولین بروزرسانی") {
+        return new Date(a.inserDate) - new Date(b.inserDate);
+      }
+
+      return 0;
+    });
 
   const startIndex = (currentPage - 1) * commentsPerPage;
   const endIndex = startIndex + commentsPerPage;
@@ -60,15 +69,52 @@ const MyNewsComments = () => {
     setCurrentPage(selectedPage);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-
+  const rightAnimate = {
+    hidden: { opacity: 0, x: 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { type: "spring", stiffness: 250, duration: 0.35 },
+    },
+    exit: {
+      opacity: 0,
+      x: 50,
+      transition: { duration: 0.35, type: "spring", stiffness: 250 },
+    },
+  };
   return (
-    <div className='flex flex-col gap-10 h-[84%] mt-4 p-8 bg-[#F3F4F6] rounded-4xl   dark:bg-[#333333]'>
-      <div className='flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between items-center'>
-        <UserPanelSearch width={'md:w-[320px]'} handleSearch={handleSearch} />
+    <div className="flex flex-col gap-10 h-[84%] mt-4 p-8 bg-[#F3F4F6] rounded-4xl   dark:bg-[#333333]">
+      <div className="flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between items-center">
+        <motion.div
+          variants={rightAnimate}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className="relative [w-50%] md:max-w-[40%] md:w-full"
+        >
+          <input
+            className=" dark:bg-[#454545] dark:text-[#ffff] dark:placeholder:text-white
+                             w-full h-full shadow py-2 px-3 bg-[#ffff] rounded-[16px] focus:outline-none "
+            value={searchQuery}
+            type="text"
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setCurrentPage(1);
+            }}
+            placeholder={t("favoriteNews.search")}
+          />
+          <img
+            className={` absolute ${
+              isRTL ? "left-3" : "right-3"
+            } top-[50%] translate-y-[-50%] `}
+            src={searchIcon}
+            alt=""
+          />
+        </motion.div>
         <div
-          className="flex h-full items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff]
-          rounded-xl border shadow p-2 md:p-1 border-[#EAEAEA] ">
+          className="flex h-full py-4  items-center bg-[#ffff] dark:bg-[#454545] dark:text-[#ffff]
+         rounded-xl border shadow md:p-1 border-[#EAEAEA] "
+        >
           <span className="text-[16px] hidden md:inline ps-3">
             {t("coursesPayment.filters")}
           </span>
@@ -78,53 +124,70 @@ const MyNewsComments = () => {
               setFilterOption(e.target.value);
               setCurrentPage(1);
             }}
-            className=" rounded-xl text-sm cursor-pointer ps-2 text-gray-600   dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]">
-            <option value="all">({t("favoriteNews.all")})</option>
-            <option value="false">({t("coursesPayment.AwaitingConfirmation")})</option>
-            <option value="true">({t("coursesPayment.confirmed")})</option>
+            className=" rounded-xl text-sm cursor-pointer py-1 ps-2 text-gray-600
+                         dark:bg-[#454545] dark:text-[#ffff] bg-[#ffff]"
+          >
+            <option value="all">({t("favoriteCourses.all")})</option>
+            <option value="جدید ترین ها">
+              ({t("favoriteCourses.lastUpdate")})
+            </option>
+            <option value="اولین بروزرسانی">
+              ({t("favoriteCourses.firstUpdate")})
+            </option>
           </select>
         </div>
       </div>
-      <div className='flex flex-col justify-between h-[440px] p-6 bg-[#FFFFFF] rounded-2xl   dark:bg-[#454545]'>
-        <div className='flex flex-col gap-4'>
+      <div className="flex flex-col justify-between h-[440px] p-6 bg-[#FFFFFF] rounded-2xl   dark:bg-[#454545]">
+        <div className="flex flex-col gap-4">
           <UserPanelTitle
             titleData={{
-              title1: t('myNewsComments.title1'), justify1: 'justify-start', w1: 'w-60',
-              title2: t('myNewsComments.title2'), justify2: 'justify-start', w2: 'w-52',
-              title3: t('myNewsComments.title3'), justify3: 'justify-start', w3: 'w-52',
-              title4: t('myNewsComments.title4'), justify4: 'justify-center', w4: 'w-28',
-              title5: t('myNewsComments.title5'), justify5: 'justify-center', w5: 'w-30',
-              title6: t('myNewsComments.title6'), justify6: 'justify-center', w6: 'w-24',
-            }} />
-          <div className='max-h-66 overflow-y-auto'>
-            <div className='flex flex-col gap-4 md:gap-0'>
-              {
-                isLoading ? (
-                  [...Array(commentsPerPage)].map((_, index) => (
-                    <FavoritesSkeleton key={index + 2} />
-                  ))
-                ) : currentComments.length > 0 ? (
-                  currentComments.map((item, index) => {
-                    return <MyNewsComment item={item} key={index} />
-                  })
-                ) : (
-                  <div className="w-full">
-                    <Lottie
-                      className="w-[200px] h-[170px] my-4 mx-auto"
-                      animationData={empty}
-                      loop={true}
-                    />
-                    <p className="font-semibold text-[black] text-[20px] text-center dark:text-[#848484]">
-                      {t("navbar.notfound")}
-                    </p>
-                  </div>
-                )
-              }
+              title1: t("myNewsComments.title1"),
+              justify1: "justify-start",
+              w1: "w-60",
+              title2: t("myNewsComments.title2"),
+              justify2: "justify-start",
+              w2: "w-52",
+              title3: t("myNewsComments.title3"),
+              justify3: "justify-start",
+              w3: "w-52",
+              title4: t("myNewsComments.title4"),
+              justify4: "justify-center",
+              w4: "w-28",
+              title5: t("myNewsComments.title5"),
+              justify5: "justify-center",
+              w5: "w-30",
+              title6: t("myNewsComments.title6"),
+              justify6: "justify-center",
+              w6: "w-24",
+            }}
+          />
+          <div className="max-h-66 overflow-y-auto">
+            <div className="flex flex-col gap-4 md:gap-0">
+              {isLoading ? (
+                [...Array(commentsPerPage)].map((_, index) => (
+                  <FavoritesSkeleton key={index + 2} />
+                ))
+              ) : currentComments.length > 0 ? (
+                currentComments.map((item, index) => {
+                  return <MyNewsComment item={item} key={index} />;
+                })
+              ) : (
+                <div className="w-full">
+                  <Lottie
+                    className="w-[200px] h-[170px] my-4 mx-auto"
+                    animationData={empty}
+                    loop={true}
+                  />
+                  <p className="font-semibold text-[black] text-[20px] text-center dark:text-[#848484]">
+                    {t("navbar.notfound")}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
 
-        <div className='flex justify-between items-center'>
+        <div className="flex justify-between items-center">
           <ReactPaginate
             breakLabel="..."
             nextLabel=" >"
@@ -162,7 +225,7 @@ const MyNewsComments = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default MyNewsComments;

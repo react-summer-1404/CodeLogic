@@ -50,7 +50,7 @@ const FavoriteCourses = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [coursesPerPage, setCoursesPerPage] = useState(2);
   const [searchTerm, setSearchTerm] = useState("");
-  const [query] = useDebounce(searchTerm, 350);
+  const [query] = useDebounce(searchTerm, 600);
   const [filterOption, setFilterOption] = useState("all");
 
   const filteredCourses = favoriteCourses
@@ -63,12 +63,14 @@ const FavoriteCourses = () => {
     })
     .sort((a, b) => {
       if (filterOption === "جدید ترین ها") {
-        return b.lastUpdate - a.lastUpdate;
-      } else if (filterOption === "اولین بروزرسانی") {
-        return a.lastUpdate - b.lastUpdate;
-      } else {
-        return 0;
+        return new Date(b.lastUpdate) - new Date(a.lastUpdate);
       }
+
+      if (filterOption === "اولین بروزرسانی") {
+        return new Date(a.lastUpdate) - new Date(b.lastUpdate);
+      }
+
+      return 0;
     });
 
   const startIndex = (currentPage - 1) * coursesPerPage;
