@@ -27,21 +27,22 @@ const MyCourseComment = ({ item }) => {
 
   
   const [isOpenViewModal, setIsOpenViewModal] = useState(false);
-  const handleToggleViewModal = () => {
-    setIsOpenViewModal(!isOpenViewModal);
+  const handleToggleViewModal = (value) => {
+    setIsOpenViewModal(value);
   };
   
   
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-  const handleToggleDeleteModal = () => {
-    setIsOpenDeleteModal(!isOpenDeleteModal)
+  const handleToggleDeleteModal = (value) => {
+    setIsOpenDeleteModal(value)
   }
   const queryClient = useQueryClient()
   const deleteCourseCom = useMutation({
+    mutationKey: ["DELETECOURSECOM"],
+    mutationFn: () => deleteCoursesComments(item.id),
     onSuccess: () => {
-      deleteCoursesComments(item.id);
       toast.success(t("myCourseComment.successToast"));
-      queryClient.invalidateQueries({predicate: q => q.queryKey[0] === 'MYCOURSECOMMENTS'})
+      queryClient.invalidateQueries(['MYCOURSECOMMENTS'])
       handleToggleDeleteModal(false)
     }
   }) 

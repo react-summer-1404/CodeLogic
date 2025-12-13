@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-const Section1Card = ({item}) => {
+const Section1Card = ({item, isLoading}) => {
 
   const {t} = useTranslation();
 
@@ -12,7 +12,9 @@ const Section1Card = ({item}) => {
       <span className='font-regular   dark:text-[#EEEEEE]  
       sa:text-xs   sm:text-base   lg:text-2xl'>{item.title}</span>
       <span className='font-bold   dark:text-[#EEEEEE]   
-      sa:text-sm   sm:text-xl   lg:text-5xl'>{item.members}</span>
+      sa:text-sm   sm:text-xl   lg:text-5xl'>
+        {isLoading ? <span className="inline-block w-20 h-8 bg-black/10 animate-pulse rounded"></span> : (item.members)}
+      </span>
     </div>
   )
 }

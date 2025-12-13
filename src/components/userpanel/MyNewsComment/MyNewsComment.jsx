@@ -30,21 +30,22 @@ const MyNewsComment = ({ item }) => {
 
   
   const [isOpenViewModal, setIsOpenViewModal] = useState(false);
-  const handleToggleViewModal = () => {
-    setIsOpenViewModal(!isOpenViewModal);
+  const handleToggleViewModal = (value) => {
+    setIsOpenViewModal(value);
   };
   
 
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false)
-  const handleToggleDeleteModal = () => {
-    setIsOpenDeleteModal(!isOpenDeleteModal)
+  const handleToggleDeleteModal = (value) => {
+    setIsOpenDeleteModal(value)
   }
   const queryClient = useQueryClient()
   const deleteNewsCom = useMutation({
+    mutationKey: ["DELETENEWSCOM"],
+    mutationFn: () => deleteNewsComments(item.id),
     onSuccess: () => {
-      deleteNewsComments(item.id);
       toast.success(t("myNewsComment.successToast"));
-      queryClient.invalidateQueries({predicate: q => q.queryKey[0] === 'MYNEWSCOMMENTS'})
+      queryClient.invalidateQueries(['MYNEWSCOMMENTS'])
       handleToggleDeleteModal(false)
     }
   })
@@ -71,27 +72,20 @@ const MyNewsComment = ({ item }) => {
         </div>
         <div
           className="flex justify-center 
-            md:w-30"
-        >
+          md:w-30">
           <span className="font-regular text-base text-[#1E1E1E] truncate dark:text-[#DDDDDD]">
             {PersianDateConverter(item.inserDate)}
           </span>
         </div>
         <div
           className="flex justify-center gap-4 
-            md:w-24"
-        >
-          <span
-            onClick={() => {
-              handleToggleViewModal(true);
-            }}
-            className="cursor-pointer"
-          >
-            <Eye />
+          md:w-24">
+          <span onClick={() => {handleToggleViewModal(true);}} className="cursor-pointer">
+            <Eye/>
           </span>
-          <span onClick={() => {handleToggleDeleteModal(true)}} className="cursor-pointer">
+          {/* <span onClick={() => {handleToggleDeleteModal(true)}} className="cursor-pointer">
             <Garbage />
-          </span>
+          </span> */}
         </div>
       </motion.div>
       {isOpenViewModal && (
