@@ -16,10 +16,13 @@ const RemoveMultiModal = ({ isOpen, toggleClose, id }) => {
     },
     onSuccess: (data) => {
       toast.success(data.message);
-      queryClient.invalidateQueries(["ALLMULTIACOUNTS"]);
       toggleClose();
-      removeItem("token");
       setItem("token", data.token);
+      queryClient.invalidateQueries([
+        "profileInfo",
+        "resCourses",
+        "ALLMULTIACOUNTS",
+      ]);
     },
   });
   return (

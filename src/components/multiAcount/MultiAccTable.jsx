@@ -19,8 +19,12 @@ export const MultiAccTable = ({ items, toggleClose }) => {
     onSuccess: (data) => {
       toast.success(data.message);
       toggleClose();
-      removeItem("token");
       setItem("token", data.token);
+      queryClient.invalidateQueries([
+        "profileInfo",
+        "resCourses",
+        "ALLMULTIACOUNTS",
+      ]);
     },
   });
   return (
