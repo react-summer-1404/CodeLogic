@@ -6,6 +6,9 @@ import CourseCardView1 from "../../common/CourseCardView1/CourseCardView1";
 import ButtonsSeeMore from "../../common/ButtonsSeeMore/ButtonsSeeMore";
 import compareManager from "../../compareManager/compareManager";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { addFavCourses } from "../../../core/services/api/post/addFavCourses";
+import { deleteFavCourses } from "../../../core/services/api/delete/deleteFavCourses";
 
 const SliderCourses = () => {
   const navigate = useNavigate();
@@ -37,6 +40,21 @@ const SliderCourses = () => {
   });
 
   const sliderRef = useRef();
+  const [favorites, setFavorites] = useState({});
+  const handleToggleFavorite = async (courseId) => {
+    const isFavorite = favorites[courseId] || false;
+    if (isFavorite) {
+      await deleteFavCourses(courseId);
+      toast.success(t("courseCard.removeFavSuccessToast"));
+    } else {
+      await addFavCourses(courseId);
+      toast.success(t("courseCard.addFavSuccessToast"));
+    }
+    setFavorites((prev) => ({
+      ...prev,
+      [courseId]: !isFavorite,
+    }));
+  };
 
   return (
     <div className="flex flex-col items-between gap-8 w-full pt-[104px]">
@@ -71,6 +89,7 @@ const SliderCourses = () => {
               key={index}
               handleToggleCompare={handleToggleCompare}
               isCompared={comparedCourseIds.includes(item.courseId)}
+              handleToggleFavorite={handleToggleFavorite}
             />
           );
         })}
