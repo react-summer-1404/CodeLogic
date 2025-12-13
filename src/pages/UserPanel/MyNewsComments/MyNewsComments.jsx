@@ -89,11 +89,10 @@ const MyNewsComments = () => {
         <div className='flex flex-col gap-4'>
           <UserPanelTitle
             titleData={{
-              title1: t('myNewsComments.title1'), justify1: 'justify-start', w1: 'w-60',
-              title2: t('myNewsComments.title2'), justify2: 'justify-start', w2: 'w-52',
+              title1: t('myNewsComments.title1'), justify1: 'justify-start', w1: 'w-66',
+              title2: t('myNewsComments.title2'), justify2: 'justify-start', w2: 'w-58',
               title3: t('myNewsComments.title3'), justify3: 'justify-start', w3: 'w-52',
-              title4: t('myNewsComments.title4'), justify4: 'justify-center', w4: 'w-28',
-              title5: t('myNewsComments.title5'), justify5: 'justify-center', w5: 'w-30',
+              title5: t('myNewsComments.title5'), justify5: 'justify-center', w5: 'w-42',
               title6: t('myNewsComments.title6'), justify6: 'justify-center', w6: 'w-24',
             }} />
           <div className='max-h-66 overflow-y-auto'>

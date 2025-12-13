@@ -42,7 +42,7 @@ const NewsComDeleteModal = ({handleToggleDeleteModal, handleDeleteNewsCom}) => {
                     </button>
                     <button 
                     onClick={onDeleteNewsCom}
-                    className='py-2 px-4 text-[#FFFFFF] bg-[#FF0000] rounded-lg cursor-pointer'>
+                    className='py-2 px-4 text-[#FFFFFF] bg-[#EB0007] rounded-lg cursor-pointer'>
                         {t('courseComDeleteModal.deleteBtn')}
                     </button>
                 </div>

@@ -88,24 +88,12 @@ const MyCourseComments = () => {
         <div className="flex flex-col gap-4  relative ">
           <UserPanelTitle
             titleData={{
-              title1: t("myCourseComments.title1"),
-              justify1: "justify-start",
-              w1: "w-60",
-              title2: t("myCourseComments.title2"),
-              justify2: "justify-start",
-              w2: "w-52",
-              title3: t("myCourseComments.title3"),
-              justify3: "justify-start",
-              w3: "w-52",
-              title4: t("myCourseComments.title4"),
-              justify4: "justify-center",
-              w4: "w-28",
-              title5: t("myCourseComments.title5"),
-              justify5: "justify-center",
-              w5: "w-30",
-              title6: t("myCourseComments.title6"),
-              justify6: "justify-center",
-              w6: "w-24",
+              title1: t("myCourseComments.title1"), justify1: "justify-start", w1: "w-58",
+              title2: t("myCourseComments.title2"), justify2: "justify-start", w2: "w-51",
+              title3: t("myCourseComments.title3"), justify3: "justify-start", w3: "w-49",
+              title4: t("myCourseComments.title4"), justify4: "justify-center", w4: "w-30",
+              title5: t("myCourseComments.title5"), justify5: "justify-center", w5: "w-36",
+              title6: t("myCourseComments.title6"), justify6: "justify-center", w6: "w-24",
             }}
           />
           <div className="flex flex-col max-h-66 overflow-y-auto  ">

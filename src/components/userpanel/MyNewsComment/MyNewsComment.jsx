@@ -66,14 +66,6 @@ const MyNewsComment = ({ item }) => {
         </div>
         <div
           className="flex justify-center 
-            md:w-28"
-        >
-          <span className="py-[2px] px-[12px] font-regular text-base text-[#008C78] bg-[#EEFFFC] rounded-lg">
-            تایید شده
-          </span>
-        </div>
-        <div
-          className="flex justify-center 
             md:w-30"
         >
           <span className="font-regular text-base text-[#1E1E1E] truncate dark:text-[#DDDDDD]">
