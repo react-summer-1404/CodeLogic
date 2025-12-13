@@ -13,6 +13,7 @@ import eyeOpen from "../../assets/Icons/A/eyeOpen.png";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { removeItem, setItem } from "../../utils/helper/storage.services";
 
 const AddMultiAccModal = ({ handleClose, isOpen }) => {
   const { t, i18n } = useTranslation();
@@ -28,6 +29,12 @@ const AddMultiAccModal = ({ handleClose, isOpen }) => {
       toast.success(data.message);
       queryClient.invalidateQueries(["ALLMULTIACOUNTS"]);
       handleClose();
+      setItem("token", data.token);
+      queryClient.invalidateQueries([
+        "profileInfo",
+        "resCourses",
+        "ALLMULTIACOUNTS",
+      ]);
     },
   });
   const [validationSchema, setValidationSchema] = useState(Login1Val());
