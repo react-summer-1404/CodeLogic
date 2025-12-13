@@ -39,6 +39,7 @@ const MyNewsComment = ({ item }) => {
         initial="hidden"
         animate="visible"
         className="flex flex-col items-center gap-6 py-[14px] bg-[#CCCCCC] border-t border-b border-[#EAEAEA] rounded-xl
+        dark:bg-[#454545]
         md:flex-row md:bg-[#FFFFFF] md:rounded-none"
       >
         <div className="md:w-60">

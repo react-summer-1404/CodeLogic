@@ -25,7 +25,7 @@ const PriceFilter = ({ handleSetPrice }) => {
           setIsOpen(!isOpen);
         }}
         className="flex justify-between items-center w-full
-            dark:text-[#DDDDDD]"
+          dark:text-[#DDDDDD]"
       >
         <span className="font-bold text-[18px] text-[#1E1E1E]   dark:text-[#DDDDDD]">
           {t("priceFilter.title")}
@@ -35,30 +35,36 @@ const PriceFilter = ({ handleSetPrice }) => {
         </button>
       </div>
       {isOpen && (
-        <Box sx={{ width: 248, color: "bg-[#008C78]" }}>
-          <Slider
-            getAriaLabel={() => "Temperature range"}
-            value={value}
-            onChange={priceChange}
-            valueLabelDisplay="auto"
-            min={0}
-            max={10000}
-            step={1000}
-            sx={{
-              color: "#008C78",
-              "& .MuiSlider-thumb": {
-                "&:hover, &.Mui-focusVisible": {
-                  boxShadow: "0 0 0 8px rgba(0, 140, 120, 0.16)",
-                  backgroundColor: "#008C78",
+        <div className="flex flex-col">
+          <Box sx={{ width: 248, color: "bg-[#008C78]" }}>
+            <Slider
+              getAriaLabel={() => "Temperature range"}
+              value={value}
+              onChange={priceChange}
+              valueLabelDisplay="auto"
+              min={0}
+              max={10000}
+              step={1000}
+              sx={{
+                color: "#008C78",
+                "& .MuiSlider-thumb": {
+                  "&:hover, &.Mui-focusVisible": {
+                    boxShadow: "0 0 0 8px rgba(0, 140, 120, 0.16)",
+                    backgroundColor: "#008C78",
+                  },
+                  "&.Mui-active": {
+                    boxShadow: "0 0 0 14px rgba(0, 140, 120, 0.16)",
+                    backgroundColor: "#008C78",
+                  },
                 },
-                "&.Mui-active": {
-                  boxShadow: "0 0 0 14px rgba(0, 140, 120, 0.16)",
-                  backgroundColor: "#008C78",
-                },
-              },
-            }}
-          />
-        </Box>
+              }}
+            />
+          </Box>
+          <div className="flex justify-between text-[#008C78]">
+            <span>{value[1]}</span>
+            <span>{value[0]}</span>
+          </div>
+        </div>
       )}
     </div>
   );

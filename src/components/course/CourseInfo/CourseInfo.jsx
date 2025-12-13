@@ -4,29 +4,43 @@ import Clock from "../../../assets/Icons/Clock";
 import Users from "../../../assets/Icons/Users";
 import { useTranslation } from "react-i18next";
 import { reserveCourses } from "../../../core/services/api/post/reserveCourses";
-import { deleteReserveCourses } from "../../../core/services/api/delete/deleteReserveCourses";
 import { toast } from "react-toastify";
+import {useMutation} from "@tanstack/react-query"
+
+
 
 const CourseInfo = ({ course }) => {
+
+
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "fa";
+
 
   const [isReserve, setIsReserve] = useState(
     course.isDelete ? false : localStorage.getItem(course.courseId) === "true"
   );
-  const toggleReserveCourses = () => {
-    if (course.isDelete) return;
-    else if (isReserve) {
-      deleteReserveCourses(course.courseId);
-      toast.success(t("courseInfo.removeSuccessToast"));
-    } else {
-      reserveCourses(course.courseId);
+  const reserveMutation = useMutation({
+    mutationFn: () => reserveCourses(course.courseId),
+    onSuccess: () => {
       toast.success(t("courseInfo.reserveSuccessToast"));
+      setIsReserve(true);
+      localStorage.setItem(course.courseId, "true");
+    },
+  });
+  const onReserveCourses = () => {
+    const token = localStorage.getItem("token");
+    if(!token && !isReserve){
+      toast.error(t('login.loginToast'));
+      return;
     }
-    const newState = !isReserve;
-    setIsReserve(newState);
-    localStorage.setItem(course.courseId, newState);
+    if(isReserve){
+      toast.info(t("courseInfo.reservedInfoToast"));
+      return;
+    }
+    reserveMutation.mutate();
   };
+
+
 
   const discountedPrice = course.cost * 0.5;
 
@@ -126,16 +140,16 @@ const CourseInfo = ({ course }) => {
           </div>
         </div>
         <button
-          onClick={toggleReserveCourses}
-          className={`py-4 px-24 font-regular text-[18px] text-[#FFFFFF] rounded-[20px] cursor-pointer
+          onClick={onReserveCourses}
+          className={`py-4 px-24 font-regular text-[18px] rounded-[20px] cursor-pointer
                 ${
                   isReserve
-                    ? "bg-[#CC0000]   dark:bg-[#FF0000]"
-                    : "bg-[#24D0B7]"
+                    ? "text-[#24D0B7] bg-[#FFFFFF] border border-[#24D0B7]   dark:bg-[#454545]"
+                    : "text-[#FFFFFF] bg-[#24D0B7]"
                 } `}
         >
           {isReserve
-            ? t("courseInfo.deleteReserveBtn")
+            ? t("courseInfo.reserved")
             : t("courseInfo.reserveBtn")}
         </button>
       </div>

@@ -1,47 +1,54 @@
-import React, { useState, useEffect } from "react";
-import StarRating from '../../../assets/Icons/StarRating'
+import React, { useState } from "react";
+import StarRating from '../../../assets/Icons/StarRating';
 import { courseRate } from "../../../core/services/api/post/courseRate";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { useMutation } from "@tanstack/react-query";
 
 
 
 const StarsRating = ({ course, totalStars = 5 }) => {
 
-  const {t} = useTranslation()
 
+  const { t } = useTranslation();
   const courseId = course.courseId;
+
   const [rating, setRating] = useState(() => {
     const saved = localStorage.getItem(`rate_${courseId}`);
-    return saved;
+    return saved ? Number(saved) : 0;
   });
+
   const [hover, setHover] = useState(0);
   const [hasRated, setHasRated] = useState(() => {
     return localStorage.getItem(`rated_${courseId}`) === "true";
   });
 
-
-  useEffect(() => {
-    localStorage.setItem(`rate_${courseId}`, rating);
-    localStorage.setItem(`rated_${courseId}`, hasRated);
-  }, [rating, hasRated, courseId]);
+  const token = localStorage.getItem("token");
 
 
-
-  const onSetRating = async (starValue) => {
+  const mutation = useMutation({
+    mutationFn: ({ courseId, starValue, token }) => courseRate(courseId, starValue, token),
+    onSuccess: () => {
+      toast.success(t('userSatisfaction.successToast'));
+      localStorage.setItem(`rate_${courseId}`, rating);
+      localStorage.setItem(`rated_${courseId}`, "true");
+    },
+    onError: () => {
+      setHasRated(false);
+    }
+  });
+  const onSetRating = (starValue) => {
+    if (!token) {
+      toast.error(t('login.loginToast'));
+      return;
+    }
     if (hasRated) {
-      toast.info(t('userSatisfaction.infoToast')); 
+      toast.info(t('userSatisfaction.infoToast'));
       return;
     }
     setRating(starValue);
     setHasRated(true);
-    try {
-      await courseRate(courseId, starValue);
-      toast.success(t('userSatisfaction.successToast'));
-    } catch (error) {
-      setHasRated(false);
-      toast.info(t('userSatisfaction.infoToast'));
-    }
+    mutation.mutate({ courseId, starValue, token });
   };
 
 
@@ -60,8 +67,8 @@ const StarsRating = ({ course, totalStars = 5 }) => {
               transition: "color 0.2s",
             }}
             onClick={() => onSetRating(starValue)}
-            onMouseEnter={() => setHover(starValue)}
-            onMouseLeave={() => setHover(0)}
+            onMouseEnter={() => token && setHover(starValue)}
+            onMouseLeave={() => token && setHover(0)}
           >
             <StarRating />
           </span>

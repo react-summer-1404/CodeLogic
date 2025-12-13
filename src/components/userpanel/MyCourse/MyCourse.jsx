@@ -9,8 +9,10 @@ import MyCoursesPaidModal from "../../userpanel/MyCoursesPaidModal/MyCoursesPaid
 import imgg from "../../../assets/Images/A/teachersDetail/2.png";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter";
 import img2 from "../../../assets/Images/HTML5Course.png";
-const textClass =
-  "font-regular text-base text-[#1E1E1E] truncate  dark:text-[#DDDDDD]";
+
+
+
+const textClass = "font-regular text-base text-[#1E1E1E] truncate  dark:text-[#DDDDDD]";
 
 const MyCourse = ({ item }) => {
   const Animate = {
@@ -36,7 +38,8 @@ const MyCourse = ({ item }) => {
         variants={Animate}
         initial="hidden"
         animate="visible"
-        className="hidden md:flex items-center py-[14px] border-t border-b border-[#EAEAEA]"
+        className="hidden items-center py-[14px] border-t border-b border-[#EAEAEA]
+        md:flex"
       >
         <div className="flex items-center gap-4 w-64">
           <img
