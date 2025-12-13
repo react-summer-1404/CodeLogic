@@ -1,12 +1,14 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter";
 
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
 const titleClass = "font-semibold text-base text-[#1E1E1E]";
 
-const MyNewsComment = ({ item, handleToggleModal }) => {
+
+const CourseComViewModal = ({ item, handleToggleViewModal }) => {
+
   const { t } = useTranslation();
 
   const Animate = {
@@ -19,58 +21,64 @@ const MyNewsComment = ({ item, handleToggleModal }) => {
   };
 
   return (
-    <div
-      onClick={() => handleToggleModal(false)}
-      className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
-    >
+    <div onClick={() => handleToggleViewModal(false)} className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40">
       <motion.div
         variants={Animate}
         initial="hidden"
         animate="visible"
-        className="flex flex-col items-center gap-6 w-144 h-84 py-[14px] bg-[#FFFFFF] border border-[#EAEAEA] rounded-xl fixed top-32 
-        right-120 inset-0 z-48"
+        className="flex flex-col items-center gap-6 w-144 h-84 pt-8 py-[14px] bg-[#FFFFFF] border border-[#EAEAEA] rounded-xl fixed top-32 
+      right-120 inset-0 z-48"
       >
         <div className="flex gap-2">
-          <span className={titleClass}>{t("newsCommentModal.newsTitle")}</span>
-          <span className={textClass}>آموزش ری اکت</span>
+          <span className={titleClass}>
+            {t("courseComViewModal.courseTitle")}
+          </span>
+          <span className={textClass}>{item.course.title}</span>
         </div>
         <div className="flex gap-2">
           <span className={titleClass}>
-            {t("newsCommentModal.commentTitle")}
+            {t("courseComViewModal.commentTitle")}
           </span>
           <span className={textClass}>{item.title}</span>
         </div>
         <div className="flex gap-2">
           <span className={titleClass}>
-            {t("newsCommentModal.commentText")}
+            {t("courseComViewModal.commentText")}
           </span>
           <span className={textClass}>{item.describe}</span>
         </div>
         <div className="flex justify-center gap-2">
-          <span className={titleClass}>{t("newsCommentModal.status")}</span>
-          <span className="py-[2px] px-[12px] font-regular text-base text-[#008C78] bg-[#EEFFFC] rounded-lg">
-            تایید شده
+          <span className={titleClass}>{t("courseComViewModal.status")}</span>
+          <span
+            className={`py-[2px] px-[12px] font-regular text-base rounded-lg
+          ${
+            item.accept
+              ? "text-[#008C78] bg-[#EEFFFC]"
+              : "text-[#E7000B] bg-[#FFECEC]"
+          }`}
+          >
+            {item.accept ? t("courseComViewModal.accepted") : t("courseComViewModal.notAccepted")}
           </span>
         </div>
         <div className="flex justify-center gap-2">
           <span className={titleClass}>
-            {t("newsCommentModal.commentDate")}
+            {t("courseComViewModal.commentDate")}
           </span>
           <span className={textClass}>
-            {PersianDateConverter(item.inserDate)}
+            {PersianDateConverter(item.insertDate)}
           </span>
         </div>
         <button
           onClick={() => {
-            handleToggleModal(false);
+            handleToggleViewModal(false);
           }}
           className="py-1 px-2 border rounded-lg cursor-pointer"
         >
-          {t("reservedCourseModal.backBtn")}
+          {t("courseComViewModal.closeModalBtn")}
         </button>
       </motion.div>
     </div>
   );
 };
 
-export default MyNewsComment;
+export default CourseComViewModal;

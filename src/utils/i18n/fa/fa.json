@@ -727,14 +727,24 @@
     "title6": "عملیات"
   },
   "myCourseComment": {
-    "successToast": "نظر شما حذف شد"
+    "successToast": "نظر شما حذف شد",
+    "accepted": "تایید شده",
+    "notAccepted": "تایید نشده"
   },
-  "courseCommentModal": {
+  "courseComViewModal": {
     "courseTitle": "عنوان دوره:",
     "commentTitle": "عنوان دیدگاه:",
     "commentText": "متن دیدگاه:",
     "status": "وضعیت:",
-    "commentDate": "تاریخ:"
+    "commentDate": "تاریخ:",
+    "accepted": "تایید شده",
+    "notAccepted": "تایید نشده",
+    "closeModalBtn": "بستن"
+  },
+  "courseComDeleteModal":{
+    "title": "آیا میخواهید این دیدگاه را حذف کنید؟",
+    "closeModalBtn": "بستن",
+    "deleteBtn": "حذف"
   },
   "myNewsComments": {
     "title1": "عنوان خبر",

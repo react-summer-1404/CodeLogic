@@ -5,11 +5,14 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { deleteCoursesComments } from "../../../core/services/api/delete/deleteCoursesComments";
 import { toast } from "react-toastify";
-import CourseCommentModal from "../CourseCommentModal/CourseCommentModal";
+import CourseComViewModal from "../CourseComViewModal/CourseComViewModal.jsx";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter.js";
+import CourseComDeleteModal from "../CourseComDeleteModal/CourseComDeleteModal.jsx";
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
 
+
 const MyCourseComment = ({ item }) => {
+
   const { t } = useTranslation();
 
   const Animate = {
@@ -21,15 +24,22 @@ const MyCourseComment = ({ item }) => {
     },
   };
 
-  const onDelete = () => {
+  
+  const [isOpenViewModal, setIsOpenViewModal] = useState(false);
+  const handleToggleViewModal = () => {
+    setIsOpenViewModal(!isOpenViewModal);
+  };
+  
+  
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+  const handleToggleDeleteModal = () => {
+    setIsOpenDeleteModal(!isOpenDeleteModal)
+  }
+  const handleDeleteCourseCom = () => {
     deleteCoursesComments(item.id);
     toast.success(t("myCourseComment.successToast"));
   };
 
-  const [isOpen, setIsOpen] = useState(false);
-  const handleToggleModal = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
     <>
@@ -56,13 +66,13 @@ const MyCourseComment = ({ item }) => {
         >
           <span
             className={`py-[2px] px-[12px] font-regular text-base rounded-lg
-                ${
-                  item.accept
-                    ? "text-[#008C78] bg-[#EEFFFC]"
-                    : "text-[#E7000B] bg-[#FFECEC]"
-                }`}
+              ${
+                item.accept
+                  ? "text-[#008C78] bg-[#EEFFFC]"
+                  : "text-[#E7000B] bg-[#FFECEC]"
+              }`}
           >
-            {item.accept ? t("تایید شده") : t("تایید نشده")}
+            {item.accept ? t("myCourseComment.accepted") : t("myCourseComment.notAccepted")}
           </span>
         </div>
         <div
@@ -79,19 +89,22 @@ const MyCourseComment = ({ item }) => {
         >
           <span
             onClick={() => {
-              handleToggleModal(true);
+              handleToggleViewModal(true);
             }}
             className="cursor-pointer"
           >
             <Eye />
           </span>
-          <span onClick={onDelete} className="cursor-pointer">
+          <span onClick={() => {handleToggleDeleteModal(true)}} className="cursor-pointer">
             <Garbage />
           </span>
         </div>
       </motion.div>
-      {isOpen && (
-        <CourseCommentModal item={item} handleToggleModal={handleToggleModal} />
+      {isOpenViewModal && (
+        <CourseComViewModal item={item} handleToggleViewModal={handleToggleViewModal} />
+      )}
+      {isOpenDeleteModal && (
+        <CourseComDeleteModal handleToggleDeleteModal={handleToggleDeleteModal} handleDeleteCourseCom={handleDeleteCourseCom}/>
       )}
     </>
   );

@@ -5,12 +5,17 @@ import { motion } from "framer-motion";
 import { deleteNewsComments } from "../../../core/services/api/delete/deleteNewsComments";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import NewsCommentModal from "../NewsCommentModal/NewsCommentModal";
+import NewsComViewModal from "../NewsComViewModal/NewsComViewModal.jsx";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter.js";
+import NewsComDeleteModal from "../NewsComDeleteModal/NewsComDeleteModal.jsx";
+
+
 
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
 
+
 const MyNewsComment = ({ item }) => {
+
   const { t } = useTranslation();
 
   const Animate = {
@@ -22,15 +27,23 @@ const MyNewsComment = ({ item }) => {
     },
   };
 
-  const onDelete = () => {
+  
+  const [isOpenViewModal, setIsOpenViewModal] = useState(false);
+  const handleToggleViewModal = () => {
+    setIsOpenViewModal(!isOpenViewModal);
+  };
+  
+
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false)
+  const handleToggleDeleteModal = () => {
+    setIsOpenDeleteModal(!isOpenDeleteModal)
+  }
+  const handleDeleteNewsCom = () => {
     deleteNewsComments(item.id);
     toast.success(t("myNewsComment.successToast"));
   };
 
-  const [isOpen, setIsOpen] = useState(false);
-  const handleToggleModal = () => {
-    setIsOpen(!isOpen);
-  };
+
 
   return (
     <>
@@ -73,19 +86,22 @@ const MyNewsComment = ({ item }) => {
         >
           <span
             onClick={() => {
-              handleToggleModal(true);
+              handleToggleViewModal(true);
             }}
             className="cursor-pointer"
           >
             <Eye />
           </span>
-          <span onClick={onDelete} className="cursor-pointer">
+          <span onClick={() => {handleToggleDeleteModal(true)}} className="cursor-pointer">
             <Garbage />
           </span>
         </div>
       </motion.div>
-      {isOpen && (
-        <NewsCommentModal item={item} handleToggleModal={handleToggleModal} />
+      {isOpenViewModal && (
+        <NewsComViewModal item={item} handleToggleViewModal={handleToggleViewModal} />
+      )}
+      {isOpenDeleteModal && (
+       <NewsComDeleteModal handleToggleDeleteModal={handleToggleDeleteModal} handleDeleteNewsCom={handleDeleteNewsCom}/> 
       )}
     </>
   );
