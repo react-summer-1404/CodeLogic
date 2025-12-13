@@ -33,7 +33,7 @@ const CourseCardView1 = ({
   const descripmion = t(`${item.describe}`);
 
   const descripmionslice =
-    descripmion.length > 70 ? descripmion.slice(0, 70) + "..." : descripmion;
+    descripmion.length > 20 ? descripmion.slice(0, 20) + "..." : descripmion;
 
   return (
     <Tilt
@@ -71,8 +71,12 @@ const CourseCardView1 = ({
             sm:h-[237px] sm:rounded-[20px]"
         >
           <div className="flex flex-col gap-1">
-            <h2 className="font-bold text-base   dark:text-[#EEEEEE]">
-              {t(`${item.title}`)}
+            <h2 className="font-bold text-base dark:text-[#EEEEEE]">
+              {t(
+                item.title.length > 20
+                  ? item.title.slice(0, 20) + "…"
+                  : item.title
+              )}
             </h2>
             <p className="max-w-[317px] max-h-[40px] font-regular text-sm  mb-5 dark:text-[#DDDDDD]">
               {descripmionslice}

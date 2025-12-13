@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import getCourseById from "../../core/services/api/Get/getCourseById";
@@ -189,6 +189,13 @@ const CourseCard = ({ title, data }) => {
 };
 
 const Comparison = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   const [searchParams] = useSearchParams();
   const courseId1 = searchParams.get("course1");
   const courseId2 = searchParams.get("course2");

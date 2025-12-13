@@ -1,5 +1,6 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { Formik, Form, Field } from "formik";
+import debounce from "lodash.debounce";
 import CategoryFilter from "../../components/CategoryFilter/CategoryFilter";
 import NewsCard from "../../components/news/NewsCard/NewsCard";
 import SearchIcon from "@mui/icons-material/Search";
@@ -24,6 +25,23 @@ const NewsPage = () => {
   });
 
   const location = useLocation();
+
+  const debouncedSearch = useCallback(
+    debounce((value) => {
+      setSearchQuery(value);
+      setCurrentPage(0);
+    }, 700),
+    []
+  );
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    debouncedSearch(value);
+  };
+
+  useEffect(() => {
+    return () => debouncedSearch.cancel();
+  }, [debouncedSearch]);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -162,12 +180,20 @@ const NewsPage = () => {
           >
             {() => (
               <Form className="relative mb-5 w-full">
-                <Field
-                  name="search"
-                  type="text"
-                  placeholder={t("newsPage.searchPlaceholder")}
-                  className="shadow-md font-medium text-[#848484] dark:text-[#ccc] bg-[#fff] dark:bg-[#333] rounded-xl px-4 py-3 text-sm outline-none w-full transition-all duration-300 pr-10"
-                />
+                <Field name="search">
+                  {({ field }) => (
+                    <input
+                      {...field}
+                      type="text"
+                      placeholder={t("newsPage.searchPlaceholder")}
+                      onChange={(e) => {
+                        field.onChange(e);
+                        handleSearchChange(e);
+                      }}
+                      className="shadow-md font-medium text-[#848484] dark:text-[#ccc] bg-[#fff] dark:bg-[#333] rounded-xl px-4 py-3 text-sm outline-none w-full transition-all duration-300 pr-10"
+                    />
+                  )}
+                </Field>
                 <button
                   type="submit"
                   className={`absolute top-1/2 -translate-y-1/2 ${

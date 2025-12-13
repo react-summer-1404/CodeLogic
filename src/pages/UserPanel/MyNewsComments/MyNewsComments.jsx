@@ -143,22 +143,19 @@ const MyNewsComments = () => {
             titleData={{
               title1: t("myNewsComments.title1"),
               justify1: "justify-start",
-              w1: "w-60",
+              w1: "w-65",
               title2: t("myNewsComments.title2"),
               justify2: "justify-start",
-              w2: "w-52",
+              w2: "w-62",
               title3: t("myNewsComments.title3"),
               justify3: "justify-start",
-              w3: "w-52",
+              w3: "w-57",
               title4: t("myNewsComments.title4"),
               justify4: "justify-center",
-              w4: "w-28",
+              w4: "w-34",
               title5: t("myNewsComments.title5"),
               justify5: "justify-center",
-              w5: "w-30",
-              title6: t("myNewsComments.title6"),
-              justify6: "justify-center",
-              w6: "w-24",
+              w5: "w-35",
             }}
           />
           <div className="max-h-66 overflow-y-auto">

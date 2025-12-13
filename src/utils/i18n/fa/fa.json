@@ -217,7 +217,7 @@
     "price": "قیمت",
     "toman": "تومان",
     "reserveBtn": "همین حالا رزرو کنید",
-    "reserved": "رزرو شده",
+    "reserved": "این دوره با موفقیت رزرو شد",
     "off": "تخفیف",
     "reserveSuccessToast": "دوره موردنظر با موفقیت رزرو شد",
     "reservedInfoToast": "این دوره رزرو شده است"
@@ -727,22 +727,31 @@
     "title6": "عملیات"
   },
   "myCourseComment": {
-    "successToast": "نظر شما حذف شد"
+    "successToast": "نظر شما حذف شد",
+    "accepted": "تایید شده",
+    "notAccepted": "تایید نشده"
   },
-  "courseCommentModal": {
+  "courseComViewModal": {
     "courseTitle": "عنوان دوره:",
     "commentTitle": "عنوان دیدگاه:",
     "commentText": "متن دیدگاه:",
     "status": "وضعیت:",
-    "commentDate": "تاریخ:"
+    "commentDate": "تاریخ:",
+    "accepted": "تایید شده",
+    "notAccepted": "تایید نشده",
+    "closeModalBtn": "بستن"
+  },
+  "courseComDeleteModal":{
+    "title": "آیا میخواهید این دیدگاه را حذف کنید؟",
+    "closeModalBtn": "بستن",
+    "deleteBtn": "حذف"
   },
   "myNewsComments": {
     "title1": "عنوان خبر",
     "title2": "عنوان دیدگاه",
     "title3": "متن دیدگاه",
-    "title4": "وضعیت",
-    "title5": "تاریخ",
-    "title6": "عملیات"
+    "title4": "تاریخ",
+    "title5": "عملیات"
   },
   "myNewsComment": {
     "successToast": "نظر شما حذف شد"

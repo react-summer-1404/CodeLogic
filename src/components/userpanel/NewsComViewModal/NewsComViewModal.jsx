@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter";
 
-const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
-const titleClass = "font-semibold text-base text-[#1E1E1E]";
+const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#898989]";
+const titleClass = "font-semibold text-base text-[#1E1E1E] dark:text-[#fff]";
 
-const MyNewsComment = ({ item, handleToggleModal }) => {
+const NewsComViewModal = ({ item, handleToggleViewModal }) => {
   const { t } = useTranslation();
 
   const Animate = {
@@ -20,17 +20,17 @@ const MyNewsComment = ({ item, handleToggleModal }) => {
 
   return (
     <div
-      onClick={() => handleToggleModal(false)}
+      onClick={() => handleToggleViewModal(false)}
       className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
     >
       <motion.div
         variants={Animate}
         initial="hidden"
         animate="visible"
-        className="flex flex-col items-center gap-6 w-144 h-84 py-[14px] bg-[#FFFFFF] border border-[#EAEAEA] rounded-xl fixed top-32 
-        right-120 inset-0 z-48"
+        className="flex flex-col items-center gap-6 dark:bg-[#333] w-144 h-84 py-[14px] bg-[#FFFFFF] border border-[#EAEAEA] rounded-xl fixed top-32
+        right-120  z-48"
       >
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-4">
           <span className={titleClass}>{t("newsCommentModal.newsTitle")}</span>
           <span className={textClass}>آموزش ری اکت</span>
         </div>
@@ -62,9 +62,9 @@ const MyNewsComment = ({ item, handleToggleModal }) => {
         </div>
         <button
           onClick={() => {
-            handleToggleModal(false);
+            handleToggleViewModal(false);
           }}
-          className="py-1 px-2 border rounded-lg cursor-pointer"
+          className="py-1 px-2 border rounded-lg cursor-pointer dark:text-[#898989]"
         >
           {t("reservedCourseModal.backBtn")}
         </button>
@@ -73,4 +73,4 @@ const MyNewsComment = ({ item, handleToggleModal }) => {
   );
 };
 
-export default MyNewsComment;
+export default NewsComViewModal;

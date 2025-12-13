@@ -5,8 +5,10 @@ import { motion } from "framer-motion";
 import { deleteNewsComments } from "../../../core/services/api/delete/deleteNewsComments";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import NewsCommentModal from "../NewsCommentModal/NewsCommentModal";
+import NewsComViewModal from "../NewsComViewModal/NewsComViewModal.jsx";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter.js";
+import NewsComDeleteModal from "../NewsComDeleteModal/NewsComDeleteModal.jsx";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
 
@@ -22,15 +24,25 @@ const MyNewsComment = ({ item }) => {
     },
   };
 
-  const onDelete = () => {
-    deleteNewsComments(item.id);
-    toast.success(t("myNewsComment.successToast"));
+  const [isOpenViewModal, setIsOpenViewModal] = useState(false);
+  const handleToggleViewModal = (value) => {
+    setIsOpenViewModal(value);
   };
 
-  const [isOpen, setIsOpen] = useState(false);
-  const handleToggleModal = () => {
-    setIsOpen(!isOpen);
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+  const handleToggleDeleteModal = (value) => {
+    setIsOpenDeleteModal(value);
   };
+  const queryClient = useQueryClient();
+  const deleteNewsCom = useMutation({
+    mutationKey: ["DELETENEWSCOM"],
+    mutationFn: () => deleteNewsComments(item.id),
+    onSuccess: () => {
+      toast.success(t("myNewsComment.successToast"));
+      queryClient.invalidateQueries(["MYNEWSCOMMENTS"]);
+      handleToggleDeleteModal(false);
+    },
+  });
 
   return (
     <>
@@ -53,15 +65,7 @@ const MyNewsComment = ({ item }) => {
         </div>
         <div
           className="flex justify-center 
-            md:w-28"
-        >
-          <span className="py-[2px] px-[12px] font-regular text-base text-[#008C78] bg-[#EEFFFC] rounded-lg">
-            تایید شده
-          </span>
-        </div>
-        <div
-          className="flex justify-center 
-            md:w-30"
+          md:w-30"
         >
           <span className="font-regular text-base text-[#1E1E1E] truncate dark:text-[#DDDDDD]">
             {PersianDateConverter(item.inserDate)}
@@ -69,23 +73,32 @@ const MyNewsComment = ({ item }) => {
         </div>
         <div
           className="flex justify-center gap-4 
-            md:w-24"
+          md:w-24"
         >
           <span
             onClick={() => {
-              handleToggleModal(true);
+              handleToggleViewModal(true);
             }}
             className="cursor-pointer"
           >
             <Eye />
           </span>
-          <span onClick={onDelete} className="cursor-pointer">
+          {/* <span onClick={() => {handleToggleDeleteModal(true)}} className="cursor-pointer">
             <Garbage />
-          </span>
+          </span> */}
         </div>
       </motion.div>
-      {isOpen && (
-        <NewsCommentModal item={item} handleToggleModal={handleToggleModal} />
+      {isOpenViewModal && (
+        <NewsComViewModal
+          item={item}
+          handleToggleViewModal={handleToggleViewModal}
+        />
+      )}
+      {isOpenDeleteModal && (
+        <NewsComDeleteModal
+          handleToggleDeleteModal={handleToggleDeleteModal}
+          deleteNewsCom={deleteNewsCom}
+        />
       )}
     </>
   );

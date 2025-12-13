@@ -11,6 +11,7 @@ import CourseListMainSkeleton from "../../common/skeleton/CourseListMainSkeleton
 import Lottie from "lottie-react";
 import empty from "../../../assets/Images/empty.json";
 import { useNavigate } from "react-router-dom";
+import compareManager from "../../compareManager/compareManager";
 
 const VIEW_TYPE_LIST = "list";
 const VIEW_TYPE_GRID = "grid";
@@ -39,24 +40,24 @@ const CourseListMain = ({
   const [comparedCourseIds, setComparedCourseIds] = useState([]);
 
   useEffect(() => {
+    const unsubscribe = compareManager.subscribe((next) => {
+      setComparedCourseIds(next);
+    });
+    return unsubscribe;
+  }, []);
+
+  const handleToggleCompare = (courseId) => {
+    compareManager.toggle(courseId);
+  };
+
+  useEffect(() => {
     if (comparedCourseIds.length === 2) {
       const url = `/comparison?course1=${comparedCourseIds[0]}&course2=${comparedCourseIds[1]}`;
       navigate(url);
+      compareManager.clear();
       setComparedCourseIds([]);
     }
   }, [comparedCourseIds, navigate]);
-
-  const handleToggleCompare = (courseId) => {
-    setComparedCourseIds((prevIds) => {
-      if (prevIds.includes(courseId)) {
-        return prevIds.filter((id) => id !== courseId);
-      } else if (prevIds.length < 2) {
-        return [...prevIds, courseId];
-      } else {
-        return [prevIds[1], courseId];
-      }
-    });
-  };
 
   const handleViewChange = (courseViewType) => {
     setCurrentView(courseViewType);

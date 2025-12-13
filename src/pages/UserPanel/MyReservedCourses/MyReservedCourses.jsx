@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import UserPanelSearch from "../../../components/common/UserPanelSearch/UserPanelSearch";
-import UserPanelTitle from "../../../components/common/UserPanelTitle/UserPanelTitle";
 import MyReservedCourse from "../../../components/userPanel/MyReservedCourse/MyReservedCourse";
 import GetMyReservedCourses from "../../../core/services/api/get/GetMyReservedCourses";
 import ReactPaginate from "react-paginate";
@@ -10,7 +9,9 @@ import FavoritesSkeleton from "../../../components/common/skeleton/favorites/Fav
 import Lottie from "lottie-react";
 import empty from "../../../assets/Images/empty.json";
 
+
 const MyReservedCourses = () => {
+
   const { data: myReservedCoursesData, isPending } = useQuery({
     queryKey: ["GETMYRESERVEDCOURSES"],
     queryFn: () =>
@@ -85,25 +86,25 @@ const MyReservedCourses = () => {
       </div>
       <div className="flex flex-col justify-between h-[440px] md:p-6 bg-[#FFFFFF] rounded-2xl   dark:bg-[#454545]">
         <div className="flex flex-col gap-4  relative">
-          <UserPanelTitle
-            titleData={{
-              title1: t("myReservedCourses.title1"),
-              justify1: "justify-start",
-              w1: "w-64",
-              title2: t("myReservedCourses.title2"),
-              justify2: "justify-center",
-              w2: "w-58",
-              title3: t("myReservedCourses.title3"),
-              justify3: "justify-center",
-              w3: "w-40",
-              title4: t("myReservedCourses.title4"),
-              justify4: "justify-center",
-              w4: "w-54",
-              title5: t("myReservedCourses.title5"),
-              justify5: "justify-center",
-              w5: "w-28",
-            }}
-          />
+          <div
+            className="hidden font-semibold text-base text-[#1E1E1E]    dark:text-[#CCCCCC]
+            md:flex">
+            <div className='flex justify-start md:w-84'>
+              <span>{t('myReservedCourses.title1')}</span>
+            </div>
+            <div className='flex justify-start md:w-40'>
+              <span>{t('myReservedCourses.title2')}</span>
+            </div>
+            <div className='flex justify-center md:w-40'>
+              <span>{t('myReservedCourses.title3')}</span>
+            </div>
+            <div className='flex justify-center md:w-54'>
+              <span>{t('myReservedCourses.title4')}</span>
+            </div>
+            <div className='flex justify-center md:w-28'>
+              <span>{t('myReservedCourses.title5')}</span>
+            </div>
+          </div>
           <div className="flex flex-col max-h-66 overflow-y-auto">
             {isPending ? (
               [...Array(coursesPerPage)].map((items, index) => (

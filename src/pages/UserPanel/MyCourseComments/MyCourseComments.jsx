@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import UserPanelSearch from "../../../components/common/UserPanelSearch/UserPanelSearch";
-import UserPanelTitle from "../../../components/common/UserPanelTitle/UserPanelTitle";
 import MyCourseComment from "../../../components/userPanel/MyCourseComment/MyCourseComment";
 import myCourseComments from "../../../core/services/api/get/MyCourseComments";
 import ReactPaginate from "react-paginate";
@@ -130,28 +129,29 @@ const MyCourseComments = () => {
 
       <div className="flex flex-col justify-between h-[440px] p-6 bg-[#FFFFFF] rounded-2xl   dark:bg-[#454545] ">
         <div className="flex flex-col gap-4  relative ">
-          <UserPanelTitle
-            titleData={{
-              title1: t("myCourseComments.title1"),
-              justify1: "justify-start",
-              w1: "w-60",
-              title2: t("myCourseComments.title2"),
-              justify2: "justify-start",
-              w2: "w-52",
-              title3: t("myCourseComments.title3"),
-              justify3: "justify-start",
-              w3: "w-52",
-              title4: t("myCourseComments.title4"),
-              justify4: "justify-center",
-              w4: "w-28",
-              title5: t("myCourseComments.title5"),
-              justify5: "justify-center",
-              w5: "w-30",
-              title6: t("myCourseComments.title6"),
-              justify6: "justify-center",
-              w6: "w-24",
-            }}
-          />
+          <div
+            className="hidden font-semibold text-base text-[#1E1E1E]    dark:text-[#CCCCCC]
+            md:flex"
+          >
+            <div className="flex justify-start md:w-58">
+              <span>{t("myCourseComments.title1")}</span>
+            </div>
+            <div className="flex justify-start md:w-51">
+              <span>{t("myCourseComments.title2")}</span>
+            </div>
+            <div className="flex justify-start md:w-49">
+              <span>{t("myCourseComments.title3")}</span>
+            </div>
+            <div className="flex justify-center md:w-30">
+              <span>{t("myCourseComments.title4")}</span>
+            </div>
+            <div className="flex justify-center md:w-36">
+              <span>{t("myCourseComments.title5")}</span>
+            </div>
+            <div className="flex justify-center md:w-24">
+              <span>{t("myCourseComments.title6")}</span>
+            </div>
+          </div>
           <div className="flex flex-col max-h-66 overflow-y-auto  ">
             {isPending ? (
               [...Array(commentsPerPage)].map((items, index) => (
