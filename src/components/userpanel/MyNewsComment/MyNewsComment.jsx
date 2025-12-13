@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import NewsComViewModal from "../NewsComViewModal/NewsComViewModal.jsx";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter.js";
 import NewsComDeleteModal from "../NewsComDeleteModal/NewsComDeleteModal.jsx";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 
 
@@ -38,11 +39,15 @@ const MyNewsComment = ({ item }) => {
   const handleToggleDeleteModal = () => {
     setIsOpenDeleteModal(!isOpenDeleteModal)
   }
-  const handleDeleteNewsCom = () => {
-    deleteNewsComments(item.id);
-    toast.success(t("myNewsComment.successToast"));
-  };
-
+  const queryClient = useQueryClient()
+  const deleteNewsCom = useMutation({
+    onSuccess: () => {
+      deleteNewsComments(item.id);
+      toast.success(t("myNewsComment.successToast"));
+      queryClient.invalidateQueries({predicate: q => q.queryKey[0] === 'MYNEWSCOMMENTS'})
+      handleToggleDeleteModal(false)
+    }
+  })
 
 
   return (
@@ -93,7 +98,7 @@ const MyNewsComment = ({ item }) => {
         <NewsComViewModal item={item} handleToggleViewModal={handleToggleViewModal} />
       )}
       {isOpenDeleteModal && (
-       <NewsComDeleteModal handleToggleDeleteModal={handleToggleDeleteModal} handleDeleteNewsCom={handleDeleteNewsCom}/> 
+       <NewsComDeleteModal handleToggleDeleteModal={handleToggleDeleteModal} deleteNewsCom={deleteNewsCom}/> 
       )}
     </>
   );

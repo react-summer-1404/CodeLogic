@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import UserPanelSearch from "../../../components/common/UserPanelSearch/UserPanelSearch";
-import UserPanelTitle from "../../../components/common/UserPanelTitle/UserPanelTitle";
 import MyCourse from "../../../components/userPanel/MyCourse/MyCourse";
 import ReactPaginate from "react-paginate";
 import { useTranslation } from "react-i18next";
@@ -10,7 +9,9 @@ import Lottie from "lottie-react";
 import empty from "../../../assets/Images/empty.json";
 import FavoritesSkeleton from "../../../components/common/skeleton/favorites/FavoritesSkeleton";
 
+
 const MyCourses = () => {
+
   const [currentPage, setCurrentPage] = useState(1);
   const [coursesPerPage, setCoursesPerPage] = useState(2);
   const [searchQuery, setSearchQuery] = useState("");
@@ -75,28 +76,28 @@ const MyCourses = () => {
       </div>
       <div className="flex flex-col justify-between h-[440px] p-6 bg-[#FFFFFF] rounded-2xl   dark:bg-[#454545]">
         <div className="flex flex-col gap-4 max-h-96 overflow-y-auto  ">
-          <UserPanelTitle
-            titleData={{
-              title1: t("myCourses.title1"),
-              justify1: "justify-start",
-              w1: "md:w-64",
-              title2: t("myCourses.title2"),
-              justify2: "justify-center",
-              w2: "md:w-50",
-              title3: t("myCourses.title3"),
-              justify3: "justify-center",
-              w3: "md:w-30",
-              title4: t("myCourses.title4"),
-              justify4: "justify-center",
-              w4: "md:w-36",
-              title5: t("myCourses.title5"),
-              justify5: "justify-center",
-              w5: "md:w-34",
-              title6: t("myCourses.title6"),
-              justify6: "justify-center",
-              w6: "md:w-32",
-            }}
-          />
+          <div
+            className="hidden font-semibold text-base text-[#1E1E1E]    dark:text-[#CCCCCC]
+            md:flex">
+            <div className='flex justify-start md:w-64'>
+              <span>{t('myCourses.title1')}</span>
+            </div>
+            <div className='flex justify-center md:w-50'>
+              <span>{t('myCourses.title2')}</span>
+            </div>
+            <div className='flex justify-center md:w-30'>
+              <span>{t('myCourses.title3')}</span>
+            </div>
+            <div className='flex justify-center md:w-36'>
+              <span>{t('myCourses.title4')}</span>
+            </div>
+            <div className='flex justify-center md:w-34'>
+              <span>{t('myCourses.title5')}</span>
+            </div>
+            <div className='flex justify-center md:w-32'>
+              <span>{t('myCourses.title6')}</span>
+            </div>
+          </div>
           {isLoading ? (
             [...Array(coursesPerPage)].map((_, index) => (
               <FavoritesSkeleton key={index + 2} />

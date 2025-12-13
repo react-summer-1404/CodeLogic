@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import UserPanelSearch from '../../../components/common/UserPanelSearch/UserPanelSearch'
-import UserPanelTitle from '../../../components/common/UserPanelTitle/UserPanelTitle'
 import MyNewsComment from '../../../components/userPanel/MyNewsComment/MyNewsComment'
 import myNewsComments from '../../../core/services/api/get/myNewsComments'
 import ReactPaginate from 'react-paginate'
@@ -87,14 +86,25 @@ const MyNewsComments = () => {
       </div>
       <div className='flex flex-col justify-between h-[440px] p-6 bg-[#FFFFFF] rounded-2xl   dark:bg-[#454545]'>
         <div className='flex flex-col gap-4'>
-          <UserPanelTitle
-            titleData={{
-              title1: t('myNewsComments.title1'), justify1: 'justify-start', w1: 'w-66',
-              title2: t('myNewsComments.title2'), justify2: 'justify-start', w2: 'w-58',
-              title3: t('myNewsComments.title3'), justify3: 'justify-start', w3: 'w-52',
-              title5: t('myNewsComments.title5'), justify5: 'justify-center', w5: 'w-42',
-              title6: t('myNewsComments.title6'), justify6: 'justify-center', w6: 'w-24',
-            }} />
+          <div
+            className="hidden font-semibold text-base text-[#1E1E1E]    dark:text-[#CCCCCC]
+            md:flex">
+            <div className='flex justify-start md:w-66'>
+              <span>{t('myNewsComments.title1')}</span>
+            </div>
+            <div className='flex justify-start md:w-58'>
+              <span>{t('myNewsComments.title2')}</span>
+            </div>
+            <div className='flex justify-start md:w-52'>
+              <span>{t('myNewsComments.title3')}</span>
+            </div>
+            <div className='flex justify-center md:w-42'>
+              <span>{t('myNewsComments.title4')}</span>
+            </div>
+            <div className='flex justify-center md:w-24'>
+              <span>{t('myNewsComments.title5')}</span>
+            </div>
+          </div>
           <div className='max-h-66 overflow-y-auto'>
             <div className='flex flex-col gap-4 md:gap-0'>
               {

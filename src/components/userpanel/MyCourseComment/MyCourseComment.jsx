@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import CourseComViewModal from "../CourseComViewModal/CourseComViewModal.jsx";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter.js";
 import CourseComDeleteModal from "../CourseComDeleteModal/CourseComDeleteModal.jsx";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
 
 
@@ -35,10 +36,16 @@ const MyCourseComment = ({ item }) => {
   const handleToggleDeleteModal = () => {
     setIsOpenDeleteModal(!isOpenDeleteModal)
   }
-  const handleDeleteCourseCom = () => {
-    deleteCoursesComments(item.id);
-    toast.success(t("myCourseComment.successToast"));
-  };
+  const queryClient = useQueryClient()
+  const deleteCourseCom = useMutation({
+    onSuccess: () => {
+      deleteCoursesComments(item.id);
+      toast.success(t("myCourseComment.successToast"));
+      queryClient.invalidateQueries({predicate: q => q.queryKey[0] === 'MYCOURSECOMMENTS'})
+      handleToggleDeleteModal(false)
+    }
+  }) 
+
 
 
   return (
@@ -104,7 +111,7 @@ const MyCourseComment = ({ item }) => {
         <CourseComViewModal item={item} handleToggleViewModal={handleToggleViewModal} />
       )}
       {isOpenDeleteModal && (
-        <CourseComDeleteModal handleToggleDeleteModal={handleToggleDeleteModal} handleDeleteCourseCom={handleDeleteCourseCom}/>
+        <CourseComDeleteModal handleToggleDeleteModal={handleToggleDeleteModal} deleteCourseCom={deleteCourseCom}/>
       )}
     </>
   );

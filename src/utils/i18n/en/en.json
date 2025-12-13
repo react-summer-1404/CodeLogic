@@ -748,9 +748,8 @@
     "title1": "News Title",
     "title2": "Comment Title",
     "title3": "Comment Text",
-    "title4": "Status",
-    "title5": "History",
-    "title6": "Actions"
+    "title4": "History",
+    "title5": "Actions"
   },
   "myNewsComment": {
     "successToast": "Your comment has been deleted"

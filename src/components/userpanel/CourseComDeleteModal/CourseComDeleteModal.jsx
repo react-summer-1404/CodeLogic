@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import {useQueryClient} from '@tanstack/react-query'
 
 
-const CourseComDeleteModal = ({handleToggleDeleteModal, handleDeleteCourseCom}) => {
+const CourseComDeleteModal = ({handleToggleDeleteModal, deleteCourseCom}) => {
 
     const {t} = useTranslation()
 
@@ -17,16 +17,8 @@ const CourseComDeleteModal = ({handleToggleDeleteModal, handleDeleteCourseCom}) 
         },
     };
 
-    const queryClient = useQueryClient()
-    const onDeleteCourseCom = async () => {
-        await handleDeleteCourseCom() 
-        queryClient.invalidateQueries({predicate: q => q.queryKey[0] === 'MYCOURSECOMMENTS'})
-        handleToggleDeleteModal(false)
-    }
     
-
     return (
-
         <div onClick={() => {handleToggleDeleteModal(false)}} className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40">
             <motion.div 
             variants={Animate}
@@ -35,14 +27,15 @@ const CourseComDeleteModal = ({handleToggleDeleteModal, handleDeleteCourseCom}) 
             onClick={(e) => e.stopPropagation()}
             className="flex flex-col justify-between items-center gap-6 w-144 h-84 py-8 bg-[#FFFFFF] border border-[#EAEAEA] 
             rounded-xl fixed top-32 right-120 inset-0 z-48">
-                <h3>{t('courseComDeleteModal.title')}</h3>
+                <h3 className='font-semibold'>{t('courseComDeleteModal.title')}</h3>
                 <div className='flex gap-2'>
-                    <button onClick={() => {handleToggleDeleteModal(false)}} className='py-2 px-4 border rounded-lg cursor-pointer'>
+                    <button onClick={() => {handleToggleDeleteModal(false)}} className='py-2 px-4 font-medium border rounded-lg 
+                    cursor-pointer'>
                         {t('courseComDeleteModal.closeModalBtn')}
                     </button>
                     <button 
-                    onClick={onDeleteCourseCom}
-                    className='py-2 px-4 text-[#FFFFFF] bg-[#EB0007] rounded-lg cursor-pointer'>
+                    onClick={() => {deleteCourseCom.mutate()}}
+                    className='py-2 px-4 font-medium text-[#FFFFFF] bg-[#EB0007] rounded-lg cursor-pointer'>
                         {t('courseComDeleteModal.deleteBtn')}
                     </button>
                 </div>
