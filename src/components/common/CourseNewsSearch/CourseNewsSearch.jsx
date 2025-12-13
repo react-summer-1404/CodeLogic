@@ -7,7 +7,7 @@ const CourseNewsSearch = ({ handleSearchSubmit }) => {
   const debouncedSearch = useCallback(
     debounce((value) => {
       handleSearchSubmit(value);
-    }, 2000),
+    }, 700),
     []
   );
   const handleChange = (e) => {
