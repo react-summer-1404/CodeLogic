@@ -28,6 +28,7 @@ const StarsRating = ({ course, totalStars = 5 }) => {
     },
 
     onError: (error) => {
+      if (error?.response?.status === 401) return;
       if (error?.response?.status === 400) {
         toast.info(t("userSatisfaction.infoToast"));
       } else {
