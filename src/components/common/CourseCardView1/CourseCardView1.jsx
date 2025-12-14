@@ -9,31 +9,34 @@ import img2 from "../../../assets/Images/HTML5Course.png";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Tilt from "react-parallax-tilt";
 import CompareIcon from "@mui/icons-material/Compare";
-
-const CourseCardView1 = ({
-  item,
-  handleToggleFavorite,
-  handleToggleCompare,
-  isCompared,
-}) => {
+import { useMutation } from "@tanstack/react-query";
+import { addFavCourses } from "../../../core/services/api/post/addFavCourses.js";
+import { toast } from "react-toastify";
+const CourseCardView1 = ({ item, handleToggleCompare, isCompared }) => {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "fa";
-
-  const [isFavorite, setIsFavorite] = useState();
-  const onToggleFavorite = () => {
-    handleToggleFavorite(item.courseId);
-    setIsFavorite(!isFavorite);
-  };
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const onToggleCompare = (e) => {
     e.preventDefault();
     handleToggleCompare(item.courseId);
   };
+  const { mutate: addFav } = useMutation({
+    mutationKey: ["ADDCOURSEFAV"],
+    mutationFn: () => addFavCourses(item.courseId),
+    onSuccess: (data) => {
+      toast.success(data.message);
+      setIsFavorite(true);
+    },
+    onError: (err) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
 
   const descripmion = t(`${item.describe}`);
 
   const descripmionslice =
-    descripmion.length > 70 ? descripmion.slice(0, 70) + "..." : descripmion;
+    descripmion.length > 20 ? descripmion.slice(0, 20) + "..." : descripmion;
 
   return (
     <Tilt
@@ -71,8 +74,12 @@ const CourseCardView1 = ({
             sm:h-[237px] sm:rounded-[20px]"
         >
           <div className="flex flex-col gap-1">
-            <h2 className="font-bold text-base   dark:text-[#EEEEEE]">
-              {t(`${item.title}`)}
+            <h2 className="font-bold text-base dark:text-[#EEEEEE]">
+              {t(
+                item.title.length > 20
+                  ? item.title.slice(0, 20) + "…"
+                  : item.title
+              )}
             </h2>
             <p className="max-w-[317px] max-h-[40px] font-regular text-sm  mb-5 dark:text-[#DDDDDD]">
               {descripmionslice}
@@ -135,7 +142,7 @@ const CourseCardView1 = ({
           </div>
         </Link>
         <button
-          onClick={onToggleFavorite}
+          onClick={() => addFav()}
           className={`p-2 rounded-[50px] transition absolute top-[13px] right-[14px] cursor-pointer  text-[white]
             ${isFavorite ? "bg-red-500" : "bg-black/45 backdrop-blur-sm"}`}
         >

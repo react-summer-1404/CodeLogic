@@ -40,7 +40,7 @@ const MyReservedCourses = () => {
     })
     .sort((a, b) => {
       if (filterOption === "جدید ترین ها") {
-        return b.insertDate.slice(0, 10) - a.insertDate.slice(0, 10);
+        return new Date(b.insertDate) - new Date(a.insertDate);
       }
       return 0;
     });

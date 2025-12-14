@@ -1,60 +1,61 @@
-import React, { useState } from "react";
-import StarRating from '../../../assets/Icons/StarRating';
+import React, { useState, useEffect, useRef } from "react";
+import StarRating from "../../../assets/Icons/StarRating";
 import { courseRate } from "../../../core/services/api/post/courseRate";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import { useMutation } from "@tanstack/react-query";
-
-
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const StarsRating = ({ course, totalStars = 5 }) => {
-
-
   const { t } = useTranslation();
-  const courseId = course.courseId;
-
-  const [rating, setRating] = useState(() => {
-    const saved = localStorage.getItem(`rate_${courseId}`);
-    return saved ? Number(saved) : 0;
-  });
-
-  const [hover, setHover] = useState(0);
-  const [hasRated, setHasRated] = useState(() => {
-    return localStorage.getItem(`rated_${courseId}`) === "true";
-  });
-
+  const queryClient = useQueryClient();
+  const courseId = course?.courseId;
   const token = localStorage.getItem("token");
 
+  const initialUserRate = course?.currentUserRateNumber ?? 0;
+
+  const [rating, setRating] = useState(initialUserRate);
+  const [hover, setHover] = useState(0);
+
+  const updatingRef = useRef(false);
 
   const mutation = useMutation({
-    mutationFn: ({ courseId, starValue, token }) => courseRate(courseId, starValue, token),
-    onSuccess: () => {
-      toast.success(t('userSatisfaction.successToast'));
-      localStorage.setItem(`rate_${courseId}`, rating);
-      localStorage.setItem(`rated_${courseId}`, "true");
+    mutationFn: ({ courseId: cid, starValue }) => courseRate(cid, starValue),
+
+    onSuccess: (_data, variables) => {
+      setRating(variables.starValue);
+      toast.success(t("userSatisfaction.successToast"));
+      queryClient.invalidateQueries({ queryKey: ["GETCOURSEBYID"] });
     },
-    onError: () => {
-      setHasRated(false);
-    }
+
+    onError: (error) => {
+      if (error?.response?.status === 401) return;
+      if (error?.response?.status === 400) {
+        toast.info(t("userSatisfaction.infoToast"));
+      } else {
+        toast.error(t("userSatisfaction.errorToast"));
+      }
+    },
   });
+
+  useEffect(() => {
+    if (!updatingRef.current) {
+      setRating(initialUserRate);
+    }
+  }, [initialUserRate]);
+
   const onSetRating = (starValue) => {
-    if (!token) {
-      toast.error(t('login.loginToast'));
+    if (mutation.isLoading) return;
+
+    if (course?.currentUserSetRate) {
+      toast.info(t("userSatisfaction.infoToast"));
       return;
     }
-    if (hasRated) {
-      toast.info(t('userSatisfaction.infoToast'));
-      return;
-    }
-    setRating(starValue);
-    setHasRated(true);
-    mutation.mutate({ courseId, starValue, token });
+
+    mutation.mutate({ courseId, starValue });
   };
 
-
-
   return (
-    <div className='flex gap-2'>
+    <div className="flex gap-2">
       {[...Array(totalStars)].map((_, index) => {
         const starValue = index + 1;
         return (

@@ -1,12 +1,14 @@
-import Http from '../../../interceptor/interceptor';
+import Http from "../../../interceptor/interceptor";
 
-const myNewsComments = async (params) => {
-    try {
-        const result = await Http.get('/SharePanel/GetMyNewsComments', { params });
-        return result;
-    } catch (error) {
-        console.log(error);
-    }
+const myNewsComments = async () => {
+  try {
+    const result = await Http.get("/SharePanel/GetMyNewsComments");
+    console.log(result);
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export default myNewsComments;  
+export default myNewsComments;

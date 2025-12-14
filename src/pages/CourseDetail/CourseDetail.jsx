@@ -36,6 +36,11 @@ const CourseDetail = () => {
     );
   }
 
+  const titleSlice =
+    courseData.title.length > 20
+      ? courseData.title.slice(0, 20) + "..."
+      : courseData.title;
+
   return (
     <div className="flex flex-col items-center   dark:bg-[#1E1E1E]">
       <div className="flex gap-1 text-[#008C78] pt-10 font-regular text-sm">
@@ -43,11 +48,11 @@ const CourseDetail = () => {
         {">"}
         <Link to={"/courseList"}>{t("courseDetailNav.courseList")}</Link>
         {">"}
-        <span>{courseData.title}</span>
+        <span>{titleSlice}</span>
       </div>
       <div className="flex flex-col items-center pt-4">
         <h2 className="font-bold text-[28px] text-[#1E1E1E]  dark:text-[#EEEEEE]">
-          {courseData.title}
+          {titleSlice}
         </h2>
       </div>
       <div

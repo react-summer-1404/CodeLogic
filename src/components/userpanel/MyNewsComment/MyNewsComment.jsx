@@ -10,13 +10,9 @@ import { PersianDateConverter } from "../../../utils/helper/dateConverter.js";
 import NewsComDeleteModal from "../NewsComDeleteModal/NewsComDeleteModal.jsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-
-
 const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
 
-
 const MyNewsComment = ({ item }) => {
-
   const { t } = useTranslation();
 
   const Animate = {
@@ -28,28 +24,25 @@ const MyNewsComment = ({ item }) => {
     },
   };
 
-  
   const [isOpenViewModal, setIsOpenViewModal] = useState(false);
   const handleToggleViewModal = (value) => {
     setIsOpenViewModal(value);
   };
-  
 
-  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false)
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const handleToggleDeleteModal = (value) => {
-    setIsOpenDeleteModal(value)
-  }
-  const queryClient = useQueryClient()
+    setIsOpenDeleteModal(value);
+  };
+  const queryClient = useQueryClient();
   const deleteNewsCom = useMutation({
     mutationKey: ["DELETENEWSCOM"],
     mutationFn: () => deleteNewsComments(item.id),
     onSuccess: () => {
       toast.success(t("myNewsComment.successToast"));
-      queryClient.invalidateQueries(['MYNEWSCOMMENTS'])
-      handleToggleDeleteModal(false)
-    }
-  })
-
+      queryClient.invalidateQueries(["MYNEWSCOMMENTS"]);
+      handleToggleDeleteModal(false);
+    },
+  });
 
   return (
     <>
@@ -72,16 +65,23 @@ const MyNewsComment = ({ item }) => {
         </div>
         <div
           className="flex justify-center 
-          md:w-30">
+          md:w-30"
+        >
           <span className="font-regular text-base text-[#1E1E1E] truncate dark:text-[#DDDDDD]">
             {PersianDateConverter(item.inserDate)}
           </span>
         </div>
         <div
           className="flex justify-center gap-4 
-          md:w-24">
-          <span onClick={() => {handleToggleViewModal(true);}} className="cursor-pointer">
-            <Eye/>
+          md:w-24"
+        >
+          <span
+            onClick={() => {
+              handleToggleViewModal(true);
+            }}
+            className="cursor-pointer"
+          >
+            <Eye />
           </span>
           {/* <span onClick={() => {handleToggleDeleteModal(true)}} className="cursor-pointer">
             <Garbage />
@@ -89,10 +89,16 @@ const MyNewsComment = ({ item }) => {
         </div>
       </motion.div>
       {isOpenViewModal && (
-        <NewsComViewModal item={item} handleToggleViewModal={handleToggleViewModal} />
+        <NewsComViewModal
+          item={item}
+          handleToggleViewModal={handleToggleViewModal}
+        />
       )}
       {isOpenDeleteModal && (
-       <NewsComDeleteModal handleToggleDeleteModal={handleToggleDeleteModal} deleteNewsCom={deleteNewsCom}/> 
+        <NewsComDeleteModal
+          handleToggleDeleteModal={handleToggleDeleteModal}
+          deleteNewsCom={deleteNewsCom}
+        />
       )}
     </>
   );

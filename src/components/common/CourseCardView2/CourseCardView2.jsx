@@ -7,11 +7,24 @@ import Star from "../../../assets/Icons/Star";
 import Teacher from "../../../assets/Icons/Teacher";
 import CourseCardView2Skeleton from "../skeleton/CourseCardSkeletonView2/CourseCardSkeletonView2";
 import img2 from "../../../assets/Images/HTML5Course.png";
-
+import { addFavCourses } from "../../../core/services/api/post/addFavCourses.js";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 const CourseCardView2 = ({ item, handleToggleFavorite, isLoading }) => {
   const { t } = useTranslation();
 
   const [isFavorite, setIsFavorite] = useState();
+  const { mutate: addFav } = useMutation({
+    mutationKey: ["ADDCOURSFAV"],
+    mutationFn: () => addFavCourses(item.courseId),
+    onSuccess: (data) => {
+      toast.success(data.message);
+      setIsFavorite(true);
+    },
+    onError: (err) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
   const onToggleFavorite = () => {
     handleToggleFavorite(item.courseId);
     setIsFavorite(!isFavorite);
@@ -121,7 +134,7 @@ const CourseCardView2 = ({ item, handleToggleFavorite, isLoading }) => {
         </div>
       </Link>
       <button
-        onClick={onToggleFavorite}
+        onClick={() => addFav()}
         className={`p-2 rounded-[50px] transition absolute top-[13px] right-[14px] cursor-pointer opacity-25 text-[#EEEEEE] 
             ${isFavorite ? "bg-[#FF0000]" : "bg-[#000000]"}`}
       >

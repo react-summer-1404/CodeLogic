@@ -3,12 +3,10 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { PersianDateConverter } from "../../../utils/helper/dateConverter";
 
-const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#DDDDDD]";
-const titleClass = "font-semibold text-base text-[#1E1E1E]";
-
+const textClass = "font-regular text-base text-[#1E1E1E]   dark:text-[#898989]";
+const titleClass = "font-semibold text-base text-[#1E1E1E] dark:text-[#fff]  ";
 
 const CourseComViewModal = ({ item, handleToggleViewModal }) => {
-
   const { t } = useTranslation();
 
   const Animate = {
@@ -21,12 +19,15 @@ const CourseComViewModal = ({ item, handleToggleViewModal }) => {
   };
 
   return (
-    <div onClick={() => handleToggleViewModal(false)} className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40">
+    <div
+      onClick={() => handleToggleViewModal(false)}
+      className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+    >
       <motion.div
         variants={Animate}
         initial="hidden"
         animate="visible"
-        className="flex flex-col items-center gap-6 w-144 h-84 pt-8 py-[14px] bg-[#FFFFFF] border border-[#EAEAEA] rounded-xl fixed top-32 
+        className="flex flex-col items-center dark:bg-[#333] gap-6 w-144 h-84 pt-8 py-[14px] bg-[#FFFFFF] border border-[#EAEAEA] rounded-xl fixed top-32 
       right-120 inset-0 z-48"
       >
         <div className="flex gap-2">
@@ -57,7 +58,9 @@ const CourseComViewModal = ({ item, handleToggleViewModal }) => {
               : "text-[#E7000B] bg-[#FFECEC]"
           }`}
           >
-            {item.accept ? t("courseComViewModal.accepted") : t("courseComViewModal.notAccepted")}
+            {item.accept
+              ? t("courseComViewModal.accepted")
+              : t("courseComViewModal.notAccepted")}
           </span>
         </div>
         <div className="flex justify-center gap-2">
@@ -72,7 +75,7 @@ const CourseComViewModal = ({ item, handleToggleViewModal }) => {
           onClick={() => {
             handleToggleViewModal(false);
           }}
-          className="py-1 px-2 border rounded-lg cursor-pointer"
+          className="py-1 px-2 border rounded-lg cursor-pointer dark:text-[#898989]"
         >
           {t("courseComViewModal.closeModalBtn")}
         </button>

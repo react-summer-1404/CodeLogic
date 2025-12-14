@@ -1,141 +1,187 @@
-import React, { useState, useEffect } from 'react';
-import Like from '../../../assets/Icons/Like';
-import DisLike from '../../../assets/Icons/DisLike';
-import { likeCourses } from '../../../core/services/api/post/likeCourses';
-import { disLikeCourses } from '../../../core/services/api/post/disLikeCourses';
-import { toast } from 'react-toastify';
-import { useTranslation } from 'react-i18next';
-import img2 from '../../../assets/Images/HTML5Course.png';
-import {useMutation} from '@tanstack/react-query'
+import React, { useState, useEffect } from "react";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
+import img2 from "../../../assets/Images/HTML5Course.png";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { disLikeCourses } from "../../../core/services/api/post/disLikeCourses";
+import { DeleteLikeCourse } from "../../../core/services/api/Delete/DeleteLikeCourse";
+import { likeCourses } from "../../../core/services/api/post/likeCourses";
 
+const COURSE_QUERY_KEY = ["GETCOURSEBYID"];
 
 const ImageInfo = ({ course }) => {
+  const queryClient = useQueryClient();
 
-  const { t } = useTranslation();
-
-  const key = `like_${course.courseId}`;
-  const saved = JSON.parse(localStorage.getItem(key) || '{}');
-  const [liked, setLiked] = useState(saved.liked || false);
-  const [disLiked, setDisliked] = useState(saved.disLiked || false);
-  const [likeCount, setLikeCount] = useState(course.likeCount);
-  const [disLikeCount, setDisLikeCount] = useState(course.dissLikeCount);
-
-  const token = localStorage.getItem('token');
-
-  const likeMutation = useMutation({
-    mutationFn: () => likeCourses(course.courseId, token),
-    onSuccess: () => toast.success(t('imageInfo.addLikeSuccessToast')),
+  const [likeInfo, setLikeInfo] = useState({
+    userIsLiked: course?.userIsLiked || false,
+    userIsDissLike: course?.userIsDissLike || false,
+    likeCount: course?.likeCount || 0,
+    dissLikeCount: course?.dissLikeCount || 0,
+    userLikeId: course?.userLikeId || null,
   });
-  const disLikeMutation = useMutation({
-    mutationFn: () => disLikeCourses(course.courseId, token),
-    onSuccess: () => toast.success(t('imageInfo.addDisLikeSuccessToast')),
-  });
-  const onLike = () => {
-    if (!token) {
-      toast.error(t('login.loginToast'));
-      return;
-    }
-    if (liked) {
-      setLiked(false);
-      setLikeCount(likeCount - 1);
-      toast.success(t('imageInfo.removeLikeSuccessToast'));
-    } else {
-      setLiked(true);
-      setDisliked(false);
-      setLikeCount(likeCount + 1);
-      if (disLiked) setDisLikeCount(disLikeCount - 1);
-      likeMutation.mutate();
-    }
-  };
-  const onDisLike = () => {
-    if (!token) {
-      toast.error(t('login.loginToast'));
-      return;
-    }
-    if (disLiked) {
-      setDisliked(false);
-      setDisLikeCount(disLikeCount - 1);
-      toast.success(t('imageInfo.removeDisLikeSuccessToast'));
-    } else {
-      setDisliked(true);
-      setLiked(false);
-      setDisLikeCount(disLikeCount + 1);
-      if (liked) setLikeCount(likeCount - 1);
-      disLikeMutation.mutate();
-    }
-  };
+
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify({ liked, disLiked }));
-  }, [liked, disLiked]);
+    setLikeInfo({
+      userIsLiked: course?.userIsLiked || false,
+      userIsDissLike: course?.userIsDissLike || false,
+      likeCount: course?.likeCount || 0,
+      dissLikeCount: course?.dissLikeCount || 0,
+      userLikeId: course?.userLikeId || null,
+    });
+  }, [
+    course?.userIsLiked,
+    course?.userIsDissLike,
+    course?.likeCount,
+    course?.dissLikeCount,
+    course?.userLikeId,
+  ]);
 
-
-
-  const techs = course.technologyList
+  const techs = course?.technologyList
     ?.trim()
     .split(/\s+/)
     .filter((t) => t.length > 0);
 
+  const onSuccess = (message) => {
+    toast.success(message);
+    queryClient.invalidateQueries({ queryKey: COURSE_QUERY_KEY });
+  };
 
+  const likeMutation = useMutation({
+    mutationFn: likeCourses,
+    onSuccess: () => {
+      setLikeInfo((prev) => ({
+        ...prev,
+        userIsLiked: true,
+        userIsDissLike: false,
+        likeCount: prev.likeCount + 1,
+        dissLikeCount: prev.userIsDissLike
+          ? Math.max(0, prev.dissLikeCount - 1)
+          : prev.dissLikeCount,
+      }));
+      onSuccess("دوره با موفقیت لایک شد");
+    },
+    onError: (error) => {
+      if (error?.response?.status === 401) return;
+    },
+  });
+
+  const disLikeMutation = useMutation({
+    mutationFn: disLikeCourses,
+    onSuccess: () => {
+      setLikeInfo((prev) => ({
+        ...prev,
+        userIsDissLike: true,
+        userIsLiked: false,
+        dissLikeCount: prev.dissLikeCount + 1,
+        likeCount: prev.userIsLiked
+          ? Math.max(0, prev.likeCount - 1)
+          : prev.likeCount,
+        userLikeId: prev.userIsLiked ? null : prev.userLikeId,
+      }));
+      onSuccess("دوره با موفقیت دیسلایک شد");
+    },
+    onError: (error) => {
+      if (error?.response?.status === 401) return;
+    },
+  });
+
+  const deleteLikeMutation = useMutation({
+    mutationFn: DeleteLikeCourse,
+    onSuccess: () => {
+      setLikeInfo((prev) => ({
+        ...prev,
+        userIsLiked: false,
+        likeCount: Math.max(0, prev.likeCount - 1),
+        userLikeId: null,
+      }));
+      onSuccess("لایک با موفقیت حذف شد");
+    },
+    onError: (error) => {
+      if (error?.response?.status === 401) return;
+    },
+  });
+
+  const isLiking = likeMutation.isLoading || deleteLikeMutation.isLoading;
+  const isDisLiking = disLikeMutation.isLoading;
+
+  const handleLike = async () => {
+    if (isLiking || isDisLiking) return;
+
+    if (likeInfo.userIsLiked) {
+      if (likeInfo.userLikeId) {
+        deleteLikeMutation.mutate(likeInfo.userLikeId);
+      } else {
+        toast.warn("لطفا بعد از چند لحظه دوباره امتحان کنید");
+        queryClient.invalidateQueries({ queryKey: COURSE_QUERY_KEY });
+      }
+    } else {
+      likeMutation.mutate(course.courseId);
+    }
+  };
+
+  const handleDisLike = async () => {
+    if (isLiking || isDisLiking) return;
+
+    if (!likeInfo.userIsDissLike) {
+      disLikeMutation.mutate(course.courseId);
+    } else {
+      toast.warn("دیسلایک شما قبلا ثبت شده است");
+    }
+  };
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className="flex flex-col gap-4">
       <img
         src={
-          course.imageAddress && !course.imageAddress.includes('undefined')
+          course?.imageAddress && !course.imageAddress.includes("undefined")
             ? course.imageAddress
             : img2
         }
-        className='w-full h-[160px] rounded-xl
+        className="w-full h-[160px] rounded-xl
             md:h-[240px] md:rounded-2xl
-            lg:h-[443px] lg:rounded-[25px]'
+            lg:h-[443px] lg:rounded-[25px]"
       />
-      <div className='flex justify-between'>
+      <div className="flex justify-between">
         <div>
           {techs &&
             techs.length > 0 &&
             techs.map((tech, index) => (
               <span
                 key={index}
-                className='py-[1px] px-[11px] font-regular text-sm text-[#848484] border border-[#848484] rounded-[48px] mr-2'
+                className="py-[1px] px-[11px] font-regular text-sm text-[#848484] border border-[#848484] rounded-[48px] mr-2"
               >
                 {tech}
               </span>
             ))}
         </div>
-        <div className='flex gap-2'>
+        <div className="flex gap-2">
           <div
-            onClick={onDisLike}
-            className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] rounded-[48px] cursor-pointer 
-                    dark:bg-[#393939]'
+            className={`flex gap-2 py-2 px-3 ${
+              likeInfo.userIsDissLike
+                ? "text-white bg-[#008C78] "
+                : "text-[#848484] bg-[#EAEAEA] dark:bg-[#393939]"
+            } rounded-[48px] cursor-pointer transition-opacity duration-300`}
+            onClick={handleDisLike}
+            style={{ opacity: isDisLiking || isLiking ? 0.6 : 1 }}
           >
-            <span className='font-regular text-base text-[#848484]'>
-              {disLikeCount}
+            <span className="font-regular text-base">
+              {likeInfo.dissLikeCount}
             </span>
-            {disLiked ? (
-              <span className='rotate-180 transform scale-x-[-1]'>
-                <Like />
-              </span>
-            ) : (
-              <DisLike />
-            )}
+            <ThumbDownAltIcon />
           </div>
+
           <div
-            onClick={onLike}
-            className='flex gap-2 py-2 px-3 text-[#848484] bg-[#EAEAEA] rounded-[48px] cursor-pointer  
-                    dark:bg-[#393939]'
+            className={`flex gap-2 py-2 px-3 ${
+              likeInfo.userIsLiked
+                ? "text-white bg-[#008C78] "
+                : "text-[#848484] bg-[#EAEAEA] dark:bg-[#393939]"
+            } rounded-[48px] cursor-pointer transition-opacity duration-300`}
+            onClick={handleLike}
+            style={{ opacity: isLiking || isDisLiking ? 0.6 : 1 }}
           >
-            <span className='font-regular text-base text-[#848484]'>
-              {likeCount}
-            </span>
-            {liked ? (
-              <span>
-                <Like />
-              </span>
-            ) : (
-              <span className='rotate-180 transform scale-x-[-1]'>
-                <DisLike />
-              </span>
-            )}
+            <span className="font-regular text-base">{likeInfo.likeCount}</span>
+            <ThumbUpIcon />
           </div>
         </div>
       </div>

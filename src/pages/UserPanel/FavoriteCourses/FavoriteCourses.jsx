@@ -50,7 +50,7 @@ const FavoriteCourses = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [coursesPerPage, setCoursesPerPage] = useState(2);
   const [searchTerm, setSearchTerm] = useState("");
-  const [query] = useDebounce(searchTerm, 350);
+  const [query] = useDebounce(searchTerm, 600);
   const [filterOption, setFilterOption] = useState("all");
 
   const filteredCourses = favoriteCourses
@@ -63,12 +63,14 @@ const FavoriteCourses = () => {
     })
     .sort((a, b) => {
       if (filterOption === "جدید ترین ها") {
-        return b.lastUpdate - a.lastUpdate;
-      } else if (filterOption === "اولین بروزرسانی") {
-        return a.lastUpdate - b.lastUpdate;
-      } else {
-        return 0;
+        return new Date(b.lastUpdate) - new Date(a.lastUpdate);
       }
+
+      if (filterOption === "اولین بروزرسانی") {
+        return new Date(a.lastUpdate) - new Date(b.lastUpdate);
+      }
+
+      return 0;
     });
 
   const startIndex = (currentPage - 1) * coursesPerPage;
@@ -374,7 +376,7 @@ const FavoriteCourses = () => {
                 duration: 300,
               },
             }}
-            className=" p-4 bg-[#eee] rounded-3xl flex
+            className=" p-4 bg-[#eee] rounded-3xl flex w-[35%]
                 flex-col  mt-3 gap-6  py-4 px-6 dark:text-white dark:bg-[#333] "
           >
             <h2 className="text-[19px] text-[#008C78] dark:text-[#008C78] mx-auto font-bold">
@@ -385,7 +387,7 @@ const FavoriteCourses = () => {
               src={
                 !overViewData.course.imageAddress
                   ? rectImage
-                  : overViewData.course
+                  : overViewData.course.imageAddress
               }
               alt=""
             />
