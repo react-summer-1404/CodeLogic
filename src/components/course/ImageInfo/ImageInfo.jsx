@@ -47,10 +47,6 @@ const ImageInfo = ({ course }) => {
     queryClient.invalidateQueries({ queryKey: COURSE_QUERY_KEY });
   };
 
-  const onError = () => {
-    toast.error(+"خطا در انجام عملیات ");
-  };
-
   const likeMutation = useMutation({
     mutationFn: likeCourses,
     onSuccess: () => {
@@ -65,7 +61,9 @@ const ImageInfo = ({ course }) => {
       }));
       onSuccess("دوره با موفقیت لایک شد");
     },
-    onError,
+    onError: (error) => {
+      if (error?.response?.status === 401) return;
+    },
   });
 
   const disLikeMutation = useMutation({
@@ -83,7 +81,9 @@ const ImageInfo = ({ course }) => {
       }));
       onSuccess("دوره با موفقیت دیسلایک شد");
     },
-    onError,
+    onError: (error) => {
+      if (error?.response?.status === 401) return;
+    },
   });
 
   const deleteLikeMutation = useMutation({
@@ -97,7 +97,9 @@ const ImageInfo = ({ course }) => {
       }));
       onSuccess("لایک با موفقیت حذف شد");
     },
-    onError,
+    onError: (error) => {
+      if (error?.response?.status === 401) return;
+    },
   });
 
   const isLiking = likeMutation.isLoading || deleteLikeMutation.isLoading;

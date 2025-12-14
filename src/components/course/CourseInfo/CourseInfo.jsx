@@ -21,6 +21,9 @@ const CourseInfo = ({ course }) => {
       toast.success(t("courseInfo.reserveSuccessToast"));
       queryClient.invalidateQueries({ queryKey: ["GETCOURSEBYID"] });
     },
+    onError: (error) => {
+      if (error?.response?.status === 401) return;
+    },
   });
 
   const onReserveCourses = () => {

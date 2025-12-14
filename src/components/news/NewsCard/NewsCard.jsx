@@ -32,7 +32,8 @@ const NewsCard = ({
   const { mutate: postFavoriteTop } = useMutation({
     mutationKey: ["Postfavorite"],
     mutationFn: (value) => PostFavoriteNews(value),
-    onError: () => {
+    onError: (error) => {
+      if (error?.response?.status === 401) return;
       setLiked(false);
       toast.error(t("newsPage.addfavotiteerr"));
     },
