@@ -9,6 +9,7 @@ import { useTheme } from "../../../utils/hooks/useTheme/useTheme";
 import { getItem } from "../../../utils/helper/storage.services";
 import getAllNews from "../../../core/services/api/Get/News";
 import GetAllCourses from "../../../core/services/api/Get/GetAllCourses";
+import img2 from "../../../assets/Images/HTML5Course.png";
 
 const Header = () => {
   const [searchType, setSearchType] = useState("news");
@@ -192,7 +193,19 @@ const Header = () => {
                   >
                     <div className="flex items-center gap-3">
                       <img
-                        src={news.currentImageAddressTumb}
+                        src={
+                          news.currentImageAddressTumb &&
+                          !news.currentImageAddressTumb.includes("undefined") &&
+                          news.currentImageAddressTumb.startsWith("http") &&
+                          !news.currentImageAddressTumb
+                            .toLowerCase()
+                            .includes("local") &&
+                          !news.currentImageAddressTumb
+                            .toLowerCase()
+                            .includes("fakepath")
+                            ? news.currentImageAddressTumb
+                            : img2
+                        }
                         alt={news.title}
                         className="w-10 h-10 rounded-lg object-cover border border-[#ddd] dark:border-[#444]"
                       />
@@ -244,7 +257,19 @@ const Header = () => {
                   >
                     <div className="flex items-center gap-3">
                       <img
-                        src={course.tumbImageAddress || course.imageAddress}
+                        src={
+                          course.tumbImageAddress &&
+                          !course.tumbImageAddress.includes("undefined") &&
+                          course.tumbImageAddress.startsWith("http") &&
+                          !course.tumbImageAddress
+                            .toLowerCase()
+                            .includes("local") &&
+                          !course.tumbImageAddress
+                            .toLowerCase()
+                            .includes("fakepath")
+                            ? course.tumbImageAddress
+                            : img2
+                        }
                         alt={course.title}
                         className="w-10 h-10 rounded-lg object-cover border border-[#ddd] dark:border-[#444]"
                       />
