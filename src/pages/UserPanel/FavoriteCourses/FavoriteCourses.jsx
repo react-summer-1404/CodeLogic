@@ -376,7 +376,7 @@ const FavoriteCourses = () => {
                 duration: 300,
               },
             }}
-            className=" p-4 bg-[#eee] rounded-3xl flex
+            className=" p-4 bg-[#eee] rounded-3xl flex w-[35%]
                 flex-col  mt-3 gap-6  py-4 px-6 dark:text-white dark:bg-[#333] "
           >
             <h2 className="text-[19px] text-[#008C78] dark:text-[#008C78] mx-auto font-bold">
@@ -387,7 +387,7 @@ const FavoriteCourses = () => {
               src={
                 !overViewData.course.imageAddress
                   ? rectImage
-                  : overViewData.course
+                  : overViewData.course.imageAddress
               }
               alt=""
             />
