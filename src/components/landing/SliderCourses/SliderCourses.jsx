@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import GetAllCourses from "../../../core/services/api/Get/GetAllCourses";
 import CourseCardView1 from "../../common/CourseCardView1/CourseCardView1";
 import ButtonsSeeMore from "../../common/ButtonsSeeMore/ButtonsSeeMore";
@@ -40,21 +40,6 @@ const SliderCourses = () => {
   });
 
   const sliderRef = useRef();
-  const [favorites, setFavorites] = useState({});
-  const handleToggleFavorite = async (courseId) => {
-    const isFavorite = favorites[courseId] || false;
-    if (isFavorite) {
-      await deleteFavCourses(courseId);
-      toast.success(t("courseCard.removeFavSuccessToast"));
-    } else {
-      await addFavCourses(courseId);
-      toast.success(t("courseCard.addFavSuccessToast"));
-    }
-    setFavorites((prev) => ({
-      ...prev,
-      [courseId]: !isFavorite,
-    }));
-  };
 
   return (
     <div className="flex flex-col items-between gap-8 w-full pt-[104px]">
@@ -89,7 +74,6 @@ const SliderCourses = () => {
               key={index}
               handleToggleCompare={handleToggleCompare}
               isCompared={comparedCourseIds.includes(item.courseId)}
-              handleToggleFavorite={handleToggleFavorite}
             />
           );
         })}
