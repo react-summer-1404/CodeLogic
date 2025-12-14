@@ -1,5 +1,9 @@
+import Lottie from 'lottie-react';
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import load from '../../../assets/Images/Loading Dots In Yellow.json'
+
+
 
 const Section1Card = ({item, isLoading}) => {
 
@@ -13,7 +17,13 @@ const Section1Card = ({item, isLoading}) => {
       sa:text-xs   sm:text-base   lg:text-2xl'>{item.title}</span>
       <span className='font-bold   dark:text-[#EEEEEE]   
       sa:text-sm   sm:text-xl   lg:text-5xl'>
-        {isLoading ? <span className="inline-block w-20 h-8 bg-black/10 animate-pulse rounded"></span> : (item.members)}
+        {isLoading ? 
+          <Lottie 
+          style={{width:'104px'}}
+          animationData={load}
+          />
+          : 
+          (item.members)}
       </span>
     </div>
   )
