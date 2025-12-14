@@ -233,7 +233,11 @@ const SecuritySettings = () => {
       </div>
       <div className="mt-7">
         <Formik
-          initialValues={{ twoStepAuth: "", telegramUsername: "" }}
+          initialValues={{
+            twoStepAuth: "",
+            telegramUsername: "",
+            recoveryEmail: "abolfazlmnf83@gmail.com",
+          }}
           onSubmit={(values) => {
             putTwoStep(values);
             console.log(values);
@@ -267,6 +271,7 @@ const SecuritySettings = () => {
                     className="text-[#EF5350] text-[14px] absolute top-14 right-0"
                   />
                 </div>
+
                 <div className="flex gap-3 mt-6">
                   <label className="text-[16px] dark:text-[#ffff] ">
                     {t("securitySetting.twpStepEnabled")}
